@@ -1,0 +1,130 @@
+{% load cms_tags staticfiles sekizai_tags thumbnail %}
+
+{% comment %}
+
+    Only display a section, if the minimum requirements are met:
+    Has a section title, OR at least one column has at leasts one child
+
+{% endcomment %}
+
+{% if instance.section_has_content %}
+
+    <div class="content-section content-plugin {{ instance.css_classes }}" data-scroll-spy>
+
+        {# Optional: Parallax enabled #}
+        {% if instance.parallax_enabled and instance.bg_image_outer_container %}
+            <div class="bg-image bg-image-outer-container-{{instance.id}}"></div>
+        {% endif %}
+
+        {# Optional: Video background #}
+        {% if instance.video_file and instance.video_poster_image and instance.video_mobile_image  %}
+            <div class="video-container video-{{ instance.id }} align-{{instance.video_mobile_image_alignment}}">
+                <video id="video-{{ instance.id }}" class="the-video" playsinline muted autoplay loop poster="{{ instance.video_poster_image|thumbnail_url:'video-poster-image' }}">
+                    <source src="{{ instance.video_file.url }}" type="video/mp4">
+                </video>
+
+                {# Mobile Image Background #}
+                {% include "includes/retina_media_query.html" with min_width=0 max_width=320 background_image=instance.video_mobile_image|thumbnail_url:'video-mobile-image-xs' background_image_2x=instance.video_mobile_image|thumbnail_url:'video-mobile-image-xs-2x' content_type_id=instance.id prefix='video' %}
+                {% include "includes/retina_media_query.html" with min_width=321 max_width=767 background_image=instance.video_mobile_image|thumbnail_url:'video-mobile-image-sm' background_image_2x=instance.video_mobile_image|thumbnail_url:'video-mobile-image-sm-2x' content_type_id=instance.id prefix='video' %}
+            </div>
+        {% endif %}
+
+        {# Optional: Overlay Styles enabled #}
+        {% if instance.overlay_styles_enabled and instance.bg_image_outer_container %}
+            <div class="outer-overlay"></div>
+        {% endif %}
+
+        <div class="{{instance.template}} main-col-container">
+
+            {# Optional: Container enabled #}
+            {% if instance.container_enabled %}
+                <div class="container">
+            {% endif %}
+
+                <div class="inner {% if not instance.bg_image_outer_container and instance.bg_image_inner_container %}bg-image-inner-container-{{instance.id}}{% endif %}">
+
+                    {# Optional: Overlay #}
+                    {% if instance.overlay_styles_enabled and instance.bg_image_inner_container %}
+                        <div class="inner-overlay"></div>
+                    {% endif %}
+
+                    {% if not instance.bg_image_outer_container and instance.bg_image_inner_container %}
+                        <div class="main-text-container">
+                    {% endif %}
+
+                        {# Optional: Section Heading #}
+                        {% if instance.title %}
+                            <header class="section-heading">
+                                <h2 class="heading">{{ instance.title }}</h2>
+                            </header>
+                        {% endif %}
+
+                        <div class="col-container">
+                            {% for plugin in instance.child_plugin_instances %}
+                                {% render_plugin plugin %}
+                            {% endfor %}
+                        </div>
+
+                    {# Optional: Overlay #}
+                    {% if not instance.bg_image_outer_container and instance.bg_image_inner_container %}
+                        </div>
+                    {% endif %}
+
+                </div>{# .inner #}
+
+            {# Optional: Container enabled #}
+            {% if instance.container_enabled %}</div>{% endif %}
+
+        </div>{# .main-col-container #}
+
+        {% comment %}
+
+            Optional: OUTER CONTAINER background image (default mode)
+
+        {% endcomment %}
+
+        {% if instance.bg_image_outer_container and not instance.full_height_enabled %}
+            {% include "includes/retina_media_query.html" with min_width=0 max_width=320 background_image=instance.bg_image_outer_container|thumbnail_url:'parallax-xs' background_image_2x=instance.bg_image_outer_container|thumbnail_url:'parallax-xs-2x' content_type_id=instance.id prefix='bg-image-outer-container' %}
+            {% include "includes/retina_media_query.html" with min_width=321 max_width=512 background_image=instance.bg_image_outer_container|thumbnail_url:'parallax-sm' background_image_2x=instance.bg_image_outer_container|thumbnail_url:'parallax-sm-2x' content_type_id=instance.id prefix='bg-image-outer-container' %}
+            {% include "includes/retina_media_query.html" with min_width=513 max_width=1023 background_image=instance.bg_image_outer_container|thumbnail_url:'parallax-md' background_image_2x=instance.bg_image_outer_container|thumbnail_url:'parallax-md-2x' content_type_id=instance.id prefix='bg-image-outer-container' %}
+            {% include "includes/retina_media_query.html" with min_width=1024 max_width=1199 background_image=instance.bg_image_outer_container|thumbnail_url:'parallax-lg' background_image_2x=instance.bg_image_outer_container|thumbnail_url:'parallax-lg-2x' content_type_id=instance.id prefix='bg-image-outer-container' %}
+            {% include "includes/retina_media_query.html" with min_width=1200 max_width=0 background_image=instance.bg_image_outer_container|thumbnail_url:'parallax-xl' background_image_2x=instance.bg_image_outer_container|thumbnail_url:'parallax-xl-2x' content_type_id=instance.id prefix='bg-image-outer-container' %}
+        {% endif %}
+
+
+        {% comment %}
+
+            Optional: OUTER CONTAINER background image (FULL HEIGHT mode)
+
+        {% endcomment %}
+
+        {% if instance.bg_image_outer_container and instance.full_height_enabled %}
+
+            {% include "includes/retina_media_query.html" with min_width=0 max_width=320 background_image=instance.bg_image_outer_container|thumbnail_url:'full-height-xs' background_image_2x=instance.bg_image_outer_container|thumbnail_url:'full-height-xs-2x' content_type_id=instance.id prefix='bg-image-outer-container' %}
+            {% include "includes/retina_media_query.html" with min_width=321 max_width=512 background_image=instance.bg_image_outer_container|thumbnail_url:'full-height-sm' background_image_2x=instance.bg_image_outer_container|thumbnail_url:'full-height-sm-2x' content_type_id=instance.id prefix='bg-image-outer-container' %}
+            {% include "includes/retina_media_query.html" with min_width=513 max_width=1023 background_image=instance.bg_image_outer_container|thumbnail_url:'full-height-md' background_image_2x=instance.bg_image_outer_container|thumbnail_url:'full-height-md-2x' content_type_id=instance.id prefix='bg-image-outer-container' %}
+            {% include "includes/retina_media_query.html" with min_width=1024 max_width=1199 background_image=instance.bg_image_outer_container|thumbnail_url:'full-height-lg' background_image_2x=instance.bg_image_outer_container|thumbnail_url:'full-height-lg-2x' content_type_id=instance.id prefix='bg-image-outer-container' %}
+            {% include "includes/retina_media_query.html" with min_width=1200 max_width=0 background_image=instance.bg_image_outer_container|thumbnail_url:'full-height-xl' background_image_2x=instance.bg_image_outer_container|thumbnail_url:'full-height-xl-2x' content_type_id=instance.id prefix='bg-image-outer-container' %}
+
+        {% endif %}
+
+
+        {% comment %}
+
+            Optional: INNER CONTAINER background image
+
+            Important: In case the OUTER CONTAINER background image is set, this section is being ignored.
+
+        {% endcomment %}
+
+        {% if instance.bg_image_inner_container and not instance.bg_image_outer_container %}
+            {% include "includes/retina_media_query.html" with min_width=0 max_width=320 background_image=instance.bg_image_inner_container|thumbnail_url:'content-plugin-inner-bg-xs' background_image_2x=instance.bg_image_inner_container|thumbnail_url:'content-plugin-inner-bg-xs-2x' content_type_id=instance.id prefix='bg-image-inner-container' %}
+            {% include "includes/retina_media_query.html" with min_width=321 max_width=512 background_image=instance.bg_image_inner_container|thumbnail_url:'content-plugin-inner-bg-sm' background_image_2x=instance.bg_image_inner_container|thumbnail_url:'content-plugin-inner-bg-sm-2x' content_type_id=instance.id prefix='bg-image-inner-container' %}
+            {% include "includes/retina_media_query.html" with min_width=513 max_width=1023 background_image=instance.bg_image_inner_container|thumbnail_url:'content-plugin-inner-bg-md' background_image_2x=instance.bg_image_inner_container|thumbnail_url:'content-plugin-inner-bg-md-2x' content_type_id=instance.id prefix='bg-image-inner-container' %}
+            {% include "includes/retina_media_query.html" with min_width=1024 max_width=1199 background_image=instance.bg_image_inner_container|thumbnail_url:'content-plugin-inner-bg-lg' background_image_2x=instance.bg_image_inner_container|thumbnail_url:'content-plugin-inner-bg-lg-2x' content_type_id=instance.id prefix='bg-image-inner-container' %}
+            {% include "includes/retina_media_query.html" with min_width=1200 max_width=0 background_image=instance.bg_image_inner_container|thumbnail_url:'content-plugin-inner-bg-xl' background_image_2x=instance.bg_image_inner_container|thumbnail_url:'content-plugin-inner-bg-xl-2x' content_type_id=instance.id prefix='bg-image-inner-container' %}
+        {% endif %}
+
+    </div>
+
+{% endif %}

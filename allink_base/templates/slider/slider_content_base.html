@@ -1,0 +1,28 @@
+{% load cms_tags staticfiles sekizai_tags thumbnail %}
+
+<div class="swiper-container {% if additional_class %}swiper-default{% endif %}">
+
+    <div class="swiper-wrapper">
+        {% comment %}
+
+            {% if instance.child_plugin_instances %}
+                {% for plugin in instance.child_plugin_instances %}
+                    {% render_plugin plugin %}
+                {% endfor %}
+            {% else %}
+                test
+            {% endif %}
+
+        {% endcomment %}
+    </div>
+
+    <div class="swiper-pagination"></div>
+
+    <div class="swiper-button-prev swiper-button">
+        <i class="icomoon-custom-arrow-left"></i>
+    </div>
+    <div class="swiper-button-next swiper-button">
+        <i class="icomoon-custom-arrow-right"></i>
+    </div>
+
+</div>

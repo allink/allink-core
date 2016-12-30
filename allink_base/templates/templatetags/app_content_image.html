@@ -1,0 +1,34 @@
+{% load thumbnail %}
+
+<picture class="lazyload">
+
+    {# end render figure/figcaption #}
+
+    <!--[if IE 9]><video style="display: none;"><![endif]-->
+
+    {# XL #}
+    <source
+        data-srcset="{{ object.preview_image|thumbnail_url:thumbnail_url_xl }},
+            {{ object.preview_image|thumbnail_url:thumbnail_url_xl_2x }} 2x"
+        data-aspectratio="{{object.preview_image.width}}/{{object.preview_image.height}}"
+        media="(min-width:1200px)"
+        >
+    {# SM #}
+    <source
+        data-srcset="{{ object.preview_image|thumbnail_url:thumbnail_url_sm }},
+            {{ object.preview_image|thumbnail_url:thumbnail_url_sm_2x }} 2x"
+        data-aspectratio="{{object.preview_image.width}}/{{object.preview_image.height}}"
+        media="(min-width:576px)"
+        >
+
+    <!--[if IE 9]></video><![endif]-->
+
+    {# XS #}
+    <img
+        data-srcset="{{ object.preview_image|thumbnail_url:thumbnail_url_xs }}, {{ object.preview_image|thumbnail_url:thumbnail_url_xs_2x }} 2x"
+        alt="{{ object.title }}"
+        data-aspectratio="{{object.preview_image.width}}/{{object.preview_image.height}}"
+        class="lazyload"
+    >
+
+</picture>

@@ -1,0 +1,75 @@
+{% load thumbnail %}
+
+{% comment %}
+
+    djangocms-picture Docs:
+
+    https://github.com/divio/djangocms-picture
+
+{% endcomment %}
+
+{# start render figure/figcaption #}
+{% if instance.caption_text %}
+    <figure>
+{% endif %}
+
+    {% if instance.get_link %}
+        <a href="{{ instance.get_link }}"
+        {% if instance.link_target %} target="{{ instance.link_target }}"{% endif %}
+        {{ instance.link_attributes_str }}>
+    {% endif %}
+
+        <picture class="lazyload">
+
+            {# end render figure/figcaption #}
+
+            <!--[if IE 9]><video style="display: none;"><![endif]-->
+
+            {# XL #}
+            <source
+                data-srcset="{{ instance.picture|thumbnail_url:thumbnail_url_xl }},
+                    {{ instance.picture|thumbnail_url:thumbnail_url_xl_2x }} 2x"
+                data-aspectratio="{{instance.picture.width}}/{{instance.picture.height}}"
+                media="(min-width:1200px)"
+                >
+            {# SM #}
+            <source
+                data-srcset="{{ instance.picture|thumbnail_url:thumbnail_url_sm }},
+                    {{ instance.picture|thumbnail_url:thumbnail_url_sm_2x }} 2x"
+                data-aspectratio="{{instance.picture.width}}/{{instance.picture.height}}"
+                media="(min-width:576px)"
+                >
+
+            <!--[if IE 9]></video><![endif]-->
+
+            {# XS #}
+            <img
+                data-srcset="{% spaceless %}
+                {% if instance.external_picture %}
+                    {{ instance.external_picture }}
+                {% elif instance.use_no_cropping %}
+                    {{ instance.picture.url }}
+                {% else %}
+                    {{ instance.picture|thumbnail_url:thumbnail_url_xs }},
+                    {{ instance.picture|thumbnail_url:thumbnail_url_xs_2x }} 2x
+                {% endif %}{% endspaceless %}"
+                {% if instance.picture.alt %} alt="{{ instance.picture.alt }}"{% endif %}
+                {% if instance.width %} width="{{ instance.width }}"{% endif %}
+                {% if instance.height %} height="{{ instance.height }}"{% endif %}
+                data-aspectratio="{{instance.picture.width}}/{{instance.picture.height}}"
+                class="lazyload"
+                {{ instance.attributes_str }}
+            >
+
+        </picture>
+
+    {% if instance.get_link %}
+        </a>
+    {% endif %}
+
+{# start render figure/figcaption #}
+{% if instance.caption_text %}
+        <figcaption>{{ instance.caption_text }}</figcaption>
+    </figure>
+{% endif %}
+{# end render figure/figcaption #}

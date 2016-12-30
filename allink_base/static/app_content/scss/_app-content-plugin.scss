@@ -1,0 +1,78 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Note: This file contains very basic styling, that will be overwritten
+and customized in an app specific SCSS file.
+
+*/
+
+
+.app-content-plugin {
+
+    // default padding when container is NOT activated
+    > .container {
+        @include column-paddings();
+    }
+
+    /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+    Grid View
+
+    */
+
+    .grid-item {
+        .heading {
+            @include h2();
+        }
+    }
+
+
+    /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+    List View
+
+    */
+
+    .list-container {
+        @include make-row();
+    }
+
+    .list-item {
+        @include clearfix();
+        .col {
+            &:nth-child(1) {
+                @include make-xs-column(12);
+                @include make-sm-column(8);
+            }
+            &:nth-child(2) {
+                @include make-xs-column(12);
+                @include make-sm-column(16);
+            }
+        }
+        .heading {
+            @include h2();
+        }
+    }
+
+
+    .list-item {
+        & + .list-item {
+            @include make-spacing-top-xs($app-content-plugin-list-item-spacing-xs);
+            @include make-spacing-top-md($app-content-plugin-list-item-spacing-md);
+            @include make-spacing-top-xl($app-content-plugin-list-item-spacing-xl);
+        }
+    }
+
+
+    /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+    Detail View
+
+    */
+
+    &.detail-view {
+        .heading {
+            @include h1();
+        }
+    }
+
+}
