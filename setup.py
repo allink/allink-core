@@ -1,10 +1,12 @@
 #! /usr/bin/env python
 from setuptools import setup
-from . import __version__ as version
+
+VERSION = (0, 0, 1)
+__version__ = '.'.join(map(str, VERSION))
 
 setup(
     name='allink_core',
-    version=version,
+    version=__version__,
     description='collection of code fragments',
     long_description='collection of code fragments',
     author='Florian Türler, Beat Schenkel',
