@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from setuptools import setup
 
-from allink_core import __version__
+from .allink_core import __version__
 
 setup(
     name='allink_core',
