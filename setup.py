@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from setuptools import setup
-from . import __version__
+
+VERSION = (0, 0, 1)
+__version__ = '.'.join(map(str, VERSION))
 
 setup(
     name='allink_core',
