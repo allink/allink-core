@@ -1,10 +1,9 @@
 #! /usr/bin/env python
 from setuptools import setup
 
-import allink_core
 setup(
     name='allink_core',
-    version=__version__,
+    version=.__version__,
     description='collection of code fragments',
     long_description='collection of code fragments',
     author='Florian Türler, Beat Schenkel',
