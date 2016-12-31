@@ -4,7 +4,7 @@ from setuptools import setup
 import allink_core
 setup(
     name='allink_core',
-    version=allink_core.__version__,
+    version=__version__,
     description='collection of code fragments',
     long_description='collection of code fragments',
     author='Florian Türler, Beat Schenkel',
@@ -13,12 +13,11 @@ setup(
     license='BSD License',
     platforms=['OS Independent'],
     packages=[
-        'allink_core',
-        'allink_core.allink_base',
-        'allink_core.allink_categories',
-        'allink_core.allink_styleguide',
-        'allink_core.djangocms_content',
-        'allink_core.djangocms_gallery',
+        'allink_base',
+        'allink_categories',
+        'allink_styleguide',
+        'djangocms_content',
+        'djangocms_gallery',
     ],
     classifiers=[
         'Development Status :: 1 - Alpha',
