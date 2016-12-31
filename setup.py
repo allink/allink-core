@@ -17,7 +17,7 @@ setup(
         'allink_core.allink_base',
         'allink_core.allink_categories',
         'allink_core.allink_styleguide',
-        'allink_core.djangocms_content,
+        'allink_core.djangocms_content',
         'allink_core.djangocms_gallery',
     ],
     classifiers=[
