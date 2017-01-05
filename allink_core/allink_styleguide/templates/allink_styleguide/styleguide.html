@@ -101,7 +101,7 @@
 
             <div class="manage-spacings">
                 <div class="text-container">
-                    <h2>btn-small</h2>
+                    <h2>btn (small)</h2>
                 </div>
                 <div class="form-container">
                     <form>
@@ -117,7 +117,7 @@
                     </form>
                 </div>
                 <div class="text-container">
-                    <h2>btn-small</h2>
+                    <h2>btn (normal)</h2>
                 </div>
                 <div class="form-container">
                     <form>
@@ -133,7 +133,7 @@
                     </form>
                 </div>
                 <div class="text-container">
-                    <h2>btn-small</h2>
+                    <h2>btn (large)</h2>
                 </div>
                 <div class="form-container">
                     <form>
@@ -145,6 +145,22 @@
                             <a href="#" class="btn btn-lg btn-warning">Warning</a>
                             <a href="#" class="btn btn-lg btn-danger">Danger</a>
                             <a href="#" class="btn btn-lg btn-muted">Muted</a>
+                        </div>
+                    </form>
+                </div>
+                <div class="text-container">
+                    <h2>btn (disabled)</h2>
+                </div>
+                <div class="form-container">
+                    <form>
+                        <div class="btn-group">
+                            <a href="#" class="btn btn-default disabled">Default</a>
+                            <a href="#" class="btn btn-primary disabled">Primary</a>
+                            <a href="#" class="btn btn-success disabled">Success</a>
+                            <a href="#" class="btn btn-info disabled">Info</a>
+                            <a href="#" class="btn btn-warning disabled">Warning</a>
+                            <a href="#" class="btn btn-danger disabled">Danger</a>
+                            <a href="#" class="btn btn-muted disabled">Muted</a>
                         </div>
                     </form>
                 </div>
@@ -165,10 +181,12 @@
 
             <div class="manage-spacings">
                 <div class="form-container">
-                    <form class="form-default" method="post">
+                    <form class="form-default validate-form" method="post" action="">
                         <div class="form-group">
                             <label class="control-label" for="group">
-                                 Button Group
+                                 <span class="label-text">
+                                     {% trans "Button Group" %}
+                                 </span>
                             </label>
                             <div class="input-group">
                                 <input type="text" name="group" class="form-control" placeholder="Search for...">
@@ -179,22 +197,28 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="text">
-                                 Text
+                                 <span class="label-text">
+                                     {% trans "Text" %}
+                                 </span>
+                                 <span class="required-symbol">
+                                     ({% trans "required" %})
+                                 </span>
                             </label>
-                            <input class="form-control" id="text" name="text" type="text" placeholder="Placeholder Text">
+                            <input class="form-control" id="text" name="text" type="text" placeholder="Placeholder Text" required>
                         </div>
                         <div class="form-group">
-                            <label class="control-label" for="text">
-                                 Disabled Field
+                            <label class="control-label" for="text-d">
+                                 <span class="label-text">
+                                     {% trans "Disabled Field" %}
+                                 </span>
                             </label>
-                            <input class="form-control" id="text" name="text" type="text" disabled>
+                            <input class="form-control" id="text-d" name="text-d" type="text" disabled>
                         </div>
                         <div class="form-group">
-                            <label class="control-label required-enabled" for="message">
-                                 Textarea (with text)
-                                <span class="required-symbol">
-                                    {% trans "required" %}
-                                </span>
+                            <label class="control-label" for="message">
+                                 <span class="label-text">
+                                     {% trans "Textarea (with text)" %}
+                                 </span>
                             </label>
                             <textarea class="form-control" cols="40" id="message" name="message" rows="5">{% spaceless %}
                                 Default Text - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse. Duis aute irure dolor in reprehenderit in voluptate velit esse commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.
@@ -202,13 +226,15 @@
                             </textarea>
                         </div>
                         <div class="form-group">
-                            <label class="control-label required-enabled" for="select">
-                                 Select a Choice
+                            <label class="control-label" for="select">
+                                 <span class="label-text">
+                                     {% trans "Select a Choice" %}
+                                 </span>
                                 <span class="required-symbol">
-                                    {% trans "required" %}
+                                    ({% trans "required" %})
                                 </span>
                             </label>
-                            <select class="form-control selectpicker" title="Please Select..." id="select" name="select">
+                            <select class="form-control selectpicker" title="Please Select..." id="select" name="select" required>
                                 <option value="First Choice">
                                     First Choice
                                 </option>
@@ -222,7 +248,9 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="file-upload">
-                                 Custom File Upload
+                                 <span class="label-text">
+                                     {% trans "Custom File Upload" %}
+                                 </span>
                             </label>
                             <div class="custom-file-upload">
                                 <input type="file" id="file-upload" value="Select file...">
@@ -232,17 +260,21 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label required-enabled" for="textarea">
-                                 Textarea (blank)
+                            <label class="control-label" for="textarea">
+                                 <span class="label-text">
+                                     {% trans "Textarea (blank)" %}
+                                 </span>
                                 <span class="required-symbol">
-                                    {% trans "required" %}
+                                    ({% trans "required" %})
                                 </span>
                             </label>
-                            <textarea class="form-control" cols="40" id="textarea" name="textarea" rows="5"></textarea>
+                            <textarea class="form-control" cols="40" id="textarea" name="textarea" rows="5" required></textarea>
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="date1">
-                                 Datepicker 1
+                                 <span class="label-text">
+                                     {% trans "Datepicker 1" %}
+                                 </span>
                             </label>
                             <div class="datepicker-container">
                                 <input class="datepicker" id="date1" name="date1" type="text" placeholder="{% trans "Select date..." %}">
@@ -251,7 +283,9 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="date2">
-                                 Datepicker 2
+                                 <span class="label-text">
+                                     {% trans "Datepicker 2" %}
+                                 </span>
                             </label>
                             <div class="datepicker-container">
                                 <input class="datepicker" id="date2" name="date2" type="text" placeholder="{% trans "Select date..." %}">
@@ -260,7 +294,9 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label">
-                                 Check all that apply (checkbox)
+                                 <span class="label-text">
+                                     {% trans "Check all that apply (checkbox)" %}
+                                 </span>
                             </label>
                             <div class="form-group">
                                 <div class="checkbox">
@@ -288,7 +324,9 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label">
-                                 Select a Choice (radio)
+                                 <span class="label-text">
+                                     {% trans "Select a Choice (radio)" %}
+                                 </span>
                             </label>
                             <div class="">
                                 <div class="radio">
@@ -316,7 +354,9 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="url">
-                                 URL
+                                 <span class="label-text">
+                                     {% trans "URL" %}
+                                 </span>
                             </label>
                             <input class="form-control" id="url" name="url" type="text">
                         </div>

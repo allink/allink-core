@@ -1,0 +1,34 @@
+{% load cms_tags sekizai_tags i18n thumbnail %}
+
+<div class="swiper-slide swiper-slide-{{slide.id}}">
+
+    {# Required: To keep aspect ratio #}
+    <div class="inner">
+
+        {# Optional: Overlay has to be activated through SCSS variable #}
+        <div class="swiper-content-overlay"></div>
+
+        <div class="swiper-content-container">
+            <div class="manage-spacings">
+                {% if display_title and title_content %}
+                    <div class="heading-container">
+                        <h2 class="heading">
+                            {{title_content}}
+                        </h2>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    {# {% render_app_content_image_detail thumbnail_url="detail-full-width" %} #}
+
+    {% if object.preview_image %}
+        {% include "includes/retina_media_query.html" with min_width=0 max_width=320 background_image=object.preview_image|thumbnail_url:'slider-inner-container-xs' background_image_2x=slide.image|thumbnail_url:'slider-inner-container-xs-x2' content_type_id=slide.id prefix='swiper-slide' %}
+        {% include "includes/retina_media_query.html" with min_width=321 max_width=512 background_image=slide.image|thumbnail_url:'slider-inner-container-sm' background_image_2x=slide.image|thumbnail_url:'slider-inner-container-sm-x2' content_type_id=slide.id prefix='swiper-slide' %}
+        {% include "includes/retina_media_query.html" with min_width=513 max_width=1023 background_image=slide.image|thumbnail_url:'slider-inner-container-md' background_image_2x=slide.image|thumbnail_url:'slider-inner-container-md-x2' content_type_id=slide.id prefix='swiper-slide' %}
+        {% include "includes/retina_media_query.html" with min_width=1024 max_width=1199 background_image=slide.image|thumbnail_url:'slider-inner-container-lg' background_image_2x=slide.image|thumbnail_url:'slider-inner-container-lg-x2' content_type_id=slide.id prefix='swiper-slide' %}
+        {% include "includes/retina_media_query.html" with min_width=1200 max_width=0 background_image=slide.image|thumbnail_url:'slider-inner-container-xl' background_image_2x=slide.image|thumbnail_url:'slider-inner-container-xl-x2' content_type_id=slide.id prefix='swiper-slide' %}
+    {% endif %}
+
+</div>

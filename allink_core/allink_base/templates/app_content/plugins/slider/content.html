@@ -7,7 +7,7 @@
     <div class="swiper-container {% block swiper_container_class %}swiper-default{% endblock swiper_container_class %}">
         <div class="swiper-wrapper">
             {% block app_content_objects %}
-                {% include "app_content/plugins/slider/_content.html" %}
+                {% include content_template %}
             {% endblock app_content_objects %}
         </div>
 

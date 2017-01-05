@@ -15,9 +15,9 @@ class AllinkBaseAdminForm(TranslatableModelForm):
         # if app uses categories, populate 'categories' field
         if self.instance.__class__.get_can_have_categories():
             self.fields['categories'] = forms.ModelMultipleChoiceField(
-                label=_(u'Categiories'),
+                label=_(u'Categories'),
                 widget=FilteredSelectMultiple(
-                    verbose_name=_(u'Categiories'),
+                    verbose_name=_(u'Categories'),
                     is_stacked=True
                 ),
                 required=False,
@@ -49,9 +49,9 @@ class AllinkBaseAppContentPluginForm(forms.ModelForm):
 
         if self.instance.get_app_can_have_categories():
             self.fields['categories'] = forms.ModelMultipleChoiceField(
-                label=_(u'Categiories'),
+                label=_(u'Categories'),
                 widget=FilteredSelectMultiple(
-                    verbose_name=_(u'Categiories'),
+                    verbose_name=_(u'Categories'),
                     is_stacked=True
                 ),
                 required=False,

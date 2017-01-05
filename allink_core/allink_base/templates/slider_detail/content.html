@@ -1,11 +1,19 @@
 {% load cms_tags staticfiles sekizai_tags thumbnail %}
 
-<div class="swiper-container swiper-default">
+{% comment %}
+
+    This container is primarily thought to be included from withing the detail views in which we get the 'object'
+
+{% endcomment %}
+
+<div class="swiper-container swiper-default swiper-detail-view">
 
     <div class="swiper-wrapper">
-        {% for plugin in instance.child_plugin_instances %}
-            {% render_plugin plugin %}
+
+        {% for slide in object.images %}
+            {% include "slider_detail/item.html" %}
         {% endfor %}
+
     </div>
 
     <div class="swiper-pagination"></div>

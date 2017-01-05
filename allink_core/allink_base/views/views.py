@@ -24,13 +24,13 @@ class AllinkBasePluginLoadMoreView(ListView):
         else:
             return None
 
-    def get_template_names(self):
+    def get_template_names(self, file='_content'):
         opts = self.plugin_model._meta
-        template = '{}/plugins/{}/_content.html'.format(opts.app_label, self.plugin.template)
+        template = '{}/plugins/{}/{}.html'.format(opts.app_label, self.plugin.template, file)
         try:
             get_template(template)
         except:
-            template = 'app_content/plugins/{}/_content.html'.format(self.plugin.template)
+            template = 'app_content/plugins/{}/{}.html'.format(self.plugin.template, file)
         return [template]
 
     def get(self, request, *args, **kwargs):
@@ -60,12 +60,17 @@ class AllinkBasePluginLoadMoreView(ListView):
 
         context = self.get_context_data()
         context.update({'request': request})
+
+        context.update({'content_template': self.get_template_names(file='_content')[0]})
+        context.update({'item_template': self.get_template_names(file='item')[0]})
+
         if 'api_request' in request.GET.keys():
             return self.json_response(context)
         return self.render_to_response(context)
 
     def json_response(self, context):
         context.update({'request': self.request})
+        context.update({'instance': self.plugin})
         if self.plugin.paginated_by > 0:
             if context['page_obj'].number > 1:
                 context.update({'appended': True})
@@ -83,4 +88,4 @@ class AllinkBaseDetailView(TranslatableSlugMixin, DetailView):
     def render_to_response(self, context, **response_kwargs):
         if self.request.is_ajax():
             context.update({'base_template': 'app_content/ajax_base.html'})
-        return render_to_response(self.template_name, context, context_instance=RequestContext(self.request))
+        return render_to_response(self.get_template_names(), context, context_instance=RequestContext(self.request))

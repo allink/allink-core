@@ -3,8 +3,10 @@
 import datetime
 from django.db import models
 from parler.managers import TranslatableManager, TranslatableQuerySet
+from model_utils.managers import InheritanceQuerySetMixin, InheritanceManagerMixin
 
-class AllinkBaseModelQuerySet(TranslatableQuerySet):
+
+class AllinkBaseModelQuerySet(TranslatableQuerySet, InheritanceQuerySetMixin):
     def active_entries(self):
         ''' entries which are active
         '''
@@ -32,7 +34,7 @@ class AllinkBaseModelQuerySet(TranslatableQuerySet):
         return self.order_by('-translations__title', 'id').distinct('translations__lastname', 'id')
 
 
-class AllinkBaseModelManager(TranslatableManager):
+class AllinkBaseModelManager(TranslatableManager, InheritanceManagerMixin):
     use_for_related_fields = True
     queryset_class = AllinkBaseModelQuerySet
 

@@ -45,18 +45,19 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
             }),
         )
 
+
+
+        fieldsets += (_('Display Options'), {
+            'classes': ('collapse',),
+            'fields': (
+                'template',
+                'container_enabled',
+                'softpage_enabled',
+                'bg_color',
+            )
+        }),
+
         if self.data_model.get_can_have_categories():
-
-            fieldsets += (_('Display Options'), {
-                'classes': ('collapse',),
-                'fields': (
-                    'template',
-                    'container_enabled',
-                    'softpage_enabled',
-                    'bg_color',
-                )
-            }),
-
             fieldsets += (_('Filter & Ordering'), {
                 'classes': ('collapse',),
                 'fields': (
@@ -65,51 +66,51 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
                 )
             }),
 
-            fieldsets += (_('Select entries manually'), {
-                'classes': ('collapse',),
-                'fields': (
-                    'manual_entries',
-                )
-            }),
+        fieldsets += (_('Select entries manually'), {
+            'classes': ('collapse',),
+            'fields': (
+                'manual_entries',
+            )
+        }),
 
-            fieldsets += (_('Category Navigation Options'), {
-                'classes': ('collapse',),
-                'fields': (
-                    'category_navigation_enabled',
-                    'category_navigation_all',
-                )
-            }),
+        fieldsets += (_('Category Navigation Options'), {
+            'classes': ('collapse',),
+            'fields': (
+                'category_navigation_enabled',
+                'category_navigation_all',
+            )
+        }),
 
-            fieldsets += (_('Grid Options'), {
-                'classes': ('collapse',),
-                'fields': (
-                    'items_per_row',
-                )
-            }),
+        fieldsets += (_('Grid Options'), {
+            'classes': ('collapse',),
+            'fields': (
+                'items_per_row',
+            )
+        }),
 
-            fieldsets += (_('Pagination Options'), {
-                'classes': ('collapse',),
-                'fields': (
-                    ('paginated_by', 'pagination_type', ),
-                    'load_more_button_text'
-                )
-            }),
+        fieldsets += (_('Pagination Options'), {
+            'classes': ('collapse',),
+            'fields': (
+                ('paginated_by', 'pagination_type', ),
+                'load_more_button_text'
+            )
+        }),
 
-            fieldsets += (_('Additional Options'), {
-                'classes': ('collapse',),
-                'fields': (
-                    'detail_link_text',
-                )
-            }),
+        fieldsets += (_('Additional Options'), {
+            'classes': ('collapse',),
+            'fields': (
+                'detail_link_text',
+            )
+        }),
 
         return fieldsets
 
-    def get_render_template(self, context, instance, placeholder):
-        template = '{}/plugins/{}/content.html'.format(self.data_model._meta.app_label, instance.template)
+    def get_render_template(self, context, instance, placeholder, file='content'):
+        template = '{}/plugins/{}/{}.html'.format(self.data_model._meta.app_label, instance.template, file)
         try:
             get_template(template)
         except:
-            template = 'app_content/plugins/{}/content.html'.format(instance.template)
+            template = 'app_content/plugins/{}/{}.html'.format(instance.template, file)
         return template
 
 
@@ -144,7 +145,11 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
 
 
         context['instance'] = instance
+        context['placeholder'] = placeholder
         context['object_list'] = objects_list
+
+        context['content_template'] = self.get_render_template(context, instance, placeholder, file='_content')
+        context['item_template'] = self.get_render_template(context, instance, placeholder, file='item')
         context['category_navigation'] = instance.get_category_navigation()
 
         return context

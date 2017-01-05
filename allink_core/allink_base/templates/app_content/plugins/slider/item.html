@@ -9,13 +9,15 @@
         <div class="swiper-content-overlay"></div>
 
         <div class="swiper-content-container">
-            {% if object.title %}
-                <div class="heading-container">
-                    <h2 class="heading">
-                        {% render_model object "title" %}
-                    </h2>
-                </div>
-            {% endif %}
+            <div class="manage-spacings">
+                {% if object.title %}
+                    <div class="heading-container">
+                        <h2 class="heading">
+                            {% render_model object "title" %}
+                        </h2>
+                    </div>
+                {% endif %}
+            </div>
         </div>
     </div>
 

@@ -2,19 +2,16 @@
 
 {% load cms_tags sekizai_tags i18n thumbnail %}
 
+{# Page Title - Required for Softpage (Google Tag Manager) #}
+{% block softpage_title %}{{ object.title }} | {{ request.site.name }}{% endblock softpage_title %}
+
 {% block content %}
-
-    {# Page Title - Required for Softpage (Google Tag Manager) #}
-    <div id="softpage-page-title" style="display:none;">{{ object.title }} | {{ request.site.name }}</div>
-
-    <div class="content-section app-content-plugin detail-view testimonials-plugin container-enabled">
-        <div class="container">
+    <div class="content-section app-content-plugin detail-view container-enabled">
+        <div class="container" data-scroll-spy>
             <div class="manage-spacings">
                 {% if object.preview_image %}
                     <div class="image-container">
-                        <picture class="lazyload">
-                            <img alt="{{ object.title }}" src="{% thumbnail object.preview_image 1200x800 crop="smart" %}">
-                        </picture>
+                       {% include "slider_container/content.html" with display_title=True title_content=object.title %}
                     </div>
                 {% endif %}
                 {% if object.title %}

@@ -3,11 +3,12 @@ from django.conf import settings
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
+from django.contrib.contenttypes.models import ContentType
 
 from cms.models.pluginmodel import CMSPlugin
 from model_utils.models import TimeStampedModel
 from adminsortable.models import SortableMixin
-
+from phonenumber_field.modelfields import PhoneNumberField
 from filer.fields.image import FilerImageField
 
 from allink_core.allink_base.utils import get_additional_templates
@@ -262,8 +263,6 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
     )
 
     # FIELDS
-
-    # data
     categories = models.ManyToManyField(AllinkCategory, blank=True)
 
     manual_ordering = models.CharField(
@@ -274,7 +273,6 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
     )
     # manual_entries  -> defined in subclasses (no elegant way found to define this here.)
 
-    # display
     template = models.CharField(
         _(u'Template'),
         help_text=_(u'Choose a template.'),
@@ -392,8 +390,42 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
             else:
                 queryset = self.data_model.objects.filter_by_categories(self.categories)
         else:
-            queryset = self.data_model.objects.all()
+            if cat:
+                queryset = self.manual_entries.select_related().order_by('id').filter_by_category(cat)
+            else:
+                queryset = self.manual_entries.select_related()
 
         return self._apply_ordering_to_queryset_for_display(queryset)
 
 
+
+class AllinkContactFieldsModel(models.Model):
+
+    class Meta:
+        abstract = True
+
+    phone = PhoneNumberField(
+        _(u'Phone'),
+        blank=True,
+        null=True
+    )
+    mobile = PhoneNumberField(
+        _(u'Mobile'),
+        blank=True,
+        null=True
+    )
+    fax = PhoneNumberField(
+        _(u'Fax'),
+        blank=True,
+        null=True
+    )
+    email = models.EmailField(
+        _(u'Email'),
+        blank=True,
+        default=''
+    )
+    website = models.URLField(
+        _(u'Website'),
+        blank=True,
+        null=True
+    )

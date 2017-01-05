@@ -12,6 +12,7 @@
 {% if instance.caption_text %}
     <figure>
 {% endif %}
+{# end render figure/figcaption #}
 
     {% if instance.get_link %}
         <a href="{{ instance.get_link }}"
@@ -19,9 +20,7 @@
         {{ instance.link_attributes_str }}>
     {% endif %}
 
-        <picture class="lazyload">
-
-            {# end render figure/figcaption #}
+        <picture class="lazyloader">
 
             <!--[if IE 9]><video style="display: none;"><![endif]-->
 

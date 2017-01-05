@@ -97,7 +97,7 @@
             {% block app_content_load_more_container %}
                 {% if instance.pagination_type == "load" %}
                     <div class="load-more-container" {% if not next_page_url %}style="display:none;"{% endif %}>
-                    <a href="{{ next_page_url }}" class="btn btn-default btn-load-more ajax-load-items append" {% block app_content_load_more_attr %}{% endblock app_content_load_more_attr %}>
+                    <a href="{{ next_page_url }}" class="btn btn-primary btn-load-more ajax-load-items append" {% block app_content_load_more_attr %}{% endblock app_content_load_more_attr %}>
                             {% if instance.load_more_button_text %}
                                 {{ instance.load_more_button_text }}
                             {% else %}
