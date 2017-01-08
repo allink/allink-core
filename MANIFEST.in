@@ -1,3 +1,4 @@
+include LICENSE
 recursive-include allink_core/allink_base/templates *
 recursive-include allink_core/allink_styleguide/templates *
 recursive-include allink_core/djangocms_content/templates *
