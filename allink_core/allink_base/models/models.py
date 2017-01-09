@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import phonenumbers
 from django.conf import settings
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
@@ -406,16 +407,19 @@ class AllinkContactFieldsModel(models.Model):
 
     phone = PhoneNumberField(
         _(u'Phone'),
+        help_text=_(u'Required Formats: +41 (0) 41 345 67 89 or +41 41 345 67 89'),
         blank=True,
         null=True
     )
     mobile = PhoneNumberField(
         _(u'Mobile'),
+        help_text=_(u'Required Formats: +41 (0) 41 345 67 89 or +41 41 345 67 89'),
         blank=True,
         null=True
     )
     fax = PhoneNumberField(
         _(u'Fax'),
+        help_text=_(u'Required Formats: +41 (0) 41 345 67 89 or +41 41 345 67 89'),
         blank=True,
         null=True
     )
@@ -429,3 +433,8 @@ class AllinkContactFieldsModel(models.Model):
         blank=True,
         null=True
     )
+
+    @property
+    def formatted_phone(self):
+        x = phonenumbers.parse(str(self.phone), None)
+        return (str(phonenumbers.format_number(x, phonenumbers.PhoneNumberFormat.INTERNATIONAL)))

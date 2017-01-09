@@ -57,6 +57,7 @@
                 {% if instance.height %} height="{{ instance.height }}"{% endif %}
                 data-aspectratio="{{instance.picture.width}}/{{instance.picture.height}}"
                 class="lazyload"
+                {% if instance.picture.default_alt_text and not instance.attributes.alt %} alt="{{ instance.picture.default_alt_text }}"{% endif %}
                 {{ instance.attributes_str }}
             >
 
