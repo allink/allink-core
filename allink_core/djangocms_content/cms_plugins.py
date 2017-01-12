@@ -21,7 +21,7 @@ class CMSAllinkContentPlugin(CMSPluginBase):
     form = AllinkContentPluginForm
 
     class Media:
-        js = ('build/djangocms_custom_admin_style.js', )
+        js = ('build/djangocms_custom_admin_scripts.js', )
         css = {
              'all': ('build/djangocms_custom_admin_style.css', )
         }
@@ -100,6 +100,6 @@ class CMSAllinkContentColumnPlugin(CMSPluginBase):
     render_template = "djangocms_content/default/column.html"
     parent_classes = ["AllinkContentPlugin"]
     allow_children = True
-    child_classes = ['TextPlugin', 'PicturePlugin', 'VideoPlayerPlugin', 'VideoSourcePlugin', 'VideoTrackPlugin', 'CMSAllinkGalleryPlugin']
+    child_classes = ['TextPlugin', 'PicturePlugin', 'VideoPlayerPlugin', 'VideoSourcePlugin', 'VideoTrackPlugin', 'CMSAllinkGalleryPlugin', 'CMSAllinkLinkContainerPlugin']
     form = AllinkContentColumnPluginForm
     require_parent = True

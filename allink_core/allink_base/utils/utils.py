@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.conf import settings
 
+
 def get_additional_templates(model_name):
     """
     Get additional templates choices from settings for model_name
@@ -17,3 +18,4 @@ def get_height_from_ratio(width,ratio_w,ratio_h):
     Used to calculate thumbnail height from given width and ratio
     """
     return width*ratio_h/ratio_w
+

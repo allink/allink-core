@@ -1,6 +1,10 @@
 {% load thumbnail %}
 
-<picture class="lazyloader">
+{# image object to figure out ratio #}
+{% thumbnail object.preview_image thumbnail_url_xl as image_xl %}
+
+<picture class="lazyloader" style="padding-bottom: calc({{image_xl.height}}/{{image_xl.width}}*100%);
+">
 
     {# end render figure/figcaption #}
 
@@ -10,14 +14,15 @@
     <source
         data-srcset="{{ object.preview_image|thumbnail_url:thumbnail_url_xl }},
             {{ object.preview_image|thumbnail_url:thumbnail_url_xl_2x }} 2x"
-        data-aspectratio="{{object.preview_image.width}}/{{object.preview_image.height}}"
+        data-aspectratio="{{image_xl.width}}/{{image_xl.height}}"
         media="(min-width:1200px)"
         >
+
     {# SM #}
     <source
         data-srcset="{{ object.preview_image|thumbnail_url:thumbnail_url_sm }},
             {{ object.preview_image|thumbnail_url:thumbnail_url_sm_2x }} 2x"
-        data-aspectratio="{{object.preview_image.width}}/{{object.preview_image.height}}"
+        data-aspectratio="{{image_xl.width}}/{{image_xl.height}}"
         media="(min-width:576px)"
         >
 
@@ -27,7 +32,7 @@
     <img
         data-srcset="{{ object.preview_image|thumbnail_url:thumbnail_url_xs }}, {{ object.preview_image|thumbnail_url:thumbnail_url_xs_2x }} 2x"
         alt="{{ object.title }}"
-        data-aspectratio="{{object.preview_image.width}}/{{object.preview_image.height}}"
+        data-aspectratio="{{image_xl.width}}/{{image_xl.height}}"
         class="lazyload"
     >
 

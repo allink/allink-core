@@ -3,6 +3,7 @@ from django.template.loader import get_template
 from django.utils.translation import ugettext_lazy as _
 from django.core.paginator import Paginator
 from django.core.urlresolvers import reverse
+from django.template import TemplateDoesNotExist
 from cms.plugin_base import CMSPluginBase
 
 from ..models import AllinkBaseAppContentPlugin
@@ -26,7 +27,7 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
     data_model = model.data_model
 
     class Media:
-        js = ('build/djangocms_custom_admin_style.js', )
+        js = ('build/djangocms_custom_admin_scripts.js', )
         css = {
              'all': ('build/djangocms_custom_admin_style.css', )
         }
@@ -35,22 +36,21 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
     def get_render_queryset(cls):
         return cls.model._default_manager.all()
 
+
     def get_fieldsets(self, request, obj=None):
         fieldsets = (
             (None, {
                 'fields': (
                     'title',
                     'title_size',
+                    'template',
                 ),
             }),
         )
 
-
-
         fieldsets += (_('Display Options'), {
             'classes': ('collapse',),
             'fields': (
-                'template',
                 'container_enabled',
                 'softpage_enabled',
                 'bg_color',
@@ -74,25 +74,35 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
         }),
 
         fieldsets += (_('Category Navigation Options'), {
-            'classes': ('collapse',),
+            'classes': (
+                'collapse',
+                'disable_when_slider',
+                'disable_when_map',
+            ),
             'fields': (
                 'category_navigation_enabled',
                 'category_navigation_all',
             )
         }),
 
-        fieldsets += (_('Grid Options'), {
-            'classes': ('collapse',),
+        fieldsets += (_('Number of entries'), {
+            'classes': (
+                'collapse',
+                'disable_when_map',
+            ),
             'fields': (
-                'items_per_row',
+                ('paginated_by', ),
             )
         }),
 
         fieldsets += (_('Pagination Options'), {
-            'classes': ('collapse',),
+            'classes': (
+                'collapse',
+                'disable_when_slider',
+                'disable_when_map',
+            ),
             'fields': (
-                ('paginated_by', 'pagination_type', ),
-                'load_more_button_text'
+                ('pagination_type', 'load_more_button_text'),
             )
         }),
 
@@ -103,13 +113,24 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
             )
         }),
 
+        fieldsets += (_('Grid Options'), {
+            'classes': (
+                'collapse',
+                'only_when_grid_static',
+                'only_when_grid_dynamic',
+            ),
+            'fields': (
+                'items_per_row',
+            )
+        }),
+
         return fieldsets
 
     def get_render_template(self, context, instance, placeholder, file='content'):
         template = '{}/plugins/{}/{}.html'.format(self.data_model._meta.app_label, instance.template, file)
         try:
             get_template(template)
-        except:
+        except TemplateDoesNotExist:
             template = 'app_content/plugins/{}/{}.html'.format(instance.template, file)
         return template
 

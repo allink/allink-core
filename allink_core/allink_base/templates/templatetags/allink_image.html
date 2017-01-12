@@ -20,7 +20,11 @@
         {{ instance.link_attributes_str }}>
     {% endif %}
 
-        <picture class="lazyloader">
+        {# image object to figure out ratio #}
+        {% thumbnail instance.picture thumbnail_url_xl as image_xl %}
+
+        <picture class="lazyloader" style="padding-bottom: calc({{image_xl.height}}/{{image_xl.width}}*100%);
+">
 
             <!--[if IE 9]><video style="display: none;"><![endif]-->
 
@@ -28,14 +32,14 @@
             <source
                 data-srcset="{{ instance.picture|thumbnail_url:thumbnail_url_xl }},
                     {{ instance.picture|thumbnail_url:thumbnail_url_xl_2x }} 2x"
-                data-aspectratio="{{instance.picture.width}}/{{instance.picture.height}}"
+                data-aspectratio="{{image_xl.width}}/{{image_xl.height}}"
                 media="(min-width:1200px)"
                 >
             {# SM #}
             <source
                 data-srcset="{{ instance.picture|thumbnail_url:thumbnail_url_sm }},
                     {{ instance.picture|thumbnail_url:thumbnail_url_sm_2x }} 2x"
-                data-aspectratio="{{instance.picture.width}}/{{instance.picture.height}}"
+                data-aspectratio="{{image_xl.width}}/{{image_xl.height}}"
                 media="(min-width:576px)"
                 >
 
@@ -55,7 +59,7 @@
                 {% if instance.picture.alt %} alt="{{ instance.picture.alt }}"{% endif %}
                 {% if instance.width %} width="{{ instance.width }}"{% endif %}
                 {% if instance.height %} height="{{ instance.height }}"{% endif %}
-                data-aspectratio="{{instance.picture.width}}/{{instance.picture.height}}"
+                data-aspectratio="{{image_xl.width}}/{{image_xl.height}}"
                 class="lazyload"
                 {% if instance.picture.default_alt_text and not instance.attributes.alt %} alt="{{ instance.picture.default_alt_text }}"{% endif %}
                 {{ instance.attributes_str }}

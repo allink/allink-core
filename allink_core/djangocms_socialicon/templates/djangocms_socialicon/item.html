@@ -1,0 +1,12 @@
+{% load cms_tags sekizai_tags i18n thumbnail %}
+
+<li>
+    <a href="{{instance.link}}" target="_blank">
+        <i class="social-icon {{instance.icon}}" aria-hidden="true"></i>
+        {% if instance.title %}
+            <span class="sr-only">
+                {{instance.title}}
+            </span>
+        {% endif %}
+    </a>
+</li>

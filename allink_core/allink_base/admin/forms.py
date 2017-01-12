@@ -10,6 +10,7 @@ from allink_core.allink_categories.models import AllinkCategory
 from allink_core.allink_base.models import AllinkBaseAppContentPlugin
 
 class AllinkBaseAdminForm(TranslatableModelForm):
+
     def __init__(self, *args, **kwargs):
         super(AllinkBaseAdminForm, self).__init__(*args, **kwargs)
         # if app uses categories, populate 'categories' field
@@ -20,12 +21,11 @@ class AllinkBaseAdminForm(TranslatableModelForm):
                     verbose_name=_(u'Categories'),
                     is_stacked=True
                 ),
-                required=False,
+                required=True,
                 queryset=AllinkCategory.objects.not_root().filter(
                     model_names__contains=[self.instance._meta.model_name]
                 )
             )
-
 
 class AllinkBaseAppContentPluginForm(forms.ModelForm):
 
@@ -54,7 +54,7 @@ class AllinkBaseAppContentPluginForm(forms.ModelForm):
                     verbose_name=_(u'Categories'),
                     is_stacked=True
                 ),
-                required=False,
+                required=True,
                 queryset=AllinkCategory.objects.not_root().filter(
                     model_names__contains=[self._meta.model.data_model._meta.model_name]
                 )

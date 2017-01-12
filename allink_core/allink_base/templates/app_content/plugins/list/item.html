@@ -8,7 +8,7 @@
                 {% if object.text %}
                     <a href="{{object.get_absolute_url}}">
                 {% endif %}
-                    {% render_app_content_image %}
+                    {% render_app_content_image thumbnail_url="col-2" %}
                 {% if object.text %}
                     </a>
                 {% endif %}
@@ -31,7 +31,7 @@
                         {% if instance.detail_link_text %}
                             {{ instance.detail_link_text }}
                         {% else %}
-                            {% trans "Read More" %}
+                            {% trans "More" %}
                         {% endif %}
                     </a>
                 </div>

@@ -2,6 +2,10 @@
 
 {% load cms_tags staticfiles sekizai_tags thumbnail %}
 
+{# We don't want the category navigation when the slider template is chosen. This makes sure it's removed. #}
+{% block app_content_category_container %}
+{% endblock app_content_category_container %}
+
 {% block app_content_objects_container %}
 
     <div class="swiper-container {% block swiper_container_class %}swiper-default{% endblock swiper_container_class %}">

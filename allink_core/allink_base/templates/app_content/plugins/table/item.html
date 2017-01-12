@@ -1,0 +1,29 @@
+{% load cms_tags sekizai_tags i18n thumbnail allink_image_tags %}
+
+<tr class="table-row {% if appended %}appended{% endif %}">
+    <td>
+        {% if object.title %}
+            <div class="heading-container">
+                <h2 class="heading">
+                    {% render_model object "title" %}
+                </h2>
+            </div>
+        {% endif %}
+    </td>
+    <td>
+        {% if object.text %}
+            {{object.text|truncatechars:100}}
+        {% endif %}
+    </td>
+    <td>
+        {% if object.text %}
+            <a href="{{object.get_absolute_url}}" class="btn btn-default">
+                {% if instance.detail_link_text %}
+                    {{ instance.detail_link_text }}
+                {% else %}
+                    {% trans "More" %}
+                {% endif %}
+            </a>
+        {% endif %}
+    </td>
+</tr>

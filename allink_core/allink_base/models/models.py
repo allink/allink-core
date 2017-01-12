@@ -1,15 +1,13 @@
 # -*- coding: utf-8 -*-
-import phonenumbers
 from django.conf import settings
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
-from django.contrib.contenttypes.models import ContentType
+
 
 from cms.models.pluginmodel import CMSPlugin
 from model_utils.models import TimeStampedModel
 from adminsortable.models import SortableMixin
-from phonenumber_field.modelfields import PhoneNumberField
 from filer.fields.image import FilerImageField
 
 from allink_core.allink_base.utils import get_additional_templates
@@ -17,6 +15,7 @@ from allink_core.allink_categories.models import AllinkCategory
 from allink_core.allink_base.models.choices import TITLE_CHOICES, H1
 
 from .managers import AllinkBaseModelManager
+from .reusable_fields import AllinkMetaTagFieldsModel
 
 
 @python_2_unicode_compatible
@@ -46,7 +45,7 @@ class AllinkBaseImage(SortableMixin):
 
 
 @python_2_unicode_compatible
-class AllinkBaseModel(TimeStampedModel):
+class AllinkBaseModel(AllinkMetaTagFieldsModel, TimeStampedModel):
     """
      An abstract base class model for every standard allink app
 
@@ -152,8 +151,8 @@ class AllinkBasePlugin(CMSPlugin):
         null=True
     )
     extra_css_classes = models.CharField(
-        _(u'CSS Classes'),
-        help_text=_(u'Comma separated class names. Only letters, numbers, hyphen and underscores are allowed in class names.'),
+        _(u'Additional CSS Classes for content-section'),
+        help_text=_(u'Only use this field if you know what your doing:<br>SPACE separated class names. Only valid CSS class names will work.'),
         max_length=255,
         blank=True,
         null=True
@@ -220,12 +219,14 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
     GRID_STATIC = 'grid_static'
     LIST = 'list'
     SLIDER = 'slider'
+    TABLE = 'table'
 
     TEMPLATES = (
-        (GRID_DYNAMIC, 'Grid (Dynamic)'),
         (GRID_STATIC, 'Grid (Static)'),
+        (GRID_DYNAMIC, 'Grid (Dynamic)'),
         (LIST, 'List'),
         (SLIDER, 'Slider'),
+        (TABLE, 'Table'),
     )
 
     # PAGGINATION
@@ -397,44 +398,3 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
                 queryset = self.manual_entries.select_related()
 
         return self._apply_ordering_to_queryset_for_display(queryset)
-
-
-
-class AllinkContactFieldsModel(models.Model):
-
-    class Meta:
-        abstract = True
-
-    phone = PhoneNumberField(
-        _(u'Phone'),
-        help_text=_(u'Required Formats: +41 (0) 41 345 67 89 or +41 41 345 67 89'),
-        blank=True,
-        null=True
-    )
-    mobile = PhoneNumberField(
-        _(u'Mobile'),
-        help_text=_(u'Required Formats: +41 (0) 41 345 67 89 or +41 41 345 67 89'),
-        blank=True,
-        null=True
-    )
-    fax = PhoneNumberField(
-        _(u'Fax'),
-        help_text=_(u'Required Formats: +41 (0) 41 345 67 89 or +41 41 345 67 89'),
-        blank=True,
-        null=True
-    )
-    email = models.EmailField(
-        _(u'Email'),
-        blank=True,
-        default=''
-    )
-    website = models.URLField(
-        _(u'Website'),
-        blank=True,
-        null=True
-    )
-
-    @property
-    def formatted_phone(self):
-        x = phonenumbers.parse(str(self.phone), None)
-        return (str(phonenumbers.format_number(x, phonenumbers.PhoneNumberFormat.INTERNATIONAL)))

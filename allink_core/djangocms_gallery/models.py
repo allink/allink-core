@@ -19,11 +19,9 @@ class AllinkGalleryPlugin(CMSPlugin):
     """
 
     SLIDER = 'slider'
-    GRID = 'grid'
 
     TEMPLATES = (
         (SLIDER, 'Slider'),
-        (GRID, 'Grid'),
     )
     title = models.CharField(
         _(u'Title'),

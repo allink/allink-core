@@ -26,10 +26,11 @@ def render_app_content_image_detail(context,thumbnail_url):
     return context
 
 @register.inclusion_tag('templatetags/app_content_image.html', takes_context=True)
-def render_app_content_image(context):
+def render_app_content_image(context,thumbnail_url=None):
 
     # Define variable base according to template
-    thumbnail_url = 'col-{}'.format(context['instance'].items_per_row) if context['instance'].items_per_row else 'col-1'
+    if not thumbnail_url:
+        thumbnail_url = 'col-{}'.format(context['instance'].items_per_row) if context['instance'].items_per_row else 'col-2'
 
     # add different BREAKPOINT and RETINA suffixes
     thumbnail_url_xs = thumbnail_url+'-xs'
