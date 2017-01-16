@@ -8,25 +8,61 @@
 {% block content %}
     <div class="content-section app-content-plugin detail-view container-enabled">
         <div class="container" data-scroll-spy>
-            <div class="manage-spacings">
-                {% if object.preview_image %}
-                    <div class="image-container">
-                       {% include "slider_container/content.html" with display_title=True title_content=object.title %}
-                    </div>
-                {% endif %}
-                {% if object.title %}
-                    <header class="heading-container">
-                        <h1 class="heading">
-                            {{ object.title }}
-                        </h1>
-                    </header>
-                {% endif %}
-                {% if object.text %}
+
+            {% if object.preview_image %}
+                <div class="image-container header-image-container">
+                    {% include "slider_detail/content.html" with display_title=False title_content=object.title %}
+                </div>
+            {% endif %}
+
+            <header class="section-heading">
+                <h1 class="heading">
+                    {% render_model object "title" %}
+                </h1>
+            </header>
+
+            <div class="app-detail-col-container col-2-1">
+
+                <div class="col">
                     <div class="text-container">
-                        {{ object.text }}
+                        {# optional: lead #}
+                        {% if object.job_title or object.job_function %}
+                            <p class="lead">
+                                {% if object.job_title %}
+                                    {{object.job_title}}<br>
+                                {% endif %}
+                                {{object.job_function}}
+                            </p>
+                        {% endif %}
+                        {# we wouldn't be here if the text was empty #}
+                        {{object.text}}
                     </div>
-                {% endif %}
-            </div>
+                </div>{# end .col #}
+
+                <div class="col">
+                    <div class="manage-spacings">
+                        <div class="text-container">
+                            <h2 class="heading">
+                                {% comment %}
+
+                                    {% trans "2 Column" %}
+
+                                {% endcomment %}
+                            </h2>
+                            <p>
+                                {% comment %}
+
+                                    {% if object.title %}
+                                        {{object.title}}<br>
+                                    {% endif %}
+
+                                {% endcomment %}
+                            </p>
+                        </div>
+                    </div>
+                </div>{# end .col #}
+
+            </div>{# end .col-container #}
         </div>
     </div>
 {% endblock %}
