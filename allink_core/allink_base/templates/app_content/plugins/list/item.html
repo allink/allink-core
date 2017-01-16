@@ -25,6 +25,13 @@
                     </h2>
                 </div>
             {% endif %}
+            {% if object.lead %}
+                <div class="text-container">
+                    <p>
+                        {{object.lead|striptags}}
+                    </p>
+                </div>
+            {% endif %}
             {% if object.text %}
                 <div class="link-container">
                     <a href="{{object.get_absolute_url}}" class="btn btn-default">

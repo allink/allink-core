@@ -100,6 +100,7 @@ class CMSAllinkContentColumnPlugin(CMSPluginBase):
     render_template = "djangocms_content/default/column.html"
     parent_classes = ["AllinkContentPlugin"]
     allow_children = True
-    child_classes = ['TextPlugin', 'PicturePlugin', 'VideoPlayerPlugin', 'VideoSourcePlugin', 'VideoTrackPlugin', 'CMSAllinkGalleryPlugin', 'CMSAllinkLinkContainerPlugin']
+    child_classes = ['TextPlugin', 'PicturePlugin', 'VideoPlayerPlugin', 'VideoSourcePlugin', 'VideoTrackPlugin',
+                     'CMSAllinkGalleryPlugin', 'CMSAllinkLinkContainerPlugin', 'CMSAllinkSignupFormPlugin']
     form = AllinkContentColumnPluginForm
     require_parent = True

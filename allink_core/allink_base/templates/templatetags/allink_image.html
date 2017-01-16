@@ -32,14 +32,12 @@
             <source
                 data-srcset="{{ instance.picture|thumbnail_url:thumbnail_url_xl }},
                     {{ instance.picture|thumbnail_url:thumbnail_url_xl_2x }} 2x"
-                data-aspectratio="{{image_xl.width}}/{{image_xl.height}}"
                 media="(min-width:1200px)"
                 >
             {# SM #}
             <source
                 data-srcset="{{ instance.picture|thumbnail_url:thumbnail_url_sm }},
                     {{ instance.picture|thumbnail_url:thumbnail_url_sm_2x }} 2x"
-                data-aspectratio="{{image_xl.width}}/{{image_xl.height}}"
                 media="(min-width:576px)"
                 >
 
@@ -59,7 +57,6 @@
                 {% if instance.picture.alt %} alt="{{ instance.picture.alt }}"{% endif %}
                 {% if instance.width %} width="{{ instance.width }}"{% endif %}
                 {% if instance.height %} height="{{ instance.height }}"{% endif %}
-                data-aspectratio="{{image_xl.width}}/{{image_xl.height}}"
                 class="lazyload"
                 {% if instance.picture.default_alt_text and not instance.attributes.alt %} alt="{{ instance.picture.default_alt_text }}"{% endif %}
                 {{ instance.attributes_str }}

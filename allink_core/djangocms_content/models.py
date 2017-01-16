@@ -4,13 +4,12 @@ from django.db import models
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import python_2_unicode_compatible
-from django.conf import settings
 from cms.models.pluginmodel import CMSPlugin
 
 from filer.fields.image import FilerImageField
 from filer.fields.file import FilerFileField
 
-from allink_core.allink_base.models import AllinkBasePlugin, AllinkBaseAppContentPlugin
+from allink_core.allink_base.models import AllinkBasePlugin
 from allink_core.allink_base.models.choices import HORIZONTAL_ALIGNMENT_CHOICES, CENTER
 
 from settings import ALLOWED_VIDEO_EXTENSIONS

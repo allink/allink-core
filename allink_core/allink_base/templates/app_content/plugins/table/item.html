@@ -11,8 +11,12 @@
         {% endif %}
     </td>
     <td>
-        {% if object.text %}
-            {{object.text|truncatechars:100}}
+        {% if object.lead %}
+            <div class="text-container">
+                <p>
+                    {{object.lead|striptags}}
+                </p>
+            </div>
         {% endif %}
     </td>
     <td>

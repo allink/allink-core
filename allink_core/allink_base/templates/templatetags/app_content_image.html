@@ -14,7 +14,6 @@
     <source
         data-srcset="{{ object.preview_image|thumbnail_url:thumbnail_url_xl }},
             {{ object.preview_image|thumbnail_url:thumbnail_url_xl_2x }} 2x"
-        data-aspectratio="{{image_xl.width}}/{{image_xl.height}}"
         media="(min-width:1200px)"
         >
 
@@ -22,7 +21,6 @@
     <source
         data-srcset="{{ object.preview_image|thumbnail_url:thumbnail_url_sm }},
             {{ object.preview_image|thumbnail_url:thumbnail_url_sm_2x }} 2x"
-        data-aspectratio="{{image_xl.width}}/{{image_xl.height}}"
         media="(min-width:576px)"
         >
 
@@ -32,7 +30,6 @@
     <img
         data-srcset="{{ object.preview_image|thumbnail_url:thumbnail_url_xs }}, {{ object.preview_image|thumbnail_url:thumbnail_url_xs_2x }} 2x"
         alt="{{ object.title }}"
-        data-aspectratio="{{image_xl.width}}/{{image_xl.height}}"
         class="lazyload"
     >
 

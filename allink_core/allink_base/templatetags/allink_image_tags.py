@@ -4,6 +4,9 @@ from django import template
 register = template.Library()
 
 
+####################################################################################
+# App Content Plugin > Detail view
+
 @register.inclusion_tag('templatetags/app_content_image.html', takes_context=True)
 def render_app_content_image_detail(context,thumbnail_url):
 
@@ -24,6 +27,9 @@ def render_app_content_image_detail(context,thumbnail_url):
     context.update({'thumbnail_url_xl_2x': thumbnail_url_xl_2x})
 
     return context
+
+####################################################################################
+# App Content Plugin > List view
 
 @register.inclusion_tag('templatetags/app_content_image.html', takes_context=True)
 def render_app_content_image(context,thumbnail_url=None):
@@ -50,6 +56,9 @@ def render_app_content_image(context,thumbnail_url=None):
 
     return context
 
+
+####################################################################################
+# Content Plugin > Images placed in columns
 
 @register.inclusion_tag('templatetags/allink_image.html', takes_context=True)
 def render_content_image(context):

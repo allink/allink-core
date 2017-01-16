@@ -1,6 +1,6 @@
-{% load cms_tags staticfiles sekizai_tags thumbnail %}
+{% load cms_tags staticfiles sekizai_tags i18n thumbnail %}
 
-<div class="swiper-container swiper-default">
+<div class="swiper-container swiper-gallery-plugin">
 
     <div class="swiper-wrapper">
         {% for plugin in instance.child_plugin_instances %}
@@ -10,11 +10,15 @@
 
     <div class="swiper-pagination"></div>
 
-    <div class="swiper-button-prev swiper-button">
-        <i class="icomoon-custom-arrow-left"></i>
-    </div>
-    <div class="swiper-button-next swiper-button">
-        <i class="icomoon-custom-arrow-right"></i>
-    </div>
+    <a href="#" class="swiper-button-prev swiper-button" data-softpage-disabled>
+        <i class="sr-only" lang="en">
+            {% trans "Previous Slide" %}
+        </i>
+    </a>
+    <a href="#" class="swiper-button-next swiper-button" data-softpage-disabled>
+        <i class="sr-only" lang="en">
+            {% trans "Next Slide" %}
+        </i>
+    </a>
 
 </div>

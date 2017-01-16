@@ -11,73 +11,100 @@ THUMBNAIL_ALIASES = {
     '': {
 
         # # # # # # # # # # # # # # # # # # # # # #
-        # Content Plugin: video mobile image
+        # Content Plugin > Video mobile image
 
-        'video-mobile-image-xs': {'size': (320, 420), 'crop': 'smart'},
-        'video-mobile-image-xs-2x': {'size': (500, 650), 'crop': 'smart'},
-        'video-mobile-image-sm': {'size': (580, 760), 'crop': 'smart'},
-        'video-mobile-image-sm-2x': {'size': (1000, 420), 'crop': 'smart'},
-
-        # # # # # # # # # # # # # # # # # # # # # #
-        # Content PLugin: In case html5 video is not supported, this fallback size has to do the job
-
-        'video-poster-image': {'size': (1400, 800)}, # in case html5 video is not supported, this fallback size has to do the job
+        'video-mobile-image-xs': {'size': (320, get_height_from_ratio(450,4,3)), 'crop': 'scale', 'upscale': True},
+        'video-mobile-image-xs-2x': {'size': (640, get_height_from_ratio(640,4,3)), 'crop': 'scale', 'upscale': True },
+        'video-mobile-image-sm': {'size': (580, get_height_from_ratio(580,4,3)), 'crop': 'scale', 'upscale': True },
+        'video-mobile-image-sm-2x': {'size': (1000, get_height_from_ratio(1000,4,3)), 'crop': 'scale', 'upscale': True },
 
         # # # # # # # # # # # # # # # # # # # # # #
-        # Slider (Swiper): INNER container slide background-image
+        # Content PLugin > Video Poster (while video is loading)
 
-        'slider-inner-container-xs': {'size': (320, 420)},
-        'slider-inner-container-xs-2x': {'size': (640, 840), 'crop': 'smart', 'upscale': True },
-        'slider-inner-container-sm': {'size': (512, 560), 'crop': 'smart', 'upscale': True },
-        'slider-inner-container-sm-2x': {'size': (1024, 1120), 'crop': 'smart', 'upscale': True },
-        'slider-inner-container-md': {'size': (1030, 840), 'crop': 'smart', 'upscale': True },
-        'slider-inner-container-md-2x': {'size': (2060, 1280), 'crop': 'smart', 'upscale': True },
-        'slider-inner-container-lg': {'size': (1200, 840), 'crop': 'smart', 'upscale': True },
-        'slider-inner-container-lg-2x': {'size': (2400, 1280), 'crop': 'smart', 'upscale': True },
-        'slider-inner-container-xl': {'size': (1600, 1000), 'crop': 'smart', 'upscale': True },
-        'slider-inner-container-xl-2x': {'size': (2400, 1280), 'crop': 'smart', 'upscale': True },
+        'video-poster-image': {'size': (1400, get_height_from_ratio(1400,16,6)), 'crop': 'scale', 'upscale': True }, # ratio has to be the same as the video
+
+        # # # # # # # # # # # # # # # # # # # # # #
+        # Swiper (Slider): The slide's background image
+        # Note: Make sure that the ratio passed to get_height_from_ratio() matched the ratio set in the CSS variables
+
+        # > Displaying App Content as a Slider
+        'slider-app-content-xs': {'size': (320, get_height_from_ratio(450,4,3)), 'crop': 'scale', 'upscale': True},
+        'slider-app-content-xs-2x': {'size': (640, get_height_from_ratio(640,4,3)), 'crop': 'scale', 'upscale': True },
+        'slider-app-content-sm': {'size': (512, get_height_from_ratio(512,4,3)), 'crop': 'scale', 'upscale': True },
+        'slider-app-content-sm-2x': {'size': (1024, get_height_from_ratio(1024,4,3)), 'crop': 'scale', 'upscale': True },
+        'slider-app-content-md': {'size': (1030, get_height_from_ratio(1030,2,1)), 'crop': 'scale', 'upscale': True },
+        'slider-app-content-md-2x': {'size': (2060, get_height_from_ratio(2060,2,1)), 'crop': 'scale', 'upscale': True },
+        'slider-app-content-lg': {'size': (1200, get_height_from_ratio(1200,2,1)), 'crop': 'scale', 'upscale': True },
+        'slider-app-content-lg-2x': {'size': (2400, get_height_from_ratio(2400,2,1)), 'crop': 'scale', 'upscale': True },
+        'slider-app-content-xl': {'size': (1600, get_height_from_ratio(1600,2,1)), 'crop': 'scale', 'upscale': True },
+        'slider-app-content-xl-2x': {'size': (2400, get_height_from_ratio(2400,2,1)), 'crop': 'scale', 'upscale': True },
+
+        # > The header slider in an App Content's detail view
+        'slider-detail-view-xs': {'size': (320, get_height_from_ratio(450,4,3)), 'crop': 'scale', 'upscale': True},
+        'slider-detail-view-xs-2x': {'size': (640, get_height_from_ratio(640,4,3)), 'crop': 'scale', 'upscale': True },
+        'slider-detail-view-sm': {'size': (512, get_height_from_ratio(512,4,3)), 'crop': 'scale', 'upscale': True },
+        'slider-detail-view-sm-2x': {'size': (1024, get_height_from_ratio(1024,4,3)), 'crop': 'scale', 'upscale': True },
+        'slider-detail-view-md': {'size': (1030, get_height_from_ratio(1030,4,3)), 'crop': 'scale', 'upscale': True },
+        'slider-detail-view-md-2x': {'size': (2060, get_height_from_ratio(2060,4,3)), 'crop': 'scale', 'upscale': True },
+        'slider-detail-view-lg': {'size': (1200, get_height_from_ratio(1200,4,3)), 'crop': 'scale', 'upscale': True },
+        'slider-detail-view-lg-2x': {'size': (2400, get_height_from_ratio(2400,4,3)), 'crop': 'scale', 'upscale': True },
+        'slider-detail-view-xl': {'size': (1600, get_height_from_ratio(1600,4,3)), 'crop': 'scale', 'upscale': True },
+        'slider-detail-view-xl-2x': {'size': (2400, get_height_from_ratio(2400,4,3)), 'crop': 'scale', 'upscale': True },
+
+        # > Using the gallery plugin within a Content Plugin's Column
+        'slider-gallery-plugin-xs': {'size': (320, get_height_from_ratio(450,4,3)), 'crop': 'scale', 'upscale': True},
+        'slider-gallery-plugin-xs-2x': {'size': (640, get_height_from_ratio(640,4,3)), 'crop': 'scale', 'upscale': True },
+        'slider-gallery-plugin-sm': {'size': (512, get_height_from_ratio(512,4,3)), 'crop': 'scale', 'upscale': True },
+        'slider-gallery-plugin-sm-2x': {'size': (1024, get_height_from_ratio(1024,4,3)), 'crop': 'scale', 'upscale': True },
+        'slider-gallery-plugin-md': {'size': (1030, get_height_from_ratio(1030,4,3)), 'crop': 'scale', 'upscale': True },
+        'slider-gallery-plugin-md-2x': {'size': (2060, get_height_from_ratio(2060,4,3)), 'crop': 'scale', 'upscale': True },
+        'slider-gallery-plugin-lg': {'size': (1200, get_height_from_ratio(1200,4,3)), 'crop': 'scale', 'upscale': True },
+        'slider-gallery-plugin-lg-2x': {'size': (2400, get_height_from_ratio(2400,4,3)), 'crop': 'scale', 'upscale': True },
+        'slider-gallery-plugin-xl': {'size': (1600, get_height_from_ratio(1600,4,3)), 'crop': 'scale', 'upscale': True },
+        'slider-gallery-plugin-xl-2x': {'size': (2400, get_height_from_ratio(2400,4,3)), 'crop': 'scale', 'upscale': True },
 
         # # # # # # # # # # # # # # # # # # # # # #
         # Content Plugin: Parallax
-
-        'parallax-xs': {'size': (320, 420)},
-        'parallax-xs-2x': {'size': (640, 840), 'crop': 'scale'},
-        'parallax-sm': {'size': (512, 560), 'crop': 'scale'},
-        'parallax-sm-2x': {'size': (1024, 1120), 'crop': 'scale'},
-        'parallax-md': {'size': (1030, 470), 'crop': 'scale'},
-        'parallax-md-2x': {'size': (2060, 940), 'crop': 'scale'},
-        'parallax-lg': {'size': (1200, 548), 'crop': 'scale'},
-        'parallax-lg-2x': {'size': (2060, 940), 'crop': 'scale'},
-        'parallax-xl': {'size': (1600, 730), 'crop': 'scale'},
-        'parallax-xl-2x': {'size': (2400, 1100), 'crop': 'scale'},
+        # The ratio for larger screen (from screen-md) is calculated as follows:
+        # ($parallax-aspect-ratio-height-md) * ($parallax-bg-image-height) / 100
+        'parallax-xs': {'size': (320, get_height_from_ratio(450,4,3)), 'crop': 'scale', 'upscale': True },
+        'parallax-xs-2x': {'size': (640, get_height_from_ratio(640,4,3)), 'crop': 'scale', 'upscale': True },
+        'parallax-sm': {'size': (512, get_height_from_ratio(512,4,3)), 'crop': 'scale', 'upscale': True },
+        'parallax-sm-2x': {'size': (1024, get_height_from_ratio(1024,4,3)), 'crop': 'scale', 'upscale': True },
+        'parallax-md': {'size': (1030, get_height_from_ratio(1030,3000,1690)), 'crop': 'scale', 'upscale': True },
+        'parallax-md-2x': {'size': (2060, get_height_from_ratio(2060,3000,1690)), 'crop': 'scale', 'upscale': True },
+        'parallax-lg': {'size': (1200, get_height_from_ratio(1200,3000,1690)), 'crop': 'scale', 'upscale': True },
+        'parallax-lg-2x': {'size': (2400, get_height_from_ratio(2400,3000,1690)), 'crop': 'scale', 'upscale': True },
+        'parallax-xl': {'size': (1600, get_height_from_ratio(1600,3000,1690)), 'crop': 'scale', 'upscale': True },
+        'parallax-xl-2x': {'size': (2400, get_height_from_ratio(2400,3000,1690)), 'crop': 'scale', 'upscale': True },
 
         # # # # # # # # # # # # # # # # # # # # # #
         # Content Plugin: Full-Height Mode
 
-        'full-height-xs': {'size': (320, 420)},
-        'full-height-xs-2x': {'size': (640, 840), 'crop': 'smart', 'upscale': True },
-        'full-height-sm': {'size': (512, 560), 'crop': 'smart', 'upscale': True },
-        'full-height-sm-2x': {'size': (1024, 1120), 'crop': 'smart', 'upscale': True },
-        'full-height-md': {'size': (1030, 840), 'crop': 'smart', 'upscale': True },
-        'full-height-md-2x': {'size': (2060, 1280), 'crop': 'smart', 'upscale': True },
-        'full-height-lg': {'size': (1200, 840), 'crop': 'smart', 'upscale': True },
-        'full-height-lg-2x': {'size': (2400, 1280), 'crop': 'smart', 'upscale': True },
-        'full-height-xl': {'size': (1600, 1000), 'crop': 'smart', 'upscale': True },
-        'full-height-xl-2x': {'size': (2400, 1280), 'crop': 'smart', 'upscale': True },
+        'full-height-xs': {'size': (320, 420), 'crop': 'scale', 'upscale': True},
+        'full-height-xs-2x': {'size': (640, 840), 'crop': 'scale', 'upscale': True },
+        'full-height-sm': {'size': (512, 560), 'crop': 'scale', 'upscale': True },
+        'full-height-sm-2x': {'size': (1024, 1120), 'crop': 'scale', 'upscale': True },
+        'full-height-md': {'size': (1030, 840), 'crop': 'scale', 'upscale': True },
+        'full-height-md-2x': {'size': (2060, 1280), 'crop': 'scale', 'upscale': True },
+        'full-height-lg': {'size': (1200, 840), 'crop': 'scale', 'upscale': True },
+        'full-height-lg-2x': {'size': (2400, 1280), 'crop': 'scale', 'upscale': True },
+        'full-height-xl': {'size': (1600, 1000), 'crop': 'scale', 'upscale': True },
+        'full-height-xl-2x': {'size': (2400, 1280), 'crop': 'scale', 'upscale': True },
 
         # # # # # # # # # # # # # # # # # # # # # #
         # Content Plugin: Inner Container Background
 
-        'content-plugin-inner-bg-xs': {'size': (320, 420), 'crop': 'smart', 'upscale': True },
-        'content-plugin-inner-bg-xs-2x': {'size': (640, 840), 'crop': 'smart', 'upscale': True },
-        'content-plugin-inner-bg-sm': {'size': (512, 560), 'crop': 'smart', 'upscale': True },
-        'content-plugin-inner-bg-sm-2x': {'size': (1024, 1120), 'crop': 'smart', 'upscale': True },
-        'content-plugin-inner-bg-md': {'size': (1030, 840), 'crop': 'smart', 'upscale': True },
-        'content-plugin-inner-bg-md-2x': {'size': (2060, 1280), 'crop': 'smart', 'upscale': True },
-        'content-plugin-inner-bg-lg': {'size': (1200, 840), 'crop': 'smart', 'upscale': True },
-        'content-plugin-inner-bg-lg-2x': {'size': (2400, 1280), 'crop': 'smart', 'upscale': True },
-        'content-plugin-inner-bg-xl': {'size': (1600, 1000), 'crop': 'smart', 'upscale': True },
-        'content-plugin-inner-bg-xl-2x': {'size': (2400, 1280), 'crop': 'smart', 'upscale': True },
+        'content-plugin-inner-bg-xs': {'size': (320, get_height_from_ratio(450,4,3)), 'crop': 'scale', 'upscale': True },
+        'content-plugin-inner-bg-xs-2x': {'size': (640, get_height_from_ratio(640,4,3)), 'crop': 'scale', 'upscale': True },
+        'content-plugin-inner-bg-sm': {'size': (512, get_height_from_ratio(512,4,3)), 'crop': 'scale', 'upscale': True },
+        'content-plugin-inner-bg-sm-2x': {'size': (1024, get_height_from_ratio(1024,4,3)), 'crop': 'scale', 'upscale': True },
+        'content-plugin-inner-bg-md': {'size': (1030, get_height_from_ratio(1030,2,1)), 'crop': 'scale', 'upscale': True },
+        'content-plugin-inner-bg-md-2x': {'size': (2060, get_height_from_ratio(2060,2,1)), 'crop': 'scale', 'upscale': True },
+        'content-plugin-inner-bg-lg': {'size': (1200, get_height_from_ratio(1200,2,1)), 'crop': 'scale', 'upscale': True },
+        'content-plugin-inner-bg-lg-2x': {'size': (2400, get_height_from_ratio(2400,2,1)), 'crop': 'scale', 'upscale': True },
+        'content-plugin-inner-bg-xl': {'size': (1600, get_height_from_ratio(1600,2,1)), 'crop': 'scale', 'upscale': True },
+        'content-plugin-inner-bg-xl-2x': {'size': (2400, get_height_from_ratio(2400,2,1)), 'crop': 'scale', 'upscale': True },
 
         # # # # # # # # # # # # # # # # # # # # # #
         # App Content Plugin:

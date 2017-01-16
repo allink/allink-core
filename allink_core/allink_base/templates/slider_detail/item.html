@@ -21,14 +21,12 @@
         </div>
     </div>
 
-    {# {% render_app_content_image_detail thumbnail_url="detail-full-width" %} #}
-
     {% if object.preview_image %}
-        {% include "includes/retina_media_query.html" with min_width=0 max_width=320 background_image=object.preview_image|thumbnail_url:'slider-inner-container-xs' background_image_2x=slide.image|thumbnail_url:'slider-inner-container-xs-x2' content_type_id=slide.id prefix='swiper-slide' %}
-        {% include "includes/retina_media_query.html" with min_width=321 max_width=512 background_image=slide.image|thumbnail_url:'slider-inner-container-sm' background_image_2x=slide.image|thumbnail_url:'slider-inner-container-sm-x2' content_type_id=slide.id prefix='swiper-slide' %}
-        {% include "includes/retina_media_query.html" with min_width=513 max_width=1023 background_image=slide.image|thumbnail_url:'slider-inner-container-md' background_image_2x=slide.image|thumbnail_url:'slider-inner-container-md-x2' content_type_id=slide.id prefix='swiper-slide' %}
-        {% include "includes/retina_media_query.html" with min_width=1024 max_width=1199 background_image=slide.image|thumbnail_url:'slider-inner-container-lg' background_image_2x=slide.image|thumbnail_url:'slider-inner-container-lg-x2' content_type_id=slide.id prefix='swiper-slide' %}
-        {% include "includes/retina_media_query.html" with min_width=1200 max_width=0 background_image=slide.image|thumbnail_url:'slider-inner-container-xl' background_image_2x=slide.image|thumbnail_url:'slider-inner-container-xl-x2' content_type_id=slide.id prefix='swiper-slide' %}
+        {% include "includes/retina_media_query.html" with min_width=0 max_width=320 background_image=object.preview_image|thumbnail_url:'slider-detail-view-xs' background_image_2x=slide.image|thumbnail_url:'slider-detail-view-xs-x2' content_type_id=slide.id prefix='swiper-slide' %}
+        {% include "includes/retina_media_query.html" with min_width=321 max_width=512 background_image=slide.image|thumbnail_url:'slider-detail-view-sm' background_image_2x=slide.image|thumbnail_url:'slider-detail-view-sm-x2' content_type_id=slide.id prefix='swiper-slide' %}
+        {% include "includes/retina_media_query.html" with min_width=513 max_width=1023 background_image=slide.image|thumbnail_url:'slider-detail-view-md' background_image_2x=slide.image|thumbnail_url:'slider-detail-view-md-x2' content_type_id=slide.id prefix='swiper-slide' %}
+        {% include "includes/retina_media_query.html" with min_width=1024 max_width=1199 background_image=slide.image|thumbnail_url:'slider-detail-view-lg' background_image_2x=slide.image|thumbnail_url:'slider-detail-view-lg-x2' content_type_id=slide.id prefix='swiper-slide' %}
+        {% include "includes/retina_media_query.html" with min_width=1200 max_width=0 background_image=slide.image|thumbnail_url:'slider-detail-view-xl' background_image_2x=slide.image|thumbnail_url:'slider-detail-view-xl-x2' content_type_id=slide.id prefix='swiper-slide' %}
     {% endif %}
 
 </div>
