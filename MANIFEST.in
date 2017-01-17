@@ -3,6 +3,6 @@ recursive-include allink_core/allink_base/templates *
 recursive-include allink_core/allink_styleguide/templates *
 recursive-include allink_core/allink_mailchimp/templates *
 recursive-include allink_core/djangocms_content/templates *
-recursive-include allink_core/djangocms-gallery/templates *
-recursive-include allink_core/djangocms-socialicon/templates *
+recursive-include allink_core/djangocms_gallery/templates *
+recursive-include allink_core/djangocms_socialicon/templates *
 
