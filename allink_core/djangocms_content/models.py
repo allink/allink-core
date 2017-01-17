@@ -132,15 +132,16 @@ class AllinkContentPlugin(AllinkBasePlugin):
         css_classes = self.base_classes
 
         css_classes.append('inner-container-has-bg-image') if self.bg_image_inner_container else None
-
+        # video is stronger than the parallax image
         css_classes.append('parallax-enabled') if self.bg_image_outer_container and self.parallax_enabled and not self.video_file else None
-        css_classes.append("overlay-enabled") if self.overlay_styles_enabled else None
 
         css_classes.append("has-bg-video") if self.video_file and self.video_poster_image and self.video_mobile_image else None
         css_classes.append("full-height-enabled") if self.full_height_enabled else None
-        css_classes.append("has-bg-image") if self.bg_image_outer_container else None
+        # video is stronger than the image
+        css_classes.append("has-bg-image") if self.bg_image_outer_container and not self.video_file else None
         css_classes.append("bg-image-outer-container-{}".format(self.id)) if self.bg_image_outer_container and not self.parallax_enabled else None
         css_classes.append(self.extra_css_classes)
+        css_classes.append("overlay-enabled") if self.overlay_styles_enabled else None
         return ' '.join(css_classes)
 
     @property
