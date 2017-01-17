@@ -56,7 +56,7 @@ class CMSAllinkContentPlugin(CMSPluginBase):
                 'bg_image_inner_container',
             )
         }),
-        (_('Video background (only works if all fields are set)'), {
+        (_('Video background (Important: Only works if all fields are set)'), {
             'classes': ('collapse',),
             'fields': (
                 'video_file',
