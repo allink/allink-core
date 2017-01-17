@@ -44,3 +44,4 @@ def subscribe_member_to_list(data, list_id=config.default_list_id):
     )
 
     check_response_status(response)
+

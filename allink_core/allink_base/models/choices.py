@@ -81,6 +81,7 @@ XING = 'xing'
 YOUTUBE = 'youtube'
 VIMEO = 'vimeo'
 GOOGLEPLUS = 'googleplus'
+TRIPADVISOR = 'tripadvisor'
 
 SOCIAL_ICONS_CHOICES = (
     (FACEBOOK, _(u'Facebook')),
@@ -94,4 +95,5 @@ SOCIAL_ICONS_CHOICES = (
     (YOUTUBE, _(u'Youtube')),
     (VIMEO, _(u'Vimeo')),
     (GOOGLEPLUS, _(u'Google Plus')),
+    (TRIPADVISOR, _(u'TripAdvisor')),
 )

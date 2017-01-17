@@ -13,7 +13,10 @@
 
         {# Optional: Parallax enabled #}
         {% if instance.parallax_enabled and instance.bg_image_outer_container %}
-            <div class="bg-image bg-image-outer-container-{{instance.id}}"></div>
+            {# hold on: only display the background image if there is no video #}
+            {% if not instance.video_file and not instance.video_poster_image and not instance.video_mobile_image  %}
+                <div class="bg-image bg-image-outer-container-{{instance.id}}"></div>
+            {% endif %}
         {% endif %}
 
         {# Optional: Video background #}
