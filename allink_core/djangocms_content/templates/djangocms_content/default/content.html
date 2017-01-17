@@ -87,11 +87,14 @@
         {% endcomment %}
 
         {% if instance.bg_image_outer_container and not instance.full_height_enabled %}
-            {% include "includes/retina_media_query.html" with min_width=0 max_width=320 background_image=instance.bg_image_outer_container|thumbnail_url:'parallax-xs' background_image_2x=instance.bg_image_outer_container|thumbnail_url:'parallax-xs-2x' content_type_id=instance.id prefix='bg-image-outer-container' %}
-            {% include "includes/retina_media_query.html" with min_width=321 max_width=512 background_image=instance.bg_image_outer_container|thumbnail_url:'parallax-sm' background_image_2x=instance.bg_image_outer_container|thumbnail_url:'parallax-sm-2x' content_type_id=instance.id prefix='bg-image-outer-container' %}
-            {% include "includes/retina_media_query.html" with min_width=513 max_width=1023 background_image=instance.bg_image_outer_container|thumbnail_url:'parallax-md' background_image_2x=instance.bg_image_outer_container|thumbnail_url:'parallax-md-2x' content_type_id=instance.id prefix='bg-image-outer-container' %}
-            {% include "includes/retina_media_query.html" with min_width=1024 max_width=1199 background_image=instance.bg_image_outer_container|thumbnail_url:'parallax-lg' background_image_2x=instance.bg_image_outer_container|thumbnail_url:'parallax-lg-2x' content_type_id=instance.id prefix='bg-image-outer-container' %}
-            {% include "includes/retina_media_query.html" with min_width=1200 max_width=0 background_image=instance.bg_image_outer_container|thumbnail_url:'parallax-xl' background_image_2x=instance.bg_image_outer_container|thumbnail_url:'parallax-xl-2x' content_type_id=instance.id prefix='bg-image-outer-container' %}
+            {# hold on: only display the background image if there is no video #}
+            {% if not instance.video_file and not instance.video_poster_image and not instance.video_mobile_image  %}
+                {% include "includes/retina_media_query.html" with min_width=0 max_width=320 background_image=instance.bg_image_outer_container|thumbnail_url:'parallax-xs' background_image_2x=instance.bg_image_outer_container|thumbnail_url:'parallax-xs-2x' content_type_id=instance.id prefix='bg-image-outer-container' %}
+                {% include "includes/retina_media_query.html" with min_width=321 max_width=512 background_image=instance.bg_image_outer_container|thumbnail_url:'parallax-sm' background_image_2x=instance.bg_image_outer_container|thumbnail_url:'parallax-sm-2x' content_type_id=instance.id prefix='bg-image-outer-container' %}
+                {% include "includes/retina_media_query.html" with min_width=513 max_width=1023 background_image=instance.bg_image_outer_container|thumbnail_url:'parallax-md' background_image_2x=instance.bg_image_outer_container|thumbnail_url:'parallax-md-2x' content_type_id=instance.id prefix='bg-image-outer-container' %}
+                {% include "includes/retina_media_query.html" with min_width=1024 max_width=1199 background_image=instance.bg_image_outer_container|thumbnail_url:'parallax-lg' background_image_2x=instance.bg_image_outer_container|thumbnail_url:'parallax-lg-2x' content_type_id=instance.id prefix='bg-image-outer-container' %}
+                {% include "includes/retina_media_query.html" with min_width=1200 max_width=0 background_image=instance.bg_image_outer_container|thumbnail_url:'parallax-xl' background_image_2x=instance.bg_image_outer_container|thumbnail_url:'parallax-xl-2x' content_type_id=instance.id prefix='bg-image-outer-container' %}
+            {% endif %}
         {% endif %}
 
 
