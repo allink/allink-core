@@ -1,10 +1,17 @@
 # -*- coding: utf-8 -*-
 import phonenumbers
 from urlparse import urlparse
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from django.utils.encoding import force_text
+
+from cms.models.fields import PageField
 from filer.fields.image import FilerImageField
+from filer.fields.file import FilerFileField
 from phonenumber_field.modelfields import PhoneNumberField
+
+from djangocms_attributes_field.fields import AttributesField
 
 
 class AllinkContactFieldsModel(models.Model):
@@ -94,3 +101,128 @@ class AllinkMetaTagFieldsModel(models.Model):
         blank=True,
         null=True
     )
+
+
+class AllinkLinkFieldsModel(models.Model):
+    link_url = models.URLField(
+        verbose_name=(u'External link'),
+        blank=True,
+        default='',
+        help_text=_(u'Provide a valid URL to an external website.'),
+    )
+    link_page = PageField(
+        verbose_name=_('Internal link'),
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        help_text=_(u'If provided, overrides the external link.'),
+    )
+    link_mailto = models.EmailField(
+        verbose_name=_(u'Email address'),
+        blank=True,
+        null=True,
+        max_length=255,
+    )
+    link_phone = models.CharField(
+        verbose_name=_(u'Phone'),
+        blank=True,
+        null=True,
+        max_length=255,
+    )
+    link_anchor = models.CharField(
+        verbose_name=_(u'Anchor'),
+        max_length=255,
+        blank=True,
+        help_text=_(u'Appends the value only after the internal or external link. '
+                    u'Do <em>not</em> include a preceding "#" symbol.'),
+    )
+    link_target = models.BooleanField(
+        verbose_name=_(u'Open in new Window'),
+        blank=True,
+    )
+    link_file = FilerFileField(
+        verbose_name=_(u'file'),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+    )
+    link_attributes = AttributesField(
+        verbose_name=_(u'Attributes'),
+        blank=True,
+        excluded_keys=['class', 'href', 'target'],
+    )
+
+    class Meta:
+        abstract = True
+
+    def get_link_url(self):
+        if self.link_page_id:
+            link = self.link_page.get_absolute_url()
+        elif self.link_url:
+            link = self.link_url
+        elif self.link_phone:
+            link = 'tel:{}'.format(self.link_phone.replace(' ', ''))
+        elif self.link_mailto:
+            link = 'mailto:{}'.format(self.link_mailto)
+        elif self.link_file:
+            link = self.link_file.url
+        else:
+            link = ''
+        if self.link_anchor:
+            link += '#{}'.format(self.link_anchor)
+        return link
+
+    def clean(self):
+        super(AllinkLinkFieldsModel, self).clean()
+        field_names = (
+            'link_url',
+            'link_page',
+            'link_mailto',
+            'link_phone',
+            'link_file',
+        )
+        anchor_field_name = 'link_anchor'
+        field_names_allowed_with_anchor = (
+            'link_url',
+            'link_page',
+            'link_file',
+        )
+
+        anchor_field_verbose_name = force_text(
+           self._meta.get_field_by_name(anchor_field_name)[0].verbose_name)
+        anchor_field_value = getattr(self, anchor_field_name)
+
+        link_fields = {
+            key: getattr(self, key)
+            for key in field_names
+        }
+        link_field_verbose_names = {
+            key: force_text(self._meta.get_field_by_name(key)[0].verbose_name)
+            for key in link_fields.keys()
+        }
+        provided_link_fields = {
+            key: value
+            for key, value in link_fields.items()
+            if value
+        }
+        if len(provided_link_fields) > 1:
+            # Too many fields have a value.
+            verbose_names = sorted(link_field_verbose_names.values())
+            error_msg = _('Only one of %s or %s may be given.') % (
+                ', '.join(verbose_names[:-1]),
+                verbose_names[-1],
+            )
+            errors = {}.fromkeys(provided_link_fields.keys(), error_msg)
+            raise ValidationError(errors)
+
+        if anchor_field_value:
+            for field_name in provided_link_fields.keys():
+                if field_name not in field_names_allowed_with_anchor:
+                    error_msg = _('%(anchor_field_verbose_name)s is not allowed together with %(field_name)s') % {
+                        'anchor_field_verbose_name': anchor_field_verbose_name,
+                        'field_name': link_field_verbose_names.get(field_name)
+                    }
+                    raise ValidationError({
+                        anchor_field_name: error_msg,
+                        field_name: error_msg,
+                    })

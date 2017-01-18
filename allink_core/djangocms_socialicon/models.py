@@ -12,7 +12,7 @@ from allink_core.allink_base.models.choices import SOCIAL_ICONS_CHOICES
 @python_2_unicode_compatible
 class AllinkSocialIconContainerPlugin(CMSPlugin):
     """
-    A Container-Plugin for Social Icons, Links, Buttons
+    A Container-Plugin for Social Icons
     """
 
     def __str__(self):

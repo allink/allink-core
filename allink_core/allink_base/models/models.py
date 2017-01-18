@@ -4,7 +4,6 @@ from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 
-
 from cms.models.pluginmodel import CMSPlugin
 from model_utils.models import TimeStampedModel
 from adminsortable.models import SortableMixin
@@ -12,8 +11,9 @@ from filer.fields.image import FilerImageField
 
 from allink_core.allink_base.utils import get_additional_templates
 from allink_core.allink_categories.models import AllinkCategory
-from allink_core.allink_base.models.choices import TITLE_CHOICES, H1
 
+from .choices import TITLE_CHOICES, H1
+from .model_fields import Classes
 from .managers import AllinkBaseModelManager
 from .reusable_fields import AllinkMetaTagFieldsModel
 
@@ -150,13 +150,7 @@ class AllinkBasePlugin(CMSPlugin):
         blank=True,
         null=True
     )
-    extra_css_classes = models.CharField(
-        _(u'Additional CSS Classes for content-section'),
-        help_text=_(u'Only use this field if you know what your doing:<br>SPACE separated class names. Only valid CSS class names will work.'),
-        max_length=255,
-        blank=True,
-        null=True
-    )
+    extra_css_classes = Classes()
 
     cmsplugin_ptr = models.OneToOneField(
         CMSPlugin,
@@ -327,6 +321,13 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
         null=True,
         blank=True
     )
+    # bg_image_outer_container = FilerImageField(
+    #     verbose_name=_(u'Background-Image'),
+    #     help_text=_(u'Dimensions TBD'),
+    #     related_name='app_content_bg_image',
+    #     blank=True,
+    #     null=True
+    # )
 
     class Meta:
         abstract = True

@@ -101,6 +101,7 @@ class CMSAllinkContentColumnPlugin(CMSPluginBase):
     parent_classes = ["AllinkContentPlugin"]
     allow_children = True
     child_classes = ['TextPlugin', 'PicturePlugin', 'VideoPlayerPlugin', 'VideoSourcePlugin', 'VideoTrackPlugin',
-                     'CMSAllinkGalleryPlugin', 'CMSAllinkLinkContainerPlugin', 'CMSAllinkSignupFormPlugin']
+                     'CMSAllinkGalleryPlugin', 'CMSAllinkSocialIconContainerPlugin', 'CMSAllinkSignupFormPlugin',
+                     'CMSAllinkButtonLinkContainerPlugin']
     form = AllinkContentColumnPluginForm
     require_parent = True

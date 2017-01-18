@@ -8,13 +8,13 @@ from .forms import AllinkSocialIconContainerPluginForm, AllinkSocialIconPluginFo
 
 #
 @plugin_pool.register_plugin
-class CMSAllinkLinkContainerPlugin(CMSPluginBase):
+class CMSAllinkSocialIconContainerPlugin(CMSPluginBase):
     model = AllinkSocialIconContainerPlugin
     name = _('Social Icon Container')
     module = _("allink")
     cache = False
     allow_children = True
-    child_classes = ['CMSAllinkSocialPlugin']
+    child_classes = ['CMSAllinkSocialIconPlugin']
     form = AllinkSocialIconContainerPluginForm
 
     def get_render_template(self, context, instance, placeholder):
@@ -23,7 +23,7 @@ class CMSAllinkLinkContainerPlugin(CMSPluginBase):
 
 #
 @plugin_pool.register_plugin
-class CMSAllinkSocialPlugin(CMSPluginBase):
+class CMSAllinkSocialIconPlugin(CMSPluginBase):
     model = AllinkSocialIconPlugin
     name = _('Social Icon')
     module = _("allink")

@@ -20,6 +20,13 @@
         {{ instance.link_attributes_str }}>
     {% endif %}
 
+    {% if instance.use_no_cropping %}
+        <img
+            src="{{ instance.picture.url }}"
+            class="cropping-disabled"
+            {% if instance.width %} width="{{ instance.width }}"{% endif %}
+            >
+    {% else %}
         {# image object to figure out ratio #}
         {% thumbnail instance.picture thumbnail_url_xl as image_xl %}
 
@@ -63,6 +70,9 @@
             >
 
         </picture>
+    {% endif %}
+
+
 
     {% if instance.get_link %}
         </a>

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from functools import partial
 import datetime
 from django.utils.translation import ugettext_lazy as _
 
@@ -97,3 +98,41 @@ SOCIAL_ICONS_CHOICES = (
     (GOOGLEPLUS, _(u'Google Plus')),
     (TRIPADVISOR, _(u'TripAdvisor')),
 )
+
+####################################################################################
+
+# Button/ Text
+
+# Used in the 'Button / Link' plugin
+
+SIZE_CHOICES = (
+    ('lg', _('Large'),),
+    ('md', _('Medium'),),
+    ('sm', _('Small'),),
+)
+
+CONTEXT_CHOICES = (
+    ('primary', 'Primary',),
+    ('success', 'Success',),
+    ('info', 'Info',),
+    ('warning', 'Warning',),
+    ('danger', 'Danger',),
+)
+
+CONTEXT_DEFAULT = 'default'
+
+BUTTON_CONTEXT_CHOICES = (
+    ('default', 'Default',),
+) + CONTEXT_CHOICES + (
+    ('link', 'Link',),
+)
+
+BUTTON_CONTEXT_DEFAULT = 'default'
+
+TEXT_LINK_CONTEXT_CHOICES = (
+    ('', 'Default',),
+) + CONTEXT_CHOICES + (
+    ('muted ', 'Muted',),
+)
+
+TEXT_LINK_CONTEXT_DEFAULT = ''

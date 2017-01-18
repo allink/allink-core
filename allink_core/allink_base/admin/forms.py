@@ -54,7 +54,7 @@ class AllinkBaseAppContentPluginForm(forms.ModelForm):
                     verbose_name=_(u'Categories'),
                     is_stacked=True
                 ),
-                required=True,
+                required=False,
                 queryset=AllinkCategory.objects.not_root().filter(
                     model_names__contains=[self._meta.model.data_model._meta.model_name]
                 )
