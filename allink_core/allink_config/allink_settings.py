@@ -9,7 +9,6 @@ ALLINK_INSTALLED_APPS = [
     'sortedm2m',
     'solo',
     'import_export',
-    'aldryn_bootstrap3',
     'cmsplugin_form_handler',
 
     # allink core apps

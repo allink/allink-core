@@ -33,7 +33,7 @@
         {% endif %}
 
         {# Optional: Overlay Styles enabled #}
-        {% if instance.overlay_styles_enabled and instance.bg_image_outer_container %}
+        {% if instance.overlay_styles_enabled and instance.bg_image_outer_container or instance.video_file %}
             <div class="outer-overlay"></div>
         {% endif %}
 

@@ -45,27 +45,11 @@ class AllinkMetaTagExtension(AllinkMetaTagFieldsModel, TitleExtension):
 extension_pool.register(AllinkMetaTagExtension)
 
 
-# Unregister existing Plugins TODO
+# Unregister existing Plugins
 from cms.plugin_pool import plugin_pool
-from aldryn_bootstrap3.cms_plugins import Bootstrap3SpacerCMSPlugin, Bootstrap3IconCMSPlugin, \
-    Bootstrap3AccordionCMSPlugin, Bootstrap3AlertCMSPlugin, Bootstrap3BlockquoteCMSPlugin, \
-    Bootstrap3CarouselCMSPlugin, Bootstrap3FileCMSPlugin, Bootstrap3ColumnCMSPlugin, Bootstrap3LabelCMSPlugin,\
-    Bootstrap3ImageCMSPlugin, Bootstrap3ButtonCMSPlugin
 from djangocms_link.cms_plugins import LinkPlugin
 from djangocms_file.cms_plugins import FilePlugin, FolderPlugin
 from djangocms_snippet.cms_plugins import SnippetPlugin
-
-# plugin_pool.unregister_plugin(Bootstrap3ButtonCMSPlugin)
-plugin_pool.unregister_plugin(Bootstrap3IconCMSPlugin)
-plugin_pool.unregister_plugin(Bootstrap3AccordionCMSPlugin)
-plugin_pool.unregister_plugin(Bootstrap3AlertCMSPlugin)
-plugin_pool.unregister_plugin(Bootstrap3BlockquoteCMSPlugin)
-plugin_pool.unregister_plugin(Bootstrap3CarouselCMSPlugin)
-plugin_pool.unregister_plugin(Bootstrap3FileCMSPlugin)
-plugin_pool.unregister_plugin(Bootstrap3ColumnCMSPlugin)
-plugin_pool.unregister_plugin(Bootstrap3SpacerCMSPlugin)
-plugin_pool.unregister_plugin(Bootstrap3LabelCMSPlugin)
-plugin_pool.unregister_plugin(Bootstrap3ImageCMSPlugin)
 
 plugin_pool.unregister_plugin(LinkPlugin)
 plugin_pool.unregister_plugin(FilePlugin)
