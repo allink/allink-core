@@ -6,6 +6,10 @@
 {% block app_content_category_container %}
 {% endblock app_content_category_container %}
 
+{# We don't want the 'load more' button when the slider is activated #}
+{% block app_content_load_more_container %}
+{% endblock app_content_load_more_container %}
+
 {% block app_content_objects_container %}
 
     <div class="swiper-container swiper-app-content overlay-bg-enabled {% block swiper_container_class %}{% endblock swiper_container_class %}">

@@ -33,7 +33,7 @@ class CMSAllinkButtonLinkPlugin(CMSPluginBase):
     form = AllinkButtonLinkPluginForm
     text_enabled = False
     change_form_template = 'admin/djangocms_button_link/change_form.html'
-    render_template = 'djangocms_button_link/button.html'
+    render_template = 'djangocms_button_link/item.html'
     text_enabled = True
     allow_children = True
 
@@ -91,5 +91,5 @@ class CMSAllinkButtonLinkPlugin(CMSPluginBase):
         return static('aldryn_bootstrap3/img/type/button.png')
 
     def get_render_template(self, context, instance, placeholder):
-        template = 'djangocms_button_link/button.html'
+        template = 'djangocms_button_link/item.html'
         return template

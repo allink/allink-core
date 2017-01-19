@@ -54,6 +54,7 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
                 'container_enabled',
                 'softpage_enabled',
                 'bg_color',
+                'bg_image_outer_container',
             )
         }),
 

@@ -150,6 +150,13 @@ class AllinkBasePlugin(CMSPlugin):
         blank=True,
         null=True
     )
+    bg_image_outer_container = FilerImageField(
+        verbose_name=_(u'Background-Image'),
+        help_text=_(u'Dimensions TBD'),
+        related_name='%(app_label)s_%(class)s_bg_image',
+        blank=True,
+        null=True
+    )
     extra_css_classes = Classes()
 
     cmsplugin_ptr = models.OneToOneField(
@@ -321,13 +328,6 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
         null=True,
         blank=True
     )
-    # bg_image_outer_container = FilerImageField(
-    #     verbose_name=_(u'Background-Image'),
-    #     help_text=_(u'Dimensions TBD'),
-    #     related_name='app_content_bg_image',
-    #     blank=True,
-    #     null=True
-    # )
 
     class Meta:
         abstract = True

@@ -19,10 +19,11 @@
 #         if config.signup_form:
 #             self.form_class = import_by_path(config.signup_form)
 #
-#     def post(self, request, *args, **kwargs):
-#         print 'inside post'
-#
 #     def form_valid(self, form):
-#         print 'hello from valid'
 #         form.save()
 #         return HttpResponse('ok')
+#
+#     def get_context_data(self, **kwargs):
+#         data = super(SignupView, self).get_context_data(**kwargs)
+#         data['mailchimp_signup_form'] = data.get('form')
+#         return data

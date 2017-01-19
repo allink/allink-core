@@ -62,13 +62,6 @@ class AllinkContentPlugin(AllinkBasePlugin):
         help_text=_(u'If checked, the section will use the available height of the device\'s/browser\'s screen.'),
         default=False
     )
-    bg_image_outer_container = FilerImageField(
-        verbose_name=_(u'Background-Image'),
-        help_text=_(u'Dimensions TBD'),
-        related_name="content_bg_image",
-        blank=True,
-        null=True
-    )
     parallax_enabled = models.BooleanField(
         _(u'Activate Parallax effect'),
         help_text=_(u'If checked, the parallax effect is enabled.'),
