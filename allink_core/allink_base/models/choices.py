@@ -106,9 +106,9 @@ SOCIAL_ICONS_CHOICES = (
 # Used in the 'Button / Link' plugin
 
 SIZE_CHOICES = (
-    ('lg', _('Large'),),
-    ('md', _('Medium'),),
     ('sm', _('Small'),),
+    ('md', _('Medium'),),
+    ('lg', _('Large'),),
 )
 
 CONTEXT_CHOICES = (

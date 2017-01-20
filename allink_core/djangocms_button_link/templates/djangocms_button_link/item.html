@@ -1,12 +1,31 @@
-{% load cms_tags sekizai_tags i18n thumbnail %}
-
-<li>
-    <a href="{{instance.link}}" target="_blank">
-        <i class="social-icon {{instance.icon}}" aria-hidden="true"></i>
-        {% if instance.title %}
-            <span class="sr-only">
-                {{instance.title}}
-            </span>
+{% load cms_tags sekizai_tags i18n thumbnail %}<a href="{{ instance.get_link_url }}"
+   {% if instance.type == 'btn' or instance.txt_context or instance.classes %}
+   class="
+        {% if instance.type == 'btn' %}
+            btn{% if instance.btn_context %} btn-{{ instance.btn_context }}{% endif %}
+            {% if instance.btn_size %} btn-{{ instance.btn_size }}{% endif %}
+            {% if instance.btn_block %} btn-block{% endif %}
+        {% else %}
+            {% if instance.txt_context %}txt-{{ instance.txt_context }}{% endif %}
         {% endif %}
-    </a>
-</li>
+        {% if instance.classes %} {{ instance.classes }}{% endif %}
+    "
+    {% endif %}
+    {% if instance.type == 'btn' %}
+        role="button"
+    {% endif %}
+    {% if instance.link_target %}
+        target="_blank"
+    {% endif %}
+    {{ instance.link_attributes_str }}
+    >{% spaceless %}
+    {% if instance.icon_left %}{% with icon_class=instance.icon_left %}{% include 'aldryn_bootstrap3/plugins/includes/icon.html' %}{% endwith %}{% endif %}
+
+    {{ instance.label }}
+
+    {% for plugin in instance.child_plugin_instances %}
+        {% render_plugin plugin %}
+    {% endfor %}
+
+    {% if instance.icon_right %}{% with icon_class=instance.icon_right %}{% include 'aldryn_bootstrap3/plugins/includes/icon.html' %}{% endwith %}{% endif %}
+{% endspaceless %}</a>

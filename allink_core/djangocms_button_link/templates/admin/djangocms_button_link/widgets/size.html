@@ -1,6 +1,8 @@
-<div class="btn-group btn-group-sizes js-btn-group-sizes" data-toggle="buttons">
+<div class="btn-container">
     {% for item in selects %}
-        {{ item }}
+        <div class="btn btn-default btn-{{item.choice_value}} {% if selects.value == item.choice_value %}active{% endif %}" data-toggle-active-state>
+            {{ item }}
+        </div>
     {% endfor %}
 </div>
 

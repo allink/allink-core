@@ -33,27 +33,27 @@ class CMSAllinkButtonLinkPlugin(CMSPluginBase):
     form = AllinkButtonLinkPluginForm
     text_enabled = False
     change_form_template = 'admin/djangocms_button_link/change_form.html'
-    render_template = 'djangocms_button_link/button.html'
+    render_template = 'djangocms_button_link/item.html'
     text_enabled = True
     allow_children = True
 
     class Media:
         js = (
             'build/djangocms_custom_admin_scripts.js',
-            'aldryn_bootstrap3/js/jquery.min.js',
-            'aldryn_bootstrap3/js/bootstrap.min.js',
-            'aldryn_bootstrap3/js/iconset/iconset-glyphicon.min.js',
-            'aldryn_bootstrap3/js/iconset/iconset-fontawesome-4.2.0.min.js',
-            'aldryn_bootstrap3/js/bootstrap-iconpicker.min.js',
-            'aldryn_bootstrap3/js/base.js',
+            # 'aldryn_bootstrap3/js/jquery.min.js',
+            # 'aldryn_bootstrap3/js/bootstrap.min.js',
+            # 'aldryn_bootstrap3/js/iconset/iconset-glyphicon.min.js',
+            # 'aldryn_bootstrap3/js/iconset/iconset-fontawesome-4.2.0.min.js',
+            # 'aldryn_bootstrap3/js/bootstrap-iconpicker.min.js',
+            # 'aldryn_bootstrap3/js/base.js',
         )
         css = {
              'all': (
                  'build/djangocms_custom_admin_style.css',
-                 'aldryn_bootstrap3/css/bootstrap.min.css',
-                 'aldryn_bootstrap3/css/bootstrap-iconpicker.min.css',
-                 'aldryn_bootstrap3/css/font-awesome.min.css',
-                 'aldryn_bootstrap3/css/base.css',
+                 # 'aldryn_bootstrap3/css/bootstrap.min.css',
+                 # 'aldryn_bootstrap3/css/bootstrap-iconpicker.min.css',
+                 # 'aldryn_bootstrap3/css/font-awesome.min.css',
+                 # 'aldryn_bootstrap3/css/base.css',
 
              )
         }
@@ -61,12 +61,12 @@ class CMSAllinkButtonLinkPlugin(CMSPluginBase):
     fieldsets = (
         (None, {
             'fields': (
-                'type',
                 'label',
+                'type',
                 'btn_context',
-                'txt_context',
+                # 'txt_context',
                 'btn_size',
-                ('icon_left', 'icon_right', 'btn_block',),
+                # ('icon_left', 'icon_right', 'btn_block',),
             ),
         }),
         (_('Link settings'), {
@@ -91,5 +91,5 @@ class CMSAllinkButtonLinkPlugin(CMSPluginBase):
         return static('aldryn_bootstrap3/img/type/button.png')
 
     def get_render_template(self, context, instance, placeholder):
-        template = 'djangocms_button_link/button.html'
+        template = 'djangocms_button_link/item.html'
         return template
