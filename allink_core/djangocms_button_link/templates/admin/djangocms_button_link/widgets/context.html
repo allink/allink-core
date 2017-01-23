@@ -1,12 +1,14 @@
 {% load static %}
 
-<div class="aldryn-bootstrap3 aldryn-bootstrap3-context" data-context="{{ selects.name }}">
-    <div class="btn-group js-btn-group-context-{{ selects.name }}" data-toggle="buttons">
+{% if selects.name == 'btn_context' %}
+    <div class="btn-container" data-context="{{ selects.name }}">
         {% for item in selects %}
-            {{ item }}
+            <div class="btn btn-{{item.choice_value}} {% if selects.value == item.choice_value %}active{% endif %}" data-toggle-active-state>
+                {{ item }}
+            </div>
         {% endfor %}
     </div>
-</div>
+{% endif %}
 
 {# Available Variables #}
 {# {{ item.choice_value }}: {{ item.choice_label }} #}

@@ -1,11 +1,17 @@
 {% load cms_tags staticfiles sekizai_tags thumbnail %}
 
-<div class="social-profiles-container">
+{% spaceless %}
 
-    <ul>
-        {% for plugin in instance.child_plugin_instances %}
-            {% render_plugin plugin %}
-        {% endfor %}
-    </ul>
+    <div class="button-link-container">
 
-</div>
+        <ul>
+            {% for plugin in instance.child_plugin_instances %}
+                <li>
+                    {% render_plugin plugin %}
+                </li>
+            {% endfor %}
+        </ul>
+
+    </div>
+
+{% endspaceless %}
