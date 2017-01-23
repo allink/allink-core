@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 from django.utils.translation import ugettext_lazy as _
+from django.contrib import admin
 from adminsortable.admin import NonSortableParentAdmin
 from parler.admin import TranslatableAdmin
 from aldryn_translation_tools.admin import AllTranslationsMixin
 
 from .forms import AllinkBaseAdminForm
-
 
 
 class AllinkBaseAdmin(NonSortableParentAdmin, AllTranslationsMixin, TranslatableAdmin):
@@ -14,9 +14,12 @@ class AllinkBaseAdmin(NonSortableParentAdmin, AllTranslationsMixin, Translatable
 
     """
     form = AllinkBaseAdminForm
-    search_fields = ('title',)
+    search_fields = ('translations__title',)
     list_display = ('title', 'get_categories', 'active', 'created', 'modified')
-    list_filter = ('active',)
+    list_filter = (
+        'active',
+        ('categories', admin.RelatedOnlyFieldListFilter,),
+    )
 
     exclude = ('images',)
 
@@ -68,3 +71,4 @@ class AllinkBaseAdmin(NonSortableParentAdmin, AllTranslationsMixin, Translatable
     def get_categories(self, object):
         return "\n|\n".join([c.name for c in object.categories.all()])
 
+    get_categories.short_description = _(u'Categories')

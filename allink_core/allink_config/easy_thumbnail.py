@@ -200,5 +200,29 @@ THUMBNAIL_ALIASES = {
         'col-1-of-2-xl': {'size': (800, get_height_from_ratio(800,4,3)), 'crop': 'smart', 'upscale': True },
         'col-1-of-2-xl-2x': {'size': (1500, get_height_from_ratio(1500,4,3)), 'crop': 'smart', 'upscale': True },
 
+        # 1/4 (same as "App Content Plugin" 1/4)
+        'col-1-of-4-xs': {'size': (450, get_height_from_ratio(450,4,3)), 'crop': 'smart', 'upscale': True },
+        'col-1-of-4-xs-2x': {'size': (600, get_height_from_ratio(600,4,3)), 'crop': 'smart', 'upscale': True },
+        'col-1-of-4-sm': {'size': (500, get_height_from_ratio(500,4,3)), 'crop': 'smart', 'upscale': True },
+        'col-1-of-4-sm-2x': {'size': (800, get_height_from_ratio(800,4,3)), 'crop': 'smart', 'upscale': True },
+        'col-1-of-4-xl': {'size': (500, get_height_from_ratio(500,4,3)), 'crop': 'smart', 'upscale': True },
+        'col-1-of-4-xl-2x': {'size': (1000, get_height_from_ratio(1000,4,3)), 'crop': 'smart', 'upscale': True },
+
+        # 1/5 (same as "App Content Plugin" 1/5)
+        'col-1-of-5-xs': {'size': (450, get_height_from_ratio(450,4,3)), 'crop': 'smart', 'upscale': True },
+        'col-1-of-5-xs-2x': {'size': (600, get_height_from_ratio(600,4,3)), 'crop': 'smart', 'upscale': True },
+        'col-1-of-5-sm': {'size': (500, get_height_from_ratio(500,4,3)), 'crop': 'smart', 'upscale': True },
+        'col-1-of-5-sm-2x': {'size': (800, get_height_from_ratio(800,4,3)), 'crop': 'smart', 'upscale': True },
+        'col-1-of-5-xl': {'size': (500, get_height_from_ratio(500,4,3)), 'crop': 'smart', 'upscale': True },
+        'col-1-of-5-xl-2x': {'size': (1000, get_height_from_ratio(1000,4,3)), 'crop': 'smart', 'upscale': True },
+
+        # 1/6 (same as "App Content Plugin" 1/6)
+        'col-1-of-6-xs': {'size': (450, get_height_from_ratio(450,4,3)), 'crop': 'smart', 'upscale': True },
+        'col-1-of-6-xs-2x': {'size': (600, get_height_from_ratio(600,4,3)), 'crop': 'smart', 'upscale': True },
+        'col-1-of-6-sm': {'size': (500, get_height_from_ratio(500,4,3)), 'crop': 'smart', 'upscale': True },
+        'col-1-of-6-sm-2x': {'size': (800, get_height_from_ratio(800,4,3)), 'crop': 'smart', 'upscale': True },
+        'col-1-of-6-xl': {'size': (500, get_height_from_ratio(500,4,3)), 'crop': 'smart', 'upscale': True },
+        'col-1-of-6-xl-2x': {'size': (1000, get_height_from_ratio(1000,4,3)), 'crop': 'smart', 'upscale': True },
+
     },
 }

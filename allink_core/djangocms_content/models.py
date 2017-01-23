@@ -27,6 +27,9 @@ class AllinkContentPlugin(AllinkBasePlugin):
     COL_2_1 = 'col-2-1'
     COL_1_2 = 'col-1-2'
     COL_3 = 'col-3'
+    COL_4 = 'col-4'
+    COL_5 = 'col-5'
+    COL_6 = 'col-6'
 
     COLUMN_AMOUNT = dict([
         (COL_1, 1),
@@ -34,6 +37,9 @@ class AllinkContentPlugin(AllinkBasePlugin):
         (COL_2_1, 2),
         (COL_1_2, 2),
         (COL_3, 3),
+        (COL_4, 4),
+        (COL_5, 5),
+        (COL_6, 6),
     ])
 
     TEMPLATES = (
@@ -42,6 +48,9 @@ class AllinkContentPlugin(AllinkBasePlugin):
         (COL_2_1, '2 Columns (2:1)'),
         (COL_1_2, '2 Columns (1:2)'),
         (COL_3, '3 Columns'),
+        (COL_4, '4 Columns'),
+        (COL_5, '5 Columns'),
+        (COL_6, '6 Columns'),
     )
 
     # General Fields

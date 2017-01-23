@@ -61,22 +61,28 @@ def render_app_content_image(context,thumbnail_url=None):
 # Content Plugin > Images placed in columns
 
 @register.inclusion_tag('templatetags/allink_image.html', takes_context=True)
-def render_content_image(context):
+def render_content_image(context,thumbnail_url=None):
 
     column_plugin = context['instance'].parent.djangocms_content_allinkcontentcolumnplugin
 
     # Define variable base according to template
-    thumbnail_url = ''
-    if column_plugin.template == 'col-1':
-        thumbnail_url = 'col-3-of-3'
-    elif column_plugin.template == 'col-1-1':
-        thumbnail_url = 'col-1-of-2'
-    elif column_plugin.template == 'col-1-2':
-        thumbnail_url = 'col-1-of-3' if column_plugin.position == 0 else 'col-2-of-3'
-    elif column_plugin.template == 'col-2-1':
-        thumbnail_url = 'col-2-of-3' if column_plugin.position == 0 else 'col-1-of-3'
-    elif column_plugin.template == 'col-3':
-        thumbnail_url = 'col-1-of-3'
+    if not thumbnail_url:
+        if column_plugin.template == 'col-1':
+            thumbnail_url = 'col-3-of-3'
+        elif column_plugin.template == 'col-1-1':
+            thumbnail_url = 'col-1-of-2'
+        elif column_plugin.template == 'col-1-2':
+            thumbnail_url = 'col-1-of-3' if column_plugin.position == 0 else 'col-2-of-3'
+        elif column_plugin.template == 'col-2-1':
+            thumbnail_url = 'col-2-of-3' if column_plugin.position == 0 else 'col-1-of-3'
+        elif column_plugin.template == 'col-3':
+            thumbnail_url = 'col-1-of-3'
+        elif column_plugin.template == 'col-4':
+            thumbnail_url = 'col-1-of-4'
+        elif column_plugin.template == 'col-5':
+            thumbnail_url = 'col-1-of-5'
+        elif column_plugin.template == 'col-6':
+            thumbnail_url = 'col-1-of-6'
 
     # add different BREAKPOINT and RETINA suffixes
     thumbnail_url_xs = thumbnail_url+'-xs'
