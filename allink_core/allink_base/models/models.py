@@ -152,7 +152,7 @@ class AllinkBasePlugin(CMSPlugin):
     )
     bg_image_outer_container = FilerImageField(
         verbose_name=_(u'Background-Image'),
-        help_text=_(u'Dimensions TBD'),
+        help_text=_(u'Optional: Set a background image for the content section.<br>Note: This is meant for decorative purposes only and should be used with care.'),
         related_name='%(app_label)s_%(class)s_bg_image',
         blank=True,
         null=True
@@ -174,6 +174,7 @@ class AllinkBasePlugin(CMSPlugin):
         css_classes.append("container-enabled") if self.container_enabled else None
         css_classes.append('section-heading-{}'.format(self.title_size)) if self.title_size else None
         css_classes.append("has-bg-color") if self.bg_color else None
+        css_classes.append("has-bg-image") if self.bg_image_outer_container else None
         css_classes.append(self.get_bg_color_display()) if self.bg_color else None
         return css_classes
 
@@ -295,6 +296,11 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
     softpage_enabled = models.BooleanField(
         _(u'Show detailed information in Softpage'),
         help_text=_(u'If checked, the detail view of an entry will be displayed in a "softpage". Otherwise the page will be reloaded)'),
+        default=True
+    )
+    detail_link_enabled = models.BooleanField(
+        _(u'Show detail link'),
+        help_text=_(u'If checked, a link/button to the detail view will be displayed.'),
         default=True
     )
     items_per_row = models.IntegerField(

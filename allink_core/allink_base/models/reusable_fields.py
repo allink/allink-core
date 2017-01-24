@@ -2,6 +2,7 @@
 import phonenumbers
 from urlparse import urlparse
 from django.core.exceptions import ValidationError
+from django.core.validators import MaxValueValidator
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import force_text
@@ -12,6 +13,33 @@ from filer.fields.file import FilerFileField
 from phonenumber_field.modelfields import PhoneNumberField
 
 from djangocms_attributes_field.fields import AttributesField
+
+
+class AllinkAddressBasicFieldsModel(models.Model):
+
+    class Meta:
+        abstract = True
+
+    street = models.CharField(
+        _(u'Street'),
+        max_length=255,
+        blank=True,
+        null=True
+    )
+
+    place = models.CharField(
+        _(u'Place'),
+        max_length=255,
+        blank=True,
+        null=True
+    )
+
+    zip_code = models.IntegerField(
+        _(u'Zipcode'),
+        validators=[MaxValueValidator(4)],
+        blank=True,
+        null=True
+    )
 
 
 class AllinkContactFieldsModel(models.Model):

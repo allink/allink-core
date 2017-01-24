@@ -10,7 +10,9 @@
                     {% block table_head %}
                         <th>{% trans "Title" %}</th>
                         <th>{% trans "Text Preview" %}</th>
-                        <th>&nbsp;</th>
+                        {% if instance.detail_link_enabled %}
+                            <th>&nbsp;</th>
+                        {% endif %}
                     {% endblock table_head %}
                 </tr>
             </thead>

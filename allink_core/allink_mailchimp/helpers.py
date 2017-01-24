@@ -21,7 +21,7 @@ def check_response_status(response):
 
 
 def get_hash_md5(email):
-    hashlib.md5(email.encode('utf-8')).hexdigest()
+    return hashlib.md5(email.encode('utf-8')).hexdigest()
 
 def get_status_if_new():
     """
@@ -31,11 +31,10 @@ def get_status_if_new():
     """
     return 'pending' if config.double_optin else 'subscribed'
 
-def subscribe_member_to_list(data, list_id=config.default_list_id):
+def list_members_put(data, list_id=config.default_list_id):
 
     member_hash = get_hash_md5(data['email_address'])
     data = json.dumps(data)
-
     # PUT new or modify existing member
     response = requests.put(
         config.api_root + 'lists/{}/members/{}'.format(list_id, member_hash),

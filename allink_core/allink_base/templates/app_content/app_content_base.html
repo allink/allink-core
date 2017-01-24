@@ -1,9 +1,19 @@
 {% load cms_tags staticfiles sekizai_tags i18n thumbnail %}
 
 {% block app_content_section %}
-    <div class="content-section app-content-plugin list-view {% spaceless %}{% block app_content_section_name_classes %}{% endblock app_content_section_name_classes %} {{instance.css_classes}}{% endspaceless %}" data-scroll-spy>
+    <div class="content-section app-content-plugin list-view {% spaceless %}{% block app_content_section_name_classes %}{% endblock app_content_section_name_classes %} {{instance.css_classes}}{% endspaceless %} app-content-plugin-{{instance.id}}" data-scroll-spy>
         <div class="container">
 
+        {% comment %}
+            Optional: Outer container background image
+        {% endcomment %}
+            {% if instance.bg_image_outer_container %}
+                {% include "includes/retina_media_query.html" with min_width=0 max_width=320 background_image=instance.bg_image_outer_container|thumbnail_url:'outer-container-bg-image-xs' background_image_2x=slide.image|thumbnail_url:'outer-container-bg-image-xs-x2' content_type_id=instance.id prefix='app-content-plugin' %}
+                {% include "includes/retina_media_query.html" with min_width=321 max_width=512 background_image=instance.bg_image_outer_container|thumbnail_url:'outer-container-bg-image-sm' background_image_2x=slide.image|thumbnail_url:'outer-container-bg-image-sm-x2' content_type_id=instance.id prefix='app-content-plugin' %}
+                {% include "includes/retina_media_query.html" with min_width=513 max_width=1023 background_image=instance.bg_image_outer_container|thumbnail_url:'outer-container-bg-image-md' background_image_2x=slide.image|thumbnail_url:'outer-container-bg-image-md-x2' content_type_id=instance.id prefix='app-content-plugin' %}
+                {% include "includes/retina_media_query.html" with min_width=1024 max_width=1199 background_image=instance.bg_image_outer_container|thumbnail_url:'outer-container-bg-image-lg' background_image_2x=slide.image|thumbnail_url:'outer-container-bg-image-lg-x2' content_type_id=instance.id prefix='app-content-plugin' %}
+                {% include "includes/retina_media_query.html" with min_width=1200 max_width=0 background_image=instance.bg_image_outer_container|thumbnail_url:'outer-container-bg-image-xl' background_image_2x=slide.image|thumbnail_url:'outer-container-bg-image-xl-x2' content_type_id=instance.id prefix='app-content-plugin' %}
+            {% endif %}
 
             {% comment %}
                 Optional: Section before content

@@ -21,7 +21,7 @@ class MailChimpConfig:
         self.apikey = apikey
         self.default_list_id = getattr(settings, 'MAILCHIMP_DEFAULT_LIST_ID', None)
         self.signup_form = getattr(settings, 'MAILCHIMP_SIGNUP_FORM', None)
-        self.additional_fields = getattr(settings, 'MAILCHIMP_ADDITIONAL_FIELDS', {})
+        self.merge_vars = getattr(settings, 'MAILCHIMP_MERGE_VARS', None)
         """
         settings.MAILCHIMP_DOUBLE_OPTIN
         - if set to True a Welcome Email will be sent and the double opt-in process will be used

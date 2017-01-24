@@ -1,0 +1,25 @@
+{% load i18n %}
+
+<form action="/mailchimp/" methode="post" class="ajax-form validate-form" role="form" data-form-container-id="mailchimp-form">
+    {% csrf_token %}
+    <div class="input-group">
+        <input name="language" id="id_language" type="hidden" value="{{ request.LANGUAGE_CODE }}">
+        <input name="email" id="id_email" type="email" placeholder="{% trans "Ihre E-Mail Adresse" %}" class="form-control" value="{{ mailchimp_signup_form.email.value|default:"" }}" required>
+        <span class="input-group-btn">
+            <button type="submit" class="btn btn-primary" data-btn-ajax-loader>
+                <span class="btn-text">
+                    {% trans "Anmelden" %}
+                </span>
+            </button>
+        </span>
+    </div>
+
+    {% if mailchimp_signup_form.non_field_errors %}
+        {% for error in mailchimp_signup_form.non_field_errors %}
+            <div class="alert alert-error">
+                {{ error|escape }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+</form>

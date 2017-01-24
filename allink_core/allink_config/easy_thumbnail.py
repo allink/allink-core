@@ -109,6 +109,18 @@ THUMBNAIL_ALIASES = {
         # # # # # # # # # # # # # # # # # # # # # #
         # App Content Plugin:
 
+        # Outer container background image
+        'outer-container-bg-image-xs': {'size': (320, get_height_from_ratio(450,4,3)), 'crop': 'scale', 'upscale': True },
+        'outer-container-bg-image-xs-2x': {'size': (640, get_height_from_ratio(640,4,3)), 'crop': 'scale', 'upscale': True },
+        'outer-container-bg-image-sm': {'size': (512, get_height_from_ratio(512,4,3)), 'crop': 'scale', 'upscale': True },
+        'outer-container-bg-image-sm-2x': {'size': (1024, get_height_from_ratio(1024,4,3)), 'crop': 'scale', 'upscale': True },
+        'outer-container-bg-image-md': {'size': (1030, get_height_from_ratio(1030,3000,1690)), 'crop': 'scale', 'upscale': True },
+        'outer-container-bg-image-md-2x': {'size': (2060, get_height_from_ratio(2060,3000,1690)), 'crop': 'scale', 'upscale': True },
+        'outer-container-bg-image-lg': {'size': (1200, get_height_from_ratio(1200,3000,1690)), 'crop': 'scale', 'upscale': True },
+        'outer-container-bg-image-lg-2x': {'size': (2400, get_height_from_ratio(2400,3000,1690)), 'crop': 'scale', 'upscale': True },
+        'outer-container-bg-image-xl': {'size': (1600, get_height_from_ratio(1600,3000,1690)), 'crop': 'scale', 'upscale': True },
+        'outer-container-bg-image-xl-2x': {'size': (2400, get_height_from_ratio(2400,3000,1690)), 'crop': 'scale', 'upscale': True },
+
         # 1/1 (same as "Content Plugin" 3/3)
         'col-1-xs': {'size': (450, get_height_from_ratio(450,4,3)), 'crop': 'smart', 'upscale': True },
         'col-1-xs-2x': {'size': (600, get_height_from_ratio(600,4,3)), 'crop': 'smart', 'upscale': True },
@@ -217,12 +229,12 @@ THUMBNAIL_ALIASES = {
         'col-1-of-5-xl-2x': {'size': (1000, get_height_from_ratio(1000,4,3)), 'crop': 'smart', 'upscale': True },
 
         # 1/6 (same as "App Content Plugin" 1/6)
-        'col-1-of-6-xs': {'size': (450, get_height_from_ratio(450,4,3)), 'crop': 'smart', 'upscale': True },
-        'col-1-of-6-xs-2x': {'size': (600, get_height_from_ratio(600,4,3)), 'crop': 'smart', 'upscale': True },
-        'col-1-of-6-sm': {'size': (500, get_height_from_ratio(500,4,3)), 'crop': 'smart', 'upscale': True },
-        'col-1-of-6-sm-2x': {'size': (800, get_height_from_ratio(800,4,3)), 'crop': 'smart', 'upscale': True },
-        'col-1-of-6-xl': {'size': (500, get_height_from_ratio(500,4,3)), 'crop': 'smart', 'upscale': True },
-        'col-1-of-6-xl-2x': {'size': (1000, get_height_from_ratio(1000,4,3)), 'crop': 'smart', 'upscale': True },
+        'col-1-of-6-xs': {'size': (450, get_height_from_ratio(450,2,1)), 'crop': 'smart', 'upscale': True },
+        'col-1-of-6-xs-2x': {'size': (600, get_height_from_ratio(600,2,1)), 'crop': 'smart', 'upscale': True },
+        'col-1-of-6-sm': {'size': (500, get_height_from_ratio(500,2,1)), 'crop': 'smart', 'upscale': True },
+        'col-1-of-6-sm-2x': {'size': (800, get_height_from_ratio(800,2,1)), 'crop': 'smart', 'upscale': True },
+        'col-1-of-6-xl': {'size': (500, get_height_from_ratio(500,2,1)), 'crop': 'smart', 'upscale': True },
+        'col-1-of-6-xl-2x': {'size': (1000, get_height_from_ratio(1000,2,1)), 'crop': 'smart', 'upscale': True },
 
     },
 }

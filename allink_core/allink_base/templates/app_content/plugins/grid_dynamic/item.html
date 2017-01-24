@@ -4,11 +4,11 @@
     <div class="manage-spacings">
         {% if object.preview_image %}
             <div class="image-container">
-                {% if object.text %}
+                {% if instance.detail_link_enabled and object.text %}
                     <a href="{{object.get_absolute_url}}">
                 {% endif %}
                     {% render_app_content_image %}
-                {% if object.text %}
+                {% if instance.detail_link_enabled and object.text %}
                     </a>
                 {% endif %}
             </div>
@@ -27,7 +27,7 @@
                 </p>
             </div>
         {% endif %}
-        {% if object.text %}
+        {% if instance.detail_link_enabled and object.text %}
             <div class="link-container">
                 <a href="{{object.get_absolute_url}}" class="btn btn-default">
                     {% if instance.detail_link_text %}

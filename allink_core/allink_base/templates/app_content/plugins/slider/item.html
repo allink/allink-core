@@ -24,6 +24,17 @@
                         </p>
                     </div>
                 {% endif %}
+                {% if instance.detail_link_enabled and object.text %}
+                    <div class="link-container">
+                        <a class="btn btn-default" href="{{object.get_absolute_url}}">
+                            {% if instance.detail_link_text %}
+                                {{ instance.detail_link_text }}
+                            {% else %}
+                                {% trans "More" %}
+                            {% endif %}
+                        </a>
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>
