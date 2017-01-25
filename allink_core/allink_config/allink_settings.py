@@ -35,7 +35,18 @@ ALLINK_INSTALLED_APPS = [
 
 ####################################################################################
 
-# = allink categories
+# =Migration Modlues allink apps
+ALLINK_MIGRATION_MODULES = {
+    'blog': 'apps.allink_apps_migrations.blog',
+    'locations': 'apps.allink_apps_migrations.locations',
+    'people': 'apps.allink_apps_migrations.people',
+    'testimonials': 'apps.allink_apps_migrations.testimonials',
+    'work': 'apps.allink_apps_migrations.work',
+}
+
+####################################################################################
+
+# =allink categories
 # all models which use categories have to be listed here.
 # the value has to be equal to "_meta.model_name"
 

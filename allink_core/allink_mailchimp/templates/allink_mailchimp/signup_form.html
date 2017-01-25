@@ -1,6 +1,14 @@
 {% load i18n %}
 
-<form action="/mailchimp/" methode="post" class="ajax-form validate-form" role="form" data-form-container-id="mailchimp-form">
+<form action="/mailchimp/" methode="post" class="ajax-form validate-form" role="form" data-form-container-id="mailchimp-form" data-layer->
+
+    {# Any number of dataLayer variables and values for Google Tag Manager #}
+    <div
+        data-layer-variable="event"
+        data-layer-value="newsletter.sent"
+        >
+    </div>
+
     {% csrf_token %}
     <div class="input-group">
         <input name="language" id="id_language" type="hidden" value="{{ request.LANGUAGE_CODE }}">
@@ -14,9 +22,17 @@
         </span>
     </div>
 
+    {# something wrong with the email format #}
+    {% if mailchimp_signup_form.email.errors %}
+        <div class="alert alert-danger">
+            {{mailchimp_signup_form.email.errors}}
+        </div>
+    {% endif %}
+
+    {# any other error messages #}
     {% if mailchimp_signup_form.non_field_errors %}
         {% for error in mailchimp_signup_form.non_field_errors %}
-            <div class="alert alert-error">
+            <div class="alert alert-danger">
                 {{ error|escape }}
             </div>
         {% endfor %}

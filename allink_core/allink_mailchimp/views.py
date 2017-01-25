@@ -29,7 +29,7 @@ class SignupView(FormView):
             return HttpResponse(html)
         except:
             form.add_error(None, _(u'Something with your subscription went wrong. Please try again later.'))
-            return self.render_to_response(self.get_context_data(form=form))
+            return self.render_to_response(self.get_context_data(form=form), status=206)
 
 
     def get_context_data(self, **kwargs):
