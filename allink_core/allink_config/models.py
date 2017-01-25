@@ -47,8 +47,11 @@ extension_pool.register(AllinkMetaTagExtension)
 
 # Unregister existing Plugins
 from cms.plugin_pool import plugin_pool
+from djangocms_link.cms_plugins import LinkPlugin
 from djangocms_file.cms_plugins import FilePlugin, FolderPlugin
+from djangocms_snippet.cms_plugins import SnippetPlugin
 
-
+plugin_pool.unregister_plugin(LinkPlugin)
 plugin_pool.unregister_plugin(FilePlugin)
 plugin_pool.unregister_plugin(FolderPlugin)
+plugin_pool.unregister_plugin(SnippetPlugin)
