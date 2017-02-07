@@ -12,10 +12,17 @@ def get_additional_templates(model_name):
     additional_templates = getattr(settings, config, ())
     return additional_templates
 
+def get_additional_choices(config):
+    """
+    Get additional settings var for project specific configuration
+    """
+    try:
+        return getattr(settings, config, ())
+    except:
+        return ''
 
 def get_height_from_ratio(width,ratio_w,ratio_h):
     """
     Used to calculate thumbnail height from given width and ratio
     """
     return width*ratio_h/ratio_w
-

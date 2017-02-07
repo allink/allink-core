@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.utils.translation import ugettext_lazy as _
-
+from django.conf import settings
 from cms.models import CMSPlugin
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
@@ -100,8 +100,6 @@ class CMSAllinkContentColumnPlugin(CMSPluginBase):
     render_template = "djangocms_content/default/column.html"
     parent_classes = ["AllinkContentPlugin"]
     allow_children = True
-    child_classes = ['TextPlugin', 'PicturePlugin', 'VideoPlayerPlugin', 'VideoSourcePlugin', 'VideoTrackPlugin',
-                     'CMSAllinkGalleryPlugin', 'CMSAllinkSocialIconContainerPlugin', 'CMSAllinkSignupFormPlugin',
-                     'CMSAllinkButtonLinkContainerPlugin']
+    child_classes = settings.CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES
     form = AllinkContentColumnPluginForm
     require_parent = True

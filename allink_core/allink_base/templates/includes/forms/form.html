@@ -1,0 +1,19 @@
+{% load i18n %}
+<div class="manage-spacings">
+    <div class="form-container">
+        <form {% if form_id %}id="{{ form_id }}"{% endif %} class="form-default validate-form {{ class }}" method="{{ method|default:"POST" }}"
+            {% if action %}action="{{ action }}"{% endif %}
+            {% if includes_files %}enctype="multipart/form-data"{% endif %} novalidate="novalidate">
+                {% if not method == "get" %}{% csrf_token %}{% endif %}
+                {% if success_url %}
+                    <input type="hidden" name="success_url" value="{{ success_url }}">
+                {% endif %}
+                {% include 'includes/forms/form_fields.html' with nolabel=nolabel|default:False %}
+
+                <div class="form-group">
+                    <div><button class="btn btn-primary" name="submit" type="submit">{{ cta }}</button></div>
+                </div>
+        </form>
+    </div>
+</div>
+

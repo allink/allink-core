@@ -65,3 +65,8 @@ class AllinkBaseAppContentPluginForm(forms.ModelForm):
             widget=forms.Select(choices=self.instance.get_templates()),
             required=True,
         )
+        self.fields['manual_ordering'] = forms.CharField(
+            label=_(u'Ordering'),
+            required=False,
+            widget=forms.Select(choices=self.instance.get_ordering_choices())
+        )

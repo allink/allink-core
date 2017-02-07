@@ -1,6 +1,6 @@
 {% load cms_tags sekizai_tags i18n thumbnail allink_image_tags %}
 
-<tr class="table-row {% if appended %}appended{% endif %}">
+<tr class="{% if appended %}appended{% endif %}">
     <td>
         {% if object.title %}
             <div class="heading-container">

@@ -31,11 +31,9 @@ class CMSAllinkButtonLinkPlugin(CMSPluginBase):
     cache = False
     allow_children = False
     form = AllinkButtonLinkPluginForm
-    text_enabled = False
     change_form_template = 'admin/djangocms_button_link/change_form.html'
     render_template = 'djangocms_button_link/item.html'
     text_enabled = True
-    allow_children = True
 
     class Media:
         js = (
@@ -76,11 +74,13 @@ class CMSAllinkButtonLinkPlugin(CMSPluginBase):
                 ('link_mailto', 'link_phone'),
                 ('link_anchor', 'link_target'),
                 'link_file',
+                'link_special',
             )
         }),
         (_('Advanced settings'), {
             'classes': ('collapse',),
             'fields': (
+                'softpage_enabled',
                 'extra_css_classes',
                 'link_attributes',
             )
@@ -93,3 +93,10 @@ class CMSAllinkButtonLinkPlugin(CMSPluginBase):
     def get_render_template(self, context, instance, placeholder):
         template = 'djangocms_button_link/item.html'
         return template
+
+    def render(self, context, instance, placeholder):
+        context = super(CMSAllinkButtonLinkPlugin, self).render(context, instance, placeholder)
+
+
+        return context
+

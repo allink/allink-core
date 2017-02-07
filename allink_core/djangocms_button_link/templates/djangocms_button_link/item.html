@@ -1,31 +1,45 @@
-{% load cms_tags sekizai_tags i18n thumbnail %}<a href="{{ instance.get_link_url }}"
-   {% if instance.type == 'btn' or instance.txt_context or instance.classes %}
-   class="
-        {% if instance.type == 'btn' %}
-            btn{% if instance.btn_context %} btn-{{ instance.btn_context }}{% endif %}
-            {% if instance.btn_size %} btn-{{ instance.btn_size }}{% endif %}
-            {% if instance.btn_block %} btn-block{% endif %}
-        {% else %}
-            {% if instance.txt_context %}txt-{{ instance.txt_context }}{% endif %}
+{% load cms_tags sekizai_tags i18n thumbnail allink_user_tags allink_members_tags %}<a href="{{ instance.get_link_url }}"
+{% comment %}
+    if button is login-button to member area check if logged in an in group 'members'
+{% endcomment %}
+
+    <a href="{{ instance.get_link_url }}"
+       {% if instance.type == 'btn' or instance.txt_context or instance.classes %}
+       class="
+            {% if instance.type == 'btn' %}
+                btn{% if instance.btn_context %} btn-{{ instance.btn_context }}{% endif %}
+                {% if instance.btn_size %} btn-{{ instance.btn_size }}{% endif %}
+                {% if instance.btn_block %} btn-block{% endif %}
+            {% else %}
+                {% if instance.txt_context %}txt-{{ instance.txt_context }}{% endif %}
+            {% endif %}
+            {% if extra_css_classes %} {{ extra_css_classes }}{% endif %}
+        "
         {% endif %}
-        {% if instance.classes %} {{ instance.classes }}{% endif %}
-    "
-    {% endif %}
-    {% if instance.type == 'btn' %}
-        role="button"
-    {% endif %}
-    {% if instance.link_target %}
-        target="_blank"
-    {% endif %}
-    {{ instance.link_attributes_str }}
-    >{% spaceless %}
-    {% if instance.icon_left %}{% with icon_class=instance.icon_left %}{% include 'aldryn_bootstrap3/plugins/includes/icon.html' %}{% endwith %}{% endif %}
+        {% if instance.type == 'btn' %}
+            role="button"
+        {% endif %}
+        {% if instance.link_target %}
+            target="_blank"
+        {% endif %}
+        {{ instance.link_attributes_str }}
+        {% if instance.softpage_enabled %}data-trigger-softpage{% endif %} {% if instance.link_special == 'account_login' and user.is_authenticated %}data-softpage-disabled{% endif %}
+        >{% spaceless %}
+        {% if instance.icon_left %}{% with icon_class=instance.icon_left %}{% include 'aldryn_bootstrap3/plugins/includes/icon.html' %}{% endwith %}{% endif %}
 
-    {{ instance.label }}
+       {% comment %}
+            if button is login-button to member area check if logged in an in group 'members'
+        {% endcomment %}
+        {% if instance.link_special == 'account_login' and user.is_authenticated %}
+            {% trans 'Member Area' %}
+        {% else %}
+            {{ instance.label }}
+        {% endif %}
 
-    {% for plugin in instance.child_plugin_instances %}
-        {% render_plugin plugin %}
-    {% endfor %}
+        {% for plugin in instance.child_plugin_instances %}
+            {% render_plugin plugin %}
+        {% endfor %}
 
-    {% if instance.icon_right %}{% with icon_class=instance.icon_right %}{% include 'aldryn_bootstrap3/plugins/includes/icon.html' %}{% endwith %}{% endif %}
+        {% if instance.icon_right %}{% with icon_class=instance.icon_right %}{% include 'aldryn_bootstrap3/plugins/includes/icon.html' %}{% endwith %}{% endif %}
 {% endspaceless %}</a>
+

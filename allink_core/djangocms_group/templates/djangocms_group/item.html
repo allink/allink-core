@@ -1,0 +1,20 @@
+{% load cms_tags sekizai_tags i18n thumbnail %}
+
+<div class="collapse" id="group-content-{{instance.parent.id}}">
+    <div class="group-item-child">
+         <div class="manage-spacings">
+             <div class="heading-container">
+                 <h3 class="heading">{{ instance.title }}</h3>
+             </div>
+             <div class="download-list-container">
+                 <ul>
+                      {% for plugin in instance.child_plugin_instances %}
+                         <li>{% render_plugin plugin %}</li>
+                     {% endfor %}
+
+                 </ul>
+             </div>
+         </div>
+     </div>
+
+ </div>

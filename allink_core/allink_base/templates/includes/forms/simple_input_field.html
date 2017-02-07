@@ -1,0 +1,61 @@
+{#{% load widget_tweaks i18n %}#}
+{##}
+{#<div class="{% if field.errors %}has-error{% endif %}">#}
+{##}
+{#    {% if not nolabel and field|widget_type != 'checkboxinput' and field|widget_type != 'radioselect' %}#}
+{#        <label class="control-label {% if field.field.required %} required{% endif %}" for="{{ field.auto_id }}">#}
+{#            <span class="label-text">#}
+{#                {{ field.label|safe }}#}
+{#            </span>#}
+{#            <span class="required-symbol">#}
+{#                ({% trans "required" %})#}
+{#            </span>#}
+{#        </label>#}
+{#    {% endif %}#}
+{#    {% if field|widget_type == 'checkboxinput' %}#}
+{#        <div class="checkbox">#}
+{#            <label for="{{ field.auto_id }}" class="{% if field.field.required %}required{% endif %}">#}
+{#                {% render_field field %}#}
+{#                <div class="custom-checkbox"></div>#}
+{#                {% if not nolabel %}#}
+{#                    {{ field.label|safe }}#}
+{#                {% endif %}#}
+{#            </label>#}
+{#        </div>#}
+{#    {% elif field|widget_type == 'radioselect' %}#}
+{#        {% if not nolabel %}#}
+{#            <div class="title {% if field.field.required %} required-label{% endif %}">#}
+{#                {{ field.label|safe }}#}
+{#            </div>#}
+{#        {% endif %}#}
+{#        <div>#}
+{#            {% for choice in field %}#}
+{#                <div class="radio">#}
+{#                    <label>#}
+{#                        {{choice.tag}}<span class="dot"></span>#}
+{#                        {{choice.choice_label}}#}
+{#                    </label>#}
+{#                </div>#}
+{#            {% endfor %}#}
+{#        </div>#}
+{#    {% elif field|widget_type == 'select' %}#}
+{#        <div class="custom-select">#}
+{#            {% render_field field class+="form-control" %}#}
+{#        </div>#}
+{#    {% else %}#}
+{#        {% render_field field class+="form-control" %}#}
+{#    {% endif %}#}
+{##}
+{#    {% if not noerror %}#}
+{#        {% for error in field.errors %}#}
+{#            <span class="error-block"><i class="icon-exclamation-sign"></i> {{ error }}</span>#}
+{#        {% endfor %}#}
+{#    {% endif %}#}
+{##}
+{#    {% if field.help_text %}#}
+{#        <span class='help-block'>#}
+            {# We allow HTML within form help fields #}
+{#            {{ field.help_text|safe }}#}
+{#        </span>#}
+{#    {% endif %}#}
+{#</div>#}

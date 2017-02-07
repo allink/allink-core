@@ -30,7 +30,7 @@
         {# image object to figure out ratio #}
         {% thumbnail instance.picture thumbnail_url_xl as image_xl %}
 
-        <picture class="lazyloader" style="padding-bottom: calc({{image_xl.height}}/{{image_xl.width}}*100%);
+        <picture class="lazyloader {% if bg_disabled %}no-bg{% endif %} {% if icon_disabled %}no-icon{% endif %}" style="padding-bottom: calc({{image_xl.height}}/{{image_xl.width}}*100%);
 ">
 
             <!--[if IE 9]><video style="display: none;"><![endif]-->

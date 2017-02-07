@@ -21,6 +21,13 @@ class SignupView(FormView):
         if config.signup_form:
             self.form_class = import_by_path(config.signup_form)
 
+    def form_invalid(self, form):
+        """
+        If the form is invalid, re-render the context data with the
+        data-filled form and errors.
+        """
+        return self.render_to_response(self.get_context_data(form=form), status=206)
+
     def form_valid(self, form, **kwargs):
         context = super(SignupView, self).get_context_data(**kwargs)
         try:
@@ -28,7 +35,7 @@ class SignupView(FormView):
             html = render_to_string('allink_mailchimp/thanks.html', context)
             return HttpResponse(html)
         except:
-            form.add_error(None, _(u'Something with your subscription went wrong. Please try again later.'))
+            form.add_error(None, _(u'Something went wrong with your subscription. Please try again later.'))
             return self.render_to_response(self.get_context_data(form=form), status=206)
 
 

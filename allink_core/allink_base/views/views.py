@@ -12,11 +12,15 @@ from django.template.loader import render_to_string
 
 from parler.views import TranslatableSlugMixin
 
+
+
 class AllinkBasePluginLoadMoreView(ListView):
 
     def get_queryset(self):
-        queryset = self.plugin.get_render_queryset_for_display()
-        return queryset
+        if hasattr(self, 'category_id'):
+            return self.plugin.get_render_queryset_for_display(category_id=self.category_id)
+        else:
+            return self.plugin.get_render_queryset_for_display()
 
     def get_paginate_by(self, queryset):
         if self.plugin.paginated_by != 0:
@@ -38,7 +42,7 @@ class AllinkBasePluginLoadMoreView(ListView):
             self.plugin = self.plugin_model.objects.get(cmsplugin_ptr_id=request.GET.get('plugin_id'))
             if 'category' in request.GET.keys():
                 self.category_id = request.GET.get('category', None)
-                self.object_list = self.get_queryset().filter(categories=request.GET.get('category'))
+                self.object_list = self.get_queryset()
             else:
                 self.object_list = self.get_queryset()
         else:

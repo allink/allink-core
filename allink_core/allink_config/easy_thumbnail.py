@@ -52,16 +52,16 @@ THUMBNAIL_ALIASES = {
         'slider-detail-view-xl-2x': {'size': (2400, get_height_from_ratio(2400,4,3)), 'crop': 'scale', 'upscale': True },
 
         # > Using the gallery plugin within a Content Plugin's Column
-        'slider-gallery-plugin-xs': {'size': (320, get_height_from_ratio(450,4,3)), 'crop': 'scale', 'upscale': True},
-        'slider-gallery-plugin-xs-2x': {'size': (640, get_height_from_ratio(640,4,3)), 'crop': 'scale', 'upscale': True },
-        'slider-gallery-plugin-sm': {'size': (512, get_height_from_ratio(512,4,3)), 'crop': 'scale', 'upscale': True },
-        'slider-gallery-plugin-sm-2x': {'size': (1024, get_height_from_ratio(1024,4,3)), 'crop': 'scale', 'upscale': True },
-        'slider-gallery-plugin-md': {'size': (1030, get_height_from_ratio(1030,4,3)), 'crop': 'scale', 'upscale': True },
-        'slider-gallery-plugin-md-2x': {'size': (2060, get_height_from_ratio(2060,4,3)), 'crop': 'scale', 'upscale': True },
-        'slider-gallery-plugin-lg': {'size': (1200, get_height_from_ratio(1200,4,3)), 'crop': 'scale', 'upscale': True },
-        'slider-gallery-plugin-lg-2x': {'size': (2400, get_height_from_ratio(2400,4,3)), 'crop': 'scale', 'upscale': True },
-        'slider-gallery-plugin-xl': {'size': (1600, get_height_from_ratio(1600,4,3)), 'crop': 'scale', 'upscale': True },
-        'slider-gallery-plugin-xl-2x': {'size': (2400, get_height_from_ratio(2400,4,3)), 'crop': 'scale', 'upscale': True },
+        'slider-gallery-plugin-xs': {'size': (320, get_height_from_ratio(450,2,1)), 'crop': 'scale', 'upscale': True},
+        'slider-gallery-plugin-xs-2x': {'size': (640, get_height_from_ratio(640,2,1)), 'crop': 'scale', 'upscale': True },
+        'slider-gallery-plugin-sm': {'size': (512, get_height_from_ratio(512,2,1)), 'crop': 'scale', 'upscale': True },
+        'slider-gallery-plugin-sm-2x': {'size': (1024, get_height_from_ratio(1024,2,1)), 'crop': 'scale', 'upscale': True },
+        'slider-gallery-plugin-md': {'size': (1030, get_height_from_ratio(1030,2,1)), 'crop': 'scale', 'upscale': True },
+        'slider-gallery-plugin-md-2x': {'size': (2060, get_height_from_ratio(2060,2,1)), 'crop': 'scale', 'upscale': True },
+        'slider-gallery-plugin-lg': {'size': (1200, get_height_from_ratio(1200,2,1)), 'crop': 'scale', 'upscale': True },
+        'slider-gallery-plugin-lg-2x': {'size': (2400, get_height_from_ratio(2400,2,1)), 'crop': 'scale', 'upscale': True },
+        'slider-gallery-plugin-xl': {'size': (1600, get_height_from_ratio(1600,2,1)), 'crop': 'scale', 'upscale': True },
+        'slider-gallery-plugin-xl-2x': {'size': (2400, get_height_from_ratio(2400,2,1)), 'crop': 'scale', 'upscale': True },
 
         # # # # # # # # # # # # # # # # # # # # # #
         # Content Plugin: Parallax

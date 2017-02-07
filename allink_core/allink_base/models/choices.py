@@ -3,6 +3,8 @@ from functools import partial
 import datetime
 from django.utils.translation import ugettext_lazy as _
 
+from allink_core.allink_base.utils import get_additional_choices
+
 ####################################################################################
 
 # YEARS (past and near future)
@@ -136,3 +138,19 @@ TEXT_LINK_CONTEXT_CHOICES = (
 )
 
 TEXT_LINK_CONTEXT_DEFAULT = ''
+
+SPECIAL_LINKS_CHOICES =(
+    ('account_login', _(u'Member Login')),
+    ('account_logout', _(u'Member Logout')),
+    ('account_change_password', _(u'Member Change Passwort')),
+    ('account_reset_password', _(u'Member Reset Passwort')),
+    ('members:profile_edit', _(u'Member Edit Profile')),
+    # ('members:register', _(u'Member Register')),
+    # ('members:password_reset_recover', _(u'Member Reset Passwort')),
+) + get_additional_choices('SPECIAL_LINKS_CHOICES')
+
+####################################################################################
+
+#
+
+#

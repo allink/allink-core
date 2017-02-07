@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 import phonenumbers
 from urlparse import urlparse
+from django.core.urlresolvers import reverse
 from django.core.exceptions import ValidationError
 from django.core.validators import MaxValueValidator
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import force_text
-
 from cms.models.fields import PageField
 from filer.fields.image import FilerImageField
 from filer.fields.file import FilerFileField
@@ -14,6 +14,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 from djangocms_attributes_field.fields import AttributesField
 
+from .choices import SPECIAL_LINKS_CHOICES
 
 class AllinkAddressBasicFieldsModel(models.Model):
 
@@ -34,9 +35,9 @@ class AllinkAddressBasicFieldsModel(models.Model):
         null=True
     )
 
-    zip_code = models.IntegerField(
+    zip_code = models.PositiveIntegerField(
         _(u'Zipcode'),
-        validators=[MaxValueValidator(4)],
+        validators=[MaxValueValidator(9999)],
         blank=True,
         null=True
     )
@@ -174,6 +175,13 @@ class AllinkLinkFieldsModel(models.Model):
         blank=True,
         on_delete=models.SET_NULL,
     )
+    link_special = models.CharField(
+        verbose_name=_(u'Special Links'),
+        choices=SPECIAL_LINKS_CHOICES,
+        max_length=255,
+        blank=True,
+        null=True
+    )
     link_attributes = AttributesField(
         verbose_name=_(u'Attributes'),
         blank=True,
@@ -194,6 +202,8 @@ class AllinkLinkFieldsModel(models.Model):
             link = 'mailto:{}'.format(self.link_mailto)
         elif self.link_file:
             link = self.link_file.url
+        elif self.link_special:
+            link = reverse(self.link_special)
         else:
             link = ''
         if self.link_anchor:

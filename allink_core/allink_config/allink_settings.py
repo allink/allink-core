@@ -4,12 +4,15 @@
 
 ALLINK_INSTALLED_APPS = [
     # apps
+    'allauth',
+    'allauth.account',
     'webpack_loader',
     'adminsortable',
     'sortedm2m',
     'solo',
     'import_export',
     'cmsplugin_form_handler',
+    'widget_tweaks',
 
     # allink core apps
     'allink_core.allink_base',
@@ -19,6 +22,7 @@ ALLINK_INSTALLED_APPS = [
     'allink_core.allink_styleguide',
 
     # allink apps
+    'allink_apps.members',
     'allink_apps.locations',
     'allink_apps.people',
     'allink_apps.work',
@@ -30,6 +34,7 @@ ALLINK_INSTALLED_APPS = [
     'allink_core.djangocms_gallery',
     'allink_core.djangocms_socialicon',
     'allink_core.djangocms_button_link',
+    'allink_core.djangocms_group',
 
 ]
 
@@ -75,4 +80,22 @@ ALLINK_CMS_PLACEHOLDER_CONF_PLUGINS = [
     'CMSWorkPlugin',
     'CMSBlogPlugin',
     'CMSTestimonialPlugin'
+]
+
+####################################################################################
+
+# Assign Plugins which are allowed as child in Allink Content
+
+
+CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [
+    'TextPlugin',
+    'PicturePlugin',
+    'VideoPlayerPlugin',
+    'VideoSourcePlugin',
+    'VideoTrackPlugin',
+    'CMSAllinkGalleryPlugin',
+    'CMSAllinkSocialIconContainerPlugin',
+    'CMSAllinkSignupFormPlugin',
+    'CMSAllinkButtonLinkContainerPlugin',
+    'CMSAllinkGroupContainerPlugin'
 ]

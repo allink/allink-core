@@ -8,7 +8,7 @@ register = template.Library()
 # App Content Plugin > Detail view
 
 @register.inclusion_tag('templatetags/app_content_image.html', takes_context=True)
-def render_app_content_image_detail(context,thumbnail_url):
+def render_app_content_image_detail(context,thumbnail_url,icon_disabled=False,bg_disabled=False):
 
     # add different BREAKPOINT and RETINA suffixes
     thumbnail_url_xs = thumbnail_url+'-xs'
@@ -32,7 +32,7 @@ def render_app_content_image_detail(context,thumbnail_url):
 # App Content Plugin > List view
 
 @register.inclusion_tag('templatetags/app_content_image.html', takes_context=True)
-def render_app_content_image(context,thumbnail_url=None):
+def render_app_content_image(context,thumbnail_url=None,icon_disabled=False,bg_disabled=False):
 
     # Define variable base according to template
     if not thumbnail_url:
@@ -61,7 +61,7 @@ def render_app_content_image(context,thumbnail_url=None):
 # Content Plugin > Images placed in columns
 
 @register.inclusion_tag('templatetags/allink_image.html', takes_context=True)
-def render_content_image(context,thumbnail_url=None):
+def render_content_image(context,thumbnail_url=None,icon_disabled=False,bg_disabled=False):
 
     column_plugin = context['instance'].parent.djangocms_content_allinkcontentcolumnplugin
 
@@ -83,6 +83,8 @@ def render_content_image(context,thumbnail_url=None):
             thumbnail_url = 'col-1-of-5'
         elif column_plugin.template == 'col-6':
             thumbnail_url = 'col-1-of-6'
+            icon_disabled = True
+            bg_disabled = True
 
     # add different BREAKPOINT and RETINA suffixes
     thumbnail_url_xs = thumbnail_url+'-xs'
@@ -99,5 +101,9 @@ def render_content_image(context,thumbnail_url=None):
     context.update({'thumbnail_url_sm_2x': thumbnail_url_sm_2x})
     context.update({'thumbnail_url_xl': thumbnail_url_xl})
     context.update({'thumbnail_url_xl_2x': thumbnail_url_xl_2x})
+
+    # lazyloader definitions
+    context.update({'icon_disabled': icon_disabled})
+    context.update({'bg_disabled': bg_disabled})
 
     return context

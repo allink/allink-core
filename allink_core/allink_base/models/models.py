@@ -253,6 +253,7 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
     )
 
     # ORDERING
+    DEFAULT = 'default'
     TITLE_ASC = 'title_asc'
     TITLE_DESC = 'title_desc'
     LATEST = 'latest'
@@ -260,6 +261,7 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
 
 
     ORDERING = (
+        (DEFAULT, '---------'),
         (TITLE_ASC, 'A-Z (title)'),
         (TITLE_DESC, 'Z-A (title'),
         (LATEST, 'latest first'),
@@ -271,7 +273,6 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
 
     manual_ordering = models.CharField(
         max_length=50,
-        choices=ORDERING,
         null=True,
         blank=True
     )
@@ -358,6 +359,9 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
             self.TEMPLATES += ((x, y),)
         return self.TEMPLATES
 
+    def get_ordering_choices(self):
+        return self.ORDERING
+
     def get_first_category(self):
         return self.categories.first()
 
@@ -384,24 +388,39 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
         else:
             return queryset
 
-    def get_render_queryset_for_display(self, category=None):
+    def get_render_queryset_for_display(self, category=None, category_id=None):
         """
-        returns all data_model objects distinct to id which are in the selected categories
+         returns all data_model objects distinct to id which are in the selected categories
+
         """
         cat = None
-        # performance enhancement when only one category
-        if category or self.categories.count == 1:
-            cat = category.id
 
+        # print 'WHICH CAT ?? {} '.format(cat)
         if self.categories.count() > 0:
+            """
+             category selection
+            """
+            # cat is for performance enhancement when only one category
+            if category:
+                cat = category
+            elif category_id:
+                cat = AllinkCategory.objects.get(id=category_id)
+            elif self.categories.count == 1:
+                cat = self.categories.select_related().first()
+
             if cat:
                 queryset = self.data_model.objects.filter_by_category(cat)
             else:
                 queryset = self.data_model.objects.filter_by_categories(self.categories)
-        else:
-            if cat:
-                queryset = self.manual_entries.select_related().order_by('id').filter_by_category(cat)
-            else:
-                queryset = self.manual_entries.select_related()
 
-        return self._apply_ordering_to_queryset_for_display(queryset)
+            return self._apply_ordering_to_queryset_for_display(queryset)
+
+        else:
+            """
+             manual entries
+             ordering is always like manual entries order (drag n drop)
+             resulting instances are alwas blog entries because we can't downcast and order
+            """
+            queryset = self.manual_entries.select_related()
+
+            return queryset

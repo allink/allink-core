@@ -1,0 +1,25 @@
+{% load cms_tags staticfiles sekizai_tags thumbnail allink_user_tags %}
+
+ <div class="content-section container-enabled">
+        <div class="container">
+            {% if request.user|in_one_group:instance.groups.all %}
+                {% for plugin in instance.child_plugin_instances %}
+
+                    <div class="group-item">
+                        <header class="section-heading" data-accordion-trigger>
+                            <h2 class="heading">
+                                <a data-toggle="collapse" href="#group-content-{{instance.id}}" aria-expanded="false" aria-controls="group-content-{{instance.id}}" class="collapsed" data-colllapse-toggle>
+                                    {{ instance.title }}
+                                </a>
+                               </h2>
+                        </header>
+
+                        {% render_plugin plugin %}
+
+                    </div>
+
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+
