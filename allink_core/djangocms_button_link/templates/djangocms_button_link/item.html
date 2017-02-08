@@ -35,7 +35,12 @@
         {% else %}
             {{ instance.label }}
         {% endif %}
-
+        {% if instance.link_file.name %}
+            {{ instance.link_file.name }}
+        {% endif %}
+        {%if instance.link_file.description %}
+            {{ instance.link_file.description }}
+        {% endif %}
         {% for plugin in instance.child_plugin_instances %}
             {% render_plugin plugin %}
         {% endfor %}

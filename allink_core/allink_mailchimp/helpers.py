@@ -40,9 +40,8 @@ def get_status_if_new():
     return 'pending' if config.double_optin else 'subscribed'
 
 
-def list_members_post(data, list_id=config.default_list_id):
-
-    member_hash = get_hash_md5(data['email_address'])
+def list_members_post(data, list_id=config.default_list_id, member_hash_email=None):
+    member_hash = get_hash_md5(member_hash_email) if member_hash_email else get_hash_md5(data['email_address'])
     data = json.dumps(data)
     # POST new member
     response = requests.post(
@@ -52,9 +51,8 @@ def list_members_post(data, list_id=config.default_list_id):
     )
     check_response_status(response)
 
-def list_members_put(data, list_id=config.default_list_id):
-
-    member_hash = get_hash_md5(data['email_address'])
+def list_members_put(data, list_id=config.default_list_id, member_hash_email=None):
+    member_hash = get_hash_md5(member_hash_email) if member_hash_email else get_hash_md5(data['email_address'])
     data = json.dumps(data)
     # PUT new or modify existing member
     response = requests.put(
@@ -65,9 +63,8 @@ def list_members_put(data, list_id=config.default_list_id):
     check_response_status(response)
 
 
-def list_members_patch(data, list_id=config.default_list_id):
-
-    member_hash = get_hash_md5(data['email_address'])
+def list_members_patch(data, list_id=config.default_list_id, member_hash_email=None):
+    member_hash = get_hash_md5(member_hash_email) if member_hash_email else get_hash_md5(data['email_address'])
     data = json.dumps(data)
     # PATCH existing member
     response = requests.patch(
@@ -78,9 +75,8 @@ def list_members_patch(data, list_id=config.default_list_id):
     check_response_status(response)
 
 
-def list_members_delete(data, list_id=config.default_list_id):
-
-    member_hash = get_hash_md5(data['email_address'])
+def list_members_delete(data, list_id=config.default_list_id, member_hash_email=None):
+    member_hash = get_hash_md5(member_hash_email) if member_hash_email else get_hash_md5(data['email_address'])
     data = json.dumps(data)
     # DELETE existing member
     response = requests.delete(
@@ -88,8 +84,3 @@ def list_members_delete(data, list_id=config.default_list_id):
         auth=('apikey', config.apikey),
         data=data
     )
-
-    try:
-        check_response_status(response)
-    except ValueError:
-        pass
