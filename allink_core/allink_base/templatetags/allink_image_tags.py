@@ -6,7 +6,7 @@ register = template.Library()
 ####################################################################################
 # Allink specific image
 
-@register.inclusion_tag('templatetags/allink_default_image.html', takes_context=True)
+@register.inclusion_tag('templatetags/allink_specific_image.html', takes_context=True)
 def render_allink_image(context, image, thumbnail_url):
 
     # add different BREAKPOINT and RETINA suffixes
