@@ -1,0 +1,34 @@
+{% load thumbnail %}
+
+{# image object to figure out ratio #}
+{% thumbnail object thumbnail_url_xl as image_xl %}
+<picture class="lazyloader" style="padding-bottom: calc({{image_xl.height}}/{{image_xl.width}}*100%);">
+
+    {# end render figure/figcaption #}
+
+    <!--[if IE 9]><video style="display: none;"><![endif]-->
+
+    {# XL #}
+    <source
+        data-srcset="{{ object|thumbnail_url:thumbnail_url_xl }},
+            {{ object|thumbnail_url:thumbnail_url_xl_2x }} 2x"
+        media="(min-width:1200px)"
+        >
+
+    {# SM #}
+    <source
+        data-srcset="{{ object|thumbnail_url:thumbnail_url_sm }},
+            {{ object|thumbnail_url:thumbnail_url_sm_2x }} 2x"
+        media="(min-width:576px)"
+        >
+
+    <!--[if IE 9]></video><![endif]-->
+
+    {# XS #}
+    <img
+        data-srcset="{{ object|thumbnail_url:thumbnail_url_xs }}, {{ object|thumbnail_url:thumbnail_url_xs_2x }} 2x"
+        alt="{{ object.title }}"
+        class="lazyload"
+    >
+
+</picture>

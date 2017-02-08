@@ -3,6 +3,31 @@ from django import template
 
 register = template.Library()
 
+####################################################################################
+# Allink specific image
+
+@register.inclusion_tag('templatetags/allink_default_image.html', takes_context=True)
+def render_allink_image(context, image, thumbnail_url):
+
+    # add different BREAKPOINT and RETINA suffixes
+    thumbnail_url_xs = thumbnail_url+'-xs'
+    thumbnail_url_xs_2x = thumbnail_url_xs+'-2x'
+    thumbnail_url_sm = thumbnail_url+'-sm'
+    thumbnail_url_sm_2x = thumbnail_url_sm+'-2x'
+    thumbnail_url_xl = thumbnail_url+'-xl'
+    thumbnail_url_xl_2x = thumbnail_url_xl+'-2x'
+
+    # update context
+    context.update({'thumbnail_url_xs': thumbnail_url_xs})
+    context.update({'thumbnail_url_xs_2x': thumbnail_url_xs_2x})
+    context.update({'thumbnail_url_sm': thumbnail_url_sm})
+    context.update({'thumbnail_url_sm_2x': thumbnail_url_sm_2x})
+    context.update({'thumbnail_url_xl': thumbnail_url_xl})
+    context.update({'thumbnail_url_xl_2x': thumbnail_url_xl_2x})
+
+    context.update({'object': image})
+
+    return context
 
 ####################################################################################
 # App Content Plugin > Detail view
@@ -105,32 +130,5 @@ def render_content_image(context,thumbnail_url=None,icon_disabled=False,bg_disab
     # lazyloader definitions
     context.update({'icon_disabled': icon_disabled})
     context.update({'bg_disabled': bg_disabled})
-
-    return context
-
-
-####################################################################################
-# Allink Images
-
-@register.inclusion_tag('templatetags/allink_image.html', takes_context=True)
-def render_allink_image(context, image, thumbnail_url):
-
-    # add different BREAKPOINT and RETINA suffixes
-    thumbnail_url_xs = thumbnail_url+'-xs'
-    thumbnail_url_xs_2x = thumbnail_url_xs+'-2x'
-    thumbnail_url_sm = thumbnail_url+'-sm'
-    thumbnail_url_sm_2x = thumbnail_url_sm+'-2x'
-    thumbnail_url_xl = thumbnail_url+'-xl'
-    thumbnail_url_xl_2x = thumbnail_url_xl+'-2x'
-
-    # update context
-    context.update({'thumbnail_url_xs': thumbnail_url_xs})
-    context.update({'thumbnail_url_xs_2x': thumbnail_url_xs_2x})
-    context.update({'thumbnail_url_sm': thumbnail_url_sm})
-    context.update({'thumbnail_url_sm_2x': thumbnail_url_sm_2x})
-    context.update({'thumbnail_url_xl': thumbnail_url_xl})
-    context.update({'thumbnail_url_xl_2x': thumbnail_url_xl_2x})
-
-    context.update({'object': image})
 
     return context
