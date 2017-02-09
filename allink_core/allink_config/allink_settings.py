@@ -47,6 +47,7 @@ ALLINK_MIGRATION_MODULES = {
     'people': 'apps.allink_apps_migrations.people',
     'testimonials': 'apps.allink_apps_migrations.testimonials',
     'work': 'apps.allink_apps_migrations.work',
+    'members': 'apps.allink_apps_migrations.members',
 }
 
 ####################################################################################
