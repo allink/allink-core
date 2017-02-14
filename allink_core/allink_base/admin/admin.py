@@ -37,6 +37,7 @@ class AllinkBaseAdmin(NonSortableParentAdmin, AllTranslationsMixin, Translatable
                     'title',
                     'title_size',
                     'slug',
+                    'created',
                 ),
             }),
         )

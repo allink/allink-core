@@ -5,7 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import python_2_unicode_compatible
 from cms.models.pluginmodel import CMSPlugin
 
-from allink_core.allink_base.models.model_fields import Classes, CMSPluginField, Icon
+from allink_core.allink_base.models.model_fields import Classes, Icon, CMSPluginField
 from allink_core.allink_base.models.reusable_fields import AllinkLinkFieldsModel
 from allink_core.allink_base.models import choices
 

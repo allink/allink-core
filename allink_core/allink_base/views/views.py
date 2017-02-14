@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 import json
 
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, FormView
+
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.template.loader import get_template
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, JsonResponse
 from django.template.loader import render_to_string
 
 from parler.views import TranslatableSlugMixin
@@ -93,3 +94,55 @@ class AllinkBaseDetailView(TranslatableSlugMixin, DetailView):
         if self.request.is_ajax():
             context.update({'base_template': 'app_content/ajax_base.html'})
         return render_to_response(self.get_template_names(), context, context_instance=RequestContext(self.request))
+
+
+class AllinkBaseAjaxFormView(FormView):
+
+    # form_class =
+    # template_name =
+    # success_url =
+
+    # def render_to_response(self, context, **response_kwargs):
+    #     if self.request.is_ajax():
+    #         context.update({'base_template': 'app_content/ajax_base.html'})
+    #     return render_to_response(self.get_template_names(), context, context_instance=RequestContext(self.request))
+
+    def get_context_data(self, **kwargs):
+        print kwargs
+        context = super(AllinkBaseAjaxFormView, self).get_context_data(**kwargs)
+        context.update({
+            'slug': self.slug
+        })
+        return context
+
+    def post(self, request, *args, **kwargs):
+        self.slug = kwargs.get('slug', None)
+
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    def get(self, request, *args, **kwargs):
+        self.slug =  kwargs.get('slug', None)
+        form = self.get_form()
+        return self.render_to_response(self.get_context_data(form=form))
+
+    def form_valid(self, form):
+        if self.request.is_ajax():
+            return JsonResponse({}, status=200)
+        else:
+            return super(AllinkBaseAjaxFormView, self).form_valid(form)
+
+    def form_invalid(self, form):
+        if self.request.is_ajax():
+            return JsonResponse({
+                'html': render_to_string(
+                    self.get_template_names(),
+                    self.get_context_data(form=form),
+                    request=self.request)
+            }, status=400)
+        else:
+            return super(AllinkBaseAjaxFormView, self).form_invalid(form)
+

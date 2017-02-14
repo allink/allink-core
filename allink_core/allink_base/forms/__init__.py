@@ -1,4 +1,1 @@
-# """
-# Allink validation and HTML form handling.
-# """
-#
+from .forms import * # NOQA

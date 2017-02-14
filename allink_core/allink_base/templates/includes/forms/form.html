@@ -1,6 +1,7 @@
 {% load i18n %}
 <div class="manage-spacings">
     <div class="form-container">
+
         <form {% if form_id %}id="{{ form_id }}"{% endif %} class="form-default validate-form {{ class }}" method="{{ method|default:"POST" }}"
             {% if action %}action="{{ action }}"{% endif %}
             {% if includes_files %}enctype="multipart/form-data"{% endif %} novalidate="novalidate">

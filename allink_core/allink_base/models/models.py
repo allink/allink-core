@@ -8,12 +8,13 @@ from cms.models.pluginmodel import CMSPlugin
 from model_utils.models import TimeStampedModel
 from adminsortable.models import SortableMixin
 from filer.fields.image import FilerImageField
+from model_utils.fields import AutoCreatedField, AutoLastModifiedField
 
 from allink_core.allink_base.utils import get_additional_templates
 from allink_core.allink_categories.models import AllinkCategory
 
 from .choices import TITLE_CHOICES, H1
-from .model_fields import Classes
+from . import model_fields
 from .managers import AllinkBaseModelManager
 from .reusable_fields import AllinkMetaTagFieldsModel
 
@@ -45,7 +46,7 @@ class AllinkBaseImage(SortableMixin):
 
 
 @python_2_unicode_compatible
-class AllinkBaseModel(AllinkMetaTagFieldsModel, TimeStampedModel):
+class AllinkBaseModel(AllinkMetaTagFieldsModel):
     """
      An abstract base class model for every standard allink app
 
@@ -66,6 +67,8 @@ class AllinkBaseModel(AllinkMetaTagFieldsModel, TimeStampedModel):
 
     """
 
+    created = AutoCreatedField(_('created'), editable=True)
+    modified = AutoLastModifiedField(_('modified'))
 
     categories = models.ManyToManyField(
         AllinkCategory,
@@ -157,7 +160,7 @@ class AllinkBasePlugin(CMSPlugin):
         blank=True,
         null=True
     )
-    extra_css_classes = Classes()
+    extra_css_classes = model_fields.Classes()
 
     cmsplugin_ptr = models.OneToOneField(
         CMSPlugin,
