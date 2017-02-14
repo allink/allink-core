@@ -1,7 +1,15 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
 from django.conf import settings
+
+_base_url = None
+
+def base_url():
+    from django.contrib.sites.models import Site
+    global _base_url
+    if not '_base_url' not in locals() or not _base_url:
+        _base_url = 'http://' + Site.objects.get_current().domain
+    return _base_url
 
 
 def get_additional_templates(model_name):

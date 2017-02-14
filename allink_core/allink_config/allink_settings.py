@@ -20,6 +20,7 @@ ALLINK_INSTALLED_APPS = [
     'allink_core.allink_categories',
     'allink_core.allink_mailchimp',
     'allink_core.allink_styleguide',
+    'allink_core.allink_legacy_redirect',
 
     # allink apps
     'allink_apps.members',
@@ -100,3 +101,15 @@ CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [
     'CMSAllinkButtonLinkContainerPlugin',
     'CMSAllinkGroupContainerPlugin'
 ]
+
+
+####################################################################################
+
+# Middlewareclassss
+
+
+ALLINK_MIDDLEWARE_CLASSES = [
+    'allink_core.allink_legacy_redirect.middleware.AllinkLegacyRedirectMiddleware'
+]
+
+
