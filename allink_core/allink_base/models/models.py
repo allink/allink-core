@@ -361,6 +361,7 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
 
     def copy_relations(self, oldinstance):
         self.categories = oldinstance.categories.all()
+        self.category_navigation_categories = oldinstance.category_navigation_categories.all()
 
     def get_templates(self):
         for x, y in get_additional_templates(self.data_model._meta.model_name):
