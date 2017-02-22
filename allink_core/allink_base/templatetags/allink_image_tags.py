@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django import template
+from django.utils.translation import ugettext_lazy as _
 
 register = template.Library()
 
@@ -132,3 +133,51 @@ def render_content_image(context,thumbnail_url=None,icon_disabled=False,bg_disab
     context.update({'bg_disabled': bg_disabled})
 
     return context
+
+
+####################################################################################
+# Favicons > renders all favicons in folder "favicons"
+
+@register.inclusion_tag('templatetags/allink_favicon_set.html', takes_context=True)
+def render_favicons_set(context):
+    from filer.models import Folder
+    from django.contrib import messages
+    from allink_core.allink_config.models import AllinkConfig
+
+    apple_favs = []
+    android_favs = []
+    favicons = []
+
+    try:
+        files = Folder.objects.get(name='favicons').files
+    except Folder.DoesNotExist:
+        messages.warning(context.request, _(u'Please create a folder "favicons" and upload the complete favicon set.'))
+        return
+
+    for file in files:
+        if file.original_filename.startswith('apple-touch-icon'):
+            apple_favs.append(file)
+        elif file.original_filename.startswith('android-chrome'):
+            android_favs.append(file)
+        elif file.original_filename.startswith('favicon-'):
+            favicons.append(file)
+        elif file.original_filename.startswith('favicon.ico'):
+            context.update({'favicon': file})
+        elif file.original_filename.startswith('mstile'):
+            context.update({'mstile': file})
+        elif file.original_filename.startswith('safari-pinned-tab'):
+            context.update({'mask_icon': file})
+
+    context.update({
+        'apple_favs': apple_favs,
+        'android_favs': android_favs,
+        'favicons': favicons,
+        'allink_config': AllinkConfig.get_solo(),
+    })
+
+    return context
+
+
+
+
+

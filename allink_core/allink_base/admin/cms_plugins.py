@@ -75,17 +75,19 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
             )
         }),
 
-        fieldsets += (_('Category Navigation Options'), {
-            'classes': (
-                'collapse',
-                'disable_when_slider',
-                'disable_when_map',
-            ),
-            'fields': (
-                'category_navigation_enabled',
-                'category_navigation_all',
-            )
-        }),
+        if self.data_model.get_can_have_categories():
+            fieldsets += (_('Category Navigation Options'), {
+                'classes': (
+                    'collapse',
+                    'disable_when_slider',
+                    'disable_when_map',
+                ),
+                'fields': (
+                    'category_navigation_enabled',
+                    'category_navigation_all',
+                    'category_navigation_categories',
+                )
+            }),
 
         fieldsets += (_('Number of entries'), {
             'classes': (
@@ -147,7 +149,6 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
             objects_list = instance.get_render_queryset_for_display(category=instance.get_first_category())
         else:
             objects_list = instance.get_render_queryset_for_display()
-
 
         # Paginate Objects
         if instance.paginated_by > 0:

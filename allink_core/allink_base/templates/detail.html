@@ -3,7 +3,7 @@
 {% load cms_tags sekizai_tags i18n thumbnail %}
 
 {# Page Title - Required for Softpage (Google Tag Manager) #}
-{% block softpage_title %}{{ object.title }} | {{ request.site.name }}{% endblock softpage_title %}
+{% block softpage_title %}{{ object.title }} | {% if allink_config.default_base_title %}{{ allink_config.default_base_title }}{% else %}{{ request.site.name }}{% endif %}{% endblock softpage_title %}
 
 {% block content %}
     <div class="content-section app-content-plugin detail-view container-enabled">

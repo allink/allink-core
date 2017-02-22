@@ -15,9 +15,16 @@ class AllinkManualEntriesMixin(object):
                     if category not in category_navigation:
                         category_navigation.append(category)
         else:
-            for category in self.categories.all():
-                if self.get_render_queryset_for_display(category).exists():
-                    category_navigation.append(category)
+            # override auto category nav
+            if self.category_navigation_categories:
+                for category in self.category_navigation_categories.all():
+                    if self.get_render_queryset_for_display(category).exists():
+                        category_navigation.append(category)
+            # auto category nav
+            else:
+                for category in self.categories.all():
+                    if self.get_render_queryset_for_display(category).exists():
+                        category_navigation.append(category)
         return category_navigation
 
     def copy_relations(self, oldinstance):

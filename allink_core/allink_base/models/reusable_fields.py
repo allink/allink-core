@@ -10,6 +10,7 @@ from django.utils.encoding import force_text
 from cms.models.fields import PageField
 from filer.fields.image import FilerImageField
 from filer.fields.file import FilerFileField
+from model_utils.models import TimeStampedModel
 from phonenumber_field.modelfields import PhoneNumberField
 
 from djangocms_attributes_field.fields import AttributesField
@@ -176,8 +177,7 @@ class AllinkLinkFieldsModel(models.Model):
     link_file = FilerFileField(
         verbose_name=_(u'file'),
         null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
+        blank=True
     )
     link_special = models.CharField(
         verbose_name=_(u'Special Links'),
@@ -268,3 +268,25 @@ class AllinkLinkFieldsModel(models.Model):
                         anchor_field_name: error_msg,
                         field_name: error_msg,
                     })
+
+
+class AllinkBaseRegistration(AllinkAddressFieldsModel, TimeStampedModel):
+
+    class Meta:
+        abstract = True
+
+    first_name = models.CharField(
+        _(u'First Name'),
+        max_length=255
+    )
+    last_name = models.CharField(
+        _(u'Last Name'),
+        max_length=255
+    )
+    email = models.EmailField(
+        _(u'Email')
+    )
+    message = models.TextField(
+        _(u'Message'),
+        max_length=255
+    )

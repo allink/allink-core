@@ -21,6 +21,7 @@ ALLINK_INSTALLED_APPS = [
     'allink_core.allink_mailchimp',
     'allink_core.allink_styleguide',
     'allink_core.allink_legacy_redirect',
+    'allink_core.allink_terms',
 
     # allink apps
     'allink_apps.members',

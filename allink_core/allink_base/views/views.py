@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-import json
+from __future__ import unicode_literals
 
+import json
 from django.views.generic import ListView, DetailView, CreateView
 
 from django.shortcuts import render_to_response
@@ -10,16 +11,18 @@ from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, Http404, JsonResponse, HttpResponseRedirect
 from django.template.loader import render_to_string
+from django.contrib import messages
 
 from parler.views import TranslatableSlugMixin
 
+from allink_core.allink_categories.models import AllinkCategory
 
 
 class AllinkBasePluginLoadMoreView(ListView):
 
     def get_queryset(self):
-        if hasattr(self, 'category_id'):
-            return self.plugin.get_render_queryset_for_display(category_id=self.category_id)
+        if hasattr(self, 'category'):
+            return self.plugin.get_render_queryset_for_display(category=self.category)
         else:
             return self.plugin.get_render_queryset_for_display()
 
@@ -43,6 +46,7 @@ class AllinkBasePluginLoadMoreView(ListView):
             self.plugin = self.plugin_model.objects.get(cmsplugin_ptr_id=request.GET.get('plugin_id'))
             if 'category' in request.GET.keys():
                 self.category_id = request.GET.get('category', None)
+                self.category = AllinkCategory.objects.get(id=self.category_id)
                 self.object_list = self.get_queryset()
             else:
                 self.object_list = self.get_queryset()
@@ -96,19 +100,12 @@ class AllinkBaseDetailView(TranslatableSlugMixin, DetailView):
         return render_to_response(self.get_template_names(), context, context_instance=RequestContext(self.request))
 
 
-class AllinkBaseAjaxCreateView(CreateView):
-
-    # model =
-    # form_class =
-    # template_name =
-    # success_url =
-
-    def get_context_data(self, **kwargs):
-        context = super(AllinkBaseAjaxCreateView, self).get_context_data(**kwargs)
-        context.update({
-            'slug': self.kwargs.get('slug', None)
-        })
-        return context
+class AllinkBaseCreateView(CreateView):
+    """
+        form_class =
+        template_name  =
+        success_url =
+    """
 
     def form_valid(self, form):
         self.object = form.save()
@@ -126,5 +123,40 @@ class AllinkBaseAjaxCreateView(CreateView):
                     request=self.request)
             }, status=400)
         else:
-            return super(AllinkBaseAjaxCreateView, self).form_invalid(form)
+            return super(AllinkBaseCreateView, self).form_invalid(form)
 
+
+# class AllinkBaseRegistrationView(AllinkBaseCreateView):
+#     """
+#         model = CoursesRegistration
+#         form_class = CoursesRegistrationForm
+#         template_name = 'blog/events_register_detail.html'
+#         item_model = Courses
+#     """
+#
+#     def __init__(self):
+#         super(AllinkBaseRegistrationView, self).__init__()
+#         self.item = self.item_model.objects.get(translations__slug=self.kwargs.get('slug', None))
+#
+#     def get_context_data(self, **kwargs):
+#         context = super(AllinkBaseCreateView, self).get_context_data(**kwargs)
+#         context.update({
+#             'slug': self.kwargs.get('slug', None)
+#         })
+#         return context
+#
+#     def get_initial(self):
+#         initial = super(AllinkBaseRegistrationView, self).get_initial()
+#         initial = initial.copy()
+#         initial['item'] = self.item
+#         initial['terms'] = AllinkTerms.objects.get_published()
+#         return initial
+#
+#     def form_valid(self, form):
+#         response = super(AllinkBaseRegistrationView, self).form_valid(form)
+#         self.send_mail()
+#         return response
+#
+#     def send_mail(self):
+#         send_registration_email(self.get_form(), self.item)
+#         send_registration_confirmation_email(self.get_form(), self.item)

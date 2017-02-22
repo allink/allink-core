@@ -54,7 +54,7 @@ class AllinkBaseModelManager(TranslatableManager, InheritanceManagerMixin):
         """
         q = self.get_queryset()\
             .active_entries()\
-            .filter_by_categories(categories=categories.select_related().values_list('id'))\
+            .filter_by_categories(categories=categories.select_related())\
             .distinct('id')
         return q
 

@@ -2,6 +2,7 @@
 import mandrill
 from raven import Client
 from django.conf import settings
+from django.utils.translation import get_language
 from django.utils.translation import ugettext_lazy as _
 from .config import MandrillConfig
 
@@ -14,10 +15,14 @@ def check_result_status(result):
                .format(result[0].get('status'), result[0].get('reject_reason')))
 
 
-def send_transactional_email(message, template_content, template_name=None, async=False):
+def send_transactional_email(message, template_content, language=None, translated=False, template_name=None, async=False):
 
     if not template_name:
         template_name = config.default_transactional_template_name
+    if not language and translated:
+        template_name = '{}_{}'.format(template_name, get_language())
+    if language:
+        template_name = '{}_{}'.format(template_name, language)
 
     try:
         mandrill_client = mandrill.Mandrill(getattr(settings, 'MANDRILL_API_KEY'))

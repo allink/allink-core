@@ -26,6 +26,19 @@ class AllinkBaseAdminForm(TranslatableModelForm):
                     model_names__contains=[self.instance._meta.model_name]
                 )
             )
+            self.fields['category_navigation_categories'] = forms.ModelMultipleChoiceField(
+                label=_(u'Categories for Navigation'),
+                widget=FilteredSelectMultiple(
+                    verbose_name=_(u'Categories for Navigation'),
+                    is_stacked=True
+                ),
+                help_text=_(
+                    u'You can explicitly define the categories for the category navigation here. This will override the automatically set of categories. (Either from "Filter & Ordering" or from the "Manual entries")'),
+                required=False,
+                queryset=AllinkCategory.objects.not_root().filter(
+                    model_names__contains=[self.instance._meta.model_name]
+                )
+            )
 
 class AllinkBaseAppContentPluginForm(forms.ModelForm):
 
@@ -59,7 +72,19 @@ class AllinkBaseAppContentPluginForm(forms.ModelForm):
                     model_names__contains=[self._meta.model.data_model._meta.model_name]
                 )
             )
-
+            self.fields['category_navigation_categories'] = forms.ModelMultipleChoiceField(
+                label=_(u'Categories for Navigation'),
+                widget=FilteredSelectMultiple(
+                    verbose_name=_(u'Categories for Navigation'),
+                    is_stacked=True
+                ),
+                help_text=_(
+                    u'You can explicitly define the categories for the category navigation here. This will override the automatically set of categories. (Either from "Filter & Ordering" or from the "Manual entries")'),
+                required=False,
+                queryset=AllinkCategory.objects.not_root().filter(
+                    model_names__contains=[self._meta.model.data_model._meta.model_name]
+                )
+            )
         self.fields['template'] = forms.CharField(
             label=_(u'Template'),
             widget=forms.Select(choices=self.instance.get_templates()),

@@ -5,7 +5,6 @@ from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 
 from cms.models.pluginmodel import CMSPlugin
-from model_utils.models import TimeStampedModel
 from adminsortable.models import SortableMixin
 from filer.fields.image import FilerImageField
 from model_utils.fields import AutoCreatedField, AutoLastModifiedField
@@ -212,8 +211,7 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
 
 
     Future Features:
-    - ? (should a "tab filtering" option be displayed? if so, which category)
-    - ? (should a search field be displayed?)
+    - ? 
 
     """
 
@@ -297,6 +295,13 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
         help_text=_(u'If checked, a category "all" in filter navigation is displayed.'),
         default=False
     )
+    category_navigation_categories = models.ManyToManyField(
+        AllinkCategory,
+        related_name='%(app_label)s_%(class)s_category_navigation',
+        verbose_name=_(u'Categories for Navigation'),
+        help_text=_(u'You can explicitly define the categories for the category navigation here. This will override the automatically set of categories. (Either from "Filter & Ordering" or from the "Manual entries")'),
+        blank=True,
+    )
     softpage_enabled = models.BooleanField(
         _(u'Show detailed information in Softpage'),
         help_text=_(u'If checked, the detail view of an entry will be displayed in a "softpage". Otherwise the page will be reloaded)'),
@@ -370,9 +375,16 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
 
     def get_category_navigation(self):
         category_navigation = []
-        for category in self.categories.all():
-            if self.get_render_queryset_for_display(category).exists():
-                category_navigation.append(category)
+        # override auto category nav
+        if self.category_navigation_categories:
+            for category in self.category_navigation_categories:
+                if self.get_render_queryset_for_display(category).exists():
+                    category_navigation.append(category)
+        # auto category nav
+        else:
+            for category in self.categories.all():
+                if self.get_render_queryset_for_display(category).exists():
+                    category_navigation.append(category)
         return category_navigation
 
     def _apply_ordering_to_queryset_for_display(self, queryset):
@@ -391,28 +403,17 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
         else:
             return queryset
 
-    def get_render_queryset_for_display(self, category=None, category_id=None):
+    def get_render_queryset_for_display(self, category=None):
         """
          returns all data_model objects distinct to id which are in the selected categories
-
         """
-        cat = None
 
-        # print 'WHICH CAT ?? {} '.format(cat)
-        if self.categories.count() > 0:
+        if self.categories.count() > 0 or category:
             """
              category selection
             """
-            # cat is for performance enhancement when only one category
             if category:
-                cat = category
-            elif category_id:
-                cat = AllinkCategory.objects.get(id=category_id)
-            elif self.categories.count == 1:
-                cat = self.categories.select_related().first()
-
-            if cat:
-                queryset = self.data_model.objects.filter_by_category(cat)
+                queryset = self.data_model.objects.filter_by_category(category)
             else:
                 queryset = self.data_model.objects.filter_by_categories(self.categories)
 
