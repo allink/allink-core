@@ -12,7 +12,6 @@ class CMSAllinkGroupContainerPlugin(CMSPluginBase):
     model = AllinkGroupContainerPlugin
     name = _('Group Container')
     module = _("allink")
-    cache = False
     allow_children = True
     child_classes = ['CMSAllinkGroupPlugin', 'CMSAllinkButtonLinkContainerPlugin']
     form = AllinkGroupContainerPluginForm

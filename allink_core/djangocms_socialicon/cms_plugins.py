@@ -12,7 +12,6 @@ class CMSAllinkSocialIconContainerPlugin(CMSPluginBase):
     model = AllinkSocialIconContainerPlugin
     name = _('Social Icon Container')
     module = _("allink")
-    cache = False
     allow_children = True
     child_classes = ['CMSAllinkSocialIconPlugin']
     form = AllinkSocialIconContainerPluginForm
@@ -27,7 +26,6 @@ class CMSAllinkSocialIconPlugin(CMSPluginBase):
     model = AllinkSocialIconPlugin
     name = _('Social Icon')
     module = _("allink")
-    cache = False
     allow_children = False
     form = AllinkSocialIconPluginForm
     text_enabled = False

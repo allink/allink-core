@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 from django import forms
 from functools import partial
+from django.core.validators import MaxValueValidator
 from django.db import models
+from django.db.models.fields import PositiveIntegerField
 from django.utils.translation import ugettext as _
 from cms.models.pluginmodel import CMSPlugin
 from ..forms import fields
@@ -64,3 +66,17 @@ class Icon(models.CharField):
         }
         defaults.update(kwargs)
         return super(Icon, self).formfield(**defaults)
+
+
+class ZipCodeField(PositiveIntegerField):
+    default_validators = [MaxValueValidator(9999)]
+    default_field_class = fields.ZipCode
+    description = _("Zip Code Field")
+
+
+    def formfield(self, **kwargs):
+        defaults = {
+            'form_class': self.default_field_class,
+        }
+        defaults.update(kwargs)
+        return super(ZipCodeField, self).formfield(**defaults)

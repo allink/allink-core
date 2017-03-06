@@ -1,12 +1,9 @@
 # -*- coding: utf-8 -*-
-
-import datetime
-from django.db import models
 from parler.managers import TranslatableManager, TranslatableQuerySet
-from model_utils.managers import InheritanceQuerySetMixin, InheritanceManagerMixin
 
 
-class AllinkBaseModelQuerySet(TranslatableQuerySet, InheritanceQuerySetMixin):
+class AllinkBaseModelQuerySet(TranslatableQuerySet):
+
     def active_entries(self):
         ''' entries which are active
         '''
@@ -28,13 +25,16 @@ class AllinkBaseModelQuerySet(TranslatableQuerySet, InheritanceQuerySetMixin):
         return self.order_by('created', 'id').distinct('created', 'id')
 
     def title_asc(self):
-        return self.order_by('translations__title', 'id').distinct('translations__lastname', 'id')
+        return self.order_by('translations__title', 'id').distinct('translations__title', 'id')
 
     def title_desc(self):
-        return self.order_by('-translations__title', 'id').distinct('translations__lastname', 'id')
+        return self.order_by('-translations__title', 'id').distinct('translations__title', 'id')
+
+    def random(self):
+        return self.order_by('?')
 
 
-class AllinkBaseModelManager(TranslatableManager, InheritanceManagerMixin):
+class AllinkBaseModelManager(TranslatableManager):
     use_for_related_fields = True
     queryset_class = AllinkBaseModelQuerySet
 
@@ -55,7 +55,7 @@ class AllinkBaseModelManager(TranslatableManager, InheritanceManagerMixin):
         q = self.get_queryset()\
             .active_entries()\
             .filter_by_categories(categories=categories.select_related())\
-            .distinct('id')
+            .distinct()
         return q
 
     def filter_by_category(self, category):
@@ -68,7 +68,7 @@ class AllinkBaseModelManager(TranslatableManager, InheritanceManagerMixin):
         - no ordering
         """
         q = self.get_queryset()\
-            .active_entries()\
+            .active_entries() \
             .filter_by_category(category=category)\
-            .distinct('id')
+            .distinct()
         return q

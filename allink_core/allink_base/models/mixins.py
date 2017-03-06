@@ -16,8 +16,8 @@ class AllinkManualEntriesMixin(object):
                         category_navigation.append(category)
         else:
             # override auto category nav
-            if self.category_navigation_categories.count() > 0:
-                for category in self.category_navigation_categories.all():
+            if self.category_navigation.count() > 0:
+                for category in self.category_navigation.all():
                     if self.get_render_queryset_for_display(category).exists():
                         category_navigation.append(category)
             # auto category nav
@@ -29,7 +29,37 @@ class AllinkManualEntriesMixin(object):
 
     def copy_relations(self, oldinstance):
         self.categories = oldinstance.categories.all()
+        self.category_navigation = oldinstance.category_navigation.all()
         self.manual_entries = oldinstance.manual_entries.all()
 
     def get_selected_entries(self):
-        return self.manual_entries.select_related()
+        return self.manual_entries.active()
+
+    def get_render_queryset_for_display(self, category=None, filter=None):
+        """
+         returns all data_model objects distinct to id which are in the selected categories
+          - category: category instance
+          - filter: list tuple with model fields and value
+            -> adds additional query
+    
+        """
+        if self.categories.count() > 0 or category:
+            """
+             category selection
+            """
+            if category:
+                queryset = self.data_model.objects.filter_by_category(category)
+            else:
+                queryset = self.data_model.objects.filter_by_categories(self.categories)
+
+            return self._apply_ordering_to_queryset_for_display(queryset)
+
+        else:
+            """
+             manual entries
+             ordering is always like manual entries order (drag n drop)
+             resulting instances are always specific classes of data_model
+            """
+            queryset = self.manual_entries.active()
+
+            return queryset

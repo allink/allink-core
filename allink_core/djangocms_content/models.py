@@ -4,6 +4,7 @@ from django.db import models
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import python_2_unicode_compatible
+from django.utils.html import strip_tags
 from cms.models.pluginmodel import CMSPlugin
 
 from filer.fields.image import FilerImageField
@@ -102,7 +103,7 @@ class AllinkContentPlugin(AllinkBasePlugin):
     )
     video_mobile_image = FilerImageField(
         verbose_name=_(u'Mobile Image'),
-        related_name="content_video_moible_image",
+        related_name="content_video_mobile_image",
         help_text=_(u'The image being displayed on mobile devices. Dimensions TBD'),
         blank=True,
         null=True
@@ -116,11 +117,27 @@ class AllinkContentPlugin(AllinkBasePlugin):
     )
 
     def __str__(self):
-        if self.title and self.template:
+        return str(self.id)
+
+    def get_short_description(self):
+        """
+         for better overview in structure mode 
+         display title, if supplied. if not supplied either display the first title of the first child plugin. 
+         If the first child has no title and there is a Text Plugin, display the first character of the TextPlugin.
+        """
+        if self.title:
             return u'{} ({})'.format(self.title, self.template)
-        elif self.template:
-            return u'({})'.format(self.template)
-        return str(self.pk)
+        else:
+            for column in self.child_plugin_instances:
+                if column.child_plugin_instances:
+                    for plugin in column.child_plugin_instances:
+                        if hasattr(plugin, 'title') and plugin.title:
+                            return u'... {} ({})'.format(plugin.title, self.template)
+                        elif plugin.plugin_type == 'TextPlugin':
+                            return u'... {} ({}) ...'.format(strip_tags(plugin.body)[0:50], self.template)
+                        else:
+                            return u'({})'.format(self.template)
+
 
     def clean(self):
             if (self.video_file and self.video_file.extension not in ALLOWED_VIDEO_EXTENSIONS):

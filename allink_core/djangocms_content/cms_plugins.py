@@ -15,7 +15,6 @@ class CMSAllinkContentPlugin(CMSPluginBase):
     name = _('Content')
     module = _("allink")
     render_template = "djangocms_content/default/content.html"
-    cache = False
     allow_children = True
     child_classes = ['ContentColumnPlugin']
     form = AllinkContentPluginForm

@@ -3,6 +3,7 @@ from django.conf import settings
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
+from django.contrib.postgres.fields import ArrayField
 
 from cms.models.pluginmodel import CMSPlugin
 from adminsortable.models import SortableMixin
@@ -114,6 +115,24 @@ class AllinkBaseModel(AllinkMetaTagFieldsModel):
         else:
             return False
 
+    @classmethod
+    def get_verbose_name(cls):
+        try:
+            from allink_core.allink_config.models import AllinkConfig
+            field_name = cls._meta.model_name + '_verbose'
+            return getattr(AllinkConfig.get_solo(), field_name)
+        except:
+            return cls._meta.verbose_name
+
+    @classmethod
+    def get_verbose_name_plural(cls):
+        try:
+            from allink_core.allink_config.models import AllinkConfig
+            field_name = cls._meta.model_name + '_verbose_plural'
+            return getattr(AllinkConfig.get_solo(), field_name)
+        except:
+            return cls._meta.verbose_name_plural
+
     def is_published(self):
         return self in self.get_published()
 
@@ -192,7 +211,6 @@ class AllinkBasePlugin(CMSPlugin):
         return str(self.pk)
 
 
-
 @python_2_unicode_compatible
 class AllinkBaseAppContentPlugin(AllinkBasePlugin):
     """
@@ -259,7 +277,7 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
     TITLE_DESC = 'title_desc'
     LATEST = 'latest'
     OLDEST = 'oldest'
-
+    RANDOM = 'random'
 
     ORDERING = (
         (DEFAULT, '---------'),
@@ -267,6 +285,12 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
         (TITLE_DESC, 'Z-A (title'),
         (LATEST, 'latest first'),
         (OLDEST, 'oldest first'),
+        (RANDOM, 'random'),
+    )
+
+    # FILTER FIELDS
+    FILTER_FIELD_CHOICES = (
+        ('categories', _(u'Categories')),
     )
 
     # FIELDS
@@ -276,6 +300,15 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
         max_length=50,
         null=True,
         blank=True
+    )
+
+    filter_fields = ArrayField(models.CharField(
+        max_length=50,
+        choices=FILTER_FIELD_CHOICES,),
+        help_text=_(u'For each choice a Select Dropdown will be displayed.'),
+        blank=True,
+        null=True,
+        default=None
     )
     # manual_entries  -> defined in subclasses (no elegant way found to define this here.)
 
@@ -295,11 +328,11 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
         help_text=_(u'If checked, a category "all" in filter navigation is displayed.'),
         default=False
     )
-    category_navigation_categories = models.ManyToManyField(
+    category_navigation = models.ManyToManyField(
         AllinkCategory,
         related_name='%(app_label)s_%(class)s_category_navigation',
         verbose_name=_(u'Categories for Navigation'),
-        help_text=_(u'You can explicitly define the categories for the category navigation here. This will override the automatically set of categories. (Either from "Filter & Ordering" or from the "Manual entries")'),
+        help_text=_(u'You can explicitly define the categories for the category navigation here. This will override the automatically set of categories. (Either the one generated from "Filter & Ordering" or "Manual entries")'),
         blank=True,
     )
     softpage_enabled = models.BooleanField(
@@ -361,7 +394,7 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
 
     def copy_relations(self, oldinstance):
         self.categories = oldinstance.categories.all()
-        self.category_navigation_categories = oldinstance.category_navigation_categories.all()
+        self.category_navigation = oldinstance.category_navigation.all()
 
     def get_templates(self):
         for x, y in get_additional_templates(self.data_model._meta.model_name):
@@ -371,14 +404,26 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
     def get_ordering_choices(self):
         return self.ORDERING
 
+    def get_filter_fields_with_options(self):
+        """
+        :param field:
+         name of model field
+        :return:
+         dict with all filter fields and there distinct values of the particular model field
+        """
+        options = {}
+        for field in self.filter_fields:
+            options.update({field: self.get_render_queryset_for_display().order_by().values_list(field).distinct()})
+        return options
+
     def get_first_category(self):
         return self.categories.first()
 
     def get_category_navigation(self):
         category_navigation = []
         # override auto category nav
-        if self.category_navigation_categories:
-            for category in self.category_navigation_categories:
+        if self.category_navigation:
+            for category in self.category_navigation:
                 if self.get_render_queryset_for_display(category).exists():
                     category_navigation.append(category)
         # auto category nav
@@ -401,14 +446,21 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
         # Z-A
         elif self.manual_ordering == AllinkBaseAppContentPlugin.TITLE_DESC:
             return queryset.title_desc()
+        # random
+        elif self.manual_ordering == AllinkBaseAppContentPlugin.RANDOM:
+            return queryset.random()
         else:
             return queryset
 
-    def get_render_queryset_for_display(self, category=None):
+    def get_render_queryset_for_display(self, category=None, filter=None):
         """
          returns all data_model objects distinct to id which are in the selected categories
+          - category: category instance
+          - filter: list tuple with model fields and value
+            -> adds additional query
+            
+        -> Is also defined in  AllinkManualEntriesMixin to handel manual entries !!
         """
-
         if self.categories.count() > 0 or category:
             """
              category selection
@@ -421,11 +473,5 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
             return self._apply_ordering_to_queryset_for_display(queryset)
 
         else:
-            """
-             manual entries
-             ordering is always like manual entries order (drag n drop)
-             resulting instances are alwas blog entries because we can't downcast and order
-            """
-            queryset = self.manual_entries.select_related()
-
+            queryset = self.data_model.active()
             return queryset

@@ -19,8 +19,7 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
     model = AllinkBaseAppContentPlugin
 
     name = _('App Content')
-    module = _("allink")
-    cache = False
+    module = _("allink Apps")
     allow_children = True
     child_classes = ['LinkPlugin', 'Bootstrap3ButtonCMSPlugin']
     form = AllinkBaseAppContentPluginForm
@@ -65,6 +64,7 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
                 'fields': (
                     'categories',
                     'manual_ordering',
+                    'filter_fields',
                 )
             }),
 
@@ -85,7 +85,7 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
                 'fields': (
                     'category_navigation_enabled',
                     'category_navigation_all',
-                    'category_navigation_categories',
+                    'category_navigation',
                 )
             }),
 
@@ -130,6 +130,7 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
 
         return fieldsets
 
+
     def get_render_template(self, context, instance, placeholder, file='content'):
         template = '{}/plugins/{}/{}.html'.format(self.data_model._meta.app_label, instance.template, file)
         try:
@@ -138,9 +139,7 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
             template = 'app_content/plugins/{}/{}.html'.format(instance.template, file)
         return template
 
-
-    def render(self, context, instance, placeholder):
-
+    def get_queryset_by_category(self, instance):
         # manual entries
         if instance.manual_entries.exists():
             objects_list = instance.get_selected_entries()
@@ -149,6 +148,19 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
             objects_list = instance.get_render_queryset_for_display(category=instance.get_first_category())
         else:
             objects_list = instance.get_render_queryset_for_display()
+        return objects_list
+
+    def render(self, context, instance, placeholder):
+
+        # random ordering needs sessioncaching for objects_list
+        if instance.manual_ordering == AllinkBaseAppContentPlugin.RANDOM:
+            objects_list, path = context['request'].session.get("random_plugin_queryset_%s" % instance.id, ([], None))
+            if (objects_list and path == context['request'].path) or not objects_list:
+                objects_list = list(self.get_queryset_by_category(instance))
+                context['request'].session["random_plugin_queryset_%s" % instance.id] = (objects_list, context['request'].path)
+        # not random ordering
+        else:
+            objects_list = self.get_queryset_by_category(instance)
 
         # Paginate Objects
         if instance.paginated_by > 0:
@@ -167,6 +179,8 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
         if instance.category_navigation_enabled:
             context.update({'by_category': reverse('{}:more'.format(self.data_model._meta.model_name), kwargs={'page': 1}) + '?api_request=1' + '&plugin_id={}'.format(instance.id)})
 
+        if instance.filter_fields:
+            context.update({'filter_fields': instance.get_filter_fields_with_options()})
 
         context['instance'] = instance
         context['placeholder'] = placeholder

@@ -12,16 +12,21 @@
                         <span class="label-text">
                             {{ field.label|safe }}
                         </span>
-                        <span class="required-symbol">
-                            ({% trans "required" %})
-                        </span>
+                        {% if field.field.required %}
+                            <span class="required-symbol">
+                                ({% trans "required" %})
+                            </span>
+                        {% endif %}
                     </label>
                 {% endif %}
             {% endblock %}
 
             {% block controls %}
-                <div class="{% if style|default:"stacked" != 'stacked' %}col-sm-14{% endif %}{% if field|fieldtype == 'RadioSelect' %} radio-group{% endif %}">
+                <div class="{% if field|fieldtype == 'RadioSelect' %} radio-group{% endif %}">
                     {% block widget %}
+
+                        {# Checkbox #}
+
                         {% if field|fieldtype == 'CheckboxInput' %}
                             <div class="checkbox">
                                 <label for="{{ field.auto_id }}" class="{% if field.field.required %}required{% endif %}">
@@ -32,6 +37,9 @@
                                     {% endif %}
                                 </label>
                             </div>
+
+                        {# Radio #}
+
                         {% elif field|fieldtype == 'RadioSelect' %}
                             {% if not nolabel %}
                                 {{ field.label|safe }}
@@ -44,9 +52,18 @@
                                     </label>
                                 </div>
                             {% endfor %}
+
+                        {# Default #}
+
                         {% else %}
-                            {% render_field field class+="form-control" %}
+                            {% if field.field.required %}
+                                {% render_field field class+="form-control" required="required" %}
+                            {% else %}
+                                {% render_field field class+="form-control" %}
+                            {% endif %}
+
                         {% endif %}
+
                     {% endblock %}
 
                     {% block errors %}

@@ -59,11 +59,6 @@ class AllinkButtonLinkPlugin(CMSPlugin, AllinkLinkFieldsModel):
     icon_right = Icon(
         verbose_name=_(u'Icon right'),
     )
-    softpage_enabled = models.BooleanField(
-        _(u'Show in Softpage'),
-        help_text=_(u'If checked, the content will be displayed in a "softpage". (Is currently only working with content of special links.))'),
-        default=False
-    )
     extra_css_classes = Classes()
 
     cmsplugin_ptr = CMSPluginField()

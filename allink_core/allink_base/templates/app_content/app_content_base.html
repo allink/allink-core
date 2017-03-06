@@ -59,6 +59,21 @@
                             </ul>
                         {% endif %}
                     {% endblock app_content_category_container %}
+                    {% comment %}
+                        Optional: Filter Fields
+                    {% endcomment %}
+{#                    {% block app_content_filter_fields %}#}
+{#                        {% if instance.filter_fields %}#}
+{#                            {% for filter, options in filter_fields %}#}
+{#                                <select class="form-control selectpicker" title="{{ filter }}" id="select" name="select" required>#}
+{#                                    {% for option in options %}#}
+{#                                        <option value="{{ option }}">{{ option }}</option>#}
+{#                                    {% endfor %}#}
+{##}
+{#                                </select>#}
+{#                            {% endfor %}#}
+{#                        {% endif %}#}
+{#                    {% endblock app_content_filter_fields %}#}
 
                 {% endblock app_content_heading_container %}
 

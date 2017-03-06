@@ -33,6 +33,7 @@ ALLINK_INSTALLED_APPS = [
 
     # allink core djangocms plugins
     'allink_core.djangocms_content',
+    'allink_core.djangocms_image',
     'allink_core.djangocms_gallery',
     'allink_core.djangocms_socialicon',
     'allink_core.djangocms_button_link',
@@ -82,7 +83,7 @@ ALLINK_CMS_PLACEHOLDER_CONF_PLUGINS = [
     'CMSPeoplePlugin',
     'CMSWorkPlugin',
     'CMSBlogPlugin',
-    'CMSTestimonialPlugin'
+    'CMSTestimonialPlugin',
 ]
 
 ####################################################################################
@@ -92,10 +93,11 @@ ALLINK_CMS_PLACEHOLDER_CONF_PLUGINS = [
 
 CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [
     'TextPlugin',
-    'PicturePlugin',
     'VideoPlayerPlugin',
     'VideoSourcePlugin',
     'VideoTrackPlugin',
+    'CMSAllinkTermsPlugin',
+    'CMSAllinkImagePlugin',
     'CMSAllinkGalleryPlugin',
     'CMSAllinkSocialIconContainerPlugin',
     'CMSAllinkSignupFormPlugin',
@@ -112,5 +114,3 @@ CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [
 ALLINK_MIDDLEWARE_CLASSES = [
     'allink_core.allink_legacy_redirect.middleware.AllinkLegacyRedirectMiddleware'
 ]
-
-

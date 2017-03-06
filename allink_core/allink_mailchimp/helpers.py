@@ -17,15 +17,11 @@ def check_response_status(response):
         response.raise_for_status()
         return response.json()
     except requests.exceptions.HTTPError as err:
-        client.captureException(requests.exceptions.HTTPError(_(u'Error: {} {}').format(str(response.status_code), err)))
-        # sentry is not configured on localhost
-        if not settings.RAVEN_CONFIG.get('dns'):
-            raise requests.exceptions.HTTPError(_(u'Error: {} {}').format(str(response.status_code), err))
+        client.captureException()
+        raise requests.exceptions.HTTPError(_(u'Error: {} {}').format(str(response.status_code), err))
     except ValueError as err:
-        client.captureException(
-            requests.exceptions.HTTPError(_(u'Error: {} {}').format(str(response.status_code), err)))
-        if not settings.RAVEN_CONFIG.get('dns'):
-            raise ValueError(_(u'Cannot decode json, got {}').format(response.text), err)
+        client.captureException()
+        raise ValueError(_(u'Cannot decode json, got {}').format(response.text), err)
 
 
 def get_hash_md5(email):

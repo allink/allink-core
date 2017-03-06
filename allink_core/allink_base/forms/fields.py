@@ -20,3 +20,9 @@ class Icon(forms.fields.CharField):
         kwargs.pop('widget', None)
         kwargs['widget'] = self.widget
         super(Icon, self).__init__(*args, **kwargs)
+
+
+class ZipCode(forms.fields.IntegerField):
+    widget = forms.widgets.NumberInput(attrs={'max_length': 4})
+
+

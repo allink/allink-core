@@ -26,7 +26,7 @@ class AllinkBaseAdminForm(TranslatableModelForm):
                     model_names__contains=[self.instance._meta.model_name]
                 )
             )
-            self.fields['category_navigation_categories'] = forms.ModelMultipleChoiceField(
+            self.fields['category_navigation'] = forms.ModelMultipleChoiceField(
                 label=_(u'Categories for Navigation'),
                 widget=FilteredSelectMultiple(
                     verbose_name=_(u'Categories for Navigation'),
@@ -44,22 +44,11 @@ class AllinkBaseAppContentPluginForm(forms.ModelForm):
 
     class Meta:
         model = AllinkBaseAppContentPlugin
-        fields = (
-            'title',
-            'categories',
-            'template',
-            'container_enabled',
-            'bg_color',
-            'items_per_row',
-            'paginated_by',
-            'pagination_type',
-            'detail_link_text'
-        )
+        exclude = ()
 
     def __init__(self, *args, **kwargs):
         super(AllinkBaseAppContentPluginForm, self).__init__(*args, **kwargs)
         # if app uses categories, populate 'categories' field
-
         if self.instance.get_app_can_have_categories():
             self.fields['categories'] = forms.ModelMultipleChoiceField(
                 label=_(u'Categories'),
@@ -72,7 +61,7 @@ class AllinkBaseAppContentPluginForm(forms.ModelForm):
                     model_names__contains=[self._meta.model.data_model._meta.model_name]
                 )
             )
-            self.fields['category_navigation_categories'] = forms.ModelMultipleChoiceField(
+            self.fields['category_navigation'] = forms.ModelMultipleChoiceField(
                 label=_(u'Categories for Navigation'),
                 widget=FilteredSelectMultiple(
                     verbose_name=_(u'Categories for Navigation'),
@@ -85,6 +74,14 @@ class AllinkBaseAppContentPluginForm(forms.ModelForm):
                     model_names__contains=[self._meta.model.data_model._meta.model_name]
                 )
             )
+
+        self.fields['filter_fields'] = forms.MultipleChoiceField(
+            label=_(u'Filter Fields'),
+            help_text=_(u'For each choice a Select Dropdown will be displayed.'),
+            choices=self.instance.FILTER_FIELD_CHOICES,
+            widget=forms.CheckboxSelectMultiple,
+            required=False
+        )
         self.fields['template'] = forms.CharField(
             label=_(u'Template'),
             widget=forms.Select(choices=self.instance.get_templates()),

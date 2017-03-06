@@ -9,9 +9,11 @@ from django.template import RequestContext
 from django.template.loader import get_template
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
+from django.conf import settings
 from django.http import HttpResponse, Http404, JsonResponse, HttpResponseRedirect
 from django.template.loader import render_to_string
-from django.contrib import messages
+
+from allink_core.allink_base.models import AllinkBaseAppContentPlugin
 
 from parler.views import TranslatableSlugMixin
 
@@ -21,6 +23,16 @@ from allink_core.allink_categories.models import AllinkCategory
 class AllinkBasePluginLoadMoreView(ListView):
 
     def get_queryset(self):
+        if self.plugin.manual_ordering == AllinkBaseAppContentPlugin.RANDOM:
+            queryset, path = self.request.session.get("random_plugin_queryset_%s" % self.plugin.id, ([], None))
+            if (queryset and path == self.request.path) or not queryset:
+                queryset = list(self.get_queryset_by_category())
+                self.request.session["random_plugin_queryset_%s" % self.plugin.id] = (queryset, self.request.path)
+        else:
+            queryset = self.get_queryset_by_category()
+        return queryset
+
+    def get_queryset_by_category(self):
         if hasattr(self, 'category'):
             return self.plugin.get_render_queryset_for_display(category=self.category)
         else:
@@ -115,15 +127,31 @@ class AllinkBaseCreateView(CreateView):
             return HttpResponseRedirect(self.get_success_url())
 
     def form_invalid(self, form):
+        """
+         If the form is invalid, re-render the context data with the
+         data-filled form and errors.
+        """
         if self.request.is_ajax():
-            return JsonResponse({
-                'html': render_to_string(
-                    self.get_template_names(),
-                    self.get_context_data(form=form),
-                    request=self.request)
-            }, status=400)
+            return self.render_to_response(self.get_context_data(form=form), status=206)
         else:
             return super(AllinkBaseCreateView, self).form_invalid(form)
+
+    def form_valid(self, form):
+        self.object = form.save()
+        if self.request.is_ajax():
+            context = super(AllinkBaseCreateView, self).get_context_data()
+            try:
+                form.save()
+                html = render_to_string('includes/forms/confirmation.html', context)
+                return HttpResponse(html)
+            except:
+                # sentry is not configured on localhost
+                if not settings.RAVEN_CONFIG.get('dns'):
+                    raise
+                form.add_error(None, _(u'Something went wrong with your subscription. Please try again later.'))
+                return self.render_to_response(self.get_context_data(form=form), status=206)
+        else:
+            return HttpResponseRedirect(self.get_success_url())
 
 
 # class AllinkBaseRegistrationView(AllinkBaseCreateView):

@@ -12,8 +12,8 @@ from .models import AllinkTerms
 
 @admin.register(AllinkTerms)
 class AllinkTermsAdmin(TranslatableAdmin, admin.ModelAdmin):
-    list_display = ('__unicode__', 'status', 'start', 'end',)
-    fields = ('text',)
+    list_display = ('__unicode__', 'status', 'start', 'end')
+    fields = ('text', 'terms_cms_page')
     actions = None
     change_form_template = 'allink_terms/admin/change_form.html'
 
@@ -34,7 +34,7 @@ class AllinkTermsAdmin(TranslatableAdmin, admin.ModelAdmin):
         extra_context['hide_save_and_add_another'] = True
         extra_context['hide_save_and_continue'] = True
         if instance and instance.status != AllinkTerms.STATUS_DRAFT:
-            self.readonly_fields = ['text']
+            self.readonly_fields = ['text', 'terms_cms_page']
         else:
             self.readonly_fields = []
         return super(AllinkTermsAdmin, self).change_view(request, object_id, form_url, extra_context)

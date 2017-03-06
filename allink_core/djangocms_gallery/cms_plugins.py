@@ -12,7 +12,6 @@ class CMSAllinkGalleryPlugin(CMSPluginBase):
     model = AllinkGalleryPlugin
     name = _('Gallery')
     module = _("allink")
-    cache = False
     allow_children = True
     child_classes = ['CMSAllinkGalleryImagePlugin']
     form = AllinkGalleryPluginForm
@@ -40,7 +39,6 @@ class CMSAllinkGalleryImagePlugin(CMSPluginBase):
     model = AllinkGalleryImagePlugin
     name = _('Image')
     module = _("allink")
-    cache = False
     allow_children = False
     form = AllinkGalleryImagePluginForm
 

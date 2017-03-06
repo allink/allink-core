@@ -16,6 +16,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 from djangocms_attributes_field.fields import AttributesField
 
 from .choices import SPECIAL_LINKS_CHOICES
+from .model_fields import ZipCodeField
 
 
 class AllinkAddressFieldsModel(models.Model):
@@ -34,11 +35,10 @@ class AllinkAddressFieldsModel(models.Model):
         blank=True,
         null=True
     )
-    zip_code = models.PositiveIntegerField(
+    zip_code = ZipCodeField(
         _(u'Zip Code'),
         blank=True,
-        null=True,
-        validators=[MaxValueValidator(9999)]
+        null=True
     )
     place = models.CharField(
         _(u'Place'),
@@ -174,6 +174,11 @@ class AllinkLinkFieldsModel(models.Model):
         verbose_name=_(u'Open in new Window'),
         blank=True,
     )
+    softpage_enabled = models.BooleanField(
+        _(u'Show in Softpage'),
+        help_text=_(u'If checked, the content will be displayed in a "softpage". (Is currently only working with content of special links.))'),
+        default=False
+    )
     link_file = FilerFileField(
         verbose_name=_(u'file'),
         null=True,
@@ -288,5 +293,7 @@ class AllinkBaseRegistration(AllinkAddressFieldsModel, TimeStampedModel):
     )
     message = models.TextField(
         _(u'Message'),
-        max_length=255
+        max_length=255,
+        blank=True,
+        null=True
     )

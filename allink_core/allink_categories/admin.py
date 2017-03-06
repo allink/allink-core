@@ -23,7 +23,7 @@ class AllinkCategoryForm(TranslatableModelForm, MoveNodeForm):
         required=False
     )
 
-#  TODO: add user is_superuser check! (or better after creating urser grou/role concept!) -> dont allow "editors" to add/read/write/delete
+#  TODO: add user is_superuser check! (or better after creating user grou/role concept!) -> dont allow "editors" to add/read/write/delete
 @admin.register(AllinkCategory)
 class AllinkCategoryAdmin(TranslatableAdmin, TreeAdmin):
     form = movenodeform_factory(AllinkCategory, form=AllinkCategoryForm)

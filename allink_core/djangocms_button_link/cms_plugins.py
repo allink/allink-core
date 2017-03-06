@@ -13,7 +13,6 @@ class CMSAllinkButtonLinkContainerPlugin(CMSPluginBase):
     model = AllinkButtonLinkContainerPlugin
     name = _('Button/ Link Container')
     module = _("allink")
-    cache = False
     allow_children = True
     child_classes = ['CMSAllinkButtonLinkPlugin']
     form = AllinkButtonLinkContainerPluginForm
@@ -28,7 +27,6 @@ class CMSAllinkButtonLinkPlugin(CMSPluginBase):
     model = AllinkButtonLinkPlugin
     name = _('Button/ Link')
     module = _("allink")
-    cache = False
     allow_children = False
     form = AllinkButtonLinkPluginForm
     change_form_template = 'admin/djangocms_button_link/change_form.html'
@@ -75,12 +73,12 @@ class CMSAllinkButtonLinkPlugin(CMSPluginBase):
                 ('link_anchor', 'link_target'),
                 'link_file',
                 'link_special',
+                'softpage_enabled',
             )
         }),
         (_('Advanced settings'), {
             'classes': ('collapse',),
             'fields': (
-                'softpage_enabled',
                 'extra_css_classes',
                 'link_attributes',
             )

@@ -13,10 +13,6 @@ from allink_core.allink_base.models.choices import TITLE_CHOICES, H1
 
 @python_2_unicode_compatible
 class AllinkGalleryPlugin(CMSPlugin):
-    """
-    A plugin representing different column-counts
-    and special option for rendering its container-content compared to its Content-Plugins background-image.
-    """
 
     SLIDER = 'slider'
 

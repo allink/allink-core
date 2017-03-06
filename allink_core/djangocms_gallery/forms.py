@@ -9,8 +9,6 @@ class AllinkGalleryPluginForm(forms.ModelForm):
         model = AllinkGalleryPlugin
         exclude = ('page', 'position', 'placeholder', 'language', 'plugin_type')
 
-    # class Media:
-    #     js = ('/static/djangocms_content/js/djangocms_content.js', )
 
 class AllinkGalleryImagePluginForm(forms.ModelForm):
 

@@ -47,3 +47,5 @@ class Icon(forms.widgets.TextInput):
             },
         )
         return rendered
+
+

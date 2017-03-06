@@ -46,6 +46,102 @@ class AllinkConfig(SingletonModel):
         max_length=7
     )
 
+    blog_verbose = models.CharField(
+        _(u'Blog verbose name'),
+        default=_(u'Blog entry'),
+        max_length=255
+    )
+
+    blog_verbose_plural = models.CharField(
+        _(u'Blog verbose name plural'),
+        default=_(u'Blog'),
+        max_length=255
+    )
+
+    news_verbose = models.CharField(
+        _(u'News verbose name'),
+        default=_(u'News entry'),
+        max_length=255
+    )
+
+    news_verbose_plural = models.CharField(
+        _(u'News verbose name plural'),
+        default=_(u'News'),
+        max_length=255
+    )
+
+    events_verbose = models.CharField(
+        _(u'Events verbose name'),
+        default=_(u'Event'),
+        max_length=255
+    )
+
+    events_verbose_plural = models.CharField(
+        _(u'Events verbose name plural'),
+        default=_(u'Events'),
+        max_length=255
+    )
+
+    locations_verbose = models.CharField(
+        _(u'Locations verbose name'),
+        default=_(u'Location'),
+        max_length=255
+    )
+
+    locations_verbose_plural = models.CharField(
+        _(u'Locations verbose name plural'),
+        default=_(u'Locations'),
+        max_length=255
+    )
+
+    members_verbose = models.CharField(
+        _(u'Members verbose name'),
+        default=_(u'Member'),
+        max_length=255
+    )
+
+    members_verbose_plural = models.CharField(
+        _(u'Members verbose name plural'),
+        default=_(u'Members'),
+        max_length=255
+    )
+
+    people_verbose = models.CharField(
+        _(u'People verbose name'),
+        default=_(u'Person'),
+        max_length=255
+    )
+
+    people_verbose_plural = models.CharField(
+        _(u'People verbose name plural'),
+        default=_(u'People'),
+        max_length=255
+    )
+
+    testimonial_verbose = models.CharField(
+        _(u'Testimonials verbose name'),
+        default=_(u'Testimonial'),
+        max_length=255
+    )
+
+    testimonial_verbose_plural = models.CharField(
+        _(u'Testimonials verbose name plural'),
+        default=_(u'Testimonials'),
+        max_length=255
+    )
+
+    work_verbose = models.CharField(
+        _(u'Work verbose name'),
+        default=_(u'Project/ Reference'),
+        max_length=255
+    )
+
+    work_verbose_plural = models.CharField(
+        _(u'Work verbose name plural'),
+        default=_(u'Projects/ References'),
+        max_length=255
+    )
+
     def __str__(self):
         return u'Allink Configuration'
 
@@ -57,13 +153,14 @@ class AllinkConfig(SingletonModel):
 class AllinkMetaTagExtension(AllinkMetaTagFieldsModel, TitleExtension):
     pass
 
-
 extension_pool.register(AllinkMetaTagExtension)
 
 
 # Unregister existing Plugins
 from cms.plugin_pool import plugin_pool
 from djangocms_file.cms_plugins import FilePlugin, FolderPlugin
+from djangocms_picture.cms_plugins import PicturePlugin
 
 plugin_pool.unregister_plugin(FilePlugin)
 plugin_pool.unregister_plugin(FolderPlugin)
+plugin_pool.unregister_plugin(PicturePlugin)
