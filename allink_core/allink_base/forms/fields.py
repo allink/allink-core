@@ -23,6 +23,6 @@ class Icon(forms.fields.CharField):
 
 
 class ZipCode(forms.fields.IntegerField):
-    widget = forms.widgets.NumberInput(attrs={'max_length': 4})
+    widget = forms.widgets.NumberInput(attrs={'maxlength': 4})
 
 

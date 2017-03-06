@@ -88,7 +88,7 @@ class AllinkContentPlugin(AllinkBasePlugin):
     # Video related fields
     video_file = FilerFileField(
         verbose_name=_(u'Source'),
-        help_text=_(u'Recommended video settings:<br><br>Format: mp4<br>Codec: H.264<br>Target Bitrate: 4 (video loads quick and runs smooth)<br>Audio: Not recommended (no audio = smaller file size and less annoyed visitors)<br>Aspect ratio: TBD<br>File size: Dependent of video length. Generally speaking: Less is more.'),
+        help_text=_(u'Recommended video settings:<br><br>Format: mp4<br>Codec: H.264<br>Target Bitrate: 2 (video loads quick and runs smooth)<br>Audio: Not recommended (no audio = smaller file size and less annoyed visitors)<br>Aspect ratio: TBD<br>File size: Dependent of video length. Generally speaking: Less is more.'),
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -121,8 +121,8 @@ class AllinkContentPlugin(AllinkBasePlugin):
 
     def get_short_description(self):
         """
-         for better overview in structure mode 
-         display title, if supplied. if not supplied either display the first title of the first child plugin. 
+         for better overview in structure mode
+         display title, if supplied. if not supplied either display the first title of the first child plugin.
          If the first child has no title and there is a Text Plugin, display the first character of the TextPlugin.
         """
         if self.title:
@@ -137,8 +137,8 @@ class AllinkContentPlugin(AllinkBasePlugin):
                             return u'... {} ({}) ...'.format(strip_tags(plugin.body)[0:50], self.template)
                         else:
                             return u'({})'.format(self.template)
-
-
+                else:
+                    return u'({})'.format(self.template)
     def clean(self):
             if (self.video_file and self.video_file.extension not in ALLOWED_VIDEO_EXTENSIONS):
                 raise ValidationError(
