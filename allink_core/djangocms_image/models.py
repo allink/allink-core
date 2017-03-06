@@ -89,7 +89,7 @@ class AllinkImagePlugin(AllinkLinkFieldsModel, CMSPlugin):
         self.picture = oldinstance.picture
 
     def get_templates(self):
-        for x, y in get_additional_templates(self.data_model._meta.model_name):
+        for x, y in get_additional_templates('AllinkImagePlugin'):
             self.TEMPLATES += ((x, y),)
         return self.TEMPLATES
 
