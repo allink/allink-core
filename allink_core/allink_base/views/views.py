@@ -12,6 +12,7 @@ from django.core.urlresolvers import reverse
 from django.conf import settings
 from django.http import HttpResponse, Http404, JsonResponse, HttpResponseRedirect
 from django.template.loader import render_to_string
+from django.template import TemplateDoesNotExist
 
 from allink_core.allink_base.models import AllinkBaseAppContentPlugin
 
@@ -142,7 +143,7 @@ class AllinkBaseCreateView(CreateView):
             context = super(AllinkBaseCreateView, self).get_context_data()
             try:
                 form.save()
-                html = render_to_string('includes/forms/confirmation.html', context)
+                html = render_to_string(self.get_confirmation_template(), context)
                 return HttpResponse(html)
             except:
                 # sentry is not configured on localhost
@@ -153,6 +154,13 @@ class AllinkBaseCreateView(CreateView):
         else:
             return HttpResponseRedirect(self.get_success_url())
 
+    def get_confirmation_template(self):
+        template = '{}/forms/confirmation.html'.format(self.item._meta.model_name)
+        try:
+            get_template(template)
+        except TemplateDoesNotExist:
+            template = 'includes/forms/confirmation.html'
+        return template
 
 # class AllinkBaseRegistrationView(AllinkBaseCreateView):
 #     """

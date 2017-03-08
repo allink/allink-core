@@ -33,8 +33,7 @@ class Classes(models.TextField):
             kwargs['default'] = ''
         if 'help_text' not in kwargs:
             kwargs['help_text'] = _('Space separated classes that are added to '
-                'the class. See <a href="http://getbootstrap.com/css/" '
-                'target="_blank">Bootstrap 3 documentation</a>.')
+                'the list of classes.')
         super(Classes, self).__init__(*args, **kwargs)
 
     def formfield(self, **kwargs):

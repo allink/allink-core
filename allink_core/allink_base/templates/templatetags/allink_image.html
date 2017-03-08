@@ -14,10 +14,11 @@
 {% endif %}
 {# end render figure/figcaption #}
 
-    {% if instance.get_link %}
-        <a href="{{ instance.get_link }}"
-        {% if instance.link_target %} target="{{ instance.link_target }}"{% endif %}
-        {{ instance.link_attributes_str }}>
+    {% if instance.get_link_url %}
+        <a href="{{ instance.get_link_url }}"
+            {% if instance.link_target %} target="{{ instance.link_target }}"{% endif %}
+            {{ instance.link_attributes_str }}
+            >
     {% endif %}
 
     {% if instance.use_no_cropping %}
@@ -30,8 +31,10 @@
         {# image object to figure out ratio #}
         {% thumbnail instance.picture thumbnail_url_xl as image_xl %}
 
-        <picture class="lazyloader {% if bg_disabled %}no-bg{% endif %} {% if icon_disabled %}no-icon{% endif %}" style="padding-bottom: calc({{image_xl.height}}/{{image_xl.width}}*100%);
-">
+            <picture
+                class="lazyloader {% if bg_disabled %}no-bg{% endif %} {% if icon_disabled %}no-icon{% endif %}"
+                style="padding-bottom: calc({{image_xl.height}}/{{image_xl.width}}*100%);"
+                >
 
             <!--[if IE 9]><video style="display: none;"><![endif]-->
 
@@ -67,14 +70,14 @@
                 class="lazyload"
                 {% if instance.picture.default_alt_text and not instance.attributes.alt %} alt="{{ instance.picture.default_alt_text }}"{% endif %}
                 {{ instance.attributes_str }}
-            >
+                >
 
         </picture>
     {% endif %}
 
 
 
-    {% if instance.get_link %}
+    {% if instance.get_link_url %}
         </a>
     {% endif %}
 

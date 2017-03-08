@@ -1,5 +1,5 @@
 {% load cms_tags %}
-<div class="col">
+<div class="col {{ instance.css_classes }}">
     <div class="manage-spacings">
         {% for plugin in instance.child_plugin_instances %}
             {% render_plugin plugin %}

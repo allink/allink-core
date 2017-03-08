@@ -182,5 +182,11 @@ class AllinkContentColumnPlugin(CMSPlugin):
             return u'({})'.format(self.template)
 
     @property
+    def css_classes(self):
+        css_classes = []
+        css_classes.append('col-empty') if self.num_children() == 0 else None
+        return ' '.join(css_classes)
+
+    @property
     def template(self):
         return self.parent.djangocms_content_allinkcontentplugin.template

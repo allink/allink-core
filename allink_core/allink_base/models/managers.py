@@ -21,7 +21,7 @@ class AllinkBaseModelQuerySet(TranslatableQuerySet):
     def latest(self):
         return self.order_by('-created', 'id').distinct('created', 'id')
 
-    def oldest(self):
+    def earliest(self):
         return self.order_by('created', 'id').distinct('created', 'id')
 
     def title_asc(self):

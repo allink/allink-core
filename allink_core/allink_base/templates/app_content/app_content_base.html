@@ -1,7 +1,7 @@
 {% load cms_tags staticfiles sekizai_tags i18n thumbnail %}
 
 {% block app_content_section %}
-    <div class="content-section app-content-plugin list-view {% spaceless %}{% block app_content_section_name_classes %}{% endblock app_content_section_name_classes %} {{instance.css_classes}}{% endspaceless %} app-content-plugin-{{instance.id}}" data-scroll-spy>
+    <div class="content-section app-content-plugin {{instance.get_model_name}}-plugin list-view {% spaceless %}{% block app_content_section_name_classes %}{% endblock app_content_section_name_classes %} {{instance.css_classes}}{% endspaceless %} app-content-plugin-{{instance.id}}" data-scroll-spy>
         <div class="container">
 
         {% comment %}
@@ -89,7 +89,7 @@
                 {% block app_content_objects_content_container %}
 
                     {% comment %}
-                        Required container for Softpage setting
+                        Required container for optional Softpage setting
                     {% endcomment %}
                     <div {% if instance.softpage_enabled %}data-trigger-softpage{% endif %}>
 
@@ -122,7 +122,7 @@
             {% block app_content_load_more_container %}
                 {% if instance.pagination_type == "load" %}
                     <div class="load-more-container" {% if not next_page_url %}style="display:none;"{% endif %}>
-                        <a href="{{ next_page_url }}" class="btn btn-primary btn-load-more ajax-load-items append" {% block app_content_load_more_attr %}{% endblock app_content_load_more_attr %} data-btn-ajax-loader>
+                        <a href="{{ next_page_url }}" class="btn btn-{% block app_content_load_more_btn_variation %}primary{% endblock app_content_load_more_btn_variation %} btn-load-more ajax-load-items append" {% block app_content_load_more_attr %}{% endblock app_content_load_more_attr %} data-btn-ajax-loader>
                             <span class="btn-text">
                                 {% if instance.load_more_button_text %}
                                     {{ instance.load_more_button_text }}

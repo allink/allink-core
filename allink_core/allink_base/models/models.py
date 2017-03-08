@@ -229,7 +229,7 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
 
 
     Future Features:
-    - ? 
+    - ?
 
     """
 
@@ -276,7 +276,7 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
     TITLE_ASC = 'title_asc'
     TITLE_DESC = 'title_desc'
     LATEST = 'latest'
-    OLDEST = 'oldest'
+    EARLIEST = 'earliest'
     RANDOM = 'random'
 
     ORDERING = (
@@ -284,7 +284,7 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
         (TITLE_ASC, 'A-Z (title)'),
         (TITLE_DESC, 'Z-A (title'),
         (LATEST, 'latest first'),
-        (OLDEST, 'oldest first'),
+        (EARLIEST, 'earliest first'),
         (RANDOM, 'random'),
     )
 
@@ -404,6 +404,9 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
     def get_ordering_choices(self):
         return self.ORDERING
 
+    def get_model_name(self):
+        return self.data_model._meta.model_name
+
     def get_filter_fields_with_options(self):
         """
         :param field:
@@ -437,9 +440,9 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
         # latest
         if self.manual_ordering == AllinkBaseAppContentPlugin.LATEST:
             return queryset.latest()
-        # oldest
-        elif self.manual_ordering == AllinkBaseAppContentPlugin.OLDEST:
-            return queryset.oldest()
+        # earliest
+        elif self.manual_ordering == AllinkBaseAppContentPlugin.EARLIEST:
+            return queryset.earliest()
         # A-Z
         elif self.manual_ordering == AllinkBaseAppContentPlugin.TITLE_ASC:
             return queryset.title_asc()
@@ -458,7 +461,7 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
           - category: category instance
           - filter: list tuple with model fields and value
             -> adds additional query
-            
+
         -> Is also defined in  AllinkManualEntriesMixin to handel manual entries !!
         """
         if self.categories.count() > 0 or category:

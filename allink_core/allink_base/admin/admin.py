@@ -1,14 +1,16 @@
 # -*- coding: utf-8 -*-
 from django.utils.translation import ugettext_lazy as _
 from django.contrib import admin
-from adminsortable.admin import NonSortableParentAdmin
+from django.core.cache import cache
+
+from adminsortable.admin import NonSortableParentAdmin, SortableAdmin
 from parler.admin import TranslatableAdmin
 from aldryn_translation_tools.admin import AllTranslationsMixin
 
 from .forms import AllinkBaseAdminForm
 
 
-class AllinkBaseAdmin(NonSortableParentAdmin, AllTranslationsMixin, TranslatableAdmin):
+class AllinkBaseAdminBase(AllTranslationsMixin, TranslatableAdmin):
     """
       Inlines for images have to be handled in the specific admin class
 
@@ -35,7 +37,6 @@ class AllinkBaseAdmin(NonSortableParentAdmin, AllTranslationsMixin, Translatable
                 'fields': (
                     'active',
                     'title',
-                    'title_size',
                     'slug',
                     'created',
                 ),
@@ -73,3 +74,14 @@ class AllinkBaseAdmin(NonSortableParentAdmin, AllTranslationsMixin, Translatable
         return "\n|\n".join([c.name for c in object.categories.all()])
 
     get_categories.short_description = _(u'Categories')
+
+
+
+class AllinkBaseAdmin(NonSortableParentAdmin, AllinkBaseAdminBase):
+    pass
+
+
+class AllinkBaseAdminSortable(SortableAdmin, AllinkBaseAdminBase):
+    def do_sorting_view(self, request, model_type_id=None):
+        super(AllinkBaseAdminSortable, self).do_sorting_view(request, model_type_id)
+        cache.clear()

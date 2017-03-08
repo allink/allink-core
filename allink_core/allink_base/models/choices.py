@@ -85,6 +85,7 @@ YOUTUBE = 'youtube'
 VIMEO = 'vimeo'
 GOOGLEPLUS = 'googleplus'
 TRIPADVISOR = 'tripadvisor'
+KUNUNU = 'kununu'
 
 SOCIAL_ICONS_CHOICES = (
     (FACEBOOK, _(u'Facebook')),
@@ -99,6 +100,7 @@ SOCIAL_ICONS_CHOICES = (
     (VIMEO, _(u'Vimeo')),
     (GOOGLEPLUS, _(u'Google Plus')),
     (TRIPADVISOR, _(u'TripAdvisor')),
+    (KUNUNU, _(u'kununu')),
 )
 
 ####################################################################################
