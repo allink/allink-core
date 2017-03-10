@@ -13,7 +13,8 @@ from aldryn_translation_tools.models import (
     TranslatedAutoSlugifyMixin, TranslationHelperMixin)
 from parler import appsettings
 from parler.managers import TranslatableManager, TranslatableQuerySet
-from parler.models import TranslatableModel, TranslatedFields
+from parler.models import TranslatableModel, TranslatedFields, TranslatableModelMixin
+from parler.cache import _delete_cached_translations
 from treebeard.ns_tree import NS_Node, NS_NodeManager, NS_NodeQuerySet
 
 
@@ -87,7 +88,8 @@ class AllinkCategory(TranslatedAutoSlugifyMixin, TranslationHelperMixin,
         # together here.
         #
         self.__class__.objects.filter(pk=self.pk).delete(using)
-        super(TranslatableModel, self).delete()
+        _delete_cached_translations(self)
+        super(TranslatableModelMixin, self).delete()
 
     def __str__(self):
         return self.safe_translation_getter('name', any_language=True)

@@ -108,6 +108,13 @@ class AllinkBaseModel(AllinkMetaTagFieldsModel):
     def previous(self):
         return self.get_previous(self)
 
+    @property
+    def show_detail_link(self):
+        if getattr(self, 'text'):
+            return True
+        else:
+            return True if getattr(self, 'content_placeholder') else False
+
     @classmethod
     def get_can_have_categories(cls):
         if cls._meta.model_name in dict(settings.PROJECT_APP_MODEL_WITH_CATEGORY_CHOICES):

@@ -9,7 +9,7 @@ from parler.utils.context import switch_language
 
 from ..models import AllinkCategory as Category
 
-from .base import CategoryTestCaseMixin
+from . import CategoryTestCaseMixin
 
 
 class TestCategories(CategoryTestCaseMixin, TransactionTestCase):

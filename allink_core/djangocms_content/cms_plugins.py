@@ -73,9 +73,7 @@ class CMSAllinkContentPlugin(CMSPluginBase):
     )
 
     def save_model(self, request, obj, form, change):
-        response = super(CMSAllinkContentPlugin, self).save_model(
-            request, obj, form, change
-        )
+        response = super(CMSAllinkContentPlugin, self).save_model(request, obj, form, change)
         if obj.numchild == 0:
             column_amount = AllinkContentPlugin.COLUMN_AMOUNT[form.cleaned_data['template']]
 
@@ -102,3 +100,18 @@ class CMSAllinkContentColumnPlugin(CMSPluginBase):
     child_classes = settings.CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES
     form = AllinkContentColumnPluginForm
     require_parent = True
+
+    def save_model(self, request, obj, form, change):
+
+        if 'order_mobile' in form.changed_data:
+            parent = obj.parent.get_plugin_instance()[0]
+            for column in parent.get_children():
+                if column.plugin_type == 'CMSAllinkContentColumnPlugin':
+                    #  change the column which had the same ordering before
+                    #  to the value which our changed column had before
+                    child_column = column.get_plugin_instance()[0]
+                    if child_column.order_mobile == form.cleaned_data.get('order_mobile'):
+                        child_column.order_mobile = form.initial.get('order_mobile')
+                        child_column.save()
+        return super(CMSAllinkContentColumnPlugin, self).save_model(request, obj, form, change)
+

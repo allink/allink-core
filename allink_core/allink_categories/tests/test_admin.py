@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 from django.test import TransactionTestCase
 
-from .base import CategoryTestCaseMixin
+from . import CategoryTestCaseMixin
 from ..models import AllinkCategory as Category
 
 

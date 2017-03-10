@@ -25,3 +25,8 @@ class AllinkContentColumnPluginForm(forms.ModelForm):
     class Meta:
         model = AllinkContentColumnPlugin
         exclude = ('title', 'page', 'position', 'placeholder', 'language', 'plugin_type')
+
+    def __init__(self, *args, **kwargs):
+        super(AllinkContentColumnPluginForm, self).__init__(*args, **kwargs)
+        parent_column_amount = AllinkContentPlugin.COLUMN_AMOUNT[kwargs.get('instance').template]
+        self.fields['order_mobile'].widget = forms.Select(choices=enumerate(range(parent_column_amount)))

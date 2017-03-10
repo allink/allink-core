@@ -37,6 +37,5 @@ class AllinkSocialIconPlugin(CMSPlugin):
         _(u'Link')
     )
 
-
     def __str__(self):
         return u'{}'.format(self.icon)

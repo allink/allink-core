@@ -139,12 +139,13 @@ class AllinkContentPlugin(AllinkBasePlugin):
                             return u'({})'.format(self.template)
                 else:
                     return u'({})'.format(self.template)
+
     def clean(self):
-            if (self.video_file and self.video_file.extension not in ALLOWED_VIDEO_EXTENSIONS):
-                raise ValidationError(
-                    _('Incorrect file type: %(value)s'),
-                    params={'value': self.video_file.extension},
-                )
+        if (self.video_file and self.video_file.extension not in ALLOWED_VIDEO_EXTENSIONS):
+            raise ValidationError(
+                _('Incorrect file type: %(value)s'),
+                params={'value': self.video_file.extension},
+            )
 
     @property
     def css_classes(self):
@@ -173,7 +174,19 @@ class AllinkContentPlugin(AllinkBasePlugin):
 
 @python_2_unicode_compatible
 class AllinkContentColumnPlugin(CMSPlugin):
-    title = models.CharField(_(u'Title'), max_length=255, blank=True, null=True)
+
+    title = models.CharField(
+        _(u'Title'),
+        max_length=255,
+        blank=True,
+        null=True
+    )
+    order_mobile = models.IntegerField(
+        _(u'Order Mobile'),
+        help_text=_(u'Some columns should be ordered differently on mobile devices when columns are stacked vertically. This option allows you to define the position of the this column.<br><br>Note: Columns ordering is ascending (lowest number displayed first)'),
+        blank=True,
+        null=True
+    )
 
     def __str__(self):
         if self.title and self.template:
@@ -181,10 +194,16 @@ class AllinkContentColumnPlugin(CMSPlugin):
         else:
             return u'({})'.format(self.template)
 
+    def save(self):
+        if not self.pk:
+            self.order_mobile = self.position
+        super(AllinkContentColumnPlugin, self).save()
+
     @property
     def css_classes(self):
         css_classes = []
         css_classes.append('col-empty') if self.num_children() == 0 else None
+        css_classes.append('col-order-mobile-{}'.format(self.order_mobile))
         return ' '.join(css_classes)
 
     @property

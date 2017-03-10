@@ -19,7 +19,7 @@
             </div>
         {% endif %}
     </td>
-    {% if instance.detail_link_enabled and object.text %}
+    {% if instance.detail_link_enabled and object.show_detail_link %}
         <td>
             <a href="{{object.get_absolute_url}}" class="btn btn-default">
                 {% if instance.detail_link_text %}
