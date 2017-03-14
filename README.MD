@@ -1,5 +1,11 @@
 # Changelog
 
+## 14.3.2017
+
+- Feature DjangoCMS Instagram Plugin added
+- Content Plugin: Minor updates
+
+
 ## 10.3.2017
 
 - Content Plugin: Utility blocks added to default `content.html` that now can be extended on a project basis.

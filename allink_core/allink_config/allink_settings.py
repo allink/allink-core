@@ -30,6 +30,7 @@ ALLINK_INSTALLED_APPS = [
     'allink_apps.work',
     'allink_apps.testimonials',
     'allink_apps.blog',
+    'allink_apps.contact',
 
     # allink core djangocms plugins
     'allink_core.djangocms_content',
@@ -38,6 +39,7 @@ ALLINK_INSTALLED_APPS = [
     'allink_core.djangocms_socialicon',
     'allink_core.djangocms_button_link',
     'allink_core.djangocms_group',
+    'allink_core.djangocms_instagram',
 
 ]
 
@@ -102,7 +104,8 @@ CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [
     'CMSAllinkSocialIconContainerPlugin',
     'CMSAllinkSignupFormPlugin',
     'CMSAllinkButtonLinkContainerPlugin',
-    'CMSAllinkGroupContainerPlugin'
+    'CMSAllinkGroupContainerPlugin',
+    'CMSAllinkInstagramPlugin'
 ]
 
 
