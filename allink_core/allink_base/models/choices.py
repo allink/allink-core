@@ -5,12 +5,6 @@ from django.utils.translation import ugettext_lazy as _
 
 from allink_core.allink_base.utils import get_additional_choices
 
-####################################################################################
-
-# YEARS (past and near future)
-
-YEAR_CHOICES = [(r, r) for r in list(reversed(range(1930, datetime.date.today().year + 5)))]
-
 
 ####################################################################################
 
@@ -141,6 +135,20 @@ TEXT_LINK_CONTEXT_CHOICES = (
 
 TEXT_LINK_CONTEXT_DEFAULT = ''
 
+NEW_WINDOW = 1
+SOFTPAGE_LARGE = 2
+SOFTPAGE_SMALL = 3
+FORM_MODAL = 4
+IMAGE_MODAL = 5
+
+TARGET_CHOICES = (
+    (NEW_WINDOW, _(u'New window')),
+    (SOFTPAGE_LARGE, _(u'Softpage large')),
+    (SOFTPAGE_SMALL, _(u'Softpage small')),
+    (FORM_MODAL, _(u'Lightbox (Forms)')),
+    (IMAGE_MODAL, _(u'Lightbox (Image)')),
+)
+
 SPECIAL_LINKS_CHOICES =(
     ('account_login', _(u'Member Login')),
     ('account_logout', _(u'Member Logout')),
@@ -149,6 +157,7 @@ SPECIAL_LINKS_CHOICES =(
     ('members:profile_edit', _(u'Member Edit Profile')),
     # ('members:register', _(u'Member Register')),
     # ('members:password_reset_recover', _(u'Member Reset Passwort')),
+    ('contact:request', _(u'Contact Form')),
 ) + get_additional_choices('SPECIAL_LINKS_CHOICES')
 
 ####################################################################################

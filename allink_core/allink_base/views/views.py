@@ -161,38 +161,3 @@ class AllinkBaseCreateView(CreateView):
         except TemplateDoesNotExist:
             template = 'includes/forms/confirmation.html'
         return template
-
-# class AllinkBaseRegistrationView(AllinkBaseCreateView):
-#     """
-#         model = CoursesRegistration
-#         form_class = CoursesRegistrationForm
-#         template_name = 'blog/events_register_detail.html'
-#         item_model = Courses
-#     """
-#
-#     def __init__(self):
-#         super(AllinkBaseRegistrationView, self).__init__()
-#         self.item = self.item_model.objects.get(translations__slug=self.kwargs.get('slug', None))
-#
-#     def get_context_data(self, **kwargs):
-#         context = super(AllinkBaseCreateView, self).get_context_data(**kwargs)
-#         context.update({
-#             'slug': self.kwargs.get('slug', None)
-#         })
-#         return context
-#
-#     def get_initial(self):
-#         initial = super(AllinkBaseRegistrationView, self).get_initial()
-#         initial = initial.copy()
-#         initial['item'] = self.item
-#         initial['terms'] = AllinkTerms.objects.get_published()
-#         return initial
-#
-#     def form_valid(self, form):
-#         response = super(AllinkBaseRegistrationView, self).form_valid(form)
-#         self.send_mail()
-#         return response
-#
-#     def send_mail(self):
-#         send_registration_email(self.get_form(), self.item)
-#         send_registration_confirmation_email(self.get_form(), self.item)

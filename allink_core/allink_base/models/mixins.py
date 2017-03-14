@@ -60,6 +60,6 @@ class AllinkManualEntriesMixin(object):
              ordering is always like manual entries order (drag n drop)
              resulting instances are always specific classes of data_model
             """
-            queryset = self.manual_entries.active()
+            queryset = self.data_model.objects.active()
 
             return queryset

@@ -183,7 +183,7 @@ class AllinkContentColumnPlugin(CMSPlugin):
     )
     order_mobile = models.IntegerField(
         _(u'Order Mobile'),
-        help_text=_(u'Some columns should be ordered differently on mobile devices when columns are stacked vertically. This option allows you to define the position of the this column.<br><br>Note: Columns ordering is ascending (lowest number displayed first)'),
+        help_text=_(u'If some columns should be ordered different on mobile devices, this option allows you to so.'),
         blank=True,
         null=True
     )
@@ -203,7 +203,6 @@ class AllinkContentColumnPlugin(CMSPlugin):
     def css_classes(self):
         css_classes = []
         css_classes.append('col-empty') if self.num_children() == 0 else None
-        css_classes.append('col-order-mobile-{}'.format(self.order_mobile))
         return ' '.join(css_classes)
 
     @property

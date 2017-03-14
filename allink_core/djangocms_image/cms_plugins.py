@@ -35,10 +35,9 @@ class CMSAllinkImagePlugin(CMSPluginBase):
                 'fields': (
                     ('link_url', 'link_page',),
                     ('link_mailto', 'link_phone'),
-                    ('link_anchor', 'link_target'),
+                    ('link_anchor', 'link_special'),
                     'link_file',
-                    'link_special',
-                    'softpage_enabled',
+                    'link_target',
                 )
             }),
             (_('Wireframe settings'), {

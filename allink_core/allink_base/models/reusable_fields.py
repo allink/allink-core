@@ -15,7 +15,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 from djangocms_attributes_field.fields import AttributesField
 
-from .choices import SPECIAL_LINKS_CHOICES
+from .choices import SPECIAL_LINKS_CHOICES, TARGET_CHOICES, NEW_WINDOW, SOFTPAGE_LARGE, SOFTPAGE_SMALL, FORM_MODAL, IMAGE_MODAL
 from .model_fields import ZipCodeField
 
 
@@ -170,14 +170,11 @@ class AllinkLinkFieldsModel(models.Model):
         help_text=_(u'Appends the value only after the internal or external link. '
                     u'Do <em>not</em> include a preceding "#" symbol.'),
     )
-    link_target = models.BooleanField(
-        verbose_name=_(u'Open in new Window'),
-        blank=True,
-    )
-    softpage_enabled = models.BooleanField(
-        _(u'Show in Softpage'),
-        help_text=_(u'If checked, the content will be displayed in a "softpage". (Is currently only working with content of special links.))'),
-        default=False
+    link_target = models.IntegerField(
+        _(u'Link Target'),
+        choices=TARGET_CHOICES,
+        null=True,
+        blank=True
     )
     link_file = FilerFileField(
         verbose_name=_(u'file'),
@@ -199,6 +196,26 @@ class AllinkLinkFieldsModel(models.Model):
 
     class Meta:
         abstract = True
+
+    @property
+    def new_window_enabled(self):
+        return True if self.link_target == NEW_WINDOW and not self.form_modal_enabled and not self.softpage_large_enabled and not self.softpage_small_enabled else False
+
+    @property
+    def softpage_large_enabled(self):
+        return True if self.link_target == SOFTPAGE_LARGE else False
+
+    @property
+    def softpage_small_enabled(self):
+        return True if self.link_target == SOFTPAGE_SMALL else False
+
+    @property
+    def form_modal_enabled(self):
+        return True if self.link_target == FORM_MODAL else False
+
+    @property
+    def image_modal_enabled(self):
+        return True if self.link_target == IMAGE_MODAL else False
 
     def get_link_url(self):
         if self.link_page_id:
@@ -275,7 +292,7 @@ class AllinkLinkFieldsModel(models.Model):
                     })
 
 
-class AllinkBaseRegistration(AllinkAddressFieldsModel, TimeStampedModel):
+class AllinkSimpleRegistrationFieldsModel(TimeStampedModel):
 
     class Meta:
         abstract = True

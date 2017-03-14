@@ -483,5 +483,5 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
             return self._apply_ordering_to_queryset_for_display(queryset)
 
         else:
-            queryset = self.data_model.active()
+            queryset = self.data_model.objects.active()
             return queryset

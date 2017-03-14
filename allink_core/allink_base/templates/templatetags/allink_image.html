@@ -16,7 +16,7 @@
 
     {% if instance.get_link_url %}
         <a href="{{ instance.get_link_url }}"
-            {% if instance.link_target %} target="{{ instance.link_target }}"{% endif %}
+            {% if instance.new_window_enabled %} target="_blank"{% endif %}
             {{ instance.link_attributes_str }}
             >
     {% endif %}
