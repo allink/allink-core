@@ -62,18 +62,17 @@
                     {% comment %}
                         Optional: Filter Fields
                     {% endcomment %}
-{#                    {% block app_content_filter_fields %}#}
-{#                        {% if instance.filter_fields %}#}
-{#                            {% for filter, options in filter_fields %}#}
-{#                                <select class="form-control selectpicker" title="{{ filter }}" id="select" name="select" required>#}
-{#                                    {% for option in options %}#}
-{#                                        <option value="{{ option }}">{{ option }}</option>#}
-{#                                    {% endfor %}#}
-{##}
-{#                                </select>#}
-{#                            {% endfor %}#}
-{#                        {% endif %}#}
-{#                    {% endblock app_content_filter_fields %}#}
+                    {% block app_content_filter_fields %}
+                        {% if instance.filter_fields %}
+                            {% for filter, options in filter_fields.items %}
+                                <select class="form-control selectpicker" title="{% trans 'Select' %} {% trans filter %}" id="select" name="select" required>
+                                    {% for value, option in options %}
+                                        <option value="{{ value }}">{{ option }}</option>
+                                    {% endfor %}
+                                </select>
+                            {% endfor %}
+                        {% endif %}
+                    {% endblock app_content_filter_fields %}
 
                 {% endblock app_content_heading_container %}
 
@@ -91,7 +90,7 @@
                     {% comment %}
                         Required container for optional Softpage setting
                     {% endcomment %}
-                    <div {% if instance.softpage_large_enabled %}data-trigger-softpage{% endif %}>
+                    <div {% if instance.softpage_enabled %}data-trigger-softpage{% endif %}>
 
                         {% comment %}
                             Container for objects

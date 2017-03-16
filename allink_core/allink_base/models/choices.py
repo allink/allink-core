@@ -6,6 +6,13 @@ from django.utils.translation import ugettext_lazy as _
 from allink_core.allink_base.utils import get_additional_choices
 
 
+
+####################################################################################
+
+#  BLANK
+
+BLANK_CHOICE = (('', '---------'),)
+
 ####################################################################################
 
 #  GENDER
@@ -99,7 +106,7 @@ SOCIAL_ICONS_CHOICES = (
 
 ####################################################################################
 
-# Button/ Text
+# BUTTON / TEXT
 
 # Used in the 'Button / Link' plugin
 
@@ -158,10 +165,16 @@ SPECIAL_LINKS_CHOICES =(
     # ('members:register', _(u'Member Register')),
     # ('members:password_reset_recover', _(u'Member Reset Passwort')),
     ('contact:request', _(u'Contact Form')),
-) + get_additional_choices('SPECIAL_LINKS_CHOICES')
+)
 
 ####################################################################################
 
-#
+# IMAGE
 
-#
+RATIO_CHOICES = (
+    ('2-1', '2:1'),
+    ('4-3', '4:3'),
+    ('1-1', '1:1'),
+    ('16-9', '16:9'),
+    ('x-y', 'Original'),
+)

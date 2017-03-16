@@ -5,6 +5,7 @@ from cms.models import CMSPlugin
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
 
+from allink_core.allink_base.utils import get_additional_templates
 from .models import AllinkContentPlugin, AllinkContentColumnPlugin
 from .forms import AllinkContentPluginForm, AllinkContentColumnPluginForm
 
@@ -75,7 +76,7 @@ class CMSAllinkContentPlugin(CMSPluginBase):
     def save_model(self, request, obj, form, change):
         response = super(CMSAllinkContentPlugin, self).save_model(request, obj, form, change)
         if obj.numchild == 0:
-            column_amount = AllinkContentPlugin.COLUMN_AMOUNT[form.cleaned_data['template']]
+            column_amount = AllinkContentPlugin.get_template_column_count(form.cleaned_data['template'])
 
             for x in range(int(column_amount)):
                 col = AllinkContentColumnPlugin(
@@ -87,7 +88,6 @@ class CMSAllinkContentPlugin(CMSPluginBase):
                 )
                 col.save()
         return response
-
 
 @plugin_pool.register_plugin
 class CMSAllinkContentColumnPlugin(CMSPluginBase):

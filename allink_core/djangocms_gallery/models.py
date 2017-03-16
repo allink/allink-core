@@ -7,7 +7,8 @@ from cms.models.pluginmodel import CMSPlugin
 from filer.fields.image import FilerImageField
 from djangocms_text_ckeditor.fields import HTMLField
 
-from allink_core.allink_base.models.choices import TITLE_CHOICES, H1
+from allink_core.allink_base.utils import get_additional_choices
+from allink_core.allink_base.models.choices import BLANK_CHOICE, RATIO_CHOICES, TITLE_CHOICES, H1
 
 
 
@@ -39,6 +40,13 @@ class AllinkGalleryPlugin(CMSPlugin):
         choices=TEMPLATES,
         default=TEMPLATES[0]
     )
+    ratio = models.CharField(
+        _(u'Ratio'),
+        max_length=50,
+        choices=RATIO_CHOICES,
+        blank=True,
+        null=True
+    )
 
     def __str__(self):
         if self.title and self.template:
@@ -47,6 +55,9 @@ class AllinkGalleryPlugin(CMSPlugin):
             return u'({})'.format(self.template)
         return str(self.pk)
 
+    @classmethod
+    def get_ratio_choices(cls):
+        return BLANK_CHOICE + RATIO_CHOICES + get_additional_choices('RATIO_CHOICES')
 
 @python_2_unicode_compatible
 class AllinkGalleryImagePlugin(CMSPlugin):

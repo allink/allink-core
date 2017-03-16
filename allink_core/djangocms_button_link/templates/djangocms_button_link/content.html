@@ -2,7 +2,7 @@
 
 {% spaceless %}
 
-    <div class="button-link-container">
+    <div class="button-link-container {{ instance.css_classes }}">
 
         <ul>
             {% for plugin in instance.child_plugin_instances %}

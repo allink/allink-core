@@ -93,10 +93,12 @@ class AllinkBasePluginLoadMoreView(ListView):
     def json_response(self, context):
         context.update({'request': self.request})
         context.update({'instance': self.plugin})
+        context.update({'is_ajax': True})
         if self.plugin.paginated_by > 0:
             if context['page_obj'].number > 1:
                 context.update({'appended': True})
         json_context = {}
+        # <cms-plugin class="cms-plugin-text-node cms-plugin cms-plugin-blog-events-title-16 cms-render-model">Infoabend Bildungsgang Farbgestaltung am Bau</cms-plugin>
         json_context['rendered_content'] = render_to_string(self.get_template_names()[0], context=context, request=context['request'])
         if self.plugin.paginated_by > 0 and context['page_obj'].has_next():  # no need to create next_page_url when no pagination should be displayed
             json_context['next_page_url'] = reverse('{}:more'.format(self.model._meta.model_name), kwargs={'page': context['page_obj'].next_page_number()}) + '?api_request=1&plugin_id={}'.format(self.plugin.id)

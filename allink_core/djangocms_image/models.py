@@ -7,7 +7,8 @@ from djangocms_attributes_field.fields import AttributesField
 from cms.models.pluginmodel import CMSPlugin
 from filer.fields.image import FilerImageField
 
-from allink_core.allink_base.utils import get_additional_templates
+from allink_core.allink_base.models.choices import BLANK_CHOICE, RATIO_CHOICES
+from allink_core.allink_base.utils import get_additional_templates, get_additional_choices
 from allink_core.allink_base.models.reusable_fields import AllinkLinkFieldsModel
 from allink_core.allink_base.models.model_fields import CMSPluginField
 
@@ -46,6 +47,13 @@ class AllinkImagePlugin(AllinkLinkFieldsModel, CMSPlugin):
         help_text=_(u'If provided, overrides the embedded image. '
                     u'Certain options such as cropping are not applicable to external images.')
     )
+    ratio = models.CharField(
+        _(u'Ratio'),
+        max_length=50,
+        choices=RATIO_CHOICES,
+        blank=True,
+        null=True
+    )
     caption_text = models.TextField(
         verbose_name=_(u'Caption text'),
         blank=True,
@@ -78,6 +86,17 @@ class AllinkImagePlugin(AllinkLinkFieldsModel, CMSPlugin):
             return self.picture.label
         return str(self.pk)
 
+    @classmethod
+    def get_templates(cls):
+        templates = cls.TEMPLATES
+        for x, y in get_additional_templates('AllinkImagePlugin'):
+            templates += ((x, y),)
+        return templates
+
+    @classmethod
+    def get_ratio_choices(cls):
+        return BLANK_CHOICE + RATIO_CHOICES + get_additional_choices('RATIO_CHOICES')
+
     def get_short_description(self):
         if self.external_picture:
             return self.external_picture
@@ -88,15 +107,12 @@ class AllinkImagePlugin(AllinkLinkFieldsModel, CMSPlugin):
     def copy_relations(self, oldinstance):
         self.picture = oldinstance.picture
 
-    def get_templates(self):
-        for x, y in get_additional_templates('AllinkImagePlugin'):
-            self.TEMPLATES += ((x, y),)
-        return self.TEMPLATES
 
-    # def clean(self):
-    #     # you shall only set one image kind
-    #     if not self.picture and not self.external_picture:
-    #         raise ValidationError(
-    #             ugettext('You need to add either an image, '
-    #                      'or a URL linking to an external image.')
-    #         )
+
+        # def clean(self):
+        #     # you shall only set one image kind
+        #     if not self.picture and not self.external_picture:
+        #         raise ValidationError(
+        #             ugettext('You need to add either an image, '
+        #                      'or a URL linking to an external image.')
+        #         )

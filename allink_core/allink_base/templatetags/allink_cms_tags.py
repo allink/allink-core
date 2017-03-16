@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django import template
 from cms.models import Page
+from cms.templatetags.cms_tags import CMSEditableObject
 
 register = template.Library()
 
@@ -8,3 +9,24 @@ register = template.Library()
 @register.simple_tag
 def page_from_slug(slug):
     return Page.objects.get(slug=slug)
+
+
+class CMSEditableObjectAjax(CMSEditableObject):
+    """
+    Used to render correct title (with editable double click)
+    """
+    edit_template_ajax = 'templatetags/allink_plugin_ajax.html'
+
+    def _is_ajax(self, request):
+        return request.is_ajax()
+
+    def get_template(self, context, **kwargs):
+        if self._is_editable(context.get('request', None)):
+            if self._is_ajax(context.get('request', None)):
+                return self.edit_template_ajax
+            else:
+                return self.edit_template
+        return self.template
+
+
+register.tag('render_model_ajax', CMSEditableObjectAjax)

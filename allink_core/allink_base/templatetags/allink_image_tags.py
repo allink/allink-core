@@ -111,6 +111,10 @@ def render_content_image(context,thumbnail_url=None,icon_disabled=False,bg_disab
             thumbnail_url = 'col-1-of-6'
             icon_disabled = True
             bg_disabled = True
+        # fallback for additional templtaes in settings.py
+        else:
+            thumbnail_url = 'col-1'
+
 
     # add different BREAKPOINT and RETINA suffixes
     thumbnail_url_xs = thumbnail_url+'-xs'

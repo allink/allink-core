@@ -11,7 +11,6 @@ def base_url():
         _base_url = 'http://' + Site.objects.get_current().domain
     return _base_url
 
-
 def get_additional_templates(model_name):
     """
     Get additional templates choices from settings for model_name

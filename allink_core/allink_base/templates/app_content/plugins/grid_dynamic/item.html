@@ -1,4 +1,4 @@
-{% load cms_tags sekizai_tags i18n thumbnail allink_image_tags %}
+{% load cms_tags allink_cms_tags sekizai_tags i18n thumbnail allink_image_tags %}
 
 <div class="grid-item {% if appended %}appended{% endif %}">
     <div class="manage-spacings">
@@ -16,7 +16,7 @@
         {% if object.title %}
             <div class="heading-container">
                 <h2 class="heading">
-                    {% render_model object "title" %}
+                    {% render_model_ajax object "title" %}
                 </h2>
             </div>
         {% endif %}

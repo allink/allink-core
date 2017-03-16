@@ -118,13 +118,15 @@
                         {# utility block #}
                         {% block col_container_before %}{% endblock col_container_before %}
                         <div class="col-container">
-                            {# utility block #}
-                            {% block col_container_inner_before %}{% endblock col_container_inner_before %}
-                            {% for plugin in instance.child_plugin_instances %}
-                                {% render_plugin plugin %}
-                            {% endfor %}
-                            {# utility block #}
-                            {% block col_container_inner_after %}{% endblock col_container_inner_after %}
+                            <div class="col-container-inner">
+                                {# utility block #}
+                                {% block col_container_inner_before %}{% endblock col_container_inner_before %}
+                                {% for plugin in instance.child_plugin_instances %}
+                                    {% render_plugin plugin %}
+                                {% endfor %}
+                                {# utility block #}
+                                {% block col_container_inner_after %}{% endblock col_container_inner_after %}
+                            </div>
                         </div>
                         {# utility block #}
                         {% block col_container_after %}{% endblock col_container_after %}

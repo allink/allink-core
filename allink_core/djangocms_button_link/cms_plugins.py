@@ -36,20 +36,10 @@ class CMSAllinkButtonLinkPlugin(CMSPluginBase):
     class Media:
         js = (
             'build/djangocms_custom_admin_scripts.js',
-            # 'aldryn_bootstrap3/js/jquery.min.js',
-            # 'aldryn_bootstrap3/js/bootstrap.min.js',
-            # 'aldryn_bootstrap3/js/iconset/iconset-glyphicon.min.js',
-            # 'aldryn_bootstrap3/js/iconset/iconset-fontawesome-4.2.0.min.js',
-            # 'aldryn_bootstrap3/js/bootstrap-iconpicker.min.js',
-            # 'aldryn_bootstrap3/js/base.js',
         )
         css = {
              'all': (
                  'build/djangocms_custom_admin_style.css',
-                 # 'aldryn_bootstrap3/css/bootstrap.min.css',
-                 # 'aldryn_bootstrap3/css/bootstrap-iconpicker.min.css',
-                 # 'aldryn_bootstrap3/css/font-awesome.min.css',
-                 # 'aldryn_bootstrap3/css/base.css',
 
              )
         }

@@ -20,6 +20,7 @@ class CMSAllinkImagePlugin(CMSPluginBase):
                 'fields': (
                     'picture',
                     'external_picture',
+                    'ratio',
                 )
             }),
             (_('Advanced settings'), {

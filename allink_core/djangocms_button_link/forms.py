@@ -22,11 +22,6 @@ class AllinkButtonLinkPluginForm(forms.ModelForm):
         required=False,
     )
 
-    def for_site(self, site):
-        # override the page_link fields queryset to containt just pages for
-        # current site
-        self.fields['link_page'].queryset = cms.models.Page.objects.drafts().on_site(site)
-
     class Meta:
         model = AllinkButtonLinkPlugin
         exclude = (
@@ -41,6 +36,16 @@ class AllinkButtonLinkPluginForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(AllinkButtonLinkPluginForm, self).__init__(*args, **kwargs)
         self.fields['link_attributes'].widget = AttributesWidget()
+        self.fields['link_special'] = forms.CharField(
+            label=_(u'Special Links'),
+            widget=forms.Select(choices=self.instance.get_link_special_choices()),
+            required=False,
+        )
+
+    def for_site(self, site):
+        # override the page_link fields queryset to containt just pages for
+        # current site
+        self.fields['link_page'].queryset = cms.models.Page.objects.drafts().on_site(site)
 
     def _get_media(self):
         """

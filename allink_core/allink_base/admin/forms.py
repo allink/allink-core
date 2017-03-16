@@ -74,10 +74,9 @@ class AllinkBaseAppContentPluginForm(forms.ModelForm):
                     model_names__contains=[self._meta.model.data_model._meta.model_name]
                 )
             )
-
         self.fields['filter_fields'] = forms.MultipleChoiceField(
             label=_(u'Filter Fields'),
-            help_text=_(u'For each choice a Select Dropdown will be displayed.'),
+            help_text=_(u'A Select Dropdown will be displayed for this Field.'),
             choices=self.instance.FILTER_FIELD_CHOICES,
             widget=forms.CheckboxSelectMultiple,
             required=False
@@ -87,8 +86,15 @@ class AllinkBaseAppContentPluginForm(forms.ModelForm):
             widget=forms.Select(choices=self.instance.get_templates()),
             required=True,
         )
+        self.fields['bg_color'] = forms.CharField(
+            label=_(u'Set a predefined background color'),
+            widget=forms.Select(choices=self.instance.get_project_color_choices()),
+            required=False,
+        )
         self.fields['manual_ordering'] = forms.CharField(
             label=_(u'Ordering'),
             required=False,
             widget=forms.Select(choices=self.instance.get_ordering_choices())
         )
+
+

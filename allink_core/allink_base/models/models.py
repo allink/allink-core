@@ -2,7 +2,7 @@
 from django.conf import settings
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _, ugettext
 from django.contrib.postgres.fields import ArrayField
 
 from cms.models.pluginmodel import CMSPlugin
@@ -13,7 +13,7 @@ from model_utils.fields import AutoCreatedField, AutoLastModifiedField
 from allink_core.allink_base.utils import get_additional_templates
 from allink_core.allink_categories.models import AllinkCategory
 
-from .choices import TITLE_CHOICES, H1
+from .choices import BLANK_CHOICE, TITLE_CHOICES, H1
 from . import model_fields
 from .managers import AllinkBaseModelManager
 from .reusable_fields import AllinkMetaTagFieldsModel
@@ -172,9 +172,10 @@ class AllinkBasePlugin(CMSPlugin):
         help_text=_(u'If checked, an inner container with a maximum width is added'),
         default=True
     )
-    bg_color = models.IntegerField(
+    bg_color = models.CharField(
         _(u'Set a predefined background color'),
-        choices=enumerate(settings.PROJECT_COLORS),
+        choices=settings.PROJECT_COLORS,
+        max_length=50,
         blank=True,
         null=True
     )
@@ -196,6 +197,10 @@ class AllinkBasePlugin(CMSPlugin):
     class Meta:
         abstract = True
 
+    @classmethod
+    def get_project_color_choices(cls):
+        return BLANK_CHOICE + settings.PROJECT_COLORS
+
     @property
     def base_classes(self):
         css_classes = []
@@ -203,7 +208,7 @@ class AllinkBasePlugin(CMSPlugin):
         css_classes.append('section-heading-{}'.format(self.title_size)) if self.title_size else None
         css_classes.append("has-bg-color") if self.bg_color else None
         css_classes.append("has-bg-image") if self.bg_image_outer_container else None
-        css_classes.append(self.get_bg_color_display()) if self.bg_color else None
+        css_classes.append(self.bg_color) if self.bg_color else None
         return css_classes
 
     def get_app_can_have_categories(self):
@@ -312,7 +317,6 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
     filter_fields = ArrayField(models.CharField(
         max_length=50,
         choices=FILTER_FIELD_CHOICES,),
-        help_text=_(u'For each choice a Select Dropdown will be displayed.'),
         blank=True,
         null=True,
         default=None
@@ -339,12 +343,12 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
         AllinkCategory,
         related_name='%(app_label)s_%(class)s_category_navigation',
         verbose_name=_(u'Categories for Navigation'),
-        help_text=_(u'You can explicitly define the categories for the category navigation here. This will override the automatically set of categories. (Either the one generated from "Filter & Ordering" or "Manual entries")'),
+        help_text=_(u'You can explicitly define the categories for the category navigation here. This will override the automatically set of categories (either the one generated from "Filter & Ordering" or "Manual entries")'),
         blank=True,
     )
     softpage_enabled = models.BooleanField(
         _(u'Show detailed information in Softpage'),
-        help_text=_(u'If checked, the detail view of an entry will be displayed in a "softpage". Otherwise the page will be reloaded)'),
+        help_text=_(u'If checked, the detail view of an entry will be displayed in a "softpage". Otherwise the page will be reloaded.'),
         default=True
     )
     detail_link_enabled = models.BooleanField(
@@ -392,6 +396,17 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
             return u'{}'.format(self.title)
         return str(self.pk)
 
+    @classmethod
+    def get_templates(cls):
+        templates = cls.TEMPLATES
+        for x, y in get_additional_templates(cls.data_model._meta.model_name):
+            templates += ((x, y),)
+        return templates
+
+    @classmethod
+    def get_ordering_choices(cls):
+        return cls.ORDERING
+
     @property
     def css_classes(self):
         css_classes = self.base_classes
@@ -403,27 +418,50 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
         self.categories = oldinstance.categories.all()
         self.category_navigation = oldinstance.category_navigation.all()
 
-    def get_templates(self):
-        for x, y in get_additional_templates(self.data_model._meta.model_name):
-            self.TEMPLATES += ((x, y),)
-        return self.TEMPLATES
-
-    def get_ordering_choices(self):
-        return self.ORDERING
-
     def get_model_name(self):
         return self.data_model._meta.model_name
 
+    def get_fk_model(self, fieldname):
+        """
+        returns None if not foreignkey, otherswise the relevant model
+        """
+        from django.db.models import ForeignKey
+        field_object, model, direct, m2m = self.data_model._meta.get_field_by_name(fieldname)
+        if (direct and isinstance(field_object, ForeignKey)) or (direct and m2m):
+            return field_object.rel.to
+        return None
+
+    def get_distinct_values_of_field(self, fieldname):
+        """
+        returns distinct values_list for fieldname
+        """
+        return self.get_render_queryset_for_display().order_by().values_list(fieldname).distinct()
+
+
     def get_filter_fields_with_options(self):
         """
-        :param field:
-         name of model field
-        :return:
-         dict with all filter fields and there distinct values of the particular model field
+        returns dict with all filter fields and there distinct values of the particular model field
+        (e.g. list of {categories: [(10, 'News')..], place: [2, 'Zürich']}
+        TODO: at the moment only one value for "filter_fields" is supported. (makes "load more" logic simpler)
         """
         options = {}
-        for field in self.filter_fields:
-            options.update({field: self.get_render_queryset_for_display().order_by().values_list(field).distinct()})
+        for fieldname in self.filter_fields:
+            # field is foreignkey or m2m, so we have to get the verbose name form the model itself
+            filters = [((None, _(u'All'),))]
+            if self.get_fk_model(fieldname):
+                filters.extend((entry.id, entry.__unicode__(),) for entry in
+                               self.get_fk_model(fieldname).objects.filter(
+                                   id__in=self.get_distinct_values_of_field(fieldname)))
+                try:
+                    # for apps with verbose names changed in allink_config
+                    verbose_name = self.get_fk_model(fieldname).get_verbose_name()
+                except:
+                    verbose_name = self.get_fk_model(fieldname)._meta.verbose_name_plural
+                options.update({verbose_name: filters})
+            # field is no foreignkey and no m2m
+            else:
+                filters.extend((value[0], value[0],) for value in self.get_distinct_values_of_field(fieldname))
+                options.update({fieldname: filters})
         return options
 
     def get_first_category(self):

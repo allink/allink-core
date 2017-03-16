@@ -23,6 +23,7 @@ class CMSAllinkGalleryPlugin(CMSPluginBase):
                     'title',
                     'title_size',
                     'template',
+                    'ratio',
                 ),
             }),
         )

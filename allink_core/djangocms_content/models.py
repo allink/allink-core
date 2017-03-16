@@ -2,6 +2,7 @@
 
 from django.db import models
 from django.core.exceptions import ValidationError
+from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.html import strip_tags
@@ -10,6 +11,7 @@ from cms.models.pluginmodel import CMSPlugin
 from filer.fields.image import FilerImageField
 from filer.fields.file import FilerFileField
 
+from allink_core.allink_base.utils import get_additional_templates
 from allink_core.allink_base.models import AllinkBasePlugin
 from allink_core.allink_base.models.choices import HORIZONTAL_ALIGNMENT_CHOICES, CENTER
 
@@ -32,35 +34,23 @@ class AllinkContentPlugin(AllinkBasePlugin):
     COL_5 = 'col-5'
     COL_6 = 'col-6'
 
-    COLUMN_AMOUNT = dict([
-        (COL_1, 1),
-        (COL_1_1, 2),
-        (COL_2_1, 2),
-        (COL_1_2, 2),
-        (COL_3, 3),
-        (COL_4, 4),
-        (COL_5, 5),
-        (COL_6, 6),
-    ])
-
+    # name | verbose_name | column_count
     TEMPLATES = (
-        (COL_1, '1 Column'),
-        (COL_1_1, '2 Columns (1:1)'),
-        (COL_2_1, '2 Columns (2:1)'),
-        (COL_1_2, '2 Columns (1:2)'),
-        (COL_3, '3 Columns'),
-        (COL_4, '4 Columns'),
-        (COL_5, '5 Columns'),
-        (COL_6, '6 Columns'),
+        (COL_1, '1 Column', 1, 'col-3-of-3'),
+        (COL_1_1, '2 Columns (1:1)', 2, 'col-1-of-2'),
+        (COL_2_1, '2 Columns (2:1)', 2, 'col-1-of-3'),
+        (COL_1_2, '2 Columns (1:2)', 2, 'col-2-of-3'),
+        (COL_3, '3 Columns', 3, 'col-1-of-3'),
+        (COL_4, '4 Columns', 4, 'col-1-of-4'),
+        (COL_5, '5 Columns', 5, 'col-1-of-5'),
+        (COL_6, '6 Columns', 6, 'col-1-of-6'),
     )
 
     # General Fields
     template = models.CharField(
         _(u'Template'),
         help_text=_(u'Choose a template.'),
-        max_length=50,
-        choices=TEMPLATES,
-        default=TEMPLATES[0]
+        max_length=50
     )
     overlay_styles_enabled = models.BooleanField(
         _(u'Activate overlay styles'),
@@ -119,6 +109,33 @@ class AllinkContentPlugin(AllinkBasePlugin):
     def __str__(self):
         return str(self.id)
 
+    @classmethod
+    def get_templates(cls):
+        templates = cls.TEMPLATES
+        for a, b, c, d in get_additional_templates('AllinkContent'):
+            templates += (( a, b, c, d),)
+        return templates
+
+    @classmethod
+    def get_template_choices(cls):
+        choices = ()
+        for template in cls.get_templates():
+            choices += ((template[0], template[1]),)
+        return choices
+
+    @classmethod
+    def get_template_column_count(cls, name):
+        for template in cls.get_templates():
+            if template[0] == name:
+                return template[2]
+
+    @classmethod
+    def get_template_column_count(cls, name):
+        for template in cls.get_templates():
+            if template[0] == name:
+                return template[2]
+
+
     def get_short_description(self):
         """
          for better overview in structure mode
@@ -146,6 +163,7 @@ class AllinkContentPlugin(AllinkBasePlugin):
                 _('Incorrect file type: %(value)s'),
                 params={'value': self.video_file.extension},
             )
+
 
     @property
     def css_classes(self):
@@ -181,9 +199,25 @@ class AllinkContentColumnPlugin(CMSPlugin):
         blank=True,
         null=True
     )
+    alignment_horizontal_desktop = models.CharField(
+        _(u'Alignment horizontal desktop'),
+        max_length=50,
+        choices=HORIZONTAL_ALIGNMENT_CHOICES,
+        help_text=_(u'This option overrides the projects default alignment for desktop. (Usually "left")'),
+        blank=True,
+        null=True
+    )
+    alignment_horizontal_mobile = models.CharField(
+        _(u'Alignment horizontal mobile'),
+        max_length=50,
+        choices=HORIZONTAL_ALIGNMENT_CHOICES,
+        help_text=_(u'This option overrides the projects default alignment for mobile. (Usually "left")'),
+        blank=True,
+        null=True
+    )
     order_mobile = models.IntegerField(
         _(u'Order Mobile'),
-        help_text=_(u'If some columns should be ordered different on mobile devices, this option allows you to so.'),
+        help_text=_(u'Some columns should be ordered differently on mobile devices when columns are stacked vertically. This option allows you to define the position of the this column.<br><br>Note: Columns ordering is ascending (lowest number displayed first)'),
         blank=True,
         null=True
     )
@@ -199,10 +233,18 @@ class AllinkContentColumnPlugin(CMSPlugin):
             self.order_mobile = self.position
         super(AllinkContentColumnPlugin, self).save()
 
+    # def get_thumbnail_alias(self):
+    #     for template in self.parent.djangocms_content_allinkcontentplugin.get_templates():
+    #         if template[0] == self.template:
+    #             return template[3]
+
     @property
     def css_classes(self):
         css_classes = []
         css_classes.append('col-empty') if self.num_children() == 0 else None
+        css_classes.append('align-h-desktop-{}'.format(self.alignment_horizontal_desktop)) if self.alignment_horizontal_desktop else None
+        css_classes.append('align-h-mobile-{}'.format(self.alignment_horizontal_mobile)) if self.alignment_horizontal_mobile else None
+        css_classes.append('col-order-mobile-{}'.format(self.order_mobile))
         return ' '.join(css_classes)
 
     @property

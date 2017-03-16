@@ -4,7 +4,6 @@ from __future__ import unicode_literals
 import django
 
 from django.db import models
-from django.conf import settings
 from django.contrib.postgres.fields import ArrayField
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
@@ -77,8 +76,8 @@ class AllinkCategory(TranslatedAutoSlugifyMixin, TranslationHelperMixin,
     )
 
     class Meta:
-        verbose_name = _('category')
-        verbose_name_plural = _('categories')
+        verbose_name = _('Category')
+        verbose_name_plural = _('Categories')
 
     objects = CategoryManager()
 
