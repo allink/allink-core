@@ -25,6 +25,7 @@ ALLINK_INSTALLED_APPS = [
     'allink_core.allink_terms',
 
     # allink apps
+    'allink_apps.members',
     'allink_apps.locations',
     'allink_apps.people',
     'allink_apps.work',
