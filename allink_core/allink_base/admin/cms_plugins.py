@@ -64,7 +64,7 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
                 'fields': (
                     'categories',
                     'manual_ordering',
-                    'filter_fields',
+                    # 'filter_fields',
                 )
             }),
 
@@ -180,8 +180,8 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
         if instance.category_navigation_enabled:
             context.update({'by_category': reverse('{}:more'.format(self.data_model._meta.model_name), kwargs={'page': 1}) + '?api_request=1' + '&plugin_id={}'.format(instance.id)})
 
-        if instance.filter_fields:
-            context.update({'filter_fields': instance.get_filter_fields_with_options()})
+        # if instance.filter_fields:
+        #     context.update({'filter_fields': instance.get_filter_fields_with_options()})
 
         context['instance'] = instance
         context['placeholder'] = placeholder

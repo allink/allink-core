@@ -3,10 +3,10 @@
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.admin.widgets import FilteredSelectMultiple
 from django import forms
+from django.conf import settings
 
 from parler.forms import TranslatableModelForm
 
-from allink_core.allink_base.utils import get_additional_choices
 from allink_core.allink_categories.models import AllinkCategory
 from allink_core.allink_base.models import AllinkBaseAppContentPlugin
 
@@ -75,13 +75,13 @@ class AllinkBaseAppContentPluginForm(forms.ModelForm):
                     model_names__contains=[self._meta.model.data_model._meta.model_name]
                 )
             )
-        self.fields['filter_fields'] = forms.MultipleChoiceField(
-            label=_(u'Filter Fields'),
-            help_text=_(u'A Select Dropdown will be displayed for this Field.'),
-            choices=self.instance.FILTER_FIELD_CHOICES,
-            widget=forms.CheckboxSelectMultiple,
-            required=False
-        )
+        # self.fields['filter_fields'] = forms.MultipleChoiceField(
+        #     label=_(u'Filter Fields'),
+        #     help_text=_(u'A Select Dropdown will be displayed for this Field.'),
+        #     choices=self.instance.FILTER_FIELD_CHOICES,
+        #     widget=forms.CheckboxSelectMultiple,
+        #     required=False
+        # )
         self.fields['template'] = forms.CharField(
             label=_(u'Template'),
             widget=forms.Select(choices=self.instance.get_templates()),
@@ -92,10 +92,10 @@ class AllinkBaseAppContentPluginForm(forms.ModelForm):
             widget=forms.Select(choices=self.instance.get_project_color_choices()),
             required=False,
         )
-        if get_additional_choices('PROJECT_CSS_CLASSES'):
+        if settings.PROJECT_CSS_CLASSES:
             self.fields['project_css_classes'] = forms.MultipleChoiceField(
                 label=_(u'Predifined css classes'),
-                choices=get_additional_choices('PROJECT_CSS_CLASSES'),
+                choices=settings.PROJECT_CSS_CLASSES,
                 required=False,
             )
         self.fields['manual_ordering'] = forms.CharField(

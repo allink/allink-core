@@ -326,13 +326,13 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
         blank=True
     )
 
-    filter_fields = ArrayField(models.CharField(
-        max_length=50,
-        choices=FILTER_FIELD_CHOICES,),
-        blank=True,
-        null=True,
-        default=None
-    )
+    # filter_fields = ArrayField(models.CharField(
+    #     max_length=50,
+    #     choices=FILTER_FIELD_CHOICES,),
+    #     blank=True,
+    #     null=True,
+    #     default=None
+    # )
     # manual_entries  -> defined in subclasses (no elegant way found to define this here.)
 
     template = models.CharField(
