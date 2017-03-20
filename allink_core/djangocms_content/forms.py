@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django import forms
 from django.utils.translation import ugettext_lazy as _
-from django.conf import settings
+from allink_core.allink_base.utils import get_additional_choices
 from .models import AllinkContentPlugin, AllinkContentColumnPlugin
 
 
@@ -26,10 +26,10 @@ class AllinkContentPluginForm(forms.ModelForm):
             widget=forms.Select(choices=self.instance.get_project_color_choices()),
             required=False,
         )
-        if settings.PROJECT_CSS_CLASSES:
+        if get_additional_choices('PROJECT_CSS_CLASSES'):
             self.fields['project_css_classes'] = forms.MultipleChoiceField(
                 label=_(u'Predifined css classes'),
-                choices=settings.PROJECT_CSS_CLASSES,
+                choices=get_additional_choices('PROJECT_CSS_CLASSES'),
                 required=False,
             )
         if kwargs.get('instance'):

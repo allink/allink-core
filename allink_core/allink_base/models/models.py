@@ -188,7 +188,6 @@ class AllinkBasePlugin(CMSPlugin):
     )
     project_css_classes = ArrayField(
         models.CharField(
-            choices=settings.PROJECT_CSS_CLASSES,
             max_length=50,
             blank=True,
             null=True
@@ -211,7 +210,6 @@ class AllinkBasePlugin(CMSPlugin):
     def get_project_color_choices(cls):
         return BLANK_CHOICE + settings.PROJECT_COLORS
 
-
     @property
     def base_classes(self):
         css_classes = []
@@ -220,8 +218,9 @@ class AllinkBasePlugin(CMSPlugin):
         css_classes.append("has-bg-color") if self.bg_color else None
         css_classes.append("has-bg-image") if self.bg_image_outer_container else None
         css_classes.append(self.bg_color) if self.bg_color else None
-        for css_class in self.project_css_classes:
-            css_classes.append(css_class)
+        if getattr(self, 'project_css_classes'):
+            for css_class in getattr(self, 'project_css_classes'):
+                css_classes.append(css_class)
         return css_classes
 
     def get_app_can_have_categories(self):
