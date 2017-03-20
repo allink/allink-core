@@ -26,6 +26,12 @@ class AllinkContentPluginForm(forms.ModelForm):
             widget=forms.Select(choices=self.instance.get_project_color_choices()),
             required=False,
         )
+        if settings.PROJECT_CSS_CLASSES:
+            self.fields['project_css_classes'] = forms.MultipleChoiceField(
+                label=_(u'Predifined css classes'),
+                choices=settings.PROJECT_CSS_CLASSES,
+                required=False,
+            )
         if kwargs.get('instance'):
             if kwargs.get('instance').numchild != 0:
                 self.fields['template'].required = False

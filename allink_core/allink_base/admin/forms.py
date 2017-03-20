@@ -3,6 +3,7 @@
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.admin.widgets import FilteredSelectMultiple
 from django import forms
+from django.conf import settings
 
 from parler.forms import TranslatableModelForm
 
@@ -87,10 +88,16 @@ class AllinkBaseAppContentPluginForm(forms.ModelForm):
             required=True,
         )
         self.fields['bg_color'] = forms.CharField(
-            label=_(u'Set a predefined background color'),
+            label=_(u'Background color'),
             widget=forms.Select(choices=self.instance.get_project_color_choices()),
             required=False,
         )
+        if settings.PROJECT_CSS_CLASSES:
+            self.fields['project_css_classes'] = forms.MultipleChoiceField(
+                label=_(u'Predifined css classes'),
+                choices=settings.PROJECT_CSS_CLASSES,
+                required=False,
+            )
         self.fields['manual_ordering'] = forms.CharField(
             label=_(u'Ordering'),
             required=False,

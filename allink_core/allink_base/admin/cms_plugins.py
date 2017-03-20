@@ -114,6 +114,8 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
             'classes': ('collapse',),
             'fields': (
                 'detail_link_text',
+                'project_css_classes',
+                'extra_css_classes',
             )
         }),
 
@@ -151,7 +153,6 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
         return objects_list
 
     def render(self, context, instance, placeholder):
-
         # random ordering needs sessioncaching for objects_list
         if instance.manual_ordering == AllinkBaseAppContentPlugin.RANDOM:
             objects_list, path = context['request'].session.get("random_plugin_queryset_%s" % instance.id, ([], None))

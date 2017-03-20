@@ -4,6 +4,7 @@
 
 ALLINK_INSTALLED_APPS = [
     # apps
+    'debug_toolbar',
     'allauth',
     'allauth.account',
     'webpack_loader',
@@ -115,5 +116,6 @@ CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [
 
 
 ALLINK_MIDDLEWARE_CLASSES = [
-    'allink_core.allink_legacy_redirect.middleware.AllinkLegacyRedirectMiddleware'
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'allink_core.allink_legacy_redirect.middleware.AllinkLegacyRedirectMiddleware',
 ]
