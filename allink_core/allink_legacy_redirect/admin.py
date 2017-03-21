@@ -14,8 +14,8 @@ from .resources import AllinkLegacyLinkResource
 
 
 class AllinkLegacyLinkAdmin(ImportMixin, admin.ModelAdmin):
-    list_display = ['old', 'new', 'overwrite', 'active', 'match_subpages', 'last_test_result', 'last_test_date', 'manual_test']
-    list_editable = ['new', 'overwrite', 'active', 'match_subpages']
+    list_display = ['old', 'new_page', 'overwrite', 'active', 'match_subpages', 'last_test_result', 'last_test_date', 'manual_test']
+    list_editable = ['new_page', 'overwrite', 'active', 'match_subpages']
     readonly_fields = ['last_test_result', 'last_test_date']
     form = AllinkLegacyChangeAdminForm
     resource_class = AllinkLegacyLinkResource

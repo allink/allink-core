@@ -5,14 +5,20 @@ from requests.exceptions import ConnectionError, RequestException
 from django.contrib import messages
 from django.db import models
 from django.utils.timezone import now
-from django.utils.translation import ugettext, ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _
 from cms.models.fields import PageField
 from allink_core.allink_base.utils import base_url
+from allink_core.allink_base.models import SitemapField
 
 
 class AllinkLegacyLink(models.Model):
 
     old = models.CharField(_(u'Old Link'), max_length=255, unique=True)
+    new_page = SitemapField(
+        verbose_name=_(u'New Page'),
+        null=True,
+        help_text=_(u'If provided, gets overriden by external link.')
+    )
     new = PageField(
         verbose_name=_(u'New Page'),
         null=True,
@@ -56,7 +62,7 @@ class AllinkLegacyLink(models.Model):
     def test_redirect(self, request):
         result = False
         old_url = base_url() + self.old
-        new_path = self.overwrite if self.overwrite else self.new.get_slug()
+        new_path = self.overwrite if self.overwrite else self.new_page
         new_url = base_url() + '/' + new_path
         try:
             resp = requests.get(old_url)

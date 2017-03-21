@@ -37,12 +37,11 @@ class AllinkLegacyRedirectMiddleware(object):
         if link.overwrite:
             new_link = link.overwrite
         elif link.new:
-            new_link = link.new.get_absolute_url()
+            new_link = link.new_page
         else:
             return
 
-
-
-        if 'gclid' in request.GET:  # preserve Google Click Identifier
+        # preserve Google Click Identifier
+        if 'gclid' in request.GET:
             new_link += '?gclid=%s' % request.GET['gclid']
         return HttpResponsePermanentRedirect(new_link)

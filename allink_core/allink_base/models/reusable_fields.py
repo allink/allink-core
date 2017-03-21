@@ -3,7 +3,6 @@ import phonenumbers
 from urlparse import urlparse
 from django.core.urlresolvers import reverse
 from django.core.exceptions import ValidationError
-from django.core.validators import MaxValueValidator
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import force_text
@@ -257,8 +256,7 @@ class AllinkLinkFieldsModel(models.Model):
             'link_file',
         )
 
-        anchor_field_verbose_name = force_text(
-           self._meta.get_field_by_name(anchor_field_name)[0].verbose_name)
+        anchor_field_verbose_name = force_text(self._meta.get_field_by_name(anchor_field_name)[0].verbose_name)
         anchor_field_value = getattr(self, anchor_field_name)
 
         link_fields = {

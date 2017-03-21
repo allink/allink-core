@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-from django.utils.translation import ugettext_lazy as _
-from allink_core.allink_categories.models import AllinkCategory
 
 
 class AllinkManualEntriesMixin(object):
@@ -41,7 +39,6 @@ class AllinkManualEntriesMixin(object):
           - category: category instance
           - filter: list tuple with model fields and value
             -> adds additional query
-    
         """
         if self.categories.count() > 0 or category:
             """

@@ -1,10 +1,5 @@
 # -*- coding: utf-8 -*-
-from functools import partial
-import datetime
 from django.utils.translation import ugettext_lazy as _
-
-from allink_core.allink_base.utils import get_additional_choices
-
 
 
 ####################################################################################

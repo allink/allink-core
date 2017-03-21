@@ -5,14 +5,15 @@ from django.utils.deconstruct import deconstructible
 from django.template.defaultfilters import filesizeformat
 from django.utils.translation import ugettext_lazy as _
 
+
 @deconstructible
 class FileValidator(object):
     error_messages = {
-     'max_size': _(("Ensure this file size is not greater than %(max_size)s."
-                    " Your file size is %(size)s.")),
-     'min_size': _(("Ensure this file size is not less than %(min_size)s."
-                    " Your file size is %(size)s.")),
-     'extension': _("Files with extension %(extension)s are not supported."),
+        'max_size': _(("Ensure this file size is not greater than %(max_size)s."
+                       " Your file size is %(size)s.")),
+        'min_size': _(("Ensure this file size is not less than %(min_size)s."
+                       " Your file size is %(size)s.")),
+        'extension': _("Files with extension %(extension)s are not supported."),
     }
 
     def __init__(self, max_size=None, min_size=None, extensions=()):
