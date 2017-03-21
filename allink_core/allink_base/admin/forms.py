@@ -72,16 +72,16 @@ class AllinkBaseAppContentPluginForm(forms.ModelForm):
                     u'You can explicitly define the categories for the category navigation here. This will override the automatically set of categories. (From "Filter & Ordering" but not from the "Manual entries")'),
                 required=False,
                 queryset=AllinkCategory.objects.not_root().filter(
-                    model_names__contains=[self._meta.model.data_model._meta.model_name]
+                model_names__contains=[self._meta.model.data_model._meta.model_name]
                 )
             )
-        # self.fields['filter_fields'] = forms.MultipleChoiceField(
-        #     label=_(u'Filter Fields'),
-        #     help_text=_(u'A Select Dropdown will be displayed for this Field.'),
-        #     choices=self.instance.FILTER_FIELD_CHOICES,
-        #     widget=forms.CheckboxSelectMultiple,
-        #     required=False
-        # )
+        self.fields['filter_fields'] = forms.MultipleChoiceField(
+            label=_(u'Filter Fields'),
+            help_text=_(u'A Select Dropdown will be displayed for this Field.'),
+            choices=self.instance.FILTER_FIELD_CHOICES,
+            widget=forms.CheckboxSelectMultiple,
+            required=False
+        )
         self.fields['template'] = forms.CharField(
             label=_(u'Template'),
             widget=forms.Select(choices=self.instance.get_templates()),
@@ -92,12 +92,12 @@ class AllinkBaseAppContentPluginForm(forms.ModelForm):
             widget=forms.Select(choices=self.instance.get_project_color_choices()),
             required=False,
         )
-        # if get_additional_choices('PROJECT_CSS_CLASSES'):
-        #     self.fields['project_css_classes'] = forms.MultipleChoiceField(
-        #         label=_(u'Predifined css classes'),
-        #         choices=get_additional_choices('PROJECT_CSS_CLASSES'),
-        #         required=False,
-        #     )
+        if get_additional_choices('PROJECT_CSS_CLASSES'):
+            self.fields['project_css_classes'] = forms.MultipleChoiceField(
+                label=_(u'Predifined css classes'),
+                choices=get_additional_choices('PROJECT_CSS_CLASSES'),
+                required=False,
+            )
         self.fields['manual_ordering'] = forms.CharField(
             label=_(u'Ordering'),
             required=False,

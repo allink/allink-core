@@ -4,6 +4,7 @@ from django import forms
 
 from . import widgets
 
+
 class Classes(forms.fields.CharField):
     widget = forms.widgets.Textarea
 
@@ -24,5 +25,3 @@ class Icon(forms.fields.CharField):
 
 class ZipCode(forms.fields.IntegerField):
     widget = forms.widgets.NumberInput(attrs={'maxlength': 4})
-
-

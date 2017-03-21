@@ -2,7 +2,7 @@
 from django.conf import settings
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
-from django.utils.translation import ugettext_lazy as _, ugettext
+from django.utils.translation import ugettext_lazy as _
 from django.contrib.postgres.fields import ArrayField
 
 from cms.models.pluginmodel import CMSPlugin
@@ -14,7 +14,7 @@ from allink_core.allink_base.utils import get_additional_templates
 from allink_core.allink_categories.models import AllinkCategory
 
 from .choices import BLANK_CHOICE, TITLE_CHOICES, H1
-from . import model_fields
+from .model_fields import Classes
 from .managers import AllinkBaseModelManager
 from .reusable_fields import AllinkMetaTagFieldsModel
 
@@ -195,7 +195,7 @@ class AllinkBasePlugin(CMSPlugin):
         blank=True,
         null=True
     )
-    extra_css_classes = model_fields.Classes()
+    extra_css_classes = Classes()
 
     cmsplugin_ptr = models.OneToOneField(
         CMSPlugin,
@@ -326,13 +326,13 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
         blank=True
     )
 
-    # filter_fields = ArrayField(models.CharField(
-    #     max_length=50,
-    #     choices=FILTER_FIELD_CHOICES,),
-    #     blank=True,
-    #     null=True,
-    #     default=None
-    # )
+    filter_fields = ArrayField(models.CharField(
+        max_length=50,
+        choices=FILTER_FIELD_CHOICES,),
+        blank=True,
+        null=True,
+        default=None
+    )
     # manual_entries  -> defined in subclasses (no elegant way found to define this here.)
 
     template = models.CharField(

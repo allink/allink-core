@@ -19,6 +19,7 @@ from treebeard.ns_tree import NS_Node, NS_NodeManager, NS_NodeQuerySet
 
 LANGUAGE_CODES = appsettings.PARLER_LANGUAGES.get_active_choices()
 
+
 class CategoryQuerySet(TranslatableQuerySet, NS_NodeQuerySet):
     pass
 
@@ -41,7 +42,7 @@ class CategoryManager(TranslatableManager, NS_NodeManager):
 
 @python_2_unicode_compatible
 class AllinkCategory(TranslatedAutoSlugifyMixin, TranslationHelperMixin,
-               TranslatableModel, NS_Node):
+                     TranslatableModel, NS_Node):
     """
       A category is hierarchical. The structure is implemented with django-
       treebeard's Nested Sets trees, which has the performance characteristics
