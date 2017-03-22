@@ -9,7 +9,6 @@ from aldryn_translation_tools.admin import AllTranslationsMixin
 
 from .forms import AllinkBaseAdminForm
 
-# TEST
 
 class AllinkBaseAdminBase(AllTranslationsMixin, TranslatableAdmin):
     """
