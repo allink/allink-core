@@ -190,4 +190,4 @@ class SitemapField(models.TextField):
 
     def __init__(self, *args, **kwargs):
         super(SitemapField, self).__init__(*args, **kwargs)
-        self.choices = choices_from_sitemaps()
+        # self.choices = choices_from_sitemaps()

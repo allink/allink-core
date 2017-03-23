@@ -2,7 +2,7 @@
 
 Each release is divided into the following main categories:
 
-- IMPORTANT: These changes might not be backward compatible and require updating existing code.
+- IMPORTANT: These changes might not be  backward compatible and require updating existing code.
 - NEW: New features or plugins
 - FIXES: General bugfixes
 
@@ -10,7 +10,9 @@ Each release is divided into the following main categories:
 
 ### IMPORTANT
 
-- TBD
+
+###### DATA MIGRATIONS
+- allink_legacy_redirect has to be manually migrated because migration '0006_auto_20170320_0702' was not working correctly.
 
 ### NEW
 

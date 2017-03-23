@@ -10,23 +10,23 @@ import allink_core.allink_base.models.model_fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('allink_legacy_redirect', '0005_allinklegacylink_new_page'),
+        ('allink_legacy_redirect', '0007_auto_20170321_0320'),
     ]
 
     operations = [
         migrations.AlterField(
             model_name='allinklegacylink',
             name='active',
-            field=models.BooleanField(default=True, verbose_name='Actif'),
+            field=models.BooleanField(default=True, verbose_name='Active'),
         ),
         migrations.AlterField(
             model_name='allinklegacylink',
             name='new',
-            field=cms.models.fields.PageField(on_delete=django.db.models.deletion.SET_NULL, verbose_name='Nouvelle page', to='cms.Page', help_text='If provided, overrides the external link.', null=True),
+            field=cms.models.fields.PageField(on_delete=django.db.models.deletion.SET_NULL, verbose_name='New Page', to='cms.Page', help_text='If provided, overrides the external link.', null=True),
         ),
         migrations.AlterField(
             model_name='allinklegacylink',
             name='new_page',
-            field=allink_core.allink_base.models.model_fields.SitemapField(help_text='If provided, gets overriden by external link.', null=True, verbose_name='Nouvelle page'),
+            field=allink_core.allink_base.models.model_fields.SitemapField(help_text='If provided, gets overriden by external link.', null=True, verbose_name='New Page'),
         ),
     ]
