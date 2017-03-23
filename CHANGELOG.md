@@ -11,10 +11,9 @@ Each release is divided into the following main categories:
 - NEW: New features or plugins
 - FIXES: General bugfixes
 
-## v1.0.0
+## v0.0.6
 
 ### IMPORTANT
-
 
 ###### SETTINGS
 - PROJECT_COLORS is now a tuple and not a list anymore
