@@ -40,6 +40,7 @@ Each release is divided into the following main categories:
 ###### SETTINGS
 - PROJECT_COLORS is now a tuple and not a list anymore
 - CMS_PLACEHOLDER_CONF was supplemented with the placeholder fields from allink_apps
+- members and contacts migration folder was added to allink_settings, so you have to create folder(with "__init__.py") in apps/allink_apps_migrations. If you already have migrated contacts. you have to manually copy all migrations to the app specific folder.
 
 ###### TEMPLATES
 - new templates:
