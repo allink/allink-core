@@ -39,6 +39,7 @@ Each release is divided into the following main categories:
 
 ###### SETTINGS
 - PROJECT_COLORS is now a tuple and not a list anymore
+- CMS_PLACEHOLDER_CONF was supplemented with the placeholder fields from allink_apps
 
 ###### TEMPLATES
 - new templates:
@@ -46,6 +47,7 @@ Each release is divided into the following main categories:
    - admin/change_form.html
    - accounts/...
 - modificaton in base_root.html (new tag favicons)
+- modification in every plugin template form allink_apps 'object.show_detail_link' introduced.
 
 
 ###### URLS
