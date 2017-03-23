@@ -39,7 +39,7 @@ class AllinkLegacyLink(models.Model):
     match_subpages = models.BooleanField(
         _(u'Match subpages'),
         default=False,
-        help_text=_(u'If True, matches all subpages and redirects them to this link')
+        help_text=_(u'If True, matches all subpages and redirects them to this link.')
     )
     last_test_result = models.NullBooleanField(
         _(u'Result of last test'),
@@ -79,11 +79,10 @@ class AllinkLegacyLink(models.Model):
         else:
             # successfull request, test for history
             if resp.status_code == 200:
-
                 try:
                     # first history entry should be the redirect
                     redir = resp.history[0]
-                    if redir.status_code == 301:
+                    if redir.status_code == 302:
                         location = redir.headers.get(u'Location')
                         # location of redirect has to match
                         # Django 1.9 will send back relative urls
