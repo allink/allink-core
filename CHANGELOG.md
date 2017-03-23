@@ -11,6 +11,28 @@ Each release is divided into the following main categories:
 - NEW: New features or plugins
 - FIXES: General bugfixes
 
+
+
+## v0.0.7
+
+### IMPORTANT
+
+###### SETTINGS
+
+###### TEMPLATES
+
+###### URLS
+
+###### REQUIREMENTS
+
+###### DATA MIGRATIONS
+
+### NEW
+
+### FIXES
+
+
+
 ## v0.0.6
 
 ### IMPORTANT
