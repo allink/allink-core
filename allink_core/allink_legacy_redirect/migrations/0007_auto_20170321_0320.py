@@ -10,7 +10,7 @@ import allink_core.allink_base.models.model_fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('allink_legacy_redirect', '0006_auto_20170320_0702'),
+        ('allink_legacy_redirect', '0005_allinklegacylink_new_page'),
     ]
 
     operations = [
