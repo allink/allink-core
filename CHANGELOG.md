@@ -20,6 +20,7 @@ Each release is divided into the following main categories:
 - Content Plugin: Utility blocks added to default `content.html` that now can be extended on a project basis.
 - Content Plugin: Empty columns now get the class `col-empty` and are set to `display:none;` by default on mobile devices.
 - Content Plugin: Support for column ordering (for mobile only) has been added. Requires the latest `allink-core-static`.
+- Allink Legacy Redirects: Redirects for legacy URLs with GET parameters consider the parameters.
 
 ### FIXES
 
