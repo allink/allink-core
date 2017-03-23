@@ -2,7 +2,12 @@
 
 Each release is divided into the following main categories:
 
-- IMPORTANT: These changes might not be  backward compatible and require updating existing code.
+- IMPORTANT: These changes might not be backward compatible and require updating existing code. (If not applied correctly your update will fail)
+    - SETTINGS: change your setting.py accordingly
+    - TEMPLATES: if templates form allink_core are overriden, you have to double apply these changes
+    - URLS: changes to urls.py
+    - REQUIREMENTS: new or changed requirements
+    - DATA MIGRATIONS: stuff to migrate by hand or create data migrations manually
 - NEW: New features or plugins
 - FIXES: General bugfixes
 
@@ -11,8 +16,31 @@ Each release is divided into the following main categories:
 ### IMPORTANT
 
 
+###### SETTINGS
+- PROJECT_COLORS is now a tuple and not a list anymore
+
+###### TEMPLATES
+- new templates:
+   - admin/submit_line.html
+   - admin/change_form.html
+   - accounts/...
+- modificaton in base_root.html (new tag favicons)
+
+
+###### URLS
+- debug_toolbar urls added
+- contact urls added
+
+###### REQUIREMENTS
+- new
+    - django-polymorphic==0.8.1
+    - django-debug-toolbar==1.7
+
 ###### DATA MIGRATIONS
 - allink_legacy_redirect has to be manually migrated because migration '0006_auto_20170320_0702' was not working correctly.
+- blog: datamigrations blog polymorphic (see data migrations as reference [file](https://www.google.com))
+- blog: detail placeholderfield datamigrations
+- djangocms_image: (danach djangocms_picture delete table contents and uninstall
 
 ### NEW
 
