@@ -15,7 +15,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 from djangocms_attributes_field.fields import AttributesField
 
 from allink_core.allink_base.utils import get_additional_choices
-from .choices import SPECIAL_LINKS_CHOICES, TARGET_CHOICES, NEW_WINDOW, SOFTPAGE_LARGE, SOFTPAGE_SMALL, FORM_MODAL, IMAGE_MODAL
+from .choices import SPECIAL_LINKS_CHOICES, TARGET_CHOICES, NEW_WINDOW, SOFTPAGE_LARGE, SOFTPAGE_SMALL, FORM_MODAL, IMAGE_MODAL, BLANK_CHOICE
 from .model_fields import ZipCodeField
 
 
@@ -219,7 +219,7 @@ class AllinkLinkFieldsModel(models.Model):
 
     @classmethod
     def get_link_special_choices(self):
-        return SPECIAL_LINKS_CHOICES + get_additional_choices('SPECIAL_LINKS_CHOICES')
+        return BLANK_CHOICE + SPECIAL_LINKS_CHOICES + get_additional_choices('SPECIAL_LINKS_CHOICES')
 
     def get_link_url(self):
         if self.link_page_id:
