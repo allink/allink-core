@@ -2,12 +2,11 @@
 from django.utils.translation import ugettext_lazy as _
 from django.templatetags.static import static
 from cms.plugin_base import CMSPluginBase
-from allink_core.allink_base.utils import get_additional_templates
 from cms.plugin_pool import plugin_pool
 from .models import AllinkButtonLinkContainerPlugin, AllinkButtonLinkPlugin
 from .forms import AllinkButtonLinkContainerPluginForm, AllinkButtonLinkPluginForm
 
-#
+
 @plugin_pool.register_plugin
 class CMSAllinkButtonLinkContainerPlugin(CMSPluginBase):
     model = AllinkButtonLinkContainerPlugin
@@ -21,7 +20,7 @@ class CMSAllinkButtonLinkContainerPlugin(CMSPluginBase):
         template = 'djangocms_button_link/content.html'
         return template
 
-#
+
 @plugin_pool.register_plugin
 class CMSAllinkButtonLinkPlugin(CMSPluginBase):
     model = AllinkButtonLinkPlugin
@@ -38,10 +37,10 @@ class CMSAllinkButtonLinkPlugin(CMSPluginBase):
             'build/djangocms_custom_admin_scripts.js',
         )
         css = {
-             'all': (
-                 'build/djangocms_custom_admin_style.css',
+            'all': (
+                'build/djangocms_custom_admin_style.css',
 
-             )
+            )
         }
 
     fieldsets = (
@@ -84,6 +83,4 @@ class CMSAllinkButtonLinkPlugin(CMSPluginBase):
     def render(self, context, instance, placeholder):
         context = super(CMSAllinkButtonLinkPlugin, self).render(context, instance, placeholder)
 
-
         return context
-
