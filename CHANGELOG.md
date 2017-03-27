@@ -31,6 +31,7 @@ Each release is divided into the following main categories:
 ### NEW
 
 ### FIXES
+- Bugfix in djangocms_instagram: Added queryset length when no display option with paginated_by value
 
 
 
