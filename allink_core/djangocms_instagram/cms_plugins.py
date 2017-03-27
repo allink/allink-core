@@ -92,8 +92,7 @@ class CMSAllinkInstagramPlugin(CMSPluginBase):
                 image_urls_sample = random.sample(image_urls, instance.paginated_by)
                 context['object_list'] = image_urls_sample
             else:
-                context['object_list'] = image_urls
+                context['object_list'] = image_urls[:instance.paginated_by]
         else:
             context['object_list'] = []
-
         return context
