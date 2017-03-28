@@ -318,7 +318,15 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
     )
 
     # FIELDS
-    categories = models.ManyToManyField(AllinkCategory, blank=True)
+    categories = models.ManyToManyField(
+        AllinkCategory,
+        blank=True
+    )
+    categories_and = models.ManyToManyField(
+        AllinkCategory,
+        blank=True,
+        related_name='%(app_label)s_%(class)s_categories_and'
+    )
 
     manual_ordering = models.CharField(
         max_length=50,
@@ -428,6 +436,7 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
 
     def copy_relations(self, oldinstance):
         self.categories = oldinstance.categories.all()
+        self.categories_and = oldinstance.categories_and.all()
         self.category_navigation = oldinstance.category_navigation.all()
 
     def get_model_name(self):
@@ -448,7 +457,6 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
         returns distinct values_list for fieldname
         """
         return self.get_render_queryset_for_display().order_by().values_list(fieldname).distinct()
-
 
     def get_filter_fields_with_options(self):
         """
@@ -527,9 +535,12 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
             """
             if category:
                 queryset = self.data_model.objects.filter_by_category(category)
+                if self.categories_and.count() > 0:
+                    queryset.objects.filter_by_categories(self.categories_and)
             else:
                 queryset = self.data_model.objects.filter_by_categories(self.categories)
-
+                if self.categories_and.count() > 0:
+                    queryset.objects.filter_by_categories(self.categories_and)
             return self._apply_ordering_to_queryset_for_display(queryset)
 
         else:

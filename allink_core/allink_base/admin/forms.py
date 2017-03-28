@@ -62,6 +62,18 @@ class AllinkBaseAppContentPluginForm(forms.ModelForm):
                     model_names__contains=[self._meta.model.data_model._meta.model_name]
                 )
             )
+            self.fields['categories_and'] = forms.ModelMultipleChoiceField(
+                label=_(u'Categories (AND operator)'),
+                widget=FilteredSelectMultiple(
+                    verbose_name=_(u'Categories'),
+                    is_stacked=True
+                ),
+                help_text=_(u'Use this field if you want to further restrict your result set. This option allows you to create a conjunction between the first set of categories in field "Categories" and the ones specified here.'),
+                required=False,
+                queryset=AllinkCategory.objects.not_root().filter(
+                    model_names__contains=[self._meta.model.data_model._meta.model_name]
+                )
+            )
             self.fields['category_navigation'] = forms.ModelMultipleChoiceField(
                 label=_(u'Categories for Navigation'),
                 widget=FilteredSelectMultiple(
