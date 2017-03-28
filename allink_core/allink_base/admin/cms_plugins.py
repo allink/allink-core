@@ -63,6 +63,7 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
                 'classes': ('collapse',),
                 'fields': (
                     'categories',
+                    'categories_and',
                     'manual_ordering',
                     # 'filter_fields',
                 )
