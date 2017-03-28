@@ -4,7 +4,6 @@
 
 ALLINK_INSTALLED_APPS = [
     # apps
-    'debug_toolbar',
     'allauth',
     'allauth.account',
     'webpack_loader',
