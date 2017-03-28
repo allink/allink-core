@@ -29,6 +29,7 @@ Each release is divided into the following main categories:
 ###### DATA MIGRATIONS
 
 ### NEW
+- allink_apps: galleries not on app anymore, instead the gallery on detail page is added with GalleryPlugin
 
 ### FIXES
 - Bugfix in djangocms_instagram: Added queryset length when no display option with paginated_by value
