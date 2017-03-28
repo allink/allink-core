@@ -319,6 +319,7 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
 
     # FIELDS
     categories = models.ManyToManyField(AllinkCategory, blank=True)
+    # categories_and = models.ManyToManyField(AllinkCategory, blank=True)
 
     manual_ordering = models.CharField(
         max_length=50,
