@@ -449,7 +449,6 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
         """
         return self.get_render_queryset_for_display().order_by().values_list(fieldname).distinct()
 
-
     def get_filter_fields_with_options(self):
         """
         returns dict with all filter fields and there distinct values of the particular model field

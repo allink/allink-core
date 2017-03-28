@@ -132,7 +132,6 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
 
         return fieldsets
 
-
     def get_render_template(self, context, instance, placeholder, file='content'):
         template = '{}/plugins/{}/{}.html'.format(self.data_model._meta.app_label, instance.template, file)
         try:
