@@ -9,11 +9,13 @@
     <div class="content-section app-content-plugin detail-view container-enabled">
         <div class="container" data-scroll-spy>
 
-            {% if object.preview_image %}
+            {% if object.images %}
                 <div class="image-container header-image-container">
                     {% include "slider_detail/content.html" with display_title=False title_content=object.title %}
                 </div>
             {% endif %}
+
+            {% render_placeholder object.header_placeholder %}
 
             <header class="section-heading">
                 <h1 class="heading">
