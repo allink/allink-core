@@ -16,14 +16,13 @@
             <div class="input-group">
 
                 <input name="language" id="id_language" type="hidden" value="{{ request.LANGUAGE_CODE }}">
-                <input name="first_name" id="id_first_name" type="text" placeholder="{% trans "First Name" %}" class="form-control" value="{{ mailchimp_signup_form.first_name.value|default:"" }}" required>
-                <input name="last_name" id="id_last_name" type="text" placeholder="{% trans "Last Name" %}" class="form-control" value="{{ mailchimp_signup_form.last_name.value|default:"" }}" required>
-                <input name="email" id="id_email" type="email" placeholder="{% trans "Your Email address" %}" class="form-control" value="{{ mailchimp_signup_form.email.value|default:"" }}" required>
+                <input name="first_name" id="id_first_name" type="text" placeholder="{% trans "Ihr Name" %}" class="form-control" value="{{ mailchimp_signup_form.first_name.value|default:"" }}" required>
+                <input name="email" id="id_email" type="email" placeholder="{% trans "Ihre Email-Adresse" %}" class="form-control" value="{{ mailchimp_signup_form.email.value|default:"" }}" required>
             </div>
                 <div class="link-container">
                     <button type="submit" class="btn btn-primary" data-btn-ajax-loader>
                         <span class="btn-text">
-                            {% trans "Sign in" %}
+                            {% trans "Senden" %}
                         </span>
                     </button>
                 </div>
