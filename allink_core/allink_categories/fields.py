@@ -26,14 +26,18 @@ from .models import AllinkCategory as Category
 class CategoryModelChoiceField(CategoryModelChoiceField):
     pass
 
+
 class CategoryForeignKey(CategoryForeignKey):
     pass
 
+
 class CategoryOneToOneField(CategoryOneToOneField):
-   pass
+    pass
+
 
 class CategoryMultipleChoiceField(CategoryMultipleChoiceField):
     pass
+
 
 class CategoryManyToManyField(CategoryManyToManyField):
     pass
