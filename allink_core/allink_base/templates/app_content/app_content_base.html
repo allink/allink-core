@@ -64,9 +64,9 @@
                     {% endcomment %}
                     {% block app_content_filter_fields %}
                         {% if instance.filter_fields %}
-                            {% for filter, options in filter_fields.items %}
-                                <select class="form-control selectpicker" title="{% trans 'Select' %} {% trans filter %}" id="select" name="select" required>
-                                    {% for value, option in options %}
+                            {% for filter, options in instance.get_filter_fields_with_options.items %}
+                                <select class="form-control selectpicker" title="{% trans 'Select' %} {% trans options.0 %}" id="filter-{{filter}}" name="filter-{{filter}}" required>
+                                    {% for value, option in options.1 %}
                                         <option value="{{ value }}">{{ option }}</option>
                                     {% endfor %}
                                 </select>

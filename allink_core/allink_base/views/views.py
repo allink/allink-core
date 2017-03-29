@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 import json
+import re
 from django.views.generic import ListView, DetailView, CreateView
 
 from django.shortcuts import render_to_response
@@ -34,10 +35,13 @@ class AllinkBasePluginLoadMoreView(ListView):
         return queryset
 
     def get_queryset_by_category(self):
+        filters = {re.sub('filter-%s-' % self.plugin.data_model._meta.model_name, '', k): v for k, v in self.request.GET.items() if (k.startswith('filter-%s-' % self.plugin.data_model._meta.model_name) and v != 'None')}
+        if self.plugin.manual_entries.exists():
+            return self.plugin.get_selected_entries(filters=filters)
         if hasattr(self, 'category'):
-            return self.plugin.get_render_queryset_for_display(category=self.category)
+            return self.plugin.get_render_queryset_for_display(category=self.category, filters=filters)
         else:
-            return self.plugin.get_render_queryset_for_display()
+            return self.plugin.get_render_queryset_for_display(filters=filters)
 
     def get_paginate_by(self, queryset):
         if self.plugin.paginated_by != 0:
@@ -101,7 +105,8 @@ class AllinkBasePluginLoadMoreView(ListView):
         # <cms-plugin class="cms-plugin-text-node cms-plugin cms-plugin-blog-events-title-16 cms-render-model">Infoabend Bildungsgang Farbgestaltung am Bau</cms-plugin>
         json_context['rendered_content'] = render_to_string(self.get_template_names()[0], context=context, request=context['request'])
         if self.plugin.paginated_by > 0 and context['page_obj'].has_next():  # no need to create next_page_url when no pagination should be displayed
-            json_context['next_page_url'] = reverse('{}:more'.format(self.model._meta.model_name), kwargs={'page': context['page_obj'].next_page_number()}) + '?api_request=1&plugin_id={}'.format(self.plugin.id)
+            get_params = '&'.join(['%s=%s' % (k, v) for k, v in self.request.GET.items()])
+            json_context['next_page_url'] = reverse('{}:more'.format(self.model._meta.model_name), kwargs={'page': context['page_obj'].next_page_number()}) + '?api_request=1&plugin_id={}&{}'.format(self.plugin.id, get_params)
             json_context['next_page_url'] = json_context['next_page_url'] + '&category={}'.format(self.category_id) if hasattr(self, 'category_id') else json_context['next_page_url']
         else:
             json_context['next_page_url'] = None

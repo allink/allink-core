@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 from django.conf import settings
+from django.core.exceptions import FieldDoesNotExist, FieldError
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import get_language, ugettext_lazy as _
 from django.contrib.postgres.fields import ArrayField
 
 from cms.models.pluginmodel import CMSPlugin
@@ -314,7 +315,12 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
 
     # FILTER FIELDS
     FILTER_FIELD_CHOICES = (
-        ('categories', _(u'Categories')),
+        ('categories', {
+            'verbose': _(u'Categories'),
+            'query_filter': {},
+            # example
+            # 'query_filter': {'translations__name': 'Bern'},
+        }),
     )
 
     # FIELDS
@@ -327,8 +333,7 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
     )
 
     filter_fields = ArrayField(models.CharField(
-        max_length=50,
-        choices=FILTER_FIELD_CHOICES,),
+        max_length=50),
         blank=True,
         null=True,
         default=None
@@ -433,21 +438,39 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
     def get_model_name(self):
         return self.data_model._meta.model_name
 
-    def get_fk_model(self, fieldname):
+    def get_field_info(self, fieldname):
         """
         returns None if not foreignkey, otherswise the relevant model
         """
         from django.db.models import ForeignKey
-        field_object, model, direct, m2m = self.data_model._meta.get_field_by_name(fieldname)
+        is_translated = False
+        try:
+            field_object, model, direct, m2m = self.data_model._meta.get_field_by_name(fieldname)
+        # in case that the field is translated, it can't be found on the model itself
+        # so we get the translationmodel and get all data from there.
+        except FieldDoesNotExist:
+            is_translated = True
+            field_object, model, direct, m2m = self.data_model.translations.related.related_model._meta.get_field_by_name(fieldname)
         if (direct and isinstance(field_object, ForeignKey)) or (direct and m2m):
-            return field_object.rel.to
-        return None
+            return field_object.rel.to, is_translated
+        return None, is_translated
 
     def get_distinct_values_of_field(self, fieldname):
         """
         returns distinct values_list for fieldname
+        the query_filter defined in FILTER_FIELD_CHOICES gets applied here
         """
-        return self.get_render_queryset_for_display().order_by().values_list(fieldname).distinct()
+        try:
+            query_filter = dict(self.FILTER_FIELD_CHOICES)[fieldname]['query_filter']
+        except KeyError:
+            query_filter = {}
+        try:
+            return self.get_render_queryset_for_display().filter(**query_filter).order_by().values_list(fieldname).distinct()
+        # handle translated fields
+        except FieldError:
+            translation_model = self.data_model.translations.related.related_model
+            model_query = self.get_render_queryset_for_display().filter(**query_filter)
+            return translation_model.objects.filter(language_code=get_language(), master__in=model_query).order_by().values_list(fieldname).distinct()
 
     def get_filter_fields_with_options(self):
         """
@@ -459,20 +482,16 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
         for fieldname in self.filter_fields:
             # field is foreignkey or m2m, so we have to get the verbose name form the model itself
             filters = [((None, _(u'All'),))]
-            if self.get_fk_model(fieldname):
+            fk_model, is_translated = self.get_field_info(fieldname)
+            if fk_model:
                 filters.extend((entry.id, entry.__unicode__(),) for entry in
-                               self.get_fk_model(fieldname).objects.filter(
+                               fk_model.objects.filter(
                                    id__in=self.get_distinct_values_of_field(fieldname)))
-                try:
-                    # for apps with verbose names changed in allink_config
-                    verbose_name = self.get_fk_model(fieldname).get_verbose_name()
-                except:
-                    verbose_name = self.get_fk_model(fieldname)._meta.verbose_name_plural
-                options.update({verbose_name: filters})
             # field is no foreignkey and no m2m
             else:
-                filters.extend((value[0], value[0],) for value in self.get_distinct_values_of_field(fieldname))
-                options.update({fieldname: filters})
+                filters.extend((value[0], value[0]) for value in self.get_distinct_values_of_field(fieldname))
+            filter_key = "%s-translations__%s" % (self.data_model._meta.model_name, fieldname) if is_translated else "%s-%s" % (self.data_model._meta.model_name, fieldname)
+            options.update({filter_key: (dict(self.FILTER_FIELD_CHOICES)[fieldname]['verbose'], filters)})
         return options
 
     def get_first_category(self):
@@ -511,26 +530,30 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
         else:
             return queryset
 
-    def get_render_queryset_for_display(self, category=None, filter=None):
+    def get_render_queryset_for_display(self, category=None, filters={}):
         """
          returns all data_model objects distinct to id which are in the selected categories
           - category: category instance
-          - filter: list tuple with model fields and value
+          - filters: dict model fields and value
             -> adds additional query
 
         -> Is also defined in  AllinkManualEntriesMixin to handel manual entries !!
         """
+
+        # apply filters from request
+        queryset = self.data_model.objects.filter(**filters)
+
         if self.categories.count() > 0 or category:
             """
              category selection
             """
             if category:
-                queryset = self.data_model.objects.filter_by_category(category)
+                queryset = queryset.filter_by_category(category)
             else:
-                queryset = self.data_model.objects.filter_by_categories(self.categories)
+                queryset = queryset.filter_by_categories(self.categories)
 
             return self._apply_ordering_to_queryset_for_display(queryset)
 
         else:
-            queryset = self.data_model.objects.active()
+            queryset = queryset.objects.active()
             return queryset

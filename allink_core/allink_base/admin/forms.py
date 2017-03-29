@@ -75,12 +75,12 @@ class AllinkBaseAppContentPluginForm(forms.ModelForm):
                 model_names__contains=[self._meta.model.data_model._meta.model_name]
                 )
             )
-        self.fields['filter_fields'] = forms.MultipleChoiceField(
+        self.fields['filter_fields'] = forms.TypedMultipleChoiceField(
             label=_(u'Filter Fields'),
-            help_text=_(u'A Select Dropdown will be displayed for this Field.'),
-            choices=self.instance.FILTER_FIELD_CHOICES,
+            help_text=_(u'A Select Dropdown will be displayed for this Fields.'),
+            choices=((field[0], field[1]['verbose']) for field in self.instance.FILTER_FIELD_CHOICES),
             widget=forms.CheckboxSelectMultiple,
-            required=False
+            required=False,
         )
         self.fields['template'] = forms.CharField(
             label=_(u'Template'),
@@ -103,5 +103,3 @@ class AllinkBaseAppContentPluginForm(forms.ModelForm):
             required=False,
             widget=forms.Select(choices=self.instance.get_ordering_choices())
         )
-
-

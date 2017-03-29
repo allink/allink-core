@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import re
+
 from django.template.loader import get_template
 from django.utils.translation import ugettext_lazy as _
 from django.core.paginator import Paginator
@@ -6,9 +8,9 @@ from django.core.urlresolvers import reverse
 from django.template import TemplateDoesNotExist
 from cms.plugin_base import CMSPluginBase
 
-from ..models import AllinkBaseAppContentPlugin
+from allink_core.allink_base.models import AllinkBaseAppContentPlugin
 
-from .forms import AllinkBaseAppContentPluginForm
+from allink_core.allink_base.admin.forms import AllinkBaseAppContentPluginForm
 
 
 class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
@@ -64,7 +66,7 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
                 'fields': (
                     'categories',
                     'manual_ordering',
-                    # 'filter_fields',
+                    'filter_fields',
                 )
             }),
 
@@ -140,27 +142,29 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
             template = 'app_content/plugins/{}/{}.html'.format(instance.template, file)
         return template
 
-    def get_queryset_by_category(self, instance):
+    def get_queryset_by_category(self, instance, filters):
         # manual entries
         if instance.manual_entries.exists():
-            objects_list = instance.get_selected_entries()
+            objects_list = instance.get_selected_entries(filters=filters)
         # category navigation and no category "all" (only first category is relevant)
         elif instance.category_navigation_enabled and not instance.category_navigation_all:
-            objects_list = instance.get_render_queryset_for_display(category=instance.get_first_category())
+            objects_list = instance.get_render_queryset_for_display(category=instance.get_first_category(), filters=filters)
         else:
-            objects_list = instance.get_render_queryset_for_display()
+            objects_list = instance.get_render_queryset_for_display(filters=filters)
         return objects_list
 
     def render(self, context, instance, placeholder):
+        # getting filter parameters and attributes
+        filters = {re.sub('filter-%s-' % instance.data_model._meta.model_name, '', k): v for k, v in context['request'].GET.items() if (k.startswith('filter-%s-' % instance.data_model._meta.model_name) and v != 'None')}
         # random ordering needs sessioncaching for objects_list
         if instance.manual_ordering == AllinkBaseAppContentPlugin.RANDOM:
             objects_list, path = context['request'].session.get("random_plugin_queryset_%s" % instance.id, ([], None))
             if (objects_list and path == context['request'].path) or not objects_list:
-                objects_list = list(self.get_queryset_by_category(instance))
+                objects_list = list(self.get_queryset_by_category(instance, filters))
                 context['request'].session["random_plugin_queryset_%s" % instance.id] = (objects_list, context['request'].path)
         # not random ordering
         else:
-            objects_list = self.get_queryset_by_category(instance)
+            objects_list = self.get_queryset_by_category(instance, filters)
 
         # Paginate Objects
         if instance.paginated_by > 0:

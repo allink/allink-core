@@ -30,6 +30,8 @@ Each release is divided into the following main categories:
 
 ### NEW
 - allink_apps: galleries not on app anymore, instead the gallery on detail page is added with GalleryPlugin
+- Plugin overview pages can be filterd over dropdowns by Foreingkey- and Char-Fields
+    - Hint for updates: keyword argument "filter" in methode "get_render_queryset_for_display" on BlogAppContentPlugin must be renamed to "filters"
 
 ### FIXES
 - Bugfix in djangocms_instagram: Added queryset length when no display option with paginated_by value
