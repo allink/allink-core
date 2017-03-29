@@ -3,7 +3,7 @@
     <header class="" data-accordion-trigger>
         <h3 class="heading">
             <a data-toggle="collapse" href="#group-content-1" aria-expanded="false" aria-controls="group-content-1" class="collapsed no-icon" data-colllapse-toggle>
-                {% trans 'Subscribe to Newsletter' %}
+                {% trans 'Newsletter abonnieren' %}
             </a>
            </h3>
     </header>
@@ -18,14 +18,18 @@
                 <input name="language" id="id_language" type="hidden" value="{{ request.LANGUAGE_CODE }}">
                 <input name="first_name" id="id_first_name" type="text" placeholder="{% trans "First Name" %}" class="form-control" value="{{ mailchimp_signup_form.first_name.value|default:"" }}" required>
                 <input name="last_name" id="id_last_name" type="text" placeholder="{% trans "Last Name" %}" class="form-control" value="{{ mailchimp_signup_form.last_name.value|default:"" }}" required>
-                <input name="email" id="id_email" type="email" placeholder="{% trans "Your Email address" %}" class="form-control" value="{{ mailchimp_signup_form.email.value|default:"" }}" required>
             </div>
                 <div class="link-container">
-                    <button type="submit" class="btn btn-primary" data-btn-ajax-loader>
-                        <span class="btn-text">
-                            {% trans "Sign in" %}
+                    <div class="input-group">
+                        <input name="email" id="id_email" type="email" placeholder="{% trans "Your Email address" %}" class="form-control" value="{{ mailchimp_signup_form.email.value|default:"" }}" required>
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-primary" data-btn-ajax-loader>
+                                <span class="btn-text">
+                                    {% trans "Senden" %}
+                                </span>
+                            </button>
                         </span>
-                    </button>
+                    </div>
                 </div>
 
 
