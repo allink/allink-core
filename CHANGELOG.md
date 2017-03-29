@@ -54,6 +54,7 @@ Each release is divided into the following main categories:
    - accounts/...
 - modificaton in base_root.html (new tag favicons)
 - modification in every plugin template form allink_apps 'object.show_detail_link' introduced.
+- allink_config: base_title and og_image in base_root.html
 
 
 ###### URLS
