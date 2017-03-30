@@ -82,7 +82,7 @@ class CMSAllinkInstagramPlugin(CMSPluginBase):
             try:
                 image_urls = self.get_images(account_name=instance.account)
                 cache.set(cache_name, image_urls, 60 * 60)  # cache images for one hour
-            except HTTPError:
+            except:
                 return context
         else:
             image_urls = image_urls_cached
