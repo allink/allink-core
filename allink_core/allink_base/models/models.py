@@ -561,10 +561,10 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
                 if self.categories_and.count() > 0:
                     queryset = queryset.filter(categories=self.categories_and.all())
             else:
-                queryset = self.data_model.objects.filter_by_categories(self.categories)
+                queryset = queryset.filter_by_categories(self.categories)
                 if self.categories_and.count() > 0:
                     queryset = queryset.filter(categories=self.categories_and.all())
             return self._apply_ordering_to_queryset_for_display(queryset)
         else:
-            queryset = queryset.objects.active()
+            queryset = queryset.active_entries()
             return queryset
