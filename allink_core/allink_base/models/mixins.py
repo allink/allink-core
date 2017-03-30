@@ -33,7 +33,7 @@ class AllinkManualEntriesMixin(object):
     def get_selected_entries(self, filters={}):
         return self.manual_entries.active().filter(**filters)
 
-    def get_render_queryset_for_display(self, category=None, filters=None):
+    def get_render_queryset_for_display(self, category=None, filters={}):
         """
          returns all data_model objects distinct to id which are in the selected categories
           - category: category instance
