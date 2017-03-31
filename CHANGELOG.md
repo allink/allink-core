@@ -19,6 +19,16 @@ Each release is divided into the following main categories:
 
 ###### SETTINGS
 - contacts migration folder was added to allink_settings, so you have to create a folder (with "__init__.py") in apps/allink_apps_migrations. If you already have migrated contacts. you have to manually copy all migrations to the app specific folder.
+- new setting PROJECT_APP_MODEL_CATEGORY_TAG_CHOICES must be added by core update.
+```python
+# all models which can be used as tag for categories.
+# all categories with the same tag can be used
+# in a filter on a plugin.
+# the value has to be equal to "_meta.model_name"
+PROJECT_APP_MODEL_CATEGORY_TAG_CHOICES = [
+    ('locations', 'Locations'),
+]
+```
 
 ###### TEMPLATES
 
