@@ -106,13 +106,3 @@ class AllinkImagePlugin(AllinkLinkFieldsModel, CMSPlugin):
 
     def copy_relations(self, oldinstance):
         self.picture = oldinstance.picture
-
-
-
-        # def clean(self):
-        #     # you shall only set one image kind
-        #     if not self.picture and not self.external_picture:
-        #         raise ValidationError(
-        #             ugettext('You need to add either an image, '
-        #                      'or a URL linking to an external image.')
-        #         )

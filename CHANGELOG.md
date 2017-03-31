@@ -41,7 +41,7 @@ Each release is divided into the following main categories:
 ## v0.0.6
 
 ### IMPORTANT
-
+    
 ###### SETTINGS
 - PROJECT_COLORS is now a tuple and not a list anymore
 - CMS_PLACEHOLDER_CONF was supplemented with the placeholder fields from allink_apps
