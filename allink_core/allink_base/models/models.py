@@ -2,8 +2,11 @@
 from django.conf import settings
 from django.core.exceptions import FieldDoesNotExist, FieldError
 from django.db import models
+from django.db.models.signals import post_delete
+from django.dispatch import receiver
+from parler.models import TranslatableModel
 from django.utils.encoding import python_2_unicode_compatible
-from django.utils.translation import get_language, ugettext_lazy as _
+from django.utils.translation import get_language, activate, ugettext_lazy as _
 from django.contrib.postgres.fields import ArrayField
 
 from cms.models.pluginmodel import CMSPlugin
@@ -167,7 +170,6 @@ class AllinkBaseModel(AllinkMetaTagFieldsModel):
 
         # getting translation class
         AllinkCategoryTransalation = AllinkCategory.translations.related.related_model
-
         if new:
             # all categories generated from one model, should be in the same root category
             # if not existing, this root needs to be created too
@@ -207,13 +209,23 @@ class AllinkBaseModel(AllinkMetaTagFieldsModel):
 
         # we need to save the category again, to make sure the slug is set correct
         cat.save()
+        return cat
 
     def save(self, *args, **kwargs):
         new = not bool(self.id)
-        super(AllinkBaseModel, self).save(*args, **kwargs)
-        # in case, that this model is used as category, we have to auto-generate or ajust the category
+        if not new:
+            self.save_translations(*args, **kwargs)
         if self._meta.model_name in dict(settings.PROJECT_APP_MODEL_CATEGORY_TAG_CHOICES).keys():
-            self.save_categories(new)
+            self.auto_generated_category = self.save_categories(new)
+        super(AllinkBaseModel, self).save(*args, **kwargs)
+
+
+@receiver(post_delete)
+def post_delete_auto_generated_category(sender, instance, *args, **kwargs):
+    if not issubclass(sender, AllinkBaseModel):
+        return
+    if instance.auto_generated_category:
+        instance.auto_generated_category.delete()
 
 
 @python_2_unicode_compatible
