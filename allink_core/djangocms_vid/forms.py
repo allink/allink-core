@@ -2,25 +2,20 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
-from .models import AllinkImagePlugin
+from .models import AllinkVidPlugin
 
 
-class AllinkImagePluginForm(forms.ModelForm):
+class AllinkVidPluginForm(forms.ModelForm):
 
     class Meta:
-        model = AllinkImagePlugin
+        model = AllinkVidPlugin
         exclude = ('page', 'position', 'placeholder', 'language', 'plugin_type')
         widgets = {
             'caption_text': forms.Textarea(attrs={'rows': 2}),
         }
 
     def __init__(self, *args, **kwargs):
-        super(AllinkImagePluginForm, self).__init__(*args, **kwargs)
-        self.fields['link_special'] = forms.CharField(
-            label=_(u'Special Links'),
-            widget=forms.Select(choices=self.instance.get_link_special_choices()),
-            required=False,
-        )
+        super(AllinkVidPluginForm, self).__init__(*args, **kwargs)
         self.fields['template'] = forms.CharField(
             label=_(u'Template'),
             widget=forms.Select(choices=self.instance.get_templates()),
