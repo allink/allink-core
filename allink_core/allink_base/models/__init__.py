@@ -1,4 +1,4 @@
-from .mixins import AllinkManualEntriesMixin  # noqa
+from .mixins import AllinkManualEntriesMixin, AllinkTranslatedAutoSlugifyMixin  # noqa
 from .managers import AllinkBaseModelQuerySet, AllinkBaseModelManager  # noqa
 from .models import AllinkBaseImage, AllinkBaseModel, AllinkBasePlugin, AllinkBaseAppContentPlugin  # noqa
 from .reusable_fields import AllinkAddressFieldsModel, AllinkContactFieldsModel, AllinkMetaTagFieldsModel, AllinkLinkFieldsModel, AllinkSimpleRegistrationFieldsModel  # noqa

@@ -9,8 +9,8 @@ from django.contrib.postgres.fields import ArrayField
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 
-from aldryn_translation_tools.models import (
-    TranslatedAutoSlugifyMixin, TranslationHelperMixin)
+from aldryn_translation_tools.models import TranslationHelperMixin
+
 from parler import appsettings
 from parler.managers import TranslatableManager, TranslatableQuerySet
 from parler.models import TranslatableModel, TranslatedFields, TranslatableModelMixin

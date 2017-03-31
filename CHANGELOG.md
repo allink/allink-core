@@ -32,6 +32,8 @@ Each release is divided into the following main categories:
 - allink_apps: galleries not on app anymore, instead the gallery on detail page is added with GalleryPlugin
 - Plugin overview pages can be filterd over dropdowns by Foreingkey- and Char-Fields
     - Hint for updates: keyword argument "filter" in methode "get_render_queryset_for_display" on BlogAppContentPlugin must be renamed to "filters"
+- allink_categories: model_categories can be defined on child and/or parent.
+- allink_categories: categories can get generated from other apps, an get a tag. Like this when using an ajax filter by category, only categories generated from a specific model can be choosen.
 
 ### FIXES
 - Bugfix in djangocms_instagram: Added queryset length when no display option with paginated_by value
