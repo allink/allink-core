@@ -137,15 +137,21 @@ class AllinkBaseModel(AllinkMetaTagFieldsModel):
 
     @classmethod
     def get_verbose_name(cls):
-        from allink_core.allink_config.models import AllinkConfig
-        field_name = cls._meta.model_name + '_verbose'
-        return getattr(AllinkConfig.get_solo(), field_name, cls._meta.verbose_name)
+        try:
+            from allink_core.allink_config.models import AllinkConfig
+            field_name = cls._meta.model_name + '_verbose'
+            return getattr(AllinkConfig.get_solo(), field_name)
+        except:
+            return cls._meta.verbose_name
 
     @classmethod
     def get_verbose_name_plural(cls):
-        from allink_core.allink_config.models import AllinkConfig
-        field_name = cls._meta.model_name + '_verbose_plural'
-        return getattr(AllinkConfig.get_solo(), field_name, cls._meta.verbose_name_plural)
+        try:
+            from allink_core.allink_config.models import AllinkConfig
+            field_name = cls._meta.model_name + '_verbose_plural'
+            return getattr(AllinkConfig.get_solo(), field_name)
+        except:
+            return cls._meta.verbose_name_plural
 
     def is_published(self):
         return self in self.get_published()
