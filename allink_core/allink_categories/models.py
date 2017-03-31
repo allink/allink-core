@@ -56,7 +56,7 @@ class AllinkCategory(AllinkTranslatedAutoSlugifyMixin, TranslationHelperMixin,
 
     model_names = ArrayField(models.CharField(
         max_length=50),
-        help_text=_(u'Please specify the app which uses this categories.'),
+        help_text=_(u'Please specify the app which uses this categories. All apps specified in parent category are automatically added.'),
         blank=True,
         null=True
     )
