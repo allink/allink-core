@@ -68,6 +68,9 @@ class AllinkBaseModel(AllinkMetaTagFieldsModel):
 
     """
 
+    # Is used to auto generate Category
+    category_name_field = u'title'
+
     created = AutoCreatedField(_('created'), editable=True)
     modified = AutoLastModifiedField(_('modified'))
 
@@ -78,6 +81,12 @@ class AllinkBaseModel(AllinkMetaTagFieldsModel):
     active = models.BooleanField(
         _(u'Active'),
         default=True
+    )
+    auto_generated_category = models.OneToOneField(
+        AllinkCategory,
+        related_name=u'auto_generated_from_%(class)s',
+        null=True,
+        blank=True,
     )
 
     objects = AllinkBaseModelManager()
@@ -125,21 +134,15 @@ class AllinkBaseModel(AllinkMetaTagFieldsModel):
 
     @classmethod
     def get_verbose_name(cls):
-        try:
-            from allink_core.allink_config.models import AllinkConfig
-            field_name = cls._meta.model_name + '_verbose'
-            return getattr(AllinkConfig.get_solo(), field_name)
-        except:
-            return cls._meta.verbose_name
+        from allink_core.allink_config.models import AllinkConfig
+        field_name = cls._meta.model_name + '_verbose'
+        return getattr(AllinkConfig.get_solo(), field_name, cls._meta.verbose_name)
 
     @classmethod
     def get_verbose_name_plural(cls):
-        try:
-            from allink_core.allink_config.models import AllinkConfig
-            field_name = cls._meta.model_name + '_verbose_plural'
-            return getattr(AllinkConfig.get_solo(), field_name)
-        except:
-            return cls._meta.verbose_name_plural
+        from allink_core.allink_config.models import AllinkConfig
+        field_name = cls._meta.model_name + '_verbose_plural'
+        return getattr(AllinkConfig.get_solo(), field_name, cls._meta.verbose_name_plural)
 
     def is_published(self):
         return self in self.get_published()
@@ -151,6 +154,66 @@ class AllinkBaseModel(AllinkMetaTagFieldsModel):
         from django.core.urlresolvers import reverse
         app = '{}:detail'.format(self._meta.model_name)
         return reverse(app, kwargs={'slug': self.slug})
+
+    def save_categories(self, new):
+        """
+        Some models are used as categories.
+        For these we auto-generate a new category
+        for each instance. The category gets
+        ajusted in case of changes.
+
+        new: boolean, telling if an instance is new or just changed
+        """
+
+        # getting translation class
+        AllinkCategoryTransalation = AllinkCategory.translations.related.related_model
+
+        if new:
+            # all categories generated from one model, should be in the same root category
+            # if not existing, this root needs to be created too
+            try:
+                super_cat = AllinkCategory.objects.get(translations__name=self._meta.verbose_name)
+            except AllinkCategory.DoesNotExist:
+                super_cat = AllinkCategory.add_root()
+                super_cat.name = self._meta.verbose_name
+                super_cat.save()
+            cat = super_cat.add_child(tag=self._meta.model_name)
+        else:
+            cat = self.auto_generated_category
+
+        # check if the model is translatable and has existing translations
+        if hasattr(self, 'translations') and self.translations.exists():
+            for translation in self.translations.all():
+                trans, created = AllinkCategoryTransalation.objects.get_or_create(
+                    master=cat,
+                    language_code=translation.language_code,
+                )
+                trans.name = getattr(translation, self.category_name_field)
+                trans.save()
+                # reinitialize cat, so the translation cache gets renewed
+                cat = trans.master
+
+        else:
+            # create a category translation with standard language if none is existing
+            # and the source model isn't translatable
+            trans, created = AllinkCategoryTransalation.objects.get_or_create(
+                master=cat,
+                language_code=settings.LANGUAGE_CODE,
+            )
+            trans.name = getattr(self, self.category_name_field)
+            trans.save()
+            # reinitialize cat, so the translation cache gets renewed
+            cat = trans.master
+
+        # we need to save the category again, to make sure the slug is set correct
+        cat.save()
+
+    def save(self, *args, **kwargs):
+        new = not bool(self.id)
+        super(AllinkBaseModel, self).save(*args, **kwargs)
+        # in case, that this model is used as category, we have to auto-generate or ajust the category
+        if self._meta.model_name in dict(settings.PROJECT_APP_MODEL_CATEGORY_TAG_CHOICES).keys():
+            self.save_categories(new)
 
 
 @python_2_unicode_compatible
@@ -470,7 +533,7 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
         the query_filter defined in FILTER_FIELD_CHOICES gets applied here
         """
         try:
-            query_filter = dict(self.FILTER_FIELD_CHOICES)[fieldname]['query_filter']
+            query_filter = {u'%s__%s' % (fieldname, k): v for k, v in dict(self.FILTER_FIELD_CHOICES)[fieldname]['query_filter'].items()}
         except KeyError:
             query_filter = {}
         try:
