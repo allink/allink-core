@@ -19,6 +19,16 @@ Each release is divided into the following main categories:
 
 ###### SETTINGS
 - contacts migration folder was added to allink_settings, so you have to create a folder `contacts` (and create an empty `__init__.py` in it [ha!]) within `apps/allink_apps_migrations`. If you already have migrated contacts you have to manually copy all migrations to the app specific folder.
+- new setting PROJECT_APP_MODEL_CATEGORY_TAG_CHOICES must be added by core update.
+```python
+# all models which can be used as tag for categories.
+# all categories with the same tag can be used
+# in a filter on a plugin.
+# the value has to be equal to "_meta.model_name"
+PROJECT_APP_MODEL_CATEGORY_TAG_CHOICES = [
+    ('locations', 'Locations'),
+]
+```
 
 ###### TEMPLATES
 
@@ -32,6 +42,10 @@ Each release is divided into the following main categories:
 - allink_apps: galleries not on app anymore, instead the gallery on detail page is added with GalleryPlugin
 - Plugin overview pages can be filterd over dropdowns by Foreingkey- and Char-Fields
     - Hint for updates: keyword argument "filter" in methode "get_render_queryset_for_display" on BlogAppContentPlugin must be renamed to "filters"
+- allink_categories: model_categories can be defined on child and/or parent.
+- allink_categories: categories can get generated from other apps, an get a tag. Like this when using an ajax filter by category, only categories generated from a specific model can be choosen.
+- allink_apps: App Plugins now support AND operator for filtering categories
+- allink_apps: get_absolute_urlallow now language as parameter
 
 ### FIXES
 - Bugfix in djangocms_instagram: Added queryset length when no display option with paginated_by value

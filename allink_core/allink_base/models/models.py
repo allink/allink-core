@@ -2,8 +2,12 @@
 from django.conf import settings
 from django.core.exceptions import FieldDoesNotExist, FieldError
 from django.db import models
+from django.db.models.signals import post_delete
+from django.dispatch import receiver
+from cms.utils.i18n import get_current_language, get_default_language
+
 from django.utils.encoding import python_2_unicode_compatible
-from django.utils.translation import get_language, ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _, override
 from django.contrib.postgres.fields import ArrayField
 
 from cms.models.pluginmodel import CMSPlugin
@@ -68,6 +72,9 @@ class AllinkBaseModel(AllinkMetaTagFieldsModel):
 
     """
 
+    # Is used to auto generate Category
+    category_name_field = u'title'
+
     created = AutoCreatedField(_('created'), editable=True)
     modified = AutoLastModifiedField(_('modified'))
 
@@ -78,6 +85,12 @@ class AllinkBaseModel(AllinkMetaTagFieldsModel):
     active = models.BooleanField(
         _(u'Active'),
         default=True
+    )
+    auto_generated_category = models.OneToOneField(
+        AllinkCategory,
+        related_name=u'auto_generated_from_%(class)s',
+        null=True,
+        blank=True,
     )
 
     objects = AllinkBaseModelManager()
@@ -147,10 +160,86 @@ class AllinkBaseModel(AllinkMetaTagFieldsModel):
     is_published.short_description = _(u'Published')
     is_published.boolean = True
 
-    def get_absolute_url(self):
+    def get_absolute_url(self, language=None):
         from django.core.urlresolvers import reverse
+        if not language:
+            language = get_current_language() or get_default_language()
+
+        slug, language = self.known_translation_getter(
+            'slug', None, language_code=language)
+
         app = '{}:detail'.format(self._meta.model_name)
-        return reverse(app, kwargs={'slug': self.slug})
+        with override(language):
+            return reverse(app, kwargs={'slug': slug})
+
+    def save_categories(self, new):
+        """
+        Some models are used as categories.
+        For these we auto-generate a new category
+        for each instance. The category gets
+        ajusted in case of changes.
+
+        new: boolean, telling if an instance is new or just changed
+        """
+
+        # getting translation class
+        AllinkCategoryTransalation = AllinkCategory.translations.related.related_model
+        if new:
+            # all categories generated from one model, should be in the same root category
+            # if not existing, this root needs to be created too
+            try:
+                super_cat = AllinkCategory.objects.get(translations__name=self._meta.verbose_name)
+            except AllinkCategory.DoesNotExist:
+                super_cat = AllinkCategory.add_root()
+                super_cat.name = self._meta.verbose_name
+                super_cat.save()
+            cat = super_cat.add_child(tag=self._meta.model_name)
+        else:
+            cat = self.auto_generated_category
+
+        # check if the model is translatable and has existing translations
+        if hasattr(self, 'translations') and self.translations.exists():
+            for translation in self.translations.all():
+                trans, created = AllinkCategoryTransalation.objects.get_or_create(
+                    master=cat,
+                    language_code=translation.language_code,
+                )
+                trans.name = getattr(translation, self.category_name_field)
+                trans.save()
+                # reinitialize cat, so the translation cache gets renewed
+                cat = trans.master
+
+        else:
+            # create a category translation with standard language if none is existing
+            # and the source model isn't translatable
+            trans, created = AllinkCategoryTransalation.objects.get_or_create(
+                master=cat,
+                language_code=settings.LANGUAGE_CODE,
+            )
+            trans.name = getattr(self, self.category_name_field)
+            trans.save()
+            # reinitialize cat, so the translation cache gets renewed
+            cat = trans.master
+
+        # we need to save the category again, to make sure the slug is set correct
+        cat.save()
+        return cat
+
+    def save(self, *args, **kwargs):
+        new = not bool(self.id)
+        if not new:
+            self.save_translations(*args, **kwargs)
+        if self._meta.model_name in dict(settings.PROJECT_APP_MODEL_CATEGORY_TAG_CHOICES).keys():
+            self.auto_generated_category = self.save_categories(new)
+        super(AllinkBaseModel, self).save(*args, **kwargs)
+
+
+@receiver(post_delete)
+def post_delete_auto_generated_category(sender, instance, *args, **kwargs):
+    if not issubclass(sender, AllinkBaseModel):
+        return
+    if instance.auto_generated_category:
+        instance.auto_generated_category.delete()
 
 
 @python_2_unicode_compatible
@@ -175,7 +264,7 @@ class AllinkBasePlugin(CMSPlugin):
     )
     bg_color = models.CharField(
         _(u'Set a predefined background color'),
-        choices=settings.PROJECT_COLORS,
+        # choices=settings.PROJECT_COLORS,
         max_length=50,
         blank=True,
         null=True
@@ -470,7 +559,7 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
         the query_filter defined in FILTER_FIELD_CHOICES gets applied here
         """
         try:
-            query_filter = dict(self.FILTER_FIELD_CHOICES)[fieldname]['query_filter']
+            query_filter = {u'%s__%s' % (fieldname, k): v for k, v in dict(self.FILTER_FIELD_CHOICES)[fieldname]['query_filter'].items()}
         except KeyError:
             query_filter = {}
         try:
@@ -479,7 +568,7 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
         except FieldError:
             translation_model = self.data_model.translations.related.related_model
             model_query = self.get_render_queryset_for_display().filter(**query_filter)
-            return translation_model.objects.filter(language_code=get_language(), master__in=model_query).order_by().values_list(fieldname).distinct()
+            return translation_model.objects.filter(language_code=get_current_language(), master__in=model_query).order_by().values_list(fieldname).distinct()
 
     def get_filter_fields_with_options(self):
         """
@@ -561,10 +650,10 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
                 if self.categories_and.count() > 0:
                     queryset = queryset.filter(categories=self.categories_and.all())
             else:
-                queryset = self.data_model.objects.filter_by_categories(self.categories)
+                queryset = queryset.filter_by_categories(self.categories)
                 if self.categories_and.count() > 0:
                     queryset = queryset.filter(categories=self.categories_and.all())
             return self._apply_ordering_to_queryset_for_display(queryset)
         else:
-            queryset = queryset.objects.active()
+            queryset = queryset.active_entries()
             return queryset

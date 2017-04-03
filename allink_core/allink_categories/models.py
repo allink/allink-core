@@ -4,17 +4,20 @@ from __future__ import unicode_literals
 import django
 
 from django.db import models
+from django.conf import settings
 from django.contrib.postgres.fields import ArrayField
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 
-from aldryn_translation_tools.models import (
-    TranslatedAutoSlugifyMixin, TranslationHelperMixin)
+from aldryn_translation_tools.models import TranslationHelperMixin
+
 from parler import appsettings
 from parler.managers import TranslatableManager, TranslatableQuerySet
 from parler.models import TranslatableModel, TranslatedFields, TranslatableModelMixin
 from parler.cache import _delete_cached_translations
 from treebeard.ns_tree import NS_Node, NS_NodeManager, NS_NodeQuerySet
+
+from allink_core.allink_base.models.mixins import AllinkTranslatedAutoSlugifyMixin
 
 
 LANGUAGE_CODES = appsettings.PARLER_LANGUAGES.get_active_choices()
@@ -41,7 +44,7 @@ class CategoryManager(TranslatableManager, NS_NodeManager):
 
 
 @python_2_unicode_compatible
-class AllinkCategory(TranslatedAutoSlugifyMixin, TranslationHelperMixin,
+class AllinkCategory(AllinkTranslatedAutoSlugifyMixin, TranslationHelperMixin,
                      TranslatableModel, NS_Node):
     """
       A category is hierarchical. The structure is implemented with django-
@@ -53,20 +56,33 @@ class AllinkCategory(TranslatedAutoSlugifyMixin, TranslationHelperMixin,
 
     model_names = ArrayField(models.CharField(
         max_length=50),
-        help_text=_(u'Please specify the app which uses this categories.'),
+        help_text=_(u'Please specify the app which uses this categories. All apps specified in parent category are automatically added.'),
         blank=True,
         null=True
     )
 
+    # used to decide if it should be possible to use
+    # this category in a filter on a specific plugin.
+    # all categories with the same tag can be used
+    # in the same filter.
+    tag = models.CharField(
+        _(u'Tag'),
+        max_length=80,
+        help_text=_(u'auto-generated categories use this tag, to identify which app generated the category.'),
+        # choices=settings.PROJECT_APP_MODEL_CATEGORY_TAG_CHOICES,
+        null=True,
+        blank=True
+    )
+
     translations = TranslatedFields(
         name=models.CharField(
-            _('name'),
+            _(u'name'),
             blank=False,
             default='',
             max_length=255,
         ),
         slug=models.SlugField(
-            _('slug'),
+            _(u'slug'),
             blank=True,
             default='',
             help_text=_('Provide a “slug” or leave blank for an automatically '

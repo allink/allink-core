@@ -3,12 +3,14 @@
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.admin.widgets import FilteredSelectMultiple
 from django import forms
+from django.db.models import Q
 
 from parler.forms import TranslatableModelForm
 
 from allink_core.allink_base.utils import get_additional_choices
 from allink_core.allink_categories.models import AllinkCategory
 from allink_core.allink_base.models import AllinkBaseAppContentPlugin
+
 
 class AllinkBaseAdminForm(TranslatableModelForm):
 
@@ -24,7 +26,7 @@ class AllinkBaseAdminForm(TranslatableModelForm):
                 ),
                 required=True,
                 queryset=AllinkCategory.objects.not_root().filter(
-                    model_names__contains=[self.instance._meta.model_name]
+                    Q(model_names__contains=[self.instance._meta.model_name]) | Q(parent__model_names__contains=[self.instance._meta.model_name])
                 )
             )
             self.fields['category_navigation'] = forms.ModelMultipleChoiceField(
@@ -37,9 +39,10 @@ class AllinkBaseAdminForm(TranslatableModelForm):
                     u'You can explicitly define the categories for the category navigation here. This will override the automatically set of categories. (From "Filter & Ordering" but not from the "Manual entries")'),
                 required=False,
                 queryset=AllinkCategory.objects.not_root().filter(
-                    model_names__contains=[self.instance._meta.model_name]
+                    Q(model_names__contains=[self.instance._meta.model_name]) | Q(parent__model_names__contains=[self.instance._meta.model_name])
                 )
             )
+
 
 class AllinkBaseAppContentPluginForm(forms.ModelForm):
 
@@ -59,7 +62,7 @@ class AllinkBaseAppContentPluginForm(forms.ModelForm):
                 ),
                 required=False,
                 queryset=AllinkCategory.objects.not_root().filter(
-                    model_names__contains=[self._meta.model.data_model._meta.model_name]
+                    Q(model_names__contains=[self._meta.model.data_model._meta.model_name]) | Q(parent__model_names__contains=[self._meta.model.data_model._meta.model_name])
                 )
             )
             self.fields['categories_and'] = forms.ModelMultipleChoiceField(
@@ -71,7 +74,7 @@ class AllinkBaseAppContentPluginForm(forms.ModelForm):
                 help_text=_(u'Use this field if you want to further restrict your result set. This option allows you to create a conjunction between the first set of categories in field "Categories" and the ones specified here.'),
                 required=False,
                 queryset=AllinkCategory.objects.not_root().filter(
-                    model_names__contains=[self._meta.model.data_model._meta.model_name]
+                    Q(model_names__contains=[self._meta.model.data_model._meta.model_name]) | Q(parent__model_names__contains=[self._meta.model.data_model._meta.model_name])
                 )
             )
             self.fields['category_navigation'] = forms.ModelMultipleChoiceField(
@@ -84,7 +87,7 @@ class AllinkBaseAppContentPluginForm(forms.ModelForm):
                     u'You can explicitly define the categories for the category navigation here. This will override the automatically set of categories. (From "Filter & Ordering" but not from the "Manual entries")'),
                 required=False,
                 queryset=AllinkCategory.objects.not_root().filter(
-                model_names__contains=[self._meta.model.data_model._meta.model_name]
+                    Q(model_names__contains=[self._meta.model.data_model._meta.model_name]) | Q(parent__model_names__contains=[self._meta.model.data_model._meta.model_name])
                 )
             )
         self.fields['filter_fields'] = forms.TypedMultipleChoiceField(
