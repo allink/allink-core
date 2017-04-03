@@ -2,8 +2,10 @@
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
-from cms.extensions import PageExtension, TitleExtension
+from cms.extensions import TitleExtension
 from cms.extensions.extension_pool import extension_pool
+from cms.plugin_pool import plugin_pool
+from djangocms_file.cms_plugins import FilePlugin, FolderPlugin
 
 from filer.fields.image import FilerImageField
 from solo.models import SingletonModel
@@ -153,12 +155,11 @@ class AllinkConfig(SingletonModel):
 class AllinkMetaTagExtension(AllinkMetaTagFieldsModel, TitleExtension):
     pass
 
+
 extension_pool.register(AllinkMetaTagExtension)
 
 
 # Unregister existing Plugins
-from cms.plugin_pool import plugin_pool
-from djangocms_file.cms_plugins import FilePlugin, FolderPlugin
 
 plugin_pool.unregister_plugin(FilePlugin)
 plugin_pool.unregister_plugin(FolderPlugin)
