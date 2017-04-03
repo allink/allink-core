@@ -44,6 +44,8 @@ PROJECT_APP_MODEL_CATEGORY_TAG_CHOICES = [
     - Hint for updates: keyword argument "filter" in methode "get_render_queryset_for_display" on BlogAppContentPlugin must be renamed to "filters"
 - allink_categories: model_categories can be defined on child and/or parent.
 - allink_categories: categories can get generated from other apps, an get a tag. Like this when using an ajax filter by category, only categories generated from a specific model can be choosen.
+- allink_apps: App Plugins now support AND operator for filtering categories
+- allink_apps: get_absolute_urlallow now language as parameter
 
 ### FIXES
 - Bugfix in djangocms_instagram: Added queryset length when no display option with paginated_by value
@@ -53,7 +55,7 @@ PROJECT_APP_MODEL_CATEGORY_TAG_CHOICES = [
 ## v0.0.6
 
 ### IMPORTANT
-    
+
 ###### SETTINGS
 - PROJECT_COLORS is now a tuple and not a list anymore
 - CMS_PLACEHOLDER_CONF was supplemented with the placeholder fields from allink_apps

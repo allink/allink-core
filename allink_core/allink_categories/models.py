@@ -69,7 +69,7 @@ class AllinkCategory(AllinkTranslatedAutoSlugifyMixin, TranslationHelperMixin,
         _(u'Tag'),
         max_length=80,
         help_text=_(u'auto-generated categories use this tag, to identify which app generated the category.'),
-        choices=settings.PROJECT_APP_MODEL_CATEGORY_TAG_CHOICES,
+        # choices=settings.PROJECT_APP_MODEL_CATEGORY_TAG_CHOICES,
         null=True,
         blank=True
     )

@@ -4,9 +4,10 @@ from django.core.exceptions import FieldDoesNotExist, FieldError
 from django.db import models
 from django.db.models.signals import post_delete
 from django.dispatch import receiver
-from parler.models import TranslatableModel
+from cms.utils.i18n import get_current_language, get_default_language
+
 from django.utils.encoding import python_2_unicode_compatible
-from django.utils.translation import get_language, activate, ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _, override
 from django.contrib.postgres.fields import ArrayField
 
 from cms.models.pluginmodel import CMSPlugin
@@ -159,10 +160,17 @@ class AllinkBaseModel(AllinkMetaTagFieldsModel):
     is_published.short_description = _(u'Published')
     is_published.boolean = True
 
-    def get_absolute_url(self):
+    def get_absolute_url(self, language=None):
         from django.core.urlresolvers import reverse
+        if not language:
+            language = get_current_language() or get_default_language()
+
+        slug, language = self.known_translation_getter(
+            'slug', None, language_code=language)
+
         app = '{}:detail'.format(self._meta.model_name)
-        return reverse(app, kwargs={'slug': self.slug})
+        with override(language):
+            return reverse(app, kwargs={'slug': slug})
 
     def save_categories(self, new):
         """
@@ -256,7 +264,7 @@ class AllinkBasePlugin(CMSPlugin):
     )
     bg_color = models.CharField(
         _(u'Set a predefined background color'),
-        choices=settings.PROJECT_COLORS,
+        # choices=settings.PROJECT_COLORS,
         max_length=50,
         blank=True,
         null=True
@@ -560,7 +568,7 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
         except FieldError:
             translation_model = self.data_model.translations.related.related_model
             model_query = self.get_render_queryset_for_display().filter(**query_filter)
-            return translation_model.objects.filter(language_code=get_language(), master__in=model_query).order_by().values_list(fieldname).distinct()
+            return translation_model.objects.filter(language_code=get_current_language(), master__in=model_query).order_by().values_list(fieldname).distinct()
 
     def get_filter_fields_with_options(self):
         """
