@@ -16,7 +16,7 @@ from aldryn_categories.fields import (
     CategoryOneToOneField,
 )
 
-from . import CategoryTestCaseMixin
+from allink_core.allink_categories.tests import CategoryTestCaseMixin
 
 
 class TestCategoryField(CategoryTestCaseMixin, TestCase):
