@@ -18,7 +18,7 @@ Each release is divided into the following main categories:
 ### IMPORTANT
 
 ###### SETTINGS
-- contacts migration folder was added to allink_settings, so you have to create a folder (with "__init__.py") in apps/allink_apps_migrations. If you already have migrated contacts. you have to manually copy all migrations to the app specific folder.
+- contacts migration folder was added to allink_settings, so you have to create a folder `contacts` (and create an empty `__init__.py` in it [ha!]) within `apps/allink_apps_migrations`. If you already have migrated contacts you have to manually copy all migrations to the app specific folder.
 
 ###### TEMPLATES
 
