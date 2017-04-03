@@ -36,6 +36,7 @@ PROJECT_APP_MODEL_CATEGORY_TAG_CHOICES = [
 
 ###### REQUIREMENTS
 - djangocms-helper==0.9.8
+- coverage==4.3.4
 
 ###### DATA MIGRATIONS
 
