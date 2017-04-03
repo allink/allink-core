@@ -13,7 +13,7 @@ from treebeard.mp_tree import MP_Node
 
 from importlib import import_module
 
-from ..forms import fields
+from allink_core.allink_base.forms import fields
 
 
 # Add an app namespace to related_name to avoid field name clashes
@@ -102,6 +102,7 @@ def choices_from_sitemaps():
         from django.conf import settings
         url_mod = import_module(settings.ROOT_URLCONF)
         sitemaps = url_mod.sitemaps
+    # TODO: specify ErrorType
     except:
         sitemaps = {}
 

@@ -15,8 +15,8 @@ from phonenumber_field.modelfields import PhoneNumberField
 from djangocms_attributes_field.fields import AttributesField
 
 from allink_core.allink_base.utils import get_additional_choices
-from .choices import SPECIAL_LINKS_CHOICES, TARGET_CHOICES, NEW_WINDOW, SOFTPAGE_LARGE, SOFTPAGE_SMALL, FORM_MODAL, IMAGE_MODAL, BLANK_CHOICE
-from .model_fields import ZipCodeField
+from allink_core.allink_base.models import ZipCodeField
+from allink_core.allink_base.models.choices import SPECIAL_LINKS_CHOICES, TARGET_CHOICES, NEW_WINDOW, SOFTPAGE_LARGE, SOFTPAGE_SMALL, FORM_MODAL, IMAGE_MODAL, BLANK_CHOICE
 
 
 class AllinkAddressFieldsModel(models.Model):

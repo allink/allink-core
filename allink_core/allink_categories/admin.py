@@ -11,7 +11,7 @@ from treebeard.forms import movenodeform_factory, MoveNodeForm
 
 from parler.forms import TranslatableModelForm
 
-from .models import AllinkCategory
+from allink_core.allink_categories.models import AllinkCategory
 
 
 class AllinkCategoryForm(TranslatableModelForm, MoveNodeForm):

@@ -28,6 +28,7 @@ def get_additional_choices(config):
     """
     try:
         return getattr(settings, config, ())
+    # TODO: specify Error type
     except:
         return ''
 

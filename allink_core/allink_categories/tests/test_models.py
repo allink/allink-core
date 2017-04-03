@@ -7,9 +7,9 @@ from django.utils import translation
 
 from parler.utils.context import switch_language
 
-from ..models import AllinkCategory as Category
+from allink_core.allink_categories.models import AllinkCategory as Category
 
-from . import CategoryTestCaseMixin
+from allink_core.allink_categories.tests import CategoryTestCaseMixin
 
 
 class TestCategories(CategoryTestCaseMixin, TransactionTestCase):

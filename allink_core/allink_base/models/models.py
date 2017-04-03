@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 from django.conf import settings
 from django.core.exceptions import FieldDoesNotExist, FieldError
+from django.contrib.postgres.fields import ArrayField
 from django.db import models
 from django.db.models.signals import post_delete
 from django.dispatch import receiver
-from cms.utils.i18n import get_current_language, get_default_language
-
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _, override
-from django.contrib.postgres.fields import ArrayField
 
+from cms.utils.i18n import get_current_language, get_default_language
 from cms.models.pluginmodel import CMSPlugin
+
 from adminsortable.models import SortableMixin
 from filer.fields.image import FilerImageField
 from model_utils.fields import AutoCreatedField, AutoLastModifiedField
@@ -18,10 +18,10 @@ from model_utils.fields import AutoCreatedField, AutoLastModifiedField
 from allink_core.allink_base.utils import get_additional_templates
 from allink_core.allink_categories.models import AllinkCategory
 
-from .choices import BLANK_CHOICE, TITLE_CHOICES, H1
-from .model_fields import Classes
-from .managers import AllinkBaseModelManager
-from .reusable_fields import AllinkMetaTagFieldsModel
+from allink_core.allink_base.models import Classes
+from allink_core.allink_base.models import AllinkBaseModelManager
+from allink_core.allink_base.models import AllinkMetaTagFieldsModel
+from allink_core.allink_base.models.choices import BLANK_CHOICE, TITLE_CHOICES, H1
 
 
 @python_2_unicode_compatible
@@ -650,7 +650,7 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
                 if self.categories_and.count() > 0:
                     queryset = queryset.filter(categories=self.categories_and.all())
             else:
-                queryset = queryset.filter_by_categories(self.categories)
+                queryset = queryset.filter_by_categories(self.categories.all())
                 if self.categories_and.count() > 0:
                     queryset = queryset.filter(categories=self.categories_and.all())
             return self._apply_ordering_to_queryset_for_display(queryset)

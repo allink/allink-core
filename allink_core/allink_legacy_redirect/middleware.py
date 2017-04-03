@@ -3,7 +3,7 @@ from django.db.models import Q
 
 from itertools import combinations, permutations
 
-from .models import AllinkLegacyLink
+from allink_core.allink_legacy_redirect.models import AllinkLegacyLink
 
 
 class AllinkLegacyRedirectMiddleware(object):

@@ -29,7 +29,6 @@ class AllinkBaseModifierMixin(object):
         # Add a break in the sub-menus
         # menu.add_break()
 
-
     def post_template_populate(self):
         pass
 

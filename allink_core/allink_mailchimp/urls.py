@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 from django.conf.urls import patterns, url
 
-from .views import SignupView, SignupViewAdvanced
+from allink_core.allink_mailchimp.views import SignupView, SignupViewAdvanced
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
     url(r'^singup/$', SignupView.as_view(), name="singup"),
     url(r'^singup_advanced/$', SignupViewAdvanced.as_view(), name="singup_advanced"),
 )

@@ -8,9 +8,9 @@ from import_export.formats import base_formats
 
 from allink_core.allink_base.utils import base_url
 
-from .forms import AllinkLegacyChangeAdminForm
-from .models import AllinkLegacyLink
-from .resources import AllinkLegacyLinkResource
+from allink_core.allink_legacy_redirect.forms import AllinkLegacyChangeAdminForm
+from allink_core.allink_legacy_redirect.models import AllinkLegacyLink
+from allink_core.allink_legacy_redirect.resources import AllinkLegacyLinkResource
 
 
 class AllinkLegacyLinkAdmin(ImportMixin, admin.ModelAdmin):
@@ -40,5 +40,6 @@ class AllinkLegacyLinkAdmin(ImportMixin, admin.ModelAdmin):
         link = base_url() + obj.old
         return format_html('<a class="button" href="%s" target="_blank">Test</a>' % link)
     manual_test.short_description = _(u'Manual testing')
+
 
 admin.site.register(AllinkLegacyLink, AllinkLegacyLinkAdmin)
