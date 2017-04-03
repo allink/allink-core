@@ -15,10 +15,9 @@ from django.http import HttpResponse, Http404, JsonResponse, HttpResponseRedirec
 from django.template.loader import render_to_string
 from django.template import TemplateDoesNotExist
 
-from allink_core.allink_base.models import AllinkBaseAppContentPlugin
-
 from parler.views import TranslatableSlugMixin
 
+from allink_core.allink_base.models import AllinkBaseAppContentPlugin
 from allink_core.allink_categories.models import AllinkCategory
 
 
@@ -54,6 +53,7 @@ class AllinkBasePluginLoadMoreView(ListView):
         template = '{}/plugins/{}/{}.html'.format(opts.app_label, self.plugin.template, file)
         try:
             get_template(template)
+        # TODO: specify Error class
         except:
             template = 'app_content/plugins/{}/{}.html'.format(self.plugin.template, file)
         return [template]
@@ -127,13 +127,6 @@ class AllinkBaseCreateView(CreateView):
         success_url =
     """
 
-    def form_valid(self, form):
-        self.object = form.save()
-        if self.request.is_ajax():
-            return JsonResponse({}, status=200)
-        else:
-            return HttpResponseRedirect(self.get_success_url())
-
     def form_invalid(self, form):
         """
          If the form is invalid, re-render the context data with the
@@ -149,9 +142,9 @@ class AllinkBaseCreateView(CreateView):
         if self.request.is_ajax():
             context = super(AllinkBaseCreateView, self).get_context_data()
             try:
-                form.save()
                 html = render_to_string(self.get_confirmation_template(), context)
                 return HttpResponse(html)
+            # TODO Handel error correctly
             except:
                 # sentry is not configured on localhost
                 if not settings.RAVEN_CONFIG.get('dns'):

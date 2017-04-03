@@ -9,8 +9,7 @@ from django.template import TemplateDoesNotExist
 from cms.plugin_base import CMSPluginBase
 
 from allink_core.allink_base.models import AllinkBaseAppContentPlugin
-
-from allink_core.allink_base.admin.forms import AllinkBaseAppContentPluginForm
+from allink_core.allink_base.admin import AllinkBaseAppContentPluginForm
 
 
 class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
@@ -30,13 +29,12 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
     class Media:
         js = ('build/djangocms_custom_admin_scripts.js', )
         css = {
-             'all': ('build/djangocms_custom_admin_style.css', )
+            'all': ('build/djangocms_custom_admin_style.css', )
         }
 
     @classmethod
     def get_render_queryset(cls):
         return cls.model._default_manager.all()
-
 
     def get_fieldsets(self, request, obj=None):
         fieldsets = (
