@@ -1,6 +1,7 @@
 import sys
 from django.conf import settings
 
+
 class MailChimpConfig:
     def __init__(self):
 

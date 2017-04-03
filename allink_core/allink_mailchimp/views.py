@@ -6,11 +6,11 @@ from django.template.loader import render_to_string
 from django.utils.module_loading import import_by_path
 from django.views.generic import FormView
 
-from .forms import SignupForm, SignupFormAdvanced
-from .config import MailChimpConfig
-
+from allink_core.allink_mailchimp.forms import SignupForm, SignupFormAdvanced
+from allink_core.allink_mailchimp.config import MailChimpConfig
 
 config = MailChimpConfig()
+
 
 class SignupViewBase(FormView):
     form_class = None
