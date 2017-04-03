@@ -18,7 +18,7 @@ Each release is divided into the following main categories:
 ### IMPORTANT
 
 ###### SETTINGS
-- contacts migration folder was added to allink_settings, so you have to create a folder (with "__init__.py") in apps/allink_apps_migrations. If you already have migrated contacts. you have to manually copy all migrations to the app specific folder.
+- contacts migration folder was added to allink_settings, so you have to create a folder `contact` (and create an empty `__init__.py` in it [ha!]) within `apps/allink_apps_migrations`. If you already have migrated contacts you have to manually copy all migrations to the app specific folder.
 - new setting PROJECT_APP_MODEL_CATEGORY_TAG_CHOICES must be added by core update.
 ```python
 # all models which can be used as tag for categories.
@@ -46,10 +46,10 @@ PROJECT_APP_MODEL_CATEGORY_TAG_CHOICES = [
 - allink_categories: categories can get generated from other apps, an get a tag. Like this when using an ajax filter by category, only categories generated from a specific model can be choosen.
 - allink_apps: App Plugins now support AND operator for filtering categories
 - allink_apps: get_absolute_urlallow now language as parameter
+- Content Plugin: The template `content.html` can now be overwritten on a project basis with the following required content `{% extends "djangocms_content/content_base.html" %}`. Afterwards blocks can be set.
 
 ### FIXES
 - Bugfix in djangocms_instagram: Added queryset length when no display option with paginated_by value
-- Content Plugin: The template `content.html` can now be overwritten on a project basis with the following required content `{% extends "djangocms_content/content_base.html" %}`. Afterwards blocks can be set.
 
 
 ## v0.0.6
