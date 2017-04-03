@@ -96,6 +96,23 @@ class AllinkCategory(AllinkTranslatedAutoSlugifyMixin, TranslationHelperMixin,
 
     objects = CategoryManager()
 
+    @classmethod
+    def relevant_categories(cls, model_name):
+        """
+        returns a list of all relevant categories for a the model_name
+        """
+        result = AllinkCategory.objects.none()
+        for root in cls.get_root_nodes().filter(model_names__contains=[model_name]):
+            result |= root.get_children()
+        return result
+
+
+    def has_relevant_root(self, model_name):
+        if model_name in self.get_root().model_names:
+            return True
+        else:
+            return False
+
     def delete(self, using=None):
         #
         # We're simply managing how the two superclasses perform deletion
@@ -104,6 +121,7 @@ class AllinkCategory(AllinkTranslatedAutoSlugifyMixin, TranslationHelperMixin,
         self.__class__.objects.filter(pk=self.pk).delete(using)
         _delete_cached_translations(self)
         super(TranslatableModelMixin, self).delete()
+
 
     def __str__(self):
         return self.safe_translation_getter('name', any_language=True)

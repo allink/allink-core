@@ -25,9 +25,7 @@ class AllinkBaseAdminForm(TranslatableModelForm):
                     is_stacked=True
                 ),
                 required=True,
-                queryset=AllinkCategory.objects.not_root().filter(
-                    Q(model_names__contains=[self.instance._meta.model_name]) | Q(parent__model_names__contains=[self.instance._meta.model_name])
-                )
+                queryset=AllinkCategory.relevant_categories(self.instance._meta.model_name)
             )
             self.fields['category_navigation'] = forms.ModelMultipleChoiceField(
                 label=_(u'Categories for Navigation'),
@@ -38,9 +36,7 @@ class AllinkBaseAdminForm(TranslatableModelForm):
                 help_text=_(
                     u'You can explicitly define the categories for the category navigation here. This will override the automatically set of categories. (From "Filter & Ordering" but not from the "Manual entries")'),
                 required=False,
-                queryset=AllinkCategory.objects.not_root().filter(
-                    Q(model_names__contains=[self.instance._meta.model_name]) | Q(parent__model_names__contains=[self.instance._meta.model_name])
-                )
+                queryset=AllinkCategory.relevant_categories(self.instance._meta.model_name)
             )
 
 
