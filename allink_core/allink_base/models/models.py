@@ -114,6 +114,16 @@ class AllinkBaseModel(AllinkMetaTagFieldsModel):
     def get_previous(cls, instance):
         return cls.get_published().filter(created__lte=instance.created, id__lt=instance.id).order_by('created', 'id').last()
 
+    @classmethod
+    def get_relevant_categories(cls):
+        """
+        returns a queryset of all relevant categories for a the model_name
+        """
+        result = AllinkCategory.objects.none()
+        for root in AllinkCategory.get_root_nodes().filter(model_names__contains=[cls._meta.model_name]):
+            result |= root.get_children()
+        return result
+
     @property
     def next(self):
         return self.get_next(self)

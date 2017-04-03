@@ -19,12 +19,13 @@ def set_root_category_model_names(apps, schema_editor):
 
         # now add to root.model_names but keep the names which are already there
         to_add = root.model_names
-        for model_name in collected_model_names:
-            # add the model_name if not already added
-            if model_name not in to_add:
-                to_add.append(model_name)
-        root.model_names = to_add
-        root.save()
+        if collected_model_names:
+            for model_name in collected_model_names:
+                # add the model_name if not already added
+                if model_name not in to_add:
+                    to_add.append(model_name)
+            root.model_names = to_add
+            root.save()
 
 
 

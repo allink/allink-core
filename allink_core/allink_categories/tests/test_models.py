@@ -8,6 +8,7 @@ from django.utils import translation
 from parler.utils.context import switch_language
 
 from allink_core.allink_categories.models import AllinkCategory as Category
+from allink_apps.work.models import Work
 
 from allink_core.allink_categories.tests import CategoryTestCaseMixin
 

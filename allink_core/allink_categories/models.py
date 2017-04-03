@@ -67,7 +67,6 @@ class AllinkCategory(AllinkTranslatedAutoSlugifyMixin, TranslationHelperMixin,
         _(u'Tag'),
         max_length=80,
         help_text=_(u'auto-generated categories use this tag, to identify which app generated the category.'),
-        # choices=settings.PROJECT_APP_MODEL_CATEGORY_TAG_CHOICES,
         null=True,
         blank=True
     )
@@ -95,16 +94,6 @@ class AllinkCategory(AllinkTranslatedAutoSlugifyMixin, TranslationHelperMixin,
         verbose_name_plural = _('Categories')
 
     objects = CategoryManager()
-
-    @classmethod
-    def relevant_categories(cls, model_name):
-        """
-        returns a queryset of all relevant categories for a the model_name
-        """
-        result = AllinkCategory.objects.none()
-        for root in cls.get_root_nodes().filter(model_names__contains=[model_name]):
-            result |= root.get_children()
-        return result
 
     def delete(self, using=None):
         #

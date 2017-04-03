@@ -35,6 +35,7 @@ PROJECT_APP_MODEL_CATEGORY_TAG_CHOICES = [
 ###### URLS
 
 ###### REQUIREMENTS
+- djangocms-helper==0.9.8
 
 ###### DATA MIGRATIONS
 
@@ -49,6 +50,7 @@ PROJECT_APP_MODEL_CATEGORY_TAG_CHOICES = [
 - Content Plugin: The template `content.html` can now be overwritten on a project basis with the following required content `{% extends "djangocms_content/content_base.html" %}`. Afterwards blocks can be set.
 - AllinkCategories are now just defined for parent category (creating a new cagetory has to be a two step process. First create, if new root than, tag it with the model_name)
 - App Content Plugin: The template `app_content_base.html` now has a new block `app_content_load_more_btn_class_container` with which the load more button can be turned into a link by defining an empty block.
+- basic tests for allink_apps.work added
 
 ### FIXES
 - Bugfix in djangocms_instagram: Added queryset length when no display option with paginated_by value
