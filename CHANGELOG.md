@@ -12,6 +12,24 @@ Each release is divided into the following main categories:
 - FIXES: General bugfixes
 
 
+## v0.0.8
+
+### IMPORTANT
+
+###### SETTINGS
+
+###### TEMPLATES
+
+###### URLS
+
+###### REQUIREMENTS
+
+###### DATA MIGRATIONS
+
+### NEW
+
+### FIXES
+
 
 ## v0.0.7
 
