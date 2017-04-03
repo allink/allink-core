@@ -2,7 +2,7 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 from allink_core.allink_base.utils import get_additional_choices
-from .models import AllinkContentPlugin, AllinkContentColumnPlugin
+from allink_core.djangocms_content.models import AllinkContentPlugin, AllinkContentColumnPlugin
 
 
 class AllinkContentPluginForm(forms.ModelForm):

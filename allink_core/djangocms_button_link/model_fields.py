@@ -4,7 +4,7 @@ from __future__ import unicode_literals, absolute_import
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-from . import fields
+from allink_core.djangocms_button_link import fields
 
 
 class LinkOrButton(models.CharField):
@@ -98,7 +98,7 @@ class Size(models.CharField):
         return super(Size, self).get_choices(**kwargs)
 
 
-#TODO:
+# TODO:
 #   * btn-block, disabled
 #   * pull-left, pull-right
 #   * margins/padding

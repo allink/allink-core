@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django import forms
-from .models import AllinkGroupContainerPlugin, AllinkGroupPlugin
+from allink_core.djangocms_group.models import AllinkGroupContainerPlugin, AllinkGroupPlugin
 
 
 class AllinkGroupContainerPluginForm(forms.ModelForm):

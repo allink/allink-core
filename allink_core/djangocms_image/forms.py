@@ -2,7 +2,7 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
-from .models import AllinkImagePlugin
+from allink_core.djangocms_image.models import AllinkImagePlugin
 
 
 class AllinkImagePluginForm(forms.ModelForm):

@@ -2,7 +2,6 @@
 
 from django.db import models
 from django.core.exceptions import ValidationError
-from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.html import strip_tags
@@ -113,7 +112,7 @@ class AllinkContentPlugin(AllinkBasePlugin):
     def get_templates(cls):
         templates = cls.TEMPLATES
         for a, b, c, d in get_additional_templates('AllinkContent'):
-            templates += (( a, b, c, d),)
+            templates += ((a, b, c, d),)
         return templates
 
     @classmethod
@@ -128,13 +127,6 @@ class AllinkContentPlugin(AllinkBasePlugin):
         for template in cls.get_templates():
             if template[0] == name:
                 return template[2]
-
-    @classmethod
-    def get_template_column_count(cls, name):
-        for template in cls.get_templates():
-            if template[0] == name:
-                return template[2]
-
 
     def get_short_description(self):
         """
@@ -163,7 +155,6 @@ class AllinkContentPlugin(AllinkBasePlugin):
                 _('Incorrect file type: %(value)s'),
                 params={'value': self.video_file.extension},
             )
-
 
     @property
     def css_classes(self):

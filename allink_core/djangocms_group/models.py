@@ -29,6 +29,7 @@ class AllinkGroupContainerPlugin(CMSPlugin):
     def copy_relations(self, oldinstance):
         self.groups = oldinstance.groups.all()
 
+
 @python_2_unicode_compatible
 class AllinkGroupPlugin(CMSPlugin):
     title = models.CharField(

@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
 from django.utils.translation import ugettext_lazy as _
 from cms.plugin_base import CMSPluginBase
-from allink_core.allink_base.utils import get_additional_templates
 from cms.plugin_pool import plugin_pool
-from .models import AllinkSocialIconContainerPlugin, AllinkSocialIconPlugin
-from .forms import AllinkSocialIconContainerPluginForm, AllinkSocialIconPluginForm
+from allink_core.djangocms_socialicon.models import AllinkSocialIconContainerPlugin, AllinkSocialIconPlugin
+from allink_core.djangocms_socialicon.forms import AllinkSocialIconContainerPluginForm, AllinkSocialIconPluginForm
 
-#
+
 @plugin_pool.register_plugin
 class CMSAllinkSocialIconContainerPlugin(CMSPluginBase):
     model = AllinkSocialIconContainerPlugin
@@ -20,7 +19,7 @@ class CMSAllinkSocialIconContainerPlugin(CMSPluginBase):
         template = 'djangocms_socialicon/content.html'
         return template
 
-#
+
 @plugin_pool.register_plugin
 class CMSAllinkSocialIconPlugin(CMSPluginBase):
     model = AllinkSocialIconPlugin

@@ -3,8 +3,10 @@ from django import forms
 from django.forms.widgets import Media, TextInput
 from djangocms_attributes_field.widgets import AttributesWidget
 from django.utils.translation import ugettext_lazy as _
+
 import cms
-from .models import AllinkButtonLinkContainerPlugin, AllinkButtonLinkPlugin
+
+from allink_core.djangocms_button_link.models import AllinkButtonLinkContainerPlugin, AllinkButtonLinkPlugin
 
 
 class AllinkButtonLinkContainerPluginForm(forms.ModelForm):

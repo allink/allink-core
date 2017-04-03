@@ -2,7 +2,7 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
-from .models import AllinkVidPlugin
+from allink_core.djangocms_vid.models import AllinkVidPlugin
 
 
 class AllinkVidPluginForm(forms.ModelForm):
