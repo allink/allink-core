@@ -29,12 +29,11 @@ class AllinkCategoryForm(TranslatableModelForm, MoveNodeForm):
 
     def __init__(self, *args, **kwargs):
         super(AllinkCategoryForm, self).__init__(*args, **kwargs)
-        if self.instance and not self.instance.model_names and self.instance.get_parent() and self.instance.get_parent().model_names:
-            self.instance.model_names = self.instance.get_parent().model_names
-            super(AllinkCategoryForm, self).__init__(*args, **kwargs)
+        # hide model_names when
+        if self.instance and not self.instance.is_root():
+            self.fields['model_names'].widget = forms.HiddenInput()
 
 
-#  TODO: add user is_superuser check! (or better after creating user grou/role concept!) -> dont allow "editors" to add/read/write/delete
 @admin.register(AllinkCategory)
 class AllinkCategoryAdmin(TranslatableAdmin, TreeAdmin):
     form = movenodeform_factory(AllinkCategory, form=AllinkCategoryForm)

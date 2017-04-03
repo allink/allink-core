@@ -57,9 +57,7 @@ class AllinkBaseAppContentPluginForm(forms.ModelForm):
                     is_stacked=True
                 ),
                 required=False,
-                queryset=AllinkCategory.objects.not_root().filter(
-                    Q(model_names__contains=[self._meta.model.data_model._meta.model_name]) | Q(parent__model_names__contains=[self._meta.model.data_model._meta.model_name])
-                )
+                queryset=AllinkCategory.relevant_categories(self.instance.data_model._meta.model_name)
             )
             self.fields['categories_and'] = forms.ModelMultipleChoiceField(
                 label=_(u'Categories (AND operator)'),
@@ -69,9 +67,7 @@ class AllinkBaseAppContentPluginForm(forms.ModelForm):
                 ),
                 help_text=_(u'Use this field if you want to further restrict your result set. This option allows you to create a conjunction between the first set of categories in field "Categories" and the ones specified here.'),
                 required=False,
-                queryset=AllinkCategory.objects.not_root().filter(
-                    Q(model_names__contains=[self._meta.model.data_model._meta.model_name]) | Q(parent__model_names__contains=[self._meta.model.data_model._meta.model_name])
-                )
+                queryset=AllinkCategory.relevant_categories(self.instance.data_model._meta.model_name)
             )
             self.fields['category_navigation'] = forms.ModelMultipleChoiceField(
                 label=_(u'Categories for Navigation'),
@@ -82,9 +78,7 @@ class AllinkBaseAppContentPluginForm(forms.ModelForm):
                 help_text=_(
                     u'You can explicitly define the categories for the category navigation here. This will override the automatically set of categories. (From "Filter & Ordering" but not from the "Manual entries")'),
                 required=False,
-                queryset=AllinkCategory.objects.not_root().filter(
-                    Q(model_names__contains=[self._meta.model.data_model._meta.model_name]) | Q(parent__model_names__contains=[self._meta.model.data_model._meta.model_name])
-                )
+                queryset=AllinkCategory.relevant_categories(self.instance.data_model._meta.model_name)
             )
         self.fields['filter_fields'] = forms.TypedMultipleChoiceField(
             label=_(u'Filter Fields'),

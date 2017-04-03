@@ -99,19 +99,12 @@ class AllinkCategory(AllinkTranslatedAutoSlugifyMixin, TranslationHelperMixin,
     @classmethod
     def relevant_categories(cls, model_name):
         """
-        returns a list of all relevant categories for a the model_name
+        returns a queryset of all relevant categories for a the model_name
         """
         result = AllinkCategory.objects.none()
         for root in cls.get_root_nodes().filter(model_names__contains=[model_name]):
             result |= root.get_children()
         return result
-
-
-    def has_relevant_root(self, model_name):
-        if model_name in self.get_root().model_names:
-            return True
-        else:
-            return False
 
     def delete(self, using=None):
         #
