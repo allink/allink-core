@@ -56,7 +56,7 @@ class AllinkManualEntriesMixin(object):
                 if self.categories_and.count() > 0:
                     queryset = queryset.filter(categories=self.categories_and.all())
             else:
-                queryset = queryset.filter_by_categories(self.categories)
+                queryset = queryset.filter_by_categories(self.categories.all())
                 if self.categories_and.count() > 0:
                     queryset = queryset.filter(categories=self.categories_and.all())
             return self._apply_ordering_to_queryset_for_display(queryset)
