@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django import forms
 from django.utils.translation import ugettext_lazy as _
-from .models import AllinkGalleryPlugin, AllinkGalleryImagePlugin
+from allink_core.djangocms_gallery.models import AllinkGalleryPlugin, AllinkGalleryImagePlugin
 
 
 class AllinkGalleryPluginForm(forms.ModelForm):
@@ -18,6 +18,7 @@ class AllinkGalleryPluginForm(forms.ModelForm):
             widget=forms.Select(choices=self.instance.get_ratio_choices()),
             required=False,
         )
+
 
 class AllinkGalleryImagePluginForm(forms.ModelForm):
 

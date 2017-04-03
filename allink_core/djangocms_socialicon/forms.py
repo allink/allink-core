@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django import forms
-from .models import AllinkSocialIconContainerPlugin, AllinkSocialIconPlugin
+from allink_core.djangocms_socialicon.models import AllinkSocialIconContainerPlugin, AllinkSocialIconPlugin
 
 
 class AllinkSocialIconContainerPluginForm(forms.ModelForm):

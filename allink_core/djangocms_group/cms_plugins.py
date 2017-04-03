@@ -3,10 +3,10 @@ from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
-from .models import AllinkGroupContainerPlugin, AllinkGroupPlugin
-from .forms import AllinkGroupContainerPluginForm, AllinkGroupPluginForm
+from allink_core.djangocms_group.models import AllinkGroupContainerPlugin, AllinkGroupPlugin
+from allink_core.djangocms_group.forms import AllinkGroupContainerPluginForm, AllinkGroupPluginForm
 
-#
+
 @plugin_pool.register_plugin
 class CMSAllinkGroupContainerPlugin(CMSPluginBase):
     model = AllinkGroupContainerPlugin
@@ -33,7 +33,7 @@ class CMSAllinkGroupContainerPlugin(CMSPluginBase):
         template = 'djangocms_group/content.html'
         return template
 
-#
+
 @plugin_pool.register_plugin
 class CMSAllinkGroupPlugin(CMSPluginBase):
     model = AllinkGroupPlugin
@@ -42,7 +42,6 @@ class CMSAllinkGroupPlugin(CMSPluginBase):
     allow_children = True
     child_classes = settings.CMS_ALLINK_GROUP_PLUGIN_CHILD_CLASSES
     form = AllinkGroupPluginForm
-
 
     def get_fieldsets(self, request, obj=None):
         fieldsets = (

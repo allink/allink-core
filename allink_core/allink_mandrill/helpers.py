@@ -8,11 +8,14 @@ from .config import MandrillConfig
 
 config = MandrillConfig()
 
+
 def check_result_status(result):
-   if result[0].get('status') != 'sent' and result[0].get('status') != 'queued':
-       raise mandrill.Error(
-           _(u"Mandrill hasn't raised an error but email could not been sent. (status: '{}', reason: '{}')")
-               .format(result[0].get('status'), result[0].get('reject_reason')))
+    if result[0].get('status') != 'sent' and result[0].get('status') != 'queued':
+        raise mandrill.Error(
+            _(u"Mandrill hasn't raised an error but email could not been sent. (status: '{}', reason: '{}')").format(
+                result[0].get('status'),
+                result[0].get('reject_reason')
+            ))
 
 
 def send_transactional_email(message, template_content, language=None, translated=False, template_name=None, async=False):
@@ -34,7 +37,3 @@ def send_transactional_email(message, template_content, language=None, translate
         # sentry is not configured on localhost
         if not settings.RAVEN_CONFIG.get('dns'):
             raise
-
-
-
-

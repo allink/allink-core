@@ -3,8 +3,8 @@
 from django.utils.translation import ugettext_lazy as _
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
-from .models import AllinkTerms, AllinkTermsPlugin
-from .forms import AllinkTermsPluginForm
+from allink_core.allink_terms.models import AllinkTerms, AllinkTermsPlugin
+from allink_core.allink_terms.forms import AllinkTermsPluginForm
 
 
 @plugin_pool.register_plugin
@@ -21,9 +21,8 @@ class CMSAllinkTermsPlugin(CMSPluginBase):
 
     def render(self, context, instance, placeholder):
 
+        context['instance'] = instance
+        context['placeholder'] = placeholder
+        context['current_terms'] = AllinkTerms.objects.get_published()
 
-      context['instance'] = instance
-      context['placeholder'] = placeholder
-      context['current_terms'] = AllinkTerms.objects.get_published()
-
-      return context
+        return context

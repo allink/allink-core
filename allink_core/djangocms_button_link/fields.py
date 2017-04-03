@@ -4,7 +4,7 @@ from __future__ import unicode_literals, absolute_import
 from django import forms
 
 from allink_core.allink_base.models import choices
-from . import widgets
+from allink_core.djangocms_button_link import widgets
 
 
 class Context(forms.fields.ChoiceField):

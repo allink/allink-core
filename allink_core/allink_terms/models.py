@@ -10,9 +10,8 @@ from model_utils.models import TimeFramedModel
 from parler.models import TranslatableModel, TranslatedFields
 from djangocms_text_ckeditor.fields import HTMLField
 
-from allink_core.allink_base.models import AllinkBaseModel
+from allink_core.allink_terms.managers import AllinkTermsManager
 
-from .managers import AllinkTermsManager
 
 @python_2_unicode_compatible
 class AllinkTerms(TranslatableModel, TimeFramedModel):
@@ -34,7 +33,7 @@ class AllinkTerms(TranslatableModel, TimeFramedModel):
     )
 
     terms_cms_page = PageField(
-       verbose_name=_(u'Terms cms Page'),
+        verbose_name=_(u'Terms cms Page'),
         null=True,
         on_delete=models.SET_NULL,
         help_text=_(u'CMS Page which shows Terms and Conditions'),

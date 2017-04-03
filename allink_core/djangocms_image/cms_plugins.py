@@ -3,8 +3,8 @@ from django.utils.translation import ugettext_lazy as _
 from cms.plugin_base import CMSPluginBase
 
 from cms.plugin_pool import plugin_pool
-from .models import AllinkImagePlugin
-from .forms import AllinkImagePluginForm
+from allink_core.djangocms_image.models import AllinkImagePlugin
+from allink_core.djangocms_image.forms import AllinkImagePluginForm
 
 
 @plugin_pool.register_plugin

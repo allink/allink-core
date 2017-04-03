@@ -3,8 +3,8 @@ from django.utils.translation import ugettext_lazy as _
 from django.templatetags.static import static
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
-from .models import AllinkButtonLinkContainerPlugin, AllinkButtonLinkPlugin
-from .forms import AllinkButtonLinkContainerPluginForm, AllinkButtonLinkPluginForm
+from allink_core.djangocms_button_link.models import AllinkButtonLinkContainerPlugin, AllinkButtonLinkPlugin
+from allink_core.djangocms_button_link.forms import AllinkButtonLinkContainerPluginForm, AllinkButtonLinkPluginForm
 
 
 @plugin_pool.register_plugin

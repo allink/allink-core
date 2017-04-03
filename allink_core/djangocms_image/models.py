@@ -12,6 +12,7 @@ from allink_core.allink_base.utils import get_additional_templates, get_addition
 from allink_core.allink_base.models.reusable_fields import AllinkLinkFieldsModel
 from allink_core.allink_base.models.model_fields import CMSPluginField
 
+
 @python_2_unicode_compatible
 class AllinkImagePlugin(AllinkLinkFieldsModel, CMSPlugin):
     """

@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 from django.utils.translation import ugettext_lazy as _
 from cms.plugin_base import CMSPluginBase
-from allink_core.allink_base.utils import get_additional_templates
 from cms.plugin_pool import plugin_pool
-from .models import AllinkGalleryPlugin, AllinkGalleryImagePlugin
-from .forms import AllinkGalleryPluginForm, AllinkGalleryImagePluginForm
+from allink_core.djangocms_gallery.models import AllinkGalleryPlugin, AllinkGalleryImagePlugin
+from allink_core.djangocms_gallery.forms import AllinkGalleryPluginForm, AllinkGalleryImagePluginForm
 
 
 @plugin_pool.register_plugin

@@ -6,10 +6,9 @@ from cms.plugin_pool import plugin_pool
 from cms.plugin_base import CMSPluginBase
 
 import requests
-from requests.exceptions import HTTPError
 
-from .models import AllinkInstagramPlugin
-from .forms import AllinkInstagramPluginForm
+from allink_core.djangocms_instagram.models import AllinkInstagramPlugin
+from allink_core.djangocms_instagram.forms import AllinkInstagramPluginForm
 
 
 @plugin_pool.register_plugin

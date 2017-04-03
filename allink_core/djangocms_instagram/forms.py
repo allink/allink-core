@@ -2,7 +2,7 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
-from .models import AllinkInstagramPlugin
+from allink_core.djangocms_instagram.models import AllinkInstagramPlugin
 
 
 class AllinkInstagramPluginForm(forms.ModelForm):
