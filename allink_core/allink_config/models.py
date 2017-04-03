@@ -158,7 +158,6 @@ class AllinkMetaTagExtension(AllinkMetaTagFieldsModel, TitleExtension):
 
 extension_pool.register(AllinkMetaTagExtension)
 
-
 # Unregister existing Plugins
 
 plugin_pool.unregister_plugin(FilePlugin)
