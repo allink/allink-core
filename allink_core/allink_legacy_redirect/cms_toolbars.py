@@ -14,7 +14,6 @@ from allink_core.allink_legacy_redirect.models import AllinkLegacyLink
 
 
 
-
 @toolbar_pool.register
 class AllinkLegacyRedirectToolbar(CMSToolbar):
     model = AllinkLegacyLink
