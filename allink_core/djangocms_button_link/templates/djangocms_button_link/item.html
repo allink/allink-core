@@ -4,19 +4,17 @@
 {% endcomment %}
 
     <a href="{{ instance.get_link_url }}"
-       {% if instance.type == 'btn' or instance.txt_context or instance.classes %}
        class="
             {% if instance.type == 'btn' %}
                 btn{% if instance.btn_context %} btn-{{ instance.btn_context }}{% endif %}
                 {% if instance.btn_size %} btn-{{ instance.btn_size }}{% endif %}
                 {% if instance.btn_block %} btn-block{% endif %}
             {% else %}
-                {% if instance.txt_context %}txt-{{ instance.txt_context }}{% endif %}
+                text
             {% endif %}
             {% if instance.form_modal_enabled %} toggle-form-modal{% endif %}
             {% if extra_css_classes %} {{ extra_css_classes }}{% endif %}
         "
-        {% endif %}
         {% if instance.type == 'btn' %}
             role="button"
         {% endif %}
