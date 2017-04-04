@@ -29,7 +29,7 @@ Each release is divided into the following main categories:
 ### NEW
 
 - allink_categories: After adding a root category redirect to edit page for model_names option.
-- Content Plugin: Support for vertical alignment of columns added (the tallest element defines the boundaries). Important: Requires `allink-core-static` commit ``
+- Content Plugin: Support for vertical alignment of columns added (the tallest element defines the boundaries). Important: Requires `allink-core-static` commit `1256fa94cdc7b3ba8f6b48be384171e305e03ad5`
 
 ### FIXES
 
