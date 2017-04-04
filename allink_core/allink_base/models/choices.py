@@ -167,6 +167,7 @@ SPECIAL_LINKS_CHOICES = (
 # IMAGE
 
 RATIO_CHOICES = (
+    ('3-2', '3:2'),
     ('2-1', '2:1'),
     ('4-3', '4:3'),
     ('1-1', '1:1'),
