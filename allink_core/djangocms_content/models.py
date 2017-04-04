@@ -190,11 +190,9 @@ class AllinkContentColumnPlugin(CMSPlugin):
         blank=True,
         null=True
     )
-    alignment_horizontal_desktop = models.CharField(
-        _(u'Alignment horizontal desktop'),
-        max_length=50,
-        choices=HORIZONTAL_ALIGNMENT_CHOICES,
-        help_text=_(u'This option overrides the projects default alignment for desktop. (Usually "left")'),
+    order_mobile = models.IntegerField(
+        _(u'Order Mobile'),
+        help_text=_(u'Some columns should be ordered differently on mobile devices when columns are stacked vertically. This option allows you to define the position of the this column.<br><br>Note: Columns ordering is ascending (lowest number displayed first)'),
         blank=True,
         null=True
     )
@@ -206,9 +204,11 @@ class AllinkContentColumnPlugin(CMSPlugin):
         blank=True,
         null=True
     )
-    order_mobile = models.IntegerField(
-        _(u'Order Mobile'),
-        help_text=_(u'Some columns should be ordered differently on mobile devices when columns are stacked vertically. This option allows you to define the position of the this column.<br><br>Note: Columns ordering is ascending (lowest number displayed first)'),
+    alignment_horizontal_desktop = models.CharField(
+        _(u'Alignment horizontal desktop'),
+        max_length=50,
+        choices=HORIZONTAL_ALIGNMENT_CHOICES,
+        help_text=_(u'This option overrides the projects default alignment for desktop. (Usually "left")'),
         blank=True,
         null=True
     )
