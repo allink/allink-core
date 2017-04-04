@@ -102,6 +102,12 @@ class CMSAllinkContentColumnPlugin(CMSPluginBase):
     form = AllinkContentColumnPluginForm
     require_parent = True
 
+    class Media:
+        js = ('build/djangocms_custom_admin_scripts.js', )
+        css = {
+            'all': ('build/djangocms_custom_admin_style.css', )
+        }
+
     def save_model(self, request, obj, form, change):
 
         if 'order_mobile' in form.changed_data:
