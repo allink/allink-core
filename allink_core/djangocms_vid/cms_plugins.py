@@ -38,6 +38,9 @@ class CMSAllinkVidEmbedPlugin(CMSPluginBase):
         ]
         return fieldsets
 
+    def get_render_template(self, context, instance, placeholder):
+        template = 'djangocms_vid/embed/content.html'
+        return template
 
 @plugin_pool.register_plugin
 class CMSAllinkVidFilePlugin(CMSPluginBase):
@@ -68,3 +71,7 @@ class CMSAllinkVidFilePlugin(CMSPluginBase):
             }),
         ]
         return fieldsets
+
+    def get_render_template(self, context, instance, placeholder):
+        template = 'djangocms_vid/file/content.html'
+        return template

@@ -53,6 +53,9 @@ class AllinkVidBasePlugin(CMSPlugin):
 
     cmsplugin_ptr = CMSPluginField()
 
+    def __str__(self):
+        return self.video_id or self.video_service
+
     def copy_relations(self, oldinstance):
         self.video_poster_image = oldinstance.video_poster_image
 
@@ -75,6 +78,10 @@ class AllinkVidEmbedPlugin(AllinkVidBasePlugin):
     """
     Renders an Iframe when ``link``
     """
+
+    class Meta:
+        verbose_name = _('Allink Video Embed')
+
 
     video_id = models.CharField(
         verbose_name=_(u'Video ID'),
@@ -108,12 +115,15 @@ class AllinkVidFilePlugin(AllinkVidBasePlugin):
     writes HTML5 <video> tag for video_file
     """
 
+    class Meta:
+        verbose_name = _('Allink Video File')
+
     video_file = FilerFileField(
-            verbose_name=_(u'Source'),
-            help_text=_(
-                u'Recommended video settings:<br><br>Format: mp4<br>Codec: H.264<br>Target Bitrate: 2 (video loads quick and runs smooth)<br>Audio: Not recommended (no audio = smaller file size and less annoyed visitors)<br>Aspect ratio: TBD<br>File size: Dependent of video length. Generally speaking: Less is more.'),
+            verbose_name=_(u'Video File'),
+            help_text=_(u'Recommended video settings:<br><br>Format: mp4<br>Codec: H.264<br>Target Bitrate: 2 (video loads quick and runs smooth)<br>Audio: Not recommended (no audio = smaller file size and less annoyed visitors)<br>Aspect ratio: TBD<br>File size: Dependent of video length. Generally speaking: Less is more.'),
             on_delete=models.SET_NULL,
-            related_name='content_video_file'
+            null=True,
+            related_name='%(app_label)s_%(class)s_video_file',
     )
 
     def __str__(self):
