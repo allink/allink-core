@@ -5,6 +5,7 @@ from django import forms
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 from parler.admin import TranslatableAdmin
+from django.http import HttpResponseRedirect
 
 from treebeard.admin import TreeAdmin
 from treebeard.forms import movenodeform_factory, MoveNodeForm
@@ -39,3 +40,9 @@ class AllinkCategoryAdmin(TranslatableAdmin, TreeAdmin):
     form = movenodeform_factory(AllinkCategory, form=AllinkCategoryForm)
     list_display = ('name', )
     # fields = ('name',  'slug', 'model_names')
+
+    def response_add(self, request, obj, post_url_continue=None):
+        if obj.is_root():
+            return HttpResponseRedirect("../%s" % obj.id)
+        else:
+            return super(AllinkCategoryAdmin, self).response_add(request, obj, post_url_continue=post_url_continue)

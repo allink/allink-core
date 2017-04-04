@@ -28,6 +28,8 @@ Each release is divided into the following main categories:
 
 ### NEW
 
+- allink_categories: After adding a root category redirect to edit page for model_names option.
+
 ### FIXES
 
 - Mailchimp Forms: `signup_form.html` and `signup_form_advanced.html` now have their own extendable `base` templates with numerous `blocks` that can be overwritten on a project basis.
