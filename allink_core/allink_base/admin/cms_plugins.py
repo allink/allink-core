@@ -116,7 +116,7 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
             'fields': (
                 'detail_link_text',
                 'project_css_classes',
-                'extra_css_classes',
+                # 'extra_css_classes',
             )
         }),
 

@@ -67,7 +67,7 @@ class CMSAllinkButtonLinkPlugin(CMSPluginBase):
         (_('Advanced settings'), {
             'classes': ('collapse',),
             'fields': (
-                'extra_css_classes',
+                # 'extra_css_classes',
                 'link_attributes',
             )
         }),

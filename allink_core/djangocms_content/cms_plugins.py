@@ -68,7 +68,7 @@ class CMSAllinkContentPlugin(CMSPluginBase):
             'classes': ('collapse',),
             'fields': (
                 'project_css_classes',
-                'extra_css_classes',
+                # 'extra_css_classes',
             )
         })
     )

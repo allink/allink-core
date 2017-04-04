@@ -37,6 +37,7 @@ ALLINK_INSTALLED_APPS = [
     'allink_core.djangocms_content',
     'allink_core.djangocms_image',
     'allink_core.djangocms_gallery',
+    'allink_core.djangocms_vid',
     'allink_core.djangocms_socialicon',
     'allink_core.djangocms_button_link',
     'allink_core.djangocms_group',
@@ -97,12 +98,11 @@ ALLINK_CMS_PLACEHOLDER_CONF_PLUGINS = [
 
 CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [
     'TextPlugin',
-    'VideoPlayerPlugin',
-    'VideoSourcePlugin',
-    'VideoTrackPlugin',
     'CMSAllinkTermsPlugin',
     'CMSAllinkImagePlugin',
     'CMSAllinkGalleryPlugin',
+    'CMSAllinkVidEmbedPlugin',
+    'CMSAllinkVidFilePlugin',
     'CMSAllinkSocialIconContainerPlugin',
     'CMSAllinkSignupFormPlugin',
     'CMSAllinkButtonLinkContainerPlugin',

@@ -29,6 +29,8 @@ Each release is divided into the following main categories:
 ### NEW
 
 - allink_categories: After adding a root category redirect to edit page for model_names option.
+- extra_css_classes removed from admin
+- djangocms_vid_file and djangocms_vid_embed implemented (dropped djangocms_video)
 
 ### FIXES
 
