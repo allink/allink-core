@@ -31,6 +31,8 @@ Each release is divided into the following main categories:
 - allink_categories: After adding a root category redirect to edit page for model_names option.
 - extra_css_classes removed from admin
 - djangocms_vid_file and djangocms_vid_embed implemented (dropped djangocms_video)
+- Content Plugin: Support for vertical alignment of columns added (the tallest element defines the boundaries). Important: Requires `allink-core-static` commit `1256fa94cdc7b3ba8f6b48be384171e305e03ad5`
+- config: New app added in allink_apps. A migrations folder (`allink_apps_migrations.config`) is necessary in every project after this version.
 
 ### FIXES
 

@@ -31,7 +31,7 @@ ALLINK_INSTALLED_APPS = [
     'allink_apps.testimonials',
     'allink_apps.blog',
     'allink_apps.contact',
-    'allink_apps.project_config',
+    'allink_apps.config',
 
     # allink core djangocms plugins
     'allink_core.djangocms_content',
@@ -56,7 +56,7 @@ ALLINK_MIGRATION_MODULES = {
     'work': 'apps.allink_apps_migrations.work',
     'members': 'apps.allink_apps_migrations.members',
     'contacts': 'apps.allink_apps_migrations.contacts',
-    'project_config': 'apps.allink_apps_migrations.project_config',
+    'config': 'apps.allink_apps_migrations.config',
 }
 
 ####################################################################################

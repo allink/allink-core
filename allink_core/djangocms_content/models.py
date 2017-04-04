@@ -190,11 +190,9 @@ class AllinkContentColumnPlugin(CMSPlugin):
         blank=True,
         null=True
     )
-    alignment_horizontal_desktop = models.CharField(
-        _(u'Alignment horizontal desktop'),
-        max_length=50,
-        choices=HORIZONTAL_ALIGNMENT_CHOICES,
-        help_text=_(u'This option overrides the projects default alignment for desktop. (Usually "left")'),
+    order_mobile = models.IntegerField(
+        _(u'Order Mobile'),
+        help_text=_(u'Some columns should be ordered differently on mobile devices when columns are stacked vertically. This option allows you to define the position of the this column.<br><br>Note: Columns ordering is ascending (lowest number displayed first)'),
         blank=True,
         null=True
     )
@@ -206,17 +204,19 @@ class AllinkContentColumnPlugin(CMSPlugin):
         blank=True,
         null=True
     )
+    alignment_horizontal_desktop = models.CharField(
+        _(u'Alignment horizontal desktop'),
+        max_length=50,
+        choices=HORIZONTAL_ALIGNMENT_CHOICES,
+        help_text=_(u'This option overrides the projects default alignment for desktop. (Usually "left")'),
+        blank=True,
+        null=True
+    )
     alignment_vertical_desktop = models.CharField(
         _(u'Alignment vertical desktop'),
         max_length=50,
         choices=VERTICAL_ALIGNMENT_CHOICES,
         help_text=_(u'This option overrides the projects default alignment for desktop. (Usually "top")'),
-        blank=True,
-        null=True
-    )
-    order_mobile = models.IntegerField(
-        _(u'Order Mobile'),
-        help_text=_(u'Some columns should be ordered differently on mobile devices when columns are stacked vertically. This option allows you to define the position of the this column.<br><br>Note: Columns ordering is ascending (lowest number displayed first)'),
         blank=True,
         null=True
     )
@@ -241,7 +241,7 @@ class AllinkContentColumnPlugin(CMSPlugin):
     def css_classes(self):
         css_classes = []
         css_classes.append('col-empty') if self.num_children() == 0 else None
-        css_classes.append('align-h-desktop-{}'.format(self.alignment_horizontal_desktop)) if self.alignment_horizontal_desktop else None
+        css_classes.append('align-v-desktop-{}'.format(self.alignment_vertical_desktop)) if self.alignment_vertical_desktop else None
         css_classes.append('align-h-mobile-{}'.format(self.alignment_horizontal_mobile)) if self.alignment_horizontal_mobile else None
         css_classes.append('col-order-mobile-{}'.format(self.order_mobile))
         return ' '.join(css_classes)
