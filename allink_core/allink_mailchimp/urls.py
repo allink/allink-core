@@ -5,6 +5,6 @@ from allink_core.allink_mailchimp.views import SignupView, SignupViewAdvanced
 
 urlpatterns = patterns(
     '',
-    url(r'^singup/$', SignupView.as_view(), name="singup"),
-    url(r'^singup_advanced/$', SignupViewAdvanced.as_view(), name="singup_advanced"),
+    url(r'^signup/$', SignupView.as_view(), name="signup"),
+    url(r'^signup_advanced/$', SignupViewAdvanced.as_view(), name="signup_advanced"),
 )

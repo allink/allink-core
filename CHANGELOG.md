@@ -30,6 +30,8 @@ Each release is divided into the following main categories:
 
 ### FIXES
 
+- Mailchimp Forms: `signup_form.html` and `signup_form_advanced.html` now have their own extendable `base` templates with numerous `blocks` that can be overwritten on a project basis.
+
 
 ## v0.0.7
 
