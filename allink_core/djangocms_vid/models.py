@@ -25,6 +25,10 @@ class AllinkVidBasePlugin(CMSPlugin):
         _(u'Autostart'),
         default=True
     )
+    allow_fullscreen_enabled = models.BooleanField(
+        _(u'Allow fullscreen'),
+        default=False
+    )
 
     # additional
     attributes = AttributesField(

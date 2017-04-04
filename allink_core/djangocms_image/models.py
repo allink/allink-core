@@ -55,6 +55,12 @@ class AllinkImagePlugin(AllinkLinkFieldsModel, CMSPlugin):
         blank=True,
         null=True
     )
+    bg_color = models.CharField(
+        _(u'Set a predefined background color'),
+        max_length=50,
+        blank=True,
+        null=True
+    )
     caption_text = models.TextField(
         verbose_name=_(u'Caption text'),
         blank=True,
