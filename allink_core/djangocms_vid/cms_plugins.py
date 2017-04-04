@@ -3,75 +3,38 @@ from django.utils.translation import ugettext_lazy as _
 from cms.plugin_base import CMSPluginBase
 
 from cms.plugin_pool import plugin_pool
-from allink_core.djangocms_vid.models import AllinkVidEmbedPlugin, AllinkVidFilePlugin
-from allink_core.djangocms_vid.forms import AllinkVidEmbedPluginForm, AllinkVidFilePluginForm
+from allink_core.djangocms_vid.models import AllinkVidPlugin
+from allink_core.djangocms_vid.forms import AllinkVidPluginForm
 
 
 @plugin_pool.register_plugin
-class CMSAllinkVidEmbedPlugin(CMSPluginBase):
-    model = AllinkVidEmbedPlugin
-    name = _('Video Embed')
+class CMSAllinkVidPlugin(CMSPluginBase):
+    model = AllinkVidPlugin
+    name = _('Video')
     module = _("allink")
-    form = AllinkVidEmbedPluginForm
+    form = AllinkVidPluginForm
 
     def get_fieldsets(self, request, obj=None):
         fieldsets = [
             (None, {
                 'fields': (
-                    'video_id',
-                    'video_service',
-                )
-            }),
-            (_('Video settings'), {
-                'classes': ('collapse',),
-                'fields': (
-                    'auto_start_enabled',
+                    'label',
+                    'poster',
+                    'embed_link',
+                    'ratio',
+                    'template',
                 )
             }),
             (_('Advanced settings'), {
                 'classes': ('collapse',),
                 'fields': (
                     'attributes',
-                    'project_css_classes',
                 )
             }),
         ]
+
         return fieldsets
 
     def get_render_template(self, context, instance, placeholder):
-        template = 'djangocms_vid/embed/content.html'
-        return template
-
-@plugin_pool.register_plugin
-class CMSAllinkVidFilePlugin(CMSPluginBase):
-    model = AllinkVidFilePlugin
-    name = _('Video File')
-    module = _("allink")
-    form = AllinkVidFilePluginForm
-
-    def get_fieldsets(self, request, obj=None):
-        fieldsets = [
-            (None, {
-                'fields': (
-                    'video_file',
-                )
-            }),
-            (_('Video settings'), {
-                'classes': ('collapse',),
-                'fields': (
-                    'auto_start_enabled',
-                )
-            }),
-            (_('Advanced settings'), {
-                'classes': ('collapse',),
-                'fields': (
-                    'attributes',
-                    'project_css_classes',
-                )
-            }),
-        ]
-        return fieldsets
-
-    def get_render_template(self, context, instance, placeholder):
-        template = 'djangocms_vid/file/content.html'
+        template = 'djangocms_vid/{}/content.html'.format(instance.template)
         return template
