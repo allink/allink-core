@@ -12,7 +12,7 @@ from filer.fields.file import FilerFileField
 
 from allink_core.allink_base.utils import get_additional_templates
 from allink_core.allink_base.models import AllinkBasePlugin
-from allink_core.allink_base.models.choices import HORIZONTAL_ALIGNMENT_CHOICES, CENTER
+from allink_core.allink_base.models.choices import HORIZONTAL_ALIGNMENT_CHOICES, CENTER, VERTICAL_ALIGNMENT_CHOICES
 
 from settings import ALLOWED_VIDEO_EXTENSIONS
 
@@ -203,6 +203,14 @@ class AllinkContentColumnPlugin(CMSPlugin):
         max_length=50,
         choices=HORIZONTAL_ALIGNMENT_CHOICES,
         help_text=_(u'This option overrides the projects default alignment for mobile. (Usually "left")'),
+        blank=True,
+        null=True
+    )
+    alignment_vertikal_desktop = models.CharField(
+        _(u'Alignment vertical desktop'),
+        max_length=50,
+        choices=VERTICAL_ALIGNMENT_CHOICES,
+        help_text=_(u'This option overrides the projects default alignment for desktop. (Usually "top")'),
         blank=True,
         null=True
     )
