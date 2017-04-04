@@ -12,7 +12,7 @@ from filer.fields.file import FilerFileField
 
 from allink_core.allink_base.utils import get_additional_templates
 from allink_core.allink_base.models import AllinkBasePlugin
-from allink_core.allink_base.models.choices import HORIZONTAL_ALIGNMENT_CHOICES, CENTER
+from allink_core.allink_base.models.choices import HORIZONTAL_ALIGNMENT_CHOICES, CENTER, VERTICAL_ALIGNMENT_CHOICES
 
 from settings import ALLOWED_VIDEO_EXTENSIONS
 
@@ -212,6 +212,14 @@ class AllinkContentColumnPlugin(CMSPlugin):
         blank=True,
         null=True
     )
+    alignment_vertical_desktop = models.CharField(
+        _(u'Alignment vertical desktop'),
+        max_length=50,
+        choices=VERTICAL_ALIGNMENT_CHOICES,
+        help_text=_(u'This option overrides the projects default alignment for desktop. (Usually "top")'),
+        blank=True,
+        null=True
+    )
 
     def __str__(self):
         if self.title and self.template:
@@ -233,7 +241,7 @@ class AllinkContentColumnPlugin(CMSPlugin):
     def css_classes(self):
         css_classes = []
         css_classes.append('col-empty') if self.num_children() == 0 else None
-        css_classes.append('align-h-desktop-{}'.format(self.alignment_horizontal_desktop)) if self.alignment_horizontal_desktop else None
+        css_classes.append('align-v-desktop-{}'.format(self.alignment_vertical_desktop)) if self.alignment_horizontal_desktop else None
         css_classes.append('align-h-mobile-{}'.format(self.alignment_horizontal_mobile)) if self.alignment_horizontal_mobile else None
         css_classes.append('col-order-mobile-{}'.format(self.order_mobile))
         return ' '.join(css_classes)

@@ -101,6 +101,16 @@ SOCIAL_ICONS_CHOICES = (
 
 ####################################################################################
 
+# VIDEO SERVICES
+
+VIDEO_SERVICE_CHOICES = (
+    (YOUTUBE, u'Youtube'),
+    (VIMEO, u'Vimeo'),
+)
+
+
+####################################################################################
+
 # BUTTON / TEXT
 
 # Used in the 'Button / Link' plugin
