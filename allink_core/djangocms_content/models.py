@@ -206,7 +206,7 @@ class AllinkContentColumnPlugin(CMSPlugin):
         blank=True,
         null=True
     )
-    alignment_vertikal_desktop = models.CharField(
+    alignment_vertical_desktop = models.CharField(
         _(u'Alignment vertical desktop'),
         max_length=50,
         choices=VERTICAL_ALIGNMENT_CHOICES,
