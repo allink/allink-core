@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django import forms
 from django.utils.translation import ugettext_lazy as _
-from allink_core.allink_base.utils import get_additional_choices
+from allink_core.allink_base.utils import get_additional_choices, get_project_color_choices
 from allink_core.djangocms_content.models import AllinkContentPlugin, AllinkContentColumnPlugin
 
 
@@ -23,7 +23,7 @@ class AllinkContentPluginForm(forms.ModelForm):
         )
         self.fields['bg_color'] = forms.CharField(
             label=_(u'Set a predefined background color'),
-            widget=forms.Select(choices=self.instance.get_project_color_choices()),
+            widget=forms.Select(choices=get_project_color_choices()),
             required=False,
         )
         if get_additional_choices('PROJECT_CSS_CLASSES'):

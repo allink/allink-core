@@ -306,10 +306,6 @@ class AllinkBasePlugin(CMSPlugin):
     class Meta:
         abstract = True
 
-    @classmethod
-    def get_project_color_choices(cls):
-        return BLANK_CHOICE + settings.PROJECT_COLORS
-
     @property
     def base_classes(self):
         css_classes = []

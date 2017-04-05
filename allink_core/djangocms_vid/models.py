@@ -108,10 +108,6 @@ class AllinkVidEmbedPlugin(AllinkVidBasePlugin):
     def __str__(self):
         return self.video_id or self.video_service
 
-    @classmethod
-    def get_ratio_choices(cls):
-        return BLANK_CHOICE + RATIO_CHOICES + get_additional_choices('RATIO_CHOICES')
-
 
 @python_2_unicode_compatible
 class AllinkVidFilePlugin(AllinkVidBasePlugin):

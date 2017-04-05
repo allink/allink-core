@@ -100,9 +100,21 @@ class AllinkImagePlugin(AllinkLinkFieldsModel, CMSPlugin):
             templates += ((x, y),)
         return templates
 
-    @classmethod
-    def get_ratio_choices(cls):
-        return BLANK_CHOICE + RATIO_CHOICES + get_additional_choices('RATIO_CHOICES')
+    @property
+    def base_classes(self):
+        css_classes = []
+        css_classes.append("has-bg-color") if self.bg_color else None
+        css_classes.append(self.bg_color) if self.bg_color else None
+        # if getattr(self, 'project_css_classes'):
+        #     for css_class in getattr(self, 'project_css_classes'):
+        #         css_classes.append(css_class)
+        return css_classes
+
+    @property
+    def css_classes(self):
+        css_classes = self.base_classes
+        # css_classes.append(self.extra_css_classes)
+        return ' '.join(css_classes)
 
     def get_short_description(self):
         if self.external_picture:

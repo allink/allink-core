@@ -38,6 +38,7 @@ class CMSAllinkImagePlugin(CMSPluginBase):
                 'classes': ('collapse',),
                 'fields': (
                     'template',
+                    'bg_color',
                     'caption_text',
                     'attributes',
                 )
