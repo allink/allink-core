@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.conf import settings
+from django.core.urlresolvers import NoReverseMatch
 from django.core.exceptions import FieldDoesNotExist, FieldError
 from django.contrib.postgres.fields import ArrayField
 from django.db import models
@@ -170,6 +171,9 @@ class AllinkBaseModel(AllinkMetaTagFieldsModel):
     is_published.short_description = _(u'Published')
     is_published.boolean = True
 
+    def get_detail_view(self):
+        '{}:detail'.format(self._meta.model_name)
+
     def get_absolute_url(self, language=None):
         from django.core.urlresolvers import reverse
         if not language:
@@ -177,10 +181,12 @@ class AllinkBaseModel(AllinkMetaTagFieldsModel):
 
         slug, language = self.known_translation_getter(
             'slug', None, language_code=language)
-
-        app = '{}:detail'.format(self._meta.model_name)
-        with override(language):
-            return reverse(app, kwargs={'slug': slug})
+        app = self.get_detail_view()
+        try:
+            with override(language):
+                return reverse(app, kwargs={'slug': slug})
+        except NoReverseMatch:
+            return 'no_app_hook_configured'
 
     def save_categories(self, new):
         """
