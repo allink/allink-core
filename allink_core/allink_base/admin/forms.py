@@ -7,7 +7,7 @@ from django.db.models import Q
 
 from parler.forms import TranslatableModelForm
 
-from allink_core.allink_base.utils import get_additional_choices
+from allink_core.allink_base.utils import get_additional_choices, get_project_color_choices
 from allink_core.allink_categories.models import AllinkCategory
 from allink_core.allink_base.models import AllinkBaseAppContentPlugin
 
@@ -94,7 +94,7 @@ class AllinkBaseAppContentPluginForm(forms.ModelForm):
         )
         self.fields['bg_color'] = forms.CharField(
             label=_(u'Background color'),
-            widget=forms.Select(choices=self.instance.get_project_color_choices()),
+            widget=forms.Select(choices=get_project_color_choices()),
             required=False,
         )
         if get_additional_choices('PROJECT_CSS_CLASSES'):

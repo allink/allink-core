@@ -3,12 +3,14 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _, ugettext
 from django.utils.encoding import python_2_unicode_compatible
+from django.contrib.postgres.fields import ArrayField
+
 from djangocms_attributes_field.fields import AttributesField
 from cms.models.pluginmodel import CMSPlugin
 from filer.fields.image import FilerImageField
 
-from allink_core.allink_base.models.choices import BLANK_CHOICE, RATIO_CHOICES
-from allink_core.allink_base.utils import get_additional_templates, get_additional_choices
+from allink_core.allink_base.models.choices import RATIO_CHOICES
+from allink_core.allink_base.utils import get_additional_templates
 from allink_core.allink_base.models.reusable_fields import AllinkLinkFieldsModel
 from allink_core.allink_base.models.model_fields import CMSPluginField
 
@@ -36,7 +38,6 @@ class AllinkImagePlugin(AllinkLinkFieldsModel, CMSPlugin):
     )
     picture = FilerImageField(
         verbose_name=_(u'Image'),
-        blank=True,
         null=True,
         on_delete=models.SET_NULL,
         related_name='%(app_label)s_%(class)s_picture',
@@ -86,6 +87,16 @@ class AllinkImagePlugin(AllinkLinkFieldsModel, CMSPlugin):
         help_text=_(u'Outputs the raw image without cropping.'),
     )
 
+    project_css_classes = ArrayField(
+        models.CharField(
+            max_length=50,
+            blank=True,
+            null=True
+        ),
+        blank=True,
+        null=True
+    )
+
     cmsplugin_ptr = CMSPluginField()
 
     def __str__(self):
@@ -100,9 +111,20 @@ class AllinkImagePlugin(AllinkLinkFieldsModel, CMSPlugin):
             templates += ((x, y),)
         return templates
 
-    @classmethod
-    def get_ratio_choices(cls):
-        return BLANK_CHOICE + RATIO_CHOICES + get_additional_choices('RATIO_CHOICES')
+    @property
+    def base_classes(self):
+        css_classes = []
+        css_classes.append("has-bg-color") if self.bg_color else None
+        css_classes.append(self.bg_color) if self.bg_color else None
+        if getattr(self, 'project_css_classes'):
+            for css_class in getattr(self, 'project_css_classes'):
+                css_classes.append(css_class)
+        return css_classes
+
+    @property
+    def css_classes(self):
+        css_classes = self.base_classes
+        return ' '.join(css_classes)
 
     def get_short_description(self):
         if self.external_picture:

@@ -34,22 +34,24 @@ class CMSAllinkImagePlugin(CMSPluginBase):
                     'ratio',
                 )
             }),
-            (_('Advanced settings'), {
-                'classes': ('collapse',),
-                'fields': (
-                    'template',
-                    'caption_text',
-                    'attributes',
-                )
-            }),
             (_('Link settings'), {
                 'classes': ('collapse',),
                 'fields': (
-                    ('link_url', 'link_page',),
+                    ('link_url', 'link_internal',),
                     ('link_mailto', 'link_phone'),
                     ('link_anchor', 'link_special'),
                     'link_file',
                     'link_target',
+                )
+            }),
+            (_('Advanced settings'), {
+                'classes': ('collapse',),
+                'fields': (
+                    'template',
+                    'bg_color',
+                    'caption_text',
+                    'attributes',
+                    'project_css_classes',
                 )
             }),
             (_('Wireframe settings'), {

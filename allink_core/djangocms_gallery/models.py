@@ -54,10 +54,6 @@ class AllinkGalleryPlugin(CMSPlugin):
             return u'({})'.format(self.template)
         return str(self.pk)
 
-    @classmethod
-    def get_ratio_choices(cls):
-        return BLANK_CHOICE + RATIO_CHOICES + get_additional_choices('RATIO_CHOICES')
-
 
 @python_2_unicode_compatible
 class AllinkGalleryImagePlugin(CMSPlugin):

@@ -2,10 +2,14 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
+from allink_core.allink_base.utils import get_project_color_choices, get_ratio_choices, get_additional_choices
 from allink_core.djangocms_image.models import AllinkImagePlugin
+from allink_core.allink_base.models.model_fields import choices_from_sitemaps
 
 
 class AllinkImagePluginForm(forms.ModelForm):
+
+    link_internal = forms.ChoiceField(choices=(), required=False)
 
     class Meta:
         model = AllinkImagePlugin
@@ -29,6 +33,19 @@ class AllinkImagePluginForm(forms.ModelForm):
         self.fields['ratio'] = forms.CharField(
             label=_(u'Ratio'),
             help_text=_(u'This option overrides the default settings for the content plugin.'),
-            widget=forms.Select(choices=self.instance.get_ratio_choices()),
+            widget=forms.Select(choices=get_ratio_choices()),
             required=False,
         )
+        self.fields['bg_color'] = forms.CharField(
+            label=_(u'Set a predefined background color'),
+            widget=forms.Select(choices=get_project_color_choices()),
+            required=False,
+        )
+        if get_additional_choices('IMAGE_PLUGIN_PROJECT_CSS_CLASSES'):
+            self.fields['project_css_classes'] = forms.MultipleChoiceField(
+                label=_(u'Predifined css classes'),
+                help_text=_(u'Instructions: Single selection is made by clicking on an option. Multiple selections are achieved by pressing and holding down the Command-key (Mac) or Control-Key (Windows) <strong>and</strong> clicking the options you would like to apply.'),
+                choices=get_additional_choices('IMAGE_PLUGIN_PROJECT_CSS_CLASSES'),
+                required=False,
+            )
+        self.fields['link_internal'].choices = choices_from_sitemaps()
