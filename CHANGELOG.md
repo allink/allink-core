@@ -41,7 +41,7 @@ TO_REMOVE = [
 ]
 CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [item for item in CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES if item not in TO_REMOVE]
       ```
-       - you have to add the file to your project templates folder: 'app_content/app_content_base.html':
+       - you have to add and rename the file form core `app_content/app_content_base_legacy.html` file to your project templates folder: `app_content/app_content_base.html`:
 
 ###### TEMPLATES
 
@@ -50,8 +50,7 @@ CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [item for item in CMS_ALLINK_CONTENT_P
 ###### REQUIREMENTS
 
 ###### DATA MIGRATIONS
-- button_link_plugin: page_link to internal_link, migration 0022
-- image_plugin:  page_link to internal_link, migration 0014
+
 
 ### NEW
 
@@ -63,12 +62,13 @@ CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [item for item in CMS_ALLINK_CONTENT_P
 - config: New app added in allink_apps. A migrations folder (`allink_apps_migrations.config`) is necessary in every project after this version.
 - Buttons and Image links can now link on all internal app sites
 - Button/Link Plugin: Admin modal: Link settings are now expanded per default.
+- button_link_plugin: page_link to internal_link, migration 0022
+- image_plugin:  page_link to internal_link, migration 0014
 
 ### FIXES
 
 - Mailchimp Forms: `signup_form.html` and `signup_form_advanced.html` now have their own extendable `base` templates with numerous `blocks` that can be overwritten on a project basis.
 - Button Link Plugin: Type `link` links now get the class `text`.
-
 
 ## v0.0.7
 
