@@ -57,7 +57,7 @@ class CMSAllinkButtonLinkPlugin(CMSPluginBase):
         (_('Link settings'), {
             'classes': ('collapse',),
             'fields': (
-                ('link_url', 'link_page',),
+                ('link_url', 'link_internal',),
                 ('link_mailto', 'link_phone'),
                 ('link_anchor', 'link_special'),
                 'link_file',

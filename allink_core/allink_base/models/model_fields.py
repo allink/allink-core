@@ -118,6 +118,7 @@ def choices_from_sitemaps():
             level = 0
 
         name = instance.__unicode__()
+
         if level:
             level_indicator = '---' * level
             name = u'%s %s' % (level_indicator, name)
@@ -136,12 +137,18 @@ def choices_from_sitemaps():
             out = []
             current_lang_code = translation.get_language()
             for lang_code, lang_name in settings.LANGUAGES:
-                translation.activate(lang_code)
                 try:
-                    out += [(item.get_absolute_url(), label_from_instance(item, lang=lang_code))]
+                    if item.translations.get(language_code=lang_code):
+                        out += [(item.get_absolute_url(language=lang_code), label_from_instance(item, lang=lang_code))]
+                except TypeError:
+                    translation.activate(lang_code)
+                    if item.translations.get(language_code=lang_code):
+                        out += [(item.get_absolute_url(), label_from_instance(item, lang=lang_code))]
+                    translation.activate(current_lang_code)
                 except AttributeError:
                     try:
-                        out += [(item.page.get_absolute_url(), label_from_instance(item.page, lang=lang_code))]
+                        if item.page.translations.get(language_code=lang_code):
+                            out += [(item.page.get_absolute_url(language=lang_code), label_from_instance(item.page, lang=lang_code))]
                     except AttributeError:
                         # Entry does not exist in this language
                         pass
@@ -151,14 +158,13 @@ def choices_from_sitemaps():
                 except NoReverseMatch:
                     # get_absolute_url does not work for this element
                     pass
-            translation.activate(current_lang_code)
         else:
             out = []
             try:
                 out = [(item.get_absolute_url(), label_from_instance(item))]
             except AttributeError:
                 try:
-                    out = [(item.page.get_absolute_url(), label_from_instance(item.page))]
+                    out = [(item.page.get_absolute_url(language=item.language), label_from_instance(item.page, item.language))]
                 except NoReverseMatch:
                     # get_absolute_url does not work for this element
                     pass
