@@ -1,4 +1,3 @@
-import sys
 from django.conf import settings
 
 
@@ -7,17 +6,16 @@ class MailChimpConfig:
 
         apikey = getattr(settings, 'MAILCHIMP_API_KEY', '')
 
-        try:
-            parts = apikey.split('-')
-            if len(parts) != 2:
-                print "This doesn't look like an API Key: " + apikey
-                print "The API Key should have both a key and a server name, separated by a dash, like this: abcdefg8abcdefg6abcdefg4-us1"
-                sys.exit()
+        parts = apikey.split('-')
+        if apikey and not len(parts) != 2:
+            raise ValueError("This doesn't look like an API Key: " + apikey + ". The API Key should have both a key and a server name, separated by a dash, like this: abcdefg8abcdefg6abcdefg4-us1")
 
+        try:
             self.shard = parts[1]
             self.api_root = "https://" + self.shard + ".api.mailchimp.com/3.0/"
-        except:
-            pass
+        except IndexError:
+            self.api_root = ""
+
         # SETTINGS
         self.apikey = apikey
         self.default_list_id = getattr(settings, 'MAILCHIMP_DEFAULT_LIST_ID', None)
