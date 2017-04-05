@@ -172,7 +172,7 @@ class AllinkBaseModel(AllinkMetaTagFieldsModel):
     is_published.boolean = True
 
     def get_detail_view(self):
-        '{}:detail'.format(self._meta.model_name)
+        return '{}:detail'.format(self._meta.model_name)
 
     def get_absolute_url(self, language=None):
         from django.core.urlresolvers import reverse
@@ -186,7 +186,7 @@ class AllinkBaseModel(AllinkMetaTagFieldsModel):
             with override(language):
                 return reverse(app, kwargs={'slug': slug})
         except NoReverseMatch:
-            return 'no_app_hook_configured'
+            return '/no_app_hook_configured'
 
     def save_categories(self, new):
         """
