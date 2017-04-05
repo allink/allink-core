@@ -2,7 +2,7 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
-from allink_core.allink_base.utils import get_project_color_choices, get_ratio_choices
+from allink_core.allink_base.utils import get_project_color_choices, get_ratio_choices, get_additional_choices
 from allink_core.djangocms_image.models import AllinkImagePlugin
 
 
@@ -38,10 +38,10 @@ class AllinkImagePluginForm(forms.ModelForm):
             widget=forms.Select(choices=get_project_color_choices()),
             required=False,
         )
-        # if get_additional_choices('PROJECT_CSS_CLASSES'):
-        #     self.fields['project_css_classes'] = forms.MultipleChoiceField(
-        #         label=_(u'Predifined css classes'),
-        #         help_text=_(u'Instructions: Single selection is made by clicking on an option. Multiple selections are achieved by pressing and holding down the Command-key (Mac) or Control-Key (Windows) <strong>and</strong> clicking the options you would like to apply.'),
-        #         choices=get_additional_choices('PROJECT_CSS_CLASSES'),
-        #         required=False,
-        #     )
+        if get_additional_choices('IMAGE_PLUGIN_PROJECT_CSS_CLASSES'):
+            self.fields['project_css_classes'] = forms.MultipleChoiceField(
+                label=_(u'Predifined css classes'),
+                help_text=_(u'Instructions: Single selection is made by clicking on an option. Multiple selections are achieved by pressing and holding down the Command-key (Mac) or Control-Key (Windows) <strong>and</strong> clicking the options you would like to apply.'),
+                choices=get_additional_choices('IMAGE_PLUGIN_PROJECT_CSS_CLASSES'),
+                required=False,
+            )

@@ -3,6 +3,8 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _, ugettext
 from django.utils.encoding import python_2_unicode_compatible
+from django.contrib.postgres.fields import ArrayField
+
 from djangocms_attributes_field.fields import AttributesField
 from cms.models.pluginmodel import CMSPlugin
 from filer.fields.image import FilerImageField
@@ -86,6 +88,16 @@ class AllinkImagePlugin(AllinkLinkFieldsModel, CMSPlugin):
         help_text=_(u'Outputs the raw image without cropping.'),
     )
 
+    project_css_classes = ArrayField(
+        models.CharField(
+            max_length=50,
+            blank=True,
+            null=True
+        ),
+        blank=True,
+        null=True
+    )
+
     cmsplugin_ptr = CMSPluginField()
 
     def __str__(self):
@@ -105,15 +117,14 @@ class AllinkImagePlugin(AllinkLinkFieldsModel, CMSPlugin):
         css_classes = []
         css_classes.append("has-bg-color") if self.bg_color else None
         css_classes.append(self.bg_color) if self.bg_color else None
-        # if getattr(self, 'project_css_classes'):
-        #     for css_class in getattr(self, 'project_css_classes'):
-        #         css_classes.append(css_class)
+        if getattr(self, 'project_css_classes'):
+            for css_class in getattr(self, 'project_css_classes'):
+                css_classes.append(css_class)
         return css_classes
 
     @property
     def css_classes(self):
         css_classes = self.base_classes
-        # css_classes.append(self.extra_css_classes)
         return ' '.join(css_classes)
 
     def get_short_description(self):
