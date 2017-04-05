@@ -11,10 +11,12 @@ class MailChimpConfig:
             parts = apikey.split('-')
             if not len(parts) != 2:
                 raise ValueError("This doesn't look like an API Key: " + apikey + ". The API Key should have both a key and a server name, separated by a dash, like this: abcdefg8abcdefg6abcdefg4-us1")
-        try:
-            self.shard = parts[1]
-            self.api_root = "https://" + self.shard + ".api.mailchimp.com/3.0/"
-        except IndexError:
+            try:
+                self.shard = parts[1]
+                self.api_root = "https://" + self.shard + ".api.mailchimp.com/3.0/"
+            except IndexError:
+                self.api_root = ""
+        else:
             self.api_root = ""
 
         # SETTINGS
