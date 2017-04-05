@@ -85,13 +85,13 @@ ALLINK_PROJECT_APP_MODEL_WITH_CATEGORY_CHOICES = [
 ALLINK_CMS_PLACEHOLDER_CONF_PLUGINS = [
     'CMSAllinkContentPlugin',
 ]
-# ALLINK_CMS_PLACEHOLDER_CONF_PLUGINS.extend([
-#     'CMSLocationsPlugin',
-#     'CMSPeoplePlugin',
-#     'CMSWorkPlugin',
-#     'CMSBlogPlugin',
-#     'CMSTestimonialPlugin'
-# ])
+ALLINK_CMS_PLACEHOLDER_CONF_PLUGINS.extend([
+    'CMSLocationsPlugin',
+    'CMSPeoplePlugin',
+    'CMSWorkPlugin',
+    'CMSBlogPlugin',
+    'CMSTestimonialPlugin'
+])
 
 ####################################################################################
 
@@ -126,8 +126,8 @@ TO_REMOVE = [
     'CMSBlogPlugin',
     'CMSTestimonialPlugin'
 ]
-[CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES.append(v) for v in TO_REMOVE if v not in CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES]
 
+CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [item for item in CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES if item not in TO_REMOVE]
 ####################################################################################
 
 # Middlewareclassss
