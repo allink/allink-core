@@ -9,8 +9,8 @@ from djangocms_attributes_field.fields import AttributesField
 from cms.models.pluginmodel import CMSPlugin
 from filer.fields.image import FilerImageField
 
-from allink_core.allink_base.models.choices import BLANK_CHOICE, RATIO_CHOICES
-from allink_core.allink_base.utils import get_additional_templates, get_additional_choices
+from allink_core.allink_base.models.choices import RATIO_CHOICES
+from allink_core.allink_base.utils import get_additional_templates
 from allink_core.allink_base.models.reusable_fields import AllinkLinkFieldsModel
 from allink_core.allink_base.models.model_fields import CMSPluginField
 
@@ -38,7 +38,6 @@ class AllinkImagePlugin(AllinkLinkFieldsModel, CMSPlugin):
     )
     picture = FilerImageField(
         verbose_name=_(u'Image'),
-        blank=True,
         null=True,
         on_delete=models.SET_NULL,
         related_name='%(app_label)s_%(class)s_picture',
