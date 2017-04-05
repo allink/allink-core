@@ -1,6 +1,6 @@
 {% load cms_tags staticfiles sekizai_tags i18n thumbnail %}
 
-{% block app_content_section %}
+{% block app_content_plugin_container %}
     <div class="app-content-plugin {{instance.get_model_name}}-plugin list-view app-content-plugin-{{instance.id}} {{instance.css_classes}} {% block app_content_container_additional_classes %}{% endblock app_content_container_additional_classes %}" {% block app_content_container_additional_attributes %}{% endblock app_content_container_additional_attributes %}>
 
         {% comment %}
@@ -118,4 +118,4 @@
         {% endblock app_content_load_more_container %}
 
     </div>
-{% endblock app_content_section %}
+{% endblock app_content_plugin_container %}
