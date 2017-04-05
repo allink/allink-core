@@ -8,7 +8,7 @@ import django.contrib.postgres.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('djangocms_image', '0013_allinkimageplugin_bg_color'),
+        ('djangocms_image', '0014_allinkimageplugin_link_internal'),
     ]
 
     operations = [

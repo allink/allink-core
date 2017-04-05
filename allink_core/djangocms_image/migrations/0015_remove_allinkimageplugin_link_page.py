@@ -7,7 +7,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('djangocms_image', '0014_allinkimageplugin_link_internal'),
+        ('djangocms_image', '0014_allinkimageplugin_project_css_classes'),
     ]
 
     operations = [
