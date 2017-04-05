@@ -12,7 +12,7 @@ Each release is divided into the following main categories:
 - FIXES: General bugfixes
 
 
-## v0.0.8
+## v0.0.8 (under development)
 
 ### IMPORTANT
 
@@ -36,6 +36,7 @@ Each release is divided into the following main categories:
 - Content Plugin: Support for vertical alignment of columns added (the tallest element defines the boundaries). Important: Requires `allink-core-static` commit `1256fa94cdc7b3ba8f6b48be384171e305e03ad5`
 - config: New app added in allink_apps. A migrations folder (`allink_apps_migrations.config`) is necessary in every project after this version.
 - Buttons and Image links can now link on all internal app sites
+- Button/Link Plugin: Admin modal: Link settings are now expanded per default.
 
 ### FIXES
 
