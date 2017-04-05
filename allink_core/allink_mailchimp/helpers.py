@@ -75,11 +75,8 @@ def list_members_patch(data, list_id=config.default_list_id, member_hash_email=N
 
 def list_members_delete(data, list_id=config.default_list_id, member_hash_email=None):
     member_hash = get_hash_md5(member_hash_email) if member_hash_email else get_hash_md5(data['email_address'])
-    data = json.dumps(data)
     # DELETE existing member
     response = requests.delete(
         config.api_root + 'lists/{}/members/{}'.format(list_id, member_hash),
         auth=('apikey', config.apikey),
-        data=data
     )
-    check_response_status(response)
