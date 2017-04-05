@@ -25,6 +25,8 @@ Each release is divided into the following main categories:
 ###### REQUIREMENTS
 
 ###### DATA MIGRATIONS
+- button_link_plugin: page_link to internal_link, migration 0022
+- image_plugin:  page_link to internal_link, migration 0014
 
 ### NEW
 
@@ -34,6 +36,7 @@ Each release is divided into the following main categories:
 - djangocms_image now supports project css classes (IMAGE_PLUGIN_PROJECT_CSS_CLASSES), and bg_color
 - Content Plugin: Support for vertical alignment of columns added (the tallest element defines the boundaries). Important: Requires `allink-core-static` commit `1256fa94cdc7b3ba8f6b48be384171e305e03ad5`
 - config: New app added in allink_apps. A migrations folder (`allink_apps_migrations.config`) is necessary in every project after this version.
+- Buttons and Image links can now link on all internal app sites
 - Button/Link Plugin: Admin modal: Link settings are now expanded per default.
 
 ### FIXES
