@@ -20,6 +20,7 @@ class CMSAllinkVidEmbedPlugin(CMSPluginBase):
                 'fields': (
                     'video_id',
                     'video_service',
+                    'ratio',
                 )
             }),
             (_('Video settings'), {
@@ -55,6 +56,7 @@ class CMSAllinkVidFilePlugin(CMSPluginBase):
             (None, {
                 'fields': (
                     'video_file',
+                    'video_poster_image'
                 )
             }),
             (_('Video settings'), {
