@@ -24,7 +24,7 @@ class SignupForm(forms.Form):
         }
 
         if config.merge_vars:
-            data = data.append(config.merge_vars)
+            data = data.update(config.merge_vars)
 
         list_members_put(data)
 
@@ -53,6 +53,6 @@ class SignupFormAdvanced(forms.Form):
         }
 
         if config.merge_vars:
-            data = data.append(config.merge_vars)
+            data = data.update(config.merge_vars)
 
         list_members_put(data)

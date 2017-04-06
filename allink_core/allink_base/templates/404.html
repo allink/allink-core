@@ -1,0 +1,18 @@
+{% extends "fullwidth.html" %}
+{% load i18n %}
+
+{% block body_class %}tpl-error{% endblock %}
+
+{% block page_title %}{% trans "Seite nicht gefunden" %}{% endblock page_title %}
+{% block og_title %}{% trans "Seite nicht gefunden" %}{% endblock og_title %}
+
+{% block content %}
+    <div class="content-section container-enabled">
+        <div class="container">
+            <div class="text-container">
+                <h1>{% trans "Die angeforderte Seite ist nicht vorhanden." %}</h1>
+                <p><a class="btn btn-primary" href="/">{% trans "Zur Startseite" %}</a></p>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

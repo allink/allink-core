@@ -1,0 +1,215 @@
+<!doctype html>{% load i18n staticfiles cms_tags sekizai_tags google_tag_manager_tags allink_helpers allink_image_tags %}
+{% load render_bundle from webpack_loader %}
+
+<html lang="{{ LANGUAGE_CODE }}" class="base-root no-js">
+<head>
+    <!--
+
+               _ _ _       _
+              | | (_)     | |
+          __ _| | |_ _ __ | | __
+         / _` | | | | '_ \| |/ /
+        | (_| | | | | | | |   <
+         \__,_|_|_|_|_| |_|_|\_\
+
+        Die Branding- und Webagentur aus Zürich.
+
+        allink.ch
+
+    -->
+    <meta charset="utf-8">
+    <title>
+        {% spaceless %}
+            {% block page_title_container %}
+                {% block page_title %}{% page_attribute page_title %}{% endblock page_title %} {% block page_title_base %}| {% if allink_config.default_base_title %}{{ allink_config.default_base_title }}{% else %}{{ request.site.name }}{% endif %}{% endblock page_title_base %}
+            {% endblock page_title_container %}
+        {% endspaceless %}
+    </title>
+
+
+    {% comment %}
+        META Block
+    {% endcomment %}
+
+    {% block meta_tags %}
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <link rel="canonical" href="{% spaceless %}
+            {% block canonical_url %}
+                {{ request.build_absolute_uri }}
+            {% endblock canonical_url %}
+        {% endspaceless %}">
+        <meta name="description" content="{% spaceless %}
+            {% block meta_description %}
+                {% page_attribute meta_description %}
+            {% endblock %}
+        {% endspaceless %}">
+        <meta name="format-detection" content="telephone=no">{% comment %} Removing ugly phone number links on Internet Explorer: https://msdn.microsoft.com/en-us/library/dn265018(v=vs.85).aspx {% endcomment %}
+    {% endblock meta_tags %}
+
+
+    {% comment %}
+        OpenGraph Block
+    {% endcomment %}
+
+    {% block og_tags %}
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="{% spaceless %}
+            {% block og_url %}
+                {{ request.build_absolute_uri }}
+            {% endblock og_url %}
+        {% endspaceless %}">
+        <meta property="og:title" content="{% spaceless %}
+            {% block og_title_container %}
+                {% block og_title %}{% if request.current_page.get_title_obj.allinkmetatagextension.og_title %}{{request.current_page.get_title_obj.allinkmetatagextension.og_title}}{% else %}{% page_attribute page_title %}{% endif %}{% endblock og_title %} {% block og_title_base %}| {% if allink_config.default_base_title %}{{ allink_config.default_base_title }}{% else %}{{ request.site.name }}{% endif %}{% endblock og_title_base %}
+            {% endblock og_title_container %}
+        {% endspaceless %}">
+        <meta property="og:description" content="{% spaceless %}
+            {% block og_description %}
+            {% if request.current_page.get_title_obj.allinkmetatagextension.og_description %}{{request.current_page.get_title_obj.allinkmetatagextension.og_description}}{% else %}{% page_attribute meta_description %}{% endif %}
+            {% endblock og_description %}
+        {% endspaceless %}">
+        {% comment %}
+            TBD: Alternative Languages recommended?
+            http://ogp.me/#optional
+        {% endcomment %}
+        {{ request.current_page.get_title_obj.allinkmetatagextension.og_image }}
+        <meta property="og:image" content="{% spaceless %}
+            {% block og_image %}
+                {% if request.current_page.get_title_obj.allinkmetatagextension.og_image.url %}
+                    {{request.current_page.get_title_obj.allinkmetatagextension.og_image.url }}
+                {% else %}
+                    {{ allink_config.default_og_image.url }}
+                {% endif %}
+            {% endblock og_image %}
+        {% endspaceless %}">
+        <meta property="og:image:width" content="1200">
+        <meta property="og:image:height" content="630">
+    {% endblock og_tags %}
+
+
+    {% comment %}
+        Favicon Set
+    {% endcomment %}
+
+    {% render_favicons_set %}
+
+    {% comment %}
+        Load our CSS
+    {% endcomment %}
+
+    {% render_bundle 'style' 'css' %}
+    {% render_block "css" %}
+
+
+    {% comment %}
+        Load internal JavaScript (that is required to be loaded in the <head>)
+    {% endcomment %}
+
+    <script src="{% static 'js/libs/modernizr-custom.js' %}"></script>
+
+
+    {% comment %}
+        Load external JavaScript
+
+        Included from: https://cdnjs.com/
+    {% endcomment %}
+
+    <script src="https://vsr.architonic.com/assets/js/shared/jquery.responsiveiframe.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/picturefill/3.0.2/picturefill.min.js"></script>
+    <!--[if lt IE 9]>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+    {% comment %}
+        Optional: Extra Header Block
+    {% endcomment %}
+
+    {% block extrahead %}{% endblock %}
+
+
+    {% comment %}
+        Divio Stuff
+    {% endcomment %}
+
+    {{ ALDRYN_SNAKE.render_head }}
+
+</head>
+
+<body id="page-top" class="noscript lang-{{ LANGUAGE_CODE }} {% block body_class %}tpl-root{% endblock %}">
+
+    {% comment %}
+        Adding Google Tag Manager
+    {% endcomment %}
+    {% google_tag_manager %}
+
+
+    {% comment %}
+        Accessibility: TBD - Make sure the anchor IDs are up-to-date
+    {% endcomment %}
+
+    <h2 class="sr-only">{% trans "Shortcuts" %}</h2>
+    <a class="skip-link" href="{% url "pages-root" %}" title="[Alt + 0]" accesskey="0">{% trans "Go to home" %}</a>
+    <a class="skip-link" href="#primary-nav" title="[Alt + 1]" accesskey="1">{% trans "Jump to navigation" %}</a>
+    <a class="skip-link" href="#page-content" title="[Alt + 2]" accesskey="2">{% trans "Jump to content" %}</a>
+    <a class="skip-link" href="#page-footer" title="[Alt + 3]" accesskey="3">{% trans "Contact" %}</a>
+
+
+    {% comment %}
+        The Django CMS Toolbar
+    {% endcomment %}
+
+    {% cms_toolbar %}
+
+
+    {% comment %}
+        The main content block
+    {% endcomment %}
+
+    {% block body_content %}{% endblock body_content %}
+
+
+    {% comment %}
+        Load our JavaScript
+    {% endcomment %}
+
+    <script type="text/javascript">
+        var GOOGLE_MAP_API_KEY = '{% settings_value "GOOGLE_MAP_API_KEY" %}';
+    </script>
+
+    {% render_block "js" %}
+    {% render_bundle 'app' %}
+
+
+    {% comment %}
+        Optional: Additional Scripts
+    {% endcomment %}
+
+    {% render_block "extrafoot" %}
+    {% block extrafoot %}
+    {% endblock %}
+
+
+    {% comment %}
+        Divio Stuff
+    {% endcomment %}
+
+    {{ ALDRYN_SNAKE.render_tail }}
+
+
+    {% comment %}
+        Google Analytics Code
+    {% endcomment %}
+
+    {% include "includes/analytics.html" %}
+
+
+    {% comment %}
+        Required! The .site-overlay can be used in various contexts (such as 'softpage' oder other modals)
+    {% endcomment %}
+    <div class="site-overlay"></div>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load account %}
+
+{% block page_title %}{% trans "Confirm E-mail Address" %}{% endblock %}
+
+
+{% block content %}
+<div>
+    <h1>Confirm E-mail Address</h1>
+
+    {% if confirmation %}
+
+    {% user_display confirmation.email_address.user as user_display %}
+
+    <p>Please confirm that this <b>{{ confirmation.email_address.email }}</b> is your E-mail Address</p>
+
+    <form method="post" action="{% url 'account_confirm_email' confirmation.key %}{% if request.GET %}?{% for key, value in request.GET.items %}{{key}}={{value}}{% if not forloop.last %}&{% endif %}{% endfor %}{% endif %}">
+    {% csrf_token %}
+        <button type="submit" class="btn btn-primary btn-big">{% trans 'Confirm' %}</button>
+    </form>
+
+    {% else %}
+
+    {% url 'account_email' as email_url %}
+
+    <p>{% blocktrans %}This e-mail confirmation link expired or is invalid. Please <a href="{{ email_url }}">issue a new e-mail confirmation request</a>.{% endblocktrans %}</p>
+
+    {% endif %}
+</div>
+{% endblock %}

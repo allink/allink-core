@@ -1,0 +1,171 @@
+{% extends "base_root.html" %}
+{% load i18n staticfiles cms_tags menu_tags %}
+
+{% block body_class %}tpl-base{% endblock %}
+
+{# no indent for better readability on extend_root #}
+{% block body_content %}
+    {% block header %}
+
+        <header class="site-header compact-mode-enabled">
+            <div class="container">
+
+                <h1 class="navbar-brand">
+                    <a href="{% url "pages-root" %}">
+                        <span class="sr-only">{{ request.site.name }}</span>
+                        <img src="{% static "images/branding/teojakob-logo.svg" %}" alt="{{ request.site.name }}" />
+                    </a>
+                </h1>
+
+                {% block logo_addition_container %}
+                    <div class="brand-addition-container">
+                        <img src="{% static "images/branding/teojakob-logo-additional-"|add:LANGUAGE_CODE|add:".svg" %}" alt="{{ request.site.name }}" />
+                    </div>
+                {% endblock logo_addition_container %}
+
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#primary-nav" aria-expanded="false" aria-controls="primary-nav">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <div id="primary-nav" class="navbar-collapse collapse primary-nav" role="navigation"> {# data-trigger-softpage #}
+                    {% block navbar %}
+                        <nav class="nav">
+                            <h2 class="sr-only">{% trans "Navigation" %}</h2>
+                            {% render_model_block request.current_page "changelist" %}
+                                {% with dropdown="true" %}
+                                    <ul class="nav navbar-nav">
+                                        {% show_menu 0 1 100 100 "includes/menu/navigation.html" %}
+
+{#                                            <li class="divider" role="presentation"><span class="sr-only">{% trans "Separator" %}</span></li>#}
+{#                                            {% show_menu_below_id "meta" 0 0 100 100 "includes/menu/navigation.html" %}#}
+{#                                            {% language_chooser "includes/menu/langnav.html" "native" %}#}
+
+                                    </ul>
+                                {% endwith %}
+                            {% endrender_model_block %}
+                        </nav>
+                    {% endblock navbar %}
+                </div>
+
+            </div>
+        </header>
+
+        {# required to hold the space for fixed headers #}
+        <div class="site-header-buffer"></div>
+
+    {% endblock header %}
+
+    {% comment %}
+    {% block menu %}
+        <div class="tingle-modal softpage menu-softpage">
+            {% static_placeholder "menu" %}
+
+            <div class="container">
+                <div class="inner inverted-colors">
+                    <div class="footer-container">
+                        {# render footer content #}
+                        <div class="footer-text-container">
+                            {% static_placeholder "footer_content" %}
+                        </div>
+
+                        {# newsletter #}
+                        <div class="newsletter-container">
+                            <div id="mailchimp-form-container">
+                                {% include 'allink_mailchimp/signup_form_advanced.html' %}
+                            </div>
+                        </div>
+
+                        {# secondary navigation #}
+                        <div class="secondary-nav">
+                            {% static_placeholder "service_navigation" %}
+                        </div>
+                    </div>
+
+                    {# render social profiles #}
+                    <div class="footer-social-profile-container">
+                        {% static_placeholder "social_profiles" %}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    {% endblock %}
+    {% block locations %}
+        <div class="tingle-modal softpage locations-softpage">
+            {% static_placeholder "menu-locations" %}
+        </div>
+    {% endblock %}
+    {% endcomment %}
+
+    {# DOCS: http://getbootstrap.com/components/#breadcrumbs #}
+    {% block breadcrumb %}
+    {% endblock breadcrumb %}
+
+    {# start: content #}
+    <hr class="sr-only" id="page-content" />
+    {% block content_container %}
+        <section class="site-content">
+            {% block content %}{% endblock %}
+        </section>
+    {% endblock content_container %}
+    <hr class="sr-only" />
+    {# end: content #}
+
+    {% block footer %}
+        <footer class="site-footer" role="contentinfo" data-scroll-spy>
+            <h1 class="sr-only" id="page-footer">{% trans "Sitemap" %}</h1>
+
+            {# render maps #}
+            {% static_placeholder "map" %}
+
+            <div class="container">
+                <div class="inner inverted-colors">
+                    <div class="footer-container">
+                        {# render footer content #}
+                        <div class="footer-text-container">
+                            {% static_placeholder "footer_content" %}
+                        </div>
+
+                        {# newsletter #}
+                        <div class="newsletter-container">
+                            <div id="mailchimp-form-container">
+                                {% include 'allink_mailchimp/signup_form_advanced.html' %}
+                            </div>
+                        </div>
+
+                        {# secondary navigation #}
+                        <div class="secondary-nav">
+                            {% static_placeholder "service_navigation" %}
+                        </div>
+                    </div>
+
+                    {# render social profiles #}
+                    <div class="footer-social-profile-container">
+                        {% static_placeholder "social_profiles" %}
+                    </div>
+                </div>
+                {% comment %}
+                    {% render_model_block request.current_page "changelist" %}
+                        <ul class="list-inline">
+                            <li class="pull-right"><a href="#page-top" data-spy="scroll"><span class="fa fa-left fa-arrow-up"></span>{% trans "Back to top" %}</a></li>
+                            {% show_menu_below_id "footer" 0 0 100 100 "includes/menu/navigation.html" %}
+                        </ul>
+                    {% endrender_model_block %}
+                {% endcomment %}
+            </div>
+
+        </footer>
+    {% endblock footer %}
+
+    {% block to_the_top %}
+        <a href="#page-top" class="to-the-top">
+            <span class="inner">
+                <span class="sr-only">
+                    {% trans "To the top" %}
+                </span>
+            </span>
+        </a>
+    {% endblock to_the_top %}
+
+{% endblock body_content %}
