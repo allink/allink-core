@@ -1,5 +1,13 @@
 {% load thumbnail %}
 
-<div class="image-container">
-    VIDEO
-</div>
+{% if instance.video_id %}
+    <div class="video-embed-plugin">
+        <div class="embed-container {% if instance.ratio %}ratio-{{instance.ratio}}{% endif %}">
+            {% if instance.video_service == "youtube" %}
+                <iframe width="560" height="315" src="//www.youtube.com/embed/{{instance.video_id}}" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowfullscreen></iframe>
+            {% elif instance.video_service == "vimeo" %}
+                <iframe src="//player.vimeo.com/video/{{instance.video_id}}?color=ffc000&title=0&byline=0&portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            {% endif %}
+        </div>
+    </div>
+{% endif %}
