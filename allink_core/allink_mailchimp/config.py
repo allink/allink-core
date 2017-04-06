@@ -4,16 +4,12 @@ from django.conf import settings
 class MailChimpConfig:
     def __init__(self):
 
-        apikey = getattr(settings, 'MAILCHIMP_API_KEY', '')
-
-        parts = apikey.split('-')
-        if apikey and not len(parts) != 2:
-            raise ValueError("This doesn't look like an API Key: " + apikey + ". The API Key should have both a key and a server name, separated by a dash, like this: abcdefg8abcdefg6abcdefg4-us1")
-
         try:
+            apikey = getattr(settings, 'MAILCHIMP_API_KEY', '')
+            parts = apikey.split('-')
             self.shard = parts[1]
             self.api_root = "https://" + self.shard + ".api.mailchimp.com/3.0/"
-        except IndexError:
+        except:
             self.api_root = ""
 
         # SETTINGS

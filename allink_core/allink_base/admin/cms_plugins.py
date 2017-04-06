@@ -40,8 +40,8 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
         fieldsets = (
             (None, {
                 'fields': (
-                    'title',
-                    'title_size',
+                    # 'title',
+                    # 'title_size',
                     'template',
                 ),
             }),
@@ -50,11 +50,11 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
         fieldsets += (_('Display Options'), {
             'classes': ('collapse',),
             'fields': (
-                'container_enabled',
+                # 'container_enabled',
                 'detail_link_enabled',
                 'softpage_enabled',
-                'bg_color',
-                'bg_image_outer_container',
+                # 'bg_color',
+                # 'bg_image_outer_container',
             )
         }),
 

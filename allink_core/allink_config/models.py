@@ -47,101 +47,145 @@ class AllinkConfig(SingletonModel):
         default='#282828',
         max_length=7
     )
-
     blog_verbose = models.CharField(
         _(u'Blog verbose name'),
         default=_(u'Blog entry'),
         max_length=255
     )
-
     blog_verbose_plural = models.CharField(
         _(u'Blog verbose name plural'),
         default=_(u'Blog'),
         max_length=255
     )
-
+    blog_toolbar_enabled = models.BooleanField(
+        _(u'Toolbar enabled?'),
+        default=True
+    )
     news_verbose = models.CharField(
         _(u'News verbose name'),
         default=_(u'News entry'),
         max_length=255
     )
-
     news_verbose_plural = models.CharField(
         _(u'News verbose name plural'),
         default=_(u'News'),
         max_length=255
     )
-
+    news_toolbar_enabled = models.BooleanField(
+        _(u'Toolbar enabled?'),
+        default=True
+    )
     events_verbose = models.CharField(
         _(u'Events verbose name'),
         default=_(u'Event'),
         max_length=255
     )
-
     events_verbose_plural = models.CharField(
         _(u'Events verbose name plural'),
         default=_(u'Events'),
         max_length=255
     )
-
+    events_toolbar_enabled = models.BooleanField(
+        _(u'Toolbar enabled?'),
+        default=True
+    )
+    events_registration_verbose = models.CharField(
+        _(u'Events Registration verbose name'),
+        default=_(u'Event Registration'),
+        max_length=255
+    )
+    events_registration_verbose_plural = models.CharField(
+        _(u'Events Registration verbose name plural'),
+        default=_(u'Event Registrations'),
+        max_length=255
+    )
+    events_registration_toolbar_enabled = models.BooleanField(
+        _(u'Toolbar enabled?'),
+        default=True
+    )
     locations_verbose = models.CharField(
         _(u'Locations verbose name'),
         default=_(u'Location'),
         max_length=255
     )
-
     locations_verbose_plural = models.CharField(
         _(u'Locations verbose name plural'),
         default=_(u'Locations'),
         max_length=255
     )
-
+    locations_toolbar_enabled = models.BooleanField(
+        _(u'Toolbar enabled?'),
+        default=True
+    )
     members_verbose = models.CharField(
         _(u'Members verbose name'),
         default=_(u'Member'),
         max_length=255
     )
-
     members_verbose_plural = models.CharField(
         _(u'Members verbose name plural'),
         default=_(u'Members'),
         max_length=255
     )
-
+    members_toolbar_enabled = models.BooleanField(
+        _(u'Toolbar enabled?'),
+        default=True
+    )
+    contact_verbose = models.CharField(
+        _(u'Contact verbose name'),
+        default=_(u'Member'),
+        max_length=255
+    )
+    contact_verbose_plural = models.CharField(
+        _(u'Contact verbose name plural'),
+        default=_(u'Members'),
+        max_length=255
+    )
+    contact_toolbar_enabled = models.BooleanField(
+        _(u'Toolbar enabled?'),
+        default=True
+    )
     people_verbose = models.CharField(
         _(u'People verbose name'),
         default=_(u'Person'),
         max_length=255
     )
-
     people_verbose_plural = models.CharField(
         _(u'People verbose name plural'),
         default=_(u'People'),
         max_length=255
     )
-
+    people_toolbar_enabled = models.BooleanField(
+        _(u'Toolbar enabled?'),
+        default=True
+    )
     testimonial_verbose = models.CharField(
         _(u'Testimonials verbose name'),
         default=_(u'Testimonial'),
         max_length=255
     )
-
     testimonial_verbose_plural = models.CharField(
         _(u'Testimonials verbose name plural'),
         default=_(u'Testimonials'),
         max_length=255
     )
-
+    testimonial_toolbar_enabled = models.BooleanField(
+        _(u'Toolbar enabled?'),
+        default=True
+    )
     work_verbose = models.CharField(
         _(u'Work verbose name'),
         default=_(u'Project/ Reference'),
         max_length=255
     )
-
     work_verbose_plural = models.CharField(
         _(u'Work verbose name plural'),
         default=_(u'Projects/ References'),
         max_length=255
+    )
+    work_toolbar_enabled = models.BooleanField(
+        _(u'Toolbar enabled?'),
+        default=True
     )
 
     def __str__(self):
