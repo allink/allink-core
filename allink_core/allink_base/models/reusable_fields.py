@@ -166,7 +166,7 @@ class AllinkLinkFieldsModel(models.Model):
         verbose_name=_(u'Anchor'),
         max_length=255,
         blank=True,
-        help_text=_(u'Appends the value only after the internal or external link. '
+        help_text=_(u'Appends the value only after the internal or external link.'
                     u'Do <em>not</em> include a preceding "#" symbol.'),
     )
     link_target = models.IntegerField(

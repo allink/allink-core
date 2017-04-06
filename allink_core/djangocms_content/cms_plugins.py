@@ -31,6 +31,7 @@ class CMSAllinkContentPlugin(CMSPluginBase):
                 'title',
                 'title_size',
                 'template',
+                'anchor',
             ),
         }),
         (_('Display Options'), {
