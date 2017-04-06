@@ -104,6 +104,13 @@ class AllinkContentPlugin(AllinkBasePlugin):
         choices=HORIZONTAL_ALIGNMENT_CHOICES,
         default=CENTER
     )
+    anchor = models.CharField(
+        verbose_name=_(u'Anchor'),
+        max_length=255,
+        blank=True,
+        help_text=_(u'Sets the id of the div section. (Use site-wide unique id.)'
+                    u'Do <em>not</em> include a preceding "#" symbol.'),
+    )
 
     def __str__(self):
         return str(self.id)

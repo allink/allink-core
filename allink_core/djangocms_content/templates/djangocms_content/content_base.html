@@ -12,7 +12,7 @@
     {# utility block #}
     {% block content_section_before %}{% endblock content_section_before %}
 
-    <div class="content-section content-plugin {{ instance.css_classes }} {% block content_section_additional_css_classes %}{% endblock content_section_additional_css_classes %}" data-scroll-spy {% block content_section_additional_attributes %}{% endblock content_section_additional_attributes %}>
+    <div id="{{ instance.anchor }}" class="content-section content-plugin {{ instance.css_classes }} {% block content_section_additional_css_classes %}{% endblock content_section_additional_css_classes %}" data-scroll-spy {% block content_section_additional_attributes %}{% endblock content_section_additional_attributes %}>
 
         {# utility block #}
         {% block content_section_inner_before %}{% endblock content_section_inner_before %}
