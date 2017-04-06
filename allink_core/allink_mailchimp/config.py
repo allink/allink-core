@@ -7,8 +7,6 @@ class MailChimpConfig:
         try:
             apikey = getattr(settings, 'MAILCHIMP_API_KEY', '')
             parts = apikey.split('-')
-            if apikey and len(parts) != 2:
-                raise ValueError()
             self.shard = parts[1]
             self.api_root = "https://" + self.shard + ".api.mailchimp.com/3.0/"
         except:
