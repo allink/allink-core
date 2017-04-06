@@ -117,34 +117,6 @@ class AllinkConfig(SingletonModel):
         _(u'Toolbar enabled?'),
         default=True
     )
-    members_verbose = models.CharField(
-        _(u'Members verbose name'),
-        default=_(u'Member'),
-        max_length=255
-    )
-    members_verbose_plural = models.CharField(
-        _(u'Members verbose name plural'),
-        default=_(u'Members'),
-        max_length=255
-    )
-    members_toolbar_enabled = models.BooleanField(
-        _(u'Toolbar enabled?'),
-        default=True
-    )
-    contact_verbose = models.CharField(
-        _(u'Contact verbose name'),
-        default=_(u'Member'),
-        max_length=255
-    )
-    contact_verbose_plural = models.CharField(
-        _(u'Contact verbose name plural'),
-        default=_(u'Members'),
-        max_length=255
-    )
-    contact_toolbar_enabled = models.BooleanField(
-        _(u'Toolbar enabled?'),
-        default=True
-    )
     people_verbose = models.CharField(
         _(u'People verbose name'),
         default=_(u'Person'),
@@ -184,6 +156,34 @@ class AllinkConfig(SingletonModel):
         max_length=255
     )
     work_toolbar_enabled = models.BooleanField(
+        _(u'Toolbar enabled?'),
+        default=True
+    )
+    members_verbose = models.CharField(
+        _(u'Members verbose name'),
+        default=_(u'Member'),
+        max_length=255
+    )
+    members_verbose_plural = models.CharField(
+        _(u'Members verbose name plural'),
+        default=_(u'Members'),
+        max_length=255
+    )
+    members_toolbar_enabled = models.BooleanField(
+        _(u'Toolbar enabled?'),
+        default=True
+    )
+    contact_verbose = models.CharField(
+        _(u'Contact verbose name'),
+        default=_(u'Contact request'),
+        max_length=255
+    )
+    contact_verbose_plural = models.CharField(
+        _(u'Contact verbose name plural'),
+        default=_(u'Contact requests'),
+        max_length=255
+    )
+    contact_toolbar_enabled = models.BooleanField(
         _(u'Toolbar enabled?'),
         default=True
     )
