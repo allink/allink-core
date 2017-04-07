@@ -11,7 +11,7 @@ from allink_core.allink_terms.models import AllinkTerms
 
 @admin.register(AllinkTerms)
 class AllinkTermsAdmin(TranslatableAdmin, admin.ModelAdmin):
-    list_display = ('__unicode__', 'status', 'start', 'end')
+    list_display = ('__str__', 'status', 'start', 'end')
     fields = ('text', 'terms_cms_page')
     actions = None
     change_form_template = 'allink_terms/admin/change_form.html'

@@ -22,7 +22,7 @@ from allink_core.allink_categories.models import AllinkCategory
 from allink_core.allink_base.models import Classes
 from allink_core.allink_base.models import AllinkBaseModelManager
 from allink_core.allink_base.models import AllinkMetaTagFieldsModel
-from allink_core.allink_base.models.choices import BLANK_CHOICE, TITLE_CHOICES, H1
+from allink_core.allink_base.models.choices import TITLE_CHOICES, H1
 
 
 @python_2_unicode_compatible
@@ -594,7 +594,7 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
             filters = [((None, _(u'All'),))]
             fk_model, is_translated = self.get_field_info(fieldname)
             if fk_model:
-                filters.extend((entry.id, entry.__unicode__(),) for entry in
+                filters.extend((entry.id, entry.__str__(),) for entry in
                                fk_model.objects.filter(
                                    id__in=self.get_distinct_values_of_field(fieldname)))
             # field is no foreignkey and no m2m

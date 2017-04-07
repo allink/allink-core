@@ -1,6 +1,11 @@
 # -*- coding: utf-8 -*-
 import phonenumbers
-from urlparse import urlparse
+try:
+    # python 3
+    from urllib.parse import urlparse
+except ImportError:
+    # python 2, can be removed as soon as all projects are up to date
+    from urlparse import urlparse
 from django.core.urlresolvers import reverse
 from django.core.exceptions import ValidationError
 

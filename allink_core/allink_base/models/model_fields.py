@@ -117,7 +117,7 @@ def choices_from_sitemaps():
             # fallback, no different levels
             level = 0
 
-        name = instance.__unicode__()
+        name = instance.__str__()
 
         if level:
             level_indicator = '---' * level
