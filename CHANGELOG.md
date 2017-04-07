@@ -30,6 +30,7 @@ Each release is divided into the following main categories:
 
 ###### REQUIREMENTS
 - django-lockdown==1.4.2
+- hachoir3==3.0a2
 
 ###### DATA MIGRATIONS
 
