@@ -122,7 +122,7 @@ class AllinkBaseModel(AllinkMetaTagFieldsModel):
         """
         result = AllinkCategory.objects.none()
         for root in AllinkCategory.get_root_nodes().filter(model_names__contains=[cls._meta.model_name]):
-            result |= root.get_children()
+            result |= root.get_descendants()
         return result
 
     @property

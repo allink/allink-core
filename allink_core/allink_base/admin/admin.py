@@ -52,6 +52,7 @@ class AllinkBaseAdminBase(AllTranslationsMixin, TranslatableAdmin):
                 # 'classes': ('collapse',),
                 'fields': (
                     'categories',
+                    'categories_and',
                 )
             }),
         else:

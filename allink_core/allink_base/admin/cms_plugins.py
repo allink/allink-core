@@ -58,6 +58,7 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
             )
         }),
 
+
         if self.data_model.get_can_have_categories():
             fieldsets += (_('Filter & Ordering'), {
                 'classes': ('collapse',),

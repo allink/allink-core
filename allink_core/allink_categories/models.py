@@ -34,7 +34,7 @@ class CategoryManager(TranslatableManager, NS_NodeManager):
             using=self._db
         ).order_by('tree_id', 'lft')
 
-    def not_root(self, depth=2):
+    def not_root(self, depth=100):
         return self.filter(depth__gte=depth)
 
     if django.VERSION < (1, 8):

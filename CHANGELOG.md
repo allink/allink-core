@@ -42,7 +42,12 @@ TO_REMOVE = [
 CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [item for item in CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES if item not in TO_REMOVE]
       ```
        - you have to add and rename the file form core `app_content/app_content_base_legacy.html` file to your project templates folder: `app_content/app_content_base.html`:
-
+- major changes template dir: all templates are now loaded from allink_base/templates and they will only be overriden, when defined in project-template dir
+    - add following to TEMPLATES->DIRS list:
+    ```python
+      os.path.join(get_python_lib(), 'allink_core/allink_base/templates'),
+      os.path.join(BASE_DIR, 'allink_core/templates')  #  only in main project!
+      ```
 ###### TEMPLATES
 
 ###### URLS
