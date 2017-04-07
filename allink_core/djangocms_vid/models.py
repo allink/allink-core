@@ -107,21 +107,21 @@ class AllinkVidEmbedPlugin(AllinkVidBasePlugin):
     def __str__(self):
         return self.video_id or self.video_service
 
-    def get_video_dimensions(self):
-        import sys
-        from itertools import chain
-
-        from hachoir_core.cmd_line import unicodeFilename
-        from hachoir_metadata import extractMetadata
-        from hachoir_parser import createParser
-
-        if len(sys.argv) != 2:
-            sys.exit(__doc__)
-
-        extractMetadata(self.video_id)
-        file_metadata = extractMetadata(createParser(unicodeFilename(sys.argv[1])))
-        width = next((metadata.get('width'), metadata.get('height')) for metadata in chain([file_metadata],
-        return ("%sx%s" % file_metadata.iterGroups()) if metadata.has('width') and metadata.get('height')))
+    # def get_video_dimensions(self):
+    #     import sys
+    #     from itertools import chain
+    #
+    #     from hachoir_core.cmd_line import unicodeFilename
+    #     from hachoir_metadata import extractMetadata
+    #     from hachoir_parser import createParser
+    #
+    #     if len(sys.argv) != 2:
+    #         sys.exit(__doc__)
+    #
+    #     extractMetadata(self.video_id)
+    #     file_metadata = extractMetadata(createParser(unicodeFilename(sys.argv[1])))
+    #     width = next((metadata.get('width'), metadata.get('height')) for metadata in chain([file_metadata],
+    #     return ("%sx%s" % file_metadata.iterGroups()) if metadata.has('width') and metadata.get('height')))
 
 
 
