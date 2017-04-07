@@ -16,12 +16,20 @@ Each release is divided into the following main categories:
 ### IMPORTANT
 
 ###### SETTINGS
+- lockdown introduced:
+    - add:
+    ```python
+    if not DEBUG:
+    LOCKDOWN_PASSWORDS = ('stage', 'beta')
+    MIDDLEWARE_CLASSES += ('lockdown.middleware.LockdownMiddleware',)
+    ```
 
 ###### TEMPLATES
 
 ###### URLS
 
 ###### REQUIREMENTS
+- django-lockdown==1.4.2
 
 ###### DATA MIGRATIONS
 
@@ -69,8 +77,6 @@ CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [item for item in CMS_ALLINK_CONTENT_P
 ###### URLS
 
 ###### REQUIREMENTS
-- django-lockdown==1.4.2
-
 
 ###### DATA MIGRATIONS
 
