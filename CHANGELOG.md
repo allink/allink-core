@@ -25,9 +25,12 @@ Each release is divided into the following main categories:
 
 ###### DATA MIGRATIONS
 
+- when making migrations for allink_apps on project basis, it's important, that "active" gets renamed to "is_active".
+  The field should not be deleted and created with new name, else all data gets lost.
 
 ### NEW
 
+- field "active" from AllinkBaseModel renamed to "is_active"
 
 ### FIXES
 
