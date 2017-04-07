@@ -11,10 +11,31 @@ Each release is divided into the following main categories:
 - NEW: New features or plugins
 - FIXES: General bugfixes
 
-
-## v0.0.8 (under development)
+## v0.0.9 (under development)
 
 ### IMPORTANT
+
+###### SETTINGS
+
+###### TEMPLATES
+
+###### URLS
+
+###### REQUIREMENTS
+
+###### DATA MIGRATIONS
+
+
+### NEW
+
+
+### FIXES
+
+
+## v0.0.8
+
+### IMPORTANT
+  python 3 compatibility
 
 ###### SETTINGS
 - major changes regarding content plugin wrapper: every app plugin requires an content plugin now. there are two options:
