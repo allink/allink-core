@@ -56,7 +56,7 @@ class AllinkLegacyLink(models.Model):
         verbose_name = _('Legacy Link')
         verbose_name_plural = _('Legacy Links')
 
-    def __unicode__(self):
+    def __str__(self):
         return self.old
 
     def test_redirect(self, request):
