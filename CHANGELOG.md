@@ -18,6 +18,7 @@ Each release is divided into the following main categories:
 
 ###### SETTINGS
 - major changes regarding content plugin wrapper: every app plugin requires an content plugin now. there are two options:
+    -> change project specific app to be added to content plugin children (not placeholder `ALLINK_CMS_PLACEHOLDER_CONF_PLUGINS` anymore) -> `CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES.extend(..)`
     1. migrate by hand every app plugin so that it is wrapped inside a content_pluin (no further changes to settings or templates necessary.)
     2. dont migrate by hand. and continue to add app plugins directly.
         - you have to add in the settings:
@@ -42,12 +43,7 @@ TO_REMOVE = [
 CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [item for item in CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES if item not in TO_REMOVE]
       ```
        - you have to add and rename the file form core `app_content/app_content_base_legacy.html` file to your project templates folder: `app_content/app_content_base.html`:
-- major changes template dir: all templates are now loaded from allink_base/templates and they will only be overriden, when defined in project-template dir
-    - add following to TEMPLATES->DIRS list:
-    ```python
-      os.path.join(get_python_lib(), 'allink_core/allink_base/templates'),
-      os.path.join(BASE_DIR, 'allink_core/templates')  #  only in main project!
-      ```
+
 ###### TEMPLATES
 
 ###### URLS
