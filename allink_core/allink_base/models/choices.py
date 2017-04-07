@@ -184,3 +184,6 @@ RATIO_CHOICES = (
     ('16-9', '16:9'),
     ('x-y', 'Original'),
 )
+RATIO_CHOICES_ORIG = RATIO_CHOICES + (
+    ('x-y', 'Original'),
+)
