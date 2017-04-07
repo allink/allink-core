@@ -3,12 +3,10 @@
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.admin.widgets import FilteredSelectMultiple
 from django import forms
-from django.db.models import Q
 
 from parler.forms import TranslatableModelForm
 
 from allink_core.allink_base.utils import get_additional_choices, get_project_color_choices
-from allink_core.allink_categories.models import AllinkCategory
 from allink_core.allink_base.models import AllinkBaseAppContentPlugin
 
 

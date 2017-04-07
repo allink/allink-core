@@ -83,7 +83,7 @@ class AllinkBaseModel(AllinkMetaTagFieldsModel):
         AllinkCategory,
         blank=True
     )
-    active = models.BooleanField(
+    is_active = models.BooleanField(
         _(u'Active'),
         default=True
     )
@@ -105,7 +105,7 @@ class AllinkBaseModel(AllinkMetaTagFieldsModel):
 
     @classmethod
     def get_published(cls):
-        return cls.objects.filter(active=True)
+        return cls.objects.filter(is_active=True)
 
     @classmethod
     def get_next(cls, instance):
