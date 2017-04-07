@@ -182,8 +182,5 @@ RATIO_CHOICES = (
     ('4-3', '4:3'),
     ('1-1', '1:1'),
     ('16-9', '16:9'),
-    ('x-y', 'Original'),
 )
-RATIO_CHOICES_ORIG = RATIO_CHOICES + (
-    ('x-y', 'Original'),
-)
+RATIO_CHOICES_ORIG = RATIO_CHOICES + (('x-y', 'Original'),)
