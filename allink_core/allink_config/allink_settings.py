@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+
+
 ####################################################################################
 
 # Installed =Apps
@@ -13,6 +16,7 @@ ALLINK_INSTALLED_APPS = [
     'import_export',
     'cmsplugin_form_handler',
     'widget_tweaks',
+    'lockdown',
 
     # allink core apps
     'allink_core.allink_base',
@@ -81,7 +85,6 @@ ALLINK_PROJECT_APP_MODEL_WITH_CATEGORY_CHOICES = [
 
 # http://docs.django-cms.org/en/develop/reference/configuration.html#cms-placeholder-conf
 
-
 ALLINK_CMS_PLACEHOLDER_CONF_PLUGINS = [
     'CMSAllinkContentPlugin',
 ]
@@ -89,7 +92,6 @@ ALLINK_CMS_PLACEHOLDER_CONF_PLUGINS = [
 ####################################################################################
 
 # Assign Plugins which are allowed as child in Allink Content
-
 
 CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [
     'TextPlugin',
@@ -116,7 +118,7 @@ CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [
 
 # Middlewareclassss
 
-
 ALLINK_MIDDLEWARE_CLASSES = [
     'allink_core.allink_legacy_redirect.middleware.AllinkLegacyRedirectMiddleware',
+    # 'lockdown.middleware.LockdownMiddleware',
 ]

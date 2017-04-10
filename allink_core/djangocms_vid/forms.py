@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django import forms
 from django.utils.translation import ugettext_lazy as _
-from allink_core.allink_base.utils import get_additional_choices
+from allink_core.allink_base.utils import get_additional_choices, get_ratio_choices
 from allink_core.djangocms_vid.models import AllinkVidFilePlugin, AllinkVidEmbedPlugin
 
 
@@ -20,6 +20,12 @@ class AllinkVidEmbedPluginForm(forms.ModelForm):
                 choices=get_additional_choices('PROJECT_CSS_CLASSES_VIDEO'),
                 required=False,
             )
+        self.fields['ratio'] = forms.CharField(
+            label=_(u'Ratio'),
+            help_text=_(u'This option overrides the default settings for the content plugin.'),
+            widget=forms.Select(choices=get_ratio_choices()),
+            required=False,
+        )
 
 class AllinkVidFilePluginForm(forms.ModelForm):
 

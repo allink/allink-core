@@ -2,7 +2,7 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
-from allink_core.allink_base.utils import get_project_color_choices, get_ratio_choices, get_additional_choices
+from allink_core.allink_base.utils import get_project_color_choices, get_ratio_choices_orig, get_additional_choices
 from allink_core.djangocms_image.models import AllinkImagePlugin
 from allink_core.allink_base.models.model_fields import choices_from_sitemaps
 
@@ -33,7 +33,7 @@ class AllinkImagePluginForm(forms.ModelForm):
         self.fields['ratio'] = forms.CharField(
             label=_(u'Ratio'),
             help_text=_(u'This option overrides the default settings for the content plugin.'),
-            widget=forms.Select(choices=get_ratio_choices()),
+            widget=forms.Select(choices=get_ratio_choices_orig()),
             required=False,
         )
         self.fields['bg_color'] = forms.CharField(

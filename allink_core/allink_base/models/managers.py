@@ -7,7 +7,7 @@ class AllinkBaseModelQuerySet(TranslatableQuerySet):
     def active_entries(self):
         ''' entries which are active
         '''
-        return self.filter(active=True)
+        return self.filter(is_active=True)
 
     def filter_by_categories(self, categories):
         ''' entries with categories

@@ -1,4 +1,3 @@
-
 from allink_core.allink_config.models import AllinkConfig
 
 

@@ -48,6 +48,13 @@ def get_ratio_choices():
     from allink_core.allink_base.models.choices import BLANK_CHOICE, RATIO_CHOICES
     return BLANK_CHOICE + RATIO_CHOICES + get_additional_choices('RATIO_CHOICES')
 
+def get_ratio_choices_orig():
+    """
+    returns all projects specific ratio choices
+    """
+    from allink_core.allink_base.models.choices import BLANK_CHOICE, RATIO_CHOICES_ORIG
+    return BLANK_CHOICE + RATIO_CHOICES_ORIG + get_additional_choices('RATIO_CHOICES')
+
 
 def get_height_from_ratio(width, ratio_w, ratio_h):
     """

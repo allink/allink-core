@@ -11,13 +11,47 @@ Each release is divided into the following main categories:
 - NEW: New features or plugins
 - FIXES: General bugfixes
 
-
-## v0.0.8 (under development)
+## v0.0.9 (under development)
 
 ### IMPORTANT
 
 ###### SETTINGS
+- lockdown introduced:
+    - add:
+    ```python
+    if not DEBUG:
+    LOCKDOWN_PASSWORDS = ('stage', 'beta')
+    MIDDLEWARE_CLASSES += ('lockdown.middleware.LockdownMiddleware',)
+    ```
+
+###### TEMPLATES
+
+###### URLS
+
+###### REQUIREMENTS
+- django-lockdown==1.4.2
+- hachoir3==3.0a2
+
+###### DATA MIGRATIONS
+
+- when making migrations for allink_apps on project basis, it's important, that "active" gets renamed to "is_active".
+  The field should not be deleted and created with new name, else all data gets lost.
+
+### NEW
+
+- field "active" from AllinkBaseModel renamed to "is_active"
+
+### FIXES
+
+
+## v0.0.8
+
+### IMPORTANT
+  python 3 compatibility
+
+###### SETTINGS
 - major changes regarding content plugin wrapper: every app plugin requires an content plugin now. there are two options:
+    -> change project specific app to be added to content plugin children (not placeholder `ALLINK_CMS_PLACEHOLDER_CONF_PLUGINS` anymore) -> `CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES.extend(..)`
     1. migrate by hand every app plugin so that it is wrapped inside a content_pluin (no further changes to settings or templates necessary.)
     2. dont migrate by hand. and continue to add app plugins directly.
         - you have to add in the settings:
@@ -42,7 +76,6 @@ TO_REMOVE = [
 CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [item for item in CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES if item not in TO_REMOVE]
       ```
        - you have to add and rename the file form core `app_content/app_content_base_legacy.html` file to your project templates folder: `app_content/app_content_base.html`:
-
 ###### TEMPLATES
 
 ###### URLS

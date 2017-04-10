@@ -52,7 +52,6 @@ class AllinkImagePlugin(AllinkLinkFieldsModel, CMSPlugin):
     ratio = models.CharField(
         _(u'Ratio'),
         max_length=50,
-        choices=RATIO_CHOICES,
         blank=True,
         null=True
     )

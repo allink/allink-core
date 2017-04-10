@@ -117,7 +117,7 @@ def choices_from_sitemaps():
             # fallback, no different levels
             level = 0
 
-        name = instance.__unicode__()
+        name = instance.__str__()
 
         if level:
             level_indicator = '---' * level
@@ -174,7 +174,7 @@ def choices_from_sitemaps():
         return out
 
     urls = [(None, '----------')]
-    for name, sitemap in sitemaps.iteritems():
+    for name, sitemap in sitemaps.items():
         if callable(sitemap):
             urls += [(None, '')]
             urls += [(None, name.upper())]

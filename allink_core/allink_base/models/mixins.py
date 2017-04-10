@@ -28,6 +28,7 @@ class AllinkManualEntriesMixin(object):
 
     def copy_relations(self, oldinstance):
         self.categories = oldinstance.categories.all()
+        self.categories_and = oldinstance.categories_and.all()
         self.category_navigation = oldinstance.category_navigation.all()
         self.manual_entries = oldinstance.manual_entries.all()
 
