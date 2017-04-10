@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from django.db.models import Q
 from aldryn_translation_tools.models import TranslatedAutoSlugifyMixin
 
 
@@ -21,9 +22,16 @@ class AllinkManualEntriesMixin(object):
                         category_navigation.append(category)
             # auto category nav
             else:
-                for category in self.categories.all():
-                    if self.get_render_queryset_for_display(category).exists():
-                        category_navigation.append(category)
+                if self.categories.all().count() > 0:
+                    for category in self.categories.all():
+                        if self.get_render_queryset_for_display(category).exists():
+                            category_navigation.append(category)
+                # auto category nav, if no categories are specified
+                #
+                else:
+                    from allink_core.allink_categories.models import AllinkCategory
+                    categories = self.get_render_queryset_for_display().filter(~Q(categories=None)).distinct('categories').values_list('categories')
+                    category_navigation = list(AllinkCategory.objects.filter(id__in=categories))
         return category_navigation
 
     def copy_relations(self, oldinstance):
