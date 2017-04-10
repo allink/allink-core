@@ -26,11 +26,7 @@ def get_additional_choices(config):
     """
     Get additional settings var for project specific configuration
     """
-    try:
-        return getattr(settings, config, ())
-    # TODO: specify Error type
-    except:
-        return ''
+    return getattr(settings, config, ())
 
 
 def get_project_color_choices():
@@ -48,6 +44,7 @@ def get_ratio_choices():
     from allink_core.allink_base.models.choices import BLANK_CHOICE, RATIO_CHOICES
     return BLANK_CHOICE + RATIO_CHOICES + get_additional_choices('RATIO_CHOICES')
 
+
 def get_ratio_choices_orig():
     """
     returns all projects specific ratio choices
@@ -61,5 +58,3 @@ def get_height_from_ratio(width, ratio_w, ratio_h):
     Used to calculate thumbnail height from given width and ratio
     """
     return width * ratio_h / ratio_w
-
-

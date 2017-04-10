@@ -43,6 +43,8 @@ Each release is divided into the following main categories:
 
 ### FIXES
 
+- Ratio "original" isn't available for galleries
+
 
 ## v0.0.8
 
