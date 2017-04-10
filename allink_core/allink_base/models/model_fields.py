@@ -13,7 +13,7 @@ from treebeard.mp_tree import MP_Node
 
 from importlib import import_module
 
-from ..forms import fields
+from allink_core.allink_base.forms import fields
 
 
 # Add an app namespace to related_name to avoid field name clashes
@@ -102,6 +102,7 @@ def choices_from_sitemaps():
         from django.conf import settings
         url_mod = import_module(settings.ROOT_URLCONF)
         sitemaps = url_mod.sitemaps
+    # TODO: specify ErrorType
     except:
         sitemaps = {}
 
@@ -116,7 +117,8 @@ def choices_from_sitemaps():
             # fallback, no different levels
             level = 0
 
-        name = instance.__unicode__()
+        name = instance.__str__()
+
         if level:
             level_indicator = '---' * level
             name = u'%s %s' % (level_indicator, name)
@@ -135,12 +137,18 @@ def choices_from_sitemaps():
             out = []
             current_lang_code = translation.get_language()
             for lang_code, lang_name in settings.LANGUAGES:
-                translation.activate(lang_code)
                 try:
-                    out += [(item.get_absolute_url(), label_from_instance(item, lang=lang_code))]
+                    if item.translations.get(language_code=lang_code):
+                        out += [(item.get_absolute_url(language=lang_code), label_from_instance(item, lang=lang_code))]
+                except TypeError:
+                    translation.activate(lang_code)
+                    if item.translations.get(language_code=lang_code):
+                        out += [(item.get_absolute_url(), label_from_instance(item, lang=lang_code))]
+                    translation.activate(current_lang_code)
                 except AttributeError:
                     try:
-                        out += [(item.page.get_absolute_url(), label_from_instance(item.page, lang=lang_code))]
+                        if item.page.translations.get(language_code=lang_code):
+                            out += [(item.page.get_absolute_url(language=lang_code), label_from_instance(item.page, lang=lang_code))]
                     except AttributeError:
                         # Entry does not exist in this language
                         pass
@@ -150,14 +158,13 @@ def choices_from_sitemaps():
                 except NoReverseMatch:
                     # get_absolute_url does not work for this element
                     pass
-            translation.activate(current_lang_code)
         else:
             out = []
             try:
                 out = [(item.get_absolute_url(), label_from_instance(item))]
             except AttributeError:
                 try:
-                    out = [(item.page.get_absolute_url(), label_from_instance(item.page))]
+                    out = [(item.page.get_absolute_url(language=item.language), label_from_instance(item.page, item.language))]
                 except NoReverseMatch:
                     # get_absolute_url does not work for this element
                     pass
@@ -167,7 +174,7 @@ def choices_from_sitemaps():
         return out
 
     urls = [(None, '----------')]
-    for name, sitemap in sitemaps.iteritems():
+    for name, sitemap in sitemaps.items():
         if callable(sitemap):
             urls += [(None, '')]
             urls += [(None, name.upper())]

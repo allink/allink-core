@@ -1,10 +1,12 @@
+# -*- coding: utf-8 -*-
+
+
 ####################################################################################
 
 # Installed =Apps
 
 ALLINK_INSTALLED_APPS = [
     # apps
-    'debug_toolbar',
     'allauth',
     'allauth.account',
     'webpack_loader',
@@ -14,6 +16,7 @@ ALLINK_INSTALLED_APPS = [
     'import_export',
     'cmsplugin_form_handler',
     'widget_tweaks',
+    'lockdown',
 
     # allink core apps
     'allink_core.allink_base',
@@ -32,11 +35,13 @@ ALLINK_INSTALLED_APPS = [
     'allink_apps.testimonials',
     'allink_apps.blog',
     'allink_apps.contact',
+    'allink_apps.config',
 
     # allink core djangocms plugins
     'allink_core.djangocms_content',
     'allink_core.djangocms_image',
     'allink_core.djangocms_gallery',
+    'allink_core.djangocms_vid',
     'allink_core.djangocms_socialicon',
     'allink_core.djangocms_button_link',
     'allink_core.djangocms_group',
@@ -54,6 +59,8 @@ ALLINK_MIGRATION_MODULES = {
     'testimonials': 'apps.allink_apps_migrations.testimonials',
     'work': 'apps.allink_apps_migrations.work',
     'members': 'apps.allink_apps_migrations.members',
+    'contacts': 'apps.allink_apps_migrations.contacts',
+    'config': 'apps.allink_apps_migrations.config',
 }
 
 ####################################################################################
@@ -72,50 +79,46 @@ ALLINK_PROJECT_APP_MODEL_WITH_CATEGORY_CHOICES = [
     # ('locations', 'Locations'),
 ]
 
-
 ####################################################################################
 
 # Assign Plugins to =Placeholders
 
 # http://docs.django-cms.org/en/develop/reference/configuration.html#cms-placeholder-conf
 
-
 ALLINK_CMS_PLACEHOLDER_CONF_PLUGINS = [
     'CMSAllinkContentPlugin',
-    'CMSLocationsPlugin',
-    'CMSPeoplePlugin',
-    'CMSWorkPlugin',
-    'CMSBlogPlugin',
-    'CMSTestimonialPlugin',
 ]
 
 ####################################################################################
 
 # Assign Plugins which are allowed as child in Allink Content
 
-
 CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [
     'TextPlugin',
-    'VideoPlayerPlugin',
-    'VideoSourcePlugin',
-    'VideoTrackPlugin',
+    # apps
+    'CMSLocationsPlugin',
+    'CMSPeoplePlugin',
+    'CMSWorkPlugin',
+    'CMSBlogPlugin',
+    'CMSTestimonialPlugin',
+    # core
     'CMSAllinkTermsPlugin',
     'CMSAllinkImagePlugin',
     'CMSAllinkGalleryPlugin',
+    'CMSAllinkVidEmbedPlugin',
+    'CMSAllinkVidFilePlugin',
     'CMSAllinkSocialIconContainerPlugin',
     'CMSAllinkSignupFormPlugin',
     'CMSAllinkButtonLinkContainerPlugin',
     'CMSAllinkGroupContainerPlugin',
     'CMSAllinkInstagramPlugin'
+
 ]
-
-
 ####################################################################################
 
 # Middlewareclassss
 
-
 ALLINK_MIDDLEWARE_CLASSES = [
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'allink_core.allink_legacy_redirect.middleware.AllinkLegacyRedirectMiddleware',
+    # 'lockdown.middleware.LockdownMiddleware',
 ]

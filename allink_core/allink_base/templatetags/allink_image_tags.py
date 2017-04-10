@@ -7,16 +7,17 @@ register = template.Library()
 ####################################################################################
 # Allink specific image
 
+
 @register.inclusion_tag('templatetags/allink_specific_image.html', takes_context=True)
 def render_allink_image(context, image, thumbnail_url):
 
     # add different BREAKPOINT and RETINA suffixes
-    thumbnail_url_xs = thumbnail_url+'-xs'
-    thumbnail_url_xs_2x = thumbnail_url_xs+'-2x'
-    thumbnail_url_sm = thumbnail_url+'-sm'
-    thumbnail_url_sm_2x = thumbnail_url_sm+'-2x'
-    thumbnail_url_xl = thumbnail_url+'-xl'
-    thumbnail_url_xl_2x = thumbnail_url_xl+'-2x'
+    thumbnail_url_xs = thumbnail_url + '-xs'
+    thumbnail_url_xs_2x = thumbnail_url_xs + '-2x'
+    thumbnail_url_sm = thumbnail_url + '-sm'
+    thumbnail_url_sm_2x = thumbnail_url_sm + '-2x'
+    thumbnail_url_xl = thumbnail_url + '-xl'
+    thumbnail_url_xl_2x = thumbnail_url_xl + '-2x'
 
     # update context
     context.update({'thumbnail_url_xs': thumbnail_url_xs})
@@ -33,16 +34,17 @@ def render_allink_image(context, image, thumbnail_url):
 ####################################################################################
 # App Content Plugin > Detail view
 
+
 @register.inclusion_tag('templatetags/app_content_image.html', takes_context=True)
-def render_app_content_image_detail(context,thumbnail_url,icon_disabled=False,bg_disabled=False):
+def render_app_content_image_detail(context, thumbnail_url, icon_disabled=False, bg_disabled=False):
 
     # add different BREAKPOINT and RETINA suffixes
-    thumbnail_url_xs = thumbnail_url+'-xs'
-    thumbnail_url_xs_2x = thumbnail_url_xs+'-2x'
-    thumbnail_url_sm = thumbnail_url+'-sm'
-    thumbnail_url_sm_2x = thumbnail_url_sm+'-2x'
-    thumbnail_url_xl = thumbnail_url+'-xl'
-    thumbnail_url_xl_2x = thumbnail_url_xl+'-2x'
+    thumbnail_url_xs = thumbnail_url + '-xs'
+    thumbnail_url_xs_2x = thumbnail_url_xs + '-2x'
+    thumbnail_url_sm = thumbnail_url + '-sm'
+    thumbnail_url_sm_2x = thumbnail_url_sm + '-2x'
+    thumbnail_url_xl = thumbnail_url + '-xl'
+    thumbnail_url_xl_2x = thumbnail_url_xl + '-2x'
 
     # update context
     context.update({'thumbnail_url_xs': thumbnail_url_xs})
@@ -57,20 +59,21 @@ def render_app_content_image_detail(context,thumbnail_url,icon_disabled=False,bg
 ####################################################################################
 # App Content Plugin > List view
 
+
 @register.inclusion_tag('templatetags/app_content_image.html', takes_context=True)
-def render_app_content_image(context,thumbnail_url=None,icon_disabled=False,bg_disabled=False):
+def render_app_content_image(context, thumbnail_url=None, icon_disabled=False, bg_disabled=False):
 
     # Define variable base according to template
     if not thumbnail_url:
         thumbnail_url = 'col-{}'.format(context['instance'].items_per_row) if context['instance'].items_per_row else 'col-2'
 
     # add different BREAKPOINT and RETINA suffixes
-    thumbnail_url_xs = thumbnail_url+'-xs'
-    thumbnail_url_xs_2x = thumbnail_url_xs+'-2x'
-    thumbnail_url_sm = thumbnail_url+'-sm'
-    thumbnail_url_sm_2x = thumbnail_url_sm+'-2x'
-    thumbnail_url_xl = thumbnail_url+'-xl'
-    thumbnail_url_xl_2x = thumbnail_url_xl+'-2x'
+    thumbnail_url_xs = thumbnail_url + '-xs'
+    thumbnail_url_xs_2x = thumbnail_url_xs + '-2x'
+    thumbnail_url_sm = thumbnail_url + '-sm'
+    thumbnail_url_sm_2x = thumbnail_url_sm + '-2x'
+    thumbnail_url_xl = thumbnail_url + '-xl'
+    thumbnail_url_xl_2x = thumbnail_url_xl + '-2x'
 
     # update context
     context.update({'thumbnail_url_xs': thumbnail_url_xs})
@@ -87,7 +90,7 @@ def render_app_content_image(context,thumbnail_url=None,icon_disabled=False,bg_d
 # Content Plugin > Images placed in columns
 
 @register.inclusion_tag('templatetags/allink_image.html', takes_context=True)
-def render_content_image(context,thumbnail_url=None,icon_disabled=False,bg_disabled=False):
+def render_content_image(context, thumbnail_url=None, icon_disabled=False, bg_disabled=False):
 
     column_plugin = context['instance'].parent.djangocms_content_allinkcontentcolumnplugin
 
@@ -115,14 +118,13 @@ def render_content_image(context,thumbnail_url=None,icon_disabled=False,bg_disab
         else:
             thumbnail_url = 'col-1'
 
-
     # add different BREAKPOINT and RETINA suffixes
-    thumbnail_url_xs = thumbnail_url+'-xs'
-    thumbnail_url_xs_2x = thumbnail_url_xs+'-2x'
-    thumbnail_url_sm = thumbnail_url+'-sm'
-    thumbnail_url_sm_2x = thumbnail_url_sm+'-2x'
-    thumbnail_url_xl = thumbnail_url+'-xl'
-    thumbnail_url_xl_2x = thumbnail_url_xl+'-2x'
+    thumbnail_url_xs = thumbnail_url + '-xs'
+    thumbnail_url_xs_2x = thumbnail_url_xs + '-2x'
+    thumbnail_url_sm = thumbnail_url + '-sm'
+    thumbnail_url_sm_2x = thumbnail_url_sm + '-2x'
+    thumbnail_url_xl = thumbnail_url + '-xl'
+    thumbnail_url_xl_2x = thumbnail_url_xl + '-2x'
 
     # update context
     context.update({'thumbnail_url_xs': thumbnail_url_xs})
@@ -180,8 +182,3 @@ def render_favicons_set(context):
     })
 
     return context
-
-
-
-
-

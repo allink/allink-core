@@ -5,9 +5,8 @@ from cms.models import CMSPlugin
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
 
-from allink_core.allink_base.utils import get_additional_templates
-from .models import AllinkContentPlugin, AllinkContentColumnPlugin
-from .forms import AllinkContentPluginForm, AllinkContentColumnPluginForm
+from allink_core.djangocms_content.models import AllinkContentPlugin, AllinkContentColumnPlugin
+from allink_core.djangocms_content.forms import AllinkContentPluginForm, AllinkContentColumnPluginForm
 
 
 @plugin_pool.register_plugin
@@ -23,7 +22,7 @@ class CMSAllinkContentPlugin(CMSPluginBase):
     class Media:
         js = ('build/djangocms_custom_admin_scripts.js', )
         css = {
-             'all': ('build/djangocms_custom_admin_style.css', )
+            'all': ('build/djangocms_custom_admin_style.css', )
         }
 
     fieldsets = (
@@ -32,6 +31,7 @@ class CMSAllinkContentPlugin(CMSPluginBase):
                 'title',
                 'title_size',
                 'template',
+                'anchor',
             ),
         }),
         (_('Display Options'), {
@@ -69,7 +69,7 @@ class CMSAllinkContentPlugin(CMSPluginBase):
             'classes': ('collapse',),
             'fields': (
                 'project_css_classes',
-                'extra_css_classes',
+                # 'extra_css_classes',
             )
         })
     )
@@ -90,6 +90,7 @@ class CMSAllinkContentPlugin(CMSPluginBase):
                 col.save()
         return response
 
+
 @plugin_pool.register_plugin
 class CMSAllinkContentColumnPlugin(CMSPluginBase):
     model = AllinkContentColumnPlugin
@@ -101,6 +102,12 @@ class CMSAllinkContentColumnPlugin(CMSPluginBase):
     child_classes = settings.CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES
     form = AllinkContentColumnPluginForm
     require_parent = True
+
+    class Media:
+        js = ('build/djangocms_custom_admin_scripts.js', )
+        css = {
+            'all': ('build/djangocms_custom_admin_style.css', )
+        }
 
     def save_model(self, request, obj, form, change):
 
@@ -115,4 +122,3 @@ class CMSAllinkContentColumnPlugin(CMSPluginBase):
                         child_column.order_mobile = form.initial.get('order_mobile')
                         child_column.save()
         return super(CMSAllinkContentColumnPlugin, self).save_model(request, obj, form, change)
-

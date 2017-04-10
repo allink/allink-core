@@ -14,6 +14,7 @@ from allink_core.djangocms_socialicon.cms_plugins import CMSAllinkSocialIconCont
 APP_NAME = 'djangocms_socialicon'
 TEMPLATE_DIR = os.path.join(os.path.dirname(app.__file__), 'templates', APP_NAME)
 
+
 class CMSAllinkSocialIconContainerPluginTest(TestCase):
 
     def test_plugin_html(self):

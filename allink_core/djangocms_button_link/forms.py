@@ -3,8 +3,9 @@ from django import forms
 from django.forms.widgets import Media, TextInput
 from djangocms_attributes_field.widgets import AttributesWidget
 from django.utils.translation import ugettext_lazy as _
-import cms
-from .models import AllinkButtonLinkContainerPlugin, AllinkButtonLinkPlugin
+
+from allink_core.djangocms_button_link.models import AllinkButtonLinkContainerPlugin, AllinkButtonLinkPlugin
+from allink_core.allink_base.models.model_fields import choices_from_sitemaps
 
 
 class AllinkButtonLinkContainerPluginForm(forms.ModelForm):
@@ -16,11 +17,7 @@ class AllinkButtonLinkContainerPluginForm(forms.ModelForm):
 
 class AllinkButtonLinkPluginForm(forms.ModelForm):
 
-    link_page = cms.forms.fields.PageSelectFormField(
-        queryset=cms.models.Page.objects.drafts(),
-        label=_('Internal link'),
-        required=False,
-    )
+    link_internal = forms.ChoiceField(choices=(), required=False)
 
     class Meta:
         model = AllinkButtonLinkPlugin
@@ -41,11 +38,7 @@ class AllinkButtonLinkPluginForm(forms.ModelForm):
             widget=forms.Select(choices=self.instance.get_link_special_choices()),
             required=False,
         )
-
-    def for_site(self, site):
-        # override the page_link fields queryset to containt just pages for
-        # current site
-        self.fields['link_page'].queryset = cms.models.Page.objects.drafts().on_site(site)
+        self.fields['link_internal'].choices = choices_from_sitemaps()
 
     def _get_media(self):
         """
@@ -57,4 +50,3 @@ class AllinkButtonLinkPluginForm(forms.ModelForm):
         media._js = ['cms/js/libs/jquery.min.js'] + media._js
         return media
     media = property(_get_media)
-

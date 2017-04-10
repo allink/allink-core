@@ -2,7 +2,7 @@ from import_export import resources, fields
 
 from django.utils.translation import ugettext_lazy as _
 
-from .models import AllinkLegacyLink
+from allink_core.allink_legacy_redirect.models import AllinkLegacyLink
 
 
 class AllinkLegacyLinkResource(resources.ModelResource):

@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 from django import forms
 
-from .models import AllinkLegacyLink
+from allink_core.allink_legacy_redirect.models import AllinkLegacyLink
 from allink_core.allink_base.models.model_fields import choices_from_sitemaps
+
 
 class AllinkLegacyChangeAdminForm(forms.ModelForm):
     new_page = forms.ChoiceField(choices=())

@@ -1,0 +1,25 @@
+{% load thumbnail %}
+
+{% if instance.video_file %}
+
+    {# create thumbnail #}
+    {% thumbnail instance.video_poster_image 1500x9999 upscale=False as placeholder_image %}
+
+    <div
+        class="video-file-plugin video-{{ instance.id }}"
+        >
+
+        <video
+            id="video-{{ instance.id }}"
+            class="the-video"
+            playsinline
+            muted
+            autoplay
+            loop
+            poster="{{ placeholder_image.url }}">
+            <source src="{{ instance.video_file.url }}" type="video/mp4">
+        </video>
+
+    </div>
+{% endif %}
+

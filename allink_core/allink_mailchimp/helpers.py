@@ -5,7 +5,7 @@ import hashlib
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 from raven import Client
-from .config import MailChimpConfig
+from allink_core.allink_mailchimp.config import MailChimpConfig
 
 
 config = MailChimpConfig()
@@ -27,6 +27,7 @@ def check_response_status(response):
 def get_hash_md5(email):
     return hashlib.md5(email.encode('utf-8')).hexdigest()
 
+
 def get_status_if_new():
     """
     You should pass the value “subscribed” in the API field instead of “pending”. Using “pending” will
@@ -46,6 +47,7 @@ def list_members_post(data, list_id=config.default_list_id, member_hash_email=No
         data=data
     )
     check_response_status(response)
+
 
 def list_members_put(data, list_id=config.default_list_id, member_hash_email=None):
     member_hash = get_hash_md5(member_hash_email) if member_hash_email else get_hash_md5(data['email_address'])
@@ -73,10 +75,8 @@ def list_members_patch(data, list_id=config.default_list_id, member_hash_email=N
 
 def list_members_delete(data, list_id=config.default_list_id, member_hash_email=None):
     member_hash = get_hash_md5(member_hash_email) if member_hash_email else get_hash_md5(data['email_address'])
-    data = json.dumps(data)
     # DELETE existing member
     response = requests.delete(
         config.api_root + 'lists/{}/members/{}'.format(list_id, member_hash),
         auth=('apikey', config.apikey),
-        data=data
     )

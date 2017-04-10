@@ -7,7 +7,7 @@ from adminsortable.admin import NonSortableParentAdmin, SortableAdmin
 from parler.admin import TranslatableAdmin
 from aldryn_translation_tools.admin import AllTranslationsMixin
 
-from .forms import AllinkBaseAdminForm
+from allink_core.allink_base.admin import AllinkBaseAdminForm
 
 
 class AllinkBaseAdminBase(AllTranslationsMixin, TranslatableAdmin):
@@ -17,9 +17,9 @@ class AllinkBaseAdminBase(AllTranslationsMixin, TranslatableAdmin):
     """
     form = AllinkBaseAdminForm
     search_fields = ('translations__title',)
-    list_display = ('title', 'get_categories', 'active', 'created', 'modified')
+    list_display = ('title', 'get_categories', 'is_active', 'created', 'modified')
     list_filter = (
-        'active',
+        'is_active',
         ('categories', admin.RelatedOnlyFieldListFilter,),
     )
 
@@ -28,14 +28,14 @@ class AllinkBaseAdminBase(AllTranslationsMixin, TranslatableAdmin):
     class Media:
         js = ('build/djangocms_custom_admin_scripts.js', )
         css = {
-             'all': ('build/djangocms_custom_admin_style.css', )
+            'all': ('build/djangocms_custom_admin_style.css', )
         }
 
     def get_fieldsets(self, request, obj=None):
         fieldsets = (
             (None, {
                 'fields': (
-                    'active',
+                    'is_active',
                     'title',
                     'slug',
                     'created',
@@ -52,21 +52,22 @@ class AllinkBaseAdminBase(AllTranslationsMixin, TranslatableAdmin):
                 # 'classes': ('collapse',),
                 'fields': (
                     'categories',
+                    'categories_and',
                 )
             }),
         else:
             fieldsets = ()
 
         fieldsets += (_('Meta Tags'), {
-                'classes': (
-                    'collapse',
-                ),
-                'fields': (
-                    'og_image',
-                    'og_title',
-                    'og_description',
-                )
-            }),
+            'classes': (
+                'collapse',
+            ),
+            'fields': (
+                'og_image',
+                'og_title',
+                'og_description',
+            )
+        }),
 
         return fieldsets
 
@@ -74,7 +75,6 @@ class AllinkBaseAdminBase(AllTranslationsMixin, TranslatableAdmin):
         return "\n|\n".join([c.name for c in object.categories.all()])
 
     get_categories.short_description = _(u'Categories')
-
 
 
 class AllinkBaseAdmin(NonSortableParentAdmin, AllinkBaseAdminBase):

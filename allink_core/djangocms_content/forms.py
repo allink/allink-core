@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 from django import forms
 from django.utils.translation import ugettext_lazy as _
-from allink_core.allink_base.utils import get_additional_choices
-from .models import AllinkContentPlugin, AllinkContentColumnPlugin
+
+from allink_core.allink_base.utils import get_additional_choices, get_project_color_choices
+from allink_core.djangocms_content.models import AllinkContentPlugin, AllinkContentColumnPlugin
 
 
 class AllinkContentPluginForm(forms.ModelForm):
@@ -23,12 +24,13 @@ class AllinkContentPluginForm(forms.ModelForm):
         )
         self.fields['bg_color'] = forms.CharField(
             label=_(u'Set a predefined background color'),
-            widget=forms.Select(choices=self.instance.get_project_color_choices()),
+            widget=forms.Select(choices=get_project_color_choices()),
             required=False,
         )
         if get_additional_choices('PROJECT_CSS_CLASSES'):
             self.fields['project_css_classes'] = forms.MultipleChoiceField(
                 label=_(u'Predifined css classes'),
+                help_text=_(u'Instructions: Single selection is made by clicking on an option. Multiple selections are achieved by pressing and holding down the Command-key (Mac) or Control-Key (Windows) <strong>and</strong> clicking the options you would like to apply.'),
                 choices=get_additional_choices('PROJECT_CSS_CLASSES'),
                 required=False,
             )

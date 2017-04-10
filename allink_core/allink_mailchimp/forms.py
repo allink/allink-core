@@ -2,8 +2,8 @@
 from django import forms
 from django.utils.translation import get_language, ugettext_lazy as _
 
-from .config import MailChimpConfig
-from .helpers import list_members_put, get_status_if_new
+from allink_core.allink_mailchimp.config import MailChimpConfig
+from allink_core.allink_mailchimp.helpers import list_members_put, get_status_if_new
 
 config = MailChimpConfig()
 
@@ -24,7 +24,7 @@ class SignupForm(forms.Form):
         }
 
         if config.merge_vars:
-            data = data.append(config.merge_vars)
+            data = data.update(config.merge_vars)
 
         list_members_put(data)
 
@@ -53,7 +53,6 @@ class SignupFormAdvanced(forms.Form):
         }
 
         if config.merge_vars:
-            data = data.append(config.merge_vars)
+            data = data.update(config.merge_vars)
 
         list_members_put(data)
-

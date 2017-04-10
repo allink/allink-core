@@ -4,8 +4,8 @@ from __future__ import unicode_literals
 
 from django.test import TransactionTestCase
 
-from . import CategoryTestCaseMixin
-from ..models import AllinkCategory as Category
+from allink_core.allink_categories.tests import CategoryTestCaseMixin
+from allink_core.allink_categories.models import AllinkCategory as Category
 
 
 class AdminTest(CategoryTestCaseMixin, TransactionTestCase):

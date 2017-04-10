@@ -101,6 +101,16 @@ SOCIAL_ICONS_CHOICES = (
 
 ####################################################################################
 
+# VIDEO SERVICES
+
+VIDEO_SERVICE_CHOICES = (
+    (YOUTUBE, u'Youtube'),
+    (VIMEO, u'Vimeo'),
+)
+
+
+####################################################################################
+
 # BUTTON / TEXT
 
 # Used in the 'Button / Link' plugin
@@ -151,7 +161,7 @@ TARGET_CHOICES = (
     (IMAGE_MODAL, _(u'Lightbox (Image)')),
 )
 
-SPECIAL_LINKS_CHOICES =(
+SPECIAL_LINKS_CHOICES = (
     ('account_login', _(u'Member Login')),
     ('account_logout', _(u'Member Logout')),
     ('account_change_password', _(u'Member Change Passwort')),
@@ -167,9 +177,10 @@ SPECIAL_LINKS_CHOICES =(
 # IMAGE
 
 RATIO_CHOICES = (
+    ('3-2', '3:2'),
     ('2-1', '2:1'),
     ('4-3', '4:3'),
     ('1-1', '1:1'),
     ('16-9', '16:9'),
-    ('x-y', 'Original'),
 )
+RATIO_CHOICES_ORIG = RATIO_CHOICES + (('x-y', 'Original'),)

@@ -7,7 +7,11 @@ from cms.cms_toolbars import ADMIN_MENU_IDENTIFIER, ADMIN_SITES_BREAK
 from cms.toolbar_pool import toolbar_pool
 from cms.toolbar_base import CMSToolbar
 
-from .models import AllinkLegacyLink
+from allink_core.allink_legacy_redirect.models import AllinkLegacyLink
+
+
+
+
 
 @toolbar_pool.register
 class AllinkLegacyRedirectToolbar(CMSToolbar):
@@ -25,4 +29,3 @@ class AllinkLegacyRedirectToolbar(CMSToolbar):
 
         url = reverse('admin:{}_{}_changelist'.format(self.model._meta.app_label, self.model._meta.model_name))
         allink_menu.add_sideframe_item(_(u'Legacy Redirect'), url=url)
-

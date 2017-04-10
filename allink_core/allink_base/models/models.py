@@ -1,11 +1,17 @@
 # -*- coding: utf-8 -*-
 from django.conf import settings
-from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
-from django.utils.translation import ugettext_lazy as _
+from django.core.urlresolvers import NoReverseMatch
+from django.core.exceptions import FieldDoesNotExist, FieldError
 from django.contrib.postgres.fields import ArrayField
+from django.db import models
+from django.db.models.signals import post_delete
+from django.dispatch import receiver
+from django.utils.encoding import python_2_unicode_compatible
+from django.utils.translation import ugettext_lazy as _, override
 
+from cms.utils.i18n import get_current_language, get_default_language
 from cms.models.pluginmodel import CMSPlugin
+
 from adminsortable.models import SortableMixin
 from filer.fields.image import FilerImageField
 from model_utils.fields import AutoCreatedField, AutoLastModifiedField
@@ -13,10 +19,10 @@ from model_utils.fields import AutoCreatedField, AutoLastModifiedField
 from allink_core.allink_base.utils import get_additional_templates
 from allink_core.allink_categories.models import AllinkCategory
 
-from .choices import BLANK_CHOICE, TITLE_CHOICES, H1
-from .model_fields import Classes
-from .managers import AllinkBaseModelManager
-from .reusable_fields import AllinkMetaTagFieldsModel
+from allink_core.allink_base.models import Classes
+from allink_core.allink_base.models import AllinkBaseModelManager
+from allink_core.allink_base.models import AllinkMetaTagFieldsModel
+from allink_core.allink_base.models.choices import TITLE_CHOICES, H1
 
 
 @python_2_unicode_compatible
@@ -67,6 +73,9 @@ class AllinkBaseModel(AllinkMetaTagFieldsModel):
 
     """
 
+    # Is used to auto generate Category
+    category_name_field = u'title'
+
     created = AutoCreatedField(_('created'), editable=True)
     modified = AutoLastModifiedField(_('modified'))
 
@@ -74,9 +83,15 @@ class AllinkBaseModel(AllinkMetaTagFieldsModel):
         AllinkCategory,
         blank=True
     )
-    active = models.BooleanField(
+    is_active = models.BooleanField(
         _(u'Active'),
         default=True
+    )
+    auto_generated_category = models.OneToOneField(
+        AllinkCategory,
+        related_name=u'auto_generated_from_%(class)s',
+        null=True,
+        blank=True,
     )
 
     objects = AllinkBaseModelManager()
@@ -90,7 +105,7 @@ class AllinkBaseModel(AllinkMetaTagFieldsModel):
 
     @classmethod
     def get_published(cls):
-        return cls.objects.filter(active=True)
+        return cls.objects.filter(is_active=True)
 
     @classmethod
     def get_next(cls, instance):
@@ -99,6 +114,16 @@ class AllinkBaseModel(AllinkMetaTagFieldsModel):
     @classmethod
     def get_previous(cls, instance):
         return cls.get_published().filter(created__lte=instance.created, id__lt=instance.id).order_by('created', 'id').last()
+
+    @classmethod
+    def get_relevant_categories(cls):
+        """
+        returns a queryset of all relevant categories for a the model_name
+        """
+        result = AllinkCategory.objects.none()
+        for root in AllinkCategory.get_root_nodes().filter(model_names__contains=[cls._meta.model_name]):
+            result |= root.get_descendants()
+        return result
 
     @property
     def next(self):
@@ -146,10 +171,91 @@ class AllinkBaseModel(AllinkMetaTagFieldsModel):
     is_published.short_description = _(u'Published')
     is_published.boolean = True
 
-    def get_absolute_url(self):
+    def get_detail_view(self):
+        return '{}:detail'.format(self._meta.model_name)
+
+    def get_absolute_url(self, language=None):
         from django.core.urlresolvers import reverse
-        app = '{}:detail'.format(self._meta.model_name)
-        return reverse(app, kwargs={'slug': self.slug})
+        if not language:
+            language = get_current_language() or get_default_language()
+
+        slug, language = self.known_translation_getter(
+            'slug', None, language_code=language)
+        app = self.get_detail_view()
+        try:
+            with override(language):
+                return reverse(app, kwargs={'slug': slug})
+        except NoReverseMatch:
+            return '/no_app_hook_configured'
+
+    def save_categories(self, new):
+        """
+        Some models are used as categories.
+        For these we auto-generate a new category
+        for each instance. The category gets
+        ajusted in case of changes.
+
+        new: boolean, telling if an instance is new or just changed
+        """
+
+        # getting translation class
+        AllinkCategoryTransalation = AllinkCategory.translations.related.related_model
+        if new:
+            # all categories generated from one model, should be in the same root category
+            # if not existing, this root needs to be created too
+            try:
+                super_cat = AllinkCategory.objects.get(translations__name=self._meta.verbose_name)
+            except AllinkCategory.DoesNotExist:
+                super_cat = AllinkCategory.add_root()
+                super_cat.name = self._meta.verbose_name
+                super_cat.save()
+            cat = super_cat.add_child(tag=self._meta.model_name)
+        else:
+            cat = self.auto_generated_category
+
+        # check if the model is translatable and has existing translations
+        if hasattr(self, 'translations') and self.translations.exists():
+            for translation in self.translations.all():
+                trans, created = AllinkCategoryTransalation.objects.get_or_create(
+                    master=cat,
+                    language_code=translation.language_code,
+                )
+                trans.name = getattr(translation, self.category_name_field)
+                trans.save()
+                # reinitialize cat, so the translation cache gets renewed
+                cat = trans.master
+
+        else:
+            # create a category translation with standard language if none is existing
+            # and the source model isn't translatable
+            trans, created = AllinkCategoryTransalation.objects.get_or_create(
+                master=cat,
+                language_code=settings.LANGUAGE_CODE,
+            )
+            trans.name = getattr(self, self.category_name_field)
+            trans.save()
+            # reinitialize cat, so the translation cache gets renewed
+            cat = trans.master
+
+        # we need to save the category again, to make sure the slug is set correct
+        cat.save()
+        return cat
+
+    def save(self, *args, **kwargs):
+        new = not bool(self.id)
+        if not new:
+            self.save_translations(*args, **kwargs)
+        if self._meta.model_name in dict(settings.PROJECT_APP_MODEL_CATEGORY_TAG_CHOICES).keys():
+            self.auto_generated_category = self.save_categories(new)
+        super(AllinkBaseModel, self).save(*args, **kwargs)
+
+
+@receiver(post_delete)
+def post_delete_auto_generated_category(sender, instance, *args, **kwargs):
+    if not issubclass(sender, AllinkBaseModel):
+        return
+    if instance.auto_generated_category:
+        instance.auto_generated_category.delete()
 
 
 @python_2_unicode_compatible
@@ -174,7 +280,7 @@ class AllinkBasePlugin(CMSPlugin):
     )
     bg_color = models.CharField(
         _(u'Set a predefined background color'),
-        choices=settings.PROJECT_COLORS,
+        # choices=settings.PROJECT_COLORS,
         max_length=50,
         blank=True,
         null=True
@@ -205,10 +311,6 @@ class AllinkBasePlugin(CMSPlugin):
 
     class Meta:
         abstract = True
-
-    @classmethod
-    def get_project_color_choices(cls):
-        return BLANK_CHOICE + settings.PROJECT_COLORS
 
     @property
     def base_classes(self):
@@ -314,11 +416,24 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
 
     # FILTER FIELDS
     FILTER_FIELD_CHOICES = (
-        ('categories', _(u'Categories')),
+        ('categories', {
+            'verbose': _(u'Categories'),
+            'query_filter': {},
+            # example
+            # 'query_filter': {'translations__name': 'Bern'},
+        }),
     )
 
     # FIELDS
-    categories = models.ManyToManyField(AllinkCategory, blank=True)
+    categories = models.ManyToManyField(
+        AllinkCategory,
+        blank=True
+    )
+    categories_and = models.ManyToManyField(
+        AllinkCategory,
+        blank=True,
+        related_name='%(app_label)s_%(class)s_categories_and'
+    )
 
     manual_ordering = models.CharField(
         max_length=50,
@@ -327,8 +442,7 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
     )
 
     filter_fields = ArrayField(models.CharField(
-        max_length=50,
-        choices=FILTER_FIELD_CHOICES,),
+        max_length=50),
         blank=True,
         null=True,
         default=None
@@ -428,27 +542,45 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
 
     def copy_relations(self, oldinstance):
         self.categories = oldinstance.categories.all()
+        self.categories_and = oldinstance.categories_and.all()
         self.category_navigation = oldinstance.category_navigation.all()
 
     def get_model_name(self):
         return self.data_model._meta.model_name
 
-    def get_fk_model(self, fieldname):
+    def get_field_info(self, fieldname):
         """
         returns None if not foreignkey, otherswise the relevant model
         """
         from django.db.models import ForeignKey
-        field_object, model, direct, m2m = self.data_model._meta.get_field_by_name(fieldname)
+        is_translated = False
+        try:
+            field_object, model, direct, m2m = self.data_model._meta.get_field_by_name(fieldname)
+        # in case that the field is translated, it can't be found on the model itself
+        # so we get the translationmodel and get all data from there.
+        except FieldDoesNotExist:
+            is_translated = True
+            field_object, model, direct, m2m = self.data_model.translations.related.related_model._meta.get_field_by_name(fieldname)
         if (direct and isinstance(field_object, ForeignKey)) or (direct and m2m):
-            return field_object.rel.to
-        return None
+            return field_object.rel.to, is_translated
+        return None, is_translated
 
     def get_distinct_values_of_field(self, fieldname):
         """
         returns distinct values_list for fieldname
+        the query_filter defined in FILTER_FIELD_CHOICES gets applied here
         """
-        return self.get_render_queryset_for_display().order_by().values_list(fieldname).distinct()
-
+        try:
+            query_filter = {u'%s__%s' % (fieldname, k): v for k, v in dict(self.FILTER_FIELD_CHOICES)[fieldname]['query_filter'].items()}
+        except KeyError:
+            query_filter = {}
+        try:
+            return self.get_render_queryset_for_display().filter(**query_filter).order_by().values_list(fieldname).distinct()
+        # handle translated fields
+        except FieldError:
+            translation_model = self.data_model.translations.related.related_model
+            model_query = self.get_render_queryset_for_display().filter(**query_filter)
+            return translation_model.objects.filter(language_code=get_current_language(), master__in=model_query).order_by().values_list(fieldname).distinct()
 
     def get_filter_fields_with_options(self):
         """
@@ -460,20 +592,16 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
         for fieldname in self.filter_fields:
             # field is foreignkey or m2m, so we have to get the verbose name form the model itself
             filters = [((None, _(u'All'),))]
-            if self.get_fk_model(fieldname):
-                filters.extend((entry.id, entry.__unicode__(),) for entry in
-                               self.get_fk_model(fieldname).objects.filter(
+            fk_model, is_translated = self.get_field_info(fieldname)
+            if fk_model:
+                filters.extend((entry.id, entry.__str__(),) for entry in
+                               fk_model.objects.filter(
                                    id__in=self.get_distinct_values_of_field(fieldname)))
-                try:
-                    # for apps with verbose names changed in allink_config
-                    verbose_name = self.get_fk_model(fieldname).get_verbose_name()
-                except:
-                    verbose_name = self.get_fk_model(fieldname)._meta.verbose_name_plural
-                options.update({verbose_name: filters})
             # field is no foreignkey and no m2m
             else:
-                filters.extend((value[0], value[0],) for value in self.get_distinct_values_of_field(fieldname))
-                options.update({fieldname: filters})
+                filters.extend((value[0], value[0]) for value in self.get_distinct_values_of_field(fieldname))
+            filter_key = "%s-translations__%s" % (self.data_model._meta.model_name, fieldname) if is_translated else "%s-%s" % (self.data_model._meta.model_name, fieldname)
+            options.update({filter_key: (dict(self.FILTER_FIELD_CHOICES)[fieldname]['verbose'], filters)})
         return options
 
     def get_first_category(self):
@@ -512,26 +640,32 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
         else:
             return queryset
 
-    def get_render_queryset_for_display(self, category=None, filter=None):
+    def get_render_queryset_for_display(self, category=None, filters={}):
         """
          returns all data_model objects distinct to id which are in the selected categories
           - category: category instance
-          - filter: list tuple with model fields and value
+          - filters: dict model fields and value
             -> adds additional query
 
         -> Is also defined in  AllinkManualEntriesMixin to handel manual entries !!
         """
+
+        # apply filters from request
+        queryset = self.data_model.objects.filter(**filters)
+
         if self.categories.count() > 0 or category:
             """
              category selection
             """
             if category:
-                queryset = self.data_model.objects.filter_by_category(category)
+                queryset = queryset.filter_by_category(category)
+                if self.categories_and.count() > 0:
+                    queryset = queryset.filter(categories=self.categories_and.all())
             else:
-                queryset = self.data_model.objects.filter_by_categories(self.categories)
-
+                queryset = queryset.filter_by_categories(self.categories.all())
+                if self.categories_and.count() > 0:
+                    queryset = queryset.filter(categories=self.categories_and.all())
             return self._apply_ordering_to_queryset_for_display(queryset)
-
         else:
-            queryset = self.data_model.objects.active()
+            queryset = queryset.active_entries()
             return queryset

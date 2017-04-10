@@ -5,26 +5,44 @@ from django import forms
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 from parler.admin import TranslatableAdmin
+from django.http import HttpResponseRedirect
 
 from treebeard.admin import TreeAdmin
 from treebeard.forms import movenodeform_factory, MoveNodeForm
 
 from parler.forms import TranslatableModelForm
 
-from .models import AllinkCategory
+from allink_core.allink_categories.models import AllinkCategory
 
 
 class AllinkCategoryForm(TranslatableModelForm, MoveNodeForm):
     model_names = forms.MultipleChoiceField(
         label=_(u'Project app'),
-        help_text=_(u'Please specify the project-app which uses this categories.'),
+        help_text=_(u'Please specify the app which uses this categories. All apps specified in parent category are automatically added.'),
         choices=settings.PROJECT_APP_MODEL_WITH_CATEGORY_CHOICES,
         widget=forms.CheckboxSelectMultiple,
         required=False
     )
 
-#  TODO: add user is_superuser check! (or better after creating user grou/role concept!) -> dont allow "editors" to add/read/write/delete
+    class Meta():
+        model = AllinkCategory
+        fields = ('name', 'slug', 'model_names')
+
+    def __init__(self, *args, **kwargs):
+        super(AllinkCategoryForm, self).__init__(*args, **kwargs)
+        # hide model_names when
+        if self.instance and not self.instance.is_root():
+            self.fields['model_names'].widget = forms.HiddenInput()
+
+
 @admin.register(AllinkCategory)
 class AllinkCategoryAdmin(TranslatableAdmin, TreeAdmin):
     form = movenodeform_factory(AllinkCategory, form=AllinkCategoryForm)
     list_display = ('name', )
+    # fields = ('name',  'slug', 'model_names')
+
+    def response_add(self, request, obj, post_url_continue=None):
+        if obj.is_root():
+            return HttpResponseRedirect("../%s" % obj.id)
+        else:
+            return super(AllinkCategoryAdmin, self).response_add(request, obj, post_url_continue=post_url_continue)

@@ -11,7 +11,6 @@ from allink_core.allink_base.utils import get_additional_choices
 from allink_core.allink_base.models.choices import BLANK_CHOICE, RATIO_CHOICES, TITLE_CHOICES, H1
 
 
-
 @python_2_unicode_compatible
 class AllinkGalleryPlugin(CMSPlugin):
 
@@ -43,7 +42,6 @@ class AllinkGalleryPlugin(CMSPlugin):
     ratio = models.CharField(
         _(u'Ratio'),
         max_length=50,
-        choices=RATIO_CHOICES,
         blank=True,
         null=True
     )
@@ -55,9 +53,6 @@ class AllinkGalleryPlugin(CMSPlugin):
             return u'({})'.format(self.template)
         return str(self.pk)
 
-    @classmethod
-    def get_ratio_choices(cls):
-        return BLANK_CHOICE + RATIO_CHOICES + get_additional_choices('RATIO_CHOICES')
 
 @python_2_unicode_compatible
 class AllinkGalleryImagePlugin(CMSPlugin):

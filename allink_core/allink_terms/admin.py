@@ -1,18 +1,17 @@
 # -*- coding: utf-8 -*-
-from django.utils.translation import ugettext_lazy as _
 from django.contrib import admin
 from django.contrib.admin.utils import unquote
 from django.shortcuts import redirect
-from django.conf.urls import url, patterns
+from django.conf.urls import url
 
 from parler.admin import TranslatableAdmin
-from aldryn_translation_tools.admin import AllTranslationsMixin
 
-from .models import AllinkTerms
+from allink_core.allink_terms.models import AllinkTerms
+
 
 @admin.register(AllinkTerms)
 class AllinkTermsAdmin(TranslatableAdmin, admin.ModelAdmin):
-    list_display = ('__unicode__', 'status', 'start', 'end')
+    list_display = ('__str__', 'status', 'start', 'end')
     fields = ('text', 'terms_cms_page')
     actions = None
     change_form_template = 'allink_terms/admin/change_form.html'

@@ -9,7 +9,8 @@ from allink_core.allink_base.models.model_fields import Classes, Icon, CMSPlugin
 from allink_core.allink_base.models.reusable_fields import AllinkLinkFieldsModel
 from allink_core.allink_base.models import choices
 
-from . import model_fields
+from allink_core.djangocms_button_link import model_fields
+
 
 @python_2_unicode_compatible
 class AllinkButtonLinkContainerPlugin(CMSPlugin):
@@ -43,6 +44,7 @@ class AllinkButtonLinkContainerPlugin(CMSPlugin):
         css_classes.append('align-h-mobile-{}'.format(self.alignment_horizontal_mobile)) if self.alignment_horizontal_mobile else None
 
         return ' '.join(css_classes)
+
 
 @python_2_unicode_compatible
 class AllinkButtonLinkPlugin(CMSPlugin, AllinkLinkFieldsModel):

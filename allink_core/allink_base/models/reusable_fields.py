@@ -1,12 +1,17 @@
 # -*- coding: utf-8 -*-
 import phonenumbers
-from urlparse import urlparse
+try:
+    # python 3
+    from urllib.parse import urlparse
+except ImportError:
+    # python 2, can be removed as soon as all projects are up to date
+    from urlparse import urlparse
 from django.core.urlresolvers import reverse
 from django.core.exceptions import ValidationError
+
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import force_text
-from cms.models.fields import PageField
 from filer.fields.image import FilerImageField
 from filer.fields.file import FilerFileField
 from model_utils.models import TimeStampedModel
@@ -15,8 +20,8 @@ from phonenumber_field.modelfields import PhoneNumberField
 from djangocms_attributes_field.fields import AttributesField
 
 from allink_core.allink_base.utils import get_additional_choices
-from .choices import SPECIAL_LINKS_CHOICES, TARGET_CHOICES, NEW_WINDOW, SOFTPAGE_LARGE, SOFTPAGE_SMALL, FORM_MODAL, IMAGE_MODAL, BLANK_CHOICE
-from .model_fields import ZipCodeField
+from allink_core.allink_base.models import ZipCodeField, SitemapField
+from allink_core.allink_base.models.choices import SPECIAL_LINKS_CHOICES, TARGET_CHOICES, NEW_WINDOW, SOFTPAGE_LARGE, SOFTPAGE_SMALL, FORM_MODAL, IMAGE_MODAL, BLANK_CHOICE
 
 
 class AllinkAddressFieldsModel(models.Model):
@@ -144,11 +149,10 @@ class AllinkLinkFieldsModel(models.Model):
         default='',
         help_text=_(u'Provide a valid URL to an external website.'),
     )
-    link_page = PageField(
+    link_internal = SitemapField(
         verbose_name=_(u'Internal link'),
         blank=True,
         null=True,
-        on_delete=models.SET_NULL,
         help_text=_(u'If provided, overrides the external link.'),
     )
     link_mailto = models.EmailField(
@@ -167,7 +171,7 @@ class AllinkLinkFieldsModel(models.Model):
         verbose_name=_(u'Anchor'),
         max_length=255,
         blank=True,
-        help_text=_(u'Appends the value only after the internal or external link. '
+        help_text=_(u'Appends the value only after the internal or external link.'
                     u'Do <em>not</em> include a preceding "#" symbol.'),
     )
     link_target = models.IntegerField(
@@ -222,8 +226,8 @@ class AllinkLinkFieldsModel(models.Model):
         return BLANK_CHOICE + SPECIAL_LINKS_CHOICES + get_additional_choices('SPECIAL_LINKS_CHOICES')
 
     def get_link_url(self):
-        if self.link_page_id:
-            link = self.link_page.get_absolute_url()
+        if self.link_internal:
+            link = self.link_internal
         elif self.link_url:
             link = self.link_url
         elif self.link_phone:
@@ -244,7 +248,7 @@ class AllinkLinkFieldsModel(models.Model):
         super(AllinkLinkFieldsModel, self).clean()
         field_names = (
             'link_url',
-            'link_page',
+            'link_internal',
             'link_mailto',
             'link_phone',
             'link_file',
@@ -252,7 +256,7 @@ class AllinkLinkFieldsModel(models.Model):
         anchor_field_name = 'link_anchor'
         field_names_allowed_with_anchor = (
             'link_url',
-            'link_page',
+            'link_internal',
             'link_file',
         )
 
