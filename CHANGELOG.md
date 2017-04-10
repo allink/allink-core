@@ -60,6 +60,7 @@ Each release is divided into the following main categories:
     -> change project specific app to be added to content plugin children (not placeholder `ALLINK_CMS_PLACEHOLDER_CONF_PLUGINS` anymore) -> `CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES.extend(..)`
     1. migrate by hand every app plugin so that it is wrapped inside a content_pluin (no further changes to settings or templates necessary.)
     2. dont migrate by hand. and continue to add app plugins directly.
+        - you have to add and rename the file form core `app_content/app_content_base_legacy.html` file to your project templates folder: `app_content/app_content_base.html`:
         - you have to add in the settings:
 ```python
 # this project handles every app_plugin separately and doesn't require an
@@ -81,7 +82,7 @@ TO_REMOVE = [
 ]
 CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [item for item in CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES if item not in TO_REMOVE]
 ```
-       - you have to add and rename the file form core `app_content/app_content_base_legacy.html` file to your project templates folder: `app_content/app_content_base.html`:
+
 ###### TEMPLATES
 
 ###### URLS
