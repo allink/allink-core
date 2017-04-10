@@ -37,7 +37,7 @@ class AllinkBasePluginLoadMoreView(ListView):
         filters = {re.sub('filter-%s-' % self.plugin.data_model._meta.model_name, '', k): v for k, v in self.request.GET.items() if (k.startswith('filter-%s-' % self.plugin.data_model._meta.model_name) and v != 'None')}
         if self.plugin.manual_entries.exists():
             if hasattr(self, 'category'):
-                return self.plugin.get_selected_entries(filters=filters).filter(category=self.category)
+                return self.plugin.get_selected_entries(filters=filters).filter_by_category(self.category)
             else:
                 return self.plugin.get_selected_entries(filters=filters)
         if hasattr(self, 'category'):
