@@ -61,26 +61,26 @@ Each release is divided into the following main categories:
     1. migrate by hand every app plugin so that it is wrapped inside a content_pluin (no further changes to settings or templates necessary.)
     2. dont migrate by hand. and continue to add app plugins directly.
         - you have to add in the settings:
-      ```python
-      # this project handles every app_plugin separately and doesn't require an
-      # allink_content_plugin wrapper. So the placeholder settings have to be overidden here.
-      # also notice the project specific template "app_content/app_content_base.html"
-      ALLINK_CMS_PLACEHOLDER_CONF_PLUGINS.extend([
-          'CMSLocationsPlugin',
-          'CMSPeoplePlugin',
-          'CMSWorkPlugin',
-          'CMSBlogPlugin',
-          'CMSTestimonialPlugin'
-      ])
-      TO_REMOVE = [
-          'CMSLocationsPlugin',
-          'CMSPeoplePlugin',
-          'CMSWorkPlugin',
-          'CMSBlogPlugin',
-          'CMSTestimonialPlugin'
-      ]
-      CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [item for item in CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES if item not in TO_REMOVE]
-      ```
+```python
+# this project handles every app_plugin separately and doesn't require an
+# allink_content_plugin wrapper. So the placeholder settings have to be overidden here.
+# also notice the project specific template "app_content/app_content_base.html"
+ALLINK_CMS_PLACEHOLDER_CONF_PLUGINS.extend([
+    'CMSLocationsPlugin',
+    'CMSPeoplePlugin',
+    'CMSWorkPlugin',
+    'CMSBlogPlugin',
+    'CMSTestimonialPlugin'
+])
+TO_REMOVE = [
+    'CMSLocationsPlugin',
+    'CMSPeoplePlugin',
+    'CMSWorkPlugin',
+    'CMSBlogPlugin',
+    'CMSTestimonialPlugin'
+]
+CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [item for item in CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES if item not in TO_REMOVE]
+```
        - you have to add and rename the file form core `app_content/app_content_base_legacy.html` file to your project templates folder: `app_content/app_content_base.html`:
 ###### TEMPLATES
 
