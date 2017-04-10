@@ -27,7 +27,6 @@ class AllinkManualEntriesMixin(object):
                         if self.get_render_queryset_for_display(category).exists():
                             category_navigation.append(category)
                 # auto category nav, if no categories are specified
-                #
                 else:
                     from allink_core.allink_categories.models import AllinkCategory
                     categories = self.get_render_queryset_for_display().filter(~Q(categories=None)).distinct('categories').values_list('categories')
