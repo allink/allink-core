@@ -61,7 +61,7 @@ Each release is divided into the following main categories:
     1. migrate by hand every app plugin so that it is wrapped inside a content_pluin (no further changes to settings or templates necessary.)
     2. dont migrate by hand. and continue to add app plugins directly.
         - you have to add in the settings:
-     ```python
+      ```python
       # this project handles every app_plugin separately and doesn't require an
       # allink_content_plugin wrapper. So the placeholder settings have to be overidden here.
       # also notice the project specific template "app_content/app_content_base.html"
