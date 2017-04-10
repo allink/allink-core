@@ -7,20 +7,6 @@
 {% block body_content %}
     {% block header %}
 
-        <div class="softpage-trigger-container">
-            <a href="{% url "pages-root" %}" class="root-link"></a>
-            <a class="softpage-locations-trigger" href="#" data-trigger-softpage data-softpage-content-id="softpage-locations" data-softpage-variation="softpage-menu">
-                {% trans "Standorte & Kontakt" %}
-            </a>
-
-            <a class="softpage-menu-toggle" href="#" data-trigger-softpage data-softpage-content-id="softpage-menu" data-softpage-variation="softpage-menu">
-                <span class="menu-icon">
-                    <span class="icon-bar"></span>
-                </span>
-                {% trans "Menu" %}
-            </a>
-        </div>
-
         <header class="site-header compact-mode-enabled">
             <div class="container">
 
@@ -43,6 +29,19 @@
                 </button>
 
                 <div id="primary-nav" class="navbar-collapse collapse primary-nav" role="navigation">
+                    <div class="softpage-trigger-container">
+                        <a class="softpage-locations-trigger" href="#" data-trigger-softpage data-softpage-content-id="softpage-locations" data-softpage-variation="softpage-menu">
+                            {% trans "Standorte & Kontakt" %}
+                        </a>
+
+                        <a class="softpage-menu-toggle" href="#" data-trigger-softpage data-softpage-content-id="softpage-menu" data-softpage-variation="softpage-menu">
+                            <span class="menu-icon">
+                                <span class="icon-bar"></span>
+                            </span>
+                            {% trans "Menu" %}
+                        </a>
+                    </div>
+
                     {# MOBILE: Same placeholder for the softpage menu #}
                     <div class="mobile-softpage-content">
                         {% static_placeholder "softpage_menu" %}
