@@ -36,7 +36,10 @@ class AllinkBasePluginLoadMoreView(ListView):
     def get_queryset_by_category(self):
         filters = {re.sub('filter-%s-' % self.plugin.data_model._meta.model_name, '', k): v for k, v in self.request.GET.items() if (k.startswith('filter-%s-' % self.plugin.data_model._meta.model_name) and v != 'None')}
         if self.plugin.manual_entries.exists():
-            return self.plugin.get_selected_entries(filters=filters)
+            if hasattr(self, 'category'):
+                return self.plugin.get_selected_entries(category=self.category, filters=filters)
+            else:
+                return self.plugin.get_selected_entries(filters=filters)
         if hasattr(self, 'category'):
             return self.plugin.get_render_queryset_for_display(category=self.category, filters=filters)
         else:
