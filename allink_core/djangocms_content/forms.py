@@ -49,4 +49,4 @@ class AllinkContentColumnPluginForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(AllinkContentColumnPluginForm, self).__init__(*args, **kwargs)
         parent_column_amount = AllinkContentPlugin.get_template_column_count(kwargs.get('instance').template)
-        self.fields['order_mobile'].widget = forms.Select(choices=enumerate(range(parent_column_amount)))
+        self.fields['order_mobile'].widget = forms.Select(choices=enumerate(range(1, parent_column_amount + 1)))
