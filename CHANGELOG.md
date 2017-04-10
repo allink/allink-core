@@ -75,7 +75,7 @@ TO_REMOVE = [
 ]
 CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [item for item in CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES if item not in TO_REMOVE]
       ```
-       - you have to add and rename the file form core `app_content/app_content_base_legacy.html` file to your project templates folder: `app_content/app_content_base.html`:
+       - you have to add and rename the file form core `app_content/app_content_base_legacy.html` file in your project templates folder: `app_content/app_content_base.html`:
 ###### TEMPLATES
 
 ###### URLS
