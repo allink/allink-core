@@ -31,6 +31,7 @@ Each release is divided into the following main categories:
 ###### REQUIREMENTS
 - django-lockdown==1.4.2
 - hachoir3==3.0a2
+- django-htmlmin==0.10.0
 
 ###### DATA MIGRATIONS
 
@@ -40,6 +41,7 @@ Each release is divided into the following main categories:
 ### NEW
 
 - field "active" from AllinkBaseModel renamed to "is_active"
+- HTML gets minified
 
 ### FIXES
 
