@@ -105,11 +105,11 @@ class AllinkContentPlugin(AllinkBasePlugin):
         default=CENTER
     )
     anchor = models.CharField(
-        verbose_name=_(u'Anchor'),
+        verbose_name=_(u'ID'),
         max_length=255,
         blank=True,
-        help_text=_(u'Sets the id of the div section. (Use site-wide unique id.)'
-                    u'Do <em>not</em> include a preceding "#" symbol.'),
+        help_text=_(u'ID of this content section which can be used for anchor reference from links.<br>'
+                    u'Note: Only letters, numbers and hyphen. No spaces or special chars.'),
     )
 
     def __str__(self):
