@@ -19,9 +19,10 @@ Each release is divided into the following main categories:
 - lockdown introduced:
     - add:
     ```python
-    if not DEBUG:
-    LOCKDOWN_PASSWORDS = ('stage', 'beta')
-    MIDDLEWARE_CLASSES += ('lockdown.middleware.LockdownMiddleware',)
+    if DEBUG:
+        LOCKDOWN_ENABLED = False
+    LOCKDOWN_PASSWORDS = ('stage', )
+
     ```
 - we still want our HTML comment allink banner
   KEEP_COMMENTS_ON_MINIFYING = True
@@ -56,7 +57,8 @@ Each release is divided into the following main categories:
 
 ### FIXES
 
-- Ratio "original" isn't available for galleries
+- Gallery: Ratio option `original` has been removed (but left for Image Plugin)
+- Button Link Plugin: Link target are now respected in the template.
 
 
 ## v0.0.8

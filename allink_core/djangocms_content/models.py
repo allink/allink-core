@@ -151,6 +151,8 @@ class AllinkContentPlugin(AllinkBasePlugin):
                             return u'... {} ({})'.format(plugin.title, self.template)
                         elif plugin.plugin_type == 'TextPlugin':
                             return u'... {} ({}) ...'.format(strip_tags(plugin.body)[0:50], self.template)
+                        elif plugin.plugin_type == 'CMSAllinkImagePlugin':
+                            return u'... {} ({}) ...'.format(plugin.picture, self.template)
                         else:
                             return u'({})'.format(self.template)
                 else:

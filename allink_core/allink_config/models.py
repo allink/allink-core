@@ -187,6 +187,20 @@ class AllinkConfig(SingletonModel):
         _(u'Toolbar enabled?'),
         default=True
     )
+    terms_verbose = models.CharField(
+        _(u'Terms of Service verbose name'),
+        default=_(u'Terms of Service'),
+        max_length=255
+    )
+    terms_verbose_plural = models.CharField(
+        _(u'Terms of Service verbose name plural'),
+        default=_(u'Terms of Service'),
+        max_length=255
+    )
+    terms_toolbar_enabled = models.BooleanField(
+        _(u'Toolbar enabled?'),
+        default=True
+    )
 
     def __str__(self):
         return u'Allink Configuration'
