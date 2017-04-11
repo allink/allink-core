@@ -11,7 +11,7 @@ from django.template.loader import get_template
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
 from django.conf import settings
-from django.http import HttpResponse, Http404, JsonResponse, HttpResponseRedirect
+from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.template.loader import render_to_string
 from django.template import TemplateDoesNotExist
 
@@ -52,13 +52,20 @@ class AllinkBasePluginLoadMoreView(ListView):
             return None
 
     def get_template_names(self, file='_content'):
+        queryset_not_empty = self.object_list.exists()
         opts = self.plugin_model._meta
-        template = '{}/plugins/{}/{}.html'.format(opts.app_label, self.plugin.template, file)
+        if queryset_not_empty:
+            template = '{}/plugins/{}/{}.html'.format(opts.app_label, self.plugin.template, file)
+        else:
+            template = '{}/plugins/{}/{}.html'.format(opts.app_label, self.plugin.template, '_no_results')
         try:
             get_template(template)
         # TODO: specify Error class
-        except:
-            template = 'app_content/plugins/{}/{}.html'.format(self.plugin.template, file)
+        except TemplateDoesNotExist:
+            if queryset_not_empty:
+                template = 'app_content/plugins/{}/{}.html'.format(self.plugin.template, file)
+            else:
+                template = 'app_content/plugins/{}/{}.html'.format(self.plugin.template, '_no_results')
         return [template]
 
     def get(self, request, *args, **kwargs):
@@ -113,7 +120,7 @@ class AllinkBasePluginLoadMoreView(ListView):
             json_context['next_page_url'] = json_context['next_page_url'] + '&category={}'.format(self.category_id) if hasattr(self, 'category_id') else json_context['next_page_url']
         else:
             json_context['next_page_url'] = None
-        return HttpResponse(content=json.dumps(json_context), content_type='application/json')
+        return HttpResponse(content=json.dumps(json_context), content_type='application/json', status=200 if self.object_list.exists() else 206)
 
 
 class AllinkBaseDetailView(TranslatableSlugMixin, DetailView):

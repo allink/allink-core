@@ -31,7 +31,7 @@ class AllinkBaseModelQuerySet(TranslatableQuerySet):
         return self.order_by('-translations__title', 'id').distinct('translations__title', 'id')
 
     def random(self):
-        return self.order_by('?')
+        return self.order_by('?').distinct()
 
 
 class AllinkBaseModelManager(TranslatableManager):
