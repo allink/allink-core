@@ -45,6 +45,7 @@ Each release is divided into the following main categories:
 
 - field "active" from AllinkBaseModel renamed to "is_active"
 - HTML gets minified
+- Added counter and fullscreen button to swiper content template
 
 ### FIXES
 
