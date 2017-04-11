@@ -105,11 +105,11 @@ class AllinkContentPlugin(AllinkBasePlugin):
         default=CENTER
     )
     anchor = models.CharField(
-        verbose_name=_(u'Anchor'),
+        verbose_name=_(u'ID'),
         max_length=255,
         blank=True,
-        help_text=_(u'Sets the id of the div section. (Use site-wide unique id.)'
-                    u'Do <em>not</em> include a preceding "#" symbol.'),
+        help_text=_(u'ID of this content section which can be used for anchor reference from links.<br>'
+                    u'Note: Only letters, numbers and hyphen. No spaces or special chars.'),
     )
 
     def __str__(self):
@@ -249,6 +249,7 @@ class AllinkContentColumnPlugin(CMSPlugin):
         css_classes = []
         css_classes.append('col-empty') if self.num_children() == 0 else None
         css_classes.append('align-v-desktop-{}'.format(self.alignment_vertical_desktop)) if self.alignment_vertical_desktop else None
+        css_classes.append('align-h-desktop-{}'.format(self.alignment_horizontal_desktop)) if self.alignment_horizontal_desktop else None
         css_classes.append('align-h-mobile-{}'.format(self.alignment_horizontal_mobile)) if self.alignment_horizontal_mobile else None
         css_classes.append('col-order-mobile-{}'.format(self.order_mobile))
         return ' '.join(css_classes)
