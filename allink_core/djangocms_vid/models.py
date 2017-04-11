@@ -107,22 +107,6 @@ class AllinkVidEmbedPlugin(AllinkVidBasePlugin):
     def __str__(self):
         return self.video_id or self.video_service
 
-    # def get_video_dimensions(self):
-    #     import sys
-    #     from itertools import chain
-    #
-    #     from hachoir_core.cmd_line import unicodeFilename
-    #     from hachoir_metadata import extractMetadata
-    #     from hachoir_parser import createParser
-    #
-    #     if len(sys.argv) != 2:
-    #         sys.exit(__doc__)
-    #
-    #     extractMetadata(self.video_id)
-    #     file_metadata = extractMetadata(createParser(unicodeFilename(sys.argv[1])))
-    #     width = next((metadata.get('width'), metadata.get('height')) for metadata in chain([file_metadata],
-    #     return ("%sx%s" % file_metadata.iterGroups()) if metadata.has('width') and metadata.get('height')))
-
 
 
 @python_2_unicode_compatible
@@ -141,6 +125,43 @@ class AllinkVidFilePlugin(AllinkVidBasePlugin):
             null=True,
             related_name='%(app_label)s_%(class)s_video_file',
     )
+    # video_file_width = models.IntegerField(
+    #     _(u'Video width'),
+    #     blank=True,
+    #     null=True,
+    # )
+    # video_file_height = models.IntegerField(
+    #     _(u'Video height'),
+    #     blank=True,
+    #     null=True,
+    # )
 
     def __str__(self):
         return self.video_file.name
+
+    # def get_video_dimensions(self):
+    #     import sys
+    #     from itertools import chain
+    #
+    #     from hachoir.metadata import extractMetadata
+    #     from hachoir.parser import createParser
+    #
+    #     # if len(sys.argv) != 2:
+    #     #     sys.exit(__doc__)
+    #
+    #     extractMetadata(self.video_file.file)
+    #     file_metadata = extractMetadata(createParser(self.video_file.file))
+    #
+    #     for metadata in chain([file_metadata], file_metadata.iterGroups()):
+    #         if metadata.has('width') and metadata.get('height'):
+    #             print("%sx%s" % next((metadata.get('width'), metadata.get('height'))))
+
+    def get_video_dimensions(self):
+        from pymediainfo import MediaInfo
+        media_info = MediaInfo.parse(self.video_file.file)
+        # duration in millionseconds
+        duration_in_ms = media_info.tracks[0].duration
+
+    def save(self, no_signals=False, *args, **kwargs):
+        video_file_width, video_file_height = self.get_video_dimensions()
+        super(AllinkVidFilePlugin, self).save(*args, **kwargs)
