@@ -80,6 +80,24 @@ class AllinkTerms(TranslatableModel, TimeFramedModel):
             return  # can't delete models that already have been published
         return super(AllinkTerms, self).delete(*args, **kwargs)
 
+    @classmethod
+    def get_verbose_name(cls):
+        try:
+            from allink_core.allink_config.models import AllinkConfig
+            field_name = 'terms_verbose'
+            return getattr(AllinkConfig.get_solo(), field_name)
+        except:
+            return cls._meta.verbose_name
+
+    @classmethod
+    def get_verbose_name_plural(cls):
+        try:
+            from allink_core.allink_config.models import AllinkConfig
+            field_name = 'terms_verbose_plural'
+            return getattr(AllinkConfig.get_solo(), field_name)
+        except:
+            return cls._meta.verbose_name_plural
+
 
 @python_2_unicode_compatible
 class AllinkTermsPlugin(CMSPlugin):

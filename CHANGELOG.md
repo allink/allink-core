@@ -19,9 +19,10 @@ Each release is divided into the following main categories:
 - lockdown introduced:
     - add:
     ```python
-    if not DEBUG:
-    LOCKDOWN_PASSWORDS = ('stage', 'beta')
-    MIDDLEWARE_CLASSES += ('lockdown.middleware.LockdownMiddleware',)
+    if DEBUG:
+        LOCKDOWN_ENABLED = False
+    LOCKDOWN_PASSWORDS = ('stage', )
+
     ```
 - we still want our HTML comment allink banner
   KEEP_COMMENTS_ON_MINIFYING = True
