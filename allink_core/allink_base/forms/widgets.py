@@ -3,9 +3,8 @@ from __future__ import unicode_literals
 from django.contrib.admin.widgets import AdminFileWidget
 from django.utils.translation import ugettext as _
 from django.utils.safestring import mark_safe
-
-from django import forms
 from django.conf import settings
+from django import forms
 
 
 class AdminPdfThumnailWidget(AdminFileWidget):
@@ -47,3 +46,36 @@ class Icon(forms.widgets.TextInput):
             },
         )
         return rendered
+
+
+class SpectrumColorPicker(forms.widgets.TextInput):
+    """
+    Based on Brian Grinstead's Spectrum - http://bgrins.github.com/spectrum/
+    """
+    class Media:
+        js = ('build/djangocms_custom_admin_scripts.js', )
+        css = {
+            'all': ('build/djangocms_custom_admin_style.css', )
+        }
+
+    def _render_js(self, _id, value):
+        js = u"""
+            <script type="text/javascript">
+                document.addEventListener("DOMContentLoaded", function(event) {
+                    if (!window.colorFields) {
+                        window.colorFields = [];
+                    }
+
+                    window.colorFields.push({
+                        id: '#%s',
+                        color: "%s",
+                    });
+                });
+            </script>""" % (_id, value)
+        return js
+
+    def render(self, name, value, attrs=None):
+        if 'id' not in attrs:
+            attrs['id'] = "id_%s" % name
+        rendered = super(SpectrumColorPicker, self).render(name, value, attrs)
+        return mark_safe(rendered + self._render_js(attrs['id'], value))

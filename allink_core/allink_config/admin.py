@@ -1,20 +1,30 @@
 # -*- coding: utf-8 -*-
+from django import forms
 from django.contrib import admin
 from django.utils.decorators import method_decorator
 from django.views.decorators.http import require_POST
 from django.utils.translation import ugettext_lazy as _
 
-
 from cms.extensions import TitleExtensionAdmin
 from solo.admin import SingletonModelAdmin
 
 from allink_core.allink_config.models import AllinkConfig, AllinkMetaTagExtension
+from allink_core.allink_base.forms.fields import ColorField
 
 require_POST = method_decorator(require_POST)
 
 
+class AllinkConfigAdminForm(forms.ModelForm):
+    theme_color = ColorField(label=_(u'Theme Color'), initial='#ffffff')
+
+    class Meta(forms.ModelForm):
+        model = AllinkConfig
+        fields = ['theme_color']
+
+
 @admin.register(AllinkConfig)
 class AllinkConfigAdmin(SingletonModelAdmin):
+    form = AllinkConfigAdminForm
 
     def get_fieldsets(self, request, obj=None):
 

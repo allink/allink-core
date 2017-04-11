@@ -2,7 +2,7 @@
 
 from django import forms
 
-from . import widgets
+from allink_core.allink_base.forms import widgets
 
 
 class Classes(forms.fields.CharField):
@@ -25,3 +25,7 @@ class Icon(forms.fields.CharField):
 
 class ZipCode(forms.fields.IntegerField):
     widget = forms.widgets.NumberInput(attrs={'maxlength': 4})
+
+
+class ColorField(forms.fields.CharField):
+    widget = widgets.SpectrumColorPicker()
