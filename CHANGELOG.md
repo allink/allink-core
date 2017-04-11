@@ -47,7 +47,8 @@ Each release is divided into the following main categories:
 
 ### FIXES
 
-- Ratio "original" isn't available for galleries
+- Gallery: Ratio option `original` has been removed (but left for Image Plugin)
+- Button Link Plugin: Link target are now respected in the template.
 
 
 ## v0.0.8
