@@ -53,7 +53,7 @@ Each release is divided into the following main categories:
 
 - field "active" from AllinkBaseModel renamed to "is_active"
 - HTML gets minified
--
+- BUTTON_LINK_PLUGIN_PROJECT_CSS_CLASSES introduced
 
 ### FIXES
 

@@ -69,6 +69,7 @@ class CMSAllinkButtonLinkPlugin(CMSPluginBase):
             'fields': (
                 # 'extra_css_classes',
                 'link_attributes',
+                'project_css_classes',
             )
         }),
     )

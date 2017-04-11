@@ -3,6 +3,7 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import python_2_unicode_compatible
+from django.contrib.postgres.fields import ArrayField
 from cms.models.pluginmodel import CMSPlugin
 
 from allink_core.allink_base.models.model_fields import Classes, Icon, CMSPluginField
@@ -33,16 +34,34 @@ class AllinkButtonLinkContainerPlugin(CMSPlugin):
         blank=True,
         null=True
     )
+    project_css_classes = ArrayField(
+        models.CharField(
+            max_length=50,
+            blank=True,
+            null=True
+        ),
+        blank=True,
+        null=True
+    )
 
     def __str__(self):
         return _(u'{}').format(str(self.pk))
 
     @property
-    def css_classes(self):
+    def base_classes(self):
         css_classes = []
-        css_classes.append('align-h-desktop-{}'.format(self.alignment_horizontal_desktop)) if self.alignment_horizontal_desktop else None
-        css_classes.append('align-h-mobile-{}'.format(self.alignment_horizontal_mobile)) if self.alignment_horizontal_mobile else None
+        if getattr(self, 'project_css_classes'):
+            for css_class in getattr(self, 'project_css_classes'):
+                css_classes.append(css_class)
+        return css_classes
 
+    @property
+    def css_classes(self):
+        css_classes = self.base_classes
+        css_classes.append('align-h-desktop-{}'.format(
+            self.alignment_horizontal_desktop)) if self.alignment_horizontal_desktop else None
+        css_classes.append(
+            'align-h-mobile-{}'.format(self.alignment_horizontal_mobile)) if self.alignment_horizontal_mobile else None
         return ' '.join(css_classes)
 
 
