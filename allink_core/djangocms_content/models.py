@@ -249,6 +249,7 @@ class AllinkContentColumnPlugin(CMSPlugin):
         css_classes = []
         css_classes.append('col-empty') if self.num_children() == 0 else None
         css_classes.append('align-v-desktop-{}'.format(self.alignment_vertical_desktop)) if self.alignment_vertical_desktop else None
+        css_classes.append('align-h-desktop-{}'.format(self.alignment_horizontal_desktop)) if self.alignment_horizontal_desktop else None
         css_classes.append('align-h-mobile-{}'.format(self.alignment_horizontal_mobile)) if self.alignment_horizontal_mobile else None
         css_classes.append('col-order-mobile-{}'.format(self.order_mobile))
         return ' '.join(css_classes)
