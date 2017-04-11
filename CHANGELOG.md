@@ -32,7 +32,6 @@ Each release is divided into the following main categories:
 
 ###### REQUIREMENTS
 - django-lockdown==1.4.2
-- hachoir3==3.0a2
 - django-htmlmin==0.10.0
 
 ###### DATA MIGRATIONS
@@ -40,10 +39,20 @@ Each release is divided into the following main categories:
 - when making migrations for allink_apps on project basis, it's important, that "active" gets renamed to "is_active".
   The field should not be deleted and created with new name, else all data gets lost.
 
+###### DOCKERFILE
+- djangocms_vid is now able to read dimensions of video for disaplying appropriate preview image. add to Dockerfile:
+    ```python
+    # additional requirements
+    # -------------------
+    RUN apt-get update && \
+        apt-get install libav-tools -y --force-yes --no-install-recommends
+    ```
+
 ### NEW
 
 - field "active" from AllinkBaseModel renamed to "is_active"
 - HTML gets minified
+-
 
 ### FIXES
 

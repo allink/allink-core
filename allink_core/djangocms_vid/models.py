@@ -125,43 +125,37 @@ class AllinkVidFilePlugin(AllinkVidBasePlugin):
             null=True,
             related_name='%(app_label)s_%(class)s_video_file',
     )
-    # video_file_width = models.IntegerField(
-    #     _(u'Video width'),
-    #     blank=True,
-    #     null=True,
-    # )
-    # video_file_height = models.IntegerField(
-    #     _(u'Video height'),
-    #     blank=True,
-    #     null=True,
-    # )
+    video_file_width = models.IntegerField(
+        _(u'Video width'),
+        blank=True,
+        null=True,
+    )
+    video_file_height = models.IntegerField(
+        _(u'Video height'),
+        blank=True,
+        null=True,
+    )
 
     def __str__(self):
         return self.video_file.name
 
-    # def get_video_dimensions(self):
-    #     import sys
-    #     from itertools import chain
-    #
-    #     from hachoir.metadata import extractMetadata
-    #     from hachoir.parser import createParser
-    #
-    #     # if len(sys.argv) != 2:
-    #     #     sys.exit(__doc__)
-    #
-    #     extractMetadata(self.video_file.file)
-    #     file_metadata = extractMetadata(createParser(self.video_file.file))
-    #
-    #     for metadata in chain([file_metadata], file_metadata.iterGroups()):
-    #         if metadata.has('width') and metadata.get('height'):
-    #             print("%sx%s" % next((metadata.get('width'), metadata.get('height'))))
-
     def get_video_dimensions(self):
-        from pymediainfo import MediaInfo
-        media_info = MediaInfo.parse(self.video_file.file)
-        # duration in millionseconds
-        duration_in_ms = media_info.tracks[0].duration
+        import subprocess
+        import shlex
+        import json
+
+        cmd = "avprobe -show_streams -of json"
+        args = shlex.split(cmd)
+        args.append(self.video_file.file.path)
+        avprobeOutput = subprocess.check_output(args).decode('utf-8')
+        avprobeOutput = json.loads(avprobeOutput)
+
+        # find height and width
+        width = avprobeOutput['streams'][0]['width']
+        height = avprobeOutput['streams'][0]['height']
+
+        return width, height
 
     def save(self, no_signals=False, *args, **kwargs):
-        video_file_width, video_file_height = self.get_video_dimensions()
+        self.video_file_width, self.video_file_height = self.get_video_dimensions()
         super(AllinkVidFilePlugin, self).save(*args, **kwargs)
