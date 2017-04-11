@@ -4,7 +4,7 @@
 {% endcomment %}
 
     <a href="{{ instance.get_link_url }}"
-       class="
+        class="
             {% if instance.type == 'btn' %}
                 btn{% if instance.btn_context %} btn-{{ instance.btn_context }}{% endif %}
                 {% if instance.btn_size %} btn-{{ instance.btn_size }}{% endif %}
@@ -12,7 +12,6 @@
             {% else %}
                 text
             {% endif %}
-            {% if instance.form_modal_enabled %} toggle-form-modal{% endif %}
             {% if extra_css_classes %} {{ extra_css_classes }}{% endif %}
         "
         {% if instance.type == 'btn' %}
@@ -21,14 +20,13 @@
         {% if instance.new_window_enabled %}
             target="_blank"
         {% endif %}
+        {% if instance.form_modal_enabled %}data-trigger-form-modal{% endif %}
+        {% if instance.softpage_large_enabled or instance.softpage_small_enabled %}data-trigger-softpage{% endif %}
+        {% if instance.softpage_large_enabled %}data-softpage-variation="large"{% endif %}
+        {% if instance.softpage_small_enabled %}data-softpage-variation="small"{% endif %}
+        {% if instance.link_special == 'account_login' and user.is_authenticated %}data-softpage-disabled{% endif %}
         {{ instance.link_attributes_str }}
-        {% if instance.softpage_large_enabled %}data-trigger-softpage{% endif %} {% if instance.link_special == 'account_login' and user.is_authenticated %}data-softpage-disabled{% endif %}
         >{% spaceless %}
-        {% comment %}
-
-            {% if instance.icon_left %}{% with icon_class=instance.icon_left %}{% include 'aldryn_bootstrap3/plugins/includes/icon.html' %}{% endwith %}{% endif %}
-
-        {% endcomment %}
 
        {% comment %}
             if button is login-button to member area check if logged in an in group 'members'
@@ -49,10 +47,5 @@
             {% render_plugin plugin %}
         {% endfor %}
 
-        {% comment %}
-
-            {% if instance.icon_right %}{% with icon_class=instance.icon_right %}{% include 'aldryn_bootstrap3/plugins/includes/icon.html' %}{% endwith %}{% endif %}
-
-        {% endcomment %}
 {% endspaceless %}</a>
 
