@@ -19,10 +19,13 @@ Each release is divided into the following main categories:
 - lockdown introduced:
     - add:
     ```python
-    if not DEBUG:
-    LOCKDOWN_PASSWORDS = ('stage', 'beta')
-    MIDDLEWARE_CLASSES += ('lockdown.middleware.LockdownMiddleware',)
+    if DEBUG:
+        LOCKDOWN_ENABLED = False
+    LOCKDOWN_PASSWORDS = ('stage', )
+
     ```
+- we still want our HTML comment allink banner
+  KEEP_COMMENTS_ON_MINIFYING = True
 
 ###### TEMPLATES
 
@@ -31,6 +34,7 @@ Each release is divided into the following main categories:
 ###### REQUIREMENTS
 - django-lockdown==1.4.2
 - hachoir3==3.0a2
+- django-htmlmin==0.10.0
 
 ###### DATA MIGRATIONS
 
@@ -40,8 +44,12 @@ Each release is divided into the following main categories:
 ### NEW
 
 - field "active" from AllinkBaseModel renamed to "is_active"
+- HTML gets minified
 
 ### FIXES
+
+- Gallery: Ratio option `original` has been removed (but left for Image Plugin)
+- Button Link Plugin: Link target are now respected in the template.
 
 
 ## v0.0.8
@@ -54,28 +62,33 @@ Each release is divided into the following main categories:
     -> change project specific app to be added to content plugin children (not placeholder `ALLINK_CMS_PLACEHOLDER_CONF_PLUGINS` anymore) -> `CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES.extend(..)`
     1. migrate by hand every app plugin so that it is wrapped inside a content_pluin (no further changes to settings or templates necessary.)
     2. dont migrate by hand. and continue to add app plugins directly.
+        - you have to add and rename the file form core `app_content/app_content_base_legacy.html` file to your project templates folder: `app_content/app_content_base.html`:
         - you have to add in the settings:
-     ```python
-      # this project handles every app_plugin separately and doesn't require an
-# allink_content_plugin wrapper. So the placeholder settings have to be overidden here.
-# also notice the project specific template "app_content/app_content_base.html"
-ALLINK_CMS_PLACEHOLDER_CONF_PLUGINS.extend([
-    'CMSLocationsPlugin',
-    'CMSPeoplePlugin',
-    'CMSWorkPlugin',
-    'CMSBlogPlugin',
-    'CMSTestimonialPlugin'
-])
-TO_REMOVE = [
-    'CMSLocationsPlugin',
-    'CMSPeoplePlugin',
-    'CMSWorkPlugin',
-    'CMSBlogPlugin',
-    'CMSTestimonialPlugin'
-]
-CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [item for item in CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES if item not in TO_REMOVE]
-      ```
-       - you have to add and rename the file form core `app_content/app_content_base_legacy.html` file to your project templates folder: `app_content/app_content_base.html`:
+        ```python
+        # this project handles every app_plugin separately and doesn't require an
+        # allink_content_plugin wrapper. So the placeholder settings have to be overidden here.
+        # also notice the project specific template "app_content/app_content_base.html"
+        ALLINK_CMS_PLACEHOLDER_CONF_PLUGINS.extend([
+            'CMSLocationsPlugin',
+            'CMSPeoplePlugin',
+            'CMSWorkPlugin',
+            'CMSBlogPlugin',
+            'CMSTestimonialPlugin'
+        ])
+        TO_REMOVE = [
+            'CMSLocationsPlugin',
+            'CMSPeoplePlugin',
+            'CMSWorkPlugin',
+            'CMSBlogPlugin',
+            'CMSTestimonialPlugin'
+        ]
+        CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [item for item in CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES if item not in TO_REMOVE]
+        ```
+
+            - you have to add and rename the file form core `app_content/app_content_base_legacy.html` file in your project templates folder: `app_content/app_content_base.html`:
+
+
+
 ###### TEMPLATES
 
 ###### URLS
@@ -91,7 +104,7 @@ CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [item for item in CMS_ALLINK_CONTENT_P
 - extra_css_classes removed from admin
 - djangocms_vid_file and djangocms_vid_embed implemented (dropped djangocms_video)(project css classes: VID_PLUGIN_PROJECT_CSS_CLASSES)
 - djangocms_image now supports project css classes (IMAGE_PLUGIN_PROJECT_CSS_CLASSES), and bg_color
-- Content Plugin: Support for vertical alignment of columns added (the tallest element defines the boundaries). Important: Requires `allink-core-static` commit `1256fa94cdc7b3ba8f6b48be384171e305e03ad5`
+- Content Plugin: Support for vertical alignment of columns added (the tallest element defines the boundaries). Important: Requires at least `allink-core-static` commit `1256fa94cdc7b3ba8f6b48be384171e305e03ad5`
 - config: New app added in allink_apps. A migrations folder (`allink_apps_migrations.config`) is necessary in every project after this version.
 - Buttons and Image links can now link on all internal app sites
 - Button/Link Plugin: Admin modal: Link settings are now expanded per default.

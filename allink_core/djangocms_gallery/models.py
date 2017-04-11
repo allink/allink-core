@@ -7,8 +7,7 @@ from cms.models.pluginmodel import CMSPlugin
 from filer.fields.image import FilerImageField
 from djangocms_text_ckeditor.fields import HTMLField
 
-from allink_core.allink_base.utils import get_additional_choices
-from allink_core.allink_base.models.choices import BLANK_CHOICE, RATIO_CHOICES, TITLE_CHOICES, H1
+from allink_core.allink_base.models.choices import TITLE_CHOICES, H1
 
 
 @python_2_unicode_compatible

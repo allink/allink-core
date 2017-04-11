@@ -119,6 +119,8 @@ CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [
 # Middlewareclassss
 
 ALLINK_MIDDLEWARE_CLASSES = [
+    'lockdown.middleware.LockdownMiddleware',
     'allink_core.allink_legacy_redirect.middleware.AllinkLegacyRedirectMiddleware',
-    # 'lockdown.middleware.LockdownMiddleware',
+    'htmlmin.middleware.HtmlMinifyMiddleware',
+    'htmlmin.middleware.MarkRequestMiddleware',
 ]

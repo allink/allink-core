@@ -31,7 +31,6 @@ class CMSAllinkContentPlugin(CMSPluginBase):
                 'title',
                 'title_size',
                 'template',
-                'anchor',
             ),
         }),
         (_('Display Options'), {
@@ -69,6 +68,7 @@ class CMSAllinkContentPlugin(CMSPluginBase):
             'classes': ('collapse',),
             'fields': (
                 'project_css_classes',
+                'anchor',
                 # 'extra_css_classes',
             )
         })

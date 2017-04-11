@@ -1,6 +1,6 @@
 {% load i18n %}
 <form
-    class="form-default ajax-form validate-form {{ class }}"
+    class="form-default {% if not no_ajax %}ajax-form{% endif %} validate-form {{ class }}"
     method="{{ method|default:"POST" }}"
     novalidate="novalidate"
     {% if form_id %}data-form-container-id="{{ form_id }}"{% endif %}
