@@ -8,12 +8,6 @@
     {% if includes_files %}enctype="multipart/form-data"{% endif %}
     >
 
-    {% comment %}
-
-        {% if success_url %}data-success-url="{{ success_url }}"{% endif %}
-
-    {% endcomment %}
-
     {% if not method == "get" %}{% csrf_token %}{% endif %}
     {% include 'includes/forms/form_fields.html' with nolabel=nolabel|default:False %}
 
