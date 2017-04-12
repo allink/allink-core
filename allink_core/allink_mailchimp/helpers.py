@@ -41,24 +41,30 @@ def list_members_post(data, list_id=config.default_list_id, member_hash_email=No
     member_hash = get_hash_md5(member_hash_email) if member_hash_email else get_hash_md5(data['email_address'])
     data = json.dumps(data)
     # POST new member
-    response = requests.post(
-        config.api_root + 'lists/{}/members/{}'.format(list_id, member_hash),
-        auth=('apikey', config.apikey),
-        data=data
-    )
-    check_response_status(response)
+    try:
+        response = requests.post(
+            config.api_root + 'lists/{}/members/{}'.format(list_id, member_hash),
+            auth=('apikey', config.apikey),
+            data=data
+        )
+        check_response_status(response)
+    except:
+        pass
 
 
 def list_members_put(data, list_id=config.default_list_id, member_hash_email=None):
     member_hash = get_hash_md5(member_hash_email) if member_hash_email else get_hash_md5(data['email_address'])
     data = json.dumps(data)
-    # PUT new or modify existing member
-    response = requests.put(
-        config.api_root + 'lists/{}/members/{}'.format(list_id, member_hash),
-        auth=('apikey', config.apikey),
-        data=data
-    )
-    check_response_status(response)
+    try:
+        # PUT new or modify existing member
+        response = requests.put(
+            config.api_root + 'lists/{}/members/{}'.format(list_id, member_hash),
+            auth=('apikey', config.apikey),
+            data=data
+        )
+        check_response_status(response)
+    except:
+        pass
 
 
 def list_members_patch(data, list_id=config.default_list_id, member_hash_email=None):

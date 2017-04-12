@@ -60,6 +60,7 @@ Each release is divided into the following main categories:
 
 - Gallery: Ratio option `original` has been removed (but left for Image Plugin)
 - Button Link Plugin: Link target are now respected in the template.
+- Members: Views are customised. Ajax forms now working
 
 
 ## v0.0.8

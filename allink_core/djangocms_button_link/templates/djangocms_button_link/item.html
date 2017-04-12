@@ -2,7 +2,11 @@
 {% comment %}
     if button is login-button to member area check if logged in an in group 'members'
 {% endcomment %}
-
+{% if instance.link_special == 'account_logout' and user.is_authenticated %}
+    <form method="post" action="{{instance.get_link_url}}">
+        <input type="submit" name="{% trans "Logout" %}">
+    </form>
+{% else %}
     <a href="{{ instance.get_link_url }}"
         class="
             {% if instance.type == 'btn' %}
@@ -49,4 +53,5 @@
         {% endfor %}
 
 {% endspaceless %}</a>
+{% endif %}
 
