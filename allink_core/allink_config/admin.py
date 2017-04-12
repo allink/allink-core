@@ -57,10 +57,12 @@ class AllinkConfigAdmin(SingletonModelAdmin):
                 ('members_verbose', 'members_verbose_plural', 'members_toolbar_enabled', ),
                 ('contact_verbose', 'contact_verbose_plural', 'contact_toolbar_enabled', ),
                 ('events_registration_verbose', 'events_registration_verbose_plural', 'events_registration_toolbar_enabled', ),
+                ('terms_verbose', 'terms_verbose_plural', 'terms_toolbar_enabled', ),
             )
         }),
 
         return fieldsets
+
 
 @admin.register(AllinkMetaTagExtension)
 class AllinkMetaTagExtensionAdmin(TitleExtensionAdmin):

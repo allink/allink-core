@@ -616,9 +616,16 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
                     category_navigation.append(category)
         # auto category nav
         else:
-            for category in self.categories.all():
-                if self.get_render_queryset_for_display(category).exists():
-                    category_navigation.append(category)
+            if self.categories.all().count() > 0:
+                for category in self.categories.all():
+                    if self.get_render_queryset_for_display(category).exists():
+                        category_navigation.append(category)
+            # auto category nav, if no categories are specified
+            else:
+                from allink_core.allink_categories.models import AllinkCategory
+                categories = self.get_render_queryset_for_display().filter(~models.Q(categories=None)).distinct(
+                    'categories').values_list('categories')
+                category_navigation = list(AllinkCategory.objects.filter(id__in=categories))
         return category_navigation
 
     def _apply_ordering_to_queryset_for_display(self, queryset):
@@ -638,7 +645,7 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
         elif self.manual_ordering == AllinkBaseAppContentPlugin.RANDOM:
             return queryset.random()
         else:
-            return queryset
+            return queryset.distinct()
 
     def get_render_queryset_for_display(self, category=None, filters={}):
         """
@@ -667,5 +674,5 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
                     queryset = queryset.filter(categories=self.categories_and.all())
             return self._apply_ordering_to_queryset_for_display(queryset)
         else:
-            queryset = queryset.active_entries()
+            queryset = queryset.active_entries().distinct()
             return queryset

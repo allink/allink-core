@@ -58,7 +58,6 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
             )
         }),
 
-
         if self.data_model.get_can_have_categories():
             fieldsets += (_('Filter & Ordering'), {
                 'classes': ('collapse',),
@@ -135,11 +134,18 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
         return fieldsets
 
     def get_render_template(self, context, instance, placeholder, file='content'):
-        template = '{}/plugins/{}/{}.html'.format(self.data_model._meta.app_label, instance.template, file)
+        queryset_not_empty = context['object_list'].exists()
+        if queryset_not_empty:
+            template = '{}/plugins/{}/{}.html'.format(self.data_model._meta.app_label, instance.template, file)
+        else:
+            template = '{}/plugins/{}/{}.html'.format(self.data_model._meta.app_label, instance.template, 'no_results')
         try:
             get_template(template)
         except TemplateDoesNotExist:
-            template = 'app_content/plugins/{}/{}.html'.format(instance.template, file)
+            if queryset_not_empty:
+                template = 'app_content/plugins/{}/{}.html'.format(instance.template, file)
+            else:
+                template = 'app_content/plugins/{}/{}.html'.format(instance.template, 'no_results')
         return template
 
     def get_queryset_by_category(self, instance, filters):
@@ -170,7 +176,7 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
         if instance.paginated_by > 0:
             paginator = Paginator(objects_list, instance.paginated_by)
             firstpage = paginator.page(1)
-            objects_list = firstpage
+            objects_list = firstpage.object_list
 
             # Pagination Type
             if instance.pagination_type == AllinkBaseAppContentPlugin.LOAD and firstpage.has_next():
@@ -191,6 +197,7 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
         context['object_list'] = objects_list
 
         context['content_template'] = self.get_render_template(context, instance, placeholder, file='_content')
+        context['no_results_template'] = self.get_render_template(context, instance, placeholder, file='_no_results')
         context['item_template'] = self.get_render_template(context, instance, placeholder, file='item')
         context['category_navigation'] = instance.get_category_navigation()
 

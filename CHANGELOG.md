@@ -19,9 +19,10 @@ Each release is divided into the following main categories:
 - lockdown introduced:
     - add:
     ```python
-    if not DEBUG:
-    LOCKDOWN_PASSWORDS = ('stage', 'beta')
-    MIDDLEWARE_CLASSES += ('lockdown.middleware.LockdownMiddleware',)
+    if DEBUG:
+        LOCKDOWN_ENABLED = False
+    LOCKDOWN_PASSWORDS = ('stage', )
+
     ```
 - we still want our HTML comment allink banner
   KEEP_COMMENTS_ON_MINIFYING = True
@@ -32,7 +33,6 @@ Each release is divided into the following main categories:
 
 ###### REQUIREMENTS
 - django-lockdown==1.4.2
-- hachoir3==3.0a2
 - django-htmlmin==0.10.0
 
 ###### DATA MIGRATIONS
@@ -40,14 +40,26 @@ Each release is divided into the following main categories:
 - when making migrations for allink_apps on project basis, it's important, that "active" gets renamed to "is_active".
   The field should not be deleted and created with new name, else all data gets lost.
 
+###### DOCKERFILE
+- djangocms_vid is now able to read dimensions of video for disaplying appropriate preview image. add to Dockerfile:
+    ```python
+    # additional requirements
+    # -------------------
+    RUN apt-get update && \
+        apt-get install libav-tools -y --force-yes --no-install-recommends
+    ```
+
 ### NEW
 
 - field "active" from AllinkBaseModel renamed to "is_active"
 - HTML gets minified
+- BUTTON_LINK_PLUGIN_PROJECT_CSS_CLASSES introduced
+- Added counter and fullscreen button to swiper content template
 
 ### FIXES
 
-- Ratio "original" isn't available for galleries
+- Gallery: Ratio option `original` has been removed (but left for Image Plugin)
+- Button Link Plugin: Link target are now respected in the template.
 
 
 ## v0.0.8
@@ -62,32 +74,31 @@ Each release is divided into the following main categories:
     2. dont migrate by hand. and continue to add app plugins directly.
         - you have to add and rename the file form core `app_content/app_content_base_legacy.html` file to your project templates folder: `app_content/app_content_base.html`:
         - you have to add in the settings:
-```python
-# this project handles every app_plugin separately and doesn't require an
-# allink_content_plugin wrapper. So the placeholder settings have to be overidden here.
-# also notice the project specific template "app_content/app_content_base.html"
-ALLINK_CMS_PLACEHOLDER_CONF_PLUGINS.extend([
-    'CMSLocationsPlugin',
-    'CMSPeoplePlugin',
-    'CMSWorkPlugin',
-    'CMSBlogPlugin',
-    'CMSTestimonialPlugin'
-])
-TO_REMOVE = [
-    'CMSLocationsPlugin',
-    'CMSPeoplePlugin',
-    'CMSWorkPlugin',
-    'CMSBlogPlugin',
-    'CMSTestimonialPlugin'
-]
-CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [item for item in CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES if item not in TO_REMOVE]
-<<<<<<< HEAD
-      ```
-       - you have to add and rename the file form core `app_content/app_content_base_legacy.html` file in your project templates folder: `app_content/app_content_base.html`:
-=======
-```
+        ```python
+        # this project handles every app_plugin separately and doesn't require an
+        # allink_content_plugin wrapper. So the placeholder settings have to be overidden here.
+        # also notice the project specific template "app_content/app_content_base.html"
+        ALLINK_CMS_PLACEHOLDER_CONF_PLUGINS.extend([
+            'CMSLocationsPlugin',
+            'CMSPeoplePlugin',
+            'CMSWorkPlugin',
+            'CMSBlogPlugin',
+            'CMSTestimonialPlugin'
+        ])
+        TO_REMOVE = [
+            'CMSLocationsPlugin',
+            'CMSPeoplePlugin',
+            'CMSWorkPlugin',
+            'CMSBlogPlugin',
+            'CMSTestimonialPlugin'
+        ]
+        CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [item for item in CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES if item not in TO_REMOVE]
+        ```
 
->>>>>>> 7ed3a8eae213430f8c5abeb11f1bc95cb76c7ec9
+            - you have to add and rename the file form core `app_content/app_content_base_legacy.html` file in your project templates folder: `app_content/app_content_base.html`:
+
+
+
 ###### TEMPLATES
 
 ###### URLS

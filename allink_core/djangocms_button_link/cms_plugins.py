@@ -16,6 +16,17 @@ class CMSAllinkButtonLinkContainerPlugin(CMSPluginBase):
     child_classes = ['CMSAllinkButtonLinkPlugin']
     form = AllinkButtonLinkContainerPluginForm
 
+    class Media:
+        js = (
+            'build/djangocms_custom_admin_scripts.js',
+        )
+        css = {
+            'all': (
+                'build/djangocms_custom_admin_style.css',
+
+            )
+        }
+
     def get_render_template(self, context, instance, placeholder):
         template = 'djangocms_button_link/content.html'
         return template
@@ -69,6 +80,7 @@ class CMSAllinkButtonLinkPlugin(CMSPluginBase):
             'fields': (
                 # 'extra_css_classes',
                 'link_attributes',
+                'project_css_classes',
             )
         }),
     )

@@ -4,6 +4,7 @@ from django.forms.widgets import Media, TextInput
 from djangocms_attributes_field.widgets import AttributesWidget
 from django.utils.translation import ugettext_lazy as _
 
+from allink_core.allink_base.utils import get_additional_choices
 from allink_core.djangocms_button_link.models import AllinkButtonLinkContainerPlugin, AllinkButtonLinkPlugin
 from allink_core.allink_base.models.model_fields import choices_from_sitemaps
 
@@ -13,6 +14,16 @@ class AllinkButtonLinkContainerPluginForm(forms.ModelForm):
     class Meta:
         model = AllinkButtonLinkContainerPlugin
         exclude = ('page', 'position', 'placeholder', 'language', 'plugin_type')
+
+    def __init__(self, *args, **kwargs):
+        super(AllinkButtonLinkContainerPluginForm, self).__init__(*args, **kwargs)
+        if get_additional_choices('BUTTON_LINK_PLUGIN_PROJECT_CSS_CLASSES'):
+            self.fields['project_css_classes'] = forms.MultipleChoiceField(
+                label=_(u'Predifined css classes'),
+                help_text=_(u'Instructions: Single selection is made by clicking on an option. Multiple selections are achieved by pressing and holding down the Command-key (Mac) or Control-Key (Windows) <strong>and</strong> clicking the options you would like to apply.'),
+                choices=get_additional_choices('BUTTON_LINK_PLUGIN_PROJECT_CSS_CLASSES'),
+                required=False,
+            )
 
 
 class AllinkButtonLinkPluginForm(forms.ModelForm):
