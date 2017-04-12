@@ -27,6 +27,21 @@ class CMSAllinkButtonLinkContainerPlugin(CMSPluginBase):
             )
         }
 
+    fieldsets = (
+        (None, {
+            'fields': (
+                'alignment_horizontal_desktop',
+                'alignment_horizontal_mobile',
+            ),
+        }),
+        (_('Advanced settings'), {
+            'classes': ('collapse',),
+            'fields': (
+                'project_css_classes',
+            )
+        }),
+    )
+
     def get_render_template(self, context, instance, placeholder):
         template = 'djangocms_button_link/content.html'
         return template
@@ -80,7 +95,6 @@ class CMSAllinkButtonLinkPlugin(CMSPluginBase):
             'fields': (
                 # 'extra_css_classes',
                 'link_attributes',
-                'project_css_classes',
             )
         }),
     )
