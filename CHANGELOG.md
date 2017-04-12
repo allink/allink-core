@@ -16,24 +16,36 @@ Each release is divided into the following main categories:
 ### IMPORTANT
 
 ###### SETTINGS
-- lockdown introduced:
-    - add:
+- lockdown introduced. add the following:
     ```python
+    ####################################################################################
+
+    # =Lockdown
+
     if DEBUG:
         LOCKDOWN_ENABLED = False
     LOCKDOWN_PASSWORDS = ('stage', )
-
     ```
-- we still want our HTML comment allink banner
-  KEEP_COMMENTS_ON_MINIFYING = True
+- We want to keep HTML comments (because of the allink ad in the source code):
+    ```python
+    ####################################################################################
+
+    # =HTML Minifier
+
+    KEEP_COMMENTS_ON_MINIFYING = True
+    ```
 
 ###### TEMPLATES
 
 ###### URLS
 
 ###### REQUIREMENTS
-- django-lockdown==1.4.2
-- django-htmlmin==0.10.0
+
+- Add the following packages:
+```
+django-lockdown==1.4.2
+django-htmlmin==0.10.0
+```
 
 ###### DATA MIGRATIONS
 
