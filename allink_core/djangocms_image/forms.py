@@ -2,9 +2,10 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
-from allink_core.allink_base.utils import get_project_color_choices, get_ratio_choices_orig, get_additional_choices
+from allink_core.allink_base.utils import get_ratio_choices_orig, get_additional_choices
 from allink_core.djangocms_image.models import AllinkImagePlugin
 from allink_core.allink_base.models.model_fields import choices_from_sitemaps
+from allink_core.allink_base.forms.fields import ColorField
 
 
 class AllinkImagePluginForm(forms.ModelForm):
@@ -36,9 +37,8 @@ class AllinkImagePluginForm(forms.ModelForm):
             widget=forms.Select(choices=get_ratio_choices_orig()),
             required=False,
         )
-        self.fields['bg_color'] = forms.CharField(
+        self.fields['bg_color'] = ColorField(
             label=_(u'Set a predefined background color'),
-            widget=forms.Select(choices=get_project_color_choices()),
             required=False,
         )
         if get_additional_choices('IMAGE_PLUGIN_PROJECT_CSS_CLASSES'):

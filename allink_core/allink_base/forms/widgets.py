@@ -6,6 +6,8 @@ from django.utils.safestring import mark_safe
 from django.conf import settings
 from django import forms
 
+from allink_core.allink_base.utils import get_project_color_choices
+
 
 class AdminPdfThumnailWidget(AdminFileWidget):
     def render(self, name, value, attrs=None):
@@ -51,12 +53,17 @@ class Icon(forms.widgets.TextInput):
 class SpectrumColorPicker(forms.widgets.TextInput):
     """
     Based on Brian Grinstead's Spectrum - http://bgrins.github.com/spectrum/
+    This widget is used to select a Project Color. With some few options
+    in the pushed colorFields, it could be used more flexible if needed.
     """
     class Media:
         js = ('build/djangocms_custom_admin_scripts.js', )
         css = {
             'all': ('build/djangocms_custom_admin_style.css', )
         }
+
+    def _get_project_color_choices(self):
+        return ",".join("'%s'" % color[1] for color in get_project_color_choices())
 
     def _render_js(self, _id, value):
         js = u"""
@@ -69,9 +76,12 @@ class SpectrumColorPicker(forms.widgets.TextInput):
                     window.colorFields.push({
                         id: '#%s',
                         color: "%s",
+                        showPaletteOnly: true,
+                        palette:[%s],
+                        localStorageKey: "projectcolors"
                     });
                 });
-            </script>""" % (_id, value)
+            </script>""" % (_id, value, self._get_project_color_choices())
         return js
 
     def render(self, name, value, attrs=None):

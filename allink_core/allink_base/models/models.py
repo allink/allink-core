@@ -280,7 +280,6 @@ class AllinkBasePlugin(CMSPlugin):
     )
     bg_color = models.CharField(
         _(u'Set a predefined background color'),
-        # choices=settings.PROJECT_COLORS,
         max_length=50,
         blank=True,
         null=True

@@ -8,6 +8,7 @@ from parler.forms import TranslatableModelForm
 
 from allink_core.allink_base.utils import get_additional_choices, get_project_color_choices
 from allink_core.allink_base.models import AllinkBaseAppContentPlugin
+from allink_core.allink_base.forms.fields import ColorField
 
 
 class AllinkBaseAdminForm(TranslatableModelForm):
@@ -90,9 +91,8 @@ class AllinkBaseAppContentPluginForm(forms.ModelForm):
             widget=forms.Select(choices=self.instance.get_templates()),
             required=True,
         )
-        self.fields['bg_color'] = forms.CharField(
+        self.fields['bg_color'] = ColorField(
             label=_(u'Background color'),
-            widget=forms.Select(choices=get_project_color_choices()),
             required=False,
         )
         if get_additional_choices('PROJECT_CSS_CLASSES'):
