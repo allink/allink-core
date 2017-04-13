@@ -51,7 +51,7 @@
                 {% endcomment %}
                 {% block app_content_filter_container %}
                     {% if instance.filter_fields %}
-                        <div class="filter-container">
+                        <div class="filter-container" data-ajax-filter-base-url="{{by_category}}">
                             <div class="filter-container-inner">
                                 {% spaceless %}
                                     {# utility block #}

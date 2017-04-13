@@ -192,7 +192,7 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
                     context['next_page_url'] = context['next_page_url'] + '&category={}'.format(instance.get_first_category().id)
 
         # category navigation
-        if instance.category_navigation_enabled:
+        if instance.category_navigation_enabled or instance.filter_fields:
             context.update({'by_category': reverse('{}:more'.format(self.data_model._meta.model_name), kwargs={'page': 1}) + '?api_request=1' + '&plugin_id={}'.format(instance.id)})
 
         # if instance.filter_fields:
