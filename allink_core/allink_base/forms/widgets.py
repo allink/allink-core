@@ -63,7 +63,7 @@ class SpectrumColorPicker(forms.widgets.TextInput):
         }
 
     def _get_project_color_choices(self):
-        return ",".join("'%s'" % color[1] for color in get_project_color_choices())
+        return ",".join("'%s'" % color for color in get_project_color_choices())
 
     def _render_js(self, _id, value):
         js = u"""
