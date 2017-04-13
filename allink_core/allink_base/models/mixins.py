@@ -71,7 +71,7 @@ class AllinkManualEntriesMixin(object):
 
         else:
             queryset = queryset.active_entries()
-            return queryset
+            return self._apply_ordering_to_queryset_for_display(queryset)
 
 
 class AllinkTranslatedAutoSlugifyMixin(TranslatedAutoSlugifyMixin):

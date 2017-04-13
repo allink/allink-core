@@ -416,12 +416,12 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
 
     # FILTER FIELDS
     FILTER_FIELD_CHOICES = (
-        ('categories', {
-            'verbose': _(u'Categories'),
-            'query_filter': {},
-            # example
-            # 'query_filter': {'translations__name': 'Bern'},
-        }),
+        # ('categories', {
+        #     'verbose': _(u'Categories'),
+        #     'query_filter': {},
+        #     # example
+        #     # 'query_filter': {'translations__name': 'Bern'},
+        # }),
     )
 
     # FIELDS
@@ -675,4 +675,4 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
             return self._apply_ordering_to_queryset_for_display(queryset)
         else:
             queryset = queryset.active_entries().distinct()
-            return queryset
+            return self._apply_ordering_to_queryset_for_display(queryset)

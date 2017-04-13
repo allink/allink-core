@@ -73,6 +73,7 @@ django-htmlmin==0.10.0
 - Gallery: Ratio option `original` has been removed (but left for Image Plugin)
 - Button Link Plugin: Link target are now respected in the template.
 - Members: Views are customised. Ajax forms now working
+- Base Model: Separated filter and categories fieldsets, applied default ordering on querysets
 
 
 ## v0.0.8

@@ -59,15 +59,21 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
         }),
 
         if self.data_model.get_can_have_categories():
-            fieldsets += (_('Filter & Ordering'), {
+            fieldsets += (_('Categories'), {
                 'classes': ('collapse',),
                 'fields': (
                     'categories',
                     'categories_and',
-                    'manual_ordering',
-                    'filter_fields',
                 )
             }),
+
+        fieldsets += (_('Filter & Ordering'), {
+            'classes': ('collapse',),
+            'fields': (
+                'manual_ordering',
+                'filter_fields',
+            )
+        }),
 
         fieldsets += (_('Select entries manually'), {
             'classes': ('collapse',),
