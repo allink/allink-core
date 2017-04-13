@@ -675,4 +675,4 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
             return self._apply_ordering_to_queryset_for_display(queryset)
         else:
             queryset = queryset.active_entries().distinct()
-            return self._apply_ordering_to_queryset_for_display(queryset)
+            return queryset
