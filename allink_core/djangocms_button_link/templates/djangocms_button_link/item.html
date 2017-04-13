@@ -1,12 +1,12 @@
 {% load cms_tags sekizai_tags i18n thumbnail allink_user_tags allink_members_tags %}
 {% comment %}
-    if button is login-button to member area check if logged in an in group 'members'
+    LOGOUT: requires a form to submit with the POST method (check if logged in an in group 'members')
 {% endcomment %}
 {% if instance.link_special == 'account_logout' and user.is_authenticated %}
     <form method="post" action="{{instance.get_link_url}}">
-        <input type="submit" name="{% trans "Logout" %}">
-    </form>
-{% else %}
+    {% csrf_token %}
+{% endif %}
+
     <a href="{{ instance.get_link_url }}"
         class="
             {% if instance.type == 'btn' %}
@@ -26,10 +26,11 @@
         {% endif %}
         {% if instance.form_modal_enabled %}data-trigger-form-modal{% endif %}
         {% if instance.image_modal_enabled %}data-trigger-image-modal{% endif %}
-        {% if instance.softpage_large_enabled or instance.softpage_small_enabled %}data-trigger-softpage{% endif %}
+        {% if instance.softpage_large_enabled or instance.softpage_small_enabled and instance.link_special != 'account_logout' %}data-trigger-softpage{% endif %}
         {% if instance.softpage_large_enabled %}data-softpage-variation="large"{% endif %}
         {% if instance.softpage_small_enabled %}data-softpage-variation="small"{% endif %}
         {% if instance.link_special == 'account_login' and user.is_authenticated %}data-softpage-disabled{% endif %}
+        {% if instance.link_special == 'account_logout' and user.is_authenticated %}data-submit-form{% endif %}
         {{ instance.link_attributes_str }}
         >{% spaceless %}
 
@@ -53,5 +54,11 @@
         {% endfor %}
 
 {% endspaceless %}</a>
+
+{% comment %}
+    LOGOUT
+{% endcomment %}
+{% if instance.link_special == 'account_logout' and user.is_authenticated %}
+    </form>
 {% endif %}
 

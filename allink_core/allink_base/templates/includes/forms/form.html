@@ -1,22 +1,4 @@
+{% extends "includes/forms/form_base.html" %}
 {% load i18n %}
-<form
-    class="form-default {% if not no_ajax %}ajax-form{% endif %} validate-form {{ class }}"
-    method="{{ method|default:"POST" }}"
-    novalidate="novalidate"
-    {% if form_id %}data-form-container-id="{{ form_id }}"{% endif %}
-    {% if action %}action="{{ action }}"{% endif %}
-    {% if includes_files %}enctype="multipart/form-data"{% endif %}
-    >
 
-    {% if not method == "get" %}{% csrf_token %}{% endif %}
-    {% include 'includes/forms/form_fields.html' with nolabel=nolabel|default:False %}
-
-    <div class="form-group btn-container">
-        <button class="btn btn-primary" name="submit" type="submit">{{ cta|default:"Submit" }}</button>
-        {% if close_btn_enabled %}
-            <button class="btn btn-danger close-form-modal" name="submit" type="submit">{% trans "Close" %}</button>
-        {% endif %}
-    </div>
-
-</form>
 
