@@ -77,7 +77,11 @@
                 {% block container_inner_before %}{% endblock container_inner_before %}
             {% endif %}
 
-                <div class="inner {% if not instance.bg_image_outer_container and instance.bg_image_inner_container %}bg-image-inner-container-{{instance.id}}{% endif %}">
+                <div class="inner">
+
+                    {% if not instance.bg_image_outer_container and instance.bg_image_inner_container %}
+                        <div class="bg-image-inner bg-image-inner-container-{{instance.id}}"></div>
+                    {% endif %}
 
                     {# Optional: Overlay #}
                     {% if instance.overlay_styles_enabled and instance.bg_image_inner_container %}
