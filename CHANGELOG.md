@@ -71,6 +71,7 @@ django-htmlmin==0.10.0
 
 ### NEW
 
+- Content Plugin: The inner container background image is now handled with a separate HTML-element that allows us to stack the image and the overlay text on small screens. Requires the latest static core.
 - field "active" from AllinkBaseModel renamed to "is_active"
 - HTML gets minified
 - BUTTON_LINK_PLUGIN_PROJECT_CSS_CLASSES introduced
