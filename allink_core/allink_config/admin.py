@@ -15,9 +15,9 @@ require_POST = method_decorator(require_POST)
 
 
 class AllinkConfigAdminForm(forms.ModelForm):
-    theme_color = ColorField(label=_(u'Theme Color'))
-    mask_icon_color = ColorField(label=_(u'Theme Color'))
-    msapplication_tilecolor = ColorField(label=_(u'Theme Color'))
+    theme_color = ColorField(label=_(u'Theme Color'), help_text=_(u'Theme color for Android Chrome'), initial='#ffffff')
+    mask_icon_color = ColorField(label=_(u'Mask Icon Color'), help_text=_(u'Mask icon color for safari-pinned-tab.svg'), initial='#282828')
+    msapplication_tilecolor = ColorField(label=_(u'MS Application Title Color'), help_text=_(u'MS application TitleColor Field'), initial='#282828')
 
     class Meta(forms.ModelForm):
         model = AllinkConfig

@@ -28,4 +28,7 @@ class ZipCode(forms.fields.IntegerField):
 
 
 class ColorField(forms.fields.CharField):
-    widget = widgets.SpectrumColorPicker()
+
+    def __init__(self, *args, **kwargs):
+        super(ColorField, self).__init__(*args, **kwargs)
+        self.widget = widgets.SpectrumColorPicker(default=self.initial)

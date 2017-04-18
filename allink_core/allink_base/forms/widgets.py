@@ -62,8 +62,17 @@ class SpectrumColorPicker(forms.widgets.TextInput):
             'all': ('build/djangocms_custom_admin_style.css', )
         }
 
+    def __init__(self, *args, **kwargs):
+        self.default = kwargs.pop('default', None)
+        super(SpectrumColorPicker, self).__init__(*args, **kwargs)
+
     def _get_project_color_choices(self):
-        return ",".join("'%s'" % color for color in get_project_color_choices())
+        palette = ",".join("'%s'" % color for color in get_project_color_choices())
+        if self.default:
+            palette = "'%s'," % self.default + palette
+        else:
+            palette = palette + ",'transparent'"
+        return palette
 
     def _render_js(self, _id, value):
         js = u"""
