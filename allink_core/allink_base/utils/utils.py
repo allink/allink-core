@@ -33,8 +33,7 @@ def get_project_color_choices():
     """
     returns all projects specific colors
     """
-    from allink_core.allink_base.models.choices import BLANK_CHOICE
-    return BLANK_CHOICE + settings.PROJECT_COLORS
+    return settings.PROJECT_COLORS
 
 
 def get_ratio_choices():

@@ -23,6 +23,7 @@ from allink_core.allink_base.models import Classes
 from allink_core.allink_base.models import AllinkBaseModelManager
 from allink_core.allink_base.models import AllinkMetaTagFieldsModel
 from allink_core.allink_base.models.choices import TITLE_CHOICES, H1
+from allink_core.allink_base.utils.utils import get_project_color_choices
 
 
 @python_2_unicode_compatible
@@ -280,7 +281,6 @@ class AllinkBasePlugin(CMSPlugin):
     )
     bg_color = models.CharField(
         _(u'Set a predefined background color'),
-        # choices=settings.PROJECT_COLORS,
         max_length=50,
         blank=True,
         null=True
@@ -319,7 +319,7 @@ class AllinkBasePlugin(CMSPlugin):
         css_classes.append('section-heading-{}'.format(self.title_size)) if self.title_size else None
         css_classes.append("has-bg-color") if self.bg_color else None
         css_classes.append("has-bg-image") if self.bg_image_outer_container else None
-        css_classes.append(self.bg_color) if self.bg_color else None
+        css_classes.append(get_project_color_choices[self.bg_color]) if self.bg_color else None
         if getattr(self, 'project_css_classes'):
             for css_class in getattr(self, 'project_css_classes'):
                 css_classes.append(css_class)
