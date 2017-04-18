@@ -622,9 +622,8 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
             # auto category nav, if no categories are specified
             else:
                 from allink_core.allink_categories.models import AllinkCategory
-                categories = self.get_render_queryset_for_display().filter(~models.Q(categories=None)).distinct(
-                    'categories').values_list('categories')
-                category_navigation = list(AllinkCategory.objects.filter(id__in=categories))
+                categories = self.get_render_queryset_for_display().filter(~models.Q(categories=None)).values_list('categories')
+                category_navigation = list(AllinkCategory.objects.filter(id__in=categories).distinct())
         return category_navigation
 
     def _apply_ordering_to_queryset_for_display(self, queryset):
