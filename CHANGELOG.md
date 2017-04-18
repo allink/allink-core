@@ -67,6 +67,7 @@ django-htmlmin==0.10.0
 - HTML gets minified
 - BUTTON_LINK_PLUGIN_PROJECT_CSS_CLASSES introduced
 - Added counter and fullscreen button to swiper content template
+- All colors use now the colorfield with colorpicker widget
 
 ### FIXES
 
