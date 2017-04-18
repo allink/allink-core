@@ -16,6 +16,14 @@ Each release is divided into the following main categories:
 ### IMPORTANT
 
 ###### SETTINGS
+- Project Colors: The new markup of the `PROJECT_COLORS` settings is as followed and requires to be updated:
+    ```python
+    PROJECT_COLORS = {
+        '#c6c6c6': 'project-color-1', # color
+        '#eceeef': 'project-color-2', # color
+        '#f7f7f9': 'project-color-3', # color
+    }
+    ```
 - lockdown introduced. add the following:
     ```python
     ####################################################################################
