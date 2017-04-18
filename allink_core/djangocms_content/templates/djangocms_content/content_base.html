@@ -36,7 +36,7 @@
                 {# utility block #}
                 {% block video_container_inner_before %}{% endblock video_container_inner_before %}
 
-                <video id="video-{{ instance.id }}" class="the-video" playsinline muted autoplay loop poster="{{ instance.video_poster_image|thumbnail_url:'video-poster-image' }}">
+                <video id="video-{{ instance.id }}" class="the-video on-pause" playsinline muted autoplay loop poster="{{ instance.video_poster_image|thumbnail_url:'video-poster-image' }}">
                     <source src="{{ instance.video_file.url }}" type="video/mp4">
                 </video>
 
