@@ -318,8 +318,7 @@ class AllinkBasePlugin(CMSPlugin):
         css_classes.append("container-enabled") if self.container_enabled else None
         css_classes.append('section-heading-{}'.format(self.title_size)) if self.title_size else None
         css_classes.append("has-bg-color") if self.bg_color else None
-        css_classes.append("has-bg-image") if self.bg_image_outer_container else None
-        css_classes.append(get_project_color_choices[self.bg_color]) if self.bg_color else None
+        css_classes.append(get_project_color_choices()[self.bg_color]) if self.bg_color else None
         if getattr(self, 'project_css_classes'):
             for css_class in getattr(self, 'project_css_classes'):
                 css_classes.append(css_class)
