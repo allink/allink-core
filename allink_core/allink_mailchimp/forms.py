@@ -5,6 +5,8 @@ from django.utils.translation import get_language, ugettext_lazy as _
 from allink_core.allink_mailchimp.config import MailChimpConfig
 from allink_core.allink_mailchimp.helpers import list_members_put, get_status_if_new
 
+from .models import AllinkSignupFormPlugin
+
 config = MailChimpConfig()
 
 
@@ -56,3 +58,12 @@ class SignupFormAdvanced(forms.Form):
             data = data.update(config.merge_vars)
 
         list_members_put(data)
+
+
+class AllinkSignupFormPluginForm(forms.ModelForm):
+
+    class Meta:
+        model = AllinkSignupFormPlugin
+        fields = (
+            'signup_form',
+        )
