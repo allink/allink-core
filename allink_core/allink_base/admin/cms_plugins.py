@@ -140,7 +140,11 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
         return fieldsets
 
     def get_render_template(self, context, instance, placeholder, file='content'):
-        queryset_not_empty = context['object_list'].exists()
+        if isinstance(context['object_list'], list):
+            queryset_not_empty = True if len(context['object_list']) > 0 else False
+        else:
+            queryset_not_empty = context['object_list'].exists()
+
         if queryset_not_empty:
             template = '{}/plugins/{}/{}.html'.format(self.data_model._meta.app_label, instance.template, file)
         else:

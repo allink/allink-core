@@ -86,6 +86,7 @@ django-htmlmin==0.10.0
 - Members: Views are customised. Ajax forms now working
 - Base Model: Separated filter and categories fieldsets, applied default ordering on querysets
 - Base Model & Mixins: Fixed querset filter & ordering distinct bug
+- fix empty result template when object_list is a list
 
 
 ## v0.0.8
