@@ -2,14 +2,14 @@
 <div class="mailchimp-group-item">
     <header class="" data-accordion-trigger>
         <h3 class="heading">
-            <a data-toggle="collapse" href="#group-content-{% if instance.cmsplugin_ptr_id %}{{ instance.cmsplugin_ptr_id }}{% else %}1{% endif %}" aria-expanded="false" aria-controls="group-content-{% if instance.cmsplugin_ptr_id %}{{ instance.cmsplugin_ptr_id }}{% else %}1{% endif %}" class="collapsed no-icon" data-collapse-toggle>
+            <a data-toggle="collapse" href="#" class="collapsed no-icon" data-collapse-toggle>
                 {% block newsletter_heading_text %}
                     {% trans "Newsletter abonnieren" %}
                 {% endblock newsletter_heading_text %}
             </a>
        </h3>
     </header>
-    <div class="collapse" id="group-content-{% if instance.cmsplugin_ptr_id %}{{ instance.cmsplugin_ptr_id }}{% else %}1{% endif %}">
+    <div class="collapse">
         <div class="mailchimp-group-item-child">
              <form action="{% url 'mailchimp:signup_advanced' %}" methode="post" class="ajax-form validate-form {% block newsletter_form_additional_classes %}{% endblock newsletter_form_additional_classes %}" role="form" id="{% block newsletter_form_id %}mailchimp-signup-form{% endblock newsletter_form_id %}" data-form-container-id="{% block newsletter_form_container_id %}mailchimp-form-container{% endblock newsletter_form_container_id %}" data-success-data-layer-event="{% block newsletter_success_data_layer_event %}newsletter.sent{% endblock newsletter_success_data_layer_event %}" {% block newsletter_form_additional_attributes %}{% endblock newsletter_form_additional_attributes %}>
 
