@@ -40,6 +40,12 @@ class AllinkAddressFieldsModel(models.Model):
         blank=True,
         null=True
     )
+    street_additional = models.CharField(
+        _(u'Address Additional'),
+        max_length=255,
+        blank=True,
+        null=True
+    )
     zip_code = ZipCodeField(
         _(u'Zip Code'),
         blank=True,
