@@ -54,7 +54,10 @@ def render_app_content_image_detail(context, thumbnail_url, icon_disabled=False,
     context.update({'thumbnail_url_xl': thumbnail_url_xl})
     context.update({'thumbnail_url_xl_2x': thumbnail_url_xl_2x})
 
+    # variations
     context.update({'bg_color': bg_color})
+    context.update({'icon_disabled': icon_disabled})
+    context.update({'bg_disabled': bg_disabled})
 
     return context
 
@@ -85,7 +88,10 @@ def render_app_content_image(context, thumbnail_url=None, icon_disabled=False, b
     context.update({'thumbnail_url_xl': thumbnail_url_xl})
     context.update({'thumbnail_url_xl_2x': thumbnail_url_xl_2x})
 
+    # variations
     context.update({'bg_color': bg_color})
+    context.update({'icon_disabled': icon_disabled})
+    context.update({'bg_disabled': bg_disabled})
 
     return context
 
