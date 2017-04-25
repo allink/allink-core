@@ -36,7 +36,7 @@ def render_allink_image(context, image, thumbnail_url):
 
 
 @register.inclusion_tag('templatetags/app_content_image.html', takes_context=True)
-def render_app_content_image_detail(context, thumbnail_url, icon_disabled=False, bg_disabled=False, bg_color=1):
+def render_app_content_image_detail(context, thumbnail_url, icon_disabled=False, bg_disabled=False, bg_color=0):
 
     # add different BREAKPOINT and RETINA suffixes
     thumbnail_url_xs = thumbnail_url + '-xs'
