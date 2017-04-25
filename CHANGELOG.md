@@ -71,7 +71,7 @@ django-htmlmin==0.10.0
 
 ### NEW
 
-- Image Template: `bg_color` is now supported when setting a background color for an image inside a column or via templatetag `render_app_content_image_detail` by setting e.g. `bg_color=1`
+- Image Template: `bg_color` is now supported when setting a background color for an image inside a column or via templatetag `render_app_content_image_detail` or `render_app_content_image` by setting e.g. `bg_color=1`
 - Content Plugin: The inner container background image is now handled with a separate HTML-element that allows us to stack the image and the overlay text on small screens. Requires the latest static core.
 - field "active" from AllinkBaseModel renamed to "is_active"
 - HTML gets minified

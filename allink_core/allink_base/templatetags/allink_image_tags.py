@@ -63,7 +63,7 @@ def render_app_content_image_detail(context, thumbnail_url, icon_disabled=False,
 
 
 @register.inclusion_tag('templatetags/app_content_image.html', takes_context=True)
-def render_app_content_image(context, thumbnail_url=None, icon_disabled=False, bg_disabled=False):
+def render_app_content_image(context, thumbnail_url=None, icon_disabled=False, bg_disabled=False, bg_color=0):
 
     # Define variable base according to template
     if not thumbnail_url:
@@ -84,6 +84,8 @@ def render_app_content_image(context, thumbnail_url=None, icon_disabled=False, b
     context.update({'thumbnail_url_sm_2x': thumbnail_url_sm_2x})
     context.update({'thumbnail_url_xl': thumbnail_url_xl})
     context.update({'thumbnail_url_xl_2x': thumbnail_url_xl_2x})
+
+    context.update({'bg_color': bg_color})
 
     return context
 
