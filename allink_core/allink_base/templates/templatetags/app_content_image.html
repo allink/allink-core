@@ -3,7 +3,7 @@
 {# image object to figure out ratio #}
 {% thumbnail object.preview_image thumbnail_url_xl as image_xl %}
 
-<picture class="lazyloader" style="padding-bottom: calc({{image_xl.height}}/{{image_xl.width}}*100%);
+<picture class="lazyloader {% if object.bg_color != 0 %}project-color-{{object.bg_color}}{% endif %}" style="padding-bottom: calc({{image_xl.height}}/{{image_xl.width}}*100%);
 ">
 
     {# end render figure/figcaption #}
