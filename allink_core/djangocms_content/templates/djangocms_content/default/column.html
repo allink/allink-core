@@ -1,5 +1,5 @@
 {% load cms_tags %}
-<div class="col {{ instance.css_classes }} {% block column_additional_css_classes %}{% endblock column_additional_css_classes %}" {% block column_additional_attributes %}{% endblock column_additional_attributes %}>
+<div class="col col-{{forloop.counter}} {{ instance.css_classes }} {% block column_additional_css_classes %}{% endblock column_additional_css_classes %}" {% block column_additional_attributes %}{% endblock column_additional_attributes %}>
     {# utility block #}
     {% block column_inner_content_before %}{% endblock column_inner_content_before %}
     <div class="manage-spacings">
