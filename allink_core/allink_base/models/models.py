@@ -651,8 +651,6 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
           - category: category instance
           - filters: dict model fields and value
             -> adds additional query
-
-        -> Is also defined in  AllinkManualEntriesMixin to handel manual entries !!
         """
 
         # apply filters from request
@@ -673,4 +671,4 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
             return self._apply_ordering_to_queryset_for_display(queryset)
         else:
             queryset = queryset.active_entries().distinct()
-            return queryset
+            return self._apply_ordering_to_queryset_for_display(queryset)
