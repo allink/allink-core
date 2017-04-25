@@ -54,6 +54,8 @@ def render_app_content_image_detail(context, thumbnail_url, icon_disabled=False,
     context.update({'thumbnail_url_xl': thumbnail_url_xl})
     context.update({'thumbnail_url_xl_2x': thumbnail_url_xl_2x})
 
+    context.update({'bg_color': bg_color})
+
     return context
 
 ####################################################################################

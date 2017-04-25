@@ -22,7 +22,7 @@ class AllinkVidEmbedPluginForm(forms.ModelForm):
             )
         self.fields['ratio'] = forms.CharField(
             label=_(u'Ratio'),
-            help_text=_(u'This option overrides the default settings for the content plugin.'),
+            help_text=_(u'This option overrides the default ratio setting for embeded videos.'),
             widget=forms.Select(choices=get_ratio_choices()),
             required=False,
         )

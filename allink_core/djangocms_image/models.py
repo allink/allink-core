@@ -11,6 +11,7 @@ from filer.fields.image import FilerImageField
 
 from allink_core.allink_base.models.choices import RATIO_CHOICES
 from allink_core.allink_base.utils import get_additional_templates
+from allink_core.allink_base.utils.utils import get_project_color_choices
 from allink_core.allink_base.models.reusable_fields import AllinkLinkFieldsModel
 from allink_core.allink_base.models.model_fields import CMSPluginField
 
@@ -114,7 +115,7 @@ class AllinkImagePlugin(AllinkLinkFieldsModel, CMSPlugin):
     def base_classes(self):
         css_classes = []
         css_classes.append("has-bg-color") if self.bg_color else None
-        css_classes.append(self.bg_color) if self.bg_color else None
+        css_classes.append(get_project_color_choices()[self.bg_color]) if self.bg_color else None
         if getattr(self, 'project_css_classes'):
             for css_class in getattr(self, 'project_css_classes'):
                 css_classes.append(css_class)
