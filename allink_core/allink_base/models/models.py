@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import urllib.parse
 from django.conf import settings
 from django.core.urlresolvers import NoReverseMatch
 from django.core.exceptions import FieldDoesNotExist, FieldError
@@ -598,7 +599,7 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
                                    id__in=self.get_distinct_values_of_field(fieldname)))
             # field is no foreignkey and no m2m
             else:
-                filters.extend((value[0], value[0]) for value in self.get_distinct_values_of_field(fieldname))
+                filters.extend((urllib.parse.quote_plus(value[0]), value[0]) for value in self.get_distinct_values_of_field(fieldname))
             filter_key = "%s-translations__%s" % (self.data_model._meta.model_name, fieldname) if is_translated else "%s-%s" % (self.data_model._meta.model_name, fieldname)
             options.update({filter_key: (dict(self.FILTER_FIELD_CHOICES)[fieldname]['verbose'], filters)})
         return options
