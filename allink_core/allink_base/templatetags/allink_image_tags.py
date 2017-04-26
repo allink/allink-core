@@ -4,6 +4,96 @@ from django.utils.translation import ugettext_lazy as _
 
 register = template.Library()
 
+# ####################################################################################
+# # in a template
+
+# {% example_image_tag width_alias="1-of-2" ratio="2-1" %}
+
+
+# ####################################################################################
+# # settings.py
+
+# THUMBNAIL_WIDTH_ALIAS = {
+#     '1-of-2': {'xs':450,'md': 1200, 'lg': 1500},
+#     '1-of-3': {'xs':450,'md': 500, 'lg': 600},
+#     ...
+# }
+
+# DEFAULT_IMAGE_RATIOS = (
+#     ('1-of-2','3-2'),
+#     ('1-of-3','3-2'),
+#     ...
+# )
+
+# ####################################################################################
+# # utility function
+
+# def get_default_image_ratio_from_width_alias(width_alias):
+#     # find width_alias and return ratio from DEFAULT_IMAGE_RATIOS
+#     return ratio
+
+# def generate_thumbnail_sizes(thumbnailer,width_alias,ratio):
+
+#     # http://easy-thumbnails.readthedocs.io/en/2.1/usage/#python
+#     thumbnail_options.update({'size': (size, size)})
+#     thumbnail_xs = thumbnailer.get_thumbnail(thumbnail_options)
+
+#     # thumbnail_dimensions = {
+#     #     {'thumbnail_xs': thumbnail_xs},
+#     #     {'thumbnail_xs_2x': thumbnail_xs_2x},
+#     #     {'thumbnail_sm': thumbnail_sm},
+#     #     {'thumbnail_sm_2x': thumbnail_sm_2x},
+#     #     {'thumbnail_lg': thumbnail_lg},
+#     #     {'thumbnail_lg_2x': thumbnail_lg_2x},
+#     # }
+#     return thumbnail_dimensions
+
+####################################################################################
+# templatetag
+
+# from easy_thumbnails.files import get_thumbnailer
+# from settings import THUMBNAIL_WIDTH_ALIAS
+
+# @register.inclusion_tag('templatetags/allink_image_2.html', takes_context=True)
+# def example_image_tag(context, width_alias=None, ratio=None, icon_disabled=False, bg_disabled=False, bg_color=None, bw=False, crop='smart'):
+
+#     # create thumbnailer instance of image object
+#     thumbnailer = get_thumbnailer(the_image)
+
+#     # thumbnail options
+#     thumbnail_options = {'crop': crop}
+#     if bw:
+#         thumbnail_options.update({'bw': True})
+
+#     # No "width_alias" according to context, if no "width_alias" is set
+#     if not width_alias:
+
+#         # Case 1. Content Plugin > Column?
+#         if column_plugin
+#             # Get ratio
+#             ratio = context.ratio
+#             # Determine "width_alias" depending on which COLUMN we're in.
+#             if column_plugin.template == 'col-1-1':
+#                 width_alias = '1-of-2'
+#                 # ...
+
+#         # Case 2. App Plugin -> Determine "width_alias" depending on number of GRID COLUMNS
+#         elif context['instance'].items_per_row:
+#             width_alias = '1-of-{}'.format(context['instance'].items_per_row) if context['instance'].items_per_row else '1-of-2'
+
+#     # At this stage, we have e.g. width_alias="1-of-2"
+
+#     # If no "ratio" is set, fall back to defaeult
+#     if not ratio:
+#         # get info according to "width_alias" in DEFAULT_IMAGE_RATIOS
+#         # not
+#         ratio = get_default_image_ratio_from_width_alias(width_alias)
+
+#     # And then.. Create thumbnail FOR EACH SIZE and store variables in CONTEXT so we can use in the TEMPLATE
+#     context.update(generate_thumbnail_sizes(thumbnailer,width_alias,ratio));
+
+#     return context
+
 ####################################################################################
 # Allink specific image
 
