@@ -5,7 +5,6 @@
 {% else %}
     {% block control_group %}
         <div class="form-group {% if field.errors %}has-error{% endif %}">
-
             {% block label %}
                 {% if not nolabel and field|fieldtype != 'CheckboxInput' and field|fieldtype != 'RadioSelect' %}
                     <label class="control-label {% if field.field.required %} required{% endif %}" for="{{ field.auto_id }}">
