@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import urllib.parse
 from django.conf import settings
 from django.core.urlresolvers import NoReverseMatch
 from django.core.exceptions import FieldDoesNotExist, FieldError
@@ -8,7 +9,7 @@ from django.db.models.signals import post_delete
 from django.dispatch import receiver
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _, override
-
+from django.utils.text import slugify
 from cms.utils.i18n import get_current_language, get_default_language
 from cms.models.pluginmodel import CMSPlugin
 
@@ -219,6 +220,7 @@ class AllinkBaseModel(AllinkMetaTagFieldsModel):
             for translation in self.translations.all():
                 trans, created = AllinkCategoryTransalation.objects.get_or_create(
                     master=cat,
+                    slug=slugify(self.title),
                     language_code=translation.language_code,
                 )
                 trans.name = getattr(translation, self.category_name_field)
@@ -231,6 +233,7 @@ class AllinkBaseModel(AllinkMetaTagFieldsModel):
             # and the source model isn't translatable
             trans, created = AllinkCategoryTransalation.objects.get_or_create(
                 master=cat,
+                slug=slugify(self.title),
                 language_code=settings.LANGUAGE_CODE,
             )
             trans.name = getattr(self, self.category_name_field)
@@ -598,7 +601,7 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
                                    id__in=self.get_distinct_values_of_field(fieldname)))
             # field is no foreignkey and no m2m
             else:
-                filters.extend((value[0], value[0]) for value in self.get_distinct_values_of_field(fieldname))
+                filters.extend((urllib.parse.quote_plus(value[0]), value[0]) for value in self.get_distinct_values_of_field(fieldname))
             filter_key = "%s-translations__%s" % (self.data_model._meta.model_name, fieldname) if is_translated else "%s-%s" % (self.data_model._meta.model_name, fieldname)
             options.update({filter_key: (dict(self.FILTER_FIELD_CHOICES)[fieldname]['verbose'], filters)})
         return options

@@ -7,31 +7,31 @@ class AllinkBaseModelQuerySet(TranslatableQuerySet):
     def active_entries(self):
         ''' entries which are active
         '''
-        return self.filter(is_active=True)
+        return self.translated().filter(is_active=True)
 
     def filter_by_categories(self, categories):
         ''' entries with categories
             in categories
         '''
-        return self.filter(categories__in=categories)
+        return self.translated().filter(categories__in=categories)
 
     def filter_by_category(self, category):
-        return self.filter(categories=category)
+        return self.translated().filter(categories=category)
 
     def latest(self):
-        return self.order_by('-created', 'id').distinct('created', 'id')
+        return self.translated().order_by('-created', 'id').distinct('created', 'id')
 
     def earliest(self):
-        return self.order_by('created', 'id').distinct('created', 'id')
+        return self.translated().order_by('created', 'id').distinct('created', 'id')
 
     def title_asc(self):
-        return self.order_by('translations__title', 'id').distinct('translations__title', 'id')
+        return self.translated().order_by('translations__title', 'id').distinct('translations__title', 'id')
 
     def title_desc(self):
-        return self.order_by('-translations__title', 'id').distinct('translations__title', 'id')
+        return self.translated().order_by('-translations__title', 'id').distinct('translations__title', 'id')
 
     def random(self):
-        return self.order_by('?').distinct()
+        return self.translated().order_by('?').distinct()
 
 
 class AllinkBaseModelManager(TranslatableManager):

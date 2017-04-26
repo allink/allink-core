@@ -139,23 +139,29 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
 
         return fieldsets
 
-    def get_render_template(self, context, instance, placeholder, file='content'):
+    def get_is_empty_result(self, context):
         if isinstance(context['object_list'], list):
-            queryset_not_empty = True if len(context['object_list']) > 0 else False
+            return False if len(context['object_list']) > 0 else True
         else:
-            queryset_not_empty = context['object_list'].exists()
+            return False if context['object_list'].exists() else True
 
-        if queryset_not_empty:
-            template = '{}/plugins/{}/{}.html'.format(self.data_model._meta.app_label, instance.template, file)
-        else:
-            template = '{}/plugins/{}/{}.html'.format(self.data_model._meta.app_label, instance.template, 'no_results')
+    def get_render_template(self, context, instance, placeholder, file='content'):
+        if self.get_is_empty_result(context) and file != '_no_results':
+            file = 'no_results'
+
+        template = '{}/plugins/{}/{}.html'.format(self.data_model._meta.app_label, instance.template, file)
+
+        # check if project specific template
         try:
             get_template(template)
         except TemplateDoesNotExist:
-            if queryset_not_empty:
+            try:
                 template = 'app_content/plugins/{}/{}.html'.format(instance.template, file)
-            else:
-                template = 'app_content/plugins/{}/{}.html'.format(instance.template, 'no_results')
+                get_template(template)
+            except TemplateDoesNotExist:
+                # we can't guess all possible custom templates
+                # so this is a fallback for all custom plugins
+                template = 'app_content/plugins/{}/{}.html'.format('grid_static', file)
         return template
 
     def get_queryset_by_category(self, instance, filters):
