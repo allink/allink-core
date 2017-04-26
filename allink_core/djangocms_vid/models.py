@@ -135,6 +135,11 @@ class AllinkVidFilePlugin(AllinkVidBasePlugin):
         blank=True,
         null=True,
     )
+    video_muted_enabled = models.BooleanField(
+        _(u'Muted'),
+        help_text=_(u'Caution: Autoplaying videos with audio is not recommended. Use wisely.'),
+        default=True
+    )
 
     def __str__(self):
         return self.video_file.name

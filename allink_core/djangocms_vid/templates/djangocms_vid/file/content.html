@@ -11,11 +11,11 @@
             id="video-{{ instance.id }}"
             class="the-video"
             playsinline
-            muted
+            {% if instance.video_muted_enabled %}muted{% endif %}
             {% if instance.auto_start_enabled %}autoplay{% endif %}
             loop
             poster="{{ placeholder_image.url }}">
-            <source data-src="{{ instance.video_file.url }}" type="video/mp4">
+            <source src="{{ instance.video_file.url }}" type="video/mp4">
         </video>
 
         <div class="video-controls">

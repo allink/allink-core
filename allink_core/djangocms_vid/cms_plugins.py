@@ -85,7 +85,8 @@ class CMSAllinkVidFilePlugin(CMSPluginBase):
                 'classes': ('collapse',),
                 'fields': (
                     'auto_start_enabled',
-                    'allow_fullscreen_enabled',
+                    'video_muted_enabled',
+                    # 'allow_fullscreen_enabled',
                 )
             }),
             (_('Advanced settings'), {
