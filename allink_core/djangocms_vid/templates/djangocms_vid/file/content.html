@@ -5,20 +5,22 @@
     {# create thumbnail #}
     {% thumbnail instance.video_poster_image 1500x9999 upscale=False as placeholder_image %}
 
-    <div
-        class="video-file-plugin video-{{ instance.id }}"
-        >
+    <div class="app-content-plugin video-file-plugin video-{{ instance.id }} {% if instance.auto_start_enabled %}autoplay-enabled{% endif %} on-pause">
 
         <video
             id="video-{{ instance.id }}"
             class="the-video"
             playsinline
             muted
-            autoplay
+            {% if instance.auto_start_enabled %}autoplay{% endif %}
             loop
             poster="{{ placeholder_image.url }}">
-            <source src="{{ instance.video_file.url }}" type="video/mp4">
+            <source data-src="{{ instance.video_file.url }}" type="video/mp4">
         </video>
+
+        <div class="video-controls">
+            <span></span>
+        </div>
 
     </div>
 {% endif %}

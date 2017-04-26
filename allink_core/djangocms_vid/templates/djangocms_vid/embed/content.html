@@ -1,7 +1,7 @@
 {% load thumbnail %}
 
 {% if instance.video_id %}
-    <div class="video-embed-plugin">
+    <div class="app-content-plugin video-embed-plugin">
         <div class="embed-container {% if instance.ratio %}ratio-{{instance.ratio}}{% endif %}">
             {% if instance.video_service == "youtube" %}
                 <iframe width="560" height="315" src="//www.youtube.com/embed/{{instance.video_id}}" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowfullscreen></iframe>

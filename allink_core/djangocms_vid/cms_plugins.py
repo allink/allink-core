@@ -14,6 +14,17 @@ class CMSAllinkVidEmbedPlugin(CMSPluginBase):
     module = _("allink")
     form = AllinkVidEmbedPluginForm
 
+    class Media:
+        js = (
+            'build/djangocms_custom_admin_scripts.js',
+        )
+        css = {
+            'all': (
+                'build/djangocms_custom_admin_style.css',
+
+            )
+        }
+
     def get_fieldsets(self, request, obj=None):
         fieldsets = [
             (None, {
@@ -50,6 +61,17 @@ class CMSAllinkVidFilePlugin(CMSPluginBase):
     name = _('Video File')
     module = _("allink")
     form = AllinkVidFilePluginForm
+
+    class Media:
+        js = (
+            'build/djangocms_custom_admin_scripts.js',
+        )
+        css = {
+            'all': (
+                'build/djangocms_custom_admin_style.css',
+
+            )
+        }
 
     def get_fieldsets(self, request, obj=None):
         fieldsets = [

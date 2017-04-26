@@ -10,3 +10,4 @@ recursive-include allink_core/djangocms_socialicon/templates *
 recursive-include allink_core/djangocms_button_link/templates *
 recursive-include allink_core/djangocms_group/templates *
 recursive-include allink_core/djangocms_instagram/templates *
+recursive-include allink_core/djangocms_vid/templates *
