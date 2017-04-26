@@ -9,7 +9,6 @@ from django.db.models.signals import post_delete
 from django.dispatch import receiver
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _, override
-from django.utils.text import slugify
 from cms.utils.i18n import get_current_language, get_default_language
 from cms.models.pluginmodel import CMSPlugin
 
@@ -219,11 +218,11 @@ class AllinkBaseModel(AllinkMetaTagFieldsModel):
         if hasattr(self, 'translations') and self.translations.exists():
             for translation in self.translations.all():
                 trans, created = AllinkCategoryTransalation.objects.get_or_create(
-                    master=cat,
-                    slug=slugify(self.title),
+                    master_id=cat.id,
                     language_code=translation.language_code,
                 )
                 trans.name = getattr(translation, self.category_name_field)
+                trans.slug = self.slug
                 trans.save()
                 # reinitialize cat, so the translation cache gets renewed
                 cat = trans.master
@@ -232,11 +231,11 @@ class AllinkBaseModel(AllinkMetaTagFieldsModel):
             # create a category translation with standard language if none is existing
             # and the source model isn't translatable
             trans, created = AllinkCategoryTransalation.objects.get_or_create(
-                master=cat,
-                slug=slugify(self.title),
+                master_id=cat.id,
                 language_code=settings.LANGUAGE_CODE,
             )
             trans.name = getattr(self, self.category_name_field)
+            trans.slug = self.slug
             trans.save()
             # reinitialize cat, so the translation cache gets renewed
             cat = trans.master
