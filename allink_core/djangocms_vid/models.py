@@ -139,23 +139,24 @@ class AllinkVidFilePlugin(AllinkVidBasePlugin):
     def __str__(self):
         return self.video_file.name
 
-    def get_video_dimensions(self):
-        import subprocess
-        import shlex
-        import json
+    # TODO not working yet on stage and production
+    # def get_video_dimensions(self):
+    #     import subprocess
+    #     import shlex
+    #     import json
+    #
+    #     cmd = "avprobe -show_streams -of json"
+    #     args = shlex.split(cmd)
+    #     args.append(self.video_file.file.path)
+    #     avprobeOutput = subprocess.check_output(args).decode('utf-8')
+    #     avprobeOutput = json.loads(avprobeOutput)
+    #
+    #     # find height and width
+    #     width = avprobeOutput['streams'][0]['width']
+    #     height = avprobeOutput['streams'][0]['height']
+    #
+    #     return width, height
 
-        cmd = "avprobe -show_streams -of json"
-        args = shlex.split(cmd)
-        args.append(self.video_file.file.path)
-        avprobeOutput = subprocess.check_output(args).decode('utf-8')
-        avprobeOutput = json.loads(avprobeOutput)
-
-        # find height and width
-        width = avprobeOutput['streams'][0]['width']
-        height = avprobeOutput['streams'][0]['height']
-
-        return width, height
-
-    def save(self, no_signals=False, *args, **kwargs):
-        self.video_file_width, self.video_file_height = self.get_video_dimensions()
-        super(AllinkVidFilePlugin, self).save(*args, **kwargs)
+    # def save(self, no_signals=False, *args, **kwargs):
+        # self.video_file_width, self.video_file_height = self.get_video_dimensions()
+        # super(AllinkVidFilePlugin, self).save(*args, **kwargs)
