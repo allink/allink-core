@@ -32,7 +32,9 @@ class AllinkCategoryForm(TranslatableModelForm, MoveNodeForm):
         super(AllinkCategoryForm, self).__init__(*args, **kwargs)
         # hide model_names when
         if self.instance and not self.instance.is_root():
-            self.fields['model_names'].widget = forms.HiddenInput()
+            self.fields['model_names'].widget = forms.MultipleHiddenInput()
+
+
 
 
 @admin.register(AllinkCategory)
