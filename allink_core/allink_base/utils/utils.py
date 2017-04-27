@@ -57,3 +57,14 @@ def get_height_from_ratio(width, ratio_w, ratio_h):
     Used to calculate thumbnail height from given width and ratio
     """
     return width * ratio_h / ratio_w
+
+
+def get_display(key, list):
+    """
+    returns key from list of tuples
+    """
+    d = dict(list)
+    try:
+        return d.get(key)
+    except:
+        return None
