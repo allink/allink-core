@@ -65,6 +65,6 @@ def get_display(key, list):
     """
     d = dict(list)
     try:
-        return d.get(key)
+        return d.get(int(key))
     except:
         return None
