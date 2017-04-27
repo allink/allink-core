@@ -166,7 +166,7 @@ class AllinkBaseCreateView(CreateView):
             return HttpResponseRedirect(self.get_success_url())
 
     def get_confirmation_template(self):
-        template = '{}/forms/confirmation.html'.format(self.item._meta.model_name)
+        template = '{}/forms/confirmation.html'.format(self.model._meta.app_label)
         try:
             get_template(template)
         except TemplateDoesNotExist:
