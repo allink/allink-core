@@ -110,3 +110,10 @@ class AllinkTranslatedAutoSlugifyMixin(TranslatedAutoSlugifyMixin):
                 setattr(self, self.slug_field_name, new_slug)
         # do not call direct superclass, it does the same (but less) again
         return super(TranslatedAutoSlugifyMixin, self).save(**kwargs)
+
+    # def save(self, **kwargs):
+    #     slug = self._get_existing_slug()
+    #     if not slug or self._slug_exists(slug):
+    #         slug = self.make_new_slug(slug=slug)
+    #         setattr(self, self.slug_field_name, slug)
+    #     return super(TranslatedAutoSlugifyMixin, self).save(**kwargs)
