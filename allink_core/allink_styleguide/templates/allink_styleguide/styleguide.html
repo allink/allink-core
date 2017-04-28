@@ -176,7 +176,7 @@
         <div class="container">
 
             <header class="section-heading">
-                <h1 class="heading">Forms</h1>
+                <h1 class="heading">Form (Default)</h1>
             </header>
 
             <div class="manage-spacings">
@@ -359,6 +359,58 @@
                                  </span>
                             </label>
                             <input class="form-control" id="url" name="url" type="text">
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <button class="btn btn-default" name="submit" type="submit">
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    {% comment %}
+        Form
+    {% endcomment %}
+
+    <div class="content-section styleguide-section inverted-colors has-bg-color project" style="background:#999;">
+        <div class="container">
+
+            <header class="section-heading">
+                <h1 class="heading">Form (Inverted Colors)</h1>
+            </header>
+
+            <div class="manage-spacings">
+                <div class="form-container">
+                    <form class="form-default validate-form" method="post" action="">
+                        <div class="form-group">
+                            <label class="control-label" for="group">
+                                 <span class="label-text">
+                                     {% trans "Button Group" %}
+                                 </span>
+                            </label>
+                            <div class="input-group">
+                                <input type="text" name="group" class="form-control" placeholder="Search for...">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button">Go!</button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="text">
+                                 <span class="label-text">
+                                     {% trans "Text" %}
+                                 </span>
+                                 <span class="required-symbol">
+                                     ({% trans "required" %})
+                                 </span>
+                            </label>
+                            <input class="form-control" id="text" name="text" type="text" placeholder="Placeholder Text" required>
                         </div>
                         <div class="form-group">
                             <div>
