@@ -214,34 +214,31 @@ class AllinkBaseModel(AllinkMetaTagFieldsModel):
         else:
             cat = self.auto_generated_category
 
-        # check if the model is translatable and has existing translations
+        from parler.utils.context import switch_language
+
+        # source model is translatable, so create all the appropriate translations
         if hasattr(self, 'translations') and self.translations.exists():
             for translation in self.translations.all():
-                trans, created = AllinkCategoryTransalation.objects.get_or_create(
-                    master_id=cat.id,
-                    language_code=translation.language_code,
-                )
-                trans.name = getattr(translation, self.category_name_field)
-                trans.slug = self.slug
-                trans.save()
-                # reinitialize cat, so the translation cache gets renewed
-                cat = trans.master
+                with switch_language(cat, translation.language_code):
+                    # we have to special case locations because we have a subtitle which matters
+                    if translation._meta.model_name == 'locationstranslation':
+                        cat.name = '{} {}'.format(getattr(translation, self.category_name_field), getattr(translation, 'subtitle'))
+                    else:
+                        cat.name = getattr(translation, self.category_name_field)
+                    # we also generates new slug no matter what
+                    cat.slug = ''
+                    cat.save()
 
+        # and the source model isn't translatable
         else:
-            # create a category translation with standard language if none is existing
-            # and the source model isn't translatable
-            trans, created = AllinkCategoryTransalation.objects.get_or_create(
-                master_id=cat.id,
-                language_code=settings.LANGUAGE_CODE,
-            )
-            trans.name = getattr(self, self.category_name_field)
-            trans.slug = self.slug
-            trans.save()
-            # reinitialize cat, so the translation cache gets renewed
-            cat = trans.master
-
-        # we need to save the category again, to make sure the slug is set correct
-        cat.save()
+            if self._meta.model_name == 'locations':
+                cat.name = '{} {}'.format(getattr(self, self.category_name_field),
+                                          getattr(self, 'subtitle'))
+            else:
+                cat.name = getattr(self, self.category_name_field)
+            # we also generates new slug no matter what
+            cat.slug = ''
+            cat.save()
         return cat
 
     def save(self, *args, **kwargs):

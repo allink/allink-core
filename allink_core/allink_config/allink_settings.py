@@ -59,7 +59,7 @@ ALLINK_MIGRATION_MODULES = {
     'testimonials': 'apps.allink_apps_migrations.testimonials',
     'work': 'apps.allink_apps_migrations.work',
     'members': 'apps.allink_apps_migrations.members',
-    'contacts': 'apps.allink_apps_migrations.contacts',
+    'contact': 'apps.allink_apps_migrations.contact',
     'config': 'apps.allink_apps_migrations.config',
 }
 

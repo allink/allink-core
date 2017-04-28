@@ -319,7 +319,7 @@ class AllinkSimpleRegistrationFieldsModel(TimeStampedModel):
         max_length=255
     )
     email = models.EmailField(
-        _(u'Email')
+        _(u'Email'),
     )
     message = models.TextField(
         _(u'Message'),

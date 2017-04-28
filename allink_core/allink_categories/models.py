@@ -86,7 +86,7 @@ class AllinkCategory(AllinkTranslatedAutoSlugifyMixin, TranslationHelperMixin,
                         'generated one.'),
             max_length=255,
         ),
-        meta={'unique_together': (('language_code', 'slug', ), )}
+        meta={'unique_together': [('language_code', 'slug')]},
     )
 
     class Meta:
