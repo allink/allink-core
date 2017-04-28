@@ -1,0 +1,124 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-28 16:02-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: allink_core_repo/allink_core/djangocms_image/cms_plugins.py:13
+#: allink_core_repo/allink_core/djangocms_image/models.py:41
+msgid "Image"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_image/cms_plugins.py:14
+msgid "allink"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_image/cms_plugins.py:37
+msgid "Link settings"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_image/cms_plugins.py:47
+msgid "Advanced settings"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_image/cms_plugins.py:57
+msgid "Wireframe settings"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_image/forms.py:25
+msgid "Special Links"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_image/forms.py:30
+#: allink_core_repo/allink_core/djangocms_image/models.py:34
+msgid "Template"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_image/forms.py:35
+#: allink_core_repo/allink_core/djangocms_image/models.py:54
+msgid "Ratio"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_image/forms.py:36
+msgid ""
+"This option overrides the default image ratio set for images in a colum of a "
+"content section."
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_image/forms.py:41
+#: allink_core_repo/allink_core/djangocms_image/models.py:60
+msgid "Set a predefined background color"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_image/forms.py:46
+msgid "Predifined css classes"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_image/forms.py:47
+msgid ""
+"Instructions: Single selection is made by clicking on an option. Multiple "
+"selections are achieved by pressing and holding down the Command-key (Mac) "
+"or Control-Key (Windows) <strong>and</strong> clicking the options you would "
+"like to apply."
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_image/models.py:35
+msgid "Choose a template."
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_image/models.py:47
+msgid "External image"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_image/models.py:50
+msgid ""
+"If provided, overrides the embedded image. Certain options such as cropping "
+"are not applicable to external images."
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_image/models.py:66
+msgid "Caption text"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_image/models.py:68
+msgid "Provide a description, attribution, copyright or other information."
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_image/models.py:71
+msgid "Attributes"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_image/models.py:77
+msgid "Width"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_image/models.py:80
+msgid ""
+"The image width as number in pixels. Example: \"720\" and not \"720px\"."
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_image/models.py:84
+msgid "Use original image"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_image/models.py:87
+msgid "Outputs the raw image without cropping."
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_image/models.py:134
+msgid "<file is missing>"
+msgstr ""

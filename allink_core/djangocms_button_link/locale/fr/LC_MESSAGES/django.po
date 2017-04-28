@@ -1,0 +1,122 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-28 16:02-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: allink_core_repo/allink_core/djangocms_button_link/cms_plugins.py:13
+msgid "Button/ Link Container"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_button_link/cms_plugins.py:14
+#: allink_core_repo/allink_core/djangocms_button_link/cms_plugins.py:54
+msgid "allink"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_button_link/cms_plugins.py:37
+#: allink_core_repo/allink_core/djangocms_button_link/cms_plugins.py:93
+msgid "Advanced settings"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_button_link/cms_plugins.py:53
+msgid "Button/ Link"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_button_link/cms_plugins.py:83
+msgid "Link settings"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_button_link/forms.py:22
+msgid "Predifined css classes"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_button_link/forms.py:23
+msgid ""
+"Instructions: Single selection is made by clicking on an option. Multiple "
+"selections are achieved by pressing and holding down the Command-key (Mac) "
+"or Control-Key (Windows) <strong>and</strong> clicking the options you would "
+"like to apply."
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_button_link/forms.py:48
+msgid "Special Links"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_button_link/model_fields.py:16
+#: allink_core_repo/allink_core/djangocms_button_link/models.py:77
+msgid "Type"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_button_link/model_fields.py:47
+#: allink_core_repo/allink_core/djangocms_button_link/models.py:81
+#: allink_core_repo/allink_core/djangocms_button_link/models.py:94
+msgid "Context"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_button_link/models.py:22
+msgid "Alignment horizontal desktop"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_button_link/models.py:25
+msgid ""
+"This option overrides the projects default alignment for desktop. (Usually "
+"\"left\")"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_button_link/models.py:30
+msgid "Alignment horizontal mobile"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_button_link/models.py:33
+msgid ""
+"This option overrides the projects default alignment for mobile. (Usually "
+"\"left\")"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_button_link/models.py:48
+msgid "{}"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_button_link/models.py:71
+msgid "Display name"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_button_link/models.py:86
+msgid "Size"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_button_link/models.py:89
+msgid "Block"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_button_link/models.py:101
+msgid "Icon left"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_button_link/models.py:104
+msgid "Icon right"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_button_link/templates/admin/djangocms_button_link/widgets/icon.html:8
+msgid ""
+"No Iconsets configured! Please configure at least on Iconset before using "
+"this widget."
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_button_link/templates/djangocms_button_link/item.html:43
+msgid "Member Area"
+msgstr ""
