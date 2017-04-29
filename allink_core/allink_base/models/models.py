@@ -614,7 +614,7 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
                     category_navigation.append(category)
         # auto category nav
         else:
-            if self.categories.all().count() > 0:
+            if self.categories.exists():
                 for category in self.categories.all():
                     if self.get_render_queryset_for_display(category).exists():
                         category_navigation.append(category)
@@ -653,21 +653,15 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
         """
 
         # apply filters from request
-        queryset = self.data_model.objects.filter(**filters)
+        queryset = self.data_model.objects.active().filter(**filters).prefetch_related('categories')
 
-        if self.categories.count() > 0 or category:
-            """
-             category selection
-            """
+        if self.categories.exists() or category:
             if category:
                 queryset = queryset.filter_by_category(category)
-                if self.categories_and.count() > 0:
-                    queryset = queryset.filter(categories=self.categories_and.all())
             else:
-                queryset = queryset.filter_by_categories(self.categories.all())
-                if self.categories_and.count() > 0:
-                    queryset = queryset.filter(categories=self.categories_and.all())
-            return self._apply_ordering_to_queryset_for_display(queryset)
-        else:
-            queryset = queryset.active_entries().distinct()
-            return self._apply_ordering_to_queryset_for_display(queryset)
+                queryset = queryset.filter_by_categories(categories=self.categories.all())
+
+            if self.categories_and.exists():
+                queryset = queryset.filter_by_categories(categories=self.categories_and.all())
+
+        return self._apply_ordering_to_queryset_for_display(queryset)
