@@ -78,6 +78,7 @@ django-htmlmin==0.10.0
 - BUTTON_LINK_PLUGIN_PROJECT_CSS_CLASSES introduced
 - All colors use now the colorfield with colorpicker widget
 - Mailchimp CMS plugin
+- locale folders in app directories
 
 ### FIXES
 

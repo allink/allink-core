@@ -1,0 +1,217 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-29 06:03-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: allink_core_repo/allink_core/djangocms_content/cms_plugins.py:15
+msgid "Content"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_content/cms_plugins.py:16
+#: allink_core_repo/allink_core/djangocms_content/cms_plugins.py:98
+msgid "allink"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_content/cms_plugins.py:36
+msgid "Display Options"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_content/cms_plugins.py:45
+msgid "Full width background image"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_content/cms_plugins.py:52
+msgid "Container background image"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_content/cms_plugins.py:58
+msgid "Video background (Important: Only works if all fields are set)"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_content/cms_plugins.py:67
+msgid "Advanced Options"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_content/cms_plugins.py:97
+msgid "Column"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_content/forms.py:22
+#: allink_core_repo/allink_core/djangocms_content/models.py:50
+msgid "Template"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_content/forms.py:27
+msgid "Background color"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_content/forms.py:32
+msgid "Predifined css classes"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_content/forms.py:33
+msgid ""
+"Instructions: Single selection is made by clicking on an option. Multiple "
+"selections are achieved by pressing and holding down the Command-key (Mac) "
+"or Control-Key (Windows) <strong>and</strong> clicking the options you would "
+"like to apply."
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_content/models.py:51
+msgid "Choose a template."
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_content/models.py:55
+msgid "Activate overlay styles"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_content/models.py:56
+msgid ""
+"If checked, the predefined overlay styles are applied (suitable when text is "
+"over an image/video)"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_content/models.py:60
+msgid "Activate \"full height\" mode"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_content/models.py:61
+msgid ""
+"If checked, the section will use the available height of the device's/"
+"browser's screen."
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_content/models.py:65
+msgid "Activate Parallax effect"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_content/models.py:66
+msgid "If checked, the parallax effect is enabled."
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_content/models.py:70
+msgid "Background-Image"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_content/models.py:71
+msgid "Dimensions TBD"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_content/models.py:79
+msgid "Source"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_content/models.py:80
+msgid ""
+"Recommended video settings:<br><br>Format: mp4<br>Codec: H.264<br>Target "
+"Bitrate: 2 (video loads quick and runs smooth)<br>Audio: Not recommended (no "
+"audio = smaller file size and less annoyed visitors)<br>Aspect ratio: "
+"TBD<br>File size: Dependent of video length. Generally speaking: Less is "
+"more."
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_content/models.py:87
+msgid "Video Start Image"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_content/models.py:89
+msgid ""
+"This image is displayed while the video is loading. Ideally the very first "
+"frame of the video is used, in order to make the transition as smooth as "
+"possible."
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_content/models.py:94
+msgid "Mobile Image"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_content/models.py:96
+msgid "The image being displayed on mobile devices. Dimensions TBD"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_content/models.py:101
+msgid "Mobile Image Alignment (horizontal)"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_content/models.py:102
+msgid ""
+"TBD Define which part of the image must be visible. Because we use the "
+"available space, there is a chance that a part (left and/or right) is not "
+"visible."
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_content/models.py:108
+msgid "ID"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_content/models.py:111
+msgid ""
+"ID of this content section which can be used for anchor reference from links."
+"<br>Note: Only letters, numbers and hyphen. No spaces or special chars."
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_content/models.py:164
+#, python-format
+msgid "Incorrect file type: %(value)s"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_content/models.py:197
+msgid "Title"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_content/models.py:203
+msgid "Order Mobile"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_content/models.py:204
+msgid ""
+"Some columns should be ordered differently on mobile devices when columns "
+"are stacked vertically. This option allows you to define the position of the "
+"this column.<br><br>Note: Columns ordering is ascending (lowest number "
+"displayed first)"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_content/models.py:209
+msgid "Alignment horizontal mobile"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_content/models.py:212
+msgid ""
+"This option overrides the projects default alignment for mobile. (Usually "
+"\"left\")"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_content/models.py:217
+msgid "Alignment horizontal desktop"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_content/models.py:220
+msgid ""
+"This option overrides the projects default alignment for desktop. (Usually "
+"\"left\")"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_content/models.py:225
+msgid "Alignment vertical desktop"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_content/models.py:228
+msgid ""
+"This option overrides the projects default alignment for desktop. (Usually "
+"\"top\")"
+msgstr ""

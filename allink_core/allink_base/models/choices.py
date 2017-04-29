@@ -15,10 +15,10 @@ BLANK_CHOICE = (('', '---------'),)
 MALE = 1
 FEMALE = 2
 
-GENDER_CHOICES = {
+GENDER_CHOICES = (
     (MALE, _(u'Male')),
-    (FEMALE, _(u'Female'))
-}
+    (FEMALE, _(u'Female')),
+)
 
 ####################################################################################
 
@@ -27,10 +27,10 @@ GENDER_CHOICES = {
 MR = 1
 MRS = 2
 
-SALUTATION_CHOICES = {
+SALUTATION_CHOICES = (
     (MR, _(u'Mr.')),
-    (MRS, _(u'Mrs.'))
-}
+    (MRS, _(u'Mrs.')),
+)
 
 
 ####################################################################################
