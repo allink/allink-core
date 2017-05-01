@@ -42,6 +42,7 @@ Each release is divided into the following main categories:
 
     KEEP_COMMENTS_ON_MINIFYING = True
     ```
+- Fix the SENTRY_DSN (change 'DNS' to 'DSN' !!) -> also change this in environment variables
 
 ###### TEMPLATES
 
