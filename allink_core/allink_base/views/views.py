@@ -20,6 +20,7 @@ from parler.views import TranslatableSlugMixin
 
 from allink_core.allink_base.models import AllinkBaseAppContentPlugin
 from allink_core.allink_categories.models import AllinkCategory
+from allink_core.allink_base.utils import get_is_empty_result
 
 
 class AllinkBasePluginLoadMoreView(ListView):
@@ -52,22 +53,16 @@ class AllinkBasePluginLoadMoreView(ListView):
         else:
             return None
 
-    def get_template_names(self, file='_content'):
-        queryset_not_empty = self.object_list.exists()
-        opts = self.plugin_model._meta
-        if queryset_not_empty:
-            template = '{}/plugins/{}/{}.html'.format(opts.app_label, self.plugin.template, file)
+    def get_is_empty_result(self):
+        if isinstance(self.object_list, list):
+            return False if len(self.object_list) > 0 else True
         else:
-            template = '{}/plugins/{}/{}.html'.format(opts.app_label, self.plugin.template, '_no_results')
-        try:
-            get_template(template)
-        # TODO: specify Error class
-        except TemplateDoesNotExist:
-            if queryset_not_empty:
-                template = 'app_content/plugins/{}/{}.html'.format(self.plugin.template, file)
-            else:
-                template = 'app_content/plugins/{}/{}.html'.format(self.plugin.template, '_no_results')
-        return [template]
+            return False if self.object_list.exists() else True
+
+    def get_template_names(self, context, file='_content'):
+        if get_is_empty_result(context['object_list']) and file != '_no_results':
+            file = 'no_results'
+        return [self.plugin.get_correct_template(file)]
 
     def get(self, request, *args, **kwargs):
         if 'plugin_id' in request.GET.keys():
@@ -98,8 +93,9 @@ class AllinkBasePluginLoadMoreView(ListView):
         context = self.get_context_data()
         context.update({'request': request})
 
-        context.update({'content_template': self.get_template_names(file='_content')[0]})
-        context.update({'item_template': self.get_template_names(file='item')[0]})
+        context.update({'content_template': self.get_template_names(context, file='_content')[0]})
+        context.update({'item_template': self.get_template_names(context, file='item')[0]})
+        context['no_results_template'] = self.get_template_names(context, file='_no_results')[0]
 
         if 'api_request' in request.GET.keys():
             return self.json_response(context)
@@ -114,14 +110,14 @@ class AllinkBasePluginLoadMoreView(ListView):
                 context.update({'appended': True})
         json_context = {}
         # <cms-plugin class="cms-plugin-text-node cms-plugin cms-plugin-blog-events-title-16 cms-render-model">Infoabend Bildungsgang Farbgestaltung am Bau</cms-plugin>
-        json_context['rendered_content'] = render_to_string(self.get_template_names()[0], context=context, request=context['request'])
+        json_context['rendered_content'] = render_to_string(self.get_template_names(context)[0], context=context, request=context['request'])
         if self.plugin.paginated_by > 0 and context['page_obj'].has_next():  # no need to create next_page_url when no pagination should be displayed
             get_params = '&'.join(['%s=%s' % (k, v) for k, v in self.request.GET.items()])
             json_context['next_page_url'] = reverse('{}:more'.format(self.model._meta.model_name), kwargs={'page': context['page_obj'].next_page_number()}) + '?api_request=1&plugin_id={}&{}'.format(self.plugin.id, get_params)
             json_context['next_page_url'] = json_context['next_page_url'] + '&category={}'.format(self.category_id) if hasattr(self, 'category_id') else json_context['next_page_url']
         else:
             json_context['next_page_url'] = None
-        return HttpResponse(content=json.dumps(json_context), content_type='application/json', status=200 if self.object_list.exists() else 206)
+        return HttpResponse(content=json.dumps(json_context), content_type='application/json', status=200 if self.get_is_empty_result() else 206)
 
 
 class AllinkBaseDetailView(TranslatableSlugMixin, DetailView):

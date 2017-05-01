@@ -68,3 +68,13 @@ def get_display(key, list):
         return d.get(int(key))
     except:
         return None
+
+
+def get_is_empty_result(object_list):
+    """
+    checks if a object_list (either a queryset or a list) is empty 
+    """
+    if isinstance(object_list, list):
+        return False if len(object_list) > 0 else True
+    else:
+        return False if object_list.exists() else True

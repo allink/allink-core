@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import urllib.parse
 from django.conf import settings
+from django.template.loader import get_template
+from django.template import TemplateDoesNotExist
 from django.core.urlresolvers import NoReverseMatch
 from django.core.exceptions import FieldDoesNotExist, FieldError
 from django.contrib.postgres.fields import ArrayField
@@ -57,9 +59,6 @@ class AllinkBaseModel(AllinkMetaTagFieldsModel):
     """
      An abstract base class model for every standard allink app
 
-    """
-
-    """
      translateable fields defined in child model because parler can't handle translation override in abstract models
           -> Translated Fields have to be specified in the child model
 
@@ -545,6 +544,23 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
 
     def get_model_name(self):
         return self.data_model._meta.model_name
+
+    def get_correct_template(self, file='content'):
+
+        template = '{}/plugins/{}/{}.html'.format(self.data_model._meta.app_label, self.template, file)
+
+        # check if project specific template
+        try:
+            get_template(template)
+        except TemplateDoesNotExist:
+            try:
+                template = 'app_content/plugins/{}/{}.html'.format(self.template, file)
+                get_template(template)
+            except TemplateDoesNotExist:
+                # we can't guess all possible custom templates
+                # so this is a fallback for all custom plugins
+                template = 'app_content/plugins/{}/{}.html'.format('grid_static', file)
+        return template
 
     def get_field_info(self, fieldname):
         """

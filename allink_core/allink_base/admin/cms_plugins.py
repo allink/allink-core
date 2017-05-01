@@ -1,15 +1,14 @@
 # -*- coding: utf-8 -*-
 import re
-
-from django.template.loader import get_template
 from django.utils.translation import ugettext_lazy as _
 from django.core.paginator import Paginator
 from django.core.urlresolvers import reverse
-from django.template import TemplateDoesNotExist
+
 from cms.plugin_base import CMSPluginBase
 
 from allink_core.allink_base.models import AllinkBaseAppContentPlugin
 from allink_core.allink_base.admin import AllinkBaseAppContentPluginForm
+from allink_core.allink_base.utils import get_is_empty_result
 
 
 class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
@@ -139,30 +138,11 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
 
         return fieldsets
 
-    def get_is_empty_result(self, context):
-        if isinstance(context['object_list'], list):
-            return False if len(context['object_list']) > 0 else True
-        else:
-            return False if context['object_list'].exists() else True
-
     def get_render_template(self, context, instance, placeholder, file='content'):
-        if self.get_is_empty_result(context) and file != '_no_results':
+        if get_is_empty_result(context['object_list']) and file != '_no_results':
             file = 'no_results'
 
-        template = '{}/plugins/{}/{}.html'.format(self.data_model._meta.app_label, instance.template, file)
-
-        # check if project specific template
-        try:
-            get_template(template)
-        except TemplateDoesNotExist:
-            try:
-                template = 'app_content/plugins/{}/{}.html'.format(instance.template, file)
-                get_template(template)
-            except TemplateDoesNotExist:
-                # we can't guess all possible custom templates
-                # so this is a fallback for all custom plugins
-                template = 'app_content/plugins/{}/{}.html'.format('grid_static', file)
-        return template
+        return instance.get_correct_template(file)
 
     def get_queryset_by_category(self, instance, filters):
         # manual entries
