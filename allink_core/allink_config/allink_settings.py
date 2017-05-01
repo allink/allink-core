@@ -7,7 +7,6 @@
 
 ALLINK_INSTALLED_APPS = [
     # apps
-    'raven.contrib.django.raven_compat',
     'allauth',
     'allauth.account',
     'webpack_loader',
