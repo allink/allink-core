@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-29 06:03-0500\n"
+"POT-Creation-Date: 2017-05-02 02:22-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -61,7 +61,7 @@ msgstr ""
 
 #: allink_core_repo/allink_core/allink_mailchimp/templates/allink_mailchimp/confirmation.html:4
 msgid "Thanks for your registration."
-msgstr ""
+msgstr "Merci pour votre inscription."
 
 #: allink_core_repo/allink_core/allink_mailchimp/templates/allink_mailchimp/plugins/signup_form.html:12
 #: allink_core_repo/allink_core/allink_mailchimp/templates/allink_mailchimp/plugins/signup_form_advanced_base.html:29

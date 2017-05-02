@@ -168,7 +168,7 @@ class AllinkContentPlugin(AllinkBasePlugin):
     @property
     def css_classes(self):
         css_classes = self.base_classes
-
+        css_classes.append('first') if self.position == 0 else None
         css_classes.append('inner-container-has-bg-image') if self.bg_image_inner_container else None
         # video is stronger than the parallax image
         css_classes.append('parallax-enabled') if self.bg_image_outer_container and self.parallax_enabled and not self.video_file else None

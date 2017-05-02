@@ -74,7 +74,13 @@ def get_is_empty_result(object_list):
     """
     checks if a object_list (either a queryset or a list) is empty 
     """
-    if isinstance(object_list, list):
-        return False if len(object_list) > 0 else True
-    else:
-        return False if object_list.exists() else True
+    return False if object_list.exists() else True
+
+
+def replace_line_breaks(string):
+    """
+    replaces 
+    '\r\n' and '\n\r' and '\r' and '\n' and with '<br />'
+    """
+    r = '<br />'
+    return string.replace('\r\n', r).replace('\n\r', r).replace('\r', r).replace('\n', r)

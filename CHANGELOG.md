@@ -41,8 +41,26 @@ Each release is divided into the following main categories:
     # =HTML Minifier
 
     KEEP_COMMENTS_ON_MINIFYING = True
+
     ```
 - Fix the SENTRY_DSN (change 'DNS' to 'DSN' !!) -> also change this in environment variables
+- LOCALE_PATHS introduced
+    ```python
+    LOCALE_PATHS = ALLINK_LOCALE_PATHS
+
+    ```
+- refactoring TEMPLATES settings:
+    ```python
+    ####################################################################################
+
+    context_processors = TEMPLATES[0].get('OPTIONS', {}).get('context_processors', [])
+    context_processors.extend([
+        'django.template.context_processors.request',
+        'allink_core.allink_config.context_processors.allink_config',
+        'allink_apps.config.context_processors.config',
+    ])
+
+    ```
 
 ###### TEMPLATES
 

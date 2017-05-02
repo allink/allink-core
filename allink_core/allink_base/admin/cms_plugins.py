@@ -162,7 +162,7 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
         if instance.manual_ordering == AllinkBaseAppContentPlugin.RANDOM:
             objects_list, path = context['request'].session.get("random_plugin_queryset_%s" % instance.id, ([], None))
             if (objects_list and path == context['request'].path) or not objects_list:
-                objects_list = list(self.get_queryset_by_category(instance, filters))
+                objects_list = self.get_queryset_by_category(instance, filters)
                 context['request'].session["random_plugin_queryset_%s" % instance.id] = (objects_list, context['request'].path)
         # not random ordering
         else:

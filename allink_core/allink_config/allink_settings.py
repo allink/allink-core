@@ -122,3 +122,20 @@ ALLINK_MIDDLEWARE_CLASSES = [
     'lockdown.middleware.LockdownMiddleware',
     'allink_core.allink_legacy_redirect.middleware.AllinkLegacyRedirectMiddleware',
 ]
+
+####################################################################################
+
+# Locale
+
+ALLINK_LOCALE_PATHS = [
+    '/app/locale',
+    # apps
+    '/app/allink_apps/blog/locale',
+    '/app/allink_apps/config/locale',
+    '/app/allink_apps/contact/locale',
+    '/app/allink_apps/locations/locale',
+    '/app/allink_apps/members/locale',
+    '/app/allink_apps/people/locale',
+    '/app/allink_apps/testimonials/locale',
+    '/app/allink_apps/work/locale',
+]

@@ -7,6 +7,7 @@ from django.core.urlresolvers import NoReverseMatch
 from django.core.exceptions import FieldDoesNotExist, FieldError
 from django.contrib.postgres.fields import ArrayField
 from django.db import models
+from django.db.models import Q
 from django.db.models.signals import post_delete
 from django.dispatch import receiver
 from django.utils.encoding import python_2_unicode_compatible
@@ -637,7 +638,7 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
             # auto category nav, if no categories are specified
             else:
                 from allink_core.allink_categories.models import AllinkCategory
-                categories = self.get_render_queryset_for_display().filter(~models.Q(categories=None)).values_list('categories')
+                categories = self.get_render_queryset_for_display().filter(~Q(categories=None)).values_list('categories')
                 category_navigation = list(AllinkCategory.objects.filter(id__in=categories).distinct())
         return category_navigation
 

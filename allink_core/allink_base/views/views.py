@@ -53,12 +53,6 @@ class AllinkBasePluginLoadMoreView(ListView):
         else:
             return None
 
-    def get_is_empty_result(self):
-        if isinstance(self.object_list, list):
-            return False if len(self.object_list) > 0 else True
-        else:
-            return False if self.object_list.exists() else True
-
     def get_template_names(self, context, file='_content'):
         if get_is_empty_result(context['object_list']) and file != '_no_results':
             file = 'no_results'
@@ -117,7 +111,7 @@ class AllinkBasePluginLoadMoreView(ListView):
             json_context['next_page_url'] = json_context['next_page_url'] + '&category={}'.format(self.category_id) if hasattr(self, 'category_id') else json_context['next_page_url']
         else:
             json_context['next_page_url'] = None
-        return HttpResponse(content=json.dumps(json_context), content_type='application/json', status=200 if self.get_is_empty_result() else 206)
+        return HttpResponse(content=json.dumps(json_context), content_type='application/json', status=200 if get_is_empty_result(self.object_list) else 206)
 
 
 class AllinkBaseDetailView(TranslatableSlugMixin, DetailView):
