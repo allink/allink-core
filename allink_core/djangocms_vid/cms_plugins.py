@@ -86,6 +86,7 @@ class CMSAllinkVidFilePlugin(CMSPluginBase):
                 'fields': (
                     'auto_start_enabled',
                     'video_muted_enabled',
+                    'poster_only_on_mobile',
                     # 'allow_fullscreen_enabled',
                 )
             }),
