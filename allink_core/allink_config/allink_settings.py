@@ -120,8 +120,7 @@ CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [
 
 ALLINK_MIDDLEWARE_CLASSES = [
     'lockdown.middleware.LockdownMiddleware',
-    'allink_core.allink_base.utils.middleware.AllinkUrlRedirectMiddleware',
-    'allink_core.allink_legacy_redirect.middleware.AllinkLegacyRedirectMiddleware',
+    # 'allink_core.allink_legacy_redirect.middleware.AllinkLegacyRedirectMiddleware',
 ]
 
 ####################################################################################

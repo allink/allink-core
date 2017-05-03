@@ -1,0 +1,47 @@
+{% load thumbnail %}
+
+<picture id="picture-{{ image.id }}" class="lazyloader {% if icon_disabled %}icon-disabled{% endif %} {% if bg_disabled %}bg-disabled{% endif %} {% if bg_color and bg_color != 0 %}project-color-{{bg_color}}{% endif %}">
+
+    {# end render figure/figcaption #}
+
+    <!--[if IE 9]><video style="display: none;"><![endif]-->
+
+    {# XL #}
+    <source
+        data-srcset="{{thumbnail_xl.url}}, {{thumbnail_xl_2x.url}} 2x"
+        media="(min-width:1200px)"
+        >
+
+    {# SM #}
+    <source
+        data-srcset="{{thumbnail_sm.url}}, {{thumbnail_sm_2x.url}} 2x"
+        media="(min-width:576px)"
+        >
+
+    <!--[if IE 9]></video><![endif]-->
+
+    {# XS #}
+    <img
+        data-srcset="{{thumbnail_xs.url}}, {{thumbnail_xs_2x.url}} 2x"
+        alt="{{ object.title }}"
+        class="lazyload"
+    >
+
+    <style>
+        #picture-{{ image.id }} {
+            padding-bottom: {{ ratio_percent_xs }};
+        }
+        @media (min-width:576px) {
+            #picture-{{ image.id }} {
+                padding-bottom: {{ ratio_percent_sm }};
+            }
+        }
+        @media (min-width:1200px) {
+            #picture-{{ image.id }} {
+                padding-bottom: {{ ratio_percent_xl }};
+            }
+        }
+
+    </style>
+
+</picture>
