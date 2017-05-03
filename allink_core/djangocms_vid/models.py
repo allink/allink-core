@@ -25,10 +25,6 @@ class AllinkVidBasePlugin(CMSPlugin):
         _(u'Autostart'),
         default=True
     )
-    allow_fullscreen_enabled = models.BooleanField(
-        _(u'Allow fullscreen'),
-        default=False
-    )
 
     # additional
     attributes = AttributesField(
@@ -46,22 +42,10 @@ class AllinkVidBasePlugin(CMSPlugin):
         null=True
     )
 
-    video_poster_image = FilerImageField(
-        verbose_name=_(u'Video Start Image'),
-        related_name='%(app_label)s_%(class)s_video_poster_image',
-        help_text=_(
-            u'This image is displayed while the video is loading. Ideally the very first frame of the video is used, in order to make the transition as smooth as possible.'),
-        blank=True,
-        null=True
-    )
-
     cmsplugin_ptr = CMSPluginField()
 
     def __str__(self):
         return self.video_id or self.video_service
-
-    def copy_relations(self, oldinstance):
-        self.video_poster_image = oldinstance.video_poster_image
 
     @property
     def base_classes(self):
@@ -86,11 +70,10 @@ class AllinkVidEmbedPlugin(AllinkVidBasePlugin):
     class Meta:
         verbose_name = _('Allink Video Embed')
 
-
     video_id = models.CharField(
         verbose_name=_(u'Video ID'),
         max_length=255,
-        help_text=_(u'Only provide the ID. The correct url will be automatically generated.'),
+        help_text=_(u'Only provide the ID. The correct URL will automatically be generated.<br><br>YouTube: https://www.youtube.com/watch?v=12345678 (the ID is <strong>12345678</strong>)<br>Vimeo: https://vimeo.com/12345678 (the ID is <strong>12345678</strong>)'),
     )
     video_service = models.CharField(
         _(u'Video Service'),
@@ -102,6 +85,10 @@ class AllinkVidEmbedPlugin(AllinkVidBasePlugin):
         max_length=50,
         blank=True,
         null=True
+    )
+    allow_fullscreen_enabled = models.BooleanField(
+        _(u'Allow fullscreen'),
+        default=True
     )
 
     def __str__(self):
@@ -125,6 +112,13 @@ class AllinkVidFilePlugin(AllinkVidBasePlugin):
             null=True,
             related_name='%(app_label)s_%(class)s_video_file',
     )
+    video_poster_image = FilerImageField(
+        verbose_name=_(u'Video Start Image'),
+        related_name='%(app_label)s_%(class)s_video_poster_image',
+        help_text=_(
+            u'This image is displayed while the video is loading. Ideally the very first frame of the video is used, in order to make the transition as smooth as possible.'),
+        null=True
+    )
     video_file_width = models.IntegerField(
         _(u'Video width'),
         blank=True,
@@ -140,9 +134,21 @@ class AllinkVidFilePlugin(AllinkVidBasePlugin):
         help_text=_(u'Caution: Autoplaying videos with audio is not recommended. Use wisely.'),
         default=True
     )
+    poster_only_on_mobile = models.BooleanField(
+        _(u'Image Only (Mobile)'),
+        help_text=_(u'Disable video on mobile devices and only show the start image without video control.'),
+        default=True
+    )
+    allow_fullscreen_enabled = models.BooleanField(
+        _(u'Allow fullscreen'),
+        default=False
+    )
 
     def __str__(self):
         return self.video_file.name
+
+    def copy_relations(self, oldinstance):
+        self.video_poster_image = oldinstance.video_poster_image
 
     # TODO not working yet on stage and production
     # def get_video_dimensions(self):
