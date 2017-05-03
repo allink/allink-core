@@ -33,7 +33,8 @@ class AllinkUrlRedirectMiddleware:
     """
     def process_request(self, request):
         host = request.META['HTTP_HOST'] + request.META['PATH_INFO']
-        for url_pattern, redirect_url in settings.URL_REDIRECTS:
-            regex = re.compile(url_pattern)
-            if regex.match(host):
-                return HttpResponsePermanentRedirect(redirect_url)
+        if hasattr(settings, 'URL_REDIRECTS'):
+            for url_pattern, redirect_url in settings.URL_REDIRECTS:
+                regex = re.compile(url_pattern)
+                if regex.match(host):
+                    return HttpResponsePermanentRedirect(redirect_url)
