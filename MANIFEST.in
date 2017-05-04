@@ -11,3 +11,31 @@ recursive-include allink_core/djangocms_button_link/templates *
 recursive-include allink_core/djangocms_group/templates *
 recursive-include allink_core/djangocms_instagram/templates *
 recursive-include allink_core/djangocms_vid/templates *
+
+recursive-include allink_core/allink_base/locale *
+recursive-include allink_core/allink_styleguide/locale *
+recursive-include allink_core/allink_mailchimp/locale *
+recursive-include allink_core/allink_terms/locale *
+recursive-include allink_core/djangocms_content/locale *
+recursive-include allink_core/djangocms_image/locale *
+recursive-include allink_core/djangocms_gallery/locale *
+recursive-include allink_core/djangocms_socialicon/locale *
+recursive-include allink_core/djangocms_button_link/locale *
+recursive-include allink_core/djangocms_group/locale *
+recursive-include allink_core/djangocms_instagram/locale *
+recursive-include allink_core/djangocms_vid/locale *
+
+recursive-include allink_core/allink_base/migrations *
+recursive-include allink_core/allink_styleguide/migrations *
+recursive-include allink_core/allink_mailchimp/migrations *
+recursive-include allink_core/allink_terms/migrations *
+recursive-include allink_core/djangocms_content/migrations *
+recursive-include allink_core/djangocms_image/migrations *
+recursive-include allink_core/djangocms_gallery/migrations *
+recursive-include allink_core/djangocms_socialicon/migrations *
+recursive-include allink_core/djangocms_button_link/migrations *
+recursive-include allink_core/djangocms_group/migrations *
+recursive-include allink_core/djangocms_instagram/migrations *
+recursive-include allink_core/djangocms_vid/migrations *
+
+recursive-exclude * *.pyc
