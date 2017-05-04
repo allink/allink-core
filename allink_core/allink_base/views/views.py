@@ -20,7 +20,6 @@ from parler.views import TranslatableSlugMixin
 
 from allink_core.allink_base.models import AllinkBaseAppContentPlugin
 from allink_core.allink_categories.models import AllinkCategory
-from allink_core.allink_base.utils import get_is_empty_result
 
 
 class AllinkBasePluginLoadMoreView(ListView):
@@ -54,7 +53,7 @@ class AllinkBasePluginLoadMoreView(ListView):
             return None
 
     def get_template_names(self, context, file='_content'):
-        if get_is_empty_result(context['object_list']) and file != '_no_results':
+        if not context['object_list'] and file != '_no_results':
             file = 'no_results'
         return [self.plugin.get_correct_template(file)]
 
@@ -111,7 +110,7 @@ class AllinkBasePluginLoadMoreView(ListView):
             json_context['next_page_url'] = json_context['next_page_url'] + '&category={}'.format(self.category_id) if hasattr(self, 'category_id') else json_context['next_page_url']
         else:
             json_context['next_page_url'] = None
-        return HttpResponse(content=json.dumps(json_context), content_type='application/json', status=200 if get_is_empty_result(self.object_list) else 206)
+        return HttpResponse(content=json.dumps(json_context), content_type='application/json', status=200 if self.object_list else 206)
 
 
 class AllinkBaseDetailView(TranslatableSlugMixin, DetailView):

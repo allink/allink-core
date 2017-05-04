@@ -8,7 +8,6 @@ from cms.plugin_base import CMSPluginBase
 
 from allink_core.allink_base.models import AllinkBaseAppContentPlugin
 from allink_core.allink_base.admin import AllinkBaseAppContentPluginForm
-from allink_core.allink_base.utils import get_is_empty_result
 
 
 class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
@@ -139,7 +138,7 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
         return fieldsets
 
     def get_render_template(self, context, instance, placeholder, file='content'):
-        if get_is_empty_result(context['object_list']) and file != '_no_results':
+        if not context['object_list'] and file != '_no_results':
             file = 'no_results'
 
         return instance.get_correct_template(file)
