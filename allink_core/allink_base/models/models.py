@@ -106,7 +106,7 @@ class AllinkBaseModel(AllinkMetaTagFieldsModel):
 
     @classmethod
     def get_published(cls):
-        return cls.objects.filter(is_active=True)
+        return cls.objects.active()
 
     @classmethod
     def get_next(cls, instance):
@@ -200,7 +200,6 @@ class AllinkBaseModel(AllinkMetaTagFieldsModel):
         """
 
         # getting translation class
-        AllinkCategoryTransalation = AllinkCategory.translations.related.related_model
         if new:
             # all categories generated from one model, should be in the same root category
             # if not existing, this root needs to be created too
