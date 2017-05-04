@@ -12,7 +12,7 @@ config = MailChimpConfig()
 
 
 def check_response_status(response):
-    client = Client(settings.RAVEN_CONFIG.get('dns'))
+    client = Client(settings.RAVEN_CONFIG.get('dsn'))
     try:
         response.raise_for_status()
         return response.json()

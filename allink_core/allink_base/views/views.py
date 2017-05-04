@@ -150,7 +150,7 @@ class AllinkBaseCreateView(CreateView):
             # TODO Handel error correctly
             except:
                 # sentry is not configured on localhost
-                if not settings.RAVEN_CONFIG.get('dns'):
+                if not settings.RAVEN_CONFIG.get('dsn'):
                     raise
                 form.add_error(None, _(u'Something went wrong with your subscription. Please try again later.'))
                 return self.render_to_response(self.get_context_data(form=form), status=206)
