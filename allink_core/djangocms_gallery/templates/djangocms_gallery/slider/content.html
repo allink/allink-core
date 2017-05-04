@@ -1,24 +1,26 @@
 {% load cms_tags staticfiles sekizai_tags i18n thumbnail %}
 
-<div class="swiper-container swiper-default swiper-gallery-plugin">
+<div class="app-content-plugin gallery-plugin">
+    <div class="swiper-container swiper-default swiper-gallery-plugin">
 
-    <div class="swiper-wrapper">
-        {% for plugin in instance.child_plugin_instances %}
-            {% render_plugin plugin %}
-        {% endfor %}
+        <div class="swiper-wrapper">
+            {% for plugin in instance.child_plugin_instances %}
+                {% render_plugin plugin %}
+            {% endfor %}
+        </div>
+
+        <div class="swiper-pagination"></div>
+
+        <a href="#" class="swiper-button-prev swiper-button" data-softpage-disabled>
+            <i class="sr-only" lang="en">
+                {% trans "Previous Slide" %}
+            </i>
+        </a>
+        <a href="#" class="swiper-button-next swiper-button" data-softpage-disabled>
+            <i class="sr-only" lang="en">
+                {% trans "Next Slide" %}
+            </i>
+        </a>
+
     </div>
-
-    <div class="swiper-pagination"></div>
-
-    <a href="#" class="swiper-button-prev swiper-button" data-softpage-disabled>
-        <i class="sr-only" lang="en">
-            {% trans "Previous Slide" %}
-        </i>
-    </a>
-    <a href="#" class="swiper-button-next swiper-button" data-softpage-disabled>
-        <i class="sr-only" lang="en">
-            {% trans "Next Slide" %}
-        </i>
-    </a>
-
 </div>
