@@ -2,10 +2,6 @@
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
-from cms.extensions import TitleExtension
-from cms.extensions.extension_pool import extension_pool
-from cms.plugin_pool import plugin_pool
-from djangocms_file.cms_plugins import FilePlugin, FolderPlugin
 
 from filer.fields.image import FilerImageField
 from solo.models import SingletonModel
@@ -209,6 +205,23 @@ class AllinkConfig(SingletonModel):
         verbose_name = _(u'Allink Configuration')
 
 
+### TODO - temp solution to disable video plugin
+
+from cms.extensions import TitleExtension
+from cms.extensions.extension_pool import extension_pool
+
+from cms.plugin_pool import plugin_pool
+from djangocms_file.cms_plugins import FilePlugin, FolderPlugin
+from djangocms_picture.cms_plugins import PicturePlugin
+
+plugin_pool.unregister_plugin(PicturePlugin)
+
+# Unregister existing Plugins
+
+plugin_pool.unregister_plugin(FilePlugin)
+plugin_pool.unregister_plugin(FolderPlugin)
+
+
 # Page Extensions
 class AllinkMetaTagExtension(AllinkMetaTagFieldsModel, TitleExtension):
     pass
@@ -216,7 +229,3 @@ class AllinkMetaTagExtension(AllinkMetaTagFieldsModel, TitleExtension):
 
 extension_pool.register(AllinkMetaTagExtension)
 
-# Unregister existing Plugins
-
-plugin_pool.unregister_plugin(FilePlugin)
-plugin_pool.unregister_plugin(FolderPlugin)
