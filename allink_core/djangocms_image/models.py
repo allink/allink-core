@@ -9,7 +9,6 @@ from djangocms_attributes_field.fields import AttributesField
 from cms.models.pluginmodel import CMSPlugin
 from filer.fields.image import FilerImageField
 
-from allink_core.allink_base.models.choices import RATIO_CHOICES
 from allink_core.allink_base.utils import get_additional_templates
 from allink_core.allink_base.utils.utils import get_project_color_choices
 from allink_core.allink_base.models.reusable_fields import AllinkLinkFieldsModel

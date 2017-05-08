@@ -106,7 +106,7 @@ class AllinkBaseModel(AllinkMetaTagFieldsModel):
 
     @classmethod
     def get_published(cls):
-        return cls.objects.filter(is_active=True)
+        return cls.objects.active()
 
     @classmethod
     def get_next(cls, instance):
@@ -200,7 +200,6 @@ class AllinkBaseModel(AllinkMetaTagFieldsModel):
         """
 
         # getting translation class
-        AllinkCategoryTransalation = AllinkCategory.translations.related.related_model
         if new:
             # all categories generated from one model, should be in the same root category
             # if not existing, this root needs to be created too
@@ -625,14 +624,14 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
     def get_category_navigation(self):
         category_navigation = []
         # override auto category nav
-        if self.category_navigation:
+        if self.category_navigation.exists():
             for category in self.category_navigation:
                 if self.get_render_queryset_for_display(category).exists():
                     category_navigation.append(category)
         # auto category nav
         else:
             if self.categories.exists():
-                for category in self.categories.all():
+                for category in self.categories:
                     if self.get_render_queryset_for_display(category).exists():
                         category_navigation.append(category)
             # auto category nav, if no categories are specified
@@ -670,7 +669,7 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
         """
 
         # apply filters from request
-        queryset = self.data_model.objects.active().filter(**filters).prefetch_related('categories')
+        queryset = self.data_model.objects.active().filter(**filters)
 
         if self.categories.exists() or category:
             if category:
