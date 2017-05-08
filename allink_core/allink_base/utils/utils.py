@@ -70,13 +70,6 @@ def get_display(key, list):
         return None
 
 
-def get_is_empty_result(object_list):
-    """
-    checks if a object_list (either a queryset or a list) is empty 
-    """
-    return False if object_list.exists() else True
-
-
 def replace_line_breaks(string):
     """
     replaces 

@@ -17,7 +17,7 @@ class AllinkManualEntriesMixin(object):
         else:
             # override auto category nav
             if self.category_navigation.exists():
-                for category in self.category_navigation.all():
+                for category in self.category_navigation:
                     if self.get_render_queryset_for_display(category).exists():
                         category_navigation.append(category)
             # auto category nav
@@ -40,7 +40,7 @@ class AllinkManualEntriesMixin(object):
         self.manual_entries = oldinstance.manual_entries.all()
 
     def get_selected_entries(self, filters={}):
-        queryset = self.manual_entries.active().filter(**filters)
+        queryset = self.manual_entries.select_related().active_entries().filter(**filters)
         return self._apply_ordering_to_queryset_for_display(queryset)
 
 

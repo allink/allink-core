@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import re
 from django.conf import settings
-from django.http import HttpResponsePermanentRedirect
 
 # from htmlmin.middleware import HtmlMinifyMiddleware
 # from htmlmin.minify import html_minify
