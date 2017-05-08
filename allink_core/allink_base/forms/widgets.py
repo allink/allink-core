@@ -96,5 +96,10 @@ class SpectrumColorPicker(forms.widgets.TextInput):
     def render(self, name, value, attrs=None):
         if 'id' not in attrs:
             attrs['id'] = "id_%s" % name
+        if value:
+            for key, val in get_project_color_choices().items():
+                if val == value:
+                    value = key
+                    break
         rendered = super(SpectrumColorPicker, self).render(name, value, attrs)
         return mark_safe(rendered + self._render_js(attrs['id'], value))

@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 
 from django import forms
+from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
 
 from allink_core.allink_base.forms import widgets
+from allink_core.allink_base.utils import get_project_color_choices
 
 
 class Classes(forms.fields.CharField):
@@ -31,4 +34,20 @@ class ColorField(forms.fields.CharField):
 
     def __init__(self, *args, **kwargs):
         super(ColorField, self).__init__(*args, **kwargs)
-        self.widget = widgets.SpectrumColorPicker(default=self.initial)
+        default = None
+        for key, val in get_project_color_choices().items():
+            if val == self.initial:
+                default = key
+                break
+        self.widget = widgets.SpectrumColorPicker(default=default)
+
+    def clean(self, value):
+        if value:
+            try:
+                value = get_project_color_choices()[value]
+            except KeyError:
+                raise ValidationError(_('Please choose a predefined color.'))
+        value = self.to_python(value)
+        self.validate(value)
+        self.run_validators(value)
+        return value
