@@ -114,7 +114,7 @@ class AllinkImagePlugin(AllinkLinkFieldsModel, CMSPlugin):
     def base_classes(self):
         css_classes = []
         css_classes.append("has-bg-color") if self.bg_color else None
-        css_classes.append(get_project_color_choices()[self.bg_color]) if self.bg_color else None
+        css_classes.append(self.bg_color) if self.bg_color else None
         if getattr(self, 'project_css_classes'):
             for css_class in getattr(self, 'project_css_classes'):
                 css_classes.append(css_class)
