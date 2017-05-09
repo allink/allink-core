@@ -16,6 +16,7 @@ Each release is divided into the following main categories:
 ### IMPORTANT
 
 ###### SETTINGS
+-  import from allink_settings -> DEBUG_TOOLBAR_CONFIG
 
 ###### TEMPLATES
 

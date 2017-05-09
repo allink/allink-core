@@ -624,7 +624,7 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
         category_navigation = []
         # override auto category nav
         if self.category_navigation.exists():
-            for category in self.category_navigation:
+            for category in self.category_navigation.all():
                 if self.get_render_queryset_for_display(category).exists():
                     category_navigation.append(category)
         # auto category nav
