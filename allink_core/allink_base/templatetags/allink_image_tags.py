@@ -1,98 +1,134 @@
 # -*- coding: utf-8 -*-
 from django import template
 from django.utils.translation import ugettext_lazy as _
+from django.conf import settings
 
+from easy_thumbnails.files import get_thumbnailer
+from allink_core.allink_base.utils import get_height_from_ratio
 register = template.Library()
 
 # ####################################################################################
-# # in a template
+# Allink image
 
-# {% example_image_tag width_alias="1-of-2" ratio="2-1" %}
+def get_ratio_w_h(ratio):
+    """
+    returns width and height from string e.g. '1-2' or '4-3' as integer 
+    """
+    w, h = ratio.split('-')
+    return int(w), int(h)
 
 
-# ####################################################################################
-# # settings.py
+def get_sizes_from_width_alias(width_alias):
+    sizes = []
+    aliases = settings.THUMBNAIL_WIDTH_ALIASES
+    for point in aliases.get(width_alias):
+        width = aliases.get(width_alias).get(point).get('width')
+        ratio = aliases.get(width_alias).get(point).get('ratio')
+        ratio_w, ratio_h = get_ratio_w_h(ratio)
+        height = get_height_from_ratio(width, ratio_w, ratio_h)
+        sizes.append((point, (width, height)))
+    return sizes
 
-# THUMBNAIL_WIDTH_ALIAS = {
-#     '1-of-2': {'xs':450,'md': 1200, 'lg': 1500},
-#     '1-of-3': {'xs':450,'md': 500, 'lg': 600},
-#     ...
-# }
 
-# DEFAULT_IMAGE_RATIOS = (
-#     ('1-of-2','3-2'),
-#     ('1-of-3','3-2'),
-#     ...
-# )
+def get_width_alias_from_plugin(context):
+    plugin = context['instance']
+    # plugin directly inside a column plugin
+    if hasattr(plugin, 'items_per_row'):
+        # the parent of all plugin with pictures is always a column plugin
+        column_plugin = plugin.parent.djangocms_content_allinkcontentcolumnplugin
 
-# ####################################################################################
-# # utility function
+        if column_plugin.template == 'col-1':
+            return '1-of-1'
+        elif column_plugin.template == 'col-1-1':
+            return '1-of-2'
+        elif column_plugin.template == 'col-1-2':
+            return '1-of-3' if column_plugin.position == 0 else '2-of-3'
+        elif column_plugin.template == 'col-2-1':
+            return '2-of-3' if column_plugin.position == 0 else '1-of-3'
+        elif column_plugin.template == 'col-3':
+            return '1-of-3'
+        elif column_plugin.template == 'col-4':
+            return '1-of-4'
+        elif column_plugin.template == 'col-5':
+            return '1-of-5'
+        elif column_plugin.template == 'col-6':
+            return '1-of-6'
 
-# def get_default_image_ratio_from_width_alias(width_alias):
-#     # find width_alias and return ratio from DEFAULT_IMAGE_RATIOS
-#     return ratio
+    # app plugin
+    elif hasattr(plugin, 'template'):
+        return '1-of-{}'.format(getattr(plugin, 'items_per_row', '1'))
 
-# def generate_thumbnail_sizes(thumbnailer,width_alias,ratio):
+    # template tag called from within an other context
+    # this is a fallback, but should not come up if the correct width_alias is supplied in the template
+    else:
+        return '1-of-1'
 
-#     # http://easy-thumbnails.readthedocs.io/en/2.1/usage/#python
-#     thumbnail_options.update({'size': (size, size)})
-#     thumbnail_xs = thumbnailer.get_thumbnail(thumbnail_options)
 
-#     # thumbnail_dimensions = {
-#     #     {'thumbnail_xs': thumbnail_xs},
-#     #     {'thumbnail_xs_2x': thumbnail_xs_2x},
-#     #     {'thumbnail_sm': thumbnail_sm},
-#     #     {'thumbnail_sm_2x': thumbnail_sm_2x},
-#     #     {'thumbnail_lg': thumbnail_lg},
-#     #     {'thumbnail_lg_2x': thumbnail_lg_2x},
-#     # }
-#     return thumbnail_dimensions
+@register.inclusion_tag('templatetags/image.html', takes_context=True)
+def render_image(context, image, width_alias=None, ratio=None, crop='smart', bw=False, icon_disabled=False,
+                 bg_disabled=False, bg_color=None):
+    """
+    -> parameters:
+    image: FilerImageField
+    width_alias: '1-of-1'
+    ratio: '3-2'
 
-####################################################################################
-# templatetag
+    -> optional parameters:
+    crop: used for thumbnail gen
+    bw: used for thumbnail gen
+    icon_disabled: used in template
+    bg_disabled: used in template
+    bg_color: used in template
 
-# from easy_thumbnails.files import get_thumbnailer
-# from settings import THUMBNAIL_WIDTH_ALIAS
+    if you render a image from outside the content or app plugin content, it is important to supply a thumbnail width_alias
+    otherwise the thumbnail will be rendered with the default width_alias '1-of-1' which might be to big.
 
-# @register.inclusion_tag('templatetags/allink_image_2.html', takes_context=True)
-# def example_image_tag(context, width_alias=None, ratio=None, icon_disabled=False, bg_disabled=False, bg_color=None, bw=False, crop='smart'):
+    -> makes following context variable available in the template
+    image (original image)
+    thumbnail_url_xs
+    thumbnail_url_md
+    thumbnail_url_xl
+    icon_disabled
+    bg_disabled
+    bg_color
 
-#     # create thumbnailer instance of image object
-#     thumbnailer = get_thumbnailer(the_image)
+    """
+    # explicit render image in this width_alias
+    # most likely not from within an app plugin template or a content template
+    if not width_alias:
+        # get with alias from context
+        width_alias = get_width_alias_from_plugin(context)
 
-#     # thumbnail options
-#     thumbnail_options = {'crop': crop}
-#     if bw:
-#         thumbnail_options.update({'bw': True})
+    # update context
+    context.update({'image': image})
+    context.update({'icon_disabled': icon_disabled})
+    context.update({'bg_disabled': bg_disabled})
+    context.update({'bg_color': bg_color})
 
-#     # No "width_alias" according to context, if no "width_alias" is set
-#     if not width_alias:
+    sizes = get_sizes_from_width_alias(width_alias)
+    thumbnail_options = {'crop': crop, 'bw': bw}
 
-#         # Case 1. Content Plugin > Column?
-#         if column_plugin
-#             # Get ratio
-#             ratio = context.ratio
-#             # Determine "width_alias" depending on which COLUMN we're in.
-#             if column_plugin.template == 'col-1-1':
-#                 width_alias = '1-of-2'
-#                 # ...
+    # create a thumbnail for each size
+    for size in sizes:
+        thumbnailer = get_thumbnailer(image)
 
-#         # Case 2. App Plugin -> Determine "width_alias" depending on number of GRID COLUMNS
-#         elif context['instance'].items_per_row:
-#             width_alias = '1-of-{}'.format(context['instance'].items_per_row) if context['instance'].items_per_row else '1-of-2'
+        # override the default ratio or use THUMBNAIL_WIDTH_ALIASES ratio
+        w, h = get_ratio_w_h(ratio) if ratio else size[1][0], size[1][1]
 
-#     # At this stage, we have e.g. width_alias="1-of-2"
+        thumbnail_options.update({'size': (w, h)})
+        context.update({'ratio_percent_{}'.format(size[0]): '{}%'.format(h / w * 100)})
 
-#     # If no "ratio" is set, fall back to defaeult
-#     if not ratio:
-#         # get info according to "width_alias" in DEFAULT_IMAGE_RATIOS
-#         # not
-#         ratio = get_default_image_ratio_from_width_alias(width_alias)
+        thumbnailer.get_thumbnail(thumbnail_options)
+        context.update({'thumbnail_{}'.format(size[0]): thumbnailer})
 
-#     # And then.. Create thumbnail FOR EACH SIZE and store variables in CONTEXT so we can use in the TEMPLATE
-#     context.update(generate_thumbnail_sizes(thumbnailer,width_alias,ratio));
+        # retina
+        thumbnail_options_2x = thumbnail_options
+        thumbnail_options_2x.update({'size': (w * 2, h * 2)})
+        thumbnailer_2x = get_thumbnailer(image)
+        thumbnailer_2x.get_thumbnail(thumbnail_options)
+        context.update({'thumbnail_{}_2x'.format(size[0]): thumbnailer_2x})
 
-#     return context
+    return context
 
 ####################################################################################
 # Allink specific image
