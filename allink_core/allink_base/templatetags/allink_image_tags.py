@@ -190,7 +190,7 @@ def render_app_content_image(context, thumbnail_url=None, icon_disabled=False, b
 # Content Plugin > Images placed in columns
 
 @register.inclusion_tag('templatetags/allink_image.html', takes_context=True)
-def render_content_image(context, thumbnail_url=None, icon_disabled=False, bg_disabled=False):
+def render_content_image(context, thumbnail_url=None, icon_disabled=False, bg_disabled=False, icon_enabled=True, bg_enabled=True):
 
     column_plugin = context['instance'].parent.djangocms_content_allinkcontentcolumnplugin
 
@@ -235,6 +235,12 @@ def render_content_image(context, thumbnail_url=None, icon_disabled=False, bg_di
     context.update({'thumbnail_url_xl_2x': thumbnail_url_xl_2x})
 
     # lazyloader definitions
+    if not icon_enabled:
+        icon_disabled = True
+
+    if not bg_enabled:
+        bg_disabled = True
+
     context.update({'icon_disabled': icon_disabled})
     context.update({'bg_disabled': bg_disabled})
 

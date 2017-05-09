@@ -4,6 +4,7 @@
         class="form-default validate-form {% if not no_ajax %}ajax-form{% endif %} {{ class }} {% block form_additional_classes %}{% endblock form_additional_classes %}"
         method="{{ method|default:"POST" }}"
         novalidate="novalidate"
+        data-success-data-layer-event="{% if data_layer_event %}{{data_layer_event}}{% else %}form.sent{% endif %}"
         {% if form_id %}data-form-container-id="{{ form_id }}"{% endif %}
         {% if action %}action="{{ action }}"{% endif %}
         {% if includes_files %}enctype="multipart/form-data"{% endif %}
