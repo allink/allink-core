@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-09 01:03-0500\n"
+"POT-Creation-Date: 2017-05-09 05:07-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -153,11 +153,11 @@ msgstr ""
 
 #: allink_core_repo/allink_core/allink_base/models/choices.py:31
 msgid "Mr."
-msgstr ""
+msgstr "Herr"
 
 #: allink_core_repo/allink_core/allink_base/models/choices.py:32
 msgid "Mrs."
-msgstr ""
+msgstr "Frau"
 
 #: allink_core_repo/allink_core/allink_base/models/choices.py:45
 msgid "Left"
@@ -475,7 +475,7 @@ msgstr ""
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:68
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:171
 msgid "Phone"
-msgstr ""
+msgstr "Telefon"
 
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:69
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:75
@@ -496,7 +496,7 @@ msgstr ""
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:86
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:322
 msgid "Email"
-msgstr ""
+msgstr "E-Mail"
 
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:91
 msgid "Website"
@@ -583,15 +583,15 @@ msgstr ""
 
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:314
 msgid "First Name"
-msgstr ""
+msgstr "Vorname"
 
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:318
 msgid "Last Name"
-msgstr ""
+msgstr "Nachname"
 
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:325
 msgid "Message"
-msgstr ""
+msgstr "Nachricht"
 
 #: allink_core_repo/allink_core/allink_base/models/validators.py:16
 #, python-format
@@ -601,7 +601,7 @@ msgstr ""
 #: allink_core_repo/allink_core/allink_base/templates/app_content/app_content_base.html:138
 #: allink_core_repo/allink_core/allink_base/templates/app_content/app_content_base_legacy.html:152
 msgid "Load More"
-msgstr ""
+msgstr "Mehr"
 
 #: allink_core_repo/allink_core/allink_base/templates/app_content/app_content_base_legacy.html:79
 msgid "Select"

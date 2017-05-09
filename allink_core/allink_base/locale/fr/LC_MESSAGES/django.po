@@ -471,7 +471,7 @@ msgstr ""
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:68
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:171
 msgid "Phone"
-msgstr ""
+msgstr "Téléphon"
 
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:69
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:75
@@ -597,7 +597,7 @@ msgstr ""
 #: allink_core_repo/allink_core/allink_base/templates/app_content/app_content_base.html:138
 #: allink_core_repo/allink_core/allink_base/templates/app_content/app_content_base_legacy.html:152
 msgid "Load More"
-msgstr ""
+msgstr "Mehr"
 
 #: allink_core_repo/allink_core/allink_base/templates/app_content/app_content_base_legacy.html:79
 msgid "Select"
