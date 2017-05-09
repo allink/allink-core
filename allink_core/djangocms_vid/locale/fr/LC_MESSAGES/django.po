@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-02 02:22-0500\n"
+"POT-Creation-Date: 2017-05-09 09:46-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,12 +33,12 @@ msgid "Video settings"
 msgstr ""
 
 #: allink_core_repo/allink_core/djangocms_vid/cms_plugins.py:44
-#: allink_core_repo/allink_core/djangocms_vid/cms_plugins.py:92
+#: allink_core_repo/allink_core/djangocms_vid/cms_plugins.py:93
 msgid "Advanced settings"
 msgstr ""
 
 #: allink_core_repo/allink_core/djangocms_vid/cms_plugins.py:61
-#: allink_core_repo/allink_core/djangocms_vid/models.py:122
+#: allink_core_repo/allink_core/djangocms_vid/models.py:109
 msgid "Video File"
 msgstr ""
 
@@ -57,7 +57,7 @@ msgid ""
 msgstr ""
 
 #: allink_core_repo/allink_core/djangocms_vid/forms.py:24
-#: allink_core_repo/allink_core/djangocms_vid/models.py:101
+#: allink_core_repo/allink_core/djangocms_vid/models.py:84
 msgid "Ratio"
 msgstr ""
 
@@ -69,46 +69,40 @@ msgstr ""
 msgid "Autostart"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_vid/models.py:29
-msgid "Allow fullscreen"
-msgstr ""
-
-#: allink_core_repo/allink_core/djangocms_vid/models.py:35
+#: allink_core_repo/allink_core/djangocms_vid/models.py:31
 msgid "Attributes"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_vid/models.py:50
-msgid "Video Start Image"
-msgstr ""
-
-#: allink_core_repo/allink_core/djangocms_vid/models.py:53
-msgid ""
-"This image is displayed while the video is loading. Ideally the very first "
-"frame of the video is used, in order to make the transition as smooth as "
-"possible."
-msgstr ""
-
-#: allink_core_repo/allink_core/djangocms_vid/models.py:87
+#: allink_core_repo/allink_core/djangocms_vid/models.py:71
 msgid "Allink Video Embed"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_vid/models.py:91
+#: allink_core_repo/allink_core/djangocms_vid/models.py:74
 msgid "Video ID"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_vid/models.py:93
-msgid "Only provide the ID. The correct url will be automatically generated."
+#: allink_core_repo/allink_core/djangocms_vid/models.py:76
+msgid ""
+"Only provide the ID. The correct URL will automatically be generated."
+"<br><br>YouTube: https://www.youtube.com/watch?v=12345678 (the ID is "
+"<strong>12345678</strong>)<br>Vimeo: https://vimeo.com/12345678 (the ID is "
+"<strong>12345678</strong>)"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_vid/models.py:96
+#: allink_core_repo/allink_core/djangocms_vid/models.py:79
 msgid "Video Service"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_vid/models.py:119
+#: allink_core_repo/allink_core/djangocms_vid/models.py:90
+#: allink_core_repo/allink_core/djangocms_vid/models.py:143
+msgid "Allow fullscreen"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_vid/models.py:106
 msgid "Allink Video File"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_vid/models.py:123
+#: allink_core_repo/allink_core/djangocms_vid/models.py:110
 msgid ""
 "Recommended video settings:<br><br>Format: mp4<br>Codec: H.264<br>Target "
 "Bitrate: 2 (video loads quick and runs smooth)<br>Audio: Not recommended (no "
@@ -117,18 +111,39 @@ msgid ""
 "more."
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_vid/models.py:129
+#: allink_core_repo/allink_core/djangocms_vid/models.py:116
+msgid "Video Start Image"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_vid/models.py:119
+msgid ""
+"This image is displayed while the video is loading. Ideally the very first "
+"frame of the video is used, in order to make the transition as smooth as "
+"possible."
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_vid/models.py:123
 msgid "Video width"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_vid/models.py:134
+#: allink_core_repo/allink_core/djangocms_vid/models.py:128
 msgid "Video height"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_vid/models.py:139
+#: allink_core_repo/allink_core/djangocms_vid/models.py:133
 msgid "Muted"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_vid/models.py:140
+#: allink_core_repo/allink_core/djangocms_vid/models.py:134
 msgid "Caution: Autoplaying videos with audio is not recommended. Use wisely."
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_vid/models.py:138
+msgid "Image Only (Mobile)"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_vid/models.py:139
+msgid ""
+"Disable video on mobile devices and only show the start image without video "
+"control."
 msgstr ""

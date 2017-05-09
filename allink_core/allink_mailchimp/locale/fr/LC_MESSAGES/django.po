@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-02 02:22-0500\n"
+"POT-Creation-Date: 2017-05-09 09:46-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,19 +29,17 @@ msgstr ""
 #: allink_core_repo/allink_core/allink_mailchimp/forms.py:14
 #: allink_core_repo/allink_core/allink_mailchimp/forms.py:37
 msgid "E-Mail"
-msgstr ""
+msgstr "E-mail"
 
 #: allink_core_repo/allink_core/allink_mailchimp/forms.py:35
-#: allink_core_repo/allink_core/allink_mailchimp/templates/allink_mailchimp/plugins/signup_form_advanced_base.html:23
-#: allink_core_repo/allink_core/allink_mailchimp/templates/allink_mailchimp/signup_form_advanced_base.html:23
+#: allink_core_repo/allink_core/allink_mailchimp/templates/allink_mailchimp/signup_form_advanced_base.html:28
 msgid "First Name"
-msgstr ""
+msgstr "Prénom"
 
 #: allink_core_repo/allink_core/allink_mailchimp/forms.py:36
-#: allink_core_repo/allink_core/allink_mailchimp/templates/allink_mailchimp/plugins/signup_form_advanced_base.html:24
-#: allink_core_repo/allink_core/allink_mailchimp/templates/allink_mailchimp/signup_form_advanced_base.html:24
+#: allink_core_repo/allink_core/allink_mailchimp/templates/allink_mailchimp/signup_form_advanced_base.html:29
 msgid "Last Name"
-msgstr ""
+msgstr "Nom"
 
 #: allink_core_repo/allink_core/allink_mailchimp/helpers.py:21
 msgid "Error: {} {}"
@@ -63,26 +61,19 @@ msgstr ""
 msgid "Thanks for your registration."
 msgstr "Merci pour votre inscription."
 
-#: allink_core_repo/allink_core/allink_mailchimp/templates/allink_mailchimp/plugins/signup_form.html:12
-#: allink_core_repo/allink_core/allink_mailchimp/templates/allink_mailchimp/plugins/signup_form_advanced_base.html:29
-#: allink_core_repo/allink_core/allink_mailchimp/templates/allink_mailchimp/plugins/signup_form_base.html:12
-#: allink_core_repo/allink_core/allink_mailchimp/templates/allink_mailchimp/signup_form_advanced_base.html:29
+#: allink_core_repo/allink_core/allink_mailchimp/templates/allink_mailchimp/signup_form_advanced_base.html:10
+msgid "Newsletter abonnieren"
+msgstr "Inscription newsletter"
+
+#: allink_core_repo/allink_core/allink_mailchimp/templates/allink_mailchimp/signup_form_advanced_base.html:34
 #: allink_core_repo/allink_core/allink_mailchimp/templates/allink_mailchimp/signup_form_base.html:12
 msgid "Your Email address"
-msgstr ""
+msgstr "Vortre adresse E-mail"
 
-#: allink_core_repo/allink_core/allink_mailchimp/templates/allink_mailchimp/plugins/signup_form.html:18
-#: allink_core_repo/allink_core/allink_mailchimp/templates/allink_mailchimp/plugins/signup_form_advanced_base.html:35
-#: allink_core_repo/allink_core/allink_mailchimp/templates/allink_mailchimp/plugins/signup_form_base.html:18
-#: allink_core_repo/allink_core/allink_mailchimp/templates/allink_mailchimp/signup_form_advanced_base.html:35
+#: allink_core_repo/allink_core/allink_mailchimp/templates/allink_mailchimp/signup_form_advanced_base.html:40
 #: allink_core_repo/allink_core/allink_mailchimp/templates/allink_mailchimp/signup_form_base.html:18
 msgid "Send"
-msgstr ""
-
-#: allink_core_repo/allink_core/allink_mailchimp/templates/allink_mailchimp/plugins/signup_form_advanced_base.html:7
-#: allink_core_repo/allink_core/allink_mailchimp/templates/allink_mailchimp/signup_form_advanced_base.html:7
-msgid "Newsletter abonnieren"
-msgstr ""
+msgstr "Envoyer"
 
 #: allink_core_repo/allink_core/allink_mailchimp/views.py:41
 msgid "Something went wrong with your subscription. Please try again later."
