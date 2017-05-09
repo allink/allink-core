@@ -27,7 +27,7 @@ Each release is divided into the following main categories:
 - update with caution in projects whcih still use inline images to display galleries (hdf, mfgz, ..?) we added a field preview_image (not a property anymore) the galleries are now added as a plugin inside the content_palceholder
  -> and if you update make sure you migrate the images! (see data_migrations/0017_migrate_preview_image.py)
 
-- Color Picker: Fields using the colorpicker (bg_color) need to be migrated. Therfore replace the hex-value in the database with the project color name as defined in SETTINGS
+- Color Picker: Fields using the colorpicker (bg_color) need to be migrated. Therfore replace the hex-value in the databaseco with the project color name as defined in SETTINGS
 
 ### NEW
 
