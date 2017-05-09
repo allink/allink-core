@@ -5,6 +5,7 @@
         method="{{ method|default:"POST" }}"
         novalidate="novalidate"
         data-success-data-layer-event="{% if data_layer_event %}{{data_layer_event}}{% else %}form.sent{% endif %}"
+        {% if success_url %}data-success-url="{{success_url}}"{% endif %}
         {% if form_id %}data-form-container-id="{{ form_id }}"{% endif %}
         {% if action %}action="{{ action }}"{% endif %}
         {% if includes_files %}enctype="multipart/form-data"{% endif %}
