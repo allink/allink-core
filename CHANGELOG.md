@@ -16,7 +16,8 @@ Each release is divided into the following main categories:
 ### IMPORTANT
 
 ###### SETTINGS
--  import from allink_settings -> DEBUG_TOOLBAR_CONFIG
+- import from allink_settings -> DEBUG_TOOLBAR_CONFIG
+
 
 ###### TEMPLATES
 - people job_function (which it was used in tejakob for example) was substitutett with property 'units'. You now have to add categories (with unit=True) and tag th person with it. this allowes us to categories people without having to maintain both fields 'unit' and categories
@@ -33,6 +34,8 @@ Each release is divided into the following main categories:
 
 ### NEW
 - debug toolbar installed manually, because debug toolbar is extremly slow we disable it by default (to enable it, just set DEBUG_TOOLBAR_ENABLED=True in the env variables.)
+- new tuple PROJECT_CATEGORY_IDENTIFIERS: allowes you to specify a uique identifier, from wich you can navigae back from a app model (e.g to get the category name for the Units (categories) a person is tagged with.)
+
 ### FIXES
 
 ## v0.0.9
