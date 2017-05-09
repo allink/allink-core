@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-02 02:22-0500\n"
+"POT-Creation-Date: 2017-05-09 01:03-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: allink_core_repo/allink_core/djangocms_image/cms_plugins.py:13
-#: allink_core_repo/allink_core/djangocms_image/models.py:41
+#: allink_core_repo/allink_core/djangocms_image/models.py:40
 msgid "Image"
 msgstr ""
 
@@ -44,12 +44,12 @@ msgid "Special Links"
 msgstr ""
 
 #: allink_core_repo/allink_core/djangocms_image/forms.py:30
-#: allink_core_repo/allink_core/djangocms_image/models.py:34
+#: allink_core_repo/allink_core/djangocms_image/models.py:33
 msgid "Template"
 msgstr ""
 
 #: allink_core_repo/allink_core/djangocms_image/forms.py:35
-#: allink_core_repo/allink_core/djangocms_image/models.py:54
+#: allink_core_repo/allink_core/djangocms_image/models.py:53
 msgid "Ratio"
 msgstr ""
 
@@ -60,7 +60,7 @@ msgid ""
 msgstr ""
 
 #: allink_core_repo/allink_core/djangocms_image/forms.py:41
-#: allink_core_repo/allink_core/djangocms_image/models.py:60
+#: allink_core_repo/allink_core/djangocms_image/models.py:59
 msgid "Set a predefined background color"
 msgstr ""
 
@@ -76,49 +76,49 @@ msgid ""
 "like to apply."
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_image/models.py:35
+#: allink_core_repo/allink_core/djangocms_image/models.py:34
 msgid "Choose a template."
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_image/models.py:47
+#: allink_core_repo/allink_core/djangocms_image/models.py:46
 msgid "External image"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_image/models.py:50
+#: allink_core_repo/allink_core/djangocms_image/models.py:49
 msgid ""
 "If provided, overrides the embedded image. Certain options such as cropping "
 "are not applicable to external images."
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_image/models.py:66
+#: allink_core_repo/allink_core/djangocms_image/models.py:65
 msgid "Caption text"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_image/models.py:68
+#: allink_core_repo/allink_core/djangocms_image/models.py:67
 msgid "Provide a description, attribution, copyright or other information."
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_image/models.py:71
+#: allink_core_repo/allink_core/djangocms_image/models.py:70
 msgid "Attributes"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_image/models.py:77
+#: allink_core_repo/allink_core/djangocms_image/models.py:76
 msgid "Width"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_image/models.py:80
+#: allink_core_repo/allink_core/djangocms_image/models.py:79
 msgid ""
 "The image width as number in pixels. Example: \"720\" and not \"720px\"."
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_image/models.py:84
+#: allink_core_repo/allink_core/djangocms_image/models.py:83
 msgid "Use original image"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_image/models.py:87
+#: allink_core_repo/allink_core/djangocms_image/models.py:86
 msgid "Outputs the raw image without cropping."
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_image/models.py:134
+#: allink_core_repo/allink_core/djangocms_image/models.py:133
 msgid "<file is missing>"
 msgstr ""
