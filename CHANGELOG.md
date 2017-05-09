@@ -30,7 +30,7 @@ Each release is divided into the following main categories:
 - Color Picker: Fields using the colorpicker (bg_color) need to be migrated. Therfore replace the hex-value in the database with the project color name as defined in SETTINGS
 
 ### NEW
-
+- debug toolbar installed manually, because debug toolbar is extremly slow we disable it by default (to enable it, just set DEBUG_TOOLBAR_ENABLED=True in the env variables.)
 ### FIXES
 
 ## v0.0.9
