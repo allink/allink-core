@@ -17,7 +17,7 @@ class AllinkManualEntriesMixin(object):
         else:
             # override auto category nav
             if self.category_navigation.exists():
-                for category in self.category_navigation.all():
+                for category in self.category_navigation:
                     if self.get_render_queryset_for_display(category).exists():
                         category_navigation.append(category)
             # auto category nav
