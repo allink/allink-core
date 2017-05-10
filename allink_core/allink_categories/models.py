@@ -71,6 +71,14 @@ class AllinkCategory(AllinkTranslatedAutoSlugifyMixin, TranslationHelperMixin,
         blank=True
     )
 
+    identifier = models.CharField(
+        _(u'Identifier'),
+        max_length=50,
+        help_text=u'Identifier used for backward reference on a app model. (e.g display category name on People app, e.g Marketing)',
+        blank=True,
+        null=True
+    )
+
     translations = TranslatedFields(
         name=models.CharField(
             _(u'name'),

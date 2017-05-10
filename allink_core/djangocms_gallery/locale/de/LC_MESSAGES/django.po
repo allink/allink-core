@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-02 02:22-0500\n"
+"POT-Creation-Date: 2017-05-09 10:25-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -66,10 +66,10 @@ msgstr ""
 msgid "Text"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_gallery/templates/djangocms_gallery/slider/content.html:15
+#: allink_core_repo/allink_core/djangocms_gallery/templates/djangocms_gallery/slider/content.html:16
 msgid "Previous Slide"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_gallery/templates/djangocms_gallery/slider/content.html:20
+#: allink_core_repo/allink_core/djangocms_gallery/templates/djangocms_gallery/slider/content.html:21
 msgid "Next Slide"
 msgstr ""

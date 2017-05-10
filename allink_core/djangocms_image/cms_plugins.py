@@ -30,7 +30,6 @@ class CMSAllinkImagePlugin(CMSPluginBase):
             (None, {
                 'fields': (
                     'picture',
-                    'external_picture',
                     'ratio',
                 )
             }),
@@ -48,10 +47,13 @@ class CMSAllinkImagePlugin(CMSPluginBase):
                 'classes': ('collapse',),
                 'fields': (
                     'template',
+                    'icon_enabled',
+                    'bg_enabled',
                     'bg_color',
                     'caption_text',
                     'attributes',
                     'project_css_classes',
+                    'external_picture',
                 )
             }),
             (_('Wireframe settings'), {
