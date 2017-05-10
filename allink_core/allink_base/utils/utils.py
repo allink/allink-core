@@ -39,7 +39,7 @@ def get_project_color_choices():
     """
     returns all projects specific colors
     """
-    return settings.PROJECT_COLORS
+    return getattr(settings, 'PROJECT_COLORS', {})
 
 
 def get_ratio_choices():

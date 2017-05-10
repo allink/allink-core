@@ -8,6 +8,7 @@ from cms.plugin_base import CMSPluginBase
 
 from allink_core.allink_base.models import AllinkBaseAppContentPlugin
 from allink_core.allink_base.admin import AllinkBaseAppContentPluginForm
+from allink_core.allink_base.utils.utils import get_project_color_choices
 
 
 class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
@@ -37,11 +38,11 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
     def get_fieldsets(self, request, obj=None):
         fieldsets = (
             (None, {
-                'fields': (
+                'fields': [
                     # 'title',
                     # 'title_size',
                     'template',
-                ),
+                ],
             }),
         )
 
@@ -51,10 +52,12 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
                 # 'container_enabled',
                 'detail_link_enabled',
                 'softpage_enabled',
-                'bg_color',
                 # 'bg_image_outer_container',
             )
         }),
+
+        if get_project_color_choices():
+            fieldsets[1][1]['fields'].append('bg_color')
 
         if self.data_model.get_can_have_categories():
             fieldsets += (_('Categories'), {
