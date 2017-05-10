@@ -12,6 +12,7 @@ from treebeard.forms import movenodeform_factory, MoveNodeForm
 
 from parler.forms import TranslatableModelForm
 
+from allink_core.allink_base.utils import get_additional_choices
 from allink_core.allink_categories.models import AllinkCategory
 
 
@@ -26,7 +27,7 @@ class AllinkCategoryForm(TranslatableModelForm, MoveNodeForm):
 
     class Meta():
         model = AllinkCategory
-        fields = ('name', 'slug', 'model_names')
+        fields = ('name', 'identifier', 'slug', 'model_names')
 
     def __init__(self, *args, **kwargs):
         super(AllinkCategoryForm, self).__init__(*args, **kwargs)
@@ -34,7 +35,13 @@ class AllinkCategoryForm(TranslatableModelForm, MoveNodeForm):
         if self.instance and not self.instance.is_root():
             self.fields['model_names'].widget = forms.MultipleHiddenInput()
 
-
+        if get_additional_choices('PROJECT_CATEGORY_IDENTIFIERS'):
+            self.fields['identifier'] = forms.ChoiceField(
+                label=_(u'Identifier'),
+                help_text=_(u'Identifier used for backward reference on a app model. (e.g display category name on People app, e.g Marketing)'),
+                choices=get_additional_choices('PROJECT_CATEGORY_IDENTIFIERS', blank=True),
+                required=False,
+            )
 
 
 @admin.register(AllinkCategory)

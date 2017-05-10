@@ -40,6 +40,7 @@ class AllinkConfigAdmin(SingletonModelAdmin):
                 'theme_color',
                 'mask_icon_color',
                 'msapplication_tilecolor',
+                'google_site_verification',
             )
         }),
 

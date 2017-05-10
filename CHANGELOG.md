@@ -19,7 +19,10 @@ Each release is divided into the following main categories:
 -  import from allink_settings -> DEBUG_TOOLBAR_CONFIG
 -  import from allink_settings -> THUMBNAIL_DEFAULT_OPTIONS, THUMBNAIL_WIDTH_ALIASES
 
+>>>>>>> develop
+
 ###### TEMPLATES
+- people job_function (which it was used in tejakob for example) was substitutett with property 'units'. You now have to add categories (with unit=True) and tag th person with it. this allowes us to categories people without having to maintain both fields 'unit' and categories
 
 ###### URLS
 
@@ -29,10 +32,13 @@ Each release is divided into the following main categories:
 - update with caution in projects whcih still use inline images to display galleries (hdf, mfgz, ..?) we added a field preview_image (not a property anymore) the galleries are now added as a plugin inside the content_palceholder
  -> and if you update make sure you migrate the images! (see data_migrations/0017_migrate_preview_image.py)
 
-- Color Picker: Fields using the colorpicker (bg_color) need to be migrated. Therfore replace the hex-value in the database with the project color name as defined in SETTINGS
+- Color Picker: Fields using the colorpicker (bg_color) need to be migrated. Therfore replace the hex-value in the databaseco with the project color name as defined in SETTINGS
 
 ### NEW
 - debug toolbar installed manually, because debug toolbar is extremly slow we disable it by default (to enable it, just set DEBUG_TOOLBAR_ENABLED=True in the env variables.)
+- new tuple PROJECT_CATEGORY_IDENTIFIERS: allowes you to specify a uique identifier, from wich you can navigae back from a app model (e.g to get the category name for the Units (categories) a person is tagged with.)
+- allink_config: Field for google_site_verification code added, because verification through tag manager snippet does not work anymore
+
 ### FIXES
 
 ## v0.0.9

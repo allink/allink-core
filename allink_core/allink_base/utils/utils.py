@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 from django.conf import settings
 
+
 _base_url = None
 
 
@@ -22,18 +23,23 @@ def get_additional_templates(model_name):
     return additional_templates
 
 
-def get_additional_choices(config):
+def get_additional_choices(config, blank=False):
     """
     Get additional settings var for project specific configuration
     """
-    return getattr(settings, config, ())
+    from allink_core.allink_base.models.choices import BLANK_CHOICE
+    choices = ()
+    if blank:
+        choices = BLANK_CHOICE
+    choices += getattr(settings, config, ())
+    return choices
 
 
 def get_project_color_choices():
     """
     returns all projects specific colors
     """
-    return settings.PROJECT_COLORS
+    return getattr(settings, 'PROJECT_COLORS', {})
 
 
 def get_ratio_choices():

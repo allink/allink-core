@@ -19,12 +19,31 @@ class AllinkLegacyLink(models.Model):
         null=True,
         help_text=_(u'If provided, gets overriden by external link.')
     )
-    new = PageField(
+    #  Page redirect
+    link_page = PageField(
         verbose_name=_(u'New Page'),
         null=True,
         on_delete=models.SET_NULL,
-        help_text=_(u'If provided, overrides the external link.')
+        help_text=_(u'If provided, overrides the external link and New Apphook-Page.')
     )
+    #  Fields for app redirect
+    link_apphook_page = PageField(
+        verbose_name=_(u'New Apphook-Page'),
+        null=True,
+        on_delete=models.SET_NULL,
+        help_text=_(u'If provided, overrides the external link.'),
+        related_name='app_legacy_redirects'
+    )
+    link_object_id = models.IntegerField(
+        null=True,
+        help_text=_(u'To which object directs the url.')
+    )
+    link_url_name = models.CharField(
+        null=True,
+        max_length=64,
+        help_text=_(u'Name of the App-URL to use.')
+    )
+    #  External Redirect
     overwrite = models.CharField(
         _(u'Overwrite Link'),
         max_length=255,
@@ -32,6 +51,7 @@ class AllinkLegacyLink(models.Model):
         blank=True,
         help_text=_(u'Overwrites \'New Link\', use for special urls that are not listed there')
     )
+
     active = models.BooleanField(
         _(u'Active'),
         default=True,
