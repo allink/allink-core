@@ -39,5 +39,12 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
+        migrations.AddField(
+            model_name='allinkcategory',
+            name='identifier',
+            field=models.CharField(null=True, verbose_name='Identifier', blank=True,
+                                   help_text='Identifier used for backward reference on a app model. (e.g display category name on People app, e.g Marketing)',
+                                   max_length=50),
+        ),
         migrations.RunPython(set_root_category_model_names),
     ]
