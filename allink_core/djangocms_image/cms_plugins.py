@@ -64,9 +64,6 @@ class CMSAllinkImagePlugin(CMSPluginBase):
             })
         ]
 
-        if get_project_color_choices():
-            fieldsets[1][2]['fields'].append('bg_color')
-
         return fieldsets
 
     def get_render_template(self, context, instance, placeholder):
