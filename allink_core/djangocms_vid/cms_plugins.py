@@ -31,12 +31,12 @@ class CMSAllinkVidEmbedPlugin(CMSPluginBase):
                 'fields': (
                     'video_id',
                     'video_service',
-                    'ratio',
                 )
             }),
             (_('Video settings'), {
-                'classes': ('collapse',),
+                # 'classes': ('collapse',),
                 'fields': (
+                    'ratio',
                     'auto_start_enabled',
                     'allow_fullscreen_enabled',
                 )
@@ -82,7 +82,7 @@ class CMSAllinkVidFilePlugin(CMSPluginBase):
                 )
             }),
             (_('Video settings'), {
-                'classes': ('collapse',),
+                # 'classes': ('collapse',),
                 'fields': (
                     'auto_start_enabled',
                     'video_muted_enabled',
