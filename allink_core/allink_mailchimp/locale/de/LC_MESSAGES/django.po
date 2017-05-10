@@ -29,7 +29,7 @@ msgstr ""
 #: allink_core_repo/allink_core/allink_mailchimp/forms.py:14
 #: allink_core_repo/allink_core/allink_mailchimp/forms.py:37
 msgid "E-Mail"
-msgstr ""
+msgstr "E-Mail"
 
 #: allink_core_repo/allink_core/allink_mailchimp/forms.py:35
 #: allink_core_repo/allink_core/allink_mailchimp/templates/allink_mailchimp/signup_form_advanced_base.html:28

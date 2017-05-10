@@ -68,7 +68,7 @@ msgstr "Inscription newsletter"
 #: allink_core_repo/allink_core/allink_mailchimp/templates/allink_mailchimp/signup_form_advanced_base.html:34
 #: allink_core_repo/allink_core/allink_mailchimp/templates/allink_mailchimp/signup_form_base.html:12
 msgid "Your Email address"
-msgstr "Vortre adresse E-mail"
+msgstr "Votre adresse e-mail"
 
 #: allink_core_repo/allink_core/allink_mailchimp/templates/allink_mailchimp/signup_form_advanced_base.html:40
 #: allink_core_repo/allink_core/allink_mailchimp/templates/allink_mailchimp/signup_form_base.html:18
