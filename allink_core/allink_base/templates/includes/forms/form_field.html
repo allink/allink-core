@@ -27,19 +27,8 @@
                         {# Dropdown Select #}
 
                         {% if field|fieldtype == 'NumberInput' %}
-                            hello
-{#                            <div class="form-group {% if form.salutation.errors %}has-error{% endif %}">#}
-{#                                <label class="control-label required" for="{{ form.salutation.id_for_label }}" aria-required="true">#}
-{#                                    <span class="label-text">#}
-{#                                        {% trans "Salutation" %}#}
-{#                                    </span>#}
-{#                                    <span class="required-symbol">#}
-{#                                        (required)#}
-{#                                    </span>#}
-{#                                </label>#}
-{#                                {% render_field form.salutation class+="selectpicker form-control" %}#}
-{#                                {{ form.salutation.errors }}#}
-{#                            </div>#}
+
+                            {% render_field field class+="selectpicker form-control" %}
 
                         {# Checkbox #}
 
