@@ -21,11 +21,6 @@ class AllinkVidBasePlugin(CMSPlugin):
     class Meta:
         abstract = True
 
-    auto_start_enabled = models.BooleanField(
-        _(u'Autostart'),
-        default=True
-    )
-
     # additional
     attributes = AttributesField(
         verbose_name=_(u'Attributes'),
@@ -73,7 +68,7 @@ class AllinkVidEmbedPlugin(AllinkVidBasePlugin):
     video_id = models.CharField(
         verbose_name=_(u'Video ID'),
         max_length=255,
-        help_text=_(u'Only provide the ID. The correct URL will automatically be generated.<br><br>YouTube: https://www.youtube.com/watch?v=12345678 (the ID is <strong>12345678</strong>)<br>Vimeo: https://vimeo.com/12345678 (the ID is <strong>12345678</strong>)'),
+        help_text=_(u'Only provide the ID. The correct URL will automatically be generated.<br><br>YouTube: https://www.youtube.com/watch?v=<strong>12345678</strong> (the ID is <strong>12345678</strong>)<br>Vimeo: https://vimeo.com/<strong>12345678</strong> (the ID is <strong>12345678</strong>)'),
     )
     video_service = models.CharField(
         _(u'Video Service'),
@@ -85,6 +80,11 @@ class AllinkVidEmbedPlugin(AllinkVidBasePlugin):
         max_length=50,
         blank=True,
         null=True
+    )
+    auto_start_enabled = models.BooleanField(
+        _(u'Autostart'),
+        default=False,
+        help_text=_(u'<strong>Important:</strong> Autoplaying videos with audio is not recommended. Use wisely. '),
     )
     allow_fullscreen_enabled = models.BooleanField(
         _(u'Allow fullscreen'),
@@ -107,7 +107,7 @@ class AllinkVidFilePlugin(AllinkVidBasePlugin):
 
     video_file = FilerFileField(
             verbose_name=_(u'Video File'),
-            help_text=_(u'Recommended video settings:<br><br>Format: mp4<br>Codec: H.264<br>Target Bitrate: 2 (video loads quick and runs smooth)<br>Audio: Not recommended (no audio = smaller file size and less annoyed visitors)<br>Aspect ratio: TBD<br>File size: Dependent of video length. Generally speaking: Less is more.'),
+            help_text=_(u'Recommended video settings:<br><br>Format: mp4<br>Codec: H.264<br>Target Bitrate: 2 (video loads quick and runs smooth)<br>Audio: Not recommended (no audio = smaller file size and less annoyed visitors)<br>File size: Dependent of video length. Generally speaking: Less is more.'),
             on_delete=models.SET_NULL,
             null=True,
             related_name='%(app_label)s_%(class)s_video_file',
@@ -116,7 +116,7 @@ class AllinkVidFilePlugin(AllinkVidBasePlugin):
         verbose_name=_(u'Video Start Image'),
         related_name='%(app_label)s_%(class)s_video_poster_image',
         help_text=_(
-            u'This image is displayed while the video is loading. Ideally the very first frame of the video is used, in order to make the transition as smooth as possible.'),
+            u'Image that is being displayed while the video is loading. Ideally the very first frame of the video is used, in order to make the transition as smooth as possible.<br><br><strong>Imoprtant:</strong> Make sure the aspect ratio of the image is <strong>exactly the same</strong> as the video, otherwise the video height will shrink or grow when the playback starts.'),
         null=True
     )
     video_file_width = models.IntegerField(
@@ -137,6 +137,10 @@ class AllinkVidFilePlugin(AllinkVidBasePlugin):
     poster_only_on_mobile = models.BooleanField(
         _(u'Image Only (Mobile)'),
         help_text=_(u'Disable video on mobile devices and only show the start image without video control.'),
+        default=True
+    )
+    auto_start_enabled = models.BooleanField(
+        _(u'Autostart'),
         default=True
     )
     allow_fullscreen_enabled = models.BooleanField(
