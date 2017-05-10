@@ -5,7 +5,6 @@ from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
 from allink_core.djangocms_image.models import AllinkImagePlugin
 from allink_core.djangocms_image.forms import AllinkImagePluginForm
-from allink_core.allink_base.utils.utils import get_project_color_choices
 
 
 @plugin_pool.register_plugin
@@ -64,9 +63,6 @@ class CMSAllinkImagePlugin(CMSPluginBase):
             #     )
             # })
         ]
-
-        if get_project_color_choices():
-            fieldsets[0][1]['fields'].append('bg_color')
 
         return fieldsets
 
