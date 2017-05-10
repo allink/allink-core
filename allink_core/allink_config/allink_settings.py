@@ -172,11 +172,6 @@ DEBUG_TOOLBAR_CONFIG = {
 
 # =Thumbnail width aliases
 
-THUMBNAIL_DEFAULT_OPTIONS = {
-    'THUMBNAIL_HIGH_RESOLUTION': True,
-    'THUMBNAIL_HIGHRES_INFIX': '_2x',
-}
-
 THUMBNAIL_WIDTH_ALIASES = {
     '1-of-1': {
         'xs': {'width': 450, 'ratio': '3-2'},

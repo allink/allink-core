@@ -65,7 +65,7 @@ def get_width_alias_from_plugin(context):
 
 
 @register.inclusion_tag('templatetags/image.html', takes_context=True)
-def render_image(context, image, width_alias=None, ratio=None, crop='smart', high_res=True, bw=False, icon_disabled=False,
+def render_image(context, image, width_alias=None, ratio=None, crop='smart', bw=False, icon_disabled=False,
                  bg_disabled=False, bg_color=None):
     """
     -> parameters:
@@ -106,7 +106,7 @@ def render_image(context, image, width_alias=None, ratio=None, crop='smart', hig
     context.update({'bg_color': bg_color})
 
     sizes = get_sizes_from_width_alias(width_alias)
-    thumbnail_options = {'crop': crop, 'bw': bw, 'HIGH_RESOLUTION': high_res}
+    thumbnail_options = {'crop': crop, 'bw': bw}
 
     # create a thumbnail for each size
     for size in sizes:
@@ -115,23 +115,19 @@ def render_image(context, image, width_alias=None, ratio=None, crop='smart', hig
         # override the default ratio or use THUMBNAIL_WIDTH_ALIASES ratio
         if ratio:
             w = size[1][0]
-            ratio_w, ratio_h = get_ratio_w_h(ratio)
-            h = get_height_from_ratio(w, ratio_w, ratio_h)
+            # original ratio
+            if ratio == 'x-y':
+                h = get_height_from_ratio(w, image.width, image.height)
+            else:
+                ratio_w, ratio_h = get_ratio_w_h(ratio)
+                h = get_height_from_ratio(w, ratio_w, ratio_h)
         else:
             w, h = size[1][0], size[1][1]
 
         thumbnail_options.update({'size': (w, h)})
         context.update({'ratio_percent_{}'.format(size[0]): '{}%'.format(h / w * 100)})
 
-        thumbnailer.get_thumbnail(thumbnail_options)
-        context.update({'thumbnail_{}'.format(size[0]): thumbnailer})
-
-        # # retina
-        # thumbnail_options_2x = thumbnail_options
-        # thumbnail_options_2x.update({'size': (w * 2, h * 2)})
-        # thumbnailer_2x = get_thumbnailer(image)
-        # thumbnailer_2x.get_thumbnail(thumbnail_options)
-        # context.update({'thumbnail_{}_2x'.format(size[0]): thumbnailer_2x})
+        context.update({'thumbnail_{}'.format(size[0]): thumbnailer.get_thumbnail(thumbnail_options)})
 
     return context
 
