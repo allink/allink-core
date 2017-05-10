@@ -71,8 +71,8 @@ def get_width_alias_from_plugin(context):
 
 
 @register.inclusion_tag('templatetags/image.html', takes_context=True)
-def render_image(context, image, width_alias=None, ratio=None, crop='smart', upscale=True, bw=False, icon_disabled=False,
-                 bg_disabled=False, bg_color=None):
+def render_image(context, image, width_alias=None, ratio=None, crop='smart', upscale=True, bw=False, icon_enabled=True,
+                 bg_enabled=True, bg_color=None):
     """
     -> parameters:
     image: FilerImageField
@@ -114,8 +114,8 @@ def render_image(context, image, width_alias=None, ratio=None, crop='smart', ups
 
     # update context
     context.update({'image': image})
-    context.update({'icon_disabled': icon_disabled})
-    context.update({'bg_disabled': bg_disabled})
+    context.update({'icon_disabled': icon_enabled})
+    context.update({'bg_disabled': bg_enabled})
     context.update({'bg_color': bg_color})
 
     sizes = get_sizes_from_width_alias(width_alias)
