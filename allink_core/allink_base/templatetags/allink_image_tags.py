@@ -10,6 +10,12 @@ register = template.Library()
 # ####################################################################################
 # Allink image
 
+def get_percent(full, value):
+    """
+    returns a value in percent. (how much percent of ..) 
+    """
+    return value * (100 / full)
+
 def get_ratio_w_h(ratio):
     """
     returns width and height from string e.g. '1-2' or '4-3' as integer 
@@ -98,6 +104,13 @@ def render_image(context, image, width_alias=None, ratio=None, crop='smart', ups
     if not width_alias:
         # get with alias from context
         width_alias = get_width_alias_from_plugin(context)
+
+    # respect the focal point set in the filer media gallery (default is 'smart')
+    if crop != 'scale' and image.subject_location:
+        focal_x, focal_y = image.subject_location.split(",")
+        crop_x = get_percent(image.width, int(focal_x))
+        crop_y = get_percent(image.height, int(focal_y))
+        crop = '{}, {}'.format(crop_x, crop_y)
 
     # update context
     context.update({'image': image})
