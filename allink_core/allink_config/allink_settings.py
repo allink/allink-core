@@ -164,9 +164,9 @@ THUMBNAIL_WIDTH_ALIASES = {
         'xl': {'width': 1500, 'ratio': '3-2'}
     },
     '1-of-2': {
-        'xs': {'width': 450, 'ratio': '3-2'},
-        'sm': {'width': 1200, 'ratio': '3-2'},
-        'xl': {'width': 1500, 'ratio': '3-2'}
+        'xs': {'width': 45, 'ratio': '3-2'},
+        'sm': {'width': 120, 'ratio': '3-2'},
+        'xl': {'width': 150, 'ratio': '3-2'}
     },
     '2-of-3': {
         'xs': {'width': 450, 'ratio': '3-2'},
@@ -174,9 +174,9 @@ THUMBNAIL_WIDTH_ALIASES = {
         'xl': {'width': 1500, 'ratio': '3-2'}
     },
     '1-of-3': {
-        'xs': {'width': 450, 'ratio': '3-2'},
-        'sm': {'width': 1200, 'ratio': '3-2'},
-        'xl': {'width': 1500, 'ratio': '3-2'}
+        'xs': {'width': 450, 'ratio': '6-2'},
+        'sm': {'width': 1200, 'ratio': '6-2'},
+        'xl': {'width': 1500, 'ratio': '6-2'}
     },
     '1-of-4': {
         'xs': {'width': 450, 'ratio': '3-2'},

@@ -13,8 +13,9 @@ register = template.Library()
 def get_percent(full, value):
     """
     returns a value in percent. (how much percent of ..) 
+    rounded whole numbers   
     """
-    return value * (100 / full)
+    return round(value * (100 / full))
 
 def get_ratio_w_h(ratio):
     """
@@ -39,7 +40,7 @@ def get_sizes_from_width_alias(width_alias):
 def get_width_alias_from_plugin(context):
     plugin = context['instance']
     # plugin directly inside a column plugin
-    if hasattr(plugin, 'items_per_row'):
+    if not hasattr(plugin, 'items_per_row') and hasattr(plugin, 'template'):
         # the parent of all plugin with pictures is always a column plugin
         column_plugin = plugin.parent.djangocms_content_allinkcontentcolumnplugin
 
@@ -61,7 +62,7 @@ def get_width_alias_from_plugin(context):
             return '1-of-6'
 
     # app plugin
-    elif hasattr(plugin, 'template'):
+    elif hasattr(plugin, 'items_per_row'):
         return '1-of-{}'.format(getattr(plugin, 'items_per_row', '1'))
 
     # template tag called from within an other context
@@ -105,12 +106,12 @@ def render_image(context, image, width_alias=None, ratio=None, crop='smart', ups
         # get with alias from context
         width_alias = get_width_alias_from_plugin(context)
 
-    # respect the focal point set in the filer media gallery (default is 'smart')
-    if crop != 'scale' and image.subject_location:
-        focal_x, focal_y = image.subject_location.split(",")
-        crop_x = get_percent(image.width, int(focal_x))
-        crop_y = get_percent(image.height, int(focal_y))
-        crop = '{}, {}'.format(crop_x, crop_y)
+    # # respect the focal point set in the filer media gallery
+    # if image.subject_location:
+    #     focal_x, focal_y = image.subject_location.split(",")
+    #     crop_x = get_percent(image.width, int(focal_x))
+    #     crop_y = get_percent(image.height, int(focal_y))
+    #     crop = '{},{}'.format(crop_x, crop_y)
 
     # update context
     context.update({'image': image})
