@@ -35,6 +35,7 @@ Each release is divided into the following main categories:
 ### NEW
 - debug toolbar installed manually, because debug toolbar is extremly slow we disable it by default (to enable it, just set DEBUG_TOOLBAR_ENABLED=True in the env variables.)
 - new tuple PROJECT_CATEGORY_IDENTIFIERS: allowes you to specify a uique identifier, from wich you can navigae back from a app model (e.g to get the category name for the Units (categories) a person is tagged with.)
+- allink_config: Field for google_site_verification code added, because verification through tag manager snippet does not work anymore
 
 ### FIXES
 
