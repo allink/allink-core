@@ -65,7 +65,7 @@ def get_width_alias_from_plugin(context):
 
 
 @register.inclusion_tag('templatetags/image.html', takes_context=True)
-def render_image(context, image, width_alias=None, ratio=None, crop='smart', bw=False, icon_disabled=False,
+def render_image(context, image, width_alias=None, ratio=None, crop='smart', upscale=True, bw=False, icon_disabled=False,
                  bg_disabled=False, bg_color=None):
     """
     -> parameters:
@@ -106,7 +106,7 @@ def render_image(context, image, width_alias=None, ratio=None, crop='smart', bw=
     context.update({'bg_color': bg_color})
 
     sizes = get_sizes_from_width_alias(width_alias)
-    thumbnail_options = {'crop': crop, 'bw': bw}
+    thumbnail_options = {'crop': crop, 'bw': bw, 'upscale': upscale}
 
     # create a thumbnail for each size
     for size in sizes:
