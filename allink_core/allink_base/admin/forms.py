@@ -91,10 +91,11 @@ class AllinkBaseAppContentPluginForm(forms.ModelForm):
             widget=forms.Select(choices=self.instance.get_templates()),
             required=True,
         )
-        self.fields['bg_color'] = ColorField(
-            label=_(u'Background color'),
-            required=False,
-        )
+        if get_project_color_choices():
+            self.fields['bg_color'] = ColorField(
+                label=_(u'Background color'),
+                required=False,
+            )
         if get_additional_choices('PROJECT_CSS_CLASSES'):
             self.fields['project_css_classes'] = forms.MultipleChoiceField(
                 label=_(u'Predifined css classes'),

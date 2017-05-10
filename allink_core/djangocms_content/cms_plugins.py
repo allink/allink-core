@@ -7,6 +7,7 @@ from cms.plugin_pool import plugin_pool
 
 from allink_core.djangocms_content.models import AllinkContentPlugin, AllinkContentColumnPlugin
 from allink_core.djangocms_content.forms import AllinkContentPluginForm, AllinkContentColumnPluginForm
+from allink_core.allink_base.utils.utils import get_project_color_choices
 
 
 @plugin_pool.register_plugin
@@ -35,12 +36,11 @@ class CMSAllinkContentPlugin(CMSPluginBase):
         }),
         (_('Display Options'), {
             'classes': ('collapse',),
-            'fields': (
+            'fields': [
                 'container_enabled',
                 'full_height_enabled',
                 'overlay_styles_enabled',
-                'bg_color',
-            )
+            ]
         }),
         (_('Full width background image'), {
             'classes': ('collapse',),
@@ -73,6 +73,9 @@ class CMSAllinkContentPlugin(CMSPluginBase):
             )
         })
     )
+
+    if get_project_color_choices():
+        fieldsets[1][1]['fields'].append('bg_color')
 
     def save_model(self, request, obj, form, change):
         response = super(CMSAllinkContentPlugin, self).save_model(request, obj, form, change)

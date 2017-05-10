@@ -197,6 +197,12 @@ class AllinkConfig(SingletonModel):
         _(u'Toolbar enabled?'),
         default=True
     )
+    google_site_verification = models.CharField(
+        _(u'Google Site Verification Code'),
+        blank=True,
+        null=True,
+        max_length=64
+    )
 
     def __str__(self):
         return u'Allink Configuration'
@@ -228,4 +234,3 @@ class AllinkMetaTagExtension(AllinkMetaTagFieldsModel, TitleExtension):
 
 
 extension_pool.register(AllinkMetaTagExtension)
-

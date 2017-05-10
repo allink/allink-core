@@ -5,6 +5,7 @@ from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
 from allink_core.djangocms_image.models import AllinkImagePlugin
 from allink_core.djangocms_image.forms import AllinkImagePluginForm
+from allink_core.allink_base.utils.utils import get_project_color_choices
 
 
 @plugin_pool.register_plugin
@@ -45,16 +46,15 @@ class CMSAllinkImagePlugin(CMSPluginBase):
             }),
             (_('Advanced settings'), {
                 'classes': ('collapse',),
-                'fields': (
+                'fields': [
                     'template',
                     'icon_enabled',
-                    'bg_enabled',
-                    'bg_color',
                     'caption_text',
                     'attributes',
                     'project_css_classes',
                     'external_picture',
-                )
+                    'bg_enabled',
+                ]
             }),
             (_('Wireframe settings'), {
                 'classes': ('collapse',),
@@ -63,6 +63,9 @@ class CMSAllinkImagePlugin(CMSPluginBase):
                 )
             })
         ]
+
+        if get_project_color_choices():
+            fieldsets[1][2]['fields'].append('bg_color')
 
         return fieldsets
 
