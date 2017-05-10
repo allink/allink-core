@@ -17,6 +17,7 @@ Each release is divided into the following main categories:
 
 ###### SETTINGS
 -  import from allink_settings -> DEBUG_TOOLBAR_CONFIG
+-  import from allink_settings -> THUMBNAIL_DEFAULT_OPTIONS, THUMBNAIL_WIDTH_ALIASES
 
 ###### TEMPLATES
 
