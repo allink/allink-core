@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-09 09:46-0500\n"
+"POT-Creation-Date: 2017-05-10 09:14-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -641,7 +641,7 @@ msgstr ""
 msgid "The form has been submitted successfully."
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_base/templates/includes/forms/form_base.html:30
+#: allink_core_repo/allink_core/allink_base/templates/includes/forms/form_base.html:32
 msgid "Close"
 msgstr ""
 
@@ -653,7 +653,7 @@ msgstr ""
 msgid "Add plugin to"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_base/templatetags/allink_image_tags.py:260
+#: allink_core_repo/allink_core/allink_base/templatetags/allink_image_tags.py:266
 msgid ""
 "Please create a folder \"favicons\" and upload the complete favicon set."
 msgstr ""
