@@ -1,5 +1,5 @@
 {% load thumbnail %}
-<picture id="picture-{{ image.id }}" class="lazyloader {% if icon_disabled %}icon-disabled{% endif %} {% if bg_disabled %}bg-disabled{% endif %} {% if bg_color and bg_color != 0 %}project-color-{{bg_color}}{% endif %}">
+<picture id="picture-{{ image.id }}" class="lazyloader {% if not icon_enabled %}no-icon{% endif %} {% if not bg_enabled %}no-bg{% endif %} {% if bg_color and bg_color != 0 %}project-color-{{bg_color}}{% endif %}">
 
     {# end render figure/figcaption #}
 
