@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-09 10:25-0500\n"
+"POT-Creation-Date: 2017-05-10 09:14-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -454,11 +454,11 @@ msgstr "Alle"
 
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:32
 msgid "Street"
-msgstr ""
+msgstr "Strasse"
 
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:38
 msgid "Street Nr."
-msgstr ""
+msgstr "Nummer"
 
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:44
 msgid "Address Additional"
@@ -466,11 +466,11 @@ msgstr ""
 
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:50
 msgid "Zip Code"
-msgstr ""
+msgstr "Postleitzahl"
 
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:55
 msgid "Place"
-msgstr ""
+msgstr "Ort"
 
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:68
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:171

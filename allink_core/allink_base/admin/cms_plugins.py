@@ -56,9 +56,6 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
             )
         }),
 
-        if get_project_color_choices():
-            fieldsets[1][1]['fields'].append('bg_color')
-
         if self.data_model.get_can_have_categories():
             fieldsets += (_('Categories'), {
                 'classes': ('collapse',),

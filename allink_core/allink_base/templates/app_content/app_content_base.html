@@ -30,15 +30,21 @@
                             {% if instance.category_navigation_all %}
                                 <li class="active">
                                     <a class="ajax-load-items" href="{{ by_category }}">
-                                        {% block app_content_category_all_text %}
-                                            {% trans 'All' %}
-                                        {% endblock app_content_category_all_text %}
+                                        <span>
+                                            {% block app_content_category_all_text %}
+                                                {% trans 'All' %}
+                                            {% endblock app_content_category_all_text %}
+                                        </span>
                                     </a>
                                 </li>
                             {% endif %}
                         {% for category in category_navigation %}
                             <li class="{% if not instance.category_navigation_all and forloop.first %}active {% endif %}">
-                                <a class="ajax-load-items" href="{{ by_category }}&category={{ category.id }}">{{category.name}}</a>
+                                <a class="ajax-load-items" href="{{ by_category }}&category={{ category.id }}">
+                                    <span>
+                                        {{category.name}}
+                                    </span>
+                                </a>
                             </li>
                         {% endfor %}
                         </ul>

@@ -1,5 +1,5 @@
 {% load thumbnail allink_image_tags %}
 
 <div class="image-container image-plugin {{ instance.css_classes }}">
-    {% render_content_image icon_enabled=instance.icon_enabled bg_enabled=instance.bg_enabled %}
+    {% render_image image=instance.picture ratio=instance.ratio icon_enabled=instance.icon_enabled bg_enabled=instance.bg_enabled %}
 </div>
