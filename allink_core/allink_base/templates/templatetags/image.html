@@ -1,5 +1,5 @@
 {% load thumbnail %}
-<picture id="picture-{{ image.id }}" class="lazyloader {% if not icon_enabled %}no-icon{% endif %} {% if not bg_enabled %}no-bg{% endif %} {% if bg_color and bg_color != 0 %}project-color-{{bg_color}}{% endif %}">
+<picture id="{{ picture_id }}" class="lazyloader {% if not icon_enabled %}no-icon{% endif %} {% if not bg_enabled %}no-bg{% endif %} {% if bg_color and bg_color != 0 %}project-color-{{bg_color}}{% endif %}">
 
     {# end render figure/figcaption #}
 
@@ -27,16 +27,16 @@
     >
 
     <style>
-        #picture-{{ image.id }} {
+        #{{ picture_id }} {
             padding-bottom: {{ ratio_percent_xs }};
         }
         @media (min-width:576px) {
-            #picture-{{ image.id }} {
+            #{{ picture_id }} {
                 padding-bottom: {{ ratio_percent_sm }};
             }
         }
         @media (min-width:1200px) {
-            #picture-{{ image.id }} {
+            #{{ picture_id }} {
                 padding-bottom: {{ ratio_percent_xl }};
             }
         }

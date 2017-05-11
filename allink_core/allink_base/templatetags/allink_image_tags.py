@@ -141,6 +141,10 @@ def render_image(context, image, ratio=None, width_alias=None, crop='smart', ups
         context.update({'ratio_percent_{}'.format(size[0]): '{}%'.format(h / w * 100)})
         context.update({'thumbnail_{}'.format(size[0]): thumbnailer.get_thumbnail(thumbnail_options)})
 
+    # for css padding hack, a image in each ratio has to be unique
+    # (break point doesnt matter, because is never shown at the same time)
+    context.update({'picture_id': 'picture-{}'.format('-'.join((str(image.id), str(round(w)), str(round(h)))))})
+
     return context
 
 ####################################################################################
