@@ -68,7 +68,7 @@ class AllinkContentPlugin(AllinkBasePlugin):
     )
     bg_image_inner_container = FilerImageField(
         verbose_name=_(u'Background-Image'),
-        help_text=_(u'Dimensions TBD'),
+        help_text=_(u'Adds a background image to the inner container of a content section. Activating "overlay styles" is recommended.'),
         related_name="content_container_bg_image",
         blank=True,
         null=True
@@ -77,7 +77,7 @@ class AllinkContentPlugin(AllinkBasePlugin):
     # Video related fields
     video_file = FilerFileField(
         verbose_name=_(u'Source'),
-        help_text=_(u'Recommended video settings:<br><br>Format: mp4<br>Codec: H.264<br>Target Bitrate: 2 (video loads quick and runs smooth)<br>Audio: Not recommended (no audio = smaller file size and less annoyed visitors)<br>Aspect ratio: TBD<br>File size: Dependent of video length. Generally speaking: Less is more.'),
+        help_text=_(u'Recommended video settings:<br><br>Format: mp4<br>Codec: H.264<br>Target Bitrate: 2 (video loads quick and runs smooth)<br>Audio: Not recommended (no audio = smaller file size and less annoyed visitors)<br>File size: Dependent of video length. Generally speaking: Less is more.'),
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -93,13 +93,13 @@ class AllinkContentPlugin(AllinkBasePlugin):
     video_mobile_image = FilerImageField(
         verbose_name=_(u'Mobile Image'),
         related_name="content_video_mobile_image",
-        help_text=_(u'The image being displayed on mobile devices. Dimensions TBD'),
+        help_text=_(u'The image that is being displayed instead of the video on mobile devices.'),
         blank=True,
         null=True
     )
     video_mobile_image_alignment = models.CharField(
         _(u'Mobile Image Alignment (horizontal)'),
-        help_text=_(u'TBD Define which part of the image must be visible. Because we use the available space, there is a chance that a part (left and/or right) is not visible.'),
+        help_text=_(u'Which part of the image ist the most important one and <strong>must</strong> be visible? Because we use the available space, there is a chance that a part (left and/or right) is not visible.'),
         max_length=50,
         choices=HORIZONTAL_ALIGNMENT_CHOICES,
         default=CENTER
