@@ -28,6 +28,7 @@
         {% if instance.image_modal_enabled %}data-trigger-image-modal{% endif %}
         {% if instance.softpage_large_enabled or instance.softpage_small_enabled and instance.link_special != 'account_logout' %}data-trigger-softpage{% endif %}
         {% if instance.softpage_large_enabled %}data-softpage-variation="large"{% endif %}
+        {% if instance.link_anchor %}data-smooth-scroll{% endif %}
         {% if instance.softpage_small_enabled %}data-softpage-variation="small"{% endif %}
         {% if instance.link_special == 'account_login' and user.is_authenticated %}data-softpage-disabled{% endif %}
         {% if instance.link_special == 'account_logout' and user.is_authenticated %}data-submit-form{% endif %}
