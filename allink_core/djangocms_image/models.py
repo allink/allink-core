@@ -9,8 +9,6 @@ from djangocms_attributes_field.fields import AttributesField
 from cms.models.pluginmodel import CMSPlugin
 from filer.fields.image import FilerImageField
 
-from allink_core.allink_base.utils import get_additional_templates
-from allink_core.allink_base.utils.utils import get_project_color_choices
 from allink_core.allink_base.models.reusable_fields import AllinkLinkFieldsModel
 from allink_core.allink_base.models.model_fields import CMSPluginField
 
@@ -21,21 +19,6 @@ class AllinkImagePlugin(AllinkLinkFieldsModel, CMSPlugin):
      Renders an image with the option of adding a link
     """
 
-    # TEMPLATES
-    DEFAULT = 'default'
-
-    TEMPLATES = (
-        (DEFAULT, 'Default'),
-    )
-
-    # FIELDS
-    template = models.CharField(
-        _(u'Template'),
-        help_text=_(u'Choose a template.'),
-        max_length=50,
-        choices=TEMPLATES,
-        default=TEMPLATES[0]
-    )
     picture = FilerImageField(
         verbose_name=_(u'Image'),
         null=True,
@@ -114,13 +97,6 @@ class AllinkImagePlugin(AllinkLinkFieldsModel, CMSPlugin):
         if self.picture and self.picture.label:
             return self.picture.label
         return str(self.pk)
-
-    @classmethod
-    def get_templates(cls):
-        templates = cls.TEMPLATES
-        for x, y in get_additional_templates('AllinkImagePlugin'):
-            templates += ((x, y),)
-        return templates
 
     @property
     def base_classes(self):

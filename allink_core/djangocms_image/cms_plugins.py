@@ -41,7 +41,6 @@ class CMSAllinkImagePlugin(CMSPluginBase):
                 'fields': [
                     'caption_text',
                     'external_picture',
-                    'template',
                     'attributes',
                 ]
             }),
@@ -55,17 +54,10 @@ class CMSAllinkImagePlugin(CMSPluginBase):
                     'link_target',
                 )
             }),
-            # Replaced with our "original" option
-            # (_('Wireframe settings'), {
-            #     'classes': ('collapse',),
-            #     'fields': (
-            #         ('width', 'use_no_cropping'),
-            #     )
-            # })
         ]
 
         return fieldsets
 
     def get_render_template(self, context, instance, placeholder):
-        template = 'djangocms_image/{}/content.html'.format(instance.template)
+        template = 'djangocms_image/content.html'
         return template

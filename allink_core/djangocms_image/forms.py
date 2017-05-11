@@ -26,11 +26,6 @@ class AllinkImagePluginForm(forms.ModelForm):
             widget=forms.Select(choices=self.instance.get_link_special_choices()),
             required=False,
         )
-        self.fields['template'] = forms.CharField(
-            label=_(u'Template'),
-            widget=forms.Select(choices=self.instance.get_templates()),
-            required=True,
-        )
         self.fields['ratio'] = forms.CharField(
             label=_(u'Ratio'),
             help_text=_(u'This option overrides the default image ratio set for images in a colum of a content section.'),
