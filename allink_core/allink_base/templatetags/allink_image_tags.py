@@ -72,7 +72,7 @@ def get_width_alias_from_plugin(context):
 
 
 @register.inclusion_tag('templatetags/image.html', takes_context=True)
-def render_image(context, image, width_alias=None, ratio=None, crop='smart', upscale=True, bw=False, icon_enabled=True,
+def render_image(context, image, ratio=None, width_alias=None, crop='smart', upscale=True, bw=False, icon_enabled=True,
                  bg_enabled=True, bg_color=None):
     """
     -> parameters:
