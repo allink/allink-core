@@ -7,13 +7,13 @@
 
     {# XL #}
     <source
-        data-srcset="{{thumbnail_xl.url}}, {{thumbnail_xl.url}} 2x"
+        data-srcset="{{thumbnail_xl.url}}, {{thumbnail_xl.high_resolution.url}} 2x"
         media="(min-width:1200px)"
         >
 
     {# SM #}
     <source
-        data-srcset="{{thumbnail_sm.url}}, {{thumbnail_sm.url}} 2x"
+        data-srcset="{{thumbnail_sm.url}}, {{thumbnail_sm.high_resolution.url}} 2x"
         media="(min-width:576px)"
         >
 
@@ -21,7 +21,7 @@
 
     {# XS #}
     <img
-        data-srcset="{{thumbnail_xs.url}}, {{thumbnail_xs.url}} 2x"
+        data-srcset="{{thumbnail_xs.url}}, {{thumbnail_xs.high_resolution.url}} 2x"s
         alt="{{ object.title }}"
         class="lazyload"
     >

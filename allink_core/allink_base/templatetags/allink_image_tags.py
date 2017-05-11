@@ -72,7 +72,7 @@ def get_width_alias_from_plugin(context):
 
 
 @register.inclusion_tag('templatetags/image.html', takes_context=True)
-def render_image(context, image, ratio=None, width_alias=None, crop='smart', upscale=True, bw=False, icon_enabled=True, bg_enabled=True, bg_color=None):
+def render_image(context, image, ratio=None, width_alias=None, crop='smart', upscale=True, bw=False, high_resolution=True, icon_enabled=True, bg_enabled=True, bg_color=None):
     """
     -> parameters:
     image: FilerImageField
@@ -119,7 +119,7 @@ def render_image(context, image, ratio=None, width_alias=None, crop='smart', ups
     context.update({'bg_color': bg_color})
 
     sizes = get_sizes_from_width_alias(width_alias)
-    thumbnail_options = {'crop': crop, 'bw': bw, 'upscale': upscale}
+    thumbnail_options = {'crop': crop, 'bw': bw, 'upscale': upscale, 'HIGH_RESOLUTION': high_resolution}
 
     # create a thumbnail for each size
     for size in sizes:
@@ -139,7 +139,6 @@ def render_image(context, image, ratio=None, width_alias=None, crop='smart', ups
 
         thumbnail_options.update({'size': (w, h)})
         context.update({'ratio_percent_{}'.format(size[0]): '{}%'.format(h / w * 100)})
-
         context.update({'thumbnail_{}'.format(size[0]): thumbnailer.get_thumbnail(thumbnail_options)})
 
     return context
