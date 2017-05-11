@@ -25,13 +25,6 @@ class AllinkImagePlugin(AllinkLinkFieldsModel, CMSPlugin):
         on_delete=models.SET_NULL,
         related_name='%(app_label)s_%(class)s_picture',
     )
-    external_picture = models.URLField(
-        verbose_name=_(u'External image'),
-        blank=True,
-        max_length=255,
-        help_text=_(u'If provided, overrides the embedded image. '
-                    u'Certain options such as cropping are not applicable to external images.')
-    )
     ratio = models.CharField(
         _(u'Ratio'),
         max_length=50,
@@ -66,21 +59,6 @@ class AllinkImagePlugin(AllinkLinkFieldsModel, CMSPlugin):
         blank=True,
         excluded_keys=['src', 'width', 'height'],
     )
-    # section wireframe
-    width = models.PositiveIntegerField(
-        verbose_name=_(u'Width'),
-        blank=True,
-        null=True,
-        help_text=_(u'The image width as number in pixels. '
-                    u'Example: "720" and not "720px".'),
-    )
-    use_no_cropping = models.BooleanField(
-        verbose_name=_(u'Use original image'),
-        blank=True,
-        default=False,
-        help_text=_(u'Outputs the raw image without cropping.'),
-    )
-
     project_css_classes = ArrayField(
         models.CharField(
             max_length=50,
@@ -114,8 +92,6 @@ class AllinkImagePlugin(AllinkLinkFieldsModel, CMSPlugin):
         return ' '.join(css_classes)
 
     def get_short_description(self):
-        if self.external_picture:
-            return self.external_picture
         if self.picture and self.picture.label:
             return self.picture.label
         return ugettext('<file is missing>')

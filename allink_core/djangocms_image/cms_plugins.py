@@ -41,7 +41,6 @@ class CMSAllinkImagePlugin(CMSPluginBase):
                 'classes': ('collapse',),
                 'fields': [
                     'caption_text',
-                    'external_picture',
                     'attributes',
                 ]
             }),
