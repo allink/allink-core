@@ -34,6 +34,7 @@ class CMSAllinkImagePlugin(CMSPluginBase):
                     'project_css_classes',
                     'icon_enabled',
                     'bg_enabled',
+                    'bg_color',
                 ]
             }),
             (_('Additional settings'), {
