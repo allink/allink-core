@@ -99,51 +99,52 @@ def render_image(context, image, ratio=None, width_alias=None, crop='smart', ups
     bg_color
 
     """
-    # explicit render image in this width_alias
-    # most likely not from within an app plugin template or a content template
-    if not width_alias:
-        # get with alias from context
-        width_alias = get_width_alias_from_plugin(context)
+    if image:
+        # explicit render image in this width_alias
+        # most likely not from within an app plugin template or a content template
+        if not width_alias:
+            # get with alias from context
+            width_alias = get_width_alias_from_plugin(context)
 
-    # # respect the focal point set in the filer media gallery
-    # if image.subject_location:
-    #     focal_x, focal_y = image.subject_location.split(",")
-    #     crop_x = get_percent(image.width, int(focal_x))
-    #     crop_y = get_percent(image.height, int(focal_y))
-    #     crop = '{},{}'.format(crop_x, crop_y)
+        # # respect the focal point set in the filer media gallery
+        # if image.subject_location:
+        #     focal_x, focal_y = image.subject_location.split(",")
+        #     crop_x = get_percent(image.width, int(focal_x))
+        #     crop_y = get_percent(image.height, int(focal_y))
+        #     crop = '{},{}'.format(crop_x, crop_y)
 
-    # update context
-    context.update({'image': image})
-    context.update({'icon_enabled': icon_enabled})
-    context.update({'bg_enabled': bg_enabled})
-    context.update({'bg_color': bg_color})
+        # update context
+        context.update({'image': image})
+        context.update({'icon_enabled': icon_enabled})
+        context.update({'bg_enabled': bg_enabled})
+        context.update({'bg_color': bg_color})
 
-    sizes = get_sizes_from_width_alias(width_alias)
-    thumbnail_options = {'crop': crop, 'bw': bw, 'upscale': upscale, 'HIGH_RESOLUTION': high_resolution}
+        sizes = get_sizes_from_width_alias(width_alias)
+        thumbnail_options = {'crop': crop, 'bw': bw, 'upscale': upscale, 'HIGH_RESOLUTION': high_resolution}
 
-    # create a thumbnail for each size
-    for size in sizes:
-        thumbnailer = get_thumbnailer(image)
+        # create a thumbnail for each size
+        for size in sizes:
+            thumbnailer = get_thumbnailer(image)
 
-        # override the default ratio or use THUMBNAIL_WIDTH_ALIASES ratio
-        if ratio:
-            w = size[1][0]
-            # original ratio
-            if ratio == 'x-y':
-                h = get_height_from_ratio(w, image.width, image.height)
+            # override the default ratio or use THUMBNAIL_WIDTH_ALIASES ratio
+            if ratio:
+                w = size[1][0]
+                # original ratio
+                if ratio == 'x-y':
+                    h = get_height_from_ratio(w, image.width, image.height)
+                else:
+                    ratio_w, ratio_h = get_ratio_w_h(ratio)
+                    h = get_height_from_ratio(w, ratio_w, ratio_h)
             else:
-                ratio_w, ratio_h = get_ratio_w_h(ratio)
-                h = get_height_from_ratio(w, ratio_w, ratio_h)
-        else:
-            w, h = size[1][0], size[1][1]
+                w, h = size[1][0], size[1][1]
 
-        thumbnail_options.update({'size': (w, h)})
-        context.update({'ratio_percent_{}'.format(size[0]): '{}%'.format(h / w * 100)})
-        context.update({'thumbnail_{}'.format(size[0]): thumbnailer.get_thumbnail(thumbnail_options)})
+            thumbnail_options.update({'size': (w, h)})
+            context.update({'ratio_percent_{}'.format(size[0]): '{}%'.format(h / w * 100)})
+            context.update({'thumbnail_{}'.format(size[0]): thumbnailer.get_thumbnail(thumbnail_options)})
 
-    # for css padding hack, a image in each ratio has to be unique
-    # (break point doesnt matter, because is never shown at the same time)
-    context.update({'picture_id': 'picture-{}'.format('-'.join((str(image.id), str(round(w)), str(round(h)))))})
+        # for css padding hack, a image in each ratio has to be unique
+        # (break point doesnt matter, because is never shown at the same time)
+        context.update({'picture_id': 'picture-{}'.format('-'.join((str(image.id), str(round(w)), str(round(h)))))})
 
     return context
 
