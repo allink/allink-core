@@ -38,51 +38,35 @@ Each release is divided into the following main categories:
         },
         '1-of-2': {
             'xs': {'width': 450, 'ratio': '3-2'},
-            'sm': {'width': 1200, 'ratio': '3-2'},
-            'xl': {'width': 1500, 'ratio': '3-2'}
+            'sm': {'width': 650, 'ratio': '3-2'},
+            'xl': {'width': 800, 'ratio': '3-2'}
         },
         '2-of-3': {
             'xs': {'width': 450, 'ratio': '3-2'},
-            'sm': {'width': 1200, 'ratio': '3-2'},
-            'xl': {'width': 1500, 'ratio': '3-2'}
+            'sm': {'width': 900, 'ratio': '3-2'},
+            'xl': {'width': 1200, 'ratio': '3-2'}
         },
         '1-of-3': {
             'xs': {'width': 450, 'ratio': '3-2'},
-            'sm': {'width': 1200, 'ratio': '3-2'},
-            'xl': {'width': 1500, 'ratio': '3-2'}
+            'sm': {'width': 500, 'ratio': '3-2'},
+            'xl': {'width': 500, 'ratio': '3-2'}
         },
         '1-of-4': {
             'xs': {'width': 450, 'ratio': '3-2'},
-            'sm': {'width': 1200, 'ratio': '3-2'},
-            'xl': {'width': 1500, 'ratio': '3-2'}
+            'sm': {'width': 500, 'ratio': '3-2'},
+            'xl': {'width': 500, 'ratio': '3-2'}
         },
         '1-of-5': {
             'xs': {'width': 450, 'ratio': '3-2'},
-            'sm': {'width': 1200, 'ratio': '3-2'},
-            'xl': {'width': 1500, 'ratio': '3-2'}
+            'sm': {'width': 400, 'ratio': '3-2'},
+            'xl': {'width': 400, 'ratio': '3-2'}
         },
         '1-of-6': {
             'xs': {'width': 450, 'ratio': '3-2'},
-            'sm': {'width': 1200, 'ratio': '3-2'},
-            'xl': {'width': 1500, 'ratio': '3-2'}
+            'sm': {'width': 400, 'ratio': '3-2'},
+            'xl': {'width': 400, 'ratio': '3-2'}
         }
     }
-
-    # 'fullscreen', {
-    #         'xs': {'width': 450, 'ratio': '3-2},
-    #         'sm': {'width': 1200, 'ratio': '3-2},
-    #         'xl': {'width': 1500, 'ratio': '3-2},
-    #     },\
-    # 'container', {
-    #         'xs': {'width': 450, 'ratio': '3-2},
-    #         'sm': {'width': 1200, 'ratio': '3-2},
-    #         'xl': {'width': 1500, 'ratio': '3-2},
-    #     },
-    # 'parallax', {
-    #         'xs': {'width': 450, 'ratio': '3-2},
-    #         'sm': {'width': 1200, 'ratio': '3-2},
-    #         'xl': {'width': 1500, 'ratio': '3-2},
-    #     },
 
     ```
 
