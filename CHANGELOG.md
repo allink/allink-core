@@ -95,7 +95,7 @@ Each release is divided into the following main categories:
 ### IMPORTANT
 
 ###### SETTINGS
-- Project Colors: The new markup of the `PROJECT_COLORS` settings is as followed and requires to be updated:
+- Project Colors: The new markup of the `PROJECT_COLORS` settings is as followed and requires to be updated (the colors in allink_config have to b emanually set to the project colors defined in the settings.):
     ```python
     PROJECT_COLORS = {
         '#c6c6c6': 'project-color-1', # color
