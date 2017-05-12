@@ -103,3 +103,20 @@ class SpectrumColorPicker(forms.widgets.TextInput):
                     break
         rendered = super(SpectrumColorPicker, self).render(name, value, attrs)
         return mark_safe(rendered + self._render_js(attrs['id'], value))
+
+
+class SearchSelectWidget(forms.widgets.Select):
+
+    class Media:
+        js = ('build/djangocms_custom_admin_scripts.js', )
+        # css = {
+        #     'all': ('build/djangocms_custom_admin_style.css', )
+        # }
+
+    def __init__(self, attrs=None, choices=()):
+        class_attrs = {"class": "search-select"}
+        if attrs:
+            attrs.update(class_attrs)
+        else:
+            attrs = class_attrs
+        super(SearchSelectWidget, self).__init__(attrs)
