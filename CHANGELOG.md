@@ -17,9 +17,58 @@ Each release is divided into the following main categories:
 
 ###### SETTINGS
 -  import from allink_settings -> DEBUG_TOOLBAR_CONFIG
--  import from allink_settings -> THUMBNAIL_DEFAULT_OPTIONS, THUMBNAIL_WIDTH_ALIASES
+-  we refactored the whole image tags. the new tag 'render_image' requires a dict in the settings (when updating it is crucial, that you specify the project image ratios in the corresponding with_alias!)
+   this is important, mainly for all the images added with the image plugin. All the images in the context of app-templates (detail, and plugins) will still use the old THUMBNAIL_ALIASES
+    ```python
+    ##############################################
 
->>>>>>> develop
+    # =Thumbnail
+
+    THUMBNAIL_HIGHRES_INFIX = '_2x'
+
+    ####################################################################################
+
+    # =Thumbnail width aliases
+
+    THUMBNAIL_WIDTH_ALIASES = {
+        '1-of-1': {
+            'xs': {'width': 450, 'ratio': '3-2'},
+            'sm': {'width': 1200, 'ratio': '3-2'},
+            'xl': {'width': 1500, 'ratio': '3-2'}
+        },
+        '1-of-2': {
+            'xs': {'width': 450, 'ratio': '3-2'},
+            'sm': {'width': 650, 'ratio': '3-2'},
+            'xl': {'width': 800, 'ratio': '3-2'}
+        },
+        '2-of-3': {
+            'xs': {'width': 450, 'ratio': '3-2'},
+            'sm': {'width': 900, 'ratio': '3-2'},
+            'xl': {'width': 1200, 'ratio': '3-2'}
+        },
+        '1-of-3': {
+            'xs': {'width': 450, 'ratio': '3-2'},
+            'sm': {'width': 500, 'ratio': '3-2'},
+            'xl': {'width': 500, 'ratio': '3-2'}
+        },
+        '1-of-4': {
+            'xs': {'width': 450, 'ratio': '3-2'},
+            'sm': {'width': 500, 'ratio': '3-2'},
+            'xl': {'width': 500, 'ratio': '3-2'}
+        },
+        '1-of-5': {
+            'xs': {'width': 450, 'ratio': '3-2'},
+            'sm': {'width': 400, 'ratio': '3-2'},
+            'xl': {'width': 400, 'ratio': '3-2'}
+        },
+        '1-of-6': {
+            'xs': {'width': 450, 'ratio': '3-2'},
+            'sm': {'width': 400, 'ratio': '3-2'},
+            'xl': {'width': 400, 'ratio': '3-2'}
+        }
+    }
+
+    ```
 
 ###### TEMPLATES
 - people job_function (which it was used in tejakob for example) was substitutett with property 'units'. You now have to add categories (with unit=True) and tag th person with it. this allowes us to categories people without having to maintain both fields 'unit' and categories
