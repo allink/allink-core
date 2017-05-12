@@ -109,12 +109,12 @@ class SearchSelectWidget(forms.widgets.Select):
 
     class Media:
         js = ('build/djangocms_custom_admin_scripts.js', )
-        # css = {
-        #     'all': ('build/djangocms_custom_admin_style.css', )
-        # }
+        css = {
+            'all': ('build/djangocms_custom_admin_style.css', )
+        }
 
     def __init__(self, attrs=None, choices=()):
-        class_attrs = {"class": "search-select"}
+        class_attrs = {"data-live-search": "true", 'class': 'selectpicker'}
         if attrs:
             attrs.update(class_attrs)
         else:
