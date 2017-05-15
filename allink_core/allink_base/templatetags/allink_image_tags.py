@@ -72,6 +72,7 @@ def get_width_alias_from_plugin(context):
     else:
         return '1-of-1'
 
+
 def get_thumbnail(thumbnailer, thumbnail_options):
     """
     if no image was found, return a fallback image_not_found.jpg (if one was uploaded to Media Library)
@@ -85,7 +86,7 @@ def get_thumbnail(thumbnailer, thumbnail_options):
         except Folder.DoesNotExist:
             return None
         for file in files:
-            if file.original_filename.startswith('image_not_found'):
+            if file.original_filename.startswith('image-not-found'):
                 return get_thumbnailer(file).get_thumbnail(thumbnail_options)
         return None
     except:
