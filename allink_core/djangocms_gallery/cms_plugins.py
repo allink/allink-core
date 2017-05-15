@@ -15,6 +15,12 @@ class CMSAllinkGalleryPlugin(CMSPluginBase):
     child_classes = ['CMSAllinkGalleryImagePlugin']
     form = AllinkGalleryPluginForm
 
+    class Media:
+        js = ('build/djangocms_custom_admin_scripts.js', )
+        css = {
+            'all': ('build/djangocms_custom_admin_style.css', )
+        }
+
     def get_fieldsets(self, request, obj=None):
         fieldsets = (
             (None, {
