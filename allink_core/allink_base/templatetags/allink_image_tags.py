@@ -2,7 +2,6 @@
 from django import template
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
-from django.contrib.staticfiles.templatetags.staticfiles import static
 
 from easy_thumbnails.files import get_thumbnailer
 from easy_thumbnails.exceptions import InvalidImageFormatError
@@ -90,8 +89,11 @@ def get_thumbnail(thumbnailer, thumbnail_options):
             return None
         for file in files:
             if file.original_filename.startswith('image-not-found'):
-                return get_thumbnailer(file).get_thumbnail(thumbnail_options)
-        return None
+                try:
+                    return get_thumbnailer(file).get_thumbnail(thumbnail_options)
+                except InvalidImageFormatError:
+                    return None
+            return None
     except:
         return None
 
