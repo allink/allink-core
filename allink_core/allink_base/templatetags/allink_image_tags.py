@@ -2,7 +2,6 @@
 from django import template
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
-from django.contrib.staticfiles.templatetags.staticfiles import static
 
 from easy_thumbnails.files import get_thumbnailer
 from easy_thumbnails.exceptions import InvalidImageFormatError
