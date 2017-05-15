@@ -14,6 +14,21 @@ Each release is divided into the following main categories:
 ## v0.0.10 (under development)
 
 ### IMPORTANT
+- The following dependencies/plugins have been removed from the core. Unregister them accordingly:
+
+    ```python
+    from cms.plugin_pool import plugin_pool
+    from djangocms_file.cms_plugins import FilePlugin, FolderPlugin
+    from djangocms_picture.cms_plugins import PicturePlugin
+
+    plugin_pool.unregister_plugin(PicturePlugin)
+
+    # Unregister existing Plugins
+
+    plugin_pool.unregister_plugin(FilePlugin)
+    plugin_pool.unregister_plugin(FolderPlugin)
+    ```
+
 
 ###### SETTINGS
 -  import from allink_settings -> DEBUG_TOOLBAR_CONFIG
