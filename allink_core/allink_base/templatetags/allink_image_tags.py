@@ -89,8 +89,11 @@ def get_thumbnail(thumbnailer, thumbnail_options):
             return None
         for file in files:
             if file.original_filename.startswith('image-not-found'):
-                return get_thumbnailer(file).get_thumbnail(thumbnail_options)
-        return None
+                try:
+                    return get_thumbnailer(file).get_thumbnail(thumbnail_options)
+                except InvalidImageFormatError:
+                    return None
+            return None
     except:
         return None
 
