@@ -66,10 +66,12 @@ VERTICAL_ALIGNMENT_CHOICES = (
 
 H1 = 'h1'
 H2 = 'h2'
+H3 = 'h3'
 
 TITLE_CHOICES = (
     (H1, _(u'Title Large')),
     (H2, _(u'Title Medium')),
+    (H3, _(u'Title Small')),
 )
 
 

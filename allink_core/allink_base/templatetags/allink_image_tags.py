@@ -4,6 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 
 from easy_thumbnails.files import get_thumbnailer
+from easy_thumbnails.exceptions import InvalidImageFormatError
 from allink_core.allink_base.utils import get_height_from_ratio
 register = template.Library()
 
@@ -40,26 +41,29 @@ def get_sizes_from_width_alias(width_alias):
 def get_width_alias_from_plugin(context):
     plugin = context['instance']
     # plugin directly inside a column plugin
-    if not hasattr(plugin, 'items_per_row') and hasattr(plugin, 'template'):
-        # the parent of all plugin with pictures is always a column plugin
+    if not hasattr(plugin, 'items_per_row'):
+        # the parent of all plugin with pictures should always be a column plugin
+        # if not return a fallback of '1-of-1'
         column_plugin = plugin.parent.djangocms_content_allinkcontentcolumnplugin
-
-        if column_plugin.template == 'col-1':
+        if hasattr(column_plugin, 'template'):
+            if column_plugin.template == 'col-1':
+                return '1-of-1'
+            elif column_plugin.template == 'col-1-1':
+                return '1-of-2'
+            elif column_plugin.template == 'col-1-2':
+                return '1-of-3' if column_plugin.position == 0 else '2-of-3'
+            elif column_plugin.template == 'col-2-1':
+                return '2-of-3' if column_plugin.position == 0 else '1-of-3'
+            elif column_plugin.template == 'col-3':
+                return '1-of-3'
+            elif column_plugin.template == 'col-4':
+                return '1-of-4'
+            elif column_plugin.template == 'col-5':
+                return '1-of-5'
+            elif column_plugin.template == 'col-6':
+                return '1-of-6'
+        else:
             return '1-of-1'
-        elif column_plugin.template == 'col-1-1':
-            return '1-of-2'
-        elif column_plugin.template == 'col-1-2':
-            return '1-of-3' if column_plugin.position == 0 else '2-of-3'
-        elif column_plugin.template == 'col-2-1':
-            return '2-of-3' if column_plugin.position == 0 else '1-of-3'
-        elif column_plugin.template == 'col-3':
-            return '1-of-3'
-        elif column_plugin.template == 'col-4':
-            return '1-of-4'
-        elif column_plugin.template == 'col-5':
-            return '1-of-5'
-        elif column_plugin.template == 'col-6':
-            return '1-of-6'
 
     # app plugin
     elif hasattr(plugin, 'items_per_row'):
@@ -69,6 +73,29 @@ def get_width_alias_from_plugin(context):
     # this is a fallback, but should not come up if the correct width_alias is supplied in the template
     else:
         return '1-of-1'
+
+
+def get_thumbnail(thumbnailer, thumbnail_options):
+    """
+    if no image was found, return a fallback image_not_found.jpg (if one was uploaded to Media Library)
+    """
+    try:
+        return thumbnailer.get_thumbnail(thumbnail_options)
+    except InvalidImageFormatError:
+        from filer.models import Folder
+        try:
+            files = Folder.objects.get(name='Wireframe').files
+        except Folder.DoesNotExist:
+            return None
+        for file in files:
+            if file.original_filename.startswith('image-not-found'):
+                try:
+                    return get_thumbnailer(file).get_thumbnail(thumbnail_options)
+                except InvalidImageFormatError:
+                    return None
+            return None
+    except:
+        return None
 
 
 @register.inclusion_tag('templatetags/image.html', takes_context=True)
@@ -99,51 +126,52 @@ def render_image(context, image, ratio=None, width_alias=None, crop='smart', ups
     bg_color
 
     """
-    # explicit render image in this width_alias
-    # most likely not from within an app plugin template or a content template
-    if not width_alias:
-        # get with alias from context
-        width_alias = get_width_alias_from_plugin(context)
+    if image:
+        # explicit render image in this width_alias
+        # most likely not from within an app plugin template or a content template
+        if not width_alias:
+            # get with alias from context
+            width_alias = get_width_alias_from_plugin(context)
 
-    # # respect the focal point set in the filer media gallery
-    # if image.subject_location:
-    #     focal_x, focal_y = image.subject_location.split(",")
-    #     crop_x = get_percent(image.width, int(focal_x))
-    #     crop_y = get_percent(image.height, int(focal_y))
-    #     crop = '{},{}'.format(crop_x, crop_y)
+        # # respect the focal point set in the filer media gallery
+        # if image.subject_location:
+        #     focal_x, focal_y = image.subject_location.split(",")
+        #     crop_x = get_percent(image.width, int(focal_x))
+        #     crop_y = get_percent(image.height, int(focal_y))
+        #     crop = '{},{}'.format(crop_x, crop_y)
 
-    # update context
-    context.update({'image': image})
-    context.update({'icon_enabled': icon_enabled})
-    context.update({'bg_enabled': bg_enabled})
-    context.update({'bg_color': bg_color})
+        # update context
+        context.update({'image': image})
+        context.update({'icon_enabled': icon_enabled})
+        context.update({'bg_enabled': bg_enabled})
+        context.update({'bg_color': bg_color})
 
-    sizes = get_sizes_from_width_alias(width_alias)
-    thumbnail_options = {'crop': crop, 'bw': bw, 'upscale': upscale, 'HIGH_RESOLUTION': high_resolution}
+        sizes = get_sizes_from_width_alias(width_alias)
+        thumbnail_options = {'crop': crop, 'bw': bw, 'upscale': upscale, 'HIGH_RESOLUTION': high_resolution}
 
-    # create a thumbnail for each size
-    for size in sizes:
-        thumbnailer = get_thumbnailer(image)
+        # create a thumbnail for each size
+        for size in sizes:
+            thumbnailer = get_thumbnailer(image)
 
-        # override the default ratio or use THUMBNAIL_WIDTH_ALIASES ratio
-        if ratio:
-            w = size[1][0]
-            # original ratio
-            if ratio == 'x-y':
-                h = get_height_from_ratio(w, image.width, image.height)
+            # override the default ratio or use THUMBNAIL_WIDTH_ALIASES ratio
+            if ratio:
+                w = size[1][0]
+                # original ratio
+                if ratio == 'x-y':
+                    h = get_height_from_ratio(w, image.width, image.height)
+                else:
+                    ratio_w, ratio_h = get_ratio_w_h(ratio)
+                    h = get_height_from_ratio(w, ratio_w, ratio_h)
             else:
-                ratio_w, ratio_h = get_ratio_w_h(ratio)
-                h = get_height_from_ratio(w, ratio_w, ratio_h)
-        else:
-            w, h = size[1][0], size[1][1]
+                w, h = size[1][0], size[1][1]
 
-        thumbnail_options.update({'size': (w, h)})
-        context.update({'ratio_percent_{}'.format(size[0]): '{}%'.format(h / w * 100)})
-        context.update({'thumbnail_{}'.format(size[0]): thumbnailer.get_thumbnail(thumbnail_options)})
+            thumbnail_options.update({'size': (w, h)})
+            context.update({'ratio_percent_{}'.format(size[0]): '{}%'.format(h / w * 100)})
+            context.update({'thumbnail_{}'.format(size[0]): get_thumbnail(thumbnailer, thumbnail_options)})
 
-    # for css padding hack, a image in each ratio has to be unique
-    # (break point doesnt matter, because is never shown at the same time)
-    context.update({'picture_id': 'picture-{}'.format('-'.join((str(image.id), str(round(w)), str(round(h)))))})
+        # for css padding hack, a image in each ratio has to be unique
+        # (break point doesnt matter, because is never shown at the same time)
+        context.update({'picture_id': 'picture-{}'.format('-'.join((str(image.id), str(round(w)), str(round(h)))))})
 
     return context
 

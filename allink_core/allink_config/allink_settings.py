@@ -140,6 +140,22 @@ ALLINK_LOCALE_PATHS = [
     '/app/allink_apps/people/locale',
     '/app/allink_apps/testimonials/locale',
     '/app/allink_apps/work/locale',
+
+    '/app/allink_core/allink_base/locale',
+    '/app/allink_core/allink_categories/locale',
+    '/app/allink_core/allink_config/locale',
+    '/app/allink_core/allink_legacy_redirect/locale',
+    '/app/allink_core/allink_mailchimp/locale',
+    '/app/allink_core/allink_mandrill/locale',
+    '/app/allink_core/allink_styleguide/locale',
+    '/app/allink_core/djangocms_button_links/locale',
+    '/app/allink_core/djangocms_content/locale',
+    '/app/allink_core/djangocms_gallery/locale',
+    '/app/allink_core/djangocms_group/locale',
+    '/app/allink_core/djangocms_image/locale',
+    '/app/allink_core/djangocms_instagramm/locale',
+    '/app/allink_core/djangocms_socialicon/locale',
+    '/app/allink_core/djangocms_vid/locale',
 ]
 
 

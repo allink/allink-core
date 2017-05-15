@@ -20,6 +20,11 @@ class AllinkGalleryPluginForm(forms.ModelForm):
             widget=forms.Select(choices=get_ratio_choices()),
             required=False,
         )
+        self.fields['template'] = forms.CharField(
+            label=_(u'Template'),
+            widget=forms.Select(choices=self.instance.get_templates()),
+            required=True,
+        )
 
 
 class AllinkGalleryImagePluginForm(forms.ModelForm):

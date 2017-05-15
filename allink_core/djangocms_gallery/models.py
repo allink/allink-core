@@ -8,6 +8,8 @@ from filer.fields.image import FilerImageField
 from djangocms_text_ckeditor.fields import HTMLField
 
 from allink_core.allink_base.models.choices import TITLE_CHOICES, H1
+from allink_core.allink_base.utils import get_additional_templates
+
 
 
 @python_2_unicode_compatible
@@ -35,7 +37,6 @@ class AllinkGalleryPlugin(CMSPlugin):
         _(u'Template'),
         help_text=_(u'Choose a template.'),
         max_length=50,
-        choices=TEMPLATES,
         default=TEMPLATES[0]
     )
     ratio = models.CharField(
@@ -51,6 +52,13 @@ class AllinkGalleryPlugin(CMSPlugin):
         elif self.template:
             return u'({})'.format(self.template)
         return str(self.pk)
+
+    @classmethod
+    def get_templates(cls):
+        templates = cls.TEMPLATES
+        for x, y in get_additional_templates('Gallery'):
+            templates += ((x, y),)
+        return templates
 
 
 @python_2_unicode_compatible
