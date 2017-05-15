@@ -2,8 +2,10 @@
 from django import template
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
+from django.contrib.staticfiles.templatetags.staticfiles import static
 
 from easy_thumbnails.files import get_thumbnailer
+from easy_thumbnails.exceptions import InvalidImageFormatError
 from allink_core.allink_base.utils import get_height_from_ratio
 register = template.Library()
 
@@ -69,6 +71,25 @@ def get_width_alias_from_plugin(context):
     # this is a fallback, but should not come up if the correct width_alias is supplied in the template
     else:
         return '1-of-1'
+
+def get_thumbnail(thumbnailer, thumbnail_options):
+    """
+    if no image was found, return a fallback image_not_found.jpg (if one was uploaded to Media Library)
+    """
+    try:
+        return thumbnailer.get_thumbnail(thumbnail_options)
+    except InvalidImageFormatError:
+        from filer.models import Folder
+        try:
+            files = Folder.objects.get(name='Wireframe').files
+        except Folder.DoesNotExist:
+            return None
+        for file in files:
+            if file.original_filename.startswith('image_not_found'):
+                return get_thumbnailer(file).get_thumbnail(thumbnail_options)
+        return None
+    except:
+        return None
 
 
 @register.inclusion_tag('templatetags/image.html', takes_context=True)
@@ -140,7 +161,7 @@ def render_image(context, image, ratio=None, width_alias=None, crop='smart', ups
 
             thumbnail_options.update({'size': (w, h)})
             context.update({'ratio_percent_{}'.format(size[0]): '{}%'.format(h / w * 100)})
-            context.update({'thumbnail_{}'.format(size[0]): thumbnailer.get_thumbnail(thumbnail_options)})
+            context.update({'thumbnail_{}'.format(size[0]): get_thumbnail(thumbnailer, thumbnail_options)})
 
         # for css padding hack, a image in each ratio has to be unique
         # (break point doesnt matter, because is never shown at the same time)
