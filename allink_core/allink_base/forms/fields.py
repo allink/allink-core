@@ -69,7 +69,7 @@ class SelectLinkField(forms.fields.ChoiceField):
             required=required, widget=widgets.SearchSelectWidget(), label=label, initial=initial,
             help_text=help_text, *args, **kwargs
         )
-        self.choices = self.get_page_and_app_choices()
+        # self.choices = self.get_page_and_app_choices()
 
     def get_page_and_app_choices(self):
         # in progress
