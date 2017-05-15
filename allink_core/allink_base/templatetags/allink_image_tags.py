@@ -42,26 +42,29 @@ def get_sizes_from_width_alias(width_alias):
 def get_width_alias_from_plugin(context):
     plugin = context['instance']
     # plugin directly inside a column plugin
-    if not hasattr(plugin, 'items_per_row') and hasattr(plugin, 'template'):
-        # the parent of all plugin with pictures is always a column plugin
+    if not hasattr(plugin, 'items_per_row'):
+        # the parent of all plugin with pictures should always be a column plugin
+        # if not return a fallback of '1-of-1'
         column_plugin = plugin.parent.djangocms_content_allinkcontentcolumnplugin
-
-        if column_plugin.template == 'col-1':
+        if hasattr(column_plugin, 'template'):
+            if column_plugin.template == 'col-1':
+                return '1-of-1'
+            elif column_plugin.template == 'col-1-1':
+                return '1-of-2'
+            elif column_plugin.template == 'col-1-2':
+                return '1-of-3' if column_plugin.position == 0 else '2-of-3'
+            elif column_plugin.template == 'col-2-1':
+                return '2-of-3' if column_plugin.position == 0 else '1-of-3'
+            elif column_plugin.template == 'col-3':
+                return '1-of-3'
+            elif column_plugin.template == 'col-4':
+                return '1-of-4'
+            elif column_plugin.template == 'col-5':
+                return '1-of-5'
+            elif column_plugin.template == 'col-6':
+                return '1-of-6'
+        else:
             return '1-of-1'
-        elif column_plugin.template == 'col-1-1':
-            return '1-of-2'
-        elif column_plugin.template == 'col-1-2':
-            return '1-of-3' if column_plugin.position == 0 else '2-of-3'
-        elif column_plugin.template == 'col-2-1':
-            return '2-of-3' if column_plugin.position == 0 else '1-of-3'
-        elif column_plugin.template == 'col-3':
-            return '1-of-3'
-        elif column_plugin.template == 'col-4':
-            return '1-of-4'
-        elif column_plugin.template == 'col-5':
-            return '1-of-5'
-        elif column_plugin.template == 'col-6':
-            return '1-of-6'
 
     # app plugin
     elif hasattr(plugin, 'items_per_row'):
