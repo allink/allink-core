@@ -7,7 +7,6 @@ from cms.models.pluginmodel import CMSPlugin
 from filer.fields.image import FilerImageField
 from djangocms_text_ckeditor.fields import HTMLField
 
-from allink_core.allink_base.models.choices import TITLE_CHOICES, H1
 from allink_core.allink_base.utils import get_additional_templates
 
 
@@ -19,19 +18,6 @@ class AllinkGalleryPlugin(CMSPlugin):
 
     TEMPLATES = (
         (SLIDER, 'Slider'),
-    )
-    title = models.CharField(
-        _(u'Title'),
-        help_text=_(u'The section title'),
-        max_length=255,
-        blank=True,
-        null=True
-    )
-    title_size = models.CharField(
-        _(u'Section Title Size'),
-        max_length=50,
-        choices=TITLE_CHOICES,
-        default=H1
     )
     template = models.CharField(
         _(u'Template'),
@@ -47,10 +33,8 @@ class AllinkGalleryPlugin(CMSPlugin):
     )
 
     def __str__(self):
-        if self.title and self.template:
-            return u'{} ({})'.format(self.title, self.template)
-        elif self.template:
-            return u'({})'.format(self.template)
+        if self.template:
+            return self.template
         return str(self.pk)
 
     @classmethod
