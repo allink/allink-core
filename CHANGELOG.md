@@ -98,6 +98,7 @@ Each release is divided into the following main categories:
         ('TopicsApphook', {'detail': ('apps.topics.models.Topics', ['slug'])}),
     ])
     ```
+- remove 'django.middleware.cache.UpdateCacheMiddleware' and django.middleware.cache.FetchFromCacheMiddleware' (because they cache all responses from views, e.g AllinkBaseDetailView)
 
 ###### TEMPLATES
 - people job_function (which it was used in tejakob for example) was substitutett with property 'units'. You now have to add categories (with unit=True) and tag th person with it. this allowes us to categories people without having to maintain both fields 'unit' and categories
@@ -119,7 +120,7 @@ Each release is divided into the following main categories:
 - new tuple PROJECT_CATEGORY_IDENTIFIERS: allowes you to specify a uique identifier, from wich you can navigae back from a app model (e.g to get the category name for the Units (categories) a person is tagged with.)
 - allink_config: Field for google_site_verification code added, because verification through tag manager snippet does not work anymore
 - LinkField: Internal Links are handled through new AllinkInternalLinkFieldsModelMixin, AllinkInternalLinkFieldMixin and SelectLinkField
-- LinkField integrated in allink_legacy_redirect, NO DATAMIGRATIONS SO FAR 
+- LinkField integrated in allink_legacy_redirect, NO DATAMIGRATIONS SO FAR
 
 ### FIXES
 
