@@ -27,6 +27,8 @@ class CMSAllinkGalleryPlugin(CMSPluginBase):
                 'fields': (
                     'template',
                     'ratio',
+                    'fullscreen_enabled',
+                    'counter_enabled',
                 ),
             }),
         )

@@ -31,6 +31,16 @@ class AllinkGalleryPlugin(CMSPlugin):
         blank=True,
         null=True
     )
+    fullscreen_enabled = models.BooleanField(
+        _(u'Fullscreen option visible'),
+        default=False,
+        help_text=_(u'This option enables a fullscreen button for this gallery.'),
+    )
+    counter_enabled = models.BooleanField(
+        _(u'Gallery counter visible'),
+        default=False,
+        help_text=_(u'This option enables a gallery counter.'),
+    )
 
     def __str__(self):
         if self.template:
