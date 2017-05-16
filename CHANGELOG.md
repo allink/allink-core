@@ -121,6 +121,18 @@ Each release is divided into the following main categories:
 - allink_config: Field for google_site_verification code added, because verification through tag manager snippet does not work anymore
 - LinkField: Internal Links are handled through new AllinkInternalLinkFieldsModelMixin, AllinkInternalLinkFieldMixin and SelectLinkField
 - LinkField integrated in allink_legacy_redirect, NO DATAMIGRATIONS SO FAR
+- djangocms_gallery: added fullscreen & counter flags. Additional markup in `base_root.html` (before end of body) and custom styles are needed
+  ```html
+  <div class="swiper-fullscreen-container">
+      <a href="#" class="swiper-button-fullscreen-close" data-softpage-disabled data-close-swiper-fullscreen>
+          <i class="sr-only" lang="en">
+              {% trans "Close" %}
+          </i>
+      </a>
+      <div class="swiper-fullscreen"></div>
+  </div>
+
+  ```
 
 ### FIXES
 
