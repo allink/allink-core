@@ -84,6 +84,7 @@ Each release is divided into the following main categories:
     }
 
     ```
+    - remove 'django.middleware.cache.UpdateCacheMiddleware' and django.middleware.cache.FetchFromCacheMiddleware' (because they cache all responses from views, e.g AllinkBaseDetailView)
 
 ###### TEMPLATES
 - people job_function (which it was used in tejakob for example) was substitutett with property 'units'. You now have to add categories (with unit=True) and tag th person with it. this allowes us to categories people without having to maintain both fields 'unit' and categories
