@@ -88,17 +88,17 @@ class SelectLinkField(forms.fields.ChoiceField):
             if apphook == 'Page':
                 subchoices = []
                 subchoices += [(json.dumps({'page_id': p.id}), '%s %s' % ((p.depth - 1) * '---', p)) for p in Page.objects.filter(publisher_is_draft=False)]
-                choices.append((('----%s----' % _('pages'), subchoices).upper()))
+                choices.append((('%s' % _('pages').upper(), subchoices)))
 
             else:
                 try:
                     subchoices = []
                     for p in Page.objects.filter(application_urls=apphook, publisher_is_draft=False):
                         for url_name, info in url_names.items():
-                            obj_module = import_module(info[0][0])
-                            obj_model = getattr(obj_module, info[0][1])
-                            subchoices += [(json.dumps({'link_apphook_page_id': p.id, 'link_url_name': url_name, 'link_object_id': obj.id, 'link_url_kwargs': info[1]}), '%s (%s)' % (obj, p.application_namespace)) for obj in obj_model.objects.all()]
-                    choices.append((('----%s----' % apphook_pool.apps[apphook].app_name).upper(), subchoices))
+                            obj_module = import_module('.'.join(info[0].split('.')[:-1]))
+                            obj_model = getattr(obj_module, info[0].split('.')[-1])
+                            subchoices += [(json.dumps({'link_apphook_page_id': p.id, 'link_url_name': url_name, 'link_object_id': obj.id, 'link_url_kwargs': info[1], 'link_model': info[0]}), '%s (%s)' % (obj, p.application_namespace)) for obj in obj_model.objects.all()]
+                    choices.append((('%s' % apphook_pool.apps[apphook].app_name.upper()), subchoices))
                 # on app load time
                 except KeyError:
                     set_cache = False

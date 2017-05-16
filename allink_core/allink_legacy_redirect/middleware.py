@@ -72,7 +72,7 @@ class AllinkLegacyRedirectMiddleware(object):
         if link.overwrite:
             new_link = link.overwrite
         elif link.new_page:
-            new_link = link.new_page
+            new_link = link.get_link()
         else:
             return
 
