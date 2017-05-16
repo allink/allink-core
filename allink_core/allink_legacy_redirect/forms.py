@@ -26,7 +26,7 @@ class AllinkLegacyChangeAdminForm(forms.ModelForm):
         if self.instance:
             if self.instance.link_page:
                 self.fields['additional'].initial = json.dumps({'page_id': self.instance.link_page.id})
-            else:
+            elif self.instance.link_apphook_page:
                 self.fields['additional'].initial = json.dumps({
                     'link_apphook_page_id': self.instance.link_apphook_page.id,
                     'link_url_name': self.instance.link_url_name,
