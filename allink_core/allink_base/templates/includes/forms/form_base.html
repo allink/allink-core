@@ -12,31 +12,43 @@
         {% block form_additional_attributes %}{% endblock form_additional_attributes %}
         >
 
-        {# utility classes #}
+        {# utility block #}
         {% block form_inner_before %}{% endblock form_inner_before %}
 
         {% block csrf_token_container %}
             {% if not method == "get" %}{% csrf_token %}{% endif %}
         {% endblock csrf_token_container %}
 
-        {% block form_fields_container %}
-            {% include 'includes/forms/form_fields.html' with nolabel=nolabel|default:False %}
-        {% endblock form_fields_container %}
+        {% block form_heading_container %}
+            {% if form_title %}
+                <div class="form-heading-container">
+                    <h2 class="heading">{{form_title}}</h2>
+                </div>
+            {% endif %}
+        {% endblock form_heading_container %}
 
-        {% block form_btn_container %}
-            <div class="form-group btn-container">
-                {# utility classes #}
-                {% block form_btn_container_before %}{% endblock form_btn_container_before %}
-                <button class="{% block form_submit_btn_classes_container %}btn btn-{% block form_submit_btn_variation %}primary{% endblock form_submit_btn_variation %}{% endblock form_submit_btn_classes_container %}" name="submit" type="submit">{{ cta|default:"Submit" }}</button>
-                {% if close_btn_enabled %}
-                    <button class="{% block form_close_btn_classes_container %}btn btn-{% block form_close_btn_variation %}primary{% endblock form_close_btn_variation %}{% endblock form_close_btn_classes_container %}" name="submit" type="submit" data-close-form-modal>{% trans "Close" %}</button>
-                {% endif %}
-                {# utility classes #}
-                {% block form_btn_container_after %}{% endblock form_btn_container_after %}
+        {% block form_fields_main_container %}
+            <div class="form-fields-container">
+                {% block form_fields_container %}
+                    {% include 'includes/forms/form_fields.html' with nolabel=nolabel|default:False %}
+                {% endblock form_fields_container %}
+
+                {% block form_btn_container %}
+                    <div class="form-group btn-container">
+                        {# utility block #}
+                        {% block form_btn_container_before %}{% endblock form_btn_container_before %}
+                        <button class="{% block form_submit_btn_classes_container %}btn btn-{% block form_submit_btn_variation %}primary{% endblock form_submit_btn_variation %}{% endblock form_submit_btn_classes_container %}" name="submit" type="submit">{{ cta|default:"Submit" }}</button>
+                        {% if close_btn_enabled %}
+                            <button class="{% block form_close_btn_classes_container %}btn btn-{% block form_close_btn_variation %}default{% endblock form_close_btn_variation %}{% endblock form_close_btn_classes_container %}" name="submit" type="submit" data-close-form-modal>{% trans "Close" %}</button>
+                        {% endif %}
+                        {# utility block #}
+                        {% block form_btn_container_after %}{% endblock form_btn_container_after %}
+                    </div>
+                {% endblock form_btn_container %}
             </div>
-        {% endblock form_btn_container %}
+        {% endblock form_fields_main_container %}
 
-        {# utility classes #}
+        {# utility block #}
         {% block form_inner_after %}{% endblock form_inner_after %}
 
     </form>
