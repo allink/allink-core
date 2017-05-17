@@ -542,7 +542,7 @@ msgstr ""
 
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:165
 msgid "Email address"
-msgstr ""
+msgstr "E-Mail Adresse"
 
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:177
 msgid "Anchor"
