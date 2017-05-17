@@ -1,15 +1,17 @@
 # -*- coding: utf-8 -*-
 import phonenumbers
+from importlib import import_module
 try:
     # python 3
     from urllib.parse import urlparse
 except ImportError:
     # python 2, can be removed as soon as all projects are up to date
     from urlparse import urlparse
+
 from django.core.urlresolvers import reverse
 from django.core.exceptions import ValidationError
-
 from django.db import models
+from django.contrib.postgres.fields import ArrayField
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import force_text
 from filer.fields.image import FilerImageField
@@ -17,6 +19,7 @@ from filer.fields.file import FilerFileField
 from model_utils.models import TimeStampedModel
 from phonenumber_field.modelfields import PhoneNumberField
 
+from cms.models.fields import PageField
 from djangocms_attributes_field.fields import AttributesField
 
 from allink_core.allink_base.utils import get_additional_choices
@@ -146,6 +149,82 @@ class AllinkMetaTagFieldsModel(models.Model):
         blank=True,
         null=True
     )
+
+
+class AllinkInternalLinkFieldsModel(models.Model):
+    #  Page redirect
+    link_page = PageField(
+        verbose_name=_(u'New Page'),
+        null=True,
+        on_delete=models.SET_NULL,
+        help_text=_(u'If provided, overrides the external link and New Apphook-Page.')
+    )
+    #  Fields for app redirect
+    link_apphook_page = PageField(
+        verbose_name=_(u'New Apphook-Page'),
+        null=True,
+        on_delete=models.SET_NULL,
+        help_text=_(u'If provided, overrides the external link.'),
+        related_name='app_legacy_redirects'
+    )
+    link_object_id = models.IntegerField(
+        null=True,
+        help_text=_(u'To which object directs the url.')
+    )
+    link_model = models.CharField(
+        null=True,
+        max_length=300,
+        help_text=_(u'Dotted Path to referenced Model')
+    )
+    link_url_name = models.CharField(
+        null=True,
+        max_length=64,
+        help_text=_(u'Name of the App-URL to use.')
+    )
+    link_url_kwargs = ArrayField(
+        models.CharField(
+            max_length=50,
+            blank=True,
+            null=True
+        ),
+        blank=True,
+        null=True,
+        help_text=_(u'Keyword arguments used to reverse url.')
+    )
+
+    class Meta:
+        abstract = True
+
+    @property
+    def link(self):
+        if self.link_page:
+            return self.link_page.get_absolute_url()
+        elif self.link_apphook_page:
+            try:
+                obj_module = import_module('.'.join(self.link_model.split('.')[:-1]))
+                obj_model = getattr(obj_module, self.link_model.split('.')[-1])
+                obj = obj_model.objects.get(id=self.link_object_id)
+                url_kwargs = {key: getattr(obj, key) for key in self.link_url_kwargs}
+                url_name = u'{}:{}'.format(self.link_apphook_page.application_namespace, self.link_url_name)
+                return reverse(url_name, kwargs=url_kwargs)
+            except:
+                return ''
+        else:
+            return ''
+
+    @property
+    def link_object(self):
+        if self.link_page:
+            return self.link_page
+        elif self.link_apphook_page:
+            try:
+                obj_module = import_module('.'.join(self.link_model.split('.')[:-1]))
+                obj_model = getattr(obj_module, self.link_model.split('.')[-1])
+                return obj_model.objects.get(id=self.link_object_id)
+            except:
+                return None
+        else:
+            return None
 
 
 class AllinkLinkFieldsModel(models.Model):

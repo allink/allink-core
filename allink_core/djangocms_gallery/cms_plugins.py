@@ -25,10 +25,10 @@ class CMSAllinkGalleryPlugin(CMSPluginBase):
         fieldsets = (
             (None, {
                 'fields': (
-                    'title',
-                    'title_size',
                     'template',
                     'ratio',
+                    'fullscreen_enabled',
+                    'counter_enabled',
                 ),
             }),
         )

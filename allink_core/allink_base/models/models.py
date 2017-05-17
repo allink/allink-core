@@ -19,7 +19,7 @@ from adminsortable.models import SortableMixin
 from filer.fields.image import FilerImageField
 from model_utils.fields import AutoCreatedField, AutoLastModifiedField
 
-from allink_core.allink_base.utils import get_additional_templates
+from allink_core.allink_base.utils import base_url, get_additional_templates
 from allink_core.allink_categories.models import AllinkCategory
 
 from allink_core.allink_base.models import Classes
@@ -187,6 +187,9 @@ class AllinkBaseModel(AllinkMetaTagFieldsModel):
                 return reverse(app, kwargs={'slug': slug})
         except NoReverseMatch:
             return '/no_app_hook_configured'
+
+    def get_full_url(self):
+        return base_url() + self.get_absolute_url()
 
     def save_categories(self, new):
         """
@@ -486,8 +489,8 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
     )
     paginated_by = models.IntegerField(
         _(u'Max. entries per page'),
-        default=9,
-        help_text=_(u'Set to 0 if all entries should be displayed on first page.')
+        default=0,
+        help_text=_(u'Limit the number of entries (in case of the "load more" pagination type: entries per page). Default is "0" (show all entries)')
     )
     pagination_type = models.CharField(
         _(u'Paggination Type'),
@@ -497,14 +500,14 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
     )
     load_more_button_text = models.CharField(
         _(u'Text for "Load More"-Button'),
-        help_text=_(u'If left blank, a default text will be used.'),
+        help_text=_(u'If left blank, a default text will be used. <br>Note: Should the default text be adjusted site-wide, please contact the project manager (such changes can be made on a code level)'),
         max_length=255,
         null=True,
         blank=True
     )
     detail_link_text = models.CharField(
         _(u'Text for "Detail"-Link'),
-        help_text=_(u'If left blank, a default text will be used.'),
+        help_text=_(u'If left blank, a default text will be used.<br>Note: Should the default text be adjusted site-wide, please contact the project manager (such changes can be made on a code level)'),
         max_length=255,
         null=True,
         blank=True

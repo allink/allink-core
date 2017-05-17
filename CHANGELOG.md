@@ -84,6 +84,19 @@ Each release is divided into the following main categories:
     }
 
     ```
+- The new LinkField needs to know, which apps to use to generate link choices with some details:
+    ```python
+    PROJECT_LINK_APPHOOKS = OrderedDict([
+        ('Page', []),  # Not Apphook but linkable
+        ('BlogApphook', {'detail': ('allink_apps.blog.models.Blog', ['slug'])}),  # Linkable urls (urlnames): (ModelName, [url_parameters])
+        ('LocationsApphook', {'detail': ('allink_apps.locations.models.Locations', ['slug'])}),
+        ('MembersApphook', {'detail': ('allink_apps.members.models.Members', ['slug'])}),
+        ('PeopleApphook', {'detail': ('allink_apps.people.models.People', ['slug'])}),
+        ('TestimonialsApphook', {'detail': ('allink_apps.testimonials.models.Testimonial', ['slug'])}),
+        ('WorkApphook', {'detail': ('allink_apps.work.models.Work', ['slug'])}),
+    ])
+    ```
+- remove 'django.middleware.cache.UpdateCacheMiddleware' and django.middleware.cache.FetchFromCacheMiddleware' (because they cache all responses from views, e.g AllinkBaseDetailView)
 
 ###### TEMPLATES
 - people job_function (which it was used in tejakob for example) was substitutett with property 'units'. You now have to add categories (with unit=True) and tag th person with it. this allowes us to categories people without having to maintain both fields 'unit' and categories
@@ -98,10 +111,26 @@ Each release is divided into the following main categories:
 
 - Color Picker: Fields using the colorpicker (bg_color) need to be migrated. Therfore replace the hex-value in the databaseco with the project color name as defined in SETTINGS
 
+- Legacy Links: Migration for new LinkField. Warnings in Console for Links which can't be migrated automatically
+
 ### NEW
 - debug toolbar installed manually, because debug toolbar is extremly slow we disable it by default (to enable it, just set DEBUG_TOOLBAR_ENABLED=True in the env variables.)
 - new tuple PROJECT_CATEGORY_IDENTIFIERS: allowes you to specify a uique identifier, from wich you can navigae back from a app model (e.g to get the category name for the Units (categories) a person is tagged with.)
 - allink_config: Field for google_site_verification code added, because verification through tag manager snippet does not work anymore
+- LinkField: Internal Links are handled through new AllinkInternalLinkFieldsModelMixin, AllinkInternalLinkFieldMixin and SelectLinkField
+- LinkField integrated in allink_legacy_redirect
+- djangocms_gallery: added fullscreen & counter flags. Additional markup in `base_root.html` (before end of body) and custom styles are needed
+  ```html
+  <div class="swiper-fullscreen-container">
+      <a href="#" class="swiper-button-fullscreen-close" data-softpage-disabled data-close-swiper-fullscreen>
+          <i class="sr-only" lang="en">
+              {% trans "Close" %}
+          </i>
+      </a>
+      <div class="swiper-fullscreen"></div>
+  </div>
+
+  ```
 
 ### FIXES
 

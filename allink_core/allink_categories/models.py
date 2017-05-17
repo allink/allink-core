@@ -71,6 +71,8 @@ class AllinkCategory(AllinkTranslatedAutoSlugifyMixin, TranslationHelperMixin,
         blank=True
     )
 
+    # the verbose counterpart to field 'tag' (iidentifier can and has to be set manually)
+    # as a addition to make queries on categories (for example to create filter slect dropdown in app plugins)
     identifier = models.CharField(
         _(u'Identifier'),
         max_length=50,

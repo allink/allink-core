@@ -69,11 +69,8 @@ class AllinkLegacyRedirectMiddleware(object):
             return
 
         # 'overwrite' takes priority over 'new'
-        if link.overwrite:
-            new_link = link.overwrite
-        elif link.new_page:
-            new_link = link.new_page
-        else:
+        new_link = link.link
+        if not new_link:
             return
 
         # preserve Google Click Identifier

@@ -10,7 +10,7 @@ def base_url():
     from django.contrib.sites.models import Site
     global _base_url
     if not '_base_url' not in locals() or not _base_url:
-        _base_url = 'http://' + Site.objects.get_current().domain
+        _base_url = 'https://' + Site.objects.get_current().domain
     return _base_url
 
 
@@ -78,7 +78,7 @@ def get_display(key, list):
 
 def replace_line_breaks(string):
     """
-    replaces 
+    replaces
     '\r\n' and '\n\r' and '\r' and '\n' and with '<br />'
     """
     r = '<br />'

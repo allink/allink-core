@@ -11,7 +11,7 @@ config = MailChimpConfig()
 
 
 class SignupForm(forms.Form):
-    email = forms.EmailField(label=_(u'E-Mail'))
+    email = forms.EmailField(label=_(u'Email'))
     language = forms.CharField(max_length=3, required=False)
 
     def save(self):
@@ -34,7 +34,7 @@ class SignupForm(forms.Form):
 class SignupFormAdvanced(forms.Form):
     first_name = forms.CharField(label=_(u'First Name'))
     last_name = forms.CharField(label=_(u'Last Name'))
-    email = forms.EmailField(label=_(u'E-Mail'))
+    email = forms.EmailField(label=_(u'Email'))
     language = forms.CharField(max_length=3, required=False)
 
     def save(self):

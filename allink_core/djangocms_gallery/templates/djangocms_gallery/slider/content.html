@@ -22,5 +22,20 @@
             </i>
         </a>
 
+        {% if instance.counter_enabled %}
+        <div class="swiper-counter">
+            <span class="current">1</span>
+            <span class="separator">–</span>
+            <span class="total">0</span>
+        </div>
+        {% endif %}
+
+        {% if instance.fullscreen_enabled %}
+        <a href="#" class="swiper-button-fullscreen" data-softpage-disabled data-trigger-swiper-fullscreen>
+            {% trans "Fullscreen Gallery" %}
+        </a>
+        {% endif %}
+
     </div>
+
 </div>
