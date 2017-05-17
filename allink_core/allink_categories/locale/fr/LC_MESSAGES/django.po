@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-10 09:14-0500\n"
+"POT-Creation-Date: 2017-05-17 09:46-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,7 +30,7 @@ msgid ""
 msgstr ""
 
 #: allink_core_repo/allink_core/allink_categories/admin.py:40
-#: allink_core_repo/allink_core/allink_categories/models.py:75
+#: allink_core_repo/allink_core/allink_categories/models.py:77
 msgid "Identifier"
 msgstr ""
 
@@ -45,7 +45,7 @@ msgid "Allink"
 msgstr ""
 
 #: allink_core_repo/allink_core/allink_categories/cms_toolbars.py:27
-#: allink_core_repo/allink_core/allink_categories/models.py:102
+#: allink_core_repo/allink_core/allink_categories/models.py:104
 msgid "Categories"
 msgstr ""
 
@@ -59,18 +59,18 @@ msgid ""
 "category."
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_categories/models.py:84
+#: allink_core_repo/allink_core/allink_categories/models.py:86
 msgid "name"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_categories/models.py:90
+#: allink_core_repo/allink_core/allink_categories/models.py:92
 msgid "slug"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_categories/models.py:93
+#: allink_core_repo/allink_core/allink_categories/models.py:95
 msgid "Provide a “slug” or leave blank for an automatically generated one."
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_categories/models.py:101
+#: allink_core_repo/allink_core/allink_categories/models.py:103
 msgid "Category"
 msgstr ""

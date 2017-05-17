@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-10 09:14-0500\n"
+"POT-Creation-Date: 2017-05-17 09:46-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -109,7 +109,9 @@ msgid "Background-Image"
 msgstr ""
 
 #: allink_core_repo/allink_core/djangocms_content/models.py:71
-msgid "Dimensions TBD"
+msgid ""
+"Adds a background image to the inner container of a content section. "
+"Activating \"overlay styles\" is recommended."
 msgstr ""
 
 #: allink_core_repo/allink_core/djangocms_content/models.py:79
@@ -120,9 +122,8 @@ msgstr ""
 msgid ""
 "Recommended video settings:<br><br>Format: mp4<br>Codec: H.264<br>Target "
 "Bitrate: 2 (video loads quick and runs smooth)<br>Audio: Not recommended (no "
-"audio = smaller file size and less annoyed visitors)<br>Aspect ratio: "
-"TBD<br>File size: Dependent of video length. Generally speaking: Less is "
-"more."
+"audio = smaller file size and less annoyed visitors)<br>File size: Dependent "
+"of video length. Generally speaking: Less is more."
 msgstr ""
 
 #: allink_core_repo/allink_core/djangocms_content/models.py:87
@@ -141,7 +142,8 @@ msgid "Mobile Image"
 msgstr ""
 
 #: allink_core_repo/allink_core/djangocms_content/models.py:96
-msgid "The image being displayed on mobile devices. Dimensions TBD"
+msgid ""
+"The image that is being displayed instead of the video on mobile devices."
 msgstr ""
 
 #: allink_core_repo/allink_core/djangocms_content/models.py:101
@@ -150,9 +152,9 @@ msgstr ""
 
 #: allink_core_repo/allink_core/djangocms_content/models.py:102
 msgid ""
-"TBD Define which part of the image must be visible. Because we use the "
-"available space, there is a chance that a part (left and/or right) is not "
-"visible."
+"Which part of the image ist the most important one and <strong>must</strong> "
+"be visible? Because we use the available space, there is a chance that a "
+"part (left and/or right) is not visible."
 msgstr ""
 
 #: allink_core_repo/allink_core/djangocms_content/models.py:108
@@ -165,20 +167,20 @@ msgid ""
 "<br>Note: Only letters, numbers and hyphen. No spaces or special chars."
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_content/models.py:164
+#: allink_core_repo/allink_core/djangocms_content/models.py:167
 #, python-format
 msgid "Incorrect file type: %(value)s"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_content/models.py:197
+#: allink_core_repo/allink_core/djangocms_content/models.py:200
 msgid "Title"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_content/models.py:203
+#: allink_core_repo/allink_core/djangocms_content/models.py:206
 msgid "Order Mobile"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_content/models.py:204
+#: allink_core_repo/allink_core/djangocms_content/models.py:207
 msgid ""
 "Some columns should be ordered differently on mobile devices when columns "
 "are stacked vertically. This option allows you to define the position of the "
@@ -186,31 +188,31 @@ msgid ""
 "displayed first)"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_content/models.py:209
+#: allink_core_repo/allink_core/djangocms_content/models.py:212
 msgid "Alignment horizontal mobile"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_content/models.py:212
+#: allink_core_repo/allink_core/djangocms_content/models.py:215
 msgid ""
 "This option overrides the projects default alignment for mobile. (Usually "
 "\"left\")"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_content/models.py:217
+#: allink_core_repo/allink_core/djangocms_content/models.py:220
 msgid "Alignment horizontal desktop"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_content/models.py:220
+#: allink_core_repo/allink_core/djangocms_content/models.py:223
 msgid ""
 "This option overrides the projects default alignment for desktop. (Usually "
 "\"left\")"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_content/models.py:225
+#: allink_core_repo/allink_core/djangocms_content/models.py:228
 msgid "Alignment vertical desktop"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_content/models.py:228
+#: allink_core_repo/allink_core/djangocms_content/models.py:231
 msgid ""
 "This option overrides the projects default alignment for desktop. (Usually "
 "\"top\")"
