@@ -144,19 +144,22 @@ class AllinkContentPlugin(AllinkBasePlugin):
         if self.title:
             return u'{} ({})'.format(self.title, self.template)
         else:
-            for column in self.child_plugin_instances:
-                if column.child_plugin_instances:
-                    for plugin in column.child_plugin_instances:
-                        if hasattr(plugin, 'title') and plugin.title:
-                            return u'... {} ({})'.format(plugin.title, self.template)
-                        elif plugin.plugin_type == 'TextPlugin':
-                            return u'... {} ({}) ...'.format(strip_tags(plugin.body)[0:50], self.template)
-                        elif plugin.plugin_type == 'CMSAllinkImagePlugin':
-                            return u'... {} ({}) ...'.format(plugin.picture, self.template)
-                        else:
-                            return u'({})'.format(self.template)
-                else:
-                    return u'({})'.format(self.template)
+            if self.child_plugin_instances:
+                for column in self.child_plugin_instances:
+                    if column.child_plugin_instances:
+                        for plugin in column.child_plugin_instances:
+                            if hasattr(plugin, 'title') and plugin.title:
+                                return u'... {} ({})'.format(plugin.title, self.template)
+                            elif plugin.plugin_type == 'TextPlugin':
+                                return u'... {} ({}) ...'.format(strip_tags(plugin.body)[0:50], self.template)
+                            elif plugin.plugin_type == 'CMSAllinkImagePlugin':
+                                return u'... {} ({}) ...'.format(plugin.picture, self.template)
+                            else:
+                                return u'({})'.format(self.template)
+                    else:
+                        return u'({})'.format(self.template)
+            else:
+                return u'({})'.format(self.template)
 
     def clean(self):
         if (self.video_file and self.video_file.extension not in ALLOWED_VIDEO_EXTENSIONS):

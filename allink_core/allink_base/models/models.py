@@ -19,7 +19,7 @@ from adminsortable.models import SortableMixin
 from filer.fields.image import FilerImageField
 from model_utils.fields import AutoCreatedField, AutoLastModifiedField
 
-from allink_core.allink_base.utils import get_additional_templates
+from allink_core.allink_base.utils import base_url, get_additional_templates
 from allink_core.allink_categories.models import AllinkCategory
 
 from allink_core.allink_base.models import Classes
@@ -187,6 +187,9 @@ class AllinkBaseModel(AllinkMetaTagFieldsModel):
                 return reverse(app, kwargs={'slug': slug})
         except NoReverseMatch:
             return '/no_app_hook_configured'
+
+    def get_full_url(self):
+        return base_url() + self.get_absolute_url()
 
     def save_categories(self, new):
         """
