@@ -64,6 +64,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('allink_legacy_redirect', '0011_auto_20170516_0349'),
+        ('blog', '__latest__'),
     ]
 
     operations = [
