@@ -98,6 +98,7 @@ Each release is divided into the following main categories:
         ('TopicsApphook', {'detail': ('apps.topics.models.Topics', ['slug'])}),
     ])
     ```
+- remove 'django.middleware.cache.UpdateCacheMiddleware' and django.middleware.cache.FetchFromCacheMiddleware' (because they cache all responses from views, e.g AllinkBaseDetailView)
 
 ###### TEMPLATES
 - people job_function (which it was used in tejakob for example) was substitutett with property 'units'. You now have to add categories (with unit=True) and tag th person with it. this allowes us to categories people without having to maintain both fields 'unit' and categories
@@ -120,6 +121,18 @@ Each release is divided into the following main categories:
 - allink_config: Field for google_site_verification code added, because verification through tag manager snippet does not work anymore
 - LinkField: Internal Links are handled through new AllinkInternalLinkFieldsModelMixin, AllinkInternalLinkFieldMixin and SelectLinkField
 - LinkField integrated in allink_legacy_redirect
+- djangocms_gallery: added fullscreen & counter flags. Additional markup in `base_root.html` (before end of body) and custom styles are needed
+  ```html
+  <div class="swiper-fullscreen-container">
+      <a href="#" class="swiper-button-fullscreen-close" data-softpage-disabled data-close-swiper-fullscreen>
+          <i class="sr-only" lang="en">
+              {% trans "Close" %}
+          </i>
+      </a>
+      <div class="swiper-fullscreen"></div>
+  </div>
+
+  ```
 
 ### FIXES
 
