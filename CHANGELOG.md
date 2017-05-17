@@ -112,14 +112,14 @@ Each release is divided into the following main categories:
 
 - Color Picker: Fields using the colorpicker (bg_color) need to be migrated. Therfore replace the hex-value in the databaseco with the project color name as defined in SETTINGS
 
-- Legacy Links: No datamigrations existing for new link field so far. Is in progress. --> Migrations need to be handled by hand
+- Legacy Links: Migration for new LinkField. Warnings in Console for Links which can't be migrated automatically
 
 ### NEW
 - debug toolbar installed manually, because debug toolbar is extremly slow we disable it by default (to enable it, just set DEBUG_TOOLBAR_ENABLED=True in the env variables.)
 - new tuple PROJECT_CATEGORY_IDENTIFIERS: allowes you to specify a uique identifier, from wich you can navigae back from a app model (e.g to get the category name for the Units (categories) a person is tagged with.)
 - allink_config: Field for google_site_verification code added, because verification through tag manager snippet does not work anymore
 - LinkField: Internal Links are handled through new AllinkInternalLinkFieldsModelMixin, AllinkInternalLinkFieldMixin and SelectLinkField
-- LinkField integrated in allink_legacy_redirect, NO DATAMIGRATIONS SO FAR 
+- LinkField integrated in allink_legacy_redirect
 
 ### FIXES
 
