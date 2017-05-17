@@ -37,7 +37,7 @@
                     <div class="form-group btn-container">
                         {# utility block #}
                         {% block form_btn_container_before %}{% endblock form_btn_container_before %}
-                        <button class="{% block form_submit_btn_classes_container %}btn btn-{% block form_submit_btn_variation %}primary{% endblock form_submit_btn_variation %}{% endblock form_submit_btn_classes_container %}" name="submit" type="submit">{{ cta|default:"Submit" }}</button>
+                        <button class="{% block form_submit_btn_classes_container %}btn btn-{% block form_submit_btn_variation %}default{% endblock form_submit_btn_variation %}{% endblock form_submit_btn_classes_container %}" name="submit" type="submit">{{ cta|default:"Submit" }}</button>
                         {% if close_btn_enabled %}
                             <button class="{% block form_close_btn_classes_container %}btn btn-{% block form_close_btn_variation %}default{% endblock form_close_btn_variation %}{% endblock form_close_btn_classes_container %}" name="submit" type="submit" data-close-form-modal>{% trans "Close" %}</button>
                         {% endif %}
