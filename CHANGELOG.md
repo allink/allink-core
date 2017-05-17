@@ -92,10 +92,8 @@ Each release is divided into the following main categories:
         ('LocationsApphook', {'detail': ('allink_apps.locations.models.Locations', ['slug'])}),
         ('MembersApphook', {'detail': ('allink_apps.members.models.Members', ['slug'])}),
         ('PeopleApphook', {'detail': ('allink_apps.people.models.People', ['slug'])}),
-        ('TestimonialsApphook', {'detail': ('allink_apps.testimonials.models.Testimonials', ['slug'])}),
+        ('TestimonialsApphook', {'detail': ('allink_apps.testimonials.models.Testimonial', ['slug'])}),
         ('WorkApphook', {'detail': ('allink_apps.work.models.Work', ['slug'])}),
-        ('ServicesApphook', {'detail': ('apps.services.models.Services', ['slug'])}),
-        ('TopicsApphook', {'detail': ('apps.topics.models.Topics', ['slug'])}),
     ])
     ```
 - remove 'django.middleware.cache.UpdateCacheMiddleware' and django.middleware.cache.FetchFromCacheMiddleware' (because they cache all responses from views, e.g AllinkBaseDetailView)
