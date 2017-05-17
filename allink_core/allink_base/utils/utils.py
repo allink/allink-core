@@ -78,7 +78,7 @@ def get_display(key, list):
 
 def replace_line_breaks(string):
     """
-    replaces 
+    replaces
     '\r\n' and '\n\r' and '\r' and '\n' and with '<br />'
     """
     r = '<br />'
