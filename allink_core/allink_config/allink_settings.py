@@ -19,6 +19,7 @@ ALLINK_INSTALLED_APPS = [
     'widget_tweaks',
     'lockdown',
     'reportlab',
+    'djangocms_snippet',
 
     # allink core apps
     'allink_core.allink_base',
@@ -97,6 +98,7 @@ ALLINK_CMS_PLACEHOLDER_CONF_PLUGINS = [
 
 CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [
     'TextPlugin',
+    'SnippetPlugin',
     # apps
     'CMSLocationsPlugin',
     'CMSPeoplePlugin',

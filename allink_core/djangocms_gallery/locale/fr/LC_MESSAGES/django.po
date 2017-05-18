@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-10 09:14-0500\n"
+"POT-Creation-Date: 2017-05-17 09:46-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,17 +23,17 @@ msgid "Gallery"
 msgstr ""
 
 #: allink_core_repo/allink_core/djangocms_gallery/cms_plugins.py:13
-#: allink_core_repo/allink_core/djangocms_gallery/cms_plugins.py:41
+#: allink_core_repo/allink_core/djangocms_gallery/cms_plugins.py:47
 msgid "allink"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_gallery/cms_plugins.py:40
-#: allink_core_repo/allink_core/djangocms_gallery/models.py:69
+#: allink_core_repo/allink_core/djangocms_gallery/cms_plugins.py:46
+#: allink_core_repo/allink_core/djangocms_gallery/models.py:71
 msgid "Image"
 msgstr ""
 
 #: allink_core_repo/allink_core/djangocms_gallery/forms.py:18
-#: allink_core_repo/allink_core/djangocms_gallery/models.py:42
+#: allink_core_repo/allink_core/djangocms_gallery/models.py:29
 msgid "Ratio"
 msgstr ""
 
@@ -41,28 +41,36 @@ msgstr ""
 msgid "This option overrides the default settings for the gallery plugin."
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_gallery/models.py:22
-#: allink_core_repo/allink_core/djangocms_gallery/models.py:59
-msgid "Title"
-msgstr ""
-
+#: allink_core_repo/allink_core/djangocms_gallery/forms.py:24
 #: allink_core_repo/allink_core/djangocms_gallery/models.py:23
-msgid "The section title"
-msgstr ""
-
-#: allink_core_repo/allink_core/djangocms_gallery/models.py:29
-msgid "Section Title Size"
-msgstr ""
-
-#: allink_core_repo/allink_core/djangocms_gallery/models.py:35
 msgid "Template"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_gallery/models.py:36
+#: allink_core_repo/allink_core/djangocms_gallery/models.py:24
 msgid "Choose a template."
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_gallery/models.py:65
+#: allink_core_repo/allink_core/djangocms_gallery/models.py:35
+msgid "Fullscreen option visible"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_gallery/models.py:37
+msgid "This option enables a fullscreen button for this gallery."
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_gallery/models.py:40
+msgid "Gallery counter visible"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_gallery/models.py:42
+msgid "This option enables a gallery counter."
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_gallery/models.py:61
+msgid "Title"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_gallery/models.py:67
 msgid "Text"
 msgstr ""
 
@@ -72,4 +80,8 @@ msgstr ""
 
 #: allink_core_repo/allink_core/djangocms_gallery/templates/djangocms_gallery/slider/content.html:21
 msgid "Next Slide"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_gallery/templates/djangocms_gallery/slider/content.html:35
+msgid "Fullscreen Gallery"
 msgstr ""

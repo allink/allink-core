@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-10 09:14-0500\n"
+"POT-Creation-Date: 2017-05-17 09:46-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -50,11 +50,11 @@ msgstr ""
 msgid "Site Meta"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/admin.py:46
+#: allink_core_repo/allink_core/allink_config/admin.py:47
 msgid "App Names and Toolbar"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/admin.py:50
+#: allink_core_repo/allink_core/allink_config/admin.py:51
 msgid ""
 "Please notice that the plugin names will only change after restarting the "
 "server.(Please redeploy with Divio Cloud Dashboard.)"
@@ -292,6 +292,10 @@ msgstr ""
 msgid "Terms of Service verbose name plural"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:205
+#: allink_core_repo/allink_core/allink_config/models.py:201
+msgid "Google Site Verification Code"
+msgstr ""
+
+#: allink_core_repo/allink_core/allink_config/models.py:211
 msgid "Allink Configuration"
 msgstr ""

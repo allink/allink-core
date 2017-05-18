@@ -361,11 +361,19 @@ def render_favicons_set(context):
         elif file.original_filename.startswith('safari-pinned-tab'):
             context.update({'mask_icon': file})
 
+    allink_config = AllinkConfig.get_solo()
+
+    theme_color = getattr(allink_config, 'theme_color', '#ffffff')
+    mask_icon_color = getattr(allink_config, 'mask_icon_color', '#282828')
+    msapplication_tilecolor = getattr(allink_config, 'msapplication_tilecolor', '#282828')
+
     context.update({
         'apple_favs': apple_favs,
         'android_favs': android_favs,
         'favicons': favicons,
-        'allink_config': AllinkConfig.get_solo(),
+        'theme_color': theme_color,
+        'mask_icon_color': mask_icon_color,
+        'msapplication_tilecolor': msapplication_tilecolor,
     })
 
     return context
