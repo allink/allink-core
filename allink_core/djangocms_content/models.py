@@ -111,6 +111,11 @@ class AllinkContentPlugin(AllinkBasePlugin):
         help_text=_(u'ID of this content section which can be used for anchor reference from links.<br>'
                     u'Note: Only letters, numbers and hyphen. No spaces or special chars.'),
     )
+    ignore_in_pdf = models.BooleanField(
+        _(u'Ignore for pdf export'),
+        help_text=_(u'If checked, the content plugin will not be ignored when generting a pdf.'),
+        default=False
+    )
 
     def __str__(self):
         return str(self.id)

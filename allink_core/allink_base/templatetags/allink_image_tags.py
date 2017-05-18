@@ -5,25 +5,12 @@ from django.conf import settings
 
 from easy_thumbnails.files import get_thumbnailer
 from easy_thumbnails.exceptions import InvalidImageFormatError
-from allink_core.allink_base.utils import get_height_from_ratio
+from allink_core.allink_base.utils import get_height_from_ratio, get_percent, get_ratio_w_h
 register = template.Library()
 
 # ####################################################################################
 # Allink image
 
-def get_percent(full, value):
-    """
-    returns a value in percent. (how much percent of ..)
-    rounded whole numbers
-    """
-    return round(value * (100 / full))
-
-def get_ratio_w_h(ratio):
-    """
-    returns width and height from string e.g. '1-2' or '4-3' as integer
-    """
-    w, h = ratio.split('-')
-    return int(w), int(h)
 
 
 def get_sizes_from_width_alias(width_alias):
