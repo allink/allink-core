@@ -106,6 +106,7 @@ Each release is divided into the following main categories:
 ###### REQUIREMENTS
 - djangocms-snippet==1.9.2
 - beautifulsoup4==4.6.0
+- reportlab==3.4.0
 
 ###### DATA MIGRATIONS
 - update with caution in projects whcih still use inline images to display galleries (hdf, mfgz, ..?) we added a field preview_image (not a property anymore) the galleries are now added as a plugin inside the content_palceholder
