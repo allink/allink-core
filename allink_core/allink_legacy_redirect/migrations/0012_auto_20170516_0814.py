@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from importlib import import_module
 
 from django.db import migrations, models
 from django.conf import settings
@@ -10,7 +9,7 @@ from django.core.urlresolvers import reverse
 from cms.models import Page
 
 
-def get_link_list():
+def get_link_list(apps):
     links = {}
     link_apphooks = settings.PROJECT_LINK_APPHOOKS
     for apphook, url_names in link_apphooks.items():
@@ -22,19 +21,26 @@ def get_link_list():
         else:
             for p in Page.objects.filter(application_urls=apphook, publisher_is_draft=False):
                 for url_name, info in url_names.items():
-                    obj_module = import_module('.'.join(info[0].split('.')[:-1]))
-                    obj_model = getattr(obj_module, info[0].split('.')[-1])
+                    obj_model = apps.get_model(info[0].split('.')[-3], info[0].split('.')[-1])
                     for lang_code, lang in settings.LANGUAGES:
                         activate(lang_code)
+                        #obj_translation_model = obj_model.get_translation()
+                        url_kwargs = {}
                         for obj in obj_model.objects.all():
-                            url_kwargs = {key: getattr(obj, key) for key in info[1]}
+                            for key in info[1]:
+                                try:
+                                    url_kwargs.update({key: getattr(obj, key)})
+                                except AttributeError:
+                                    try:
+                                        url_kwargs.update({key: getattr(obj.translations.get(language_code=lang_code), key)})
+                                    except:
+                                        pass
                             full_url_name = u'{}:{}'.format(p.application_namespace, url_name)
                             try:
                                 reversed_url = reverse(full_url_name, kwargs=url_kwargs)
                                 links.update({reversed_url: {'link_apphook_page_id': p.id, 'link_url_name': full_url_name, 'link_object_id': obj.id, 'link_url_kwargs': info[1], 'link_model': info[0]}})
                             except:
                                 continue
-
     return links
 
 
@@ -42,7 +48,7 @@ def migrate_links(apps, schema_editor):
     AllinkLegacyLink = apps.get_model("allink_legacy_redirect", "AllinkLegacyLink")
     Page = apps.get_model("cms", "Page")
 
-    link_list = get_link_list()
+    link_list = get_link_list(apps)
     print()
 
     for l in AllinkLegacyLink.objects.filter(new_page__isnull=False):
@@ -64,7 +70,14 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('allink_legacy_redirect', '0011_auto_20170516_0349'),
-        ('blog', '__latest__'),
+        ('blog', '0019_auto_20170516_0718'),
+        ('locations', '0015_auto_20170516_0718'),
+        # ('members', ''),
+        ('people', '0019_auto_20170516_0718'),
+        ('testimonials', '0017_auto_20170516_0718'),
+        ('work', '0023_auto_20170516_0718'),
+        ('services', '0006_auto_20170516_0718'),
+        ('topics', '0007_auto_20170516_0718'),
     ]
 
     operations = [

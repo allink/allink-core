@@ -35,8 +35,8 @@ ALLINK_INSTALLED_APPS = [
     'allink_apps.locations',
     'allink_apps.people',
     'allink_apps.work',
-    'allink_apps.testimonials',
     'allink_apps.blog',
+    'allink_apps.testimonials',
     'allink_apps.contact',
     'allink_apps.config',
 
