@@ -7,12 +7,10 @@ def delte_default_values(apps, schema_editor):
     AllinkConfig = apps.get_model('allink_config', 'AllinkConfig')
 
     conf = AllinkConfig.objects.get(id=1)
-    if conf.theme_color == '#ffffff':
-        conf.theme_color = None
-    if conf.mask_icon_color == '#282828':
-        conf.mask_icon_color = None
-    if conf.msapplication_tilecolor == '#282828':
-        conf.msapplication_tilecolor = None
+
+    conf.theme_color = None
+    conf.mask_icon_color = None
+    conf.msapplication_tilecolor = None
 
     conf.save()
 
