@@ -18,6 +18,7 @@ ALLINK_INSTALLED_APPS = [
     'cmsplugin_form_handler',
     'widget_tweaks',
     'lockdown',
+    'djangocms_snippet',
 
     # allink core apps
     'allink_core.allink_base',
