@@ -171,11 +171,3 @@ def show_toolbar(request):
 DEBUG_TOOLBAR_CONFIG = {
     "SHOW_TOOLBAR_CALLBACK": show_toolbar,
 }
-
-# ####################################################################################
-#
-# # djangocms-snippet
-
-DJANGOCMS_SNIPPET_SEARCH = True
-DJANGOCMS_SNIPPET_THEME = 'iplastic'
-DJANGOCMS_SNIPPET_MODE = 'html'
