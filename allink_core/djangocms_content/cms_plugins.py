@@ -69,6 +69,7 @@ class CMSAllinkContentPlugin(CMSPluginBase):
             'fields': (
                 'project_css_classes',
                 'anchor',
+                'ignore_in_pdf',
                 # 'extra_css_classes',
             )
         })

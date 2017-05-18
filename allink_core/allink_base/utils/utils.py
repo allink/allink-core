@@ -65,6 +65,22 @@ def get_height_from_ratio(width, ratio_w, ratio_h):
     return width * ratio_h / ratio_w
 
 
+def get_percent(full, value):
+    """
+    returns a value in percent. (how much percent of ..)
+    rounded whole numbers
+    """
+    return round(value * (100 / full))
+
+
+def get_ratio_w_h(ratio):
+    """
+    returns width and height from string e.g. '1-2' or '4-3' as integer
+    """
+    w, h = ratio.split('-')
+    return int(w), int(h)
+
+
 def get_display(key, list):
     """
     returns key from list of tuples
