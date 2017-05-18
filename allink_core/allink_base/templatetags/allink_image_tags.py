@@ -44,8 +44,8 @@ def get_width_alias_from_plugin(context):
     if not hasattr(plugin, 'items_per_row'):
         # the parent of all plugin with pictures should always be a column plugin
         # if not return a fallback of '1-of-1'
-        column_plugin = plugin.parent.djangocms_content_allinkcontentcolumnplugin
-        if hasattr(column_plugin, 'template'):
+        try:
+            column_plugin = plugin.parent.djangocms_content_allinkcontentcolumnplugin
             if column_plugin.template == 'col-1':
                 return '1-of-1'
             elif column_plugin.template == 'col-1-1':
@@ -62,7 +62,9 @@ def get_width_alias_from_plugin(context):
                 return '1-of-5'
             elif column_plugin.template == 'col-6':
                 return '1-of-6'
-        else:
+            else:
+                return '1-of-1'
+        except AttributeError:
             return '1-of-1'
 
     # app plugin
