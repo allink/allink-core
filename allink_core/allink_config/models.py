@@ -28,19 +28,22 @@ class AllinkConfig(SingletonModel):
     theme_color = models.CharField(
         _(u'Theme Color'),
         help_text=_(u'Theme color for Android Chrome'),
-        default='#ffffff',
+        blank=True,
+        null=True,
         max_length=7
     )
     mask_icon_color = models.CharField(
         _(u'Mask icon color'),
         help_text=_(u'Mask icon color for safari-pinned-tab.svg'),
-        default='#282828',
+        blank=True,
+        null=True,
         max_length=7
     )
     msapplication_tilecolor = models.CharField(
         _(u'msapplication TileColor'),
         help_text=_(u'MS application TitleColor Field'),
-        default='#282828',
+        blank=True,
+        null=True,
         max_length=7
     )
     blog_verbose = models.CharField(

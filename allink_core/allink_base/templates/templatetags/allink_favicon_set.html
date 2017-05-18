@@ -10,14 +10,14 @@
         <link rel="icon" type="image/png" href="{{ android_fav.url }}" sizes="{{ android_fav.width }}x{{ android_fav.height }}">
     {% endfor %}
     {% if manifest %}<link rel="manifest" href="{{ manifest.url }}">{% endif %}
-    <meta name="theme-color" content="{{ allink_config.theme_color }}">
+    <meta name="theme-color" content="{{ theme_color }}">
 
 {#  SAFARI  #}
-    {% if mask_icon %}  <link rel="mask-icon" href="{{ mask_icon.url }}" color="{{ allink_config.mask_icon_color }}">{% endif %}
+    {% if mask_icon %}  <link rel="mask-icon" href="{{ mask_icon.url }}" color="{{ mask_icon_color }}">{% endif %}
 
 {#  MS  #}
     {% if mstile %}<meta name="msapplication-TileImage" content="{{ mstile.url }}">{% endif %}
-    <meta name="msapplication-TileColor" content="{{ allink_config.msapplication_tilecolor }}">
+    <meta name="msapplication-TileColor" content="{{ msapplication_tilecolor }}">
 
 {# FAVICON #}
     {% for fav in favicons %}
