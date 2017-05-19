@@ -10,6 +10,7 @@ from solo.admin import SingletonModelAdmin
 
 from allink_core.allink_config.models import AllinkConfig, AllinkMetaTagExtension
 from allink_core.allink_base.forms.fields import ColorField
+from allink_core.allink_base.utils import get_project_color_choices
 
 require_POST = method_decorator(require_POST)
 
@@ -21,28 +22,51 @@ class AllinkConfigAdminForm(forms.ModelForm):
 
     class Meta(forms.ModelForm):
         model = AllinkConfig
-        fields = ['theme_color']
+        fields = ['theme_color', 'mask_icon_color', 'msapplication_tilecolor']
 
 
 @admin.register(AllinkConfig)
 class AllinkConfigAdmin(SingletonModelAdmin):
     form = AllinkConfigAdminForm
 
+    class Media:
+        js = (
+            'build/djangocms_custom_admin_scripts.js',
+        )
+        css = {
+            'all': (
+                'build/djangocms_custom_admin_style.css',
+
+            )
+        }
+
     def get_fieldsets(self, request, obj=None):
 
-        fieldsets = (_('Site Meta'), {
-            'classes': (
-                'collapse',
-            ),
-            'fields': (
-                'default_og_image',
-                'default_base_title',
-                'theme_color',
-                'mask_icon_color',
-                'msapplication_tilecolor',
-                'google_site_verification',
-            )
-        }),
+        if get_project_color_choices():
+            fieldsets = (_('Site Meta'), {
+                'classes': (
+                    'collapse',
+                ),
+                'fields': (
+                    'default_og_image',
+                    'default_base_title',
+                    'theme_color',
+                    'mask_icon_color',
+                    'msapplication_tilecolor',
+                    'google_site_verification',
+                )
+            }),
+        else:
+            fieldsets = (_('Site Meta'), {
+                'classes': (
+                    'collapse',
+                ),
+                'fields': (
+                    'default_og_image',
+                    'default_base_title',
+                    'google_site_verification',
+                )
+            }),
 
         fieldsets += (_('App Names and Toolbar'), {
             'classes': (

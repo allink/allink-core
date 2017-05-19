@@ -114,9 +114,9 @@ Each release is divided into the following main categories:
 
 - Color Picker: Fields using the colorpicker (bg_color) need to be migrated. Therfore replace the hex-value in the databaseco with the project color name as defined in SETTINGS
 
-- Legacy Links: Migration for new LinkField. Warnings in Console for Links which can't be migrated automatically, maybe the dependancies must be ajusted on project base (Migration 0012)
-- Button Link Plugin: Migration for new LinkField. Warnings in Console for Links which can't be migrated automatically, maybe the dependancies must be ajusted on project base (Migration 0028)
-- Image Plugin: Migration for new LinkField. Warnings in Console for Links which can't be migrated automatically, maybe the dependancies must be ajusted on project base (Migration 0026)
+- Legacy Links: Migration for new LinkField. Warnings in Console for Links which can't be migrated automatically. maybe the dependancies must be ajusted on project base (Migration 0012)
+- Button Link Plugin: Migration for new LinkField. Warnings in Console for Links which can't be migrated automatically. maybe the dependancies must be ajusted on project base (Migration 0028)
+- Image Plugin: Migration for new LinkField. Warnings in Console for Links which can't be migrated automatically. maybe the dependancies must be ajusted on project base (Migration 0026)
 
 ### NEW
 - debug toolbar installed manually, because debug toolbar is extremly slow we disable it by default (to enable it, just set DEBUG_TOOLBAR_ENABLED=True in the env variables.)
