@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.db import migrations, models
+from django.db import migrations
 from django.conf import settings
 from django.utils.translation import activate
 from django.core.urlresolvers import reverse
 
+from cms.models.pluginmodel import CMSPlugin
 from cms.models import Page
 
 
@@ -44,31 +45,32 @@ def get_link_list(apps):
 
 
 def migrate_links(apps, schema_editor):
-    AllinkLegacyLink = apps.get_model("allink_legacy_redirect", "AllinkLegacyLink")
+    AllinkButtonLinkPlugin = apps.get_model("djangocms_button_link", "AllinkButtonLinkPlugin")
     Page = apps.get_model("cms", "Page")
 
     link_list = get_link_list(apps)
     print()
 
-    for l in AllinkLegacyLink.objects.filter(new_page__isnull=False):
-        if l.new_page in link_list:
-            if 'page_id' in link_list[l.new_page]:
-                l.link_page = Page.objects.get(id=link_list[l.new_page]['page_id'])
+    for l in AllinkButtonLinkPlugin.objects.filter(link_internal__isnull=False).exclude(link_internal=''):
+        if l.link_internal in link_list:
+            if 'page_id' in link_list[l.link_internal]:
+                l.link_page = Page.objects.get(id=link_list[l.link_internal]['page_id'])
             else:
-                l.link_apphook_page = Page.objects.get(id=link_list[l.new_page]['link_apphook_page_id'])
-                l.link_object_id = link_list[l.new_page]['link_object_id']
-                l.link_model = link_list[l.new_page]['link_model']
-                l.link_url_name = link_list[l.new_page]['link_url_name']
-                l.link_url_kwargs = link_list[l.new_page]['link_url_kwargs']
+                l.link_apphook_page = Page.objects.get(id=link_list[l.link_internal]['link_apphook_page_id'])
+                l.link_object_id = link_list[l.link_internal]['link_object_id']
+                l.link_model = link_list[l.link_internal]['link_model']
+                l.link_url_name = link_list[l.link_internal]['link_url_name']
+                l.link_url_kwargs = link_list[l.link_internal]['link_url_kwargs']
             l.save()
         else:
-            print("\033[91m Kann nicht migriert werden.   id: ", l.id, ",  old:  ", l.old, ",  new_page:  ", l.new_page, "\033[0m")
+            cms_plugin = CMSPlugin.objects.get(id=l.cmsplugin_ptr_id)
+            print("\033[91m Kann nicht migriert werden.   plugin_id: ", l.id, ",  link_internal:  ", l.link_internal, ",  page:  ", cms_plugin.get_root().page, "\033[0m")
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('allink_legacy_redirect', '0011_auto_20170516_0349'),
+        ('djangocms_button_link', '0027_auto_20170519_0136'),
         ('blog', '0019_auto_20170516_0718'),
         ('locations', '0015_auto_20170516_0718'),
         # ('members', ''),

@@ -7,6 +7,8 @@ from django.utils.translation import ugettext_lazy as _
 from allink_core.djangocms_button_link.models import AllinkButtonLinkContainerPlugin, AllinkButtonLinkPlugin
 from allink_core.allink_base.utils import get_additional_choices
 from allink_core.allink_base.models.model_fields import choices_from_sitemaps
+from allink_core.allink_base.forms.fields import SelectLinkField
+from allink_core.allink_base.forms.mixins import AllinkInternalLinkFieldMixin
 
 
 class AllinkButtonLinkContainerPluginForm(forms.ModelForm):
@@ -26,9 +28,9 @@ class AllinkButtonLinkContainerPluginForm(forms.ModelForm):
             )
 
 
-class AllinkButtonLinkPluginForm(forms.ModelForm):
+class AllinkButtonLinkPluginForm(AllinkInternalLinkFieldMixin, forms.ModelForm):
 
-    link_internal = forms.ChoiceField(choices=(), required=False)
+    internal_link = SelectLinkField(label=_('Link Internal'), required=False)
 
     class Meta:
         model = AllinkButtonLinkPlugin
@@ -49,7 +51,6 @@ class AllinkButtonLinkPluginForm(forms.ModelForm):
             widget=forms.Select(choices=self.instance.get_link_special_choices()),
             required=False,
         )
-        self.fields['link_internal'].choices = choices_from_sitemaps()
 
     def _get_media(self):
         """

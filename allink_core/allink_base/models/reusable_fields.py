@@ -157,7 +157,7 @@ class AllinkInternalLinkFieldsModel(models.Model):
         verbose_name=_(u'New Page'),
         null=True,
         on_delete=models.SET_NULL,
-        help_text=_(u'If provided, overrides the external link and New Apphook-Page.')
+        help_text=_(u'If provided, overrides the external link and New Apphook-Page.'),
     )
     #  Fields for app redirect
     link_apphook_page = PageField(
@@ -165,7 +165,7 @@ class AllinkInternalLinkFieldsModel(models.Model):
         null=True,
         on_delete=models.SET_NULL,
         help_text=_(u'If provided, overrides the external link.'),
-        related_name='app_legacy_redirects'
+        related_name='%(app_label)s_%(class)s_app_legacy_redirects'
     )
     link_object_id = models.IntegerField(
         null=True,
@@ -227,7 +227,7 @@ class AllinkInternalLinkFieldsModel(models.Model):
             return None
 
 
-class AllinkLinkFieldsModel(models.Model):
+class AllinkLinkFieldsModel(AllinkInternalLinkFieldsModel):
     link_url = models.URLField(
         verbose_name=(u'External link'),
         blank=True,
@@ -311,8 +311,9 @@ class AllinkLinkFieldsModel(models.Model):
         return BLANK_CHOICE + SPECIAL_LINKS_CHOICES + get_additional_choices('SPECIAL_LINKS_CHOICES')
 
     def get_link_url(self):
-        if self.link_internal:
-            link = self.link_internal
+        internal_link = self.link
+        if internal_link:
+            link = internal_link
         elif self.link_url:
             link = self.link_url
         elif self.link_phone:
@@ -333,7 +334,8 @@ class AllinkLinkFieldsModel(models.Model):
         super(AllinkLinkFieldsModel, self).clean()
         field_names = (
             'link_url',
-            'link_internal',
+            'link_page',
+            'link_apphook_page',
             'link_mailto',
             'link_phone',
             'link_file',
@@ -342,6 +344,7 @@ class AllinkLinkFieldsModel(models.Model):
         field_names_allowed_with_anchor = (
             'link_url',
             'link_internal',
+            'link_apphook_page',
             'link_file',
         )
 

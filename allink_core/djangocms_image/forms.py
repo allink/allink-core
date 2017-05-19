@@ -4,13 +4,14 @@ from django.utils.translation import ugettext_lazy as _
 
 from allink_core.allink_base.utils import get_ratio_choices_orig, get_additional_choices, get_project_color_choices
 from allink_core.djangocms_image.models import AllinkImagePlugin
-from allink_core.allink_base.models.model_fields import choices_from_sitemaps
 from allink_core.allink_base.forms.fields import ColorField
+from allink_core.allink_base.forms.fields import SelectLinkField
+from allink_core.allink_base.forms.mixins import AllinkInternalLinkFieldMixin
 
 
-class AllinkImagePluginForm(forms.ModelForm):
+class AllinkImagePluginForm(AllinkInternalLinkFieldMixin, forms.ModelForm):
 
-    link_internal = forms.ChoiceField(choices=(), required=False)
+    internal_link = SelectLinkField(label=_('Link Internal'), required=False)
 
     class Meta:
         model = AllinkImagePlugin
@@ -44,4 +45,3 @@ class AllinkImagePluginForm(forms.ModelForm):
                 choices=get_additional_choices('IMAGE_PLUGIN_PROJECT_CSS_CLASSES'),
                 required=False,
             )
-        self.fields['link_internal'].choices = choices_from_sitemaps()
