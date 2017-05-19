@@ -33,13 +33,14 @@ class AllinkInternalLinkFieldMixin(forms.ModelForm):
         return super(AllinkInternalLinkFieldMixin, self).save(*args, **kwargs)
 
     def save_search_select_field(self, field_name, field):
-        field_data = json.loads(self.cleaned_data[field_name])
-        if 'page_id' in field_data:
-            self.instance.link_page = Page.objects.get(id=field_data['page_id'])
-        else:
-            self.instance.link_page = None
-            self.instance.link_apphook_page = Page.objects.get(id=field_data['link_apphook_page_id'])
-            self.instance.link_object_id = field_data['link_object_id']
-            self.instance.link_model = field_data['link_model']
-            self.instance.link_url_name = field_data['link_url_name']
-            self.instance.link_url_kwargs = field_data['link_url_kwargs']
+        if self.cleaned_data[field_name]:
+            field_data = json.loads(self.cleaned_data[field_name])
+            if 'page_id' in field_data:
+                self.instance.link_page = Page.objects.get(id=field_data['page_id'])
+            else:
+                self.instance.link_page = None
+                self.instance.link_apphook_page = Page.objects.get(id=field_data['link_apphook_page_id'])
+                self.instance.link_object_id = field_data['link_object_id']
+                self.instance.link_model = field_data['link_model']
+                self.instance.link_url_name = field_data['link_url_name']
+                self.instance.link_url_kwargs = field_data['link_url_kwargs']
