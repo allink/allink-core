@@ -49,6 +49,7 @@ ALLINK_INSTALLED_APPS = [
     'allink_core.djangocms_button_link',
     'allink_core.djangocms_group',
     'allink_core.djangocms_instagram',
+    'allink_core.djangocms_pdf',
 
 ]
 
@@ -159,6 +160,7 @@ ALLINK_LOCALE_PATHS = [
     '/app/allink_core/djangocms_instagramm/locale',
     '/app/allink_core/djangocms_socialicon/locale',
     '/app/allink_core/djangocms_vid/locale',
+    '/app/allink_core/djangocms_pdf/locale',
 ]
 
 

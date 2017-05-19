@@ -137,6 +137,8 @@ Each release is divided into the following main categories:
 
   ```
 
+- djangocms_pdf was added (enables manual page breaks in pdf export) -> to enable CMSAllinkPageBreakPlugin in a certain placeholder ad just add it in the settings.py
+
 ### FIXES
 
 ## v0.0.9

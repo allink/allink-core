@@ -11,6 +11,7 @@ recursive-include allink_core/djangocms_button_link/templates *
 recursive-include allink_core/djangocms_group/templates *
 recursive-include allink_core/djangocms_instagram/templates *
 recursive-include allink_core/djangocms_vid/templates *
+recursive-include allink_core/djangocms_pdf/templates *
 
 recursive-include allink_core/allink_base/locale *
 recursive-include allink_core/allink_styleguide/locale *
@@ -24,6 +25,7 @@ recursive-include allink_core/djangocms_button_link/locale *
 recursive-include allink_core/djangocms_group/locale *
 recursive-include allink_core/djangocms_instagram/locale *
 recursive-include allink_core/djangocms_vid/locale *
+recursive-include allink_core/djangocms_pdf/locale *
 
 recursive-include allink_core/allink_base/migrations *
 recursive-include allink_core/allink_styleguide/migrations *
@@ -37,5 +39,6 @@ recursive-include allink_core/djangocms_button_link/migrations *
 recursive-include allink_core/djangocms_group/migrations *
 recursive-include allink_core/djangocms_instagram/migrations *
 recursive-include allink_core/djangocms_vid/migrations *
+recursive-include allink_core/djangocms_pdf/migrations *
 
 recursive-exclude * *.pyc
