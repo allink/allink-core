@@ -71,14 +71,14 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('djangocms_image', '0025_auto_20170519_0136'),
-        ('blog', '0019_auto_20170516_0718'),
-        ('locations', '0015_auto_20170516_0718'),
-        # ('members', ''),
-        ('people', '0019_auto_20170516_0718'),
-        ('testimonials', '0017_auto_20170516_0718'),
-        ('work', '0023_auto_20170516_0718'),
-        ('services', '0006_auto_20170516_0718'),
-        ('topics', '0007_auto_20170516_0718'),
+        ('blog', '__latest__'),
+        ('locations', '__latest__'),
+        ('members', '__latest__'),
+        ('people', '__latest__'),
+        ('testimonials', '__latest__'),
+        ('work', '__latest__'),
+        ('services', '__latest__'),
+        ('topics', '__latest__'),
     ]
 
     operations = [
