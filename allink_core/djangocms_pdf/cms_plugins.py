@@ -14,5 +14,5 @@ class CMSAllinkPageBreakPlugin(CMSPluginBase):
     form = AllinkPdfPageBreakPluginForm
 
     def get_render_template(self, context, instance, placeholder):
-        template = 'allink_base/pdf/templates/pdf/content.html'
+        template = 'djangocms_pdf/content.html'
         return template
