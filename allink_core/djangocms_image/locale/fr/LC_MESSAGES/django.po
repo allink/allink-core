@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-17 09:46-0500\n"
+"POT-Creation-Date: 2017-05-22 04:03-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,31 +35,35 @@ msgstr ""
 msgid "Link settings"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_image/forms.py:25
+#: allink_core_repo/allink_core/djangocms_image/forms.py:14
+msgid "Link Internal"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_image/forms.py:26
 msgid "Special Links"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_image/forms.py:30
+#: allink_core_repo/allink_core/djangocms_image/forms.py:31
 #: allink_core_repo/allink_core/djangocms_image/models.py:29
 msgid "Ratio"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_image/forms.py:31
+#: allink_core_repo/allink_core/djangocms_image/forms.py:32
 msgid ""
 "This option overrides the default image ratio set for images in a colum of a "
 "content section."
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_image/forms.py:37
+#: allink_core_repo/allink_core/djangocms_image/forms.py:38
 #: allink_core_repo/allink_core/djangocms_image/models.py:47
 msgid "Set a predefined background color"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_image/forms.py:42
+#: allink_core_repo/allink_core/djangocms_image/forms.py:43
 msgid "Predifined css classes"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_image/forms.py:43
+#: allink_core_repo/allink_core/djangocms_image/forms.py:44
 msgid ""
 "Instructions: Single selection is made by clicking on an option. Multiple "
 "selections are achieved by pressing and holding down the Command-key (Mac) "

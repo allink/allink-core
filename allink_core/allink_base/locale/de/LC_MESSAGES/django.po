@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-17 09:46-0500\n"
+"POT-Creation-Date: 2017-05-22 04:03-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -513,7 +513,7 @@ msgid "Fax"
 msgstr ""
 
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:89
-#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:401
+#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:404
 msgid "Email"
 msgstr "E-Mail"
 
@@ -618,26 +618,26 @@ msgstr ""
 msgid "Attributes"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:367
+#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:370
 #, python-format
 msgid "Only one of %s or %s may be given."
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:377
+#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:380
 #, python-format
 msgid ""
 "%(anchor_field_verbose_name)s is not allowed together with %(field_name)s"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:393
+#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:396
 msgid "First Name"
 msgstr "Vorname"
 
-#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:397
+#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:400
 msgid "Last Name"
 msgstr "Nachname"
 
-#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:404
+#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:407
 msgid "Message"
 msgstr "Nachricht"
 
@@ -701,7 +701,7 @@ msgstr ""
 msgid "Add plugin to"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_base/templatetags/allink_image_tags.py:347
+#: allink_core_repo/allink_core/allink_base/templatetags/allink_image_tags.py:336
 msgid ""
 "Please create a folder \"favicons\" and upload the complete favicon set."
 msgstr ""

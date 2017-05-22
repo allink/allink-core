@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-17 09:46-0500\n"
+"POT-Creation-Date: 2017-05-22 04:03-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,11 +40,11 @@ msgstr ""
 msgid "Link settings"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/forms.py:22
+#: allink_core_repo/allink_core/djangocms_button_link/forms.py:24
 msgid "Predifined css classes"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/forms.py:23
+#: allink_core_repo/allink_core/djangocms_button_link/forms.py:25
 msgid ""
 "Instructions: Single selection is made by clicking on an option. Multiple "
 "selections are achieved by pressing and holding down the Command-key (Mac) "
@@ -52,7 +52,11 @@ msgid ""
 "like to apply."
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/forms.py:48
+#: allink_core_repo/allink_core/djangocms_button_link/forms.py:33
+msgid "Link Internal"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_button_link/forms.py:50
 msgid "Special Links"
 msgstr ""
 
