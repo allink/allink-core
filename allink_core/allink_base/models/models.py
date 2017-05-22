@@ -4,7 +4,7 @@ from django.conf import settings
 from django.template.loader import get_template
 from django.template import TemplateDoesNotExist
 from django.core.urlresolvers import NoReverseMatch
-from django.core.exceptions import FieldDoesNotExist, FieldError
+from django.core.exceptions import FieldDoesNotExist, FieldError, ValidationError
 from django.contrib.postgres.fields import ArrayField
 from django.db import models
 from django.db.models import Q
@@ -683,3 +683,47 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
                 queryset = queryset.filter_by_categories(categories=self.categories_and.all())
 
         return self._apply_ordering_to_queryset_for_display(queryset)
+
+
+class AllinkBaseFormPlugin(CMSPlugin):
+
+    form_class = None
+
+    send_internal_mail = models.BooleanField(
+        _(u'Send internal e-mail'),
+        default=True,
+        help_text=_(u'Send confirmation mail to defined internal e-mail addresses.')
+    )
+    internal_email_adresses = ArrayField(
+        models.EmailField(
+            blank=True,
+            null=True,
+        ),
+        blank=True,
+        null=True,
+        verbose_name=_(u'Internal e-mail addresses'),
+    )
+    from_email_address = models.EmailField(
+        _(u'Sender e-mail address'),
+        blank=True,
+        null=True
+    )
+    send_external_mail = models.BooleanField(
+        _(u'Send external e-mail'),
+        default=True,
+        help_text=_(u'Send confirmation mail to customer.')
+    )
+    thank_you_text = models.TextField(
+        _(u'Thank you text'),
+        blank=True,
+        null=True,
+    )
+
+    def __str__(self):
+        return 'Form Plugin'
+
+    class Meta:
+        abstract = True
+
+    def get_form(self):
+        return self.form_class()
