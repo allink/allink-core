@@ -128,6 +128,7 @@ class AllinkBaseCreateView(CreateView):
         template_name  =
         success_url =
     """
+    plugin = None
 
     def form_invalid(self, form):
         """
@@ -142,7 +143,7 @@ class AllinkBaseCreateView(CreateView):
     def form_valid(self, form):
         self.object = form.save()
         if self.request.is_ajax():
-            context = super(AllinkBaseCreateView, self).get_context_data()
+            context = self.get_context_data()
             try:
                 html = render_to_string(self.get_confirmation_template(), context)
                 return HttpResponse(html)
@@ -155,6 +156,12 @@ class AllinkBaseCreateView(CreateView):
                 return self.render_to_response(self.get_context_data(form=form), status=206)
         else:
             return HttpResponseRedirect(self.get_success_url())
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(AllinkBaseCreateView, self).get_context_data(*args, **kwargs)
+        if self.plugin:
+            context.update({'plugin_instance': self.plugin})
+        return context
 
     def get_confirmation_template(self):
         template = '{}/forms/confirmation.html'.format(self.model._meta.app_label)

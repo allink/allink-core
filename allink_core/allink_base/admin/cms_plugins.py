@@ -8,7 +8,6 @@ from cms.plugin_base import CMSPluginBase
 
 from allink_core.allink_base.models import AllinkBaseAppContentPlugin
 from allink_core.allink_base.admin import AllinkBaseAppContentPluginForm
-from allink_core.allink_base.utils.utils import get_project_color_choices
 
 
 class CMSAllinkBaseAppContentPlugin(CMSPluginBase):

@@ -116,7 +116,8 @@ CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [
     'CMSAllinkSignupFormPlugin',
     'CMSAllinkButtonLinkContainerPlugin',
     'CMSAllinkGroupContainerPlugin',
-    'CMSAllinkInstagramPlugin'
+    'CMSAllinkInstagramPlugin',
+    'CMSAllinkContactRequestPlugin'
 
 ]
 ####################################################################################
