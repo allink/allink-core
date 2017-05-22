@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-22 04:03-0500\n"
+"POT-Creation-Date: 2017-05-22 09:39-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: allink_core_repo/allink_core/allink_base/admin/admin.py:51
 #: allink_core_repo/allink_core/allink_base/admin/admin.py:76
-#: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:61
+#: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:60
 #: allink_core_repo/allink_core/allink_base/admin/forms.py:21
 #: allink_core_repo/allink_core/allink_base/admin/forms.py:23
 #: allink_core_repo/allink_core/allink_base/admin/forms.py:53
@@ -33,43 +33,43 @@ msgstr ""
 msgid "Meta Tags"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:21
+#: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:20
 msgid "App Content"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:22
+#: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:21
 msgid "allink Apps"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:49
+#: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:48
 msgid "Display Options"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:69
+#: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:68
 msgid "Filter & Ordering"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:77
+#: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:76
 msgid "Select entries manually"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:85
+#: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:84
 msgid "Category Navigation Options"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:98
+#: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:97
 msgid "Number of entries"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:108
+#: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:107
 msgid "Pagination Options"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:119
+#: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:118
 msgid "Additional Options"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:128
+#: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:127
 msgid "Grid Options"
 msgstr ""
 
@@ -471,6 +471,38 @@ msgstr ""
 msgid "All"
 msgstr "Alle"
 
+#: allink_core_repo/allink_core/allink_base/models/models.py:693
+msgid "Send internal e-mail"
+msgstr ""
+
+#: allink_core_repo/allink_core/allink_base/models/models.py:695
+msgid "Send confirmation mail to defined internal e-mail addresses."
+msgstr ""
+
+#: allink_core_repo/allink_core/allink_base/models/models.py:704
+#, fuzzy
+#| msgid "Email address"
+msgid "Internal e-mail addresses"
+msgstr "E-Mail Adresse"
+
+#: allink_core_repo/allink_core/allink_base/models/models.py:707
+#, fuzzy
+#| msgid "Email address"
+msgid "Sender e-mail address"
+msgstr "E-Mail Adresse"
+
+#: allink_core_repo/allink_core/allink_base/models/models.py:712
+msgid "Send external e-mail"
+msgstr ""
+
+#: allink_core_repo/allink_core/allink_base/models/models.py:714
+msgid "Send confirmation mail to customer."
+msgstr ""
+
+#: allink_core_repo/allink_core/allink_base/models/models.py:717
+msgid "Thank you text"
+msgstr ""
+
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:35
 msgid "Street"
 msgstr "Strasse"
@@ -723,6 +755,6 @@ msgstr ""
 msgid "Empty list and '%(class_name)s.allow_empty' is False."
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_base/views/views.py:154
+#: allink_core_repo/allink_core/allink_base/views/views.py:155
 msgid "Something went wrong with your subscription. Please try again later."
 msgstr ""
