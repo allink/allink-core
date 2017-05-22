@@ -21,7 +21,7 @@
             {% endblock %}
 
             {% block controls %}
-                <div class="{% if field|fieldtype == 'RadioSelect' %} radio-group{% endif %}">
+                <div class="form-field-container {% if field|fieldtype == 'RadioSelect' %} radio-group{% endif %}">
                     {% block widget %}
 
                         {# Dropdown Select #}
