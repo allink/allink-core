@@ -1,6 +1,6 @@
 {% load i18n %}
 
-<form action="{% url 'mailchimp:signup' %}" methode="post" class="mailchimp-form ajax-form validate-form {% block newsletter_form_additional_classes %}{% endblock newsletter_form_additional_classes %}" role="form" id="{% block newsletter_form_id %}mailchimp-signup-form{% endblock newsletter_form_id %}" data-success-data-layer-event="{% block newsletter_success_data_layer_event %}newsletter.sent{% endblock newsletter_success_data_layer_event %}" {% block newsletter_form_additional_attributes %}{% endblock newsletter_form_additional_attributes %}>
+<form action="{% url 'mailchimp:signup' %}" method="post" class="mailchimp-form ajax-form validate-form {% block newsletter_form_additional_classes %}{% endblock newsletter_form_additional_classes %}" role="form" id="{% block newsletter_form_id %}mailchimp-signup-form{% endblock newsletter_form_id %}" data-success-data-layer-event="{% block newsletter_success_data_layer_event %}newsletter.sent{% endblock newsletter_success_data_layer_event %}" {% block newsletter_form_additional_attributes %}{% endblock newsletter_form_additional_attributes %}>
 
     {# utility block #}
     {% block newsletter_form_group_before %}
