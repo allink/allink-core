@@ -34,7 +34,6 @@
                                 {% render_field field class+="selectpicker form-control" %}
                             {% endif %}
 
-
                         {# Checkbox #}
 
                         {% elif field|fieldtype == 'CheckboxInput' %}
@@ -66,10 +65,18 @@
                         {# Default #}
 
                         {% else %}
-                            {% if field.field.required %}
-                                {% render_field field class+="form-control" required="required" %}
+                            {% if instance.label_layout == 'placeholder' %}
+                                {% if field.field.required %}
+                                    {% render_field field class+="form-control" required="required" placeholder=field.label %}
+                                {% else %}
+                                    {% render_field field class+="form-control" placeholder=field.label %}
+                                {% endif %}
                             {% else %}
-                                {% render_field field class+="form-control" %}
+                                {% if field.field.required %}
+                                    {% render_field field class+="form-control" required="required" %}
+                                {% else %}
+                                    {% render_field field class+="form-control" %}
+                                {% endif %}
                             {% endif %}
 
                         {% endif %}
