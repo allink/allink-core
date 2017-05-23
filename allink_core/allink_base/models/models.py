@@ -726,7 +726,7 @@ class AllinkBaseFormPlugin(CMSPlugin):
             ('stacked', 'Stacked with fields'),
             ('placeholder', 'As placeholders'),
         ),
-        default='side_by_side',
+        default='stacked',
     )
 
     def __str__(self):
