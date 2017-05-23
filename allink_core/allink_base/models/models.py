@@ -722,8 +722,8 @@ class AllinkBaseFormPlugin(CMSPlugin):
         _(u'Display labels'),
         max_length=15,
         choices=(
-            ('side_by_side', 'Side by side with fields'),
             ('stacked', 'Stacked with fields'),
+            ('side_by_side', 'Side by side with fields'),
             ('placeholder', 'As placeholders'),
         ),
         default='stacked',

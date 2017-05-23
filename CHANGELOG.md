@@ -174,6 +174,8 @@ Each release is divided into the following main categories:
       }
   ```
 
+  If you are experiencing issues while updating the project, try running `npm run dev` so that the new bundles `app` and `django_custom_admin` exist.
+
 ### FIXES
 
 ## v0.0.9
