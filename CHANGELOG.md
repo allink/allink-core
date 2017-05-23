@@ -96,8 +96,7 @@ Each release is divided into the following main categories:
     ])
     ```
 - remove 'django.middleware.cache.UpdateCacheMiddleware' and django.middleware.cache.FetchFromCacheMiddleware' (because they cache all responses from views, e.g AllinkBaseDetailView)
-- Static assets (dev and production (with hashes)) for CKEDITOR and CMSPlugins are now being loaded via django-webpack-loader.
-
+- django-webpack-loader: Static assets (dev and production (with hashes)) for CKEDITOR and CMSPlugins are now being loaded via django-webpack-loader.
   To load the project styles in CKEDITOR add the following code to your project's `settings.py` (update `CKEDITOR_SETTINGS.contentsCss`):
   ```python
   from webpack_loader.utils import get_files
@@ -106,24 +105,6 @@ Each release is divided into the following main categories:
 
   CKEDITOR_SETTINGS = {
       'contentsCss': get_files('style')[1]['publicPath'],
-  ```
-
-  If you need `djangocms_custom_admin_scripts` or `djangocms_custom_admin_style` in a new plugin add the following code to the admin.py / cms_plugins.py Media class:
-  ```python
-  from webpack_loader.utils import get_files
-
-  ...
-
-  class Media:
-      js = (
-          get_files('djangocms_custom_admin_scripts')[0]['publicPath'],
-      )
-      css = {
-          'all': (
-              get_files('djangocms_custom_admin_style')[0]['publicPath'],
-
-          )
-      }
   ```
 
 ###### TEMPLATES
@@ -167,6 +148,23 @@ Each release is divided into the following main categories:
   ```
 
 - djangocms_pdf was added (enables manual page breaks in pdf export) -> to enable CMSAllinkPageBreakPlugin in a certain placeholder ad just add it in the settings.py
+- django-webpack-loader: All core plugins have been updated to load static assets via `django-webpack-loader`. If you need `djangocms_custom_admin_scripts` or `djangocms_custom_admin_style` in a new plugin add the following code to the admin.py / cms_plugins.py
+  ```python
+  from webpack_loader.utils import get_files
+
+  ...
+
+  class Media:
+      js = (
+          get_files('djangocms_custom_admin_scripts')[0]['publicPath'],
+      )
+      css = {
+          'all': (
+              get_files('djangocms_custom_admin_style')[0]['publicPath'],
+
+          )
+      }
+  ```
 
 ### FIXES
 
