@@ -6,6 +6,7 @@ from django.core.cache import cache
 from adminsortable.admin import NonSortableParentAdmin, SortableAdmin
 from parler.admin import TranslatableAdmin
 from aldryn_translation_tools.admin import AllTranslationsMixin
+from webpack_loader.utils import get_files
 
 from allink_core.allink_base.admin import AllinkBaseAdminForm
 
@@ -26,9 +27,9 @@ class AllinkBaseAdminBase(AllTranslationsMixin, TranslatableAdmin):
     exclude = ('images',)
 
     class Media:
-        js = ('build/djangocms_custom_admin_scripts.js', )
+        js = (get_files('djangocms_custom_admin_scripts')[0]['publicPath'], )
         css = {
-            'all': ('build/djangocms_custom_admin_style.css', )
+            'all': (get_files('djangocms_custom_admin_style')[0]['publicPath'], )
         }
 
     def get_fieldsets(self, request, obj=None):

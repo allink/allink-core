@@ -5,6 +5,7 @@ from django.utils.translation import ugettext as _
 from django.utils.safestring import mark_safe
 from django.conf import settings
 from django import forms
+from webpack_loader.utils import get_files
 
 from allink_core.allink_base.utils import get_project_color_choices
 
@@ -57,9 +58,9 @@ class SpectrumColorPicker(forms.widgets.TextInput):
     in the pushed colorFields, it could be used more flexible if needed.
     """
     class Media:
-        js = ('build/djangocms_custom_admin_scripts.js', )
+        js = (get_files('djangocms_custom_admin_scripts')[0]['publicPath'], )
         css = {
-            'all': ('build/djangocms_custom_admin_style.css', )
+            'all': (get_files('djangocms_custom_admin_style')[0]['publicPath'], )
         }
 
     def __init__(self, *args, **kwargs):
@@ -108,9 +109,9 @@ class SpectrumColorPicker(forms.widgets.TextInput):
 class SearchSelectWidget(forms.widgets.Select):
 
     class Media:
-        js = ('build/djangocms_custom_admin_scripts.js', )
+        js = (get_files('djangocms_custom_admin_scripts')[0]['publicPath'], )
         css = {
-            'all': ('build/djangocms_custom_admin_style.css', )
+            'all': (get_files('djangocms_custom_admin_style')[0]['publicPath'], )
         }
 
     def __init__(self, attrs=None, choices=()):
