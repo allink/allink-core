@@ -754,5 +754,5 @@ class AllinkBaseFormPlugin(CMSPlugin):
             for css_class in getattr(self, 'form_css_classes'):
                 css_classes.append(css_class)
         css_classes.append('side-by-side') if self.label_layout == 'side_by_side' else None
-        css_classes.append('placeholder') if self.label_layout == 'placeholder' else None
+        css_classes.append('placeholder-enabled') if self.label_layout == 'placeholder' else None
         return ' '.join(css_classes)
