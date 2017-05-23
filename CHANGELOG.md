@@ -96,8 +96,7 @@ Each release is divided into the following main categories:
     ])
     ```
 - remove 'django.middleware.cache.UpdateCacheMiddleware' and django.middleware.cache.FetchFromCacheMiddleware' (because they cache all responses from views, e.g AllinkBaseDetailView)
-- Static assets (dev and production (with hashes)) for CKEDITOR and CMSPlugins are now being loaded via django-webpack-loader.
-
+- django-webpack-loader: Static assets (dev and production (with hashes)) for CKEDITOR and CMSPlugins are now being loaded via django-webpack-loader.
   To load the project styles in CKEDITOR add the following code to your project's `settings.py` (update `CKEDITOR_SETTINGS.contentsCss`):
   ```python
   from webpack_loader.utils import get_files
@@ -105,29 +104,19 @@ Each release is divided into the following main categories:
   ...
 
   CKEDITOR_SETTINGS = {
-      'contentsCss': get_files('style')[1]['publicPath'],
-  ```
-
-  If you need `djangocms_custom_admin_scripts` or `djangocms_custom_admin_style` in a new plugin add the following code to the admin.py / cms_plugins.py Media class:
-  ```python
-  from webpack_loader.utils import get_files
-
-  ...
-
-  class Media:
-      js = (
-          get_files('djangocms_custom_admin_scripts')[0]['publicPath'],
-      )
-      css = {
-          'all': (
-              get_files('djangocms_custom_admin_style')[0]['publicPath'],
-
-          )
-      }
+      'contentsCss': get_files('app')[1]['publicPath'],
   ```
 
 ###### TEMPLATES
 - people job_function (which it was used in tejakob for example) was substitutett with property 'units'. You now have to add categories (with unit=True) and tag th person with it. this allowes us to categories people without having to maintain both fields 'unit' and categories
+- base_root template (project specific): The bundle names in `webpack.config.js` have been updated. There now are only two bundles, `app` and `djangocms_custom_admin`. The `render_bundle` template tags must be updated like this:
+  ```html
+  <!-- head -->
+  {% render_bundle 'app' 'css' %}
+
+  <!-- body -->
+  {% render_bundle 'app' 'js' %}
+  ```
 
 ###### URLS
 
@@ -167,6 +156,23 @@ Each release is divided into the following main categories:
   ```
 
 - djangocms_pdf was added (enables manual page breaks in pdf export) -> to enable CMSAllinkPageBreakPlugin in a certain placeholder ad just add it in the settings.py
+- django-webpack-loader: All core plugins have been updated to load static assets via `django-webpack-loader`. If you need `djangocms_custom_admin_scripts` or `djangocms_custom_admin_style` in a new plugin add the following code to the admin.py / cms_plugins.py
+  ```python
+  from webpack_loader.utils import get_files
+
+  ...
+
+  class Media:
+      js = (
+          get_files('djangocms_custom_admin')[0]['publicPath'],
+      )
+      css = {
+          'all': (
+              get_files('djangocms_custom_admin')[1]['publicPath'],
+
+          )
+      }
+  ```
 
 ### FIXES
 
