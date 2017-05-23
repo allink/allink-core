@@ -110,6 +110,7 @@ Each release is divided into the following main categories:
 ###### TEMPLATES
 - people job_function (which it was used in tejakob for example) was substitutett with property 'units'. You now have to add categories (with unit=True) and tag th person with it. this allowes us to categories people without having to maintain both fields 'unit' and categories
 - base_root template (project specific): The bundle names in `webpack.config.js` have been updated. There now are only two bundles, `app` and `djangocms_custom_admin`. The `render_bundle` template tags must be updated like this:
+
   ```html
   <!-- head -->
   {% render_bundle 'app' 'css' %}
@@ -173,6 +174,31 @@ Each release is divided into the following main categories:
           )
       }
   ```
+
+- New webpack.config.js and webpack/lib.js bundle settings:
+
+    webpack.config.js (replace exisiting entry with this)
+    ```javascript
+    entry: {
+        app: [
+            PATHS.app,
+            PATHS.style,
+        ],
+        djangocms_custom_admin: [
+            PATHS.djangocms_custom_admin_style,
+            PATHS.djangocms_custom_admin_scripts,
+        ]
+    },
+    ```
+
+    webpack/lib.js (make sure that hashing is enabled in production)
+    ```javascript
+    output: {
+        filename: '[name].min.[hash].js',
+    },
+
+    new ExtractTextPlugin('[name].min.[hash].css'),
+    ```
 
   If you are experiencing issues while updating the project, try running `npm run dev` so that the new bundles `app` and `django_custom_admin` exist.
 
