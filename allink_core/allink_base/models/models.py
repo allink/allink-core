@@ -728,7 +728,7 @@ class AllinkBaseFormPlugin(CMSPlugin):
         ),
         default='stacked',
     )
-    form_css_classes = ArrayField(
+    project_css_classes = ArrayField(
         models.CharField(
             max_length=50,
             blank=True,
@@ -750,8 +750,8 @@ class AllinkBaseFormPlugin(CMSPlugin):
     @property
     def css_classes(self):
         css_classes = []
-        if getattr(self, 'form_css_classes'):
-            for css_class in getattr(self, 'form_css_classes'):
+        if getattr(self, 'project_css_classes'):
+            for css_class in getattr(self, 'project_css_classes'):
                 css_classes.append(css_class)
         css_classes.append('side-by-side') if self.label_layout == 'side_by_side' else None
         css_classes.append('placeholder-enabled') if self.label_layout == 'placeholder' else None
