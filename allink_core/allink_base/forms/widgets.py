@@ -58,9 +58,9 @@ class SpectrumColorPicker(forms.widgets.TextInput):
     in the pushed colorFields, it could be used more flexible if needed.
     """
     class Media:
-        js = (get_files('djangocms_custom_admin_scripts')[0]['publicPath'], )
+        js = (get_files('djangocms_custom_admin')[0]['publicPath'], )
         css = {
-            'all': (get_files('djangocms_custom_admin_style')[0]['publicPath'], )
+            'all': (get_files('djangocms_custom_admin')[1]['publicPath'], )
         }
 
     def __init__(self, *args, **kwargs):
@@ -109,9 +109,9 @@ class SpectrumColorPicker(forms.widgets.TextInput):
 class SearchSelectWidget(forms.widgets.Select):
 
     class Media:
-        js = (get_files('djangocms_custom_admin_scripts')[0]['publicPath'], )
+        js = (get_files('djangocms_custom_admin')[0]['publicPath'], )
         css = {
-            'all': (get_files('djangocms_custom_admin_style')[0]['publicPath'], )
+            'all': (get_files('djangocms_custom_admin')[1]['publicPath'], )
         }
 
     def __init__(self, attrs=None, choices=()):
