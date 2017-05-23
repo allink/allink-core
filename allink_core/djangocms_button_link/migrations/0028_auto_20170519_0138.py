@@ -77,8 +77,6 @@ class Migration(migrations.Migration):
         ('people', '__latest__'),
         ('testimonials', '__latest__'),
         ('work', '__latest__'),
-        ('services', '__latest__'),
-        ('topics', '__latest__'),
     ]
 
     operations = [
