@@ -27,9 +27,9 @@ class AllinkBaseAdminBase(AllTranslationsMixin, TranslatableAdmin):
     exclude = ('images',)
 
     class Media:
-        js = (get_files('djangocms_custom_admin_scripts')[0]['publicPath'], )
+        js = (get_files('djangocms_custom_admin')[0]['publicPath'], )
         css = {
-            'all': (get_files('djangocms_custom_admin_style')[0]['publicPath'], )
+            'all': (get_files('djangocms_custom_admin')[1]['publicPath'], )
         }
 
     def get_fieldsets(self, request, obj=None):
