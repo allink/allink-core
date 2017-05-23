@@ -723,7 +723,7 @@ class AllinkBaseFormPlugin(CMSPlugin):
         max_length=15,
         choices=(
             ('stacked', 'Stacked with fields'),
-            ('side-by-side', 'Side by side with fields'),
+            ('side_by_side', 'Side by side with fields'),
             ('placeholder', 'As placeholders'),
         ),
         default='stacked',
