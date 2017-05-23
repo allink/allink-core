@@ -3,6 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.templatetags.static import static
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
+from webpack_loader.utils import get_files
 from allink_core.djangocms_button_link.models import AllinkButtonLinkContainerPlugin, AllinkButtonLinkPlugin
 from allink_core.djangocms_button_link.forms import AllinkButtonLinkContainerPluginForm, AllinkButtonLinkPluginForm
 
@@ -18,11 +19,11 @@ class CMSAllinkButtonLinkContainerPlugin(CMSPluginBase):
 
     class Media:
         js = (
-            'build/djangocms_custom_admin_scripts.js',
+            get_files('djangocms_custom_admin_scripts')[0]['publicPath'],
         )
         css = {
             'all': (
-                'build/djangocms_custom_admin_style.css',
+                get_files('djangocms_custom_admin_style')[0]['publicPath'],
 
             )
         }

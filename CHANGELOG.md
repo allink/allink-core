@@ -29,7 +29,6 @@ Each release is divided into the following main categories:
     plugin_pool.unregister_plugin(FolderPlugin)
     ```
 
-
 ###### SETTINGS
 -  import from allink_settings -> DEBUG_TOOLBAR_CONFIG
 -  we refactored the whole image tags. the new tag 'render_image' requires a dict in the settings (when updating it is crucial, that you specify the project image ratios in the corresponding with_alias!)
@@ -97,6 +96,35 @@ Each release is divided into the following main categories:
     ])
     ```
 - remove 'django.middleware.cache.UpdateCacheMiddleware' and django.middleware.cache.FetchFromCacheMiddleware' (because they cache all responses from views, e.g AllinkBaseDetailView)
+- Static assets (dev and production (with hashes)) for CKEDITOR and CMSPlugins are now being loaded via django-webpack-loader.
+
+  To load the project styles in CKEDITOR add the following code to your project's `settings.py` (update `CKEDITOR_SETTINGS.contentsCss`):
+  ```python
+  from webpack_loader.utils import get_files
+
+  ...
+
+  CKEDITOR_SETTINGS = {
+      'contentsCss': get_files('style')[1]['publicPath'],
+  ```
+
+  If you need `djangocms_custom_admin_scripts` or `djangocms_custom_admin_style` in a new plugin add the following code to the admin.py / cms_plugins.py Media class:
+  ```python
+  from webpack_loader.utils import get_files
+
+  ...
+
+  class Media:
+      js = (
+          get_files('djangocms_custom_admin_scripts')[0]['publicPath'],
+      )
+      css = {
+          'all': (
+              get_files('djangocms_custom_admin_style')[0]['publicPath'],
+
+          )
+      }
+  ```
 
 ###### TEMPLATES
 - people job_function (which it was used in tejakob for example) was substitutett with property 'units'. You now have to add categories (with unit=True) and tag th person with it. this allowes us to categories people without having to maintain both fields 'unit' and categories
@@ -107,6 +135,7 @@ Each release is divided into the following main categories:
 - djangocms-snippet==1.9.2
 - beautifulsoup4==4.6.0
 - reportlab==3.4.0
+- django-webpack-loader==0.5.0
 
 ###### DATA MIGRATIONS
 - update with caution in projects whcih still use inline images to display galleries (hdf, mfgz, ..?) we added a field preview_image (not a property anymore) the galleries are now added as a plugin inside the content_palceholder

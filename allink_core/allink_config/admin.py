@@ -7,6 +7,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from cms.extensions import TitleExtensionAdmin
 from solo.admin import SingletonModelAdmin
+from webpack_loader.utils import get_files
 
 from allink_core.allink_config.models import AllinkConfig, AllinkMetaTagExtension
 from allink_core.allink_base.forms.fields import ColorField
@@ -31,11 +32,11 @@ class AllinkConfigAdmin(SingletonModelAdmin):
 
     class Media:
         js = (
-            'build/djangocms_custom_admin_scripts.js',
+            get_files('djangocms_custom_admin_scripts')[0]['publicPath'],
         )
         css = {
             'all': (
-                'build/djangocms_custom_admin_style.css',
+                get_files('djangocms_custom_admin_style')[0]['publicPath'],
 
             )
         }

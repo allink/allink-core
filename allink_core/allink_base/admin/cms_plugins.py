@@ -5,6 +5,7 @@ from django.core.paginator import Paginator
 from django.core.urlresolvers import reverse
 
 from cms.plugin_base import CMSPluginBase
+from webpack_loader.utils import get_files
 
 from allink_core.allink_base.models import AllinkBaseAppContentPlugin
 from allink_core.allink_base.admin import AllinkBaseAppContentPluginForm
@@ -25,9 +26,9 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
     data_model = model.data_model
 
     class Media:
-        js = ('build/djangocms_custom_admin_scripts.js', )
+        js = (get_files('djangocms_custom_admin_scripts')[0]['publicPath'], )
         css = {
-            'all': ('build/djangocms_custom_admin_style.css', )
+            'all': (get_files('djangocms_custom_admin_style')[0]['publicPath'], )
         }
 
     @classmethod

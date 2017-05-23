@@ -4,6 +4,7 @@ from django.conf import settings
 from cms.models import CMSPlugin
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
+from webpack_loader.utils import get_files
 
 from allink_core.djangocms_content.models import AllinkContentPlugin, AllinkContentColumnPlugin
 from allink_core.djangocms_content.forms import AllinkContentPluginForm, AllinkContentColumnPluginForm
@@ -20,9 +21,9 @@ class CMSAllinkContentPlugin(CMSPluginBase):
     form = AllinkContentPluginForm
 
     class Media:
-        js = ('build/djangocms_custom_admin_scripts.js', )
+        js = (get_files('djangocms_custom_admin_scripts')[0]['publicPath'], )
         css = {
-            'all': ('build/djangocms_custom_admin_style.css', )
+            'all': (get_files('djangocms_custom_admin_style')[0]['publicPath'], )
         }
 
     fieldsets = (
@@ -105,9 +106,9 @@ class CMSAllinkContentColumnPlugin(CMSPluginBase):
     require_parent = True
 
     class Media:
-        js = ('build/djangocms_custom_admin_scripts.js', )
+        js = (get_files('djangocms_custom_admin_scripts')[0]['publicPath'], )
         css = {
-            'all': ('build/djangocms_custom_admin_style.css', )
+            'all': (get_files('djangocms_custom_admin_style')[0]['publicPath'], )
         }
 
     def save_model(self, request, obj, form, change):

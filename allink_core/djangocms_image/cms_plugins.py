@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.utils.translation import ugettext_lazy as _
 from cms.plugin_base import CMSPluginBase
+from webpack_loader.utils import get_files
 
 from cms.plugin_pool import plugin_pool
 from allink_core.djangocms_image.models import AllinkImagePlugin
@@ -16,11 +17,11 @@ class CMSAllinkImagePlugin(CMSPluginBase):
 
     class Media:
         js = (
-            'build/djangocms_custom_admin_scripts.js',
+            get_files('djangocms_custom_admin_scripts')[0]['publicPath'],
         )
         css = {
             'all': (
-                'build/djangocms_custom_admin_style.css',
+                get_files('djangocms_custom_admin_style')[0]['publicPath'],
 
             )
         }

@@ -6,6 +6,7 @@ from django.utils.module_loading import import_by_path
 from cms.plugin_base import CMSPluginBase
 from cmsplugin_form_handler.cms_plugins import FormPluginBase
 from cms.plugin_pool import plugin_pool
+from webpack_loader.utils import get_files
 
 from .config import MailChimpConfig
 config = MailChimpConfig()
@@ -26,9 +27,9 @@ class CMSAllinkSignupFormPlugin(CMSPluginBase):
     success_url = '/success/'
 
     class Media:
-        js = ('build/djangocms_custom_admin_scripts.js', )
+        js = (get_files('djangocms_custom_admin_scripts')[0]['publicPath'], )
         css = {
-             'all': ('build/djangocms_custom_admin_style.css', )
+             'all': (get_files('djangocms_custom_admin_style')[0]['publicPath'], )
         }
 
     def get_fieldsets(self, request, obj=None):
