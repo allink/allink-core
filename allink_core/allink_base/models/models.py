@@ -718,6 +718,16 @@ class AllinkBaseFormPlugin(CMSPlugin):
         blank=True,
         null=True,
     )
+    label_layout = models.CharField(
+        _(u'Display labels'),
+        max_length=15,
+        choices=(
+            ('side_by_side', 'Side by side with fields'),
+            ('stacked', 'Stacked with fields'),
+            ('placeholder', 'As placeholders'),
+        ),
+        default='side_by_side',
+    )
 
     def __str__(self):
         return 'Form Plugin'
