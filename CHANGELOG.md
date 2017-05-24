@@ -29,6 +29,73 @@ Each release is divided into the following main categories:
     plugin_pool.unregister_plugin(FolderPlugin)
     ```
 
+### IMPORTANT (SPEZIALE): Webpack Loader Update
+
+When Updating the `allink-core`, it is <strong>required</strong> to go through the following steps in order to make sure that the compiled static files are loaded correctly:
+
+- Update requirements to `django-webpack-loader==0.5.0`
+- django-webpack-loader: Static assets (dev and production (with hashes)) for CKEDITOR and CMSPlugins are now being loaded via django-webpack-loader.
+  To load the project styles in CKEDITOR add the following code to your project's `settings.py` (update `CKEDITOR_SETTINGS.contentsCss`):
+  ```python
+  from webpack_loader.utils import get_files
+
+  ...
+
+  CKEDITOR_SETTINGS = {
+      'contentsCss': get_files('app')[1]['publicPath'],
+  ```
+- `base_root.html` template (project specific): The bundle names in `webpack.config.js` have been updated. There now are only two bundles, `app` and `djangocms_custom_admin`. The `render_bundle` template tags must be updated like this:
+
+  ```html
+  <!-- head -->
+  {% render_bundle 'app' 'css' %}
+
+  <!-- body -->
+  {% render_bundle 'app' 'js' %}
+    ```
+- django-webpack-loader: All core plugins have been updated to load static assets via `django-webpack-loader`. If you need `djangocms_custom_admin_scripts` or `djangocms_custom_admin_style` in a new plugin add the following code to the admin.py / cms_plugins.py
+  ```python
+  from webpack_loader.utils import get_files
+
+  ...
+
+  class Media:
+      js = (
+          get_files('djangocms_custom_admin')[0]['publicPath'],
+      )
+      css = {
+          'all': (
+              get_files('djangocms_custom_admin')[1]['publicPath'],
+
+          )
+      }
+  ```
+
+- `webpack.config.js`: Replace exisiting `entry` with the following code:
+  ```JS
+  entry: {
+      app: [
+          PATHS.app,
+          PATHS.style,
+      ],
+      djangocms_custom_admin: [
+          PATHS.djangocms_custom_admin_style,
+          PATHS.djangocms_custom_admin_scripts,
+      ]
+  },
+  ```
+
+- `webpack/lib.js`: Make sure that hashing is enabled in `production`:
+  ```JS
+  output: {
+      filename: '[name].min.[hash].js',
+  },
+
+  new ExtractTextPlugin('[name].min.[hash].css'),
+  ```
+
+  If you are experiencing issues while updating the project, try running `npm run dev` so that the new bundles `app` and `django_custom_admin` exist.
+
 ###### SETTINGS
 -  import from allink_settings -> DEBUG_TOOLBAR_CONFIG
 -  we refactored the whole image tags. the new tag 'render_image' requires a dict in the settings (when updating it is crucial, that you specify the project image ratios in the corresponding with_alias!)
@@ -96,28 +163,9 @@ Each release is divided into the following main categories:
     ])
     ```
 - remove 'django.middleware.cache.UpdateCacheMiddleware' and django.middleware.cache.FetchFromCacheMiddleware' (because they cache all responses from views, e.g AllinkBaseDetailView)
-- django-webpack-loader: Static assets (dev and production (with hashes)) for CKEDITOR and CMSPlugins are now being loaded via django-webpack-loader.
-  To load the project styles in CKEDITOR add the following code to your project's `settings.py` (update `CKEDITOR_SETTINGS.contentsCss`):
-  ```python
-  from webpack_loader.utils import get_files
-
-  ...
-
-  CKEDITOR_SETTINGS = {
-      'contentsCss': get_files('app')[1]['publicPath'],
-  ```
 
 ###### TEMPLATES
 - people job_function (which it was used in tejakob for example) was substitutett with property 'units'. You now have to add categories (with unit=True) and tag th person with it. this allowes us to categories people without having to maintain both fields 'unit' and categories
-- base_root template (project specific): The bundle names in `webpack.config.js` have been updated. There now are only two bundles, `app` and `djangocms_custom_admin`. The `render_bundle` template tags must be updated like this:
-
-  ```html
-  <!-- head -->
-  {% render_bundle 'app' 'css' %}
-
-  <!-- body -->
-  {% render_bundle 'app' 'js' %}
-  ```
 
 ###### URLS
 
@@ -125,7 +173,6 @@ Each release is divided into the following main categories:
 - djangocms-snippet==1.9.2
 - beautifulsoup4==4.6.0
 - reportlab==3.4.0
-- django-webpack-loader==0.5.0
 
 ###### DATA MIGRATIONS
 - update with caution in projects whcih still use inline images to display galleries (hdf, mfgz, ..?) we added a field preview_image (not a property anymore) the galleries are now added as a plugin inside the content_palceholder
@@ -157,50 +204,6 @@ Each release is divided into the following main categories:
   ```
 
 - djangocms_pdf was added (enables manual page breaks in pdf export) -> to enable CMSAllinkPageBreakPlugin in a certain placeholder ad just add it in the settings.py
-- django-webpack-loader: All core plugins have been updated to load static assets via `django-webpack-loader`. If you need `djangocms_custom_admin_scripts` or `djangocms_custom_admin_style` in a new plugin add the following code to the admin.py / cms_plugins.py
-  ```python
-  from webpack_loader.utils import get_files
-
-  ...
-
-  class Media:
-      js = (
-          get_files('djangocms_custom_admin')[0]['publicPath'],
-      )
-      css = {
-          'all': (
-              get_files('djangocms_custom_admin')[1]['publicPath'],
-
-          )
-      }
-  ```
-
-- New webpack.config.js and webpack/lib.js bundle settings:
-
-    webpack.config.js (replace exisiting entry with this)
-    ```javascript
-    entry: {
-        app: [
-            PATHS.app,
-            PATHS.style,
-        ],
-        djangocms_custom_admin: [
-            PATHS.djangocms_custom_admin_style,
-            PATHS.djangocms_custom_admin_scripts,
-        ]
-    },
-    ```
-
-    webpack/lib.js (make sure that hashing is enabled in production)
-    ```javascript
-    output: {
-        filename: '[name].min.[hash].js',
-    },
-
-    new ExtractTextPlugin('[name].min.[hash].css'),
-    ```
-
-  If you are experiencing issues while updating the project, try running `npm run dev` so that the new bundles `app` and `django_custom_admin` exist.
 
 ### FIXES
 
