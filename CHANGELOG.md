@@ -31,7 +31,9 @@ Each release is divided into the following main categories:
 
 ### IMPORTANT (SPEZIALE): Webpack Loader Update
 
-When Updating the `allink-core`, it is <strong>required</strong> to go through the following steps in order to make sure that the compiled static files are loaded correctly:
+When Updating the `allink-core`, it is <strong>required</strong> to go through the following steps in order to make sure that the compiled static files are loaded correctly.
+
+Additionally, project specific plugins require the `class Media` (described below) imports to be updated, too.
 
 - Update requirements to `django-webpack-loader==0.5.0`
 - django-webpack-loader: Static assets (dev and production (with hashes)) for CKEDITOR and CMSPlugins are now being loaded via django-webpack-loader.
