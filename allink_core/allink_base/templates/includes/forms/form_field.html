@@ -7,16 +7,18 @@
         <div class="form-group field-type-{{ field|widget_type }} {% if field.errors %}has-error{% endif %}">
             {% block label %}
                 {% if not nolabel and field|widget_type != 'checkboxinput' and field|widget_type != 'radioselect' %}
-                    <label class="control-label {% if field.field.required %} required{% endif %}" for="{{ field.auto_id }}">
-                        <span class="label-text">
-                            {{ field.label|safe }}
-                        </span>
-                        {% if field.field.required %}
-                            <span class="required-symbol">
-                                ({% trans "required" %})
-                            </span>
-                        {% endif %}
-                    </label>
+                    {% spaceless %}
+                        <label class="control-label {% if field.field.required %} required{% endif %}" for="{{ field.auto_id }}">
+                            <span class="label-text">
+                                {{ field.label|safe }}
+                            </span>&nbsp;
+                            {% if field.field.required %}
+                                <span class="required-symbol">
+                                    ({% trans "required" %})
+                                </span>
+                            {% endif %}
+                        </label>
+                    {% endspaceless %}
                 {% endif %}
             {% endblock %}
 
