@@ -156,7 +156,8 @@ Additionally, project specific plugins require the `class Media` (described belo
     ```python
     PROJECT_LINK_APPHOOKS = OrderedDict([
         ('Page', []),  # Not Apphook but linkable
-        ('BlogApphook', {'detail': ('allink_apps.blog.models.Blog', ['slug'])}),  # Linkable urls (urlnames): (ModelName, [url_parameters])
+        ('NewsApphook', {'detail': ('allink_apps.blog.models.News', ['slug'])}), # Linkable urls (urlnames): (ModelName, [url_parameters])
+        ('EventsApphook', {'detail': ('allink_apps.blog.models.Events', ['slug'])}),
         ('LocationsApphook', {'detail': ('allink_apps.locations.models.Locations', ['slug'])}),
         ('MembersApphook', {'detail': ('allink_apps.members.models.Members', ['slug'])}),
         ('PeopleApphook', {'detail': ('allink_apps.people.models.People', ['slug'])}),
