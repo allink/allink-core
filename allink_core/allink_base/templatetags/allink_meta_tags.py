@@ -49,13 +49,16 @@ def render_meta_og(context, obj=None, image=None, og_title=None, description=Non
     # cms page (no object is supplied)
     elif hasattr(context.request, 'current_page'):
         page = getattr(context.request, 'current_page')
-        page_ext = page.get_title_obj().allinkmetatagextension
+        try:
+            page_ext = page.get_title_obj().extended_fields.all()[0].allinkmetatagextension
+        except AttributeError:
+            page_ext = None
 
         # title
         #  % page_attribute page_title %}{% endif %}{% endblock og_title %} {% block og_title_base %}| {{ request.site.name }}{% endblock og_title_base %}
         if og_title:
             og_title = og_title
-        elif page_ext.og_title:
+        elif page_ext and page_ext.og_title:
             og_title = page_ext.og_title
         else:
             og_title = page.get_page_title()
@@ -63,7 +66,7 @@ def render_meta_og(context, obj=None, image=None, og_title=None, description=Non
         # description
         if description:
             description = description
-        elif page_ext.og_description:
+        elif page_ext and page_ext.og_description:
             description = page_ext.og_description
         else:
             description = page.get_meta_description()
@@ -71,9 +74,8 @@ def render_meta_og(context, obj=None, image=None, og_title=None, description=Non
         # image
         if image:
             image_url = image.url
-        elif page_ext.og_image.url:
+        elif page_ext and page_ext.og_image.url:
             image_url = page_ext.og_image.url
-
         else:
             image_url = allink_config.default_og_image.url
 
