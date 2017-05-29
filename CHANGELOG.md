@@ -36,6 +36,9 @@ When Updating the `allink-core`, it is <strong>required</strong> to go through t
 Additionally, project specific plugins require the `class Media` (described below) imports to be updated, too.
 
 - Update requirements to `django-webpack-loader==0.5.0`
+- execute:
+    - npm i/ npm run dev
+    - docker stop $(docker ps -a -q)
 - django-webpack-loader: Static assets (dev and production (with hashes)) for CKEDITOR and CMSPlugins are now being loaded via django-webpack-loader.
   To load the project styles in CKEDITOR add the following code to your project's `settings.py` (update `CKEDITOR_SETTINGS.contentsCss`):
   ```python
@@ -55,23 +58,6 @@ Additionally, project specific plugins require the `class Media` (described belo
   <!-- body -->
   {% render_bundle 'app' 'js' %}
     ```
-- django-webpack-loader: All core plugins have been updated to load static assets via `django-webpack-loader`. If you need `djangocms_custom_admin_scripts` or `djangocms_custom_admin_style` in a new plugin add the following code to the admin.py / cms_plugins.py
-  ```python
-  from webpack_loader.utils import get_files
-
-  ...
-
-  class Media:
-      js = (
-          get_files('djangocms_custom_admin')[0]['publicPath'],
-      )
-      css = {
-          'all': (
-              get_files('djangocms_custom_admin')[1]['publicPath'],
-
-          )
-      }
-  ```
 
 - `webpack.config.js`: Replace exisiting `entry` with the following code:
   ```JS
@@ -98,6 +84,23 @@ Additionally, project specific plugins require the `class Media` (described belo
 
   If you are experiencing issues while updating the project, try running `npm run dev` so that the new bundles `app` and `django_custom_admin` exist.
 
+- django-webpack-loader: All core plugins have been updated to load static assets via `django-webpack-loader`. If you need `djangocms_custom_admin_scripts` or `djangocms_custom_admin_style` in a new plugin add the following code to the admin.py / cms_plugins.py
+  ```python
+  from webpack_loader.utils import get_files
+
+  ...
+
+  class Media:
+      js = (
+          get_files('djangocms_custom_admin')[0]['publicPath'],
+      )
+      css = {
+          'all': (
+              get_files('djangocms_custom_admin')[1]['publicPath'],
+
+          )
+      }
+  ```
 ###### SETTINGS
 -  import from allink_settings -> DEBUG_TOOLBAR_CONFIG
 -  we refactored the whole image tags. the new tag 'render_image' requires a dict in the settings (when updating it is crucial, that you specify the project image ratios in the corresponding with_alias!)
