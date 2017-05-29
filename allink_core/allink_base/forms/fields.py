@@ -50,6 +50,8 @@ class ColorField(forms.fields.CharField):
 
     def clean(self, value):
         if value:
+            if len(value) == 4:
+                value = '#%s%s%s%s%s%s' % (value[1], value[1], value[2], value[2], value[3], value[3])
             try:
                 value = get_project_color_choices()[value]
             except KeyError:
