@@ -214,8 +214,6 @@ class AllinkConfig(SingletonModel):
         verbose_name = _(u'Allink Configuration')
 
 
-### TODO - temp solution to disable video plugin
-
 from cms.extensions import TitleExtension
 from cms.extensions.extension_pool import extension_pool
 
