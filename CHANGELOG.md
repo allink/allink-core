@@ -210,6 +210,7 @@ Additionally, project specific plugins require the `class Media` (described belo
   ```
 
 - djangocms_pdf was added (enables manual page breaks in pdf export) -> to enable CMSAllinkPageBreakPlugin in a certain placeholder ad just add it in the settings.py
+- render_meta_og was introduced to render meta tags
 
 ### FIXES
 
