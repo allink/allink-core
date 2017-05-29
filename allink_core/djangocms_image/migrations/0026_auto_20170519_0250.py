@@ -64,7 +64,7 @@ def migrate_links(apps, schema_editor):
             l.save()
         else:
             cms_plugin = CMSPlugin.objects.get(id=l.cmsplugin_ptr_id)
-            print("\033[91m Kann nicht migriert werden.   plugin_id: ", l.id, ",  link_internal:  ", l.link_internal, ",  page:  ", cms_plugin.get_root().page, ",  display name:  ", l.label, "\033[0m")
+            print("\033[91m Kann nicht migriert werden.   plugin_id: ", l.id, ",  link_internal:  ", l.link_internal, ",  page:  ", cms_plugin.get_root().page, ",  display name:  ", str(l.picture), "\033[0m")
 
 
 class Migration(migrations.Migration):
