@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django import template
-from django.utils.translation import ugettext_lazy as _
+from cms.models.pagemodel import Page
 from allink_core.allink_config.models import AllinkConfig
 register = template.Library()
 
@@ -27,7 +27,7 @@ def render_meta_og(context, obj=None, image=None, og_title=None, description=Non
         else:
             og_title = obj.title
 
-            # description
+        # description
         if description:
             description = description
         elif obj.og_description:
@@ -50,16 +50,16 @@ def render_meta_og(context, obj=None, image=None, og_title=None, description=Non
     elif hasattr(context.request, 'current_page'):
         page = getattr(context.request, 'current_page')
         try:
-            page_ext = page.get_title_obj().extended_fields.all()[0].allinkmetatagextension
-        except AttributeError:
+            # only when extension is there
+            page_ext = page.get_title_obj().allinkmetatagextension
+        except:
             page_ext = None
 
         # title
-        #  % page_attribute page_title %}{% endif %}{% endblock og_title %} {% block og_title_base %}| {{ request.site.name }}{% endblock og_title_base %}
         if og_title:
             og_title = og_title
-        elif page_ext and page_ext.og_title:
-            og_title = page_ext.og_title
+        elif page_ext:
+            og_title = page_ext.og_title if page_ext.og_title else page.get_page_title()
         else:
             og_title = page.get_page_title()
 
@@ -67,15 +67,15 @@ def render_meta_og(context, obj=None, image=None, og_title=None, description=Non
         if description:
             description = description
         elif page_ext and page_ext.og_description:
-            description = page_ext.og_description
+            description = page_ext.og_description if page_ext.og_description else page.get_meta_description()
         else:
             description = page.get_meta_description()
 
         # image
         if image:
             image_url = image.url
-        elif page_ext and page_ext.og_image.url:
-            image_url = page_ext.og_image.url
+        elif page_ext and page_ext.og_image:
+            image_url = page_ext.og_image.url if page_ext.og_image else allink_config.default_og_image.url
         else:
             image_url = allink_config.default_og_image.url
 
