@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-23 03:45-0500\n"
+"POT-Creation-Date: 2017-05-30 01:56-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,26 +18,26 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: allink_core_repo/allink_core/djangocms_vid/cms_plugins.py:13
+#: allink_core_repo/allink_core/djangocms_vid/cms_plugins.py:14
 msgid "Video Embed"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_vid/cms_plugins.py:14
-#: allink_core_repo/allink_core/djangocms_vid/cms_plugins.py:62
+#: allink_core_repo/allink_core/djangocms_vid/cms_plugins.py:15
+#: allink_core_repo/allink_core/djangocms_vid/cms_plugins.py:63
 msgid "allink"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_vid/cms_plugins.py:36
-#: allink_core_repo/allink_core/djangocms_vid/cms_plugins.py:84
+#: allink_core_repo/allink_core/djangocms_vid/cms_plugins.py:37
+#: allink_core_repo/allink_core/djangocms_vid/cms_plugins.py:85
 msgid "Video settings"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_vid/cms_plugins.py:44
-#: allink_core_repo/allink_core/djangocms_vid/cms_plugins.py:93
+#: allink_core_repo/allink_core/djangocms_vid/cms_plugins.py:45
+#: allink_core_repo/allink_core/djangocms_vid/cms_plugins.py:94
 msgid "Advanced settings"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_vid/cms_plugins.py:61
+#: allink_core_repo/allink_core/djangocms_vid/cms_plugins.py:62
 #: allink_core_repo/allink_core/djangocms_vid/models.py:109
 msgid "Video File"
 msgstr ""

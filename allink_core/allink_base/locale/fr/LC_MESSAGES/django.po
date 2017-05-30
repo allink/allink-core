@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-23 01:12-0500\n"
+"POT-Creation-Date: 2017-05-30 01:56-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,9 +18,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: allink_core_repo/allink_core/allink_base/admin/admin.py:51
-#: allink_core_repo/allink_core/allink_base/admin/admin.py:76
-#: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:60
+#: allink_core_repo/allink_core/allink_base/admin/admin.py:52
+#: allink_core_repo/allink_core/allink_base/admin/admin.py:77
+#: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:61
 #: allink_core_repo/allink_core/allink_base/admin/forms.py:21
 #: allink_core_repo/allink_core/allink_base/admin/forms.py:23
 #: allink_core_repo/allink_core/allink_base/admin/forms.py:53
@@ -29,47 +29,47 @@ msgstr ""
 msgid "Categories"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_base/admin/admin.py:60
+#: allink_core_repo/allink_core/allink_base/admin/admin.py:61
 msgid "Meta Tags"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:20
+#: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:21
 msgid "App Content"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:21
+#: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:22
 msgid "allink Apps"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:48
+#: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:49
 msgid "Display Options"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:68
+#: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:69
 msgid "Filter & Ordering"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:76
+#: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:77
 msgid "Select entries manually"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:84
+#: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:85
 msgid "Category Navigation Options"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:97
+#: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:98
 msgid "Number of entries"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:107
+#: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:108
 msgid "Pagination Options"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:118
+#: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:119
 msgid "Additional Options"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:127
+#: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:128
 msgid "Grid Options"
 msgstr ""
 
@@ -133,15 +133,15 @@ msgstr ""
 msgid "Ordering"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_base/forms/fields.py:56
+#: allink_core_repo/allink_core/allink_base/forms/fields.py:58
 msgid "Please choose a predefined color."
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_base/forms/fields.py:91
+#: allink_core_repo/allink_core/allink_base/forms/fields.py:93
 msgid "pages"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_base/forms/widgets.py:19
+#: allink_core_repo/allink_core/allink_base/forms/widgets.py:20
 msgid ""
 "Thumbnail is created when publication is saved. And a PDF document is "
 "assigned."
@@ -503,6 +503,10 @@ msgstr ""
 msgid "Thank you text"
 msgstr ""
 
+#: allink_core_repo/allink_core/allink_base/models/models.py:722
+msgid "Display labels"
+msgstr ""
+
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:35
 msgid "Street"
 msgstr ""
@@ -560,11 +564,13 @@ msgstr ""
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:132
 msgid ""
 "Preview image when page/post is shared on Facebook. <br>Min. 1200 x 630 for "
-"best results."
+"best results. If not set, the one from the preview image will be used, if "
+"not set or not in a app context, the one defined in allink_settings will be "
+"used."
 msgstr ""
 
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:138
-msgid "og:title"
+msgid "Title Tag and Title when shared on Facebook."
 msgstr ""
 
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:140
@@ -572,7 +578,7 @@ msgid "Title when shared on Facebook."
 msgstr ""
 
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:146
-msgid "og:description"
+msgid "Meta Description for Search Engines and when shared on Facebook."
 msgstr ""
 
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:148
@@ -652,7 +658,7 @@ msgstr ""
 
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:370
 #, python-format
-msgid "Only one of %s or %s may be given."
+msgid "Only one of %(fields)s or %(last_field)s may be given."
 msgstr ""
 
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:380
@@ -725,7 +731,7 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_base/templates/includes/forms/form_field.html:16
+#: allink_core_repo/allink_core/allink_base/templates/includes/forms/form_field.html:17
 msgid "required"
 msgstr ""
 

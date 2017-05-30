@@ -367,10 +367,10 @@ class AllinkLinkFieldsModel(AllinkInternalLinkFieldsModel):
         if len(provided_link_fields) > 1:
             # Too many fields have a value.
             verbose_names = sorted(link_field_verbose_names.values())
-            error_msg = _('Only one of %s or %s may be given.') % (
-                ', '.join(verbose_names[:-1]),
-                verbose_names[-1],
-            )
+            error_msg = _('Only one of %(fields)s or %(last_field)s may be given.') % {
+                'fields': ', '.join(verbose_names[:-1]),
+                'last_field': verbose_names[-1],
+            }
             errors = {}.fromkeys(provided_link_fields.keys(), error_msg)
             raise ValidationError(errors)
 

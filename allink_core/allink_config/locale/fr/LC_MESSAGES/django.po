@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-23 01:12-0500\n"
+"POT-Creation-Date: 2017-05-30 01:56-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,44 +18,44 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: allink_core_repo/allink_core/allink_config/admin.py:19
+#: allink_core_repo/allink_core/allink_config/admin.py:20
 #: allink_core_repo/allink_core/allink_config/models.py:29
 msgid "Theme Color"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/admin.py:19
+#: allink_core_repo/allink_core/allink_config/admin.py:20
 #: allink_core_repo/allink_core/allink_config/models.py:30
 msgid "Theme color for Android Chrome"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/admin.py:20
+#: allink_core_repo/allink_core/allink_config/admin.py:21
 msgid "Mask Icon Color"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/admin.py:20
+#: allink_core_repo/allink_core/allink_config/admin.py:21
 #: allink_core_repo/allink_core/allink_config/models.py:37
 msgid "Mask icon color for safari-pinned-tab.svg"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/admin.py:21
+#: allink_core_repo/allink_core/allink_config/admin.py:22
 msgid "MS Application Title Color"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/admin.py:21
+#: allink_core_repo/allink_core/allink_config/admin.py:22
 #: allink_core_repo/allink_core/allink_config/models.py:44
 msgid "MS application TitleColor Field"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/admin.py:46
-#: allink_core_repo/allink_core/allink_config/admin.py:60
+#: allink_core_repo/allink_core/allink_config/admin.py:47
+#: allink_core_repo/allink_core/allink_config/admin.py:61
 msgid "Site Meta"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/admin.py:71
+#: allink_core_repo/allink_core/allink_config/admin.py:72
 msgid "App Names and Toolbar"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/admin.py:75
+#: allink_core_repo/allink_core/allink_config/admin.py:76
 msgid ""
 "Please notice that the plugin names will only change after restarting the "
 "server.(Please redeploy with Divio Cloud Dashboard.)"

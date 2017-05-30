@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-23 03:45-0500\n"
+"POT-Creation-Date: 2017-05-30 01:56-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,20 +18,20 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: allink_core_repo/allink_core/djangocms_image/cms_plugins.py:13
+#: allink_core_repo/allink_core/djangocms_image/cms_plugins.py:14
 #: allink_core_repo/allink_core/djangocms_image/models.py:23
 msgid "Image"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_image/cms_plugins.py:14
+#: allink_core_repo/allink_core/djangocms_image/cms_plugins.py:15
 msgid "allink"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_image/cms_plugins.py:40
+#: allink_core_repo/allink_core/djangocms_image/cms_plugins.py:41
 msgid "Additional settings"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_image/cms_plugins.py:47
+#: allink_core_repo/allink_core/djangocms_image/cms_plugins.py:48
 msgid "Link settings"
 msgstr ""
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-23 01:12-0500\n"
+"POT-Creation-Date: 2017-05-30 01:56-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,36 +18,36 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: allink_core_repo/allink_core/djangocms_content/cms_plugins.py:15
+#: allink_core_repo/allink_core/djangocms_content/cms_plugins.py:16
 msgid "Content"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_content/cms_plugins.py:16
-#: allink_core_repo/allink_core/djangocms_content/cms_plugins.py:99
+#: allink_core_repo/allink_core/djangocms_content/cms_plugins.py:17
+#: allink_core_repo/allink_core/djangocms_content/cms_plugins.py:100
 msgid "allink"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_content/cms_plugins.py:36
+#: allink_core_repo/allink_core/djangocms_content/cms_plugins.py:37
 msgid "Display Options"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_content/cms_plugins.py:45
+#: allink_core_repo/allink_core/djangocms_content/cms_plugins.py:46
 msgid "Full width background image"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_content/cms_plugins.py:52
+#: allink_core_repo/allink_core/djangocms_content/cms_plugins.py:53
 msgid "Container background image"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_content/cms_plugins.py:58
+#: allink_core_repo/allink_core/djangocms_content/cms_plugins.py:59
 msgid "Video background (Important: Only works if all fields are set)"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_content/cms_plugins.py:67
+#: allink_core_repo/allink_core/djangocms_content/cms_plugins.py:68
 msgid "Advanced Options"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_content/cms_plugins.py:98
+#: allink_core_repo/allink_core/djangocms_content/cms_plugins.py:99
 msgid "Column"
 msgstr ""
 
