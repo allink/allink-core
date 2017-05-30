@@ -1,6 +1,6 @@
 {% load cms_tags staticfiles sekizai_tags i18n thumbnail %}
 
-<div class="app-content-plugin gallery-plugin">
+<div class="app-content-plugin gallery-plugin ratio-{{instance.ratio}}">
     <div class="swiper-container swiper-default swiper-gallery-plugin">
 
         <div class="swiper-wrapper">
@@ -26,7 +26,7 @@
         <div class="swiper-counter">
             <span class="current">1</span>
             <span class="separator">–</span>
-            <span class="total">0</span>
+            <span class="total">1</span>
         </div>
         {% endif %}
 
