@@ -27,7 +27,7 @@ msgstr ""
 #: allink_core_repo/allink_core/allink_base/admin/forms.py:55
 #: allink_core_repo/allink_core/allink_base/admin/forms.py:64
 msgid "Categories"
-msgstr ""
+msgstr "Kategorien"
 
 #: allink_core_repo/allink_core/allink_base/admin/admin.py:61
 msgid "Meta Tags"
@@ -43,35 +43,35 @@ msgstr ""
 
 #: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:49
 msgid "Display Options"
-msgstr ""
+msgstr "Anzeigeoptionen"
 
 #: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:69
 msgid "Filter & Ordering"
-msgstr ""
+msgstr "Filter & Sortierung"
 
 #: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:77
 msgid "Select entries manually"
-msgstr ""
+msgstr "Einträge manuell auswählen"
 
 #: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:85
 msgid "Category Navigation Options"
-msgstr ""
+msgstr "Kategorie-Navigationsoptionen"
 
 #: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:98
 msgid "Number of entries"
-msgstr ""
+msgstr "Anzahl der Einträge"
 
 #: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:108
 msgid "Pagination Options"
-msgstr ""
+msgstr "Pagination Optionen"
 
 #: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:119
 msgid "Additional Options"
-msgstr ""
+msgstr "Zusätzliche Optionen"
 
 #: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:128
 msgid "Grid Options"
-msgstr ""
+msgstr "Grid Optionen"
 
 #: allink_core_repo/allink_core/allink_base/admin/forms.py:30
 #: allink_core_repo/allink_core/allink_base/admin/forms.py:32
@@ -79,7 +79,7 @@ msgstr ""
 #: allink_core_repo/allink_core/allink_base/admin/forms.py:74
 #: allink_core_repo/allink_core/allink_base/models/models.py:470
 msgid "Categories for Navigation"
-msgstr ""
+msgstr "Kategorien für die Navigation"
 
 #: allink_core_repo/allink_core/allink_base/admin/forms.py:36
 #: allink_core_repo/allink_core/allink_base/admin/forms.py:78
@@ -87,11 +87,13 @@ msgid ""
 "You can explicitly define the categories for the category navigation here. "
 "This will override the automatically set of categories. (From \"Filter & "
 "Ordering\" but not from the \"Manual entries\")"
-msgstr ""
+msgstr "Hier können Sie die Kategorien für die Kategorie-Navigation explizit auswählen."
+" Damit werden die automatisch gewählten Kategorien überschrieben. (Von \"Filter & Sortierung\""
+" aber nicht von \"Manuelle Einträge\")"
 
 #: allink_core_repo/allink_core/allink_base/admin/forms.py:62
 msgid "Categories (AND operator)"
-msgstr ""
+msgstr "Kategorien (AND Operator)"
 
 #: allink_core_repo/allink_core/allink_base/admin/forms.py:67
 msgid ""
@@ -99,14 +101,17 @@ msgid ""
 "allows you to create a conjunction between the first set of categories in "
 "field \"Categories\" and the ones specified here."
 msgstr ""
+"Nutzen Sie dieses Feld um die gefundenen Resultate noch stärker einzugrenzen. "
+"Diese Option erlaubt es Ihnen eine UND-Verknüpfung zwischen der ersten Auswahl an Kategorien "
+"im Feld \"Kategorien\" und den hier spezifizierten zu erstellen."
 
 #: allink_core_repo/allink_core/allink_base/admin/forms.py:83
 msgid "Filter Fields"
-msgstr ""
+msgstr "Filter Felder"
 
 #: allink_core_repo/allink_core/allink_base/admin/forms.py:84
 msgid "A Select Dropdown will be displayed for this Fields."
-msgstr ""
+msgstr "Für diese Felder wird ein Dropdown dargestellt."
 
 #: allink_core_repo/allink_core/allink_base/admin/forms.py:90
 #: allink_core_repo/allink_core/allink_base/models/models.py:452
@@ -115,11 +120,11 @@ msgstr ""
 
 #: allink_core_repo/allink_core/allink_base/admin/forms.py:96
 msgid "Background color"
-msgstr ""
+msgstr "Hintergrundfarbe"
 
 #: allink_core_repo/allink_core/allink_base/admin/forms.py:101
 msgid "Predifined css classes"
-msgstr ""
+msgstr "Vordefinierte css-Klassen"
 
 #: allink_core_repo/allink_core/allink_base/admin/forms.py:102
 msgid ""
@@ -128,32 +133,38 @@ msgid ""
 "or Control-Key (Windows) <strong>and</strong> clicking the options you would "
 "like to apply."
 msgstr ""
+"Anleitung: Einzelne Selektion durch Klicken auf die gewünschte Option. "
+"Mehrfachwahl kann durch Drücken und Halten der Command-Taste (Mac) or "
+"Control-Taste (Windows) <strong>und</strong> Anklicken der gewünschten "
+"Optionen erzielt werden."
 
 #: allink_core_repo/allink_core/allink_base/admin/forms.py:107
 msgid "Ordering"
-msgstr ""
+msgstr "Sortierung"
 
 #: allink_core_repo/allink_core/allink_base/forms/fields.py:58
 msgid "Please choose a predefined color."
-msgstr ""
+msgstr "Bitte eine vordefinierte Farbe auswählen."
 
 #: allink_core_repo/allink_core/allink_base/forms/fields.py:93
 msgid "pages"
-msgstr ""
+msgstr "Seiten"
 
 #: allink_core_repo/allink_core/allink_base/forms/widgets.py:20
 msgid ""
 "Thumbnail is created when publication is saved. And a PDF document is "
 "assigned."
 msgstr ""
+"Das Thumbnail wird generiert, wenn die Publikation gespeichert ist und ein PDF"
+" definiert ist."
 
 #: allink_core_repo/allink_core/allink_base/models/choices.py:19
 msgid "Male"
-msgstr ""
+msgstr "Männlich"
 
 #: allink_core_repo/allink_core/allink_base/models/choices.py:20
 msgid "Female"
-msgstr ""
+msgstr "Weiblich"
 
 #: allink_core_repo/allink_core/allink_base/models/choices.py:31
 msgid "Mr."
@@ -165,39 +176,39 @@ msgstr "Frau"
 
 #: allink_core_repo/allink_core/allink_base/models/choices.py:45
 msgid "Left"
-msgstr ""
+msgstr "Links"
 
 #: allink_core_repo/allink_core/allink_base/models/choices.py:46
 msgid "Center"
-msgstr ""
+msgstr "Mitte"
 
 #: allink_core_repo/allink_core/allink_base/models/choices.py:47
 msgid "Right"
-msgstr ""
+msgstr "Rechts"
 
 #: allink_core_repo/allink_core/allink_base/models/choices.py:55
 msgid "Top"
-msgstr ""
+msgstr "Oben"
 
 #: allink_core_repo/allink_core/allink_base/models/choices.py:56
 msgid "Middle"
-msgstr ""
+msgstr "Mitte"
 
 #: allink_core_repo/allink_core/allink_base/models/choices.py:57
 msgid "Bottom"
-msgstr ""
+msgstr "Unten"
 
 #: allink_core_repo/allink_core/allink_base/models/choices.py:72
 msgid "Title Large"
-msgstr ""
+msgstr "Titel Gross"
 
 #: allink_core_repo/allink_core/allink_base/models/choices.py:73
 msgid "Title Medium"
-msgstr ""
+msgstr "Titel Normal"
 
 #: allink_core_repo/allink_core/allink_base/models/choices.py:74
 msgid "Title Small"
-msgstr ""
+msgstr "Titel Klein"
 
 #: allink_core_repo/allink_core/allink_base/models/choices.py:101
 msgid "Facebook"
@@ -253,59 +264,59 @@ msgstr ""
 
 #: allink_core_repo/allink_core/allink_base/models/choices.py:133
 msgid "Small"
-msgstr ""
+msgstr "Klein"
 
 #: allink_core_repo/allink_core/allink_base/models/choices.py:134
 msgid "Medium"
-msgstr ""
+msgstr "Mittel"
 
 #: allink_core_repo/allink_core/allink_base/models/choices.py:135
 msgid "Large"
-msgstr ""
+msgstr "Gross"
 
 #: allink_core_repo/allink_core/allink_base/models/choices.py:171
 msgid "New window"
-msgstr ""
+msgstr "Neues Fenster"
 
 #: allink_core_repo/allink_core/allink_base/models/choices.py:172
 msgid "Softpage large"
-msgstr ""
+msgstr "Softpage gross"
 
 #: allink_core_repo/allink_core/allink_base/models/choices.py:173
 msgid "Softpage small"
-msgstr ""
+msgstr "Softpage klein"
 
 #: allink_core_repo/allink_core/allink_base/models/choices.py:174
 msgid "Lightbox (Forms)"
-msgstr ""
+msgstr "Lightbox (Formular)"
 
 #: allink_core_repo/allink_core/allink_base/models/choices.py:175
 msgid "Lightbox (Image)"
-msgstr ""
+msgstr "Lightbox (Bild)"
 
 #: allink_core_repo/allink_core/allink_base/models/choices.py:179
 msgid "Member Login"
-msgstr ""
+msgstr "Mitglieder Login"
 
 #: allink_core_repo/allink_core/allink_base/models/choices.py:180
 msgid "Member Logout"
-msgstr ""
+msgstr "Mitglieder Logout"
 
 #: allink_core_repo/allink_core/allink_base/models/choices.py:181
 msgid "Member Change Passwort"
-msgstr ""
+msgstr "Mitglieder Passwort ändern"
 
 #: allink_core_repo/allink_core/allink_base/models/choices.py:182
 msgid "Member Reset Passwort"
-msgstr ""
+msgstr "Mitglieder Passwort zurücksetzen"
 
 #: allink_core_repo/allink_core/allink_base/models/choices.py:183
 msgid "Member Edit Profile"
-msgstr ""
+msgstr "Mitglieder Profil bearbeiten"
 
 #: allink_core_repo/allink_core/allink_base/models/choices.py:186
 msgid "Contact Form"
-msgstr ""
+msgstr "Kontaktformular"
 
 #: allink_core_repo/allink_core/allink_base/models/model_fields.py:37
 msgid "Css Classes"
@@ -321,80 +332,83 @@ msgstr ""
 
 #: allink_core_repo/allink_core/allink_base/models/model_fields.py:81
 msgid "Zip Code Field"
-msgstr ""
+msgstr "PLZ Feld"
 
 #: allink_core_repo/allink_core/allink_base/models/models.py:79
 msgid "created"
-msgstr ""
+msgstr "erstellt"
 
 #: allink_core_repo/allink_core/allink_base/models/models.py:80
 msgid "modified"
-msgstr ""
+msgstr "geändert"
 
 #: allink_core_repo/allink_core/allink_base/models/models.py:87
 msgid "Active"
-msgstr ""
+msgstr "Aktiv"
 
 #: allink_core_repo/allink_core/allink_base/models/models.py:171
 msgid "Published"
-msgstr ""
+msgstr "Publiziert"
 
 #: allink_core_repo/allink_core/allink_base/models/models.py:265
 #: allink_core_repo/allink_core/allink_base/templates/app_content/plugins/table/content.html:11
 msgid "Title"
-msgstr ""
+msgstr "Titel"
 
 #: allink_core_repo/allink_core/allink_base/models/models.py:266
 msgid "The section title"
-msgstr ""
+msgstr "Abschnittstitel"
 
 #: allink_core_repo/allink_core/allink_base/models/models.py:272
 msgid "Section Title Size"
-msgstr ""
+msgstr "Grösse Abschnittstitel"
 
 #: allink_core_repo/allink_core/allink_base/models/models.py:278
 msgid "Activate \"container\""
-msgstr ""
+msgstr "\"container\" aktivieren"
 
 #: allink_core_repo/allink_core/allink_base/models/models.py:279
 msgid "If checked, an inner container with a maximum width is added"
-msgstr ""
+msgstr "Fügt einen inneren Container mit einer maximalen Breite zu."
 
 #: allink_core_repo/allink_core/allink_base/models/models.py:283
 msgid "Set a predefined background color"
-msgstr ""
+msgstr "Wählen sie eine vordefiniert Hintergrundfarbe"
 
 #: allink_core_repo/allink_core/allink_base/models/models.py:289
 msgid "Background-Image"
-msgstr ""
+msgstr "Hintergrund-Bild"
 
 #: allink_core_repo/allink_core/allink_base/models/models.py:290
 msgid ""
 "Optional: Set a background image for the content section.<br>Note: This is "
 "meant for decorative purposes only and should be used with care."
 msgstr ""
+"Optional: Setzten Sie ein Hintergrundbild für diesen Inhaltsabschnitt.<br>Hinweis: "
+"Ist nur für dekorative Zwecke gedacht und sollte mit Sorgfalt genutzt werden."
 
 #: allink_core_repo/allink_core/allink_base/models/models.py:453
 msgid "Choose a template."
-msgstr ""
+msgstr "Wählen Sie ein Template."
 
 #: allink_core_repo/allink_core/allink_base/models/models.py:458
 msgid "Show category navigation"
-msgstr ""
+msgstr "Kategorie-Navigation anpassen"
 
 #: allink_core_repo/allink_core/allink_base/models/models.py:459
 msgid ""
 "If checked, a filter navigation with all selected categories is displayed."
 "<br>Please note: A category is only displayed if it contains items."
-msgstr ""
+msgstr "Falls angewählt, wird eine Navigation mit allen gewählten Kategorien dargestellt. "
+"<br>Hinweis: Eine Kategorie wird nur dann angezeigt, wenn sie Einträge enthält."
 
 #: allink_core_repo/allink_core/allink_base/models/models.py:463
 msgid "Show category \"all\""
-msgstr ""
+msgstr "Kategorie \"Alle\" anzeigen"
 
 #: allink_core_repo/allink_core/allink_base/models/models.py:464
 msgid "If checked, a category \"all\" in filter navigation is displayed."
-msgstr ""
+msgstr "Falls angewählt, wird in der Navigation eine Kategorie \"Alle\" angezeigt."
 
 #: allink_core_repo/allink_core/allink_base/models/models.py:471
 msgid ""
