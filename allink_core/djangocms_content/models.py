@@ -123,7 +123,7 @@ class AllinkContentPlugin(AllinkBasePlugin):
     @classmethod
     def get_templates(cls):
         templates = cls.TEMPLATES
-        for a, b, c, d in get_additional_templates('AllinkContent'):
+        for a, b, c, d in get_additional_templates('ADDITIONAL_CONTENT'):
             templates += ((a, b, c, d),)
         return templates
 

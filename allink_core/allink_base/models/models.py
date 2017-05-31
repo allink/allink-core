@@ -360,21 +360,6 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
 
     data_model = None
 
-    # TEMPLATES
-    GRID_DYNAMIC = 'grid_dynamic'
-    GRID_STATIC = 'grid_static'
-    LIST = 'list'
-    SLIDER = 'slider'
-    TABLE = 'table'
-
-    TEMPLATES = (
-        (GRID_STATIC, 'Grid (Static)'),
-        (GRID_DYNAMIC, 'Grid (Dynamic)'),
-        (LIST, 'List'),
-        (SLIDER, 'Slider'),
-        (TABLE, 'Table'),
-    )
-
     # PAGINATION
     NO = 'no'
     LOAD = 'load'
@@ -451,8 +436,7 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
     template = models.CharField(
         _(u'Template'),
         help_text=_(u'Choose a template.'),
-        max_length=50,
-        default=TEMPLATES[0]
+        max_length=50
     )
     category_navigation_enabled = models.BooleanField(
         _(u'Show category navigation'),
@@ -523,7 +507,7 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
 
     @classmethod
     def get_templates(cls):
-        templates = cls.TEMPLATES
+        templates = ()
         for x, y in get_additional_templates(cls.data_model._meta.model_name):
             templates += ((x, y),)
         return templates

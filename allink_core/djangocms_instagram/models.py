@@ -14,12 +14,6 @@ class AllinkInstagramPlugin(CMSPlugin):
     A plugin representing an Instagram Feed
     """
 
-    GRID_STATIC = 'grid_static'
-
-    TEMPLATES = (
-        (GRID_STATIC, 'Grid (Static)'),
-    )
-
     # COLUMN AMOUNT
     COLUMN_AMOUNT = (
         (1, 1),
@@ -51,9 +45,7 @@ class AllinkInstagramPlugin(CMSPlugin):
     template = models.CharField(
         _(u'Template'),
         help_text=_(u'Choose a template.'),
-        max_length=50,
-        choices=TEMPLATES,
-        default=TEMPLATES[0]
+        max_length=50
     )
     ordering = models.CharField(
         _(u'Sort order'),
@@ -87,9 +79,10 @@ class AllinkInstagramPlugin(CMSPlugin):
     )
 
     def get_templates(self):
-        for x, y in get_additional_templates(self._meta.model_name):
-            self.TEMPLATES += ((x, y),)
-        return self.TEMPLATES
+        templates = ()
+        for x, y in get_additional_templates('Instagram'):
+            templates += ((x, y),)
+        return templates
 
     def __str__(self):
         if self.title and self.template:

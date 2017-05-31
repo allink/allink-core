@@ -174,6 +174,72 @@ Additionally, project specific plugins require the `class Media` (described belo
     BUTTON_LINK_PLUGIN_PROJECT_CSS_CLASSES -> BUTTON_LINK_CSS_CLASSES
     IMAGE_PLUGIN_PROJECT_CSS_CLASSES -> IMAGE_CSS_CLASSES
 - TIME_ZONE ='Europe/Zurich' (careful when date/time critical content)
+- now the templates for all app plugins have to be specified in the settings!
+     ```python
+    ####################################################################################
+
+    # =allink app_content additional templates for apps
+    # the variable name prefix 'PEOPLE' in 'PEOPLE_PLUGIN_TEMPLATES' has to be equal to "_meta.model_name"
+    # default templates are (these exist as templates in allink_base dir):
+    #     ('grid_static', 'Grid (Static)'),
+    #     ('grid_dynamic', 'Grid (Dynamic)'),
+    #     ('list', 'List'),
+    #     ('slider', 'Slider'),
+    #     ('table', 'Table'),
+
+    BLOG_PLUGIN_TEMPLATES = (
+        ('grid_static', 'Grid (Static)'),
+        ('list', 'List'),
+        ('slider', 'Slider'),
+    )
+
+    LOCATIONS_PLUGIN_TEMPLATES = (
+        ('grid_static', 'Grid (Static)'),
+        ('map', 'Map'),
+    )
+
+    PEOPLE_PLUGIN_TEMPLATES = (
+        ('grid_static', 'Grid (Static)'),
+        ('list', 'List'),
+        ('list_variation', 'List (Horizontal)'),
+        ('grid_static_variation', 'Grid (Static) - without contact details'),
+        # ('grid_random', 'Grid (Random)'),
+    )
+
+    TESTIMONIAL_PLUGIN_TEMPLATES = (
+        ('grid_static', 'Grid (Static)'),
+        ('grid_dynamic', 'Grid (Dynamic)'),
+        ('slider', 'Slider'),
+    )
+
+    WORK_PLUGIN_TEMPLATES = (
+        ('grid_static', 'Grid (Static)'),
+        ('grid_dynamic', 'Grid (Dynamic)'),
+        ('list', 'List'),
+        ('slider', 'Slider'),
+    )
+
+    ####################################################################################
+    #  =other templates which are defined in settings
+
+    INSTAGRAM_PLUGIN_TEMPLATES = (
+        ('grid_static', 'Grid (Static)'),
+    )
+
+    GALLERY_PLUGIN_TEMPLATES = (
+        ('slider', 'Slider'),
+        ('grid_random', 'Grid (Random)'),
+    )
+
+    # ADDITIONAL_CONTENT_PLUGIN_TEMPLATES = (
+        # ('col-7', '7 Columns', 7, 'col-1-of-7'),
+    # )
+
+    ADDITIONAL_BLOG_DETAIL_TEMPLATES = (
+        ('with_header', 'With lead section'),
+    )
+
+    ```
 
 ###### TEMPLATES
 - people job_function (which it was used in tejakob for example) was substitutett with property 'units'. You now have to add categories (with unit=True) and tag th person with it. this allowes us to categories people without having to maintain both fields 'unit' and categories
