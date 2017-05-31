@@ -20,7 +20,7 @@ msgstr ""
 
 #: allink_core_repo/allink_core/djangocms_vid/cms_plugins.py:14
 msgid "Video Embed"
-msgstr ""
+msgstr "Video (eingebunden)"
 
 #: allink_core_repo/allink_core/djangocms_vid/cms_plugins.py:15
 #: allink_core_repo/allink_core/djangocms_vid/cms_plugins.py:63
@@ -30,22 +30,22 @@ msgstr ""
 #: allink_core_repo/allink_core/djangocms_vid/cms_plugins.py:37
 #: allink_core_repo/allink_core/djangocms_vid/cms_plugins.py:85
 msgid "Video settings"
-msgstr ""
+msgstr "Video-Einstallngen"
 
 #: allink_core_repo/allink_core/djangocms_vid/cms_plugins.py:45
 #: allink_core_repo/allink_core/djangocms_vid/cms_plugins.py:94
 msgid "Advanced settings"
-msgstr ""
+msgstr "Erweiterte Einstellungen"
 
 #: allink_core_repo/allink_core/djangocms_vid/cms_plugins.py:62
 #: allink_core_repo/allink_core/djangocms_vid/models.py:109
 msgid "Video File"
-msgstr ""
+msgstr "Video Datei"
 
 #: allink_core_repo/allink_core/djangocms_vid/forms.py:18
 #: allink_core_repo/allink_core/djangocms_vid/forms.py:40
 msgid "Predifined variations for Video Plugin"
-msgstr ""
+msgstr "Vordefinierte Varianten für den Video-Abschnitt"
 
 #: allink_core_repo/allink_core/djangocms_vid/forms.py:19
 #: allink_core_repo/allink_core/djangocms_vid/forms.py:41
@@ -55,23 +55,27 @@ msgid ""
 "or Control-Key (Windows) <strong>and</strong> clicking the options you would "
 "like to apply."
 msgstr ""
+"Anleitung: Einzelne Selektion durch Klicken auf die gewünschte Option. "
+"Mehrfachwahl kann durch Drücken und Halten der Command-Taste (Mac) or "
+"Control-Taste (Windows) <strong>und</strong> Anklicken der gewünschten "
+"Optionen erzielt werden."
 
 #: allink_core_repo/allink_core/djangocms_vid/forms.py:24
 #: allink_core_repo/allink_core/djangocms_vid/models.py:79
 msgid "Ratio"
-msgstr ""
+msgstr "Seitenverhältnis"
 
 #: allink_core_repo/allink_core/djangocms_vid/forms.py:25
 msgid "This option overrides the default ratio setting for embeded videos."
-msgstr ""
+msgstr "Diese Einstellung überschreibt das Standard-Seitenverhältnis für eingebundene Videos."
 
 #: allink_core_repo/allink_core/djangocms_vid/models.py:26
 msgid "Attributes"
-msgstr ""
+msgstr "Attribute"
 
 #: allink_core_repo/allink_core/djangocms_vid/models.py:66
 msgid "Allink Video Embed"
-msgstr ""
+msgstr "Allink Video (eingebunden)"
 
 #: allink_core_repo/allink_core/djangocms_vid/models.py:69
 msgid "Video ID"
@@ -84,10 +88,14 @@ msgid ""
 "(the ID is <strong>12345678</strong>)<br>Vimeo: https://vimeo.com/"
 "<strong>12345678</strong> (the ID is <strong>12345678</strong>)"
 msgstr ""
+"Nur die ID eingeben. Die korrekte URL wird automatisch generiert."
+"<br><br>YouTube: https://www.youtube.com/watch?v=<strong>12345678</strong> "
+"(die ID ist <strong>12345678</strong>)<br>Vimeo: https://vimeo.com/"
+"<strong>12345678</strong> (die ID ist <strong>12345678</strong>)"
 
 #: allink_core_repo/allink_core/djangocms_vid/models.py:74
 msgid "Video Service"
-msgstr ""
+msgstr "Video-Dienst"
 
 #: allink_core_repo/allink_core/djangocms_vid/models.py:85
 #: allink_core_repo/allink_core/djangocms_vid/models.py:143
@@ -99,15 +107,16 @@ msgid ""
 "<strong>Important:</strong> Autoplaying videos with audio is not "
 "recommended. Use wisely. "
 msgstr ""
+"<strong>Wichtig:</strong> Autoplay für Videos mit Audio ist nicht empfohlen."
 
 #: allink_core_repo/allink_core/djangocms_vid/models.py:90
 #: allink_core_repo/allink_core/djangocms_vid/models.py:147
 msgid "Allow fullscreen"
-msgstr ""
+msgstr "Vollbild erlauben"
 
 #: allink_core_repo/allink_core/djangocms_vid/models.py:106
 msgid "Allink Video File"
-msgstr ""
+msgstr "Allink Video Datei"
 
 #: allink_core_repo/allink_core/djangocms_vid/models.py:110
 msgid ""
@@ -116,10 +125,15 @@ msgid ""
 "audio = smaller file size and less annoyed visitors)<br>File size: Dependent "
 "of video length. Generally speaking: Less is more."
 msgstr ""
+"Empfohlene Video Einstellungen:<br><br>Format: mp4<br>Codec: H.264<br>Target "
+"Bitrate: 2 (Video lädt schnell und läuft ohne Stocken)<br>Audio: Nicht "
+"empfohlen (kein Audio = kleinere Dateigrösse und weniger verärgerte "
+"Besucher)<br>Dateigrösse: Abhängig von der Länge des Videos. Allgemein: "
+"Weniger ist mehr."
 
 #: allink_core_repo/allink_core/djangocms_vid/models.py:116
 msgid "Video Start Image"
-msgstr ""
+msgstr "Video Start Bild"
 
 #: allink_core_repo/allink_core/djangocms_vid/models.py:119
 msgid ""
@@ -129,29 +143,35 @@ msgid ""
 "of the image is <strong>exactly the same</strong> as the video, otherwise "
 "the video height will shrink or grow when the playback starts."
 msgstr ""
+"Dieses Bild wird gezeigt während das Video lädt. Am besten das "
+"allerersteFrame des Vidos benutzen, damit der Beginn ohne Stocken verläuft."
+"<br><br><strong>Wichtig:</strong> Stellen Sie sicher, dass das Seitenverhältnis "
+"für Bild und Video <strong>genau das Gleiche</strong> ist, andernfalls "
+"wird sich die Höhe des Videos anpassen, sobald es abgespielt wird."
 
 #: allink_core_repo/allink_core/djangocms_vid/models.py:123
 msgid "Video width"
-msgstr ""
+msgstr "Breite Video"
 
 #: allink_core_repo/allink_core/djangocms_vid/models.py:128
 msgid "Video height"
-msgstr ""
+msgstr "Höhe Video"
 
 #: allink_core_repo/allink_core/djangocms_vid/models.py:133
 msgid "Muted"
-msgstr ""
+msgstr "Stumm"
 
 #: allink_core_repo/allink_core/djangocms_vid/models.py:134
 msgid "Caution: Autoplaying videos with audio is not recommended. Use wisely."
-msgstr ""
+msgstr "Vorsicht: Automatisches Abspielen von Videos mit Audio ist nicht empfohlen."
 
 #: allink_core_repo/allink_core/djangocms_vid/models.py:138
 msgid "Image Only (Mobile)"
-msgstr ""
+msgstr "Nur Bild (Mobile)"
 
 #: allink_core_repo/allink_core/djangocms_vid/models.py:139
 msgid ""
 "Disable video on mobile devices and only show the start image without video "
 "control."
 msgstr ""
+"Deaktiviert das Video für Mobile, stattdessen wird nur das Startbild ohne Videosteuerung angezeigt."
