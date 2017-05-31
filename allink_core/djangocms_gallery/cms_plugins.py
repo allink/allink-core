@@ -27,10 +27,14 @@ class CMSAllinkGalleryPlugin(CMSPluginBase):
             (None, {
                 'fields': (
                     'template',
+                ),
+            }),
+            (_('Slider Options'), {
+                'fields': [
                     'ratio',
                     'fullscreen_enabled',
                     'counter_enabled',
-                ),
+                ]
             }),
         )
 
