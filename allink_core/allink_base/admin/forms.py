@@ -6,7 +6,7 @@ from django import forms
 
 from parler.forms import TranslatableModelForm
 
-from allink_core.allink_base.utils import get_additional_choices, get_project_color_choices
+from allink_core.allink_base.utils import get_project_color_choices, get_project_css_classes
 from allink_core.allink_base.models import AllinkBaseAppContentPlugin
 from allink_core.allink_base.forms.fields import ColorField
 
@@ -96,11 +96,11 @@ class AllinkBaseAppContentPluginForm(forms.ModelForm):
                 label=_(u'Background color'),
                 required=False,
             )
-        if get_additional_choices('PROJECT_CSS_CLASSES'):
+        if get_project_css_classes(self._meta.model.data_model._meta.model_name):
             self.fields['project_css_classes'] = forms.MultipleChoiceField(
-                label=_(u'Predifined css classes'),
+                label=_(u'Predifined variations'),
                 help_text=_(u'Instructions: Single selection is made by clicking on an option. Multiple selections are achieved by pressing and holding down the Command-key (Mac) or Control-Key (Windows) <strong>and</strong> clicking the options you would like to apply.'),
-                choices=get_additional_choices('PROJECT_CSS_CLASSES'),
+                choices=get_project_css_classes(self._meta.model.data_model._meta.model_name),
                 required=False,
             )
         self.fields['manual_ordering'] = forms.CharField(

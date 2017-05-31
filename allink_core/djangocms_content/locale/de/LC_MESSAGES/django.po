@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-30 12:22-0500\n"
+"POT-Creation-Date: 2017-05-31 03:43-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -63,8 +63,8 @@ msgid "Background color"
 msgstr "Hintergrundfarbe"
 
 #: allink_core_repo/allink_core/djangocms_content/forms.py:32
-msgid "Predifined css classes"
-msgstr "Vordefinierte CSS-Klassen"
+msgid "Predifined variations"
+msgstr "Vordefinierte Variationen"
 
 #: allink_core_repo/allink_core/djangocms_content/forms.py:33
 msgid ""
@@ -198,8 +198,7 @@ msgstr "Beim PDF-Export ignorieren"
 
 #: allink_core_repo/allink_core/djangocms_content/models.py:116
 msgid "If checked, the content plugin will be ignored when generting a pdf."
-msgstr ""
-"Falls angewählt, wird dieser Abschnitt für den PDF-Export ignoriert."
+msgstr "Falls angewählt, wird dieser Abschnitt für den PDF-Export ignoriert."
 
 #: allink_core_repo/allink_core/djangocms_content/models.py:172
 #, python-format

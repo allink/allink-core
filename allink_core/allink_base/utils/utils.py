@@ -23,6 +23,15 @@ def get_additional_templates(model_name):
     return additional_templates
 
 
+def get_project_css_classes(model_name):
+    """
+    Get css_classes defined in settings for model_name
+    """
+    config = '{}_CSS_CLASSES'.format(model_name.upper())
+    project_css_classes = getattr(settings, config, ())
+    return project_css_classes
+
+
 def get_additional_choices(config, blank=False):
     """
     Get additional settings var for project specific configuration

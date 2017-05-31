@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-30 12:22-0500\n"
+"POT-Creation-Date: 2017-05-31 03:43-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -60,7 +60,7 @@ msgid "Set a predefined background color"
 msgstr ""
 
 #: allink_core_repo/allink_core/djangocms_image/forms.py:43
-msgid "Predifined css classes"
+msgid "Predifined variations"
 msgstr ""
 
 #: allink_core_repo/allink_core/djangocms_image/forms.py:44
