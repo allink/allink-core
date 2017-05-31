@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-30 10:26-0500\n"
+"POT-Creation-Date: 2017-05-30 11:13-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -604,10 +604,10 @@ msgid ""
 "not set or not in a app context, the one defined in allink_settings will be "
 "used."
 msgstr ""
-"Vorschaubild falls die Seite / der Eintrag auf Facebook geteilt wird. <br>Min. 1200 x 630 "
-"Falls das Feld nicht ausgefüllt wird, wird das Vorschaubild verwendet. Und"
-" Falls auch dieses nicht gesetzt wurde, wird das Standard og:Image, "
-"definiert in allink_settings, verwendet."
+"Vorschaubild falls die Seite / der Eintrag auf Facebook geteilt wird. "
+"<br>Min. 1200 x 630 Falls das Feld nicht ausgefüllt wird, wird das "
+"Vorschaubild verwendet. Und Falls auch dieses nicht gesetzt wurde, wird das "
+"Standard og:Image, definiert in allink_settings, verwendet."
 
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:138
 msgid "Title Tag and Title when shared on Facebook."
@@ -679,8 +679,8 @@ msgid ""
 "Appends the value only after the internal or external link.Do <em>not</em> "
 "include a preceding \"#\" symbol."
 msgstr ""
-"Hängt den Wert nur an einen internen oder externen Link. <strong>Kein</strong> "
-" führendes \"#\"-Zeichen angeben."
+"Hängt den Wert nur an einen internen oder externen Link. <strong>Kein</"
+"strong>  führendes \"#\"-Zeichen angeben."
 
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:263
 msgid "Link Target"
@@ -701,7 +701,8 @@ msgstr "Attribute"
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:370
 #, python-format
 msgid "Only one of %(fields)s or %(last_field)s may be given."
-msgstr "Nur eines der Felder %(fields)s oder %(last_field)s darf angegeben werden."
+msgstr ""
+"Nur eines der Felder %(fields)s oder %(last_field)s darf angegeben werden."
 
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:380
 #, python-format
@@ -785,7 +786,9 @@ msgstr "Plugin zufügen zu"
 #: allink_core_repo/allink_core/allink_base/templatetags/allink_image_tags.py:336
 msgid ""
 "Please create a folder \"favicons\" and upload the complete favicon set."
-msgstr "Bitte einen Ordner \"favicons\" erstellen und das gesammte Favicon-Set hochladen."
+msgstr ""
+"Bitte einen Ordner \"favicons\" erstellen und das gesammte Favicon-Set "
+"hochladen."
 
 #: allink_core_repo/allink_core/allink_base/utils/cms_toolbars.py:20
 msgid "{}"
@@ -806,4 +809,6 @@ msgstr ""
 
 #: allink_core_repo/allink_core/allink_base/views/views.py:155
 msgid "Something went wrong with your subscription. Please try again later."
-msgstr "Bei Ihrer Anmeldung ist etwas schief gegangen. Bitte versuchen Sie es später erneut."
+msgstr ""
+"Bei Ihrer Anmeldung ist etwas schief gegangen. Bitte versuchen Sie es später "
+"erneut."

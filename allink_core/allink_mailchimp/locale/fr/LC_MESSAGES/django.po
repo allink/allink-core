@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-30 10:26-0500\n"
+"POT-Creation-Date: 2017-05-30 11:13-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -62,8 +62,8 @@ msgid "Thanks for your registration."
 msgstr "Merci pour votre inscription."
 
 #: allink_core_repo/allink_core/allink_mailchimp/templates/allink_mailchimp/signup_form_advanced_base.html:10
-msgid "Newsletter abonnieren"
-msgstr "Inscription newsletter"
+msgid "Subscribe to Newsletter"
+msgstr ""
 
 #: allink_core_repo/allink_core/allink_mailchimp/templates/allink_mailchimp/signup_form_advanced_base.html:34
 #: allink_core_repo/allink_core/allink_mailchimp/templates/allink_mailchimp/signup_form_base.html:12
@@ -78,6 +78,9 @@ msgstr "Envoyer"
 #: allink_core_repo/allink_core/allink_mailchimp/views.py:41
 msgid "Something went wrong with your subscription. Please try again later."
 msgstr ""
+
+#~ msgid "Newsletter abonnieren"
+#~ msgstr "Inscription newsletter"
 
 #~ msgid "E-Mail"
 #~ msgstr "E-mail"

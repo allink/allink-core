@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-30 10:26-0500\n"
+"POT-Creation-Date: 2017-05-30 11:13-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: allink_core_repo/allink_core/allink_legacy_redirect/admin.py:37
+#: allink_core_repo/allink_core/allink_legacy_redirect/admin.py:38
 msgid "Test redirect"
 msgstr "Weiterleitung testen"
 
-#: allink_core_repo/allink_core/allink_legacy_redirect/admin.py:42
+#: allink_core_repo/allink_core/allink_legacy_redirect/admin.py:43
 msgid "Manual testing"
 msgstr "Manuell testen"
 
@@ -65,7 +65,8 @@ msgstr "Auf Unterseiten anwenden"
 
 #: allink_core_repo/allink_core/allink_legacy_redirect/models.py:38
 msgid "If True, matches all subpages and redirects them to this link."
-msgstr "Falls gesetzt, werden alle Unterseiten des alten Links auch weitergeleitet."
+msgstr ""
+"Falls gesetzt, werden alle Unterseiten des alten Links auch weitergeleitet."
 
 #: allink_core_repo/allink_core/allink_legacy_redirect/models.py:41
 msgid "Result of last test"
@@ -76,7 +77,8 @@ msgid ""
 "Was the last automatic test successfull? (True = Yes, False = No, None = Not "
 "yet tested)"
 msgstr ""
-"War der letzte automatische Test erfolgreich? (True = Ja, False = Nein, None = Bisher nicht getestet)"
+"War der letzte automatische Test erfolgreich? (True = Ja, False = Nein, None "
+"= Bisher nicht getestet)"
 
 #: allink_core_repo/allink_core/allink_legacy_redirect/models.py:46
 msgid "Date of last test"
