@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-30 06:21-0500\n"
+"POT-Creation-Date: 2017-05-30 10:11-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -87,9 +87,10 @@ msgid ""
 "You can explicitly define the categories for the category navigation here. "
 "This will override the automatically set of categories. (From \"Filter & "
 "Ordering\" but not from the \"Manual entries\")"
-msgstr "Hier können Sie die Kategorien für die Kategorie-Navigation explizit auswählen."
-" Damit werden die automatisch gewählten Kategorien überschrieben. (Von \"Filter & Sortierung\""
-" aber nicht von \"Manuelle Einträge\")"
+msgstr ""
+"Hier können Sie die Kategorien für die Kategorie-Navigation explizit "
+"auswählen. Damit werden die automatisch gewählten Kategorien überschrieben. "
+"(Von \"Filter & Sortierung\" aber nicht von \"Manuelle Einträge\")"
 
 #: allink_core_repo/allink_core/allink_base/admin/forms.py:62
 msgid "Categories (AND operator)"
@@ -101,9 +102,10 @@ msgid ""
 "allows you to create a conjunction between the first set of categories in "
 "field \"Categories\" and the ones specified here."
 msgstr ""
-"Nutzen Sie dieses Feld um die gefundenen Resultate noch stärker einzugrenzen. "
-"Diese Option erlaubt es Ihnen eine UND-Verknüpfung zwischen der ersten Auswahl an Kategorien "
-"im Feld \"Kategorien\" und den hier spezifizierten zu erstellen."
+"Nutzen Sie dieses Feld um die gefundenen Resultate noch stärker "
+"einzugrenzen. Diese Option erlaubt es Ihnen eine UND-Verknüpfung zwischen "
+"der ersten Auswahl an Kategorien im Feld \"Kategorien\" und den hier "
+"spezifizierten zu erstellen."
 
 #: allink_core_repo/allink_core/allink_base/admin/forms.py:83
 msgid "Filter Fields"
@@ -155,8 +157,8 @@ msgid ""
 "Thumbnail is created when publication is saved. And a PDF document is "
 "assigned."
 msgstr ""
-"Das Thumbnail wird generiert, wenn die Publikation gespeichert ist und ein PDF"
-" definiert ist."
+"Das Thumbnail wird generiert, wenn die Publikation gespeichert ist und ein "
+"PDF definiert ist."
 
 #: allink_core_repo/allink_core/allink_base/models/choices.py:19
 msgid "Male"
@@ -384,8 +386,9 @@ msgid ""
 "Optional: Set a background image for the content section.<br>Note: This is "
 "meant for decorative purposes only and should be used with care."
 msgstr ""
-"Optional: Setzten Sie ein Hintergrundbild für diesen Inhaltsabschnitt.<br>Hinweis: "
-"Ist nur für dekorative Zwecke gedacht und sollte mit Sorgfalt genutzt werden."
+"Optional: Setzten Sie ein Hintergrundbild für diesen Inhaltsabschnitt."
+"<br>Hinweis: Ist nur für dekorative Zwecke gedacht und sollte mit Sorgfalt "
+"genutzt werden."
 
 #: allink_core_repo/allink_core/allink_base/models/models.py:453
 msgid "Choose a template."
@@ -399,8 +402,10 @@ msgstr "Kategorie-Navigation anpassen"
 msgid ""
 "If checked, a filter navigation with all selected categories is displayed."
 "<br>Please note: A category is only displayed if it contains items."
-msgstr "Falls angewählt, wird eine Navigation mit allen gewählten Kategorien dargestellt. "
-"<br>Hinweis: Eine Kategorie wird nur dann angezeigt, wenn sie Einträge enthält."
+msgstr ""
+"Falls angewählt, wird eine Navigation mit allen gewählten Kategorien "
+"dargestellt. <br>Hinweis: Eine Kategorie wird nur dann angezeigt, wenn sie "
+"Einträge enthält."
 
 #: allink_core_repo/allink_core/allink_base/models/models.py:463
 msgid "Show category \"all\""
@@ -408,7 +413,8 @@ msgstr "Kategorie \"Alle\" anzeigen"
 
 #: allink_core_repo/allink_core/allink_base/models/models.py:464
 msgid "If checked, a category \"all\" in filter navigation is displayed."
-msgstr "Falls angewählt, wird in der Navigation eine Kategorie \"Alle\" angezeigt."
+msgstr ""
+"Falls angewählt, wird in der Navigation eine Kategorie \"Alle\" angezeigt."
 
 #: allink_core_repo/allink_core/allink_base/models/models.py:471
 msgid ""
@@ -416,46 +422,54 @@ msgid ""
 "This will override the automatically set of categories (either the one "
 "generated from \"Filter & Ordering\" or \"Manual entries\")"
 msgstr ""
+"Hier können Sie die Kategorien für die Kategorie-Navigation explizit "
+"auswählen. Damit werden die automatisch gewählten Kategorien überschrieben. "
+"(Entweder die generiert von \"Filter & Sortierung\" oder von \"Manuelle "
+"Einträge\")"
 
 #: allink_core_repo/allink_core/allink_base/models/models.py:475
 msgid "Show detailed information in Softpage"
-msgstr ""
+msgstr "Detailinformationen in Softpage anzeigen"
 
 #: allink_core_repo/allink_core/allink_base/models/models.py:476
 msgid ""
 "If checked, the detail view of an entry will be displayed in a \"softpage\". "
 "Otherwise the page will be reloaded."
 msgstr ""
+"Falls gesetzt, wird die Detailansicht für einen Eintrag in einer Softpage "
+"angezeigt.Ansonsten wird die Seite neu geladen."
 
 #: allink_core_repo/allink_core/allink_base/models/models.py:480
 msgid "Show detail link"
-msgstr ""
+msgstr "Detaillink anzeigen"
 
 #: allink_core_repo/allink_core/allink_base/models/models.py:481
 msgid "If checked, a link/button to the detail view will be displayed."
 msgstr ""
+"Falls gesetzt, wird in der Übersicht ein Link/Button zur Detailansicht "
+"angezeigt."
 
 #: allink_core_repo/allink_core/allink_base/models/models.py:485
 msgid "Grid items per row"
-msgstr ""
+msgstr "Anzahl Einträge pro Zeile"
 
 #: allink_core_repo/allink_core/allink_base/models/models.py:486
 msgid "Only applied if a \"Grid\" template has been selected."
-msgstr ""
+msgstr "Wird nur berücksichtigt, falls das \"Grid\" template ausgewählt ist."
 
 #: allink_core_repo/allink_core/allink_base/models/models.py:491
 msgid "Max. entries per page"
-msgstr ""
+msgstr "Max. Einträge pro Seite"
 
 #: allink_core_repo/allink_core/allink_base/models/models.py:493
 msgid ""
 "Limit the number of entries (in case of the \"load more\" pagination type: "
 "entries per page). Default is \"0\" (show all entries)"
-msgstr ""
+msgstr "Schränkt die Anzahl Einträge auf einer Seite ein."
 
 #: allink_core_repo/allink_core/allink_base/models/models.py:496
-msgid "Paggination Type"
-msgstr ""
+msgid "Pagination Type"
+msgstr "Pagination Typ"
 
 #: allink_core_repo/allink_core/allink_base/models/models.py:502
 msgid "Text for \"Load More\"-Button"

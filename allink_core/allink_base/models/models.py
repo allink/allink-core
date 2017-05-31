@@ -350,7 +350,7 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
     - amount of entries on first page
     - coulmn amount
     - how to display detail page (softpage or external page)
-    - paggination ("Load more", "1 2 3 ... 4 5")
+    - pagination ("Load more", "1 2 3 ... 4 5")
 
 
     Future Features:
@@ -375,7 +375,7 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
         (TABLE, 'Table'),
     )
 
-    # PAGGINATION
+    # PAGINATION
     NO = 'no'
     LOAD = 'load'
     # PAGES = 'pages'
@@ -493,7 +493,7 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
         help_text=_(u'Limit the number of entries (in case of the "load more" pagination type: entries per page). Default is "0" (show all entries)')
     )
     pagination_type = models.CharField(
-        _(u'Paggination Type'),
+        _(u'Pagination Type'),
         max_length=50,
         choices=PAGINATION_TYPE,
         default=PAGINATION_TYPE[0]
