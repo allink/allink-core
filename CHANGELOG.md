@@ -173,6 +173,7 @@ Additionally, project specific plugins require the `class Media` (described belo
     PROJECT_CSS_CLASSES -> CONTENT_CSS_CLASSES
     BUTTON_LINK_PLUGIN_PROJECT_CSS_CLASSES -> BUTTON_LINK_CSS_CLASSES
     IMAGE_PLUGIN_PROJECT_CSS_CLASSES -> IMAGE_CSS_CLASSES
+- TIME_ZONE ='Europe/Zurich' (careful when date/time critical content)
 
 ###### TEMPLATES
 - people job_function (which it was used in tejakob for example) was substitutett with property 'units'. You now have to add categories (with unit=True) and tag th person with it. this allowes us to categories people without having to maintain both fields 'unit' and categories
