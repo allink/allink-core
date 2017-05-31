@@ -717,6 +717,7 @@ class AllinkBaseFormPlugin(CMSPlugin):
         _(u'Thank you text'),
         blank=True,
         null=True,
+        help_text=_(u'This text will be shown, after form completion.')
     )
     label_layout = models.CharField(
         _(u'Display labels'),

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-30 10:11-0500\n"
+"POT-Creation-Date: 2017-05-30 10:26-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -503,7 +503,11 @@ msgstr ""
 msgid "Thank you text"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_base/models/models.py:722
+#: allink_core_repo/allink_core/allink_base/models/models.py:720
+msgid "This text will be shown, after form completion."
+msgstr ""
+
+#: allink_core_repo/allink_core/allink_base/models/models.py:723
 msgid "Display labels"
 msgstr ""
 
