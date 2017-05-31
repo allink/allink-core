@@ -20,7 +20,7 @@ msgstr ""
 
 #: allink_core_repo/allink_core/djangocms_group/cms_plugins.py:13
 msgid "Group Container"
-msgstr ""
+msgstr "Gruppen-Container"
 
 #: allink_core_repo/allink_core/djangocms_group/cms_plugins.py:14
 #: allink_core_repo/allink_core/djangocms_group/cms_plugins.py:41
@@ -29,9 +29,9 @@ msgstr ""
 
 #: allink_core_repo/allink_core/djangocms_group/cms_plugins.py:40
 msgid "Group"
-msgstr ""
+msgstr "Gruppe"
 
 #: allink_core_repo/allink_core/djangocms_group/models.py:17
 #: allink_core_repo/allink_core/djangocms_group/models.py:36
 msgid "Title"
-msgstr ""
+msgstr "Titel"
