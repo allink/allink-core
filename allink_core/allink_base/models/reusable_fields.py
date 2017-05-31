@@ -371,7 +371,10 @@ class AllinkLinkFieldsModel(AllinkInternalLinkFieldsModel):
                 'fields': ', '.join(verbose_names[:-1]),
                 'last_field': verbose_names[-1],
             }
-            errors = {}.fromkeys(provided_link_fields.keys(), error_msg)
+            error_fields = list(provided_link_fields.keys())
+            if 'link_page' in error_fields:
+                error_fields.remove('link_page')
+            errors = {}.fromkeys(error_fields, error_msg)
             raise ValidationError(errors)
 
         if anchor_field_value:
