@@ -37,11 +37,11 @@ msgstr ""
 
 #: allink_core_repo/allink_core/djangocms_socialicon/models.py:24
 msgid "Title"
-msgstr ""
+msgstr "Titel"
 
 #: allink_core_repo/allink_core/djangocms_socialicon/models.py:25
 msgid "SEO text (not visible) e.g. Follow allink on Instagram"
-msgstr ""
+msgstr "SEO-Text (nicht sichtbar), bsp.: Folge allink auf Instagram"
 
 #: allink_core_repo/allink_core/djangocms_socialicon/models.py:31
 msgid "Icon"
