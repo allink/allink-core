@@ -21,7 +21,7 @@ msgstr ""
 #: allink_core_repo/allink_core/djangocms_image/cms_plugins.py:14
 #: allink_core_repo/allink_core/djangocms_image/models.py:23
 msgid "Image"
-msgstr ""
+msgstr "Bild"
 
 #: allink_core_repo/allink_core/djangocms_image/cms_plugins.py:15
 msgid "allink"
@@ -29,15 +29,15 @@ msgstr ""
 
 #: allink_core_repo/allink_core/djangocms_image/cms_plugins.py:41
 msgid "Additional settings"
-msgstr ""
+msgstr "Erweiterte Einstellungen"
 
 #: allink_core_repo/allink_core/djangocms_image/cms_plugins.py:48
 msgid "Link settings"
-msgstr ""
+msgstr "Link-Einstellungen"
 
 #: allink_core_repo/allink_core/djangocms_image/forms.py:14
 msgid "Link Internal"
-msgstr ""
+msgstr "Interner Link"
 
 #: allink_core_repo/allink_core/djangocms_image/forms.py:26
 msgid "Special Links"
@@ -46,22 +46,23 @@ msgstr ""
 #: allink_core_repo/allink_core/djangocms_image/forms.py:31
 #: allink_core_repo/allink_core/djangocms_image/models.py:29
 msgid "Ratio"
-msgstr ""
+msgstr "Seitenverhältnis"
 
 #: allink_core_repo/allink_core/djangocms_image/forms.py:32
 msgid ""
 "This option overrides the default image ratio set for images in a colum of a "
 "content section."
 msgstr ""
+"Diese Option überschreibt die Standardeinstellung für Bildseitnverhältnisse, welch für Bilder einer Spalte gesetzt ist."
 
 #: allink_core_repo/allink_core/djangocms_image/forms.py:38
 #: allink_core_repo/allink_core/djangocms_image/models.py:47
 msgid "Set a predefined background color"
-msgstr ""
+msgstr "Vordefinierte Hintergrundfarbe setzten"
 
 #: allink_core_repo/allink_core/djangocms_image/forms.py:43
 msgid "Predifined variations"
-msgstr ""
+msgstr "Vordefiniert Variationen"
 
 #: allink_core_repo/allink_core/djangocms_image/forms.py:44
 msgid ""
@@ -70,10 +71,14 @@ msgid ""
 "or Control-Key (Windows) <strong>and</strong> clicking the options you would "
 "like to apply."
 msgstr ""
+"Anleitung: Einzelne Selektion durch Klicken auf die gewünschte Option. "
+"Mehrfachwahl kann durch Drücken und Halten der Command-Taste (Mac) or "
+"Control-Taste (Windows) <strong>und</strong> Anklicken der gewünschten "
+"Optionen erzielt werden."
 
 #: allink_core_repo/allink_core/djangocms_image/models.py:35
 msgid "Placeholder Background Color"
-msgstr ""
+msgstr "Hintergrundfarbe Platzhalter"
 
 #: allink_core_repo/allink_core/djangocms_image/models.py:38
 msgid ""
@@ -81,10 +86,13 @@ msgid ""
 "strong> Disabling this option results in a transparent background even if a "
 "specific color is set (this makes sense when a transparent PNG image is used)"
 msgstr ""
+"Standard Hintergrundfarbe für Platzhalterbilder anzeigen.<br><strong>Wichtig:</"
+"strong> Wenn diese Option deaktiviert ist, wird ein transparenter Hintergrund "
+"angezeigt, auch wenn eine Farbe gesetzt ist (Sinnvoll für transparente PNGs)"
 
 #: allink_core_repo/allink_core/djangocms_image/models.py:41
 msgid "Loader Icon"
-msgstr ""
+msgstr "Lade-Icon"
 
 #: allink_core_repo/allink_core/djangocms_image/models.py:44
 msgid ""
@@ -92,19 +100,21 @@ msgid ""
 "<br><strong>Important:</strong> Disable this option if a transparent PNG "
 "image is used."
 msgstr ""
+"Icon anzeigen, während das Bild lädt."
+"<br><strong>Wichtig:</strong> Für transparente PNGs sollte diese Option deaktiviert werden."
 
 #: allink_core_repo/allink_core/djangocms_image/models.py:53
 msgid "Caption text"
-msgstr ""
+msgstr "Bildunterschrift"
 
 #: allink_core_repo/allink_core/djangocms_image/models.py:55
 msgid "Provide a description, attribution, copyright or other information."
-msgstr ""
+msgstr "Für Beschreibung, Zuordnung, Copyright oder andere Informationen."
 
 #: allink_core_repo/allink_core/djangocms_image/models.py:58
 msgid "Attributes"
-msgstr ""
+msgstr "Attribute"
 
 #: allink_core_repo/allink_core/djangocms_image/models.py:97
 msgid "<file is missing>"
-msgstr ""
+msgstr "<Datei fehlt>"
