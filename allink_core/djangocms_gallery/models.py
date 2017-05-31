@@ -14,16 +14,10 @@ from allink_core.allink_base.utils import get_additional_templates
 @python_2_unicode_compatible
 class AllinkGalleryPlugin(CMSPlugin):
 
-    SLIDER = 'slider'
-
-    TEMPLATES = (
-        (SLIDER, 'Slider'),
-    )
     template = models.CharField(
         _(u'Template'),
         help_text=_(u'Choose a template.'),
-        max_length=50,
-        default=TEMPLATES[0]
+        max_length=50
     )
     ratio = models.CharField(
         _(u'Ratio'),
@@ -49,8 +43,8 @@ class AllinkGalleryPlugin(CMSPlugin):
 
     @classmethod
     def get_templates(cls):
-        templates = cls.TEMPLATES
-        for x, y in get_additional_templates('Gallery'):
+        templates = ()
+        for x, y in get_additional_templates('GALLERY'):
             templates += ((x, y),)
         return templates
 
