@@ -41,7 +41,7 @@ msgid "Link settings"
 msgstr "Link Einstellungen"
 
 #: allink_core_repo/allink_core/djangocms_button_link/forms.py:24
-msgid "Predifined css classes"
+msgid "Predifined variations"
 msgstr "Vordefinierte CSS-Klassen"
 
 #: allink_core_repo/allink_core/djangocms_button_link/forms.py:25

@@ -13,11 +13,11 @@ class AllinkVidEmbedPluginForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(AllinkVidEmbedPluginForm, self).__init__(*args, **kwargs)
-        if get_additional_choices('PROJECT_CSS_CLASSES_VIDEO'):
+        if get_additional_choices('VID_EMBED_CSS_CLASSES'):
             self.fields['project_css_classes'] = forms.MultipleChoiceField(
-                label=_(u'Predifined css classes for Video Plugin'),
+                label=_(u'Predifined variations for Video Plugin'),
                 help_text=_(u'Instructions: Single selection is made by clicking on an option. Multiple selections are achieved by pressing and holding down the Command-key (Mac) or Control-Key (Windows) <strong>and</strong> clicking the options you would like to apply.'),
-                choices=get_additional_choices('PROJECT_CSS_CLASSES_VIDEO'),
+                choices=get_additional_choices('VID_EMBED_CSS_CLASSES'),
                 required=False,
             )
         self.fields['ratio'] = forms.CharField(
@@ -35,10 +35,10 @@ class AllinkVidFilePluginForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(AllinkVidFilePluginForm, self).__init__(*args, **kwargs)
-        if get_additional_choices('VID_PLUGIN_PROJECT_CSS_CLASSES').__len__() != 0:
+        if get_additional_choices('VID_FILE_CSS_CLASSES').__len__() != 0:
             self.fields['project_css_classes'] = forms.MultipleChoiceField(
-                label=_(u'Predifined css classes for Video Plugin'),
+                label=_(u'Predifined variations for Video Plugin'),
                 help_text=_(u'Instructions: Single selection is made by clicking on an option. Multiple selections are achieved by pressing and holding down the Command-key (Mac) or Control-Key (Windows) <strong>and</strong> clicking the options you would like to apply.'),
-                choices=get_additional_choices('VID_PLUGIN_PROJECT_CSS_CLASSES'),
+                choices=get_additional_choices('VID_FILE_CSS_CLASSES'),
                 required=False,
             )

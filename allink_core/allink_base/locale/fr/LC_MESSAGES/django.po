@@ -118,7 +118,7 @@ msgid "Background color"
 msgstr ""
 
 #: allink_core_repo/allink_core/allink_base/admin/forms.py:101
-msgid "Predifined css classes"
+msgid "Predifined variations"
 msgstr ""
 
 #: allink_core_repo/allink_core/allink_base/admin/forms.py:102

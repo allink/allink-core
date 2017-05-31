@@ -44,7 +44,7 @@ msgstr ""
 
 #: allink_core_repo/allink_core/djangocms_vid/forms.py:18
 #: allink_core_repo/allink_core/djangocms_vid/forms.py:40
-msgid "Predifined css classes for Video Plugin"
+msgid "Predifined variations for Video Plugin"
 msgstr ""
 
 #: allink_core_repo/allink_core/djangocms_vid/forms.py:19

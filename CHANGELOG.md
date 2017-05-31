@@ -169,6 +169,10 @@ Additionally, project specific plugins require the `class Media` (described belo
     ])
     ```
 - remove 'django.middleware.cache.UpdateCacheMiddleware' and django.middleware.cache.FetchFromCacheMiddleware' (because they cache all responses from views, e.g AllinkBaseDetailView)
+- rename all PROJECT_CSS_CLASSES:
+    PROJECT_CSS_CLASSES -> CONTENT_CSS_CLASSES
+    BUTTON_LINK_PLUGIN_PROJECT_CSS_CLASSES -> BUTTON_LINK_CSS_CLASSES
+    IMAGE_PLUGIN_PROJECT_CSS_CLASSES -> IMAGE_CSS_CLASSES
 
 ###### TEMPLATES
 - people job_function (which it was used in tejakob for example) was substitutett with property 'units'. You now have to add categories (with unit=True) and tag th person with it. this allowes us to categories people without having to maintain both fields 'unit' and categories
@@ -297,7 +301,7 @@ django-htmlmin==0.10.0
 - Content Plugin: The inner container background image is now handled with a separate HTML-element that allows us to stack the image and the overlay text on small screens. Requires the latest static core.
 - field "active" from AllinkBaseModel renamed to "is_active"
 - HTML gets minified
-- BUTTON_LINK_PLUGIN_PROJECT_CSS_CLASSES introduced
+- BUTTON_LINK_CSS_CLASSES introduced
 - All colors use now the colorfield with colorpicker widget
 - Mailchimp CMS plugin
 - locale folders in app directories
@@ -363,7 +367,7 @@ django-htmlmin==0.10.0
 - allink_categories: After adding a root category redirect to edit page for model_names option.
 - extra_css_classes removed from admin
 - djangocms_vid_file and djangocms_vid_embed implemented (dropped djangocms_video)(project css classes: VID_PLUGIN_PROJECT_CSS_CLASSES)
-- djangocms_image now supports project css classes (IMAGE_PLUGIN_PROJECT_CSS_CLASSES), and bg_color
+- djangocms_image now supports project css classes (IMAGE_CSS_CLASSES), and bg_color
 - Content Plugin: Support for vertical alignment of columns added (the tallest element defines the boundaries). Important: Requires at least `allink-core-static` commit `1256fa94cdc7b3ba8f6b48be384171e305e03ad5`
 - config: New app added in allink_apps. A migrations folder (`allink_apps_migrations.config`) is necessary in every project after this version.
 - Buttons and Image links can now link on all internal app sites
