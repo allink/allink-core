@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-30 06:21-0500\n"
+"POT-Creation-Date: 2017-05-31 03:43-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,7 +30,7 @@ msgstr ""
 #: allink_core_repo/allink_core/djangocms_button_link/cms_plugins.py:38
 #: allink_core_repo/allink_core/djangocms_button_link/cms_plugins.py:94
 msgid "Advanced settings"
-msgstr ""
+msgstr "Erweiterte Einstellungen"
 
 #: allink_core_repo/allink_core/djangocms_button_link/cms_plugins.py:54
 msgid "Button/ Link"
@@ -38,11 +38,11 @@ msgstr ""
 
 #: allink_core_repo/allink_core/djangocms_button_link/cms_plugins.py:84
 msgid "Link settings"
-msgstr ""
+msgstr "Link Einstellungen"
 
 #: allink_core_repo/allink_core/djangocms_button_link/forms.py:24
-msgid "Predifined css classes"
-msgstr ""
+msgid "Predifined variations"
+msgstr "Vordefinierte CSS-Klassen"
 
 #: allink_core_repo/allink_core/djangocms_button_link/forms.py:25
 msgid ""
@@ -51,10 +51,14 @@ msgid ""
 "or Control-Key (Windows) <strong>and</strong> clicking the options you would "
 "like to apply."
 msgstr ""
+"Anleitung: Einzelne Selektion durch Klicken auf die gewünschte Option. "
+"Mehrfachwahl kann durch Drücken und Halten der Command-Taste (Mac) or "
+"Control-Taste (Windows) <strong>und</strong> Anklicken der gewünschten "
+"Optionen erzielt werden."
 
 #: allink_core_repo/allink_core/djangocms_button_link/forms.py:33
 msgid "Link Internal"
-msgstr ""
+msgstr "Interner Link"
 
 #: allink_core_repo/allink_core/djangocms_button_link/forms.py:50
 msgid "Special Links"
@@ -63,33 +67,37 @@ msgstr ""
 #: allink_core_repo/allink_core/djangocms_button_link/model_fields.py:16
 #: allink_core_repo/allink_core/djangocms_button_link/models.py:77
 msgid "Type"
-msgstr ""
+msgstr "Typ"
 
 #: allink_core_repo/allink_core/djangocms_button_link/model_fields.py:47
 #: allink_core_repo/allink_core/djangocms_button_link/models.py:81
 #: allink_core_repo/allink_core/djangocms_button_link/models.py:94
 msgid "Context"
-msgstr ""
+msgstr "Kontext"
 
 #: allink_core_repo/allink_core/djangocms_button_link/models.py:22
 msgid "Alignment horizontal desktop"
-msgstr ""
+msgstr "Horizontale Ausrichtung (Desktop)"
 
 #: allink_core_repo/allink_core/djangocms_button_link/models.py:25
 msgid ""
 "This option overrides the projects default alignment for desktop. (Usually "
 "\"left\")"
 msgstr ""
+"Diese Einstellung überschreibt die Standardeinstellung des Projekts für "
+"Desktop. (Normalerweise \"links\")"
 
 #: allink_core_repo/allink_core/djangocms_button_link/models.py:30
 msgid "Alignment horizontal mobile"
-msgstr ""
+msgstr "Horizontale Ausrichtung (Mobile)"
 
 #: allink_core_repo/allink_core/djangocms_button_link/models.py:33
 msgid ""
 "This option overrides the projects default alignment for mobile. (Usually "
 "\"left\")"
 msgstr ""
+"Diese Einstellung überschreibt die Standardeinstellung des Projekts für "
+"Mobile. (Normalerweise \"links\")"
 
 #: allink_core_repo/allink_core/djangocms_button_link/models.py:48
 msgid "{}"
@@ -97,11 +105,11 @@ msgstr ""
 
 #: allink_core_repo/allink_core/djangocms_button_link/models.py:71
 msgid "Display name"
-msgstr ""
+msgstr "Anzeigename"
 
 #: allink_core_repo/allink_core/djangocms_button_link/models.py:86
 msgid "Size"
-msgstr ""
+msgstr "Grösse"
 
 #: allink_core_repo/allink_core/djangocms_button_link/models.py:89
 msgid "Block"
@@ -109,18 +117,20 @@ msgstr ""
 
 #: allink_core_repo/allink_core/djangocms_button_link/models.py:101
 msgid "Icon left"
-msgstr ""
+msgstr "Icon links"
 
 #: allink_core_repo/allink_core/djangocms_button_link/models.py:104
 msgid "Icon right"
-msgstr ""
+msgstr "Icon rechts"
 
 #: allink_core_repo/allink_core/djangocms_button_link/templates/admin/djangocms_button_link/widgets/icon.html:8
 msgid ""
-"No Iconsets configured! Please configure at least on Iconset before using "
+"No Iconsets configured! Please configure at least one Iconset before using "
 "this widget."
 msgstr ""
+"Kein Iconset konfiguriert. Bitte konfigurieren Sie mindestens ein Iconset "
+"vor der Nutzung des Widgets."
 
 #: allink_core_repo/allink_core/djangocms_button_link/templates/djangocms_button_link/item.html:44
 msgid "Member Area"
-msgstr ""
+msgstr "Mitgliederbereich"

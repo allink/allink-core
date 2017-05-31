@@ -59,16 +59,22 @@ def render_meta_og(context, obj=None, image=None, og_title=None, description=Non
             og_title = og_title
         elif page_ext:
             og_title = page_ext.og_title if page_ext.og_title else page.get_page_title()
-        else:
+        elif page:
             og_title = page.get_page_title()
+        else:
+            # for example django admin page
+            og_title = ''
 
         # description
         if description:
             description = description
         elif page_ext and page_ext.og_description:
             description = page_ext.og_description if page_ext.og_description else page.get_meta_description()
-        else:
+        elif page:
             description = page.get_meta_description()
+        else:
+            # for example django admin page
+            description = ''
 
         # image
         if image:

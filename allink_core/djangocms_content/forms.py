@@ -27,11 +27,11 @@ class AllinkContentPluginForm(forms.ModelForm):
             label=_(u'Background color'),
             required=False,
         )
-        if get_additional_choices('PROJECT_CSS_CLASSES'):
+        if get_additional_choices('CONTENT_CSS_CLASSES'):
             self.fields['project_css_classes'] = forms.MultipleChoiceField(
-                label=_(u'Predifined css classes'),
+                label=_(u'Predifined variations'),
                 help_text=_(u'Instructions: Single selection is made by clicking on an option. Multiple selections are achieved by pressing and holding down the Command-key (Mac) or Control-Key (Windows) <strong>and</strong> clicking the options you would like to apply.'),
-                choices=get_additional_choices('PROJECT_CSS_CLASSES'),
+                choices=get_additional_choices('CONTENT_CSS_CLASSES'),
                 required=False,
             )
         if kwargs.get('instance'):

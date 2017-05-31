@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-30 06:21-0500\n"
+"POT-Creation-Date: 2017-05-31 03:43-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,7 +22,7 @@ msgstr ""
 #: allink_core_repo/allink_core/allink_terms/models.py:47
 #: allink_core_repo/allink_core/allink_terms/models.py:48
 msgid "Terms of Service"
-msgstr ""
+msgstr "Allgemeine Geschäftsbedingungen"
 
 #: allink_core_repo/allink_core/allink_terms/cms_plugins.py:14
 msgid "allink Apps"
@@ -34,27 +34,27 @@ msgstr ""
 
 #: allink_core_repo/allink_core/allink_terms/models.py:24
 msgid "Draft"
-msgstr ""
+msgstr "Entwurf"
 
 #: allink_core_repo/allink_core/allink_terms/models.py:25
 msgid "Published"
-msgstr ""
+msgstr "Publiziert"
 
 #: allink_core_repo/allink_core/allink_terms/models.py:26
 msgid "Archived"
-msgstr ""
+msgstr "Archiviert"
 
 #: allink_core_repo/allink_core/allink_terms/models.py:31
 msgid "Terms Text"
-msgstr ""
+msgstr "AGB-Text"
 
 #: allink_core_repo/allink_core/allink_terms/models.py:36
 msgid "Terms cms Page"
-msgstr ""
+msgstr "AGB CMS-Seite"
 
 #: allink_core_repo/allink_core/allink_terms/models.py:39
 msgid "CMS Page which shows Terms and Conditions"
-msgstr ""
+msgstr "CMS Seite, welche die AGB anzeigt"
 
 #: allink_core_repo/allink_core/allink_terms/models.py:42
 msgid "Status"
@@ -63,8 +63,8 @@ msgstr ""
 #: allink_core_repo/allink_core/allink_terms/models.py:51
 #, python-format
 msgid "Terms - %s"
-msgstr ""
+msgstr "AGB - %s"
 
 #: allink_core_repo/allink_core/allink_terms/templates/allink_terms/admin/change_form.html:7
-msgid "Publizieren"
-msgstr ""
+msgid "Publish"
+msgstr "Publizieren"

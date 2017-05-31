@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-30 06:21-0500\n"
+"POT-Creation-Date: 2017-05-31 03:43-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,11 +28,13 @@ msgid ""
 "Please specify the app which uses this categories. All apps specified in "
 "parent category are automatically added."
 msgstr ""
+"Bitte die App angeben, welche diese Kategorien braucht. Alle Apps der "
+"Elternkategorie werden automatisch zugefügt."
 
 #: allink_core_repo/allink_core/allink_categories/admin.py:40
 #: allink_core_repo/allink_core/allink_categories/models.py:77
 msgid "Identifier"
-msgstr ""
+msgstr "Identifikator"
 
 #: allink_core_repo/allink_core/allink_categories/admin.py:41
 msgid ""
@@ -47,7 +49,7 @@ msgstr ""
 #: allink_core_repo/allink_core/allink_categories/cms_toolbars.py:27
 #: allink_core_repo/allink_core/allink_categories/models.py:104
 msgid "Categories"
-msgstr ""
+msgstr "Kategorien"
 
 #: allink_core_repo/allink_core/allink_categories/models.py:67
 msgid "Tag"
@@ -58,6 +60,8 @@ msgid ""
 "auto-generated categories use this tag, to identify which app generated the "
 "category."
 msgstr ""
+"Automatisch generierte Kategorien benutzen dieses Tag, um zu spezifizieren, "
+"von welcher App sie generiert wurden."
 
 #: allink_core_repo/allink_core/allink_categories/models.py:86
 msgid "name"
@@ -69,8 +73,8 @@ msgstr ""
 
 #: allink_core_repo/allink_core/allink_categories/models.py:95
 msgid "Provide a “slug” or leave blank for an automatically generated one."
-msgstr ""
+msgstr "Leer lassen, um den Slug automatisch zu generieren."
 
 #: allink_core_repo/allink_core/allink_categories/models.py:103
 msgid "Category"
-msgstr ""
+msgstr "Kategorie"

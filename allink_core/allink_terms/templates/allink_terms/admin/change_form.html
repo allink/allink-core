@@ -4,7 +4,7 @@
 
 {% block object-tools-items %}
     {% if original.is_publishable %}
-        <li><a href="{% url opts|admin_urlname:'publish' original.pk %}">{% trans "Publizieren" %}</a></li>
+        <li><a href="{% url opts|admin_urlname:'publish' original.pk %}">{% trans "Publish" %}</a></li>
     {% endif %}
     {{ block.super }}
 {% endblock %}

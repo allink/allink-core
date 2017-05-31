@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-30 06:21-0500\n"
+"POT-Creation-Date: 2017-05-31 03:43-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,11 +23,15 @@ msgid "Gallery"
 msgstr ""
 
 #: allink_core_repo/allink_core/djangocms_gallery/cms_plugins.py:14
-#: allink_core_repo/allink_core/djangocms_gallery/cms_plugins.py:48
+#: allink_core_repo/allink_core/djangocms_gallery/cms_plugins.py:52
 msgid "allink"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_gallery/cms_plugins.py:47
+#: allink_core_repo/allink_core/djangocms_gallery/cms_plugins.py:32
+msgid "Slider Options"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_gallery/cms_plugins.py:51
 #: allink_core_repo/allink_core/djangocms_gallery/models.py:71
 msgid "Image"
 msgstr ""

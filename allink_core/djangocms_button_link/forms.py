@@ -19,11 +19,11 @@ class AllinkButtonLinkContainerPluginForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(AllinkButtonLinkContainerPluginForm, self).__init__(*args, **kwargs)
-        if get_additional_choices('BUTTON_LINK_PLUGIN_PROJECT_CSS_CLASSES'):
+        if get_additional_choices('BUTTON_LINK_CSS_CLASSES'):
             self.fields['project_css_classes'] = forms.MultipleChoiceField(
-                label=_(u'Predifined css classes'),
+                label=_(u'Predifined variations'),
                 help_text=_(u'Instructions: Single selection is made by clicking on an option. Multiple selections are achieved by pressing and holding down the Command-key (Mac) or Control-Key (Windows) <strong>and</strong> clicking the options you would like to apply.'),
-                choices=get_additional_choices('BUTTON_LINK_PLUGIN_PROJECT_CSS_CLASSES'),
+                choices=get_additional_choices('BUTTON_LINK_CSS_CLASSES'),
                 required=False,
             )
 
