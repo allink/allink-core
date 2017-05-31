@@ -64,14 +64,9 @@ class CMSAllinkVidFilePlugin(CMSPluginBase):
     form = AllinkVidFilePluginForm
 
     class Media:
-        js = (
-            'build/djangocms_custom_admin.js',
-        )
+        js = (get_files('djangocms_custom_admin')[0]['publicPath'], )
         css = {
-            'all': (
-                'build/djangocms_custom_admin_style.css',
-
-            )
+            'all': (get_files('djangocms_custom_admin')[1]['publicPath'], )
         }
 
     def get_fieldsets(self, request, obj=None):
