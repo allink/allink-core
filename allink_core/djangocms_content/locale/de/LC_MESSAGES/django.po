@@ -207,11 +207,11 @@ msgstr "Falscher Dateityp: %(value)s"
 
 #: allink_core_repo/allink_core/djangocms_content/models.py:205
 msgid "Title"
-msgstr ""
+msgstr "Titel"
 
 #: allink_core_repo/allink_core/djangocms_content/models.py:211
 msgid "Order Mobile"
-msgstr ""
+msgstr "Sortierung für Mobile"
 
 #: allink_core_repo/allink_core/djangocms_content/models.py:212
 msgid ""
@@ -220,33 +220,42 @@ msgid ""
 "this column.<br><br>Note: Columns ordering is ascending (lowest number "
 "displayed first)"
 msgstr ""
+"Gewisse Spalten sollten auf Mobile anders geordnet werden, da diese vertikal gestapelt werden."
+"Mit dieser Option können Sie die Reihenfolge der Spalten bestimmen<br><br>Hinweis: Die Spaltensortierung ist absteigend (Kleinste Zahl "
+"wird zuerst angezeigt.)"
 
 #: allink_core_repo/allink_core/djangocms_content/models.py:217
 msgid "Alignment horizontal mobile"
-msgstr ""
+msgstr "Horizontale Ausrichtung für Mobile"
 
 #: allink_core_repo/allink_core/djangocms_content/models.py:220
 msgid ""
 "This option overrides the projects default alignment for mobile. (Usually "
 "\"left\")"
 msgstr ""
+"Diese Einstellung überschreibt den Sandard für horizontale Ausrichtung auf Mobile. (Normalerweise "
+"\"links\")"
 
 #: allink_core_repo/allink_core/djangocms_content/models.py:225
 msgid "Alignment horizontal desktop"
-msgstr ""
+msgstr "Horizontale Ausrichtung auf Desktop"
 
 #: allink_core_repo/allink_core/djangocms_content/models.py:228
 msgid ""
 "This option overrides the projects default alignment for desktop. (Usually "
 "\"left\")"
 msgstr ""
+"Diese Einstellung überschreibt den Sandard für horizontale Ausrichtung auf Desktop. (Normalerweise "
+"\"links\")"
 
 #: allink_core_repo/allink_core/djangocms_content/models.py:233
 msgid "Alignment vertical desktop"
-msgstr ""
+msgstr "Verikale Ausrichtung auf Desktop"
 
 #: allink_core_repo/allink_core/djangocms_content/models.py:236
 msgid ""
 "This option overrides the projects default alignment for desktop. (Usually "
 "\"top\")"
 msgstr ""
+"Diese Einstellung überschreibt den Sandard für vertikale Ausrichtung auf Desktop. (Normalerweise "
+"\"oben\")"

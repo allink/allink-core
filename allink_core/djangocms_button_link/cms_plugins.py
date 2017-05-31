@@ -60,14 +60,9 @@ class CMSAllinkButtonLinkPlugin(CMSPluginBase):
     text_enabled = True
 
     class Media:
-        js = (
-            'build/djangocms_custom_admin.js',
-        )
+        js = (get_files('djangocms_custom_admin')[0]['publicPath'], )
         css = {
-            'all': (
-                'build/djangocms_custom_admin_style.css',
-
-            )
+            'all': (get_files('djangocms_custom_admin')[1]['publicPath'], )
         }
 
     fieldsets = (
@@ -84,7 +79,8 @@ class CMSAllinkButtonLinkPlugin(CMSPluginBase):
         (_('Link settings'), {
             # 'classes': ('collapse',),
             'fields': (
-                ('link_url', 'internal_link',),
+                'internal_link',
+                'link_url',
                 ('link_mailto', 'link_phone'),
                 ('link_anchor', 'link_special'),
                 'link_file',
