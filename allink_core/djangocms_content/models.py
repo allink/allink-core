@@ -113,7 +113,7 @@ class AllinkContentPlugin(AllinkBasePlugin):
     )
     ignore_in_pdf = models.BooleanField(
         _(u'Ignore for pdf export'),
-        help_text=_(u'If checked, the content plugin will not be ignored when generting a pdf.'),
+        help_text=_(u'If checked, the content plugin will be ignored when generting a pdf.'),
         default=False
     )
 
