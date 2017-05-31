@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-30 11:17-0500\n"
+"POT-Creation-Date: 2017-05-30 11:26-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -117,7 +117,7 @@ msgstr ""
 
 #: allink_core_repo/allink_core/djangocms_button_link/templates/admin/djangocms_button_link/widgets/icon.html:8
 msgid ""
-"No Iconsets configured! Please configure at least on Iconset before using "
+"No Iconsets configured! Please configure at least one Iconset before using "
 "this widget."
 msgstr ""
 
