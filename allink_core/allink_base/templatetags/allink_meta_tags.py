@@ -32,8 +32,10 @@ def render_meta_og(context, obj=None, image=None, og_title=None, description=Non
             description = description
         elif obj.og_description:
             description = obj.og_description
-        else:
+        elif obj.lead:
             description = obj.lead
+        else:
+            description = ''
 
         # image
         if image:
