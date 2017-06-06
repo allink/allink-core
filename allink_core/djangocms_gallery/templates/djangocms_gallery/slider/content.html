@@ -5,7 +5,7 @@
 
         <div class="swiper-wrapper">
             {% for plugin in instance.child_plugin_instances %}
-                {% render_plugin plugin %}
+                {% include "djangocms_gallery/slider/item.html" with instance=plugin %}
             {% endfor %}
         </div>
 
