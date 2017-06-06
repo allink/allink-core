@@ -35,6 +35,11 @@ class AllinkGalleryPlugin(CMSPlugin):
         default=False,
         help_text=_(u'This option enables a gallery counter.'),
     )
+    auto_start_enabled = models.BooleanField(
+        _(u'Autostart'),
+        default=True,
+        help_text=_(u'This option enables autoplay for this gallery.'),
+    )
 
     def __str__(self):
         if self.template:

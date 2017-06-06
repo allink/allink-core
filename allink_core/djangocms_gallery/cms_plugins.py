@@ -34,6 +34,7 @@ class CMSAllinkGalleryPlugin(CMSPluginBase):
                     'ratio',
                     'fullscreen_enabled',
                     'counter_enabled',
+                    'auto_start_enabled',
                 ]
             }),
         )
@@ -53,12 +54,18 @@ class CMSAllinkGalleryImagePlugin(CMSPluginBase):
     allow_children = False
     form = AllinkGalleryImagePluginForm
 
+    class Media:
+        js = (get_files('djangocms_custom_admin')[0]['publicPath'], )
+        css = {
+            'all': (get_files('djangocms_custom_admin')[1]['publicPath'], )
+        }
+
     def get_fieldsets(self, request, obj=None):
         fieldsets = (
             (None, {
                 'fields': (
-                    'title',
                     'image',
+                    'title',
                     'text',
                 ),
             }),
