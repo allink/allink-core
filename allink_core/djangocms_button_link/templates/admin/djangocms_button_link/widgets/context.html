@@ -3,8 +3,10 @@
 {% if selects.name == 'btn_context' %}
     <div class="btn-container" data-context="{{ selects.name }}">
         {% for item in selects %}
-            <div class="btn btn-{{item.choice_value}} {% if selects.value == item.choice_value %}active{% endif %}" data-toggle-active-state>
-                {{ item }}
+            <div class="btn-item {% if selects.value == item.choice_value %}active{% endif %}" data-toggle-active-state>
+                <div class="btn btn-{{item.choice_value}}">
+                    {{ item }}
+                </div>
             </div>
         {% endfor %}
     </div>
