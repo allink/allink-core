@@ -172,6 +172,15 @@ ALLINK_LOCALE_PATHS = [
 def show_toolbar(request):
     return senv('DEBUG_TOOLBAR_ENABLED', False)
 
+
 DEBUG_TOOLBAR_CONFIG = {
     "SHOW_TOOLBAR_CALLBACK": show_toolbar,
 }
+
+# ####################################################################################
+#
+# # Cache-Control Header
+
+STATIC_HEADERS[1] = (r'.*\.[0-9a-f]{10,30}\.[a-z]+', {
+    'Cache-Control': 'public, max-age={}'.format(3600 * 24 * 365),
+})
