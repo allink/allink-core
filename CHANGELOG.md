@@ -267,7 +267,7 @@ Additionally, project specific plugins require the `class Media` (described belo
 - allink_config: Field for google_site_verification code added, because verification through tag manager snippet does not work anymore
 - LinkField: Internal Links are handled through new AllinkInternalLinkFieldsModelMixin, AllinkInternalLinkFieldMixin and SelectLinkField
 - LinkField integrated in allink_legacy_redirect, djangocms_image and djangocms_button_link
-- djangocms_gallery: added fullscreen & counter flags. Additional markup in `base_root.html` (before end of body) and custom styles are needed
+- djangocms_gallery: added fullscreen & counter flags. Additional markup in `base_root.html` (before end of body) and custom styles are needed.
   ```html
   <div class="swiper-fullscreen-container">
       <a href="#" class="swiper-button-fullscreen-close" data-softpage-disabled data-close-swiper-fullscreen>
@@ -282,6 +282,14 @@ Additionally, project specific plugins require the `class Media` (described belo
 
 - djangocms_pdf was added (enables manual page breaks in pdf export) -> to enable CMSAllinkPageBreakPlugin in a certain placeholder ad just add it in the settings.py
 - render_meta_og was introduced to render meta tags
+- djangocms_gallery: Added autoplay disable option (default is true). Important: Requires at least `allink-core-static` commit `f8e9b17c21dec85a7f506945783e39a9ad906764`.
+  Additional markup is needed on `swiper-default` tag like in `slider/content.html` for example:
+  ```html
+  <div class="swiper-container swiper-default swiper-gallery-plugin" {% if instance.auto_start_enabled == False %}data-autoplay="false"{% endif %}>
+  ...
+  </div>
+  ```
+
 
 ### FIXES
 

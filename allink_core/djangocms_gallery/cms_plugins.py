@@ -34,6 +34,7 @@ class CMSAllinkGalleryPlugin(CMSPluginBase):
                     'ratio',
                     'fullscreen_enabled',
                     'counter_enabled',
+                    'auto_start_enabled',
                 ]
             }),
         )
