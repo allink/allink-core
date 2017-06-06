@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 import urllib.parse
+import json
+
 from django.conf import settings
 from django.template.loader import get_template
 from django.template import TemplateDoesNotExist
+from django.core.cache import cache
 from django.core.urlresolvers import NoReverseMatch
 from django.core.exceptions import FieldDoesNotExist, FieldError, ValidationError
 from django.contrib.postgres.fields import ArrayField
@@ -14,6 +17,7 @@ from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _, override
 from cms.utils.i18n import get_current_language, get_default_language
 from cms.models.pluginmodel import CMSPlugin
+from cms.plugin_pool import plugin_pool
 
 from adminsortable.models import SortableMixin
 from filer.fields.image import FilerImageField
@@ -248,6 +252,12 @@ class AllinkBaseModel(AllinkMetaTagFieldsModel):
             self.save_translations(*args, **kwargs)
         if self._meta.model_name in dict(settings.PROJECT_APP_MODEL_CATEGORY_TAG_CHOICES).keys():
             self.auto_generated_category = self.save_categories(new)
+        # invalidate cache
+        possible_plugin_classes = (self.__class__, ) + self.__class__.__bases__
+        plugin_classes = [x for x in plugin_pool.get_all_plugins() if hasattr(x, 'data_model') and x.data_model in possible_plugin_classes]
+        for plugin_class in plugin_classes:
+            for plugin in plugin_class.model.objects.all():
+                cache.set('render_queryset_for_display_valid_keys_%s' % plugin.id, [], 60 * 60 * 24 * 360)
         super(AllinkBaseModel, self).save(*args, **kwargs)
 
 
@@ -654,6 +664,14 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
             -> adds additional query
         """
 
+        valid_cache_keys = cache.get('render_queryset_for_display_valid_keys_%s' % self.id, [])
+        cache_key = 'render_queryset_for_display_%s_%s_%s' % (self.id, category.id if category else '', json.dumps(filters))
+        if cache_key in valid_cache_keys:
+            cached_qs = cache.get(cache_key, None)
+
+            if cached_qs:
+                return cached_qs
+
         # apply filters from request
         queryset = self.data_model.objects.active().filter(**filters)
 
@@ -666,7 +684,13 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
             if self.categories_and.exists():
                 queryset = queryset.filter_by_categories(categories=self.categories_and.all())
 
-        return self._apply_ordering_to_queryset_for_display(queryset)
+        ordered_qs = self._apply_ordering_to_queryset_for_display(queryset)
+
+        # cache for for a half year and add to valid cache keys
+        cache.set(cache_key, ordered_qs, 60 * 60 * 24 * 180)
+        valid_cache_keys.append(cache_key)
+        cache.set('render_queryset_for_display_valid_keys_%s' % self.id, valid_cache_keys, 60 * 60 * 24 * 360)
+        return ordered_qs
 
 
 class AllinkBaseFormPlugin(CMSPlugin):
