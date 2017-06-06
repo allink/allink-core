@@ -6,7 +6,6 @@
     <form method="post" action="{{instance.get_link_url}}">
     {% csrf_token %}
 {% endif %}
-
     <a href="{{ instance.get_link_url }}"
         class="
             {% if instance.type == 'btn' %}
