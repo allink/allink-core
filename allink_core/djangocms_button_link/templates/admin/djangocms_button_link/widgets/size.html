@@ -1,8 +1,10 @@
 <div class="btn-container">
     {% for item in selects %}
-        <div class="btn btn-default btn-{{item.choice_value}} {% if selects.value == item.choice_value %}active{% endif %}" data-toggle-active-state>
+    <div class="btn-item {% if selects.value == item.choice_value %}active{% endif %}" data-toggle-active-state>
+        <div class="btn btn-default btn-{{item.choice_value}}" >
             {{ item }}
         </div>
+    </div>
     {% endfor %}
 </div>
 
