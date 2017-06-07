@@ -8,7 +8,7 @@ register = template.Library()
 # Meta and og: > renders all meta and og:tags
 
 @register.inclusion_tag('templatetags/allink_meta_og.html', takes_context=True)
-def render_meta_og(context, obj=None, image=None, og_title=None, description=None):
+def render_meta_og(context, obj=None, page_title=None, base_page_title=None, image=None, og_title=None, description=None):
     """
     either pass all variables with this tag explicitly 
     or get it from either the page 
@@ -16,9 +16,27 @@ def render_meta_og(context, obj=None, image=None, og_title=None, description=Non
     """
 
     allink_config = AllinkConfig.get_solo()
+    site = getattr(context.request, 'site')
 
-    #  we pass a object when app contnet
+    #  we pass a object when app content
     if obj:
+        # page title
+        if page_title:
+            page_title = page_title
+        elif obj.title:
+            page_title = obj.title
+        else:
+            page_title = allink_config.default_base_title
+
+        if base_page_title:
+            page_title += ' | ' + base_page_title
+        elif not obj.enable_base_title:
+            page_title = page_title
+        elif allink_config.default_base_title:
+            page_title += ' | ' + allink_config.default_base_title
+        else:
+            page_title += ' | ' + site.name
+
         # title
         if og_title:
             og_title = og_title
@@ -56,11 +74,26 @@ def render_meta_og(context, obj=None, image=None, og_title=None, description=Non
         except:
             page_ext = None
 
+        # page title
+        if page_title:
+            page_title = page_title
+        elif page.get_page_title():
+            page_title = page.get_page_title()
+        else:
+            page_title = allink_config.default_base_title
+
+        if base_page_title:
+            page_title += ' | ' + base_page_title
+        elif page_ext and not page_ext.enable_base_title:
+            page_title = page_title
+        elif allink_config.default_base_title:
+            page_title += ' | ' + allink_config.default_base_title
+        else:
+            page_title += ' | ' + site.name
+
         # title
         if og_title:
             og_title = og_title
-        elif page_ext:
-            og_title = page_ext.og_title if page_ext.og_title else page.get_page_title()
         elif page:
             og_title = page.get_page_title()
         else:
@@ -70,8 +103,6 @@ def render_meta_og(context, obj=None, image=None, og_title=None, description=Non
         # description
         if description:
             description = description
-        elif page_ext and page_ext.og_description:
-            description = page_ext.og_description if page_ext.og_description else page.get_meta_description()
         elif page:
             description = page.get_meta_description()
         else:
@@ -88,10 +119,46 @@ def render_meta_og(context, obj=None, image=None, og_title=None, description=Non
 
 
     context.update({
+        'page_title': page_title,
         'og_title': og_title,
         'description': description,
         'image_url': image_url,
         'google_site_verification': allink_config.google_site_verification,
     })
+
+    return context
+
+
+####################################################################################
+# page title: > title in tab
+
+@register.inclusion_tag('templatetags/allink_page_title.html', takes_context=True)
+def render_page_title(context, obj=None, title=None, base_title=None):
+    # Page Title
+    if title:
+        page_title = title
+    # we pass a object when app content
+    elif obj:
+        page_title = obj.title
+    # cms page (no object is supplied)
+    elif hasattr(context.request, 'current_page'):
+        page = getattr(context.request, 'current_page')
+        try:
+            # only when extension is there
+            page_ext = page.get_title_obj().allinkmetatagextension
+        except:
+            page_ext = None
+        page_title = page.get_page_title()
+
+    else:
+        page_title = ''
+
+
+    # add base
+    # | {% if allink_config.default_base_title %}{{ allink_config.default_base_title }}{% else %}{{ request.site.name }}{% endif %}
+
+    context.update({
+            'page_title': page_title,
+        })
 
     return context

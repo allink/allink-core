@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-31 03:43-0500\n"
+"POT-Creation-Date: 2017-06-07 15:00+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,12 +28,12 @@ msgid "allink"
 msgstr ""
 
 #: allink_core_repo/allink_core/djangocms_vid/cms_plugins.py:37
-#: allink_core_repo/allink_core/djangocms_vid/cms_plugins.py:85
+#: allink_core_repo/allink_core/djangocms_vid/cms_plugins.py:80
 msgid "Video settings"
 msgstr "Video-Einstallngen"
 
 #: allink_core_repo/allink_core/djangocms_vid/cms_plugins.py:45
-#: allink_core_repo/allink_core/djangocms_vid/cms_plugins.py:94
+#: allink_core_repo/allink_core/djangocms_vid/cms_plugins.py:89
 msgid "Advanced settings"
 msgstr "Erweiterte Einstellungen"
 
@@ -67,7 +67,9 @@ msgstr "Seitenverhältnis"
 
 #: allink_core_repo/allink_core/djangocms_vid/forms.py:25
 msgid "This option overrides the default ratio setting for embeded videos."
-msgstr "Diese Einstellung überschreibt das Standard-Seitenverhältnis für eingebundene Videos."
+msgstr ""
+"Diese Einstellung überschreibt das Standard-Seitenverhältnis für "
+"eingebundene Videos."
 
 #: allink_core_repo/allink_core/djangocms_vid/models.py:26
 msgid "Attributes"
@@ -145,9 +147,10 @@ msgid ""
 msgstr ""
 "Dieses Bild wird gezeigt während das Video lädt. Am besten das "
 "allerersteFrame des Vidos benutzen, damit der Beginn ohne Stocken verläuft."
-"<br><br><strong>Wichtig:</strong> Stellen Sie sicher, dass das Seitenverhältnis "
-"für Bild und Video <strong>genau das Gleiche</strong> ist, andernfalls "
-"wird sich die Höhe des Videos anpassen, sobald es abgespielt wird."
+"<br><br><strong>Wichtig:</strong> Stellen Sie sicher, dass das "
+"Seitenverhältnis für Bild und Video <strong>genau das Gleiche</strong> ist, "
+"andernfalls wird sich die Höhe des Videos anpassen, sobald es abgespielt "
+"wird."
 
 #: allink_core_repo/allink_core/djangocms_vid/models.py:123
 msgid "Video width"
@@ -163,7 +166,8 @@ msgstr "Stumm"
 
 #: allink_core_repo/allink_core/djangocms_vid/models.py:134
 msgid "Caution: Autoplaying videos with audio is not recommended. Use wisely."
-msgstr "Vorsicht: Automatisches Abspielen von Videos mit Audio ist nicht empfohlen."
+msgstr ""
+"Vorsicht: Automatisches Abspielen von Videos mit Audio ist nicht empfohlen."
 
 #: allink_core_repo/allink_core/djangocms_vid/models.py:138
 msgid "Image Only (Mobile)"
@@ -174,4 +178,5 @@ msgid ""
 "Disable video on mobile devices and only show the start image without video "
 "control."
 msgstr ""
-"Deaktiviert das Video für Mobile, stattdessen wird nur das Startbild ohne Videosteuerung angezeigt."
+"Deaktiviert das Video für Mobile, stattdessen wird nur das Startbild ohne "
+"Videosteuerung angezeigt."

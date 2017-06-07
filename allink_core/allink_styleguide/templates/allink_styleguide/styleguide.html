@@ -1,7 +1,9 @@
 {% extends "base.html" %}
-{% load i18n cms_tags %}
+{% load i18n cms_tags allink_seo_tags %}
 
-{% block page_title %}Styleguide{% endblock page_title %}
+{% block meta_tags %}
+    {% render_meta_og page_title='Styleguide' %}
+{% endblock meta_tags %}
 
 {% block body_class %}tpl-styleguide{% endblock %}
 
