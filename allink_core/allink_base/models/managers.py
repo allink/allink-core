@@ -30,6 +30,7 @@ class AllinkBaseModelQuerySet(TranslatableQuerySet):
             .active_entries()\
             .order_by('created', 'id').distinct('created', 'id')
 
+    # A-Z
     def title_asc(self):
         # TODO
         # result = self.active_translations().order_by('translations__title', 'id').distinct('translations__title', 'id')
@@ -42,6 +43,7 @@ class AllinkBaseModelQuerySet(TranslatableQuerySet):
             .order_by('translations__title', 'id')\
             .distinct('translations__title', 'id')
 
+    # Z-A
     def title_desc(self):
         return self.active_entries()\
             .order_by('-translations__title', 'id')\
