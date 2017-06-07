@@ -9,7 +9,9 @@
 
             <div class="swiper-wrapper">
                 {% for plugin in instance.child_plugin_instances %}
-                    {% render_plugin plugin %}
+                    <div class="swiper-slide swiper-slide-{{plugin.id}}">
+                        {% render_plugin plugin %}
+                    </div>
                 {% endfor %}
             </div>
 
