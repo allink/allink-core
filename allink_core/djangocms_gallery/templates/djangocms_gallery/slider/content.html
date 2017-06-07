@@ -2,8 +2,8 @@
 
 {% comment %}
     cache for a half year, cache gets invalidated with changes
-{% endcomment %}
 {% cache 15552000 content_gallery instance.id %}
+{% endcomment %}
     <div class="app-content-plugin gallery-plugin ratio-{{instance.ratio}}">
         <div class="swiper-container swiper-default swiper-gallery-plugin" {% if instance.auto_start_enabled == False %}data-autoplay="false"{% endif %}>
 
@@ -44,4 +44,7 @@
 
         </div>
     </div>
+{% comment %}
+    
 {% endcache %}
+{% endcomment %}
