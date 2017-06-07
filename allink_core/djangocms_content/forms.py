@@ -13,9 +13,6 @@ class AllinkContentPluginForm(forms.ModelForm):
         model = AllinkContentPlugin
         exclude = ('page', 'position', 'placeholder', 'language', 'plugin_type')
 
-    # class Media:
-    #     js = ('/static/djangocms_content/js/djangocms_content.js', )
-
     def __init__(self, *args, **kwargs):
         super(AllinkContentPluginForm, self).__init__(*args, **kwargs)
         self.fields['template'] = forms.CharField(
