@@ -1,41 +1,45 @@
-{% load cms_tags staticfiles sekizai_tags i18n thumbnail %}
+{% load cms_tags staticfiles sekizai_tags i18n thumbnail cache %}
 
-<div class="app-content-plugin gallery-plugin ratio-{{instance.ratio}}">
-    <div class="swiper-container swiper-default swiper-gallery-plugin" {% if instance.auto_start_enabled == False %}data-autoplay="false"{% endif %}>
+{% comment %}
+    cache for a half year, cache gets invalidated with changes
+{% endcomment %}
+{% cache 15552000 content_gallery instance.id %}
+    <div class="app-content-plugin gallery-plugin ratio-{{instance.ratio}}">
+        <div class="swiper-container swiper-default swiper-gallery-plugin" {% if instance.auto_start_enabled == False %}data-autoplay="false"{% endif %}>
 
-        <div class="swiper-wrapper">
-            {% for plugin in instance.child_plugin_instances %}
-                {% include "djangocms_gallery/slider/item.html" with instance=plugin %}
-            {% endfor %}
+            <div class="swiper-wrapper">
+                {% for plugin in instance.child_plugin_instances %}
+                    {% render_plugin plugin %}
+                {% endfor %}
+            </div>
+
+            <div class="swiper-pagination"></div>
+
+            <a href="#" class="swiper-button-prev swiper-button" data-softpage-disabled>
+                <i class="sr-only" lang="en">
+                    {% trans "Previous Slide" %}
+                </i>
+            </a>
+            <a href="#" class="swiper-button-next swiper-button" data-softpage-disabled>
+                <i class="sr-only" lang="en">
+                    {% trans "Next Slide" %}
+                </i>
+            </a>
+
+            {% if instance.counter_enabled %}
+            <div class="swiper-counter">
+                <span class="current">1</span>
+                <span class="separator">–</span>
+                <span class="total">1</span>
+            </div>
+            {% endif %}
+
+            {% if instance.fullscreen_enabled %}
+            <a href="#" class="swiper-button-fullscreen" data-softpage-disabled data-trigger-swiper-fullscreen>
+                {% trans "Fullscreen Gallery" %}
+            </a>
+            {% endif %}
+
         </div>
-
-        <div class="swiper-pagination"></div>
-
-        <a href="#" class="swiper-button-prev swiper-button" data-softpage-disabled>
-            <i class="sr-only" lang="en">
-                {% trans "Previous Slide" %}
-            </i>
-        </a>
-        <a href="#" class="swiper-button-next swiper-button" data-softpage-disabled>
-            <i class="sr-only" lang="en">
-                {% trans "Next Slide" %}
-            </i>
-        </a>
-
-        {% if instance.counter_enabled %}
-        <div class="swiper-counter">
-            <span class="current">1</span>
-            <span class="separator">–</span>
-            <span class="total">1</span>
-        </div>
-        {% endif %}
-
-        {% if instance.fullscreen_enabled %}
-        <a href="#" class="swiper-button-fullscreen" data-softpage-disabled data-trigger-swiper-fullscreen>
-            {% trans "Fullscreen Gallery" %}
-        </a>
-        {% endif %}
-
     </div>
-
-</div>
+{% endcache %}
