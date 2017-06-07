@@ -147,10 +147,13 @@ def render_h1(context, obj=None, text=None):
         try:
             # only when extension is there
             page_ext = page.get_title_obj().allinkmetatagextension
-            text = page_ext.override_h1
         except:
-            text = page.get_page_title()
+            page_ext = None
 
+        if page_ext and page_ext.override_h1:
+            text = page_ext.override_h1
+        else:
+            text = page.get_page_title()
     else:
         text = site.name
 
