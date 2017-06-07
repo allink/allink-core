@@ -345,6 +345,11 @@ class AllinkBasePlugin(CMSPlugin):
             return u'{}'.format(self.title)
         return str(self.pk)
 
+    def save(self, *args, **kwargs):
+        # invalidate cache
+        cache.set('render_queryset_for_display_valid_keys_%s' % self.id, [], 60 * 60 * 24 * 360)
+        super(AllinkBasePlugin, self).save(*args, **kwargs)
+
 
 @python_2_unicode_compatible
 class AllinkBaseAppContentPlugin(AllinkBasePlugin):
@@ -670,6 +675,8 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
             cached_qs = cache.get(cache_key, None)
 
             if cached_qs:
+                if cached_qs == 'empty':
+                    return self.data_model.objects.none()
                 return cached_qs
 
         # apply filters from request
@@ -687,7 +694,10 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
         ordered_qs = self._apply_ordering_to_queryset_for_display(queryset)
 
         # cache for for a half year and add to valid cache keys
-        cache.set(cache_key, ordered_qs, 60 * 60 * 24 * 180)
+        if ordered_qs.exists():
+            cache.set(cache_key, ordered_qs, 60 * 60 * 24 * 180)
+        else:
+            cache.set(cache_key, 'empty', 60 * 60 * 24 * 180)
         valid_cache_keys.append(cache_key)
         cache.set('render_queryset_for_display_valid_keys_%s' % self.id, valid_cache_keys, 60 * 60 * 24 * 360)
         return ordered_qs

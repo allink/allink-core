@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+from django.core.cache import cache
+from django.core.cache.utils import make_template_fragment_key
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import python_2_unicode_compatible
@@ -8,7 +10,6 @@ from filer.fields.image import FilerImageField
 from djangocms_text_ckeditor.fields import HTMLField
 
 from allink_core.allink_base.utils import get_additional_templates
-
 
 
 @python_2_unicode_compatible
@@ -53,6 +54,11 @@ class AllinkGalleryPlugin(CMSPlugin):
             templates += ((x, y),)
         return templates
 
+    def save(self, *args, **kwargs):
+        # invalidate cache
+        cache.delete(make_template_fragment_key('content_gallery', [self.id]))
+        super(AllinkGalleryPlugin, self).save(*args, **kwargs)
+
 
 @python_2_unicode_compatible
 class AllinkGalleryImagePlugin(CMSPlugin):
@@ -75,3 +81,8 @@ class AllinkGalleryImagePlugin(CMSPlugin):
     @property
     def template(self):
         return self.parent.djangocms_gallery_allinkgalleryplugin.template
+
+    def save(self, *args, **kwargs):
+        # invalidate cache
+        cache.delete(make_template_fragment_key('content_gallery', [self.parent.id]))
+        super(AllinkGalleryImagePlugin, self).save(*args, **kwargs)
