@@ -58,7 +58,7 @@ class AllinkBaseAdminBase(AllTranslationsMixin, TranslatableAdmin):
         else:
             fieldsets = ()
 
-        fieldsets += (_('Meta Tags'), {
+        fieldsets += (_('SEO'), {
             'classes': (
                 'collapse',
             ),
@@ -66,6 +66,7 @@ class AllinkBaseAdminBase(AllTranslationsMixin, TranslatableAdmin):
                 'og_image',
                 'og_title',
                 'og_description',
+                'enable_base_title',
             )
         }),
 

@@ -129,13 +129,13 @@ class AllinkMetaTagFieldsModel(models.Model):
 
     og_image = FilerImageField(
         verbose_name=_(u'og:Image'),
-        help_text=_(u'Preview image when page/post is shared on Facebook. <br>Min. 1200 x 630 for best results. If not set, the one from the preview image will be used, if not set or not in a app context, the one defined in allink_settings will be used.'),
+        help_text=_(u'Preview image when page/post is shared on Facebook/ Twitter. <br>Min. 1200 x 630 for best results. If not set, the one from the preview image will be used, if not set or not in a app context, the one defined in allink_settings will be used.'),
         blank=True,
         null=True
     )
 
     og_title = models.CharField(
-        verbose_name=_(u'Title Tag and Title when shared on Facebook.'),
+        verbose_name=_(u'Title Tag and Title when shared on Facebook/ Twitter.'),
         max_length=255,
         help_text=_(u'Title when shared on Facebook.'),
         blank=True,
@@ -145,9 +145,14 @@ class AllinkMetaTagFieldsModel(models.Model):
     og_description = models.CharField(
         verbose_name=_(u'Meta Description for Search Engines and when shared on Facebook.'),
         max_length=255,
-        help_text=_(u'Description when shared on Facebook.'),
+        help_text=_(u'Description when shared on Facebook/ Twitter.'),
         blank=True,
         null=True
+    )
+    enable_base_title = models.BooleanField(
+        _(u'Enable base title'),
+        help_text=_(u'If dsiabled, only the page title will be shown. Everything behind and including the "|" will be removed.'),
+        default=True
     )
 
 

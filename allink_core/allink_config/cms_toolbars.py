@@ -19,7 +19,7 @@ class AllinkMetaTagExtensionToolbar(ExtensionToolbar):
         current_page_menu = self._setup_extension_toolbar()
         if current_page_menu and self.toolbar.edit_mode:
             position = 5
-            sub_menu = self._get_sub_menu(current_page_menu, 'submenu_label', _(u'Meta Tags'), position)
+            sub_menu = self._get_sub_menu(current_page_menu, 'submenu_label', _(u'SEO'), position)
             urls = self.get_title_extension_admin()
 
             for title_extension, url in urls:
