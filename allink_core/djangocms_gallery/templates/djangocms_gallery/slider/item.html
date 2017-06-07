@@ -1,7 +1,6 @@
-{% load cms_tags sekizai_tags i18n thumbnail %}
+{% load cms_tags sekizai_tags i18n thumbnail cache %}
 
-
-
+{% cache 15552000 slider_image instance.id %}
     {# Required: To keep aspect ratio #}
     <div class="inner cms-plugin-start">
 
@@ -34,5 +33,4 @@
         {% endif %}
 
     </div>
-
-
+{% endcache %}

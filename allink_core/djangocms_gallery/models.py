@@ -75,7 +75,8 @@ class AllinkGalleryPlugin(CMSPlugin):
 
     def save(self, *args, **kwargs):
         # invalidate cache
-        cache.delete(make_template_fragment_key('content_gallery', [self.id]))
+        for child in self.get_children():
+            cache.delete(make_template_fragment_key('slider_image', [child.id]))
         super(AllinkGalleryPlugin, self).save(*args, **kwargs)
 
 
@@ -103,5 +104,5 @@ class AllinkGalleryImagePlugin(CMSPlugin):
 
     def save(self, *args, **kwargs):
         # invalidate cache
-        cache.delete(make_template_fragment_key('content_gallery', [self.parent.id]))
+        cache.delete(make_template_fragment_key('slider_image', [self.id]))
         super(AllinkGalleryImagePlugin, self).save(*args, **kwargs)
