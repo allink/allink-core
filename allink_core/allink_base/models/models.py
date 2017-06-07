@@ -590,12 +590,14 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
         except KeyError:
             query_filter = {}
         try:
-            return self.get_render_queryset_for_display().filter(**query_filter).order_by().values_list(fieldname).distinct()
+            # order alphabetically if not 'categories' (they are ordered by 'lft')
+            order_by = fieldname if fieldname != 'categories' else 'lft'
+            return self.get_render_queryset_for_display().filter(**query_filter).order_by(order_by).values_list(fieldname).distinct()
         # handle translated fields
         except FieldError:
             translation_model = self.data_model.translations.related.related_model
             model_query = self.get_render_queryset_for_display().filter(**query_filter)
-            return translation_model.objects.filter(language_code=get_current_language(), master__in=model_query).order_by().values_list(fieldname).distinct()
+            return translation_model.objects.filter(language_code=get_current_language(), master__in=model_query).order_by(order_by).values_list(fieldname).distinct()
 
     def get_filter_fields_with_options(self):
         """
