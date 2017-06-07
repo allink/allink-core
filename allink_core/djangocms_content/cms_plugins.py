@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.utils.translation import ugettext_lazy as _
+from django.utils.functional import cached_property
 from django.conf import settings
 from cms.models import CMSPlugin
 from cms.plugin_base import CMSPluginBase
@@ -105,11 +106,16 @@ class CMSAllinkContentColumnPlugin(CMSPluginBase):
     form = AllinkContentColumnPluginForm
     require_parent = True
 
+    disable_dragable_menu = True
+
     class Media:
         js = (get_files('djangocms_custom_admin')[0]['publicPath'], )
         css = {
             'all': (get_files('djangocms_custom_admin')[1]['publicPath'], )
         }
+
+    def has_delete_permission(self, request, obj=None):
+        return False
 
     def save_model(self, request, obj, form, change):
 

@@ -249,11 +249,6 @@ class AllinkContentColumnPlugin(CMSPlugin):
             self.order_mobile = self.position
         super(AllinkContentColumnPlugin, self).save()
 
-    # def get_thumbnail_alias(self):
-    #     for template in self.parent.djangocms_content_allinkcontentplugin.get_templates():
-    #         if template[0] == self.template:
-    #             return template[3]
-
     @property
     def css_classes(self):
         css_classes = []
