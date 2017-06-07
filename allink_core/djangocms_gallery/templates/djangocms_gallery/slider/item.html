@@ -1,9 +1,9 @@
 {% load cms_tags sekizai_tags i18n thumbnail %}
 
-<div class="swiper-slide swiper-slide-{{instance.id}}">
+
 
     {# Required: To keep aspect ratio #}
-    <div class="inner">
+    <div class="inner cms-plugin-start">
 
         {# Optional: Overlay has to be activated through SCSS setting #}
         <div class="swiper-content-overlay"></div>
@@ -24,14 +24,15 @@
                 {% endif %}
             </div>
         </div>
+
+        {% if instance.image %}
+            {% include "includes/retina_media_query.html" with min_width=0 max_width=320 background_image=instance.image|thumbnail_url:'slider-gallery-plugin-xs' background_image_2x=instance.image|thumbnail_url:'slider-gallery-plugin-xs-x2' content_type_id=instance.id prefix='swiper-slide' %}
+            {% include "includes/retina_media_query.html" with min_width=321 max_width=512 background_image=instance.image|thumbnail_url:'slider-gallery-plugin-sm' background_image_2x=instance.image|thumbnail_url:'slider-gallery-plugin-sm-x2' content_type_id=instance.id prefix='swiper-slide' %}
+            {% include "includes/retina_media_query.html" with min_width=513 max_width=1023 background_image=instance.image|thumbnail_url:'slider-gallery-plugin-md' background_image_2x=instance.image|thumbnail_url:'slider-gallery-plugin-md-x2' content_type_id=instance.id prefix='swiper-slide' %}
+            {% include "includes/retina_media_query.html" with min_width=1024 max_width=1199 background_image=instance.image|thumbnail_url:'slider-gallery-plugin-lg' background_image_2x=instance.image|thumbnail_url:'slider-gallery-plugin-lg-x2' content_type_id=instance.id prefix='swiper-slide' %}
+            {% include "includes/retina_media_query.html" with min_width=1200 max_width=0 background_image=instance.image|thumbnail_url:'slider-gallery-plugin-xl' background_image_2x=instance.image|thumbnail_url:'slider-gallery-plugin-xl-x2' content_type_id=instance.id prefix='swiper-slide' %}
+        {% endif %}
+
     </div>
 
-    {% if instance.image %}
-        {% include "includes/retina_media_query.html" with min_width=0 max_width=320 background_image=instance.image|thumbnail_url:'slider-gallery-plugin-xs' background_image_2x=instance.image|thumbnail_url:'slider-gallery-plugin-xs-x2' content_type_id=instance.id prefix='swiper-slide' %}
-        {% include "includes/retina_media_query.html" with min_width=321 max_width=512 background_image=instance.image|thumbnail_url:'slider-gallery-plugin-sm' background_image_2x=instance.image|thumbnail_url:'slider-gallery-plugin-sm-x2' content_type_id=instance.id prefix='swiper-slide' %}
-        {% include "includes/retina_media_query.html" with min_width=513 max_width=1023 background_image=instance.image|thumbnail_url:'slider-gallery-plugin-md' background_image_2x=instance.image|thumbnail_url:'slider-gallery-plugin-md-x2' content_type_id=instance.id prefix='swiper-slide' %}
-        {% include "includes/retina_media_query.html" with min_width=1024 max_width=1199 background_image=instance.image|thumbnail_url:'slider-gallery-plugin-lg' background_image_2x=instance.image|thumbnail_url:'slider-gallery-plugin-lg-x2' content_type_id=instance.id prefix='swiper-slide' %}
-        {% include "includes/retina_media_query.html" with min_width=1200 max_width=0 background_image=instance.image|thumbnail_url:'slider-gallery-plugin-xl' background_image_2x=instance.image|thumbnail_url:'slider-gallery-plugin-xl-x2' content_type_id=instance.id prefix='swiper-slide' %}
-    {% endif %}
 
-</div>
