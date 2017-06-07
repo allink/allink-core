@@ -226,6 +226,13 @@ class AllinkInternalLinkFieldsModel(models.Model):
         else:
             return None
 
+    @property
+    def is_page_link(self):
+        if self.link_page:
+            return True
+        else:
+            return False
+
 
 class AllinkLinkFieldsModel(AllinkInternalLinkFieldsModel):
     link_url = models.URLField(
