@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-07 15:00+0200\n"
+"POT-Creation-Date: 2017-06-07 17:41+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,69 +18,69 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:194
-#: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:415
+#: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:196
+#: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:417
 msgid "Button Group"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:207
-#: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:428
+#: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:209
+#: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:430
 msgid "Text"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:210
-#: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:221
-#: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:254
-#: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:288
-#: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:431
+#: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:212
+#: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:223
+#: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:256
+#: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:290
+#: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:433
 msgid "required"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:218
+#: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:220
 msgid "Input has error"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:232
+#: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:234
 msgid "Disabled Field"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:240
+#: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:242
 msgid "Textarea (with text)"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:251
+#: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:253
 msgid "Select a Choice"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:272
+#: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:274
 msgid "Custom File Upload"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:285
+#: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:287
 msgid "Textarea (blank)"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:296
+#: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:298
 msgid "Datepicker 1"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:300
-#: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:311
+#: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:302
+#: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:313
 msgid "Select date..."
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:307
+#: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:309
 msgid "Datepicker 2"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:318
+#: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:320
 msgid "Check all that apply (checkbox)"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:348
+#: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:350
 msgid "Select a Choice (radio)"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:378
+#: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:380
 msgid "URL"
 msgstr ""
