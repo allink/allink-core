@@ -5,6 +5,8 @@ from django.core.cache.utils import make_template_fragment_key
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import python_2_unicode_compatible
+from django.contrib.postgres.fields import ArrayField
+
 from cms.models.pluginmodel import CMSPlugin
 from filer.fields.image import FilerImageField
 from djangocms_text_ckeditor.fields import HTMLField
@@ -41,6 +43,15 @@ class AllinkGalleryPlugin(CMSPlugin):
         default=True,
         help_text=_(u'This option enables autoplay for this gallery.'),
     )
+    project_css_classes = ArrayField(
+        models.CharField(
+            max_length=50,
+            blank=True,
+            null=True
+        ),
+        blank=True,
+        null=True
+    )
 
     def __str__(self):
         if self.template:
@@ -53,6 +64,14 @@ class AllinkGalleryPlugin(CMSPlugin):
         for x, y in get_additional_templates('GALLERY'):
             templates += ((x, y),)
         return templates
+
+    @property
+    def css_classes(self):
+        css_classes = []
+        if getattr(self, 'project_css_classes'):
+            for css_class in getattr(self, 'project_css_classes'):
+                css_classes.append(css_class)
+        return ' '.join(css_classes)
 
     def save(self, *args, **kwargs):
         # invalidate cache

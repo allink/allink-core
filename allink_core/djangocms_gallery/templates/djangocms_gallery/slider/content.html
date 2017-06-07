@@ -4,7 +4,7 @@
     cache for a half year, cache gets invalidated with changes
 {% endcomment %}
 {% cache 15552000 content_gallery instance.id %}
-    <div class="app-content-plugin gallery-plugin ratio-{{instance.ratio}}">
+    <div class="app-content-plugin gallery-plugin ratio-{{instance.ratio}} {{ instance.css_classes }}">
         <div class="swiper-container swiper-default swiper-gallery-plugin" {% if instance.auto_start_enabled == False %}data-autoplay="false"{% endif %}>
 
             <div class="swiper-wrapper">

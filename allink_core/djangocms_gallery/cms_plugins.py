@@ -37,6 +37,12 @@ class CMSAllinkGalleryPlugin(CMSPluginBase):
                     'auto_start_enabled',
                 ]
             }),
+            (_('Advanced Options'), {
+            'classes': ('collapse',),
+            'fields': (
+                'project_css_classes',
+            )
+            })
         )
 
         return fieldsets
