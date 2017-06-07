@@ -12,7 +12,7 @@ from django.template.loader import get_template
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
 from django.conf import settings
-from django.http import HttpResponse, Http404, HttpResponseRedirect
+from django.http import HttpResponse, Http404, HttpResponseRedirect, HttpResponsePermanentRedirect
 from django.template.loader import render_to_string
 from django.template import TemplateDoesNotExist
 
@@ -170,3 +170,7 @@ class AllinkBaseCreateView(CreateView):
         except TemplateDoesNotExist:
             template = 'includes/forms/confirmation.html'
         return template
+
+# used to redirect page to external url
+def external_view(request, target):
+    return HttpResponsePermanentRedirect('http://' + target)
