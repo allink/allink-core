@@ -152,8 +152,11 @@ def render_h1(context, obj=None, text=None):
 
         if page_ext and page_ext.override_h1:
             text = page_ext.override_h1
-        else:
+        elif page and page.get_page_title():
             text = page.get_page_title()
+        # for example django admin page
+        else:
+            text = site.name
     else:
         text = site.name
 
