@@ -6,7 +6,7 @@
     <form method="post" action="{{instance.get_link_url}}">
     {% csrf_token %}
 {% endif %}
-    <a href="{{ instance.get_link_url }}"
+    <a href="{{ instance.get_link_url }}{% if instance.link_mailto and instance.email_subject %}?subject={{ instance.email_subject|urlencode }}{% endif %}{% if instance.link_mailto and instance.email_body_text %}&amp;body={{ instance.email_body_text|urlencode }}{% endif %}"
         class="
             {% if instance.type == 'btn' %}
                 btn{% if instance.btn_context %} btn-{{ instance.btn_context }}{% endif %}
@@ -62,4 +62,3 @@
 {% if instance.link_special == 'account_logout' and user.is_authenticated %}
     </form>
 {% endif %}
-

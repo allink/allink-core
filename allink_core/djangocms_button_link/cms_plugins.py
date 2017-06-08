@@ -87,6 +87,13 @@ class CMSAllinkButtonLinkPlugin(CMSPluginBase):
                 'link_target',
             )
         }),
+        (_('Additional email settings'), {
+            'classes': ('collapse',),
+            'fields': (
+                'email_subject',
+                'email_body_text',
+            )
+        }),
         (_('Advanced settings'), {
             'classes': ('collapse',),
             'fields': (

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-07 17:41+0200\n"
+"POT-Creation-Date: 2017-06-08 10:38+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,7 +28,7 @@ msgid "allink"
 msgstr ""
 
 #: allink_core_repo/allink_core/djangocms_button_link/cms_plugins.py:38
-#: allink_core_repo/allink_core/djangocms_button_link/cms_plugins.py:90
+#: allink_core_repo/allink_core/djangocms_button_link/cms_plugins.py:97
 msgid "Advanced settings"
 msgstr ""
 
@@ -38,6 +38,10 @@ msgstr ""
 
 #: allink_core_repo/allink_core/djangocms_button_link/cms_plugins.py:79
 msgid "Link settings"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_button_link/cms_plugins.py:90
+msgid "Additional email settings"
 msgstr ""
 
 #: allink_core_repo/allink_core/djangocms_button_link/forms.py:24
@@ -113,6 +117,14 @@ msgstr ""
 
 #: allink_core_repo/allink_core/djangocms_button_link/models.py:104
 msgid "Icon right"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_button_link/models.py:110
+msgid "Subject"
+msgstr ""
+
+#: allink_core_repo/allink_core/djangocms_button_link/models.py:116
+msgid "Body Text"
 msgstr ""
 
 #: allink_core_repo/allink_core/djangocms_button_link/templates/admin/djangocms_button_link/widgets/icon.html:8
