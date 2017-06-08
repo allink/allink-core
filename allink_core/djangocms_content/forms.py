@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from django import forms
-from django.forms.util import ErrorList
 from django.utils.translation import ugettext_lazy as _
 
 from allink_core.allink_base.utils import get_additional_choices
@@ -35,7 +34,7 @@ class AllinkContentPluginForm(forms.ModelForm):
 
     def clean(self):
         cleaned_data = super(AllinkContentPluginForm, self).clean()
-        if self.has_changed():
+        if self.instance.pk:
             # if column count is not the same, dont allow template to change
             if self.instance.get_template_column_count(self.instance.template) != self.instance.get_template_column_count(cleaned_data['template']):
                 self.add_error('template', _(u'You can only change the template if it has the same amount of columns as the previous template.'))
