@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-07 15:00+0200\n"
+"POT-Creation-Date: 2017-06-07 17:41+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: allink_core_repo/allink_core/allink_base/admin/admin.py:52
-#: allink_core_repo/allink_core/allink_base/admin/admin.py:77
+#: allink_core_repo/allink_core/allink_base/admin/admin.py:78
 #: allink_core_repo/allink_core/allink_base/admin/cms_plugins.py:59
 #: allink_core_repo/allink_core/allink_base/admin/forms.py:21
 #: allink_core_repo/allink_core/allink_base/admin/forms.py:23
@@ -564,7 +564,7 @@ msgid "Place"
 msgstr "Ort"
 
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:71
-#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:257
+#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:262
 msgid "Phone"
 msgstr "Telefon"
 
@@ -585,7 +585,7 @@ msgid "Fax"
 msgstr ""
 
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:89
-#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:415
+#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:420
 msgid "Email"
 msgstr "E-Mail"
 
@@ -635,56 +635,66 @@ msgstr "Meta-Beschribung für Suchmaschienen und falls auf Facebook geteilt."
 msgid "Description when shared on Facebook/ Twitter."
 msgstr "Beschreibung auf Facebook falls geteilt."
 
-#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:157
+#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:153
+msgid "Enable base title"
+msgstr ""
+
+#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:154
+msgid ""
+"If dsiabled, only the page title will be shown. Everything behind and "
+"including the \"|\" will be removed."
+msgstr ""
+
+#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:162
 msgid "New Page"
 msgstr "Neue Seite"
 
-#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:160
+#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:165
 msgid "If provided, overrides the external link and New Apphook-Page."
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:164
+#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:169
 msgid "New Apphook-Page"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:167
-#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:248
+#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:172
+#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:253
 msgid "If provided, overrides the external link."
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:172
+#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:177
 msgid "To which object directs the url."
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:177
+#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:182
 msgid "Dotted Path to referenced Model"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:182
+#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:187
 msgid "Name of the App-URL to use."
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:192
+#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:197
 msgid "Keyword arguments used to reverse url."
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:242
+#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:247
 msgid "Provide a valid URL to an external website."
 msgstr "Gültige URL zu einer externen Website angeben."
 
-#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:245
+#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:250
 msgid "Internal link"
 msgstr "Interner Link"
 
-#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:251
+#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:256
 msgid "Email address"
 msgstr "E-Mail Adresse"
 
-#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:263
+#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:268
 msgid "Anchor"
 msgstr "Anker"
 
-#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:266
+#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:271
 msgid ""
 "Appends the value only after the internal or external link.Do <em>not</em> "
 "include a preceding \"#\" symbol."
@@ -692,44 +702,44 @@ msgstr ""
 "Hängt den Wert nur an einen internen oder externen Link. <strong>Kein</"
 "strong>  führendes \"#\"-Zeichen angeben."
 
-#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:270
+#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:275
 msgid "Link Target"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:276
+#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:281
 msgid "file"
 msgstr "Datei"
 
-#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:281
+#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:286
 msgid "Special Links"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:288
+#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:293
 msgid "Attributes"
 msgstr "Attribute"
 
-#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:378
+#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:383
 #, python-format
 msgid "Only one of %(fields)s or %(last_field)s may be given."
 msgstr ""
 "Nur eines der Felder %(fields)s oder %(last_field)s darf angegeben werden."
 
-#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:391
+#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:396
 #, python-format
 msgid ""
 "%(anchor_field_verbose_name)s is not allowed together with %(field_name)s"
 msgstr ""
 "%(anchor_field_verbose_name)s kann nicht mit %(field_name)s verwendet werden."
 
-#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:407
+#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:412
 msgid "First Name"
 msgstr "Vorname"
 
-#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:411
+#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:416
 msgid "Last Name"
 msgstr "Nachname"
 
-#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:418
+#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:423
 msgid "Message"
 msgstr "Nachricht"
 
