@@ -232,6 +232,12 @@ class AllinkMetaTagExtension(TitleExtension):
         help_text=_(u'If dsiabled, only the page title will be shown. Everything behind and including the "|" will be removed.'),
         default=True
     )
-
+    override_h1 = models.CharField(
+        _(u'Override H1'),
+        help_text=_(u'Page Title or App title is default. This option allows you to override the h1 tag.'),
+        max_length=255,
+        blank=True,
+        null=True
+    )
 
 extension_pool.register(AllinkMetaTagExtension)

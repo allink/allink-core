@@ -130,16 +130,17 @@ def render_meta_og(context, obj=None, page_title=None, base_page_title=None, ima
 
 
 ####################################################################################
-# page title: > title in tab
+# page h1: > renders h1 tag
 
-@register.inclusion_tag('templatetags/allink_page_title.html', takes_context=True)
-def render_page_title(context, obj=None, title=None, base_title=None):
-    # Page Title
-    if title:
-        page_title = title
-    # we pass a object when app content
+@register.inclusion_tag('templatetags/allink_h1.html', takes_context=True)
+def render_h1(context, obj=None, text=None):
+    site = getattr(context.request, 'site')
+
+    if text:
+        text = text
+    #  we pass a object when app content
     elif obj:
-        page_title = obj.title
+        text = obj.title
     # cms page (no object is supplied)
     elif hasattr(context.request, 'current_page'):
         page = getattr(context.request, 'current_page')
@@ -148,17 +149,19 @@ def render_page_title(context, obj=None, title=None, base_title=None):
             page_ext = page.get_title_obj().allinkmetatagextension
         except:
             page_ext = None
-        page_title = page.get_page_title()
 
+        if page_ext and page_ext.override_h1:
+            text = page_ext.override_h1
+        elif page and page.get_page_title():
+            text = page.get_page_title()
+        # for example django admin page
+        else:
+            text = site.name
     else:
-        page_title = ''
-
-
-    # add base
-    # | {% if allink_config.default_base_title %}{{ allink_config.default_base_title }}{% else %}{{ request.site.name }}{% endif %}
+        text = site.name
 
     context.update({
-            'page_title': page_title,
+            'text': text,
         })
 
     return context
