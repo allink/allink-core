@@ -1,30 +1,35 @@
-{% load thumbnail allink_image_tags %}
+{% load thumbnail allink_image_tags cache %}
 
-<div class="image-container image-plugin {{ instance.css_classes }}">
+{% comment %}
+    cache for half a year, invalidated when edited
+{% endcomment %}
+{% cache 15552000 content_image instance.id %}
+    <div class="image-container image-plugin {{ instance.css_classes }}">
 
-    {# start render figure/figcaption #}
-    {% if instance.caption_text %}
-        <figure>
-    {% endif %}
-    {# end render figure/figcaption #}
+        {# start render figure/figcaption #}
+        {% if instance.caption_text %}
+            <figure>
+        {% endif %}
+        {# end render figure/figcaption #}
 
-        {% if instance.get_link_url %}
-            <a href="{{ instance.get_link_url }}"
-                {% if instance.new_window_enabled %} target="_blank"{% endif %}
-                {{ instance.link_attributes_str }}
-                >
+            {% if instance.get_link_url %}
+                <a href="{{ instance.get_link_url }}"
+                    {% if instance.new_window_enabled %} target="_blank"{% endif %}
+                    {{ instance.link_attributes_str }}
+                    >
+            {% endif %}
+
+                {% render_image image=instance.picture ratio=instance.ratio icon_enabled=instance.icon_enabled bg_enabled=instance.bg_enabled %}
+
+            {% if instance.get_link_url %}
+                </a>
+            {% endif %}
+
+        {# start render figure/figcaption #}
+        {% if instance.caption_text %}
+                <figcaption>{{ instance.caption_text }}</figcaption>
+            </figure>
         {% endif %}
 
-            {% render_image image=instance.picture ratio=instance.ratio icon_enabled=instance.icon_enabled bg_enabled=instance.bg_enabled %}
-
-        {% if instance.get_link_url %}
-            </a>
-        {% endif %}
-
-    {# start render figure/figcaption #}
-    {% if instance.caption_text %}
-            <figcaption>{{ instance.caption_text }}</figcaption>
-        </figure>
-    {% endif %}
-
-</div>
+    </div>
+{% endcache %}
