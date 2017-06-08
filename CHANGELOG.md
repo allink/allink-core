@@ -290,6 +290,12 @@ Additionally, project specific plugins require the `class Media` (described belo
   </div>
   ```
 - ButtonLinkPlugin: Added additional email fields subject and body text
+- placeholder_has_content: allink_cms_tags template tag that renders boolean to variable if placeholder has plugins or not
+  ```html
+  {% load allink_cms_tags %}
+  {% placeholder_has_content object.header_placeholder as header_has_content %}
+  <div class="content-section {% if not header_has_content %}hidden{% endif %}"></div>
+  ```
 
 
 ### FIXES

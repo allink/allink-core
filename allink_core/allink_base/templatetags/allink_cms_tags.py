@@ -11,6 +11,14 @@ def page_from_slug(slug):
     return Page.objects.get(slug=slug)
 
 
+@register.assignment_tag
+def placeholder_has_content(placeholder):
+    """
+    Renders boolean to variable if placeholder has plugins or not
+    """
+    return placeholder.cmsplugin_set.exists()
+
+
 class CMSEditableObjectAjax(CMSEditableObject):
     """
     Used to render correct title (with editable double click)
