@@ -289,6 +289,7 @@ Additionally, project specific plugins require the `class Media` (described belo
   ...
   </div>
   ```
+- ButtonLinkPlugin: Added additional email fields subject and body text
 
 
 ### FIXES
