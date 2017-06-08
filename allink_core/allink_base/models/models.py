@@ -113,11 +113,11 @@ class AllinkBaseModel(AllinkMetaTagFieldsModel):
 
     @classmethod
     def get_next(cls, instance):
-        return cls.get_published().filter(created__gte=instance.created, id__gt=instance.id).exclude(id=instance.id).order_by('created', 'id').first()
+        return cls.get_published().filter(created__gt=instance.created, id__gt=instance.id).order_by('created', 'id').first()
 
     @classmethod
     def get_previous(cls, instance):
-        return cls.get_published().filter(created__lte=instance.created, id__lt=instance.id).order_by('created', 'id').last()
+        return cls.get_published().filter(created__lt=instance.created, id__lt=instance.id).order_by('created', 'id').last()
 
     @classmethod
     def get_relevant_categories(cls):

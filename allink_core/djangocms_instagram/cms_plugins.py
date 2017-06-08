@@ -73,7 +73,6 @@ class CMSAllinkInstagramPlugin(CMSPluginBase):
         context['follow_position'] = self.get_follow_position(instance.paginated_by)
 
         cache_name = 'instagram_feed_{}'.format(instance.account)
-        cache.delete(cache_name)
         image_urls_cached = cache.get(cache_name, None)
         image_urls = []
 
