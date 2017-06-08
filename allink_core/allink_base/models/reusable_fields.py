@@ -203,7 +203,7 @@ class AllinkInternalLinkFieldsModel(models.Model):
     @property
     def link(self):
         if self.link_page:
-            return self.link_page.get_absolute_url()
+            link = self.link_page.get_absolute_url()
         elif self.link_apphook_page:
             try:
                 obj_module = import_module('.'.join(self.link_model.split('.')[:-1]))
@@ -211,25 +211,27 @@ class AllinkInternalLinkFieldsModel(models.Model):
                 obj = obj_model.objects.get(id=self.link_object_id)
                 url_kwargs = {key: getattr(obj, key) for key in self.link_url_kwargs}
                 url_name = u'{}:{}'.format(self.link_apphook_page.application_namespace, self.link_url_name)
-                return reverse(url_name, kwargs=url_kwargs)
+                link = reverse(url_name, kwargs=url_kwargs)
             except:
-                return ''
+                link = ''
         else:
-            return ''
+            link = ''
+        return link
 
     @property
     def link_object(self):
         if self.link_page:
-            return self.link_page
+            link_obj = self.link_page
         elif self.link_apphook_page:
             try:
                 obj_module = import_module('.'.join(self.link_model.split('.')[:-1]))
                 obj_model = getattr(obj_module, self.link_model.split('.')[-1])
-                return obj_model.objects.get(id=self.link_object_id)
+                link_obj = obj_model.objects.get(id=self.link_object_id)
             except:
-                return None
+                link_obj = None
         else:
-            return None
+            link_obj = None
+        return link_obj
 
     @property
     def is_page_link(self):

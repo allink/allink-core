@@ -105,6 +105,19 @@ class AllinkButtonLinkPlugin(CMSPlugin, AllinkLinkFieldsModel):
     )
     extra_css_classes = Classes()
 
+    # email specific fields
+    email_subject = models.CharField(
+        verbose_name=_(u'Subject'),
+        max_length=255,
+        default='',
+        blank=True,
+    )
+    email_body_text = models.TextField(
+        verbose_name=_(u'Body Text'),
+        default='',
+        blank=True,
+    )
+
     cmsplugin_ptr = CMSPluginField()
 
     def __str__(self):

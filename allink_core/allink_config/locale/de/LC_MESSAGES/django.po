@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-07 15:00+0200\n"
+"POT-Creation-Date: 2017-06-07 17:41+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -321,4 +321,14 @@ msgstr ""
 msgid ""
 "If dsiabled, only the page title will be shown. Everything behind and "
 "including the \"|\" will be removed."
+msgstr ""
+
+#: allink_core_repo/allink_core/allink_config/models.py:236
+msgid "Override H1"
+msgstr ""
+
+#: allink_core_repo/allink_core/allink_config/models.py:237
+msgid ""
+"Page Title or App title is default. This option allows you to override the "
+"h1 tag."
 msgstr ""
