@@ -143,34 +143,43 @@ def render_meta_og(context, obj=None, page_title=None, base_page_title=None, ima
 
 @register.inclusion_tag('templatetags/allink_h1.html', takes_context=True)
 def render_h1(context, obj=None, text=None):
-    site = getattr(context.request, 'site')
+    if hasattr(context, 'request'):
+        site = getattr(context.request, 'site')
+        if text:
+            text = text
+        #  we pass a object when app content
+        elif obj:
+            text = obj.title
+        # cms page (no object is supplied)
+        elif hasattr(context.request, 'current_page'):
+            page = getattr(context.request, 'current_page')
+            try:
+                # only when extension is there
+                page_ext = page.get_title_obj().allinkmetatagextension
+            except:
+                page_ext = None
 
-    if text:
-        text = text
-    #  we pass a object when app content
-    elif obj:
-        text = obj.title
-    # cms page (no object is supplied)
-    elif hasattr(context.request, 'current_page'):
-        page = getattr(context.request, 'current_page')
-        try:
-            # only when extension is there
-            page_ext = page.get_title_obj().allinkmetatagextension
-        except:
-            page_ext = None
-
-        if page_ext and page_ext.override_h1:
-            text = page_ext.override_h1
-        elif page and page.get_page_title():
-            text = page.get_page_title()
-        # for example django admin page
+            if page_ext and page_ext.override_h1:
+                text = page_ext.override_h1
+            elif page and page.get_page_title():
+                text = page.get_page_title()
+            # for example django admin page
+            else:
+                text = site.name
         else:
             text = site.name
     else:
-        text = site.name
+        if text:
+            text = text
+        #  we pass a object when app content
+        elif obj:
+            text = obj.title
+        # cms page (no object is supplied)
+        else:
+            text = ''
 
     context.update({
-            'text': text,
-        })
+        'text': text,
+    })
 
     return context
