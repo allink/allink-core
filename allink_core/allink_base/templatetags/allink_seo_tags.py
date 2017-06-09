@@ -14,8 +14,8 @@ register = template.Library()
 @register.inclusion_tag('templatetags/allink_meta_og.html', takes_context=True)
 def render_meta_og(context, obj=None, page_title=None, base_page_title=None, image=None, og_title=None, description=None):
     """
-    either pass all variables with this tag explicitly 
-    or get it from either the page 
+    either pass all variables with this tag explicitly
+    or get it from either the page
     or the app content (then supply the object)
     """
     cachekey = 'meta_og_%s' % hashlib.md5(str('%s_%s_%s_%s_%s_%s_%s' % (obj.__class__ if obj else '', obj.id if obj else '', page_title, base_page_title, image, og_title, description)).encode('utf-8')).hexdigest()

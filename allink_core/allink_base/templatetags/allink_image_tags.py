@@ -1,16 +1,20 @@
 # -*- coding: utf-8 -*-
 from django import template
 from django.utils.translation import ugettext_lazy as _
+from django.core.cache import cache
 from django.conf import settings
+from django.contrib import messages
 
+from filer.models import Folder
 from easy_thumbnails.files import get_thumbnailer
 from easy_thumbnails.exceptions import InvalidImageFormatError
-from allink_core.allink_base.utils import get_height_from_ratio, get_percent, get_ratio_w_h
+
+from allink_core.allink_config.models import AllinkConfig
+from allink_core.allink_base.utils import get_height_from_ratio, get_ratio_w_h
 register = template.Library()
 
 # ####################################################################################
 # Allink image
-
 
 
 def get_sizes_from_width_alias(width_alias):
@@ -322,47 +326,55 @@ def render_content_image(context, thumbnail_url=None, icon_disabled=False, bg_di
 
 @register.inclusion_tag('templatetags/allink_favicon_set.html', takes_context=True)
 def render_favicons_set(context):
-    from filer.models import Folder
-    from django.contrib import messages
-    from allink_core.allink_config.models import AllinkConfig
 
-    apple_favs = []
-    android_favs = []
-    favicons = []
+    cached_favs = cache.get('favicon_context', None)
+    if cached_favs:
+        context.update(cached_favs)
+        return context
 
-    try:
-        files = Folder.objects.get(name='favicons').files
-    except Folder.DoesNotExist:
-        messages.warning(context.request, _(u'Please create a folder "favicons" and upload the complete favicon set.'))
-        return
+    else:
 
-    for file in files:
-        if file.original_filename.startswith('apple-touch-icon'):
-            apple_favs.append(file)
-        elif file.original_filename.startswith('android-chrome'):
-            android_favs.append(file)
-        elif file.original_filename.startswith('favicon-'):
-            favicons.append(file)
-        elif file.original_filename.startswith('favicon.ico'):
-            context.update({'favicon': file})
-        elif file.original_filename.startswith('mstile'):
-            context.update({'mstile': file})
-        elif file.original_filename.startswith('safari-pinned-tab'):
-            context.update({'mask_icon': file})
+        apple_favs = []
+        android_favs = []
+        favicons = []
+        extra_context = {}
 
-    allink_config = AllinkConfig.get_solo()
+        try:
+            files = Folder.objects.get(name='favicons').files
+        except Folder.DoesNotExist:
+            messages.warning(context.request, _(u'Please create a folder "favicons" and upload the complete favicon set.'))
+            return
 
-    theme_color = getattr(allink_config, 'theme_color', '#ffffff')
-    mask_icon_color = getattr(allink_config, 'mask_icon_color', '#282828')
-    msapplication_tilecolor = getattr(allink_config, 'msapplication_tilecolor', '#282828')
+        for file in files:
+            if file.original_filename.startswith('apple-touch-icon'):
+                apple_favs.append({'width': file.width, 'height': file.height, 'url': file.url})
+            elif file.original_filename.startswith('android-chrome'):
+                android_favs.append({'width': file.width, 'height': file.height, 'url': file.url})
+            elif file.original_filename.startswith('favicon-'):
+                favicons.append({'width': file.width, 'height': file.height, 'url': file.url})
+            elif file.original_filename.startswith('favicon.ico'):
+                extra_context.update({'favicon': file.url})
+            elif file.original_filename.startswith('mstile'):
+                extra_context.update({'mstile': file.url})
+            elif file.original_filename.startswith('safari-pinned-tab'):
+                extra_context.update({'mask_icon': file.url})
 
-    context.update({
-        'apple_favs': apple_favs,
-        'android_favs': android_favs,
-        'favicons': favicons,
-        'theme_color': theme_color,
-        'mask_icon_color': mask_icon_color,
-        'msapplication_tilecolor': msapplication_tilecolor,
-    })
+        allink_config = AllinkConfig.get_solo()
 
-    return context
+        theme_color = getattr(allink_config, 'theme_color', '#ffffff')
+        mask_icon_color = getattr(allink_config, 'mask_icon_color', '#282828')
+        msapplication_tilecolor = getattr(allink_config, 'msapplication_tilecolor', '#282828')
+
+        extra_context.update({
+            'apple_favs': apple_favs,
+            'android_favs': android_favs,
+            'favicons': favicons,
+            'theme_color': theme_color,
+            'mask_icon_color': mask_icon_color,
+            'msapplication_tilecolor': msapplication_tilecolor,
+        })
+
+        cache.set('favicon_context', extra_context, 60 * 60 * 24 * 180)  # cache gets invalidated on AllinkConfig change
+        context.update(extra_context)
+
+        return context
