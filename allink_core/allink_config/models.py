@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 from django.db import models
+from django.core.cache import cache
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 
 from filer.fields.image import FilerImageField
+from filer.models.imagemodels import Image
 from solo.models import SingletonModel
 
 from allink_core.allink_base.models import AllinkMetaTagFieldsModel
@@ -213,6 +215,45 @@ class AllinkConfig(SingletonModel):
     class Meta:
         verbose_name = _(u'Allink Configuration')
 
+    # SOLO_CACHE does not work in our setup, thats why, we rewrite it here
+    def to_dict(self):
+        fields = {
+            field.name: getattr(self, field.name) for field in self._meta.get_fields() if not isinstance(field, FilerImageField)
+        }
+        fields.update({
+            '%s_id' % (field.name): getattr(self, field.name).id for field in self._meta.get_fields() if isinstance(field, FilerImageField)
+        })
+        return fields
+
+    def set_to_cache(self):
+        cache_key = self.get_cache_key()
+        timeout = 60 * 60 * 24 * 180
+        cache.set(cache_key, self.to_dict(), timeout)
+
+        # invalidate cache for favicon templatetag
+        cache.delete('favicon_context')
+
+    @classmethod
+    def get_cache_key(cls):
+        prefix = 'solo'
+        return '%s:%s' % (prefix, cls.__name__.lower())
+
+    @classmethod
+    def get_solo(cls):
+        cache_key = cls.get_cache_key()
+        obj_dict = cache.get(cache_key)
+        if obj_dict:
+            obj = cls()
+            for name, value in obj_dict.items():
+                if name[-3:] == '_id':
+                    setattr(obj, name, Image.objects.get(id=value))
+                else:
+                    setattr(obj, name, value)
+        else:
+            obj, created = cls.objects.get_or_create(pk=1)
+            obj.set_to_cache()
+        return obj
+
 
 from cms.extensions import TitleExtension
 from cms.extensions.extension_pool import extension_pool
@@ -239,5 +280,6 @@ class AllinkMetaTagExtension(TitleExtension):
         blank=True,
         null=True
     )
+
 
 extension_pool.register(AllinkMetaTagExtension)
