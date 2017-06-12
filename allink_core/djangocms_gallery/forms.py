@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 from django import forms
 from django.utils.translation import ugettext_lazy as _
+from django.utils.html import strip_tags
 
 from allink_core.allink_base.utils import get_ratio_choices, get_additional_choices
 from allink_core.djangocms_gallery.models import AllinkGalleryPlugin, AllinkGalleryImagePlugin
+from allink_core.allink_config.models import AllinkConfig
 
 
 class AllinkGalleryPluginForm(forms.ModelForm):
@@ -39,3 +41,14 @@ class AllinkGalleryImagePluginForm(forms.ModelForm):
     class Meta:
         model = AllinkGalleryImagePlugin
         exclude = ('page', 'position', 'placeholder', 'language', 'plugin_type')
+
+    def clean(self):
+        cleaned_data = super(AllinkGalleryImagePluginForm, self).clean()
+        form_data = self.cleaned_data
+        text_length = len(strip_tags(form_data['text']))
+        gallery_plugin_caption_text_max_length = AllinkConfig.get_solo().gallery_plugin_caption_text_max_length
+
+        if gallery_plugin_caption_text_max_length and text_length > gallery_plugin_caption_text_max_length:
+            self.add_error('text', _(u'There are only {} characters allowed in text field. Currently there are {} characters.').format(gallery_plugin_caption_text_max_length, text_length))
+
+        return cleaned_data

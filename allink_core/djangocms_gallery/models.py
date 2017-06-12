@@ -6,6 +6,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import python_2_unicode_compatible
 from django.contrib.postgres.fields import ArrayField
+from django.core.validators import MaxLengthValidator
 
 from cms.models.pluginmodel import CMSPlugin
 from filer.fields.image import FilerImageField

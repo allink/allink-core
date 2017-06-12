@@ -89,6 +89,16 @@ class AllinkConfigAdmin(SingletonModelAdmin):
             )
         }),
 
+        fieldsets += (_('Gallery Plugin'), {
+            'classes': (
+                'collapse',
+            ),
+            'fields': (
+                'gallery_plugin_caption_text_max_length',
+                'gallery_plugin_caption_text_styling_disabled',
+            )
+        }),
+
         return fieldsets
 
 
