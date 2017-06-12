@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-07 17:41+0200\n"
+"POT-Creation-Date: 2017-06-12 09:36+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,11 +45,11 @@ msgstr "Template wählen"
 
 #: allink_core_repo/allink_core/djangocms_instagram/models.py:51
 msgid "Sort order"
-msgstr "Sorierung"
+msgstr "Sortierung"
 
 #: allink_core_repo/allink_core/djangocms_instagram/models.py:52
 msgid "Choose a order."
-msgstr "Wähle eine Sortierung."
+msgstr "Sortierung wählen"
 
 #: allink_core_repo/allink_core/djangocms_instagram/models.py:58
 msgid "Grid items per row"
@@ -57,7 +57,7 @@ msgstr "Anzahl Einträge pro Zeile"
 
 #: allink_core_repo/allink_core/djangocms_instagram/models.py:59
 msgid "Only applied if a \"Grid\" template has been selected."
-msgstr "Wird nur angewandt wenn ein \"Grid\"-Template benutzt wird."
+msgstr "Wird nur angewandt, wenn ein \"Grid\"-Template ausgewählt wurde."
 
 #: allink_core_repo/allink_core/djangocms_instagram/models.py:64
 msgid "Max. entries per page"
@@ -65,7 +65,7 @@ msgstr "Max. Einträge pro Seite"
 
 #: allink_core_repo/allink_core/djangocms_instagram/models.py:66
 msgid "Set to 0 if all entries should be displayed on first page."
-msgstr "Mit 0 können alle Einträge auf der ersten Seite gezeigt werden."
+msgstr "Mit 0 können alle Einträge auf der ersten Seite angezeigt werden."
 
 #: allink_core_repo/allink_core/djangocms_instagram/models.py:69
 msgid "Account"
@@ -81,7 +81,7 @@ msgstr "Folgen Text"
 
 #: allink_core_repo/allink_core/djangocms_instagram/models.py:75
 msgid "Follow us text i.e.: Tag your images with #awesomehashtag"
-msgstr "Folge uns Text, bsp.: Füge deinen Bildern den Tag #awesomehashtag zu."
+msgstr "Folge-uns-Text, bsp.: Tagge deine Bilder mit #awesomehashtag."
 
 #: allink_core_repo/allink_core/djangocms_instagram/templates/djangocms_instagram/plugins/grid_static/_follow.html:6
 msgid "Follow us"
