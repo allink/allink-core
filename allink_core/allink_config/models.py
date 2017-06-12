@@ -225,12 +225,6 @@ class AllinkConfig(SingletonModel):
         fields = {
             field.name: getattr(self, field.name) for field in self._meta.get_fields() if not isinstance(field, FilerImageField)
         }
-
-        # for field in self._meta.get_fields():
-        #     if getattr(self, field.name) and isinstance(field, FilerImageField):
-        #         fields.update({
-        #             '%s_id' % (field.name): getattr(self, field.name).id
-        #         })
         fields.update({
             '%s_id' % (field.name): getattr(self, field.name).id for field in self._meta.get_fields() if getattr(self, field.name) and isinstance(field, FilerImageField)
         })
