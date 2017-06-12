@@ -43,7 +43,10 @@ def render_meta_og(context, obj=None, image=None, og_title=None, description=Non
         elif obj.preview_image:
             image_url = obj.preview_image.url
         else:
-            image_url = allink_config.default_og_image.url
+            try:
+                image_url = allink_config.default_og_image.url
+            except:
+                image_url = None
 
     # cms page (no object is supplied)
     elif hasattr(context.request, 'current_page'):
@@ -80,10 +83,15 @@ def render_meta_og(context, obj=None, image=None, og_title=None, description=Non
         if image:
             image_url = image.url
         elif page_ext and page_ext.og_image:
-            image_url = page_ext.og_image.url if page_ext.og_image else allink_config.default_og_image.url
+            try:
+                image_url = page_ext.og_image.url if page_ext.og_image else allink_config.default_og_image.url
+            except:
+                image_url = None
         else:
-            image_url = allink_config.default_og_image.url
-
+            try:
+                image_url = allink_config.default_og_image.url
+            except:
+                image_url = None
 
     context.update({
         'og_title': og_title,

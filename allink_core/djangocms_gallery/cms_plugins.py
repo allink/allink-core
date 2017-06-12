@@ -81,7 +81,5 @@ class CMSAllinkGalleryImagePlugin(CMSPluginBase):
         return fieldsets
 
     def get_render_template(self, context, instance, placeholder):
-        context = super(CMSAllinkGalleryImagePlugin, self).render(context, instance, placeholder)
-        context['caption_text_styling_disabled'] = AllinkConfig.get_solo().gallery_plugin_caption_text_styling_disabled
         template = 'djangocms_gallery/{}/item.html'.format(instance.template)
         return template
