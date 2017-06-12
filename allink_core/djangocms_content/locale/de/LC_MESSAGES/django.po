@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-07 17:41+0200\n"
+"POT-Creation-Date: 2017-06-12 09:36+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,32 +53,32 @@ msgstr "Erweiterte Einstellungen"
 msgid "Column"
 msgstr "Spalte"
 
-#: allink_core_repo/allink_core/djangocms_content/forms.py:20
+#: allink_core_repo/allink_core/djangocms_content/forms.py:19
 #: allink_core_repo/allink_core/djangocms_content/models.py:50
 msgid "Template"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_content/forms.py:25
+#: allink_core_repo/allink_core/djangocms_content/forms.py:24
 msgid "Background color"
 msgstr "Hintergrundfarbe"
 
-#: allink_core_repo/allink_core/djangocms_content/forms.py:30
+#: allink_core_repo/allink_core/djangocms_content/forms.py:29
 msgid "Predifined variations"
 msgstr "Vordefinierte Variationen"
 
-#: allink_core_repo/allink_core/djangocms_content/forms.py:31
+#: allink_core_repo/allink_core/djangocms_content/forms.py:30
 msgid ""
 "Instructions: Single selection is made by clicking on an option. Multiple "
 "selections are achieved by pressing and holding down the Command-key (Mac) "
 "or Control-Key (Windows) <strong>and</strong> clicking the options you would "
 "like to apply."
 msgstr ""
-"Anleitung: Einzelne Selektion durch Klicken auf die gewünschte Option. "
+"Anleitung: Einzelauswahl durch Klicken auf die gewünschte Option. "
 "Mehrfachwahl kann durch Drücken und Halten der Command-Taste (Mac) or "
 "Control-Taste (Windows) <strong>und</strong> Anklicken der gewünschten "
 "Optionen erzielt werden."
 
-#: allink_core_repo/allink_core/djangocms_content/forms.py:41
+#: allink_core_repo/allink_core/djangocms_content/forms.py:40
 msgid ""
 "You can only change the template if it has the same amount of columns as the "
 "previous template."
@@ -98,7 +98,7 @@ msgid ""
 "over an image/video)"
 msgstr ""
 "Falls angewählt, werden die vordefinierten Overlay-Styles angewandt "
-"(Nützlich falls Text über einem Bild oder Video dargestellt wird)."
+"(Nützlich, falls Text über einem Bild oder Video dargestellt wird)."
 
 #: allink_core_repo/allink_core/djangocms_content/models.py:60
 msgid "Activate \"full height\" mode"
@@ -114,7 +114,7 @@ msgstr ""
 
 #: allink_core_repo/allink_core/djangocms_content/models.py:65
 msgid "Activate Parallax effect"
-msgstr "Parallx-Effekt aktivieren"
+msgstr "Parallax-Effekt aktivieren"
 
 #: allink_core_repo/allink_core/djangocms_content/models.py:66
 msgid "If checked, the parallax effect is enabled."
@@ -122,15 +122,15 @@ msgstr "Falls angewählt, ist der Parallax-Effekt aktiv."
 
 #: allink_core_repo/allink_core/djangocms_content/models.py:70
 msgid "Background-Image"
-msgstr "Hintergurndbild"
+msgstr "Hintergrundbild"
 
 #: allink_core_repo/allink_core/djangocms_content/models.py:71
 msgid ""
 "Adds a background image to the inner container of a content section. "
 "Activating \"overlay styles\" is recommended."
 msgstr ""
-"Fügt ein Hintergrundbild zum inneren Container eines Inhaltabschnitts. "
-"\"Overlay-Styles\" aktivieren empfohlen."
+"Fügt ein Hintergrundbild zum inneren Container eines Inhaltsabschnitts "
+"hinzu. \"Overlay-Styles\" aktivieren empfohlen."
 
 #: allink_core_repo/allink_core/djangocms_content/models.py:79
 msgid "Source"
@@ -143,7 +143,7 @@ msgid ""
 "audio = smaller file size and less annoyed visitors)<br>File size: Dependent "
 "of video length. Generally speaking: Less is more."
 msgstr ""
-"Empfohlene Video Einstellungen:<br><br>Format: mp4<br>Codec: H.264<br>Target "
+"Empfohlene Video-Einstellungen:<br><br>Format: mp4<br>Codec: H.264<br>Target "
 "Bitrate: 2 (Video lädt schnell und läuft ohne Stocken)<br>Audio: Nicht "
 "empfohlen (kein Audio = kleinere Dateigrösse und weniger verärgerte "
 "Besucher)<br>Dateigrösse: Abhängig von der Länge des Videos. Allgemein: "
@@ -151,7 +151,7 @@ msgstr ""
 
 #: allink_core_repo/allink_core/djangocms_content/models.py:87
 msgid "Video Start Image"
-msgstr "Video Start Bild"
+msgstr "Video-Startbild"
 
 #: allink_core_repo/allink_core/djangocms_content/models.py:89
 msgid ""
@@ -159,8 +159,8 @@ msgid ""
 "frame of the video is used, in order to make the transition as smooth as "
 "possible."
 msgstr ""
-"Dieses Bild wird gezeigt während das Video lädt. Am besten das "
-"allerersteFrame des Vidos benutzen, damit der Beginn ohne Stocken verläuft."
+"Dieses Bild wird angezeigt, während das Video lädt. Am besten das allererste "
+"Frame des Videos benutzen, damit der Beginn ohne Stocken verläuft."
 
 #: allink_core_repo/allink_core/djangocms_content/models.py:94
 msgid "Mobile Image"
@@ -169,7 +169,7 @@ msgstr "Bild für Mobile"
 #: allink_core_repo/allink_core/djangocms_content/models.py:96
 msgid ""
 "The image that is being displayed instead of the video on mobile devices."
-msgstr "Das Bild welches auf Mobile anstelle des Videos gezeigt wird."
+msgstr "Das Bild, das auf Mobile anstelle des Videos angezeigt wird."
 
 #: allink_core_repo/allink_core/djangocms_content/models.py:101
 msgid "Mobile Image Alignment (horizontal)"
@@ -182,7 +182,7 @@ msgid ""
 "part (left and/or right) is not visible."
 msgstr ""
 "Welcher Bildteil ist am wichtigsten und <strong>muss</strong> sichtbar sein? "
-"Je nach Bildschirmgrösse, kann es sein das ein Teil (links und/oder rechts) "
+"Je nach Bildschirmgrösse kann es sein, dass ein Teil (links und/oder rechts) "
 "nicht sichtbar ist."
 
 #: allink_core_repo/allink_core/djangocms_content/models.py:108
@@ -194,8 +194,8 @@ msgid ""
 "ID of this content section which can be used for anchor reference from links."
 "<br>Note: Only letters, numbers and hyphen. No spaces or special chars."
 msgstr ""
-"Die ID für diesen Inhaltsabschnitt, welche verwendet werden kann für ein "
-"Anker-Verlinkung.<br>Hinweis: Nur Buchstaben, Ziffern und Bindestriche (-). "
+"ID für diesen Inhaltsabschnitt, die für eine Anker-Verlinkung verwendet "
+"werden kann. <br>Hinweis: Nur Buchstaben, Ziffern und Bindestriche (-). "
 "Keine Sonderzeichen oder Abstände."
 
 #: allink_core_repo/allink_core/djangocms_content/models.py:115
@@ -228,7 +228,7 @@ msgid ""
 msgstr ""
 "Gewisse Spalten sollten auf Mobile anders geordnet werden, da diese vertikal "
 "gestapelt werden.Mit dieser Option können Sie die Reihenfolge der Spalten "
-"bestimmen<br><br>Hinweis: Die Spaltensortierung ist absteigend (Kleinste "
+"bestimmen.<br><br>Hinweis: Die Spaltensortierung ist absteigend (Kleinste "
 "Zahl wird zuerst angezeigt.)"
 
 #: allink_core_repo/allink_core/djangocms_content/models.py:217
@@ -240,8 +240,8 @@ msgid ""
 "This option overrides the projects default alignment for mobile. (Usually "
 "\"left\")"
 msgstr ""
-"Diese Einstellung überschreibt den Sandard für horizontale Ausrichtung auf "
-"Mobile. (Normalerweise \"links\")"
+"Diese Einstellung überschreibt den Standard für die horizontale Ausrichtung "
+"auf Mobile. (Normalerweise \"links\")"
 
 #: allink_core_repo/allink_core/djangocms_content/models.py:225
 msgid "Alignment horizontal desktop"
@@ -252,17 +252,17 @@ msgid ""
 "This option overrides the projects default alignment for desktop. (Usually "
 "\"left\")"
 msgstr ""
-"Diese Einstellung überschreibt den Sandard für horizontale Ausrichtung auf "
-"Desktop. (Normalerweise \"links\")"
+"Diese Einstellung überschreibt den Standard für die horizontale Ausrichtung "
+"auf Desktop. (Normalerweise \"links\")"
 
 #: allink_core_repo/allink_core/djangocms_content/models.py:233
 msgid "Alignment vertical desktop"
-msgstr "Verikale Ausrichtung auf Desktop"
+msgstr "Vertikale Ausrichtung auf Desktop"
 
 #: allink_core_repo/allink_core/djangocms_content/models.py:236
 msgid ""
 "This option overrides the projects default alignment for desktop. (Usually "
 "\"top\")"
 msgstr ""
-"Diese Einstellung überschreibt den Sandard für vertikale Ausrichtung auf "
-"Desktop. (Normalerweise \"oben\")"
+"Diese Einstellung überschreibt den Standard für die vertikale Ausrichtung "
+"auf Desktop. (Normalerweise \"oben\")"

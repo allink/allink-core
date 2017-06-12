@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-07 17:41+0200\n"
+"POT-Creation-Date: 2017-06-12 09:36+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,13 +29,11 @@ msgstr ""
 
 #: allink_core_repo/allink_core/djangocms_gallery/cms_plugins.py:32
 msgid "Slider Options"
-msgstr "Slider Optionen"
+msgstr "Slider-Optionen"
 
 #: allink_core_repo/allink_core/djangocms_gallery/cms_plugins.py:40
-#, fuzzy
-#| msgid "Slider Options"
 msgid "Advanced Options"
-msgstr "Slider Optionen"
+msgstr "Erweiterte Optionen"
 
 #: allink_core_repo/allink_core/djangocms_gallery/cms_plugins.py:58
 #: allink_core_repo/allink_core/djangocms_gallery/models.py:96
@@ -50,7 +48,7 @@ msgstr "Seitenverhältnis"
 #: allink_core_repo/allink_core/djangocms_gallery/forms.py:19
 msgid "This option overrides the default settings for the gallery plugin."
 msgstr ""
-"Diese Einstellung überschreibt die Standarteinstellungen für den Galerie-"
+"Diese Einstellung überschreibt die Standardeinstellungen für den Galerie-"
 "Inhalt."
 
 #: allink_core_repo/allink_core/djangocms_gallery/forms.py:24
@@ -80,15 +78,15 @@ msgstr "Vollbildoption sichtbar"
 
 #: allink_core_repo/allink_core/djangocms_gallery/models.py:34
 msgid "This option enables a fullscreen button for this gallery."
-msgstr "Diese Einstellung blendet den Vollbild-Button für diese Galerie ein."
+msgstr "Diese Einstellung blendet einen Vollbild-Button für diese Galerie ein."
 
 #: allink_core_repo/allink_core/djangocms_gallery/models.py:37
 msgid "Gallery counter visible"
-msgstr "Bildnummern darstellen"
+msgstr "Bildnummern anzeigen"
 
 #: allink_core_repo/allink_core/djangocms_gallery/models.py:39
 msgid "This option enables a gallery counter."
-msgstr "Diese Einstellung ermöglicht es die Bildnummern anzuzeigen."
+msgstr "Diese Einstellung ermöglicht es, die Bildnummern anzuzeigen."
 
 #: allink_core_repo/allink_core/djangocms_gallery/models.py:42
 msgid "Autostart"
@@ -96,8 +94,7 @@ msgstr ""
 
 #: allink_core_repo/allink_core/djangocms_gallery/models.py:44
 msgid "This option enables autoplay for this gallery."
-msgstr ""
-"Diese Einstellung startet die automatische Animation für diese Galerie."
+msgstr "Diese Einstellung aktiviert Autoplay für diese Galerie."
 
 #: allink_core_repo/allink_core/djangocms_gallery/models.py:86
 msgid "Title"
