@@ -296,6 +296,7 @@ Additionally, project specific plugins require the `class Media` (described belo
   {% placeholder_has_content object.header_placeholder as header_has_content %}
   <div class="content-section {% if not header_has_content %}hidden{% endif %}"></div>
   ```
+- AllinkConfig / GalleryImagePlugin: Added two options to AllinkConfig to set a max length of caption text and to disable styled output in GalleryImagePlugin.
 
 
 ### FIXES
