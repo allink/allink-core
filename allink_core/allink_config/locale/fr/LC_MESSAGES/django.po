@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-07 17:41+0200\n"
+"POT-Creation-Date: 2017-06-12 09:36+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,12 +19,12 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: allink_core_repo/allink_core/allink_config/admin.py:20
-#: allink_core_repo/allink_core/allink_config/models.py:29
+#: allink_core_repo/allink_core/allink_config/models.py:31
 msgid "Theme Color"
 msgstr ""
 
 #: allink_core_repo/allink_core/allink_config/admin.py:20
-#: allink_core_repo/allink_core/allink_config/models.py:30
+#: allink_core_repo/allink_core/allink_config/models.py:32
 msgid "Theme color for Android Chrome"
 msgstr ""
 
@@ -33,7 +33,7 @@ msgid "Mask Icon Color"
 msgstr ""
 
 #: allink_core_repo/allink_core/allink_config/admin.py:21
-#: allink_core_repo/allink_core/allink_config/models.py:37
+#: allink_core_repo/allink_core/allink_config/models.py:39
 msgid "Mask icon color for safari-pinned-tab.svg"
 msgstr ""
 
@@ -42,7 +42,7 @@ msgid "MS Application Title Color"
 msgstr ""
 
 #: allink_core_repo/allink_core/allink_config/admin.py:22
-#: allink_core_repo/allink_core/allink_config/models.py:44
+#: allink_core_repo/allink_core/allink_config/models.py:46
 msgid "MS application TitleColor Field"
 msgstr ""
 
@@ -77,235 +77,235 @@ msgstr ""
 msgid "Config"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:16
+#: allink_core_repo/allink_core/allink_config/models.py:18
 msgid "og:image"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:17
+#: allink_core_repo/allink_core/allink_config/models.py:19
 msgid ""
 "Default preview image when page/post is shared on Facebook. <br>Min. 1200 x "
 "630 for best results."
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:22
+#: allink_core_repo/allink_core/allink_config/models.py:24
 msgid "Base title"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:24
+#: allink_core_repo/allink_core/allink_config/models.py:26
 msgid ""
 "Default base title, Is also used for default base og:title when page/post is "
 "shared on Facebook. <br>If not supplied the name form Django Sites will be "
 "used instead."
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:36
+#: allink_core_repo/allink_core/allink_config/models.py:38
 msgid "Mask icon color"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:43
+#: allink_core_repo/allink_core/allink_config/models.py:45
 msgid "msapplication TileColor"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:50
+#: allink_core_repo/allink_core/allink_config/models.py:52
 msgid "Blog verbose name"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:51
+#: allink_core_repo/allink_core/allink_config/models.py:53
 msgid "Blog entry"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:55
+#: allink_core_repo/allink_core/allink_config/models.py:57
 msgid "Blog verbose name plural"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:56
+#: allink_core_repo/allink_core/allink_config/models.py:58
 msgid "Blog"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:60
-#: allink_core_repo/allink_core/allink_config/models.py:74
-#: allink_core_repo/allink_core/allink_config/models.py:88
-#: allink_core_repo/allink_core/allink_config/models.py:102
-#: allink_core_repo/allink_core/allink_config/models.py:116
-#: allink_core_repo/allink_core/allink_config/models.py:130
-#: allink_core_repo/allink_core/allink_config/models.py:144
-#: allink_core_repo/allink_core/allink_config/models.py:158
-#: allink_core_repo/allink_core/allink_config/models.py:172
-#: allink_core_repo/allink_core/allink_config/models.py:186
-#: allink_core_repo/allink_core/allink_config/models.py:200
+#: allink_core_repo/allink_core/allink_config/models.py:62
+#: allink_core_repo/allink_core/allink_config/models.py:76
+#: allink_core_repo/allink_core/allink_config/models.py:90
+#: allink_core_repo/allink_core/allink_config/models.py:104
+#: allink_core_repo/allink_core/allink_config/models.py:118
+#: allink_core_repo/allink_core/allink_config/models.py:132
+#: allink_core_repo/allink_core/allink_config/models.py:146
+#: allink_core_repo/allink_core/allink_config/models.py:160
+#: allink_core_repo/allink_core/allink_config/models.py:174
+#: allink_core_repo/allink_core/allink_config/models.py:188
+#: allink_core_repo/allink_core/allink_config/models.py:202
 msgid "Toolbar enabled?"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:64
+#: allink_core_repo/allink_core/allink_config/models.py:66
 msgid "News verbose name"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:65
+#: allink_core_repo/allink_core/allink_config/models.py:67
 msgid "News entry"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:69
+#: allink_core_repo/allink_core/allink_config/models.py:71
 msgid "News verbose name plural"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:70
+#: allink_core_repo/allink_core/allink_config/models.py:72
 msgid "News"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:78
+#: allink_core_repo/allink_core/allink_config/models.py:80
 msgid "Events verbose name"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:79
+#: allink_core_repo/allink_core/allink_config/models.py:81
 msgid "Event"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:83
+#: allink_core_repo/allink_core/allink_config/models.py:85
 msgid "Events verbose name plural"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:84
+#: allink_core_repo/allink_core/allink_config/models.py:86
 msgid "Events"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:92
+#: allink_core_repo/allink_core/allink_config/models.py:94
 msgid "Events Registration verbose name"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:93
+#: allink_core_repo/allink_core/allink_config/models.py:95
 msgid "Event Registration"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:97
+#: allink_core_repo/allink_core/allink_config/models.py:99
 msgid "Events Registration verbose name plural"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:98
+#: allink_core_repo/allink_core/allink_config/models.py:100
 msgid "Event Registrations"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:106
+#: allink_core_repo/allink_core/allink_config/models.py:108
 msgid "Locations verbose name"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:107
+#: allink_core_repo/allink_core/allink_config/models.py:109
 msgid "Location"
 msgstr "Emplacement"
 
-#: allink_core_repo/allink_core/allink_config/models.py:111
+#: allink_core_repo/allink_core/allink_config/models.py:113
 msgid "Locations verbose name plural"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:112
+#: allink_core_repo/allink_core/allink_config/models.py:114
 msgid "Locations"
 msgstr "Emplacements"
 
-#: allink_core_repo/allink_core/allink_config/models.py:120
+#: allink_core_repo/allink_core/allink_config/models.py:122
 msgid "People verbose name"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:121
+#: allink_core_repo/allink_core/allink_config/models.py:123
 msgid "Person"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:125
+#: allink_core_repo/allink_core/allink_config/models.py:127
 msgid "People verbose name plural"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:126
+#: allink_core_repo/allink_core/allink_config/models.py:128
 msgid "People"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:134
+#: allink_core_repo/allink_core/allink_config/models.py:136
 msgid "Testimonials verbose name"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:135
+#: allink_core_repo/allink_core/allink_config/models.py:137
 msgid "Testimonial"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:139
+#: allink_core_repo/allink_core/allink_config/models.py:141
 msgid "Testimonials verbose name plural"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:140
+#: allink_core_repo/allink_core/allink_config/models.py:142
 msgid "Testimonials"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:148
+#: allink_core_repo/allink_core/allink_config/models.py:150
 msgid "Work verbose name"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:149
+#: allink_core_repo/allink_core/allink_config/models.py:151
 msgid "Project/ Reference"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:153
+#: allink_core_repo/allink_core/allink_config/models.py:155
 msgid "Work verbose name plural"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:154
+#: allink_core_repo/allink_core/allink_config/models.py:156
 msgid "Projects/ References"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:162
+#: allink_core_repo/allink_core/allink_config/models.py:164
 msgid "Members verbose name"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:163
+#: allink_core_repo/allink_core/allink_config/models.py:165
 msgid "Member"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:167
+#: allink_core_repo/allink_core/allink_config/models.py:169
 msgid "Members verbose name plural"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:168
+#: allink_core_repo/allink_core/allink_config/models.py:170
 msgid "Members"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:176
+#: allink_core_repo/allink_core/allink_config/models.py:178
 msgid "Contact verbose name"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:177
+#: allink_core_repo/allink_core/allink_config/models.py:179
 msgid "Contact request"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:181
+#: allink_core_repo/allink_core/allink_config/models.py:183
 msgid "Contact verbose name plural"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:182
+#: allink_core_repo/allink_core/allink_config/models.py:184
 msgid "Contact requests"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:190
+#: allink_core_repo/allink_core/allink_config/models.py:192
 msgid "Terms of Service verbose name"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:191
-#: allink_core_repo/allink_core/allink_config/models.py:196
+#: allink_core_repo/allink_core/allink_config/models.py:193
+#: allink_core_repo/allink_core/allink_config/models.py:198
 msgid "Terms of Service"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:195
+#: allink_core_repo/allink_core/allink_config/models.py:197
 msgid "Terms of Service verbose name plural"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:204
+#: allink_core_repo/allink_core/allink_config/models.py:206
 msgid "Google Site Verification Code"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:214
+#: allink_core_repo/allink_core/allink_config/models.py:216
 msgid "Allink Configuration"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:224
+#: allink_core_repo/allink_core/allink_config/models.py:265
 msgid "og:Image"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:226
+#: allink_core_repo/allink_core/allink_config/models.py:267
 msgid ""
 "Preview image when page/post is shared on Facebook/ Twitter. <br>Min. 1200 x "
 "630 for best results. If not set, the one from the preview image will be "
@@ -313,21 +313,21 @@ msgid ""
 "will be used."
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:231
+#: allink_core_repo/allink_core/allink_config/models.py:272
 msgid "Enable base title"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:232
+#: allink_core_repo/allink_core/allink_config/models.py:273
 msgid ""
 "If dsiabled, only the page title will be shown. Everything behind and "
 "including the \"|\" will be removed."
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:236
+#: allink_core_repo/allink_core/allink_config/models.py:277
 msgid "Override H1"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_config/models.py:237
+#: allink_core_repo/allink_core/allink_config/models.py:278
 msgid ""
 "Page Title or App title is default. This option allows you to override the "
 "h1 tag."
