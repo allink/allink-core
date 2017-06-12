@@ -5,6 +5,7 @@ from cms.plugin_pool import plugin_pool
 from webpack_loader.utils import get_files
 from allink_core.djangocms_gallery.models import AllinkGalleryPlugin, AllinkGalleryImagePlugin
 from allink_core.djangocms_gallery.forms import AllinkGalleryPluginForm, AllinkGalleryImagePluginForm
+from allink_core.allink_config.models import AllinkConfig
 
 
 @plugin_pool.register_plugin
@@ -38,10 +39,10 @@ class CMSAllinkGalleryPlugin(CMSPluginBase):
                 ]
             }),
             (_('Advanced Options'), {
-            'classes': ('collapse',),
-            'fields': (
-                'project_css_classes',
-            )
+                'classes': ('collapse',),
+                'fields': (
+                    'project_css_classes',
+                )
             })
         )
 
@@ -80,5 +81,7 @@ class CMSAllinkGalleryImagePlugin(CMSPluginBase):
         return fieldsets
 
     def get_render_template(self, context, instance, placeholder):
+        context = super(CMSAllinkGalleryImagePlugin, self).render(context, instance, placeholder)
+        context['caption_text_styling_disabled'] = AllinkConfig.get_solo().gallery_plugin_caption_text_styling_disabled
         template = 'djangocms_gallery/{}/item.html'.format(instance.template)
         return template
