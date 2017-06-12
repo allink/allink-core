@@ -243,6 +243,7 @@ Additionally, project specific plugins require the `class Media` (described belo
 
 ###### TEMPLATES
 - people job_function (which it was used in tejakob for example) was substitutett with property 'units'. You now have to add categories (with unit=True) and tag th person with it. this allowes us to categories people without having to maintain both fields 'unit' and categories
+- meta block in base_root.html  (also every app template)
 
 ###### URLS
 
