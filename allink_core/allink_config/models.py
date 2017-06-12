@@ -53,10 +53,6 @@ class AllinkConfig(SingletonModel):
         blank=True,
         null=True,
     )
-    gallery_plugin_caption_text_styling_disabled = models.BooleanField(
-        _(u'Gallery Plugin render output with no styling'),
-        default=False
-    )
     blog_verbose = models.CharField(
         _(u'Blog verbose name'),
         default=_(u'Blog entry'),
