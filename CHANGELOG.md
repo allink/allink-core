@@ -11,7 +11,19 @@ Each release is divided into the following main categories:
 - NEW: New features or plugins
 - FIXES: General bugfixes
 
-## v0.0.10 (under development)
+
+## v0.0.11 (under development)
+
+### IMPORTANT
+###### SETTINGS
+###### TEMPLATES
+###### URLS
+###### REQUIREMENTS
+###### DATA MIGRATIONS
+### NEW
+
+
+## v0.0.10
 
 ### IMPORTANT
 - The following dependencies/plugins have been removed from the core. Unregister them accordingly:
