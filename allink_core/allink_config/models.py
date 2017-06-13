@@ -53,10 +53,6 @@ class AllinkConfig(SingletonModel):
         blank=True,
         null=True,
     )
-    gallery_plugin_caption_text_styling_disabled = models.BooleanField(
-        _(u'Gallery Plugin render output with no styling'),
-        default=False
-    )
     blog_verbose = models.CharField(
         _(u'Blog verbose name'),
         default=_(u'Blog entry'),
@@ -230,7 +226,7 @@ class AllinkConfig(SingletonModel):
             field.name: getattr(self, field.name) for field in self._meta.get_fields() if not isinstance(field, FilerImageField)
         }
         fields.update({
-            '%s_id' % (field.name): getattr(self, field.name).id for field in self._meta.get_fields() if isinstance(field, FilerImageField)
+            '%s_id' % (field.name): getattr(self, field.name).id for field in self._meta.get_fields() if getattr(self, field.name) and isinstance(field, FilerImageField)
         })
         return fields
 
