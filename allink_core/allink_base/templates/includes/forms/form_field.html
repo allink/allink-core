@@ -65,10 +65,17 @@
                         {# Default #}
 
                         {% else %}
+
                             {% comment %}
-                                In case of a "Form Plugin" we can choose "placeholder-enabled" that will add the placeholder attributes
+
+                                Only display an input placeholder in the following cases:
+
+                                1: In a "Form Plugin" we can choose a "placeholder-enabled" option that will add the placeholder attributes
+
+                                2: A 'placeholder_enabled=True' is passed to either a form or a form_field include-tag
+
                             {% endcomment %}
-                            {% if instance.label_layout == 'placeholder' %}
+                            {% if instance.label_layout == 'placeholder' or placeholder_enabled == True %}
                                 {% if field.field.required %}
                                     {% render_field field class+="form-control" required="required" placeholder=field.label %}
                                 {% else %}
