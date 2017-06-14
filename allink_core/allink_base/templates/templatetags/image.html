@@ -6,41 +6,72 @@
 
         <!--[if IE 9]><video style="display: none;"><![endif]-->
 
+        {# XXL #}
+        {% if thumbnail_xxl %}
+            <source
+                data-srcset="{{thumbnail_xxl.url}}, {{thumbnail_xxl.high_resolution.url}} 2x"
+                media="(min-width:1600px)"
+                >
+        {% endif %}
+
         {# XL #}
-        <source
-            data-srcset="{{thumbnail_xl.url}}, {{thumbnail_xl.high_resolution.url}} 2x"
-            media="(min-width:1200px)"
-            >
+        {% if thumbnail_xl %}
+            <source
+                data-srcset="{{thumbnail_xl.url}}, {{thumbnail_xl.high_resolution.url}} 2x"
+                media="(min-width:1200px)"
+                >
+        {% endif %}
 
         {# SM #}
+        {% if thumbnail_sm %}
         <source
             data-srcset="{{thumbnail_sm.url}}, {{thumbnail_sm.high_resolution.url}} 2x"
             media="(min-width:576px)"
             >
+        {% endif %}
 
         <!--[if IE 9]></video><![endif]-->
 
         {# XS #}
         <img
-            data-srcset="{{thumbnail_xs.url}}, {{thumbnail_xs.high_resolution.url}} 2x"s
+            data-srcset="{{thumbnail_xs.url}}, {{thumbnail_xs.high_resolution.url}} 2x"
             alt="{{ object.title }}"
             class="lazyload"
         >
 
         <style>
-            #{{ picture_id }} {
-                padding-bottom: {{ ratio_percent_xs }};
-            }
-            @media (min-width:576px) {
+
+            {% comment %}
+                The magic CSS placeholder "hack"
+            {% endcomment %}
+
+            {% if ratio_percent_xs %}
                 #{{ picture_id }} {
-                    padding-bottom: {{ ratio_percent_sm }};
+                    padding-bottom: {{ ratio_percent_xs }};
                 }
-            }
-            @media (min-width:1200px) {
-                #{{ picture_id }} {
-                    padding-bottom: {{ ratio_percent_xl }};
+            {% endif %}
+            {% if ratio_percent_sm %}
+                @media (min-width:576px) {
+                    #{{ picture_id }} {
+                        padding-bottom: {{ ratio_percent_sm }};
+                    }
                 }
-            }
+            {% endif %}
+            {% if ratio_percent_xl %}
+                @media (min-width:1200px) {
+                    #{{ picture_id }} {
+                        padding-bottom: {{ ratio_percent_xl }};
+                    }
+                }
+            {% endif %}
+            {% if ratio_percent_xxl %}
+                @media (min-width:1600px) {
+                    #{{ picture_id }} {
+                        padding-bottom: {{ ratio_percent_xxl }};
+                    }
+                }
+            {% endif %}
+
         </style>
 
     </picture>
