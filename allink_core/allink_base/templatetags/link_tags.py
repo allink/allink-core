@@ -10,7 +10,7 @@ def link_attribute_string(instance, request=None):
     attributes = ''
     attributes += 'target="_blank"' if instance.new_window_enabled else ''
     attributes += ' data-trigger-form-modal' if instance.image_modal_enabled else ''
-    attributes += ' data-trigger-image-modal' if instance.image_modal_enabled else ''
+    attributes += ' data-trigger-form-modal' if instance.form_modal_enabled else ''
     attributes += ' data-cms-page' if instance.is_page_link else ''
     attributes += ' data-trigger-softpage' if (instance.softpage_large_enabled or instance.softpage_small_enabled) and instance.link_special != 'account_logout' else ''
     attributes += ' data-softpage-variation="large"' if instance.softpage_large_enabled else ''
