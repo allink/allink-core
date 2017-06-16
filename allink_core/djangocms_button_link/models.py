@@ -124,13 +124,14 @@ class AllinkButtonLinkPlugin(CMSPlugin, AllinkLinkFieldsModel):
     def __str__(self):
         return u'{}'.format(self.label)
 
-    @property
     def get_link_url(self):
         base = super(AllinkButtonLinkPlugin, self).get_link_url()
-        parameters = {}
+        link = base
         if self.link_mailto:
+            parameters = {}
             if self.email_subject:
                 parameters = {'subject': urlquote(self.email_subject)}
             if self.email_body_text:
                 parameters['body'] = urlquote(self.email_body_text)
-        return '{}?{}'.format(base, '&'.join('{}={}'.format(v, k) for (v, k) in parameters.items()))
+            link = '{}?{}'.format(base, '&'.join('{}={}'.format(v, k) for (v, k) in parameters.items()))
+        return link
