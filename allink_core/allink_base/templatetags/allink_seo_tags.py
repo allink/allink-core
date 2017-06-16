@@ -41,6 +41,8 @@ def render_meta_og(context, obj=None, page_title=None, base_page_title=None, ima
             page_title += ' | ' + base_page_title
         elif not obj.enable_base_title:
             page_title = page_title
+        elif obj.enable_base_title and obj.og_title:
+            page_title += ' | ' + obj.og_title
         elif allink_config.default_base_title:
             page_title += ' | ' + allink_config.default_base_title
         else:
