@@ -6,7 +6,7 @@
     <form method="post" action="{{instance.get_link_url}}">
     {% csrf_token %}
 {% endif %}
-    <a href="{{ instance.get_link_url }}{% if instance.link_mailto and instance.email_subject %}?subject={{ instance.email_subject|urlencode }}{% endif %}{% if instance.link_mailto and instance.email_body_text %}&amp;body={{ instance.email_body_text|urlencode }}{% endif %}"
+    <a href="{{ instance.get_link_url }}"
     class="{{instance|link_classes}}"
     {{ instance|link_attribute_string:request }}
     >{% spaceless %}

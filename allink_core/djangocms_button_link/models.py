@@ -4,6 +4,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import python_2_unicode_compatible
 from django.contrib.postgres.fields import ArrayField
+from django.utils.http import urlquote
 from cms.models.pluginmodel import CMSPlugin
 
 from allink_core.allink_base.models.model_fields import Classes, Icon, CMSPluginField
@@ -122,3 +123,14 @@ class AllinkButtonLinkPlugin(CMSPlugin, AllinkLinkFieldsModel):
 
     def __str__(self):
         return u'{}'.format(self.label)
+
+    @property
+    def get_link_url(self):
+        base = super(AllinkButtonLinkPlugin, self).get_link_url()
+        parameters = {}
+        if self.link_mailto:
+            if self.email_subject:
+                parameters = {'subject': urlquote(self.email_subject)}
+            if self.email_body_text:
+                parameters['body'] = urlquote(self.email_body_text)
+        return '{}?{}'.format(base, '&'.join('{}={}'.format(v, k) for (v, k) in parameters.items()))
