@@ -286,7 +286,6 @@ class AllinkLinkFieldsModel(AllinkInternalLinkFieldsModel):
     )
     link_special = models.CharField(
         verbose_name=_(u'Special Links'),
-        choices=SPECIAL_LINKS_CHOICES,
         max_length=255,
         blank=True,
         null=True
