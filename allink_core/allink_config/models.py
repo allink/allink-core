@@ -273,10 +273,10 @@ class AllinkMetaTagExtension(TitleExtension):
         blank=True,
         null=True
     )
-    enable_base_title = models.BooleanField(
-        _(u'Enable base title'),
-        help_text=_(u'If dsiabled, only the page title will be shown. Everything behind and including the "|" will be removed.'),
-        default=True
+    disable_base_title = models.BooleanField(
+        _(u'Disable base title'),
+        help_text=_(u'If disabled, only the page title will be shown. Everything behind and including the "|" will be removed.'),
+        default=False
     )
     override_h1 = models.CharField(
         _(u'Override H1'),
