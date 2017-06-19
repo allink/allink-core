@@ -24,15 +24,30 @@
                 <div class="form-field-container {% if field|widget_type == 'radioselect' %} radio-group{% endif %}">
                     {% block widget %}
 
+                        {# Date AND Time #}
+
+                        {% if field|widget_type == 'datetimeinput' %}
+
+                            <div class="datepicker-container">
+                                {% if field.field.required %}
+                                    {% render_field field class+="datepicker form-control" required="required" %}
+                                {% else %}
+                                    {% render_field field class+="datepicker form-control" %}
+                                {% endif %}
+                                <span class="calendar-btn"></span>
+                            </div>
+
+
                         {# Dropdown Select #}
 
-                        {% if field|widget_type == 'select' %}
+                        {% elif field|widget_type == 'select' %}
 
                             {% if field.field.required %}
                                 {% render_field field class+="selectpicker form-control" required="required" %}
                             {% else %}
                                 {% render_field field class+="selectpicker form-control" %}
                             {% endif %}
+
 
                         {# Checkbox #}
 
@@ -46,6 +61,7 @@
                                     {% endif %}
                                 </label>
                             </div>
+
 
                         {# Radio #}
 
@@ -61,6 +77,7 @@
                                     </label>
                                 </div>
                             {% endfor %}
+
 
                         {# Default #}
 
