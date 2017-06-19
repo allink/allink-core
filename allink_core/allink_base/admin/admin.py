@@ -66,7 +66,7 @@ class AllinkBaseAdminBase(AllTranslationsMixin, TranslatableAdmin):
                 'og_image',
                 'og_title',
                 'og_description',
-                'enable_base_title',
+                'disable_base_title',
             )
         }),
 
