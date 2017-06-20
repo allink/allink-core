@@ -36,8 +36,8 @@ def render_meta_og(context, obj=None, page_title=None, base_page_title=None, ima
         else:
             if base_page_title:
                 base = ' | ' + base_page_title
-            elif allink_config.default_base_title:
-                base = ' | ' + allink_config.default_base_title
+            elif getattr(allink_config, 'default_base_title', ''):
+                base = ' | ' + getattr(allink_config, 'default_base_title', '')
             else:
                 base = ' | ' + site.name
 
@@ -49,7 +49,7 @@ def render_meta_og(context, obj=None, page_title=None, base_page_title=None, ima
         elif obj.title:
             page_title = obj.title + base
         else:
-            page_title = allink_config.default_base_title
+            page_title = getattr(allink_config, 'default_base_title', '')
 
         # title (for og:title)
         if og_title:
@@ -59,7 +59,7 @@ def render_meta_og(context, obj=None, page_title=None, base_page_title=None, ima
         elif obj.title:
             og_title = obj.title
         else:
-            og_title = allink_config.default_base_title
+            og_title = getattr(allink_config, 'default_base_title', '')
 
         # description
         if description:
@@ -99,26 +99,27 @@ def render_meta_og(context, obj=None, page_title=None, base_page_title=None, ima
         else:
             if base_page_title:
                 base = ' | ' + base_page_title
-            elif allink_config.default_base_title:
-                base = ' | ' + allink_config.default_base_title
+            elif getattr(allink_config, 'default_base_title', ''):
+                base = ' | ' + getattr(allink_config, 'default_base_title', '')
             else:
                 base = ' | ' + site.name
+
 
         # page title (<title>)
         if page_title:
             page_title += base
-        elif page.get_page_title():
+        elif page and page.get_page_title():
             page_title = page.get_page_title() + base
         else:
-            page_title = allink_config.default_base_title
+            page_title = getattr(allink_config, 'default_base_title', '')
 
         # og:title
         if og_title:
             og_title = og_title
-        elif page.get_page_title():
+        elif page and page.get_page_title():
             og_title = page.get_page_title()
         else:
-            og_title = allink_config.default_base_title
+            og_title = getattr(allink_config, 'default_base_title', '')
 
         # description
         if description:
