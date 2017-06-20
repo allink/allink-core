@@ -24,17 +24,39 @@
                 <div class="form-field-container {% if field|widget_type == 'radioselect' %} radio-group{% endif %}">
                     {% block widget %}
 
-                        {# Date AND Time #}
+                        {# Date AND/OR Time #}
 
-                        {% if field|widget_type == 'datetimeinput' %}
+                        {% if field|widget_type == 'datetimeinput' or field|widget_type == 'dateinput' or field|widget_type == 'timeinput' %}
 
                             <div class="datepicker-container">
+                                {% comment %}
+                                    Need a specific widget attribute? Here's how to get it:
+                                    {{field.field.widget.attrs.enableTime}}
+                                {% endcomment %}
                                 {% if field.field.required %}
                                     {% render_field field class+="datepicker form-control" required="required" %}
                                 {% else %}
                                     {% render_field field class+="datepicker form-control" %}
                                 {% endif %}
-                                <span class="calendar-btn"></span>
+
+                                {# If a date has to be selected, show the calendar button #}
+                                {% if field|widget_type == 'datetimeinput' or field|widget_type == 'dateinput' %}
+                                    <span class="calendar-btn">
+                                        <span class="sr-only">{% trans "Open Calendar" %}</span>
+                                    </span>
+                                {# if it's time only, we want a time button #}
+                                {% else %}
+                                    <span class="time-btn">
+                                        <span class="sr-only">{% trans "Open Time Picker" %}</span>
+                                    </span>
+                                {% endif %}
+
+                                {# If the field is OPTIONAL, we have to be able to clear it #}
+                                {% if not field.field.required %}
+                                    <span class="clear-btn">
+                                        <span class="sr-only">{% trans "Clear Field" %}</span>
+                                    </span>
+                                {% endif %}
                             </div>
 
 
