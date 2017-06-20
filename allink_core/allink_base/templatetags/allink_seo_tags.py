@@ -3,7 +3,7 @@ import hashlib
 
 from django import template
 from django.core.cache import cache
-from cms.models.pagemodel import Page
+
 from allink_core.allink_config.models import AllinkConfig
 register = template.Library()
 
@@ -29,32 +29,37 @@ def render_meta_og(context, obj=None, page_title=None, base_page_title=None, ima
 
     #  we pass a object when app content
     if obj:
-        # page title
+
+        # base title
+        if obj and obj.disable_base_title:
+            base = ''
+        else:
+            if base_page_title:
+                base = ' | ' + base_page_title
+            elif getattr(allink_config, 'default_base_title', ''):
+                base = ' | ' + getattr(allink_config, 'default_base_title', '')
+            else:
+                base = ' | ' + site.name
+
+        # page title (<title>)
         if page_title:
-            page_title = page_title
+            page_title += base
+        elif obj.og_title:
+            page_title = obj.og_title + base
         elif obj.title:
-            page_title = obj.title
+            page_title = obj.title + base
         else:
-            page_title = allink_config.default_base_title
+            page_title = getattr(allink_config, 'default_base_title', '')
 
-        if base_page_title:
-            page_title += ' | ' + base_page_title
-        elif not obj.enable_base_title:
-            page_title = page_title
-        elif obj.enable_base_title and obj.og_title:
-            page_title += ' | ' + obj.og_title
-        elif allink_config.default_base_title:
-            page_title += ' | ' + allink_config.default_base_title
-        else:
-            page_title += ' | ' + site.name
-
-        # title
+        # title (for og:title)
         if og_title:
             og_title = og_title
         elif obj.og_title:
             og_title = obj.og_title
-        else:
+        elif obj.title:
             og_title = obj.title
+        else:
+            og_title = getattr(allink_config, 'default_base_title', '')
 
         # description
         if description:
@@ -88,31 +93,33 @@ def render_meta_og(context, obj=None, page_title=None, base_page_title=None, ima
         except:
             page_ext = None
 
-        # page title
+        # base title
+        if page_ext and page_ext.disable_base_title:
+            base = ''
+        else:
+            if base_page_title:
+                base = ' | ' + base_page_title
+            elif getattr(allink_config, 'default_base_title', ''):
+                base = ' | ' + getattr(allink_config, 'default_base_title', '')
+            else:
+                base = ' | ' + site.name
+
+
+        # page title (<title>)
         if page_title:
-            page_title = page_title
-        elif page.get_page_title():
-            page_title = page.get_page_title()
+            page_title += base
+        elif page and page.get_page_title():
+            page_title = page.get_page_title() + base
         else:
-            page_title = allink_config.default_base_title
+            page_title = getattr(allink_config, 'default_base_title', '')
 
-        if base_page_title:
-            page_title += ' | ' + base_page_title
-        elif page_ext and not page_ext.enable_base_title:
-            page_title = page_title
-        elif allink_config.default_base_title:
-            page_title += ' | ' + allink_config.default_base_title
-        else:
-            page_title += ' | ' + site.name
-
-        # title
+        # og:title
         if og_title:
             og_title = og_title
-        elif page:
+        elif page and page.get_page_title():
             og_title = page.get_page_title()
         else:
-            # for example django admin page
-            og_title = ''
+            og_title = getattr(allink_config, 'default_base_title', '')
 
         # description
         if description:
