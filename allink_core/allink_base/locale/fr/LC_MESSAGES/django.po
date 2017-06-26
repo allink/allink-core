@@ -708,8 +708,8 @@ msgstr ""
 #: allink_core_repo/allink_core/allink_base/templates/app_content/plugins/list/_no_results.html:4
 #: allink_core_repo/allink_core/allink_base/templates/app_content/plugins/slider/_no_results.html:4
 #: allink_core_repo/allink_core/allink_base/templates/app_content/plugins/table/_no_results.html:4
-msgid "No entries found with the applied filters."
-msgstr ""
+msgid "No entries found with current filters."
+msgstr "Aucun résultat trouvé avec ces filtres."
 
 #: allink_core_repo/allink_core/allink_base/templates/app_content/plugins/grid_dynamic/item.html:36
 #: allink_core_repo/allink_core/allink_base/templates/app_content/plugins/grid_static/item.html:36
