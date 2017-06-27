@@ -69,19 +69,19 @@ class AllinkContactFieldsModel(models.Model):
 
     phone = PhoneNumberField(
         _(u'Phone'),
-        help_text=_(u'We automatically handle phone number formatting, Please provide the number in the following format "+41 43 333 30 90".'),
+        help_text=_(u'We automatically handle phone number formatting, Please provide the number in the following format "+41 43 123 45 67".'),
         blank=True,
         null=True
     )
     mobile = PhoneNumberField(
         _(u'Mobile'),
-        help_text=_(u'We automatically handle phone number formatting, Please provide the number in the following format "+41 43 333 30 90".'),
+        help_text=_(u'We automatically handle phone number formatting, Please provide the number in the following format "+41 43 123 45 67".'),
         blank=True,
         null=True
     )
     fax = PhoneNumberField(
         _(u'Fax'),
-        help_text=_(u'We automatically handle phone number formatting, Please provide the number in the following format "+41 43 333 30 90".'),
+        help_text=_(u'We automatically handle phone number formatting, Please provide the number in the following format "+41 43 123 45 67".'),
         blank=True,
         null=True
     )
