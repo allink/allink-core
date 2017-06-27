@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-12 09:36+0200\n"
+"POT-Creation-Date: 2017-06-27 12:07+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -65,65 +65,65 @@ msgid "Special Links"
 msgstr ""
 
 #: allink_core_repo/allink_core/djangocms_button_link/model_fields.py:16
-#: allink_core_repo/allink_core/djangocms_button_link/models.py:77
+#: allink_core_repo/allink_core/djangocms_button_link/models.py:78
 msgid "Type"
 msgstr ""
 
 #: allink_core_repo/allink_core/djangocms_button_link/model_fields.py:47
-#: allink_core_repo/allink_core/djangocms_button_link/models.py:81
-#: allink_core_repo/allink_core/djangocms_button_link/models.py:94
+#: allink_core_repo/allink_core/djangocms_button_link/models.py:82
+#: allink_core_repo/allink_core/djangocms_button_link/models.py:95
 msgid "Context"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/models.py:22
+#: allink_core_repo/allink_core/djangocms_button_link/models.py:23
 msgid "Alignment horizontal desktop"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/models.py:25
+#: allink_core_repo/allink_core/djangocms_button_link/models.py:26
 msgid ""
 "This option overrides the projects default alignment for desktop. (Usually "
 "\"left\")"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/models.py:30
+#: allink_core_repo/allink_core/djangocms_button_link/models.py:31
 msgid "Alignment horizontal mobile"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/models.py:33
+#: allink_core_repo/allink_core/djangocms_button_link/models.py:34
 msgid ""
 "This option overrides the projects default alignment for mobile. (Usually "
 "\"left\")"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/models.py:48
+#: allink_core_repo/allink_core/djangocms_button_link/models.py:49
 msgid "{}"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/models.py:71
+#: allink_core_repo/allink_core/djangocms_button_link/models.py:72
 msgid "Display name"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/models.py:86
+#: allink_core_repo/allink_core/djangocms_button_link/models.py:87
 msgid "Size"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/models.py:89
+#: allink_core_repo/allink_core/djangocms_button_link/models.py:90
 msgid "Block"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/models.py:101
+#: allink_core_repo/allink_core/djangocms_button_link/models.py:102
 msgid "Icon left"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/models.py:104
+#: allink_core_repo/allink_core/djangocms_button_link/models.py:105
 msgid "Icon right"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/models.py:110
+#: allink_core_repo/allink_core/djangocms_button_link/models.py:111
 msgid "Subject"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/models.py:116
+#: allink_core_repo/allink_core/djangocms_button_link/models.py:117
 msgid "Body Text"
 msgstr ""
 
@@ -133,6 +133,6 @@ msgid ""
 "this widget."
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/templates/djangocms_button_link/item.html:44
+#: allink_core_repo/allink_core/djangocms_button_link/templates/djangocms_button_link/item.html:23
 msgid "Member Area"
 msgstr ""

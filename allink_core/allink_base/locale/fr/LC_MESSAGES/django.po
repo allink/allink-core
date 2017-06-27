@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-12 09:36+0200\n"
+"POT-Creation-Date: 2017-06-27 12:07+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -537,7 +537,7 @@ msgstr "Téléphone"
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:84
 msgid ""
 "We automatically handle phone number formatting, Please provide the number "
-"in the following format \"+41 43 333 30 90\"."
+"in the following format \"+41 43 123 45 67\"."
 msgstr ""
 
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:77
@@ -549,7 +549,7 @@ msgid "Fax"
 msgstr ""
 
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:89
-#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:422
+#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:421
 msgid "Email"
 msgstr "E-mail"
 
@@ -586,12 +586,12 @@ msgid "Description when shared on Facebook/ Twitter."
 msgstr ""
 
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:153
-msgid "Enable base title"
+msgid "Disable base title"
 msgstr ""
 
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:154
 msgid ""
-"If dsiabled, only the page title will be shown. Everything behind and "
+"If disabled, only the page title will be shown. Everything behind and "
 "including the \"|\" will be removed."
 msgstr ""
 
@@ -662,30 +662,30 @@ msgstr ""
 msgid "Special Links"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:295
+#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:294
 msgid "Attributes"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:385
+#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:384
 #, python-format
 msgid "Only one of %(fields)s or %(last_field)s may be given."
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:398
+#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:397
 #, python-format
 msgid ""
 "%(anchor_field_verbose_name)s is not allowed together with %(field_name)s"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:414
+#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:413
 msgid "First Name"
 msgstr "Prénom"
 
-#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:418
+#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:417
 msgid "Last Name"
 msgstr "Nom"
 
-#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:425
+#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:424
 msgid "Message"
 msgstr "Message"
 
@@ -743,6 +743,18 @@ msgstr ""
 
 #: allink_core_repo/allink_core/allink_base/templates/includes/forms/form_field.html:15
 msgid "required"
+msgstr ""
+
+#: allink_core_repo/allink_core/allink_base/templates/includes/forms/form_field.html:46
+msgid "Open Calendar"
+msgstr ""
+
+#: allink_core_repo/allink_core/allink_base/templates/includes/forms/form_field.html:51
+msgid "Open Time Picker"
+msgstr ""
+
+#: allink_core_repo/allink_core/allink_base/templates/includes/forms/form_field.html:58
+msgid "Clear Field"
 msgstr ""
 
 #: allink_core_repo/allink_core/allink_base/templates/templatetags/allink_plugin_ajax.html:22

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-12 09:36+0200\n"
+"POT-Creation-Date: 2017-06-27 12:07+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -570,9 +570,13 @@ msgstr "Telefon"
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:72
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:78
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:84
+#, fuzzy
+#| msgid ""
+#| "We automatically handle phone number formatting, Please provide the "
+#| "number in the following format \"+41 43 333 30 90\"."
 msgid ""
 "We automatically handle phone number formatting, Please provide the number "
-"in the following format \"+41 43 333 30 90\"."
+"in the following format \"+41 43 123 45 67\"."
 msgstr "Bitte die Telefonnummer im Format \"+41 43 333 30 90\" angeben."
 
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:77
@@ -584,7 +588,7 @@ msgid "Fax"
 msgstr ""
 
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:89
-#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:422
+#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:421
 msgid "Email"
 msgstr "E-Mail"
 
@@ -625,12 +629,12 @@ msgid "Description when shared on Facebook/ Twitter."
 msgstr "Beschreibung auf Facebook oder Twitter, falls geteilt."
 
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:153
-msgid "Enable base title"
+msgid "Disable base title"
 msgstr ""
 
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:154
 msgid ""
-"If dsiabled, only the page title will be shown. Everything behind and "
+"If disabled, only the page title will be shown. Everything behind and "
 "including the \"|\" will be removed."
 msgstr ""
 
@@ -703,32 +707,32 @@ msgstr "Datei"
 msgid "Special Links"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:295
+#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:294
 msgid "Attributes"
 msgstr "Attribute"
 
-#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:385
+#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:384
 #, python-format
 msgid "Only one of %(fields)s or %(last_field)s may be given."
 msgstr ""
 "Nur eines der Felder %(fields)s oder %(last_field)s darf angegeben werden."
 
-#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:398
+#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:397
 #, python-format
 msgid ""
 "%(anchor_field_verbose_name)s is not allowed together with %(field_name)s"
 msgstr ""
 "%(anchor_field_verbose_name)s kann nicht mit %(field_name)s verwendet werden."
 
-#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:414
+#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:413
 msgid "First Name"
 msgstr "Vorname"
 
-#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:418
+#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:417
 msgid "Last Name"
 msgstr "Nachname"
 
-#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:425
+#: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:424
 msgid "Message"
 msgstr "Nachricht"
 
@@ -787,6 +791,20 @@ msgstr "Schliessen"
 #: allink_core_repo/allink_core/allink_base/templates/includes/forms/form_field.html:15
 msgid "required"
 msgstr "Pflichtfeld"
+
+#: allink_core_repo/allink_core/allink_base/templates/includes/forms/form_field.html:46
+msgid "Open Calendar"
+msgstr ""
+
+#: allink_core_repo/allink_core/allink_base/templates/includes/forms/form_field.html:51
+msgid "Open Time Picker"
+msgstr ""
+
+#: allink_core_repo/allink_core/allink_base/templates/includes/forms/form_field.html:58
+#, fuzzy
+#| msgid "Filter Fields"
+msgid "Clear Field"
+msgstr "Filter-Felder"
 
 #: allink_core_repo/allink_core/allink_base/templates/templatetags/allink_plugin_ajax.html:22
 msgid "Add plugin to"

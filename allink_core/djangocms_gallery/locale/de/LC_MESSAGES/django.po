@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-12 09:36+0200\n"
+"POT-Creation-Date: 2017-06-27 12:07+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,7 +31,7 @@ msgstr ""
 msgid "Slider Options"
 msgstr "Slider-Optionen"
 
-#: allink_core_repo/allink_core/djangocms_gallery/cms_plugins.py:40
+#: allink_core_repo/allink_core/djangocms_gallery/cms_plugins.py:41
 msgid "Advanced Options"
 msgstr "Erweiterte Optionen"
 
@@ -72,8 +72,8 @@ msgstr ""
 msgid ""
 "There are only {} characters allowed in text field. Currently there are {} "
 "characters."
-msgstr "Es sind nur {} Zeichen im Textfeld erlaubt. Momentan sind es {} "
-"Zeichen."
+msgstr ""
+"Es sind nur {} Zeichen im Textfeld erlaubt. Momentan sind es {} Zeichen."
 
 #: allink_core_repo/allink_core/djangocms_gallery/models.py:23
 msgid "Choose a template."
