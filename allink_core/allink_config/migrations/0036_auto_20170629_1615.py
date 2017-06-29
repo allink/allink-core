@@ -18,13 +18,17 @@ def translate_meta_fields(apps, schema_editor):
         translation.save(update_fields=['default_base_title'])
 
 
-def _get_translation(object, translation_class):
-    translations = translation_class.objects.filter(master_id=object.pk)
+def _get_translation(obj, translation_class):
+    translations = translation_class.objects.filter(master_id=obj.pk)
     language_code = settings.LANGUAGES[0][0]
     try:
         return translations.get(language_code=language_code)
-    except translation_class.ObjectDoesNotExist:
+    except translation_class.DoesNotExist:
         return translations.get()
+    except:
+        obj.create_translation(language_code, default_base_title='')
+        return translations.get(language_code=language_code)
+
 
 
 class Migration(migrations.Migration):
