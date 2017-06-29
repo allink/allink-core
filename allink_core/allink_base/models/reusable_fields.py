@@ -134,7 +134,7 @@ class AllinkMetaTagFieldsModel(models.Model):
         null=True
     )
 
-    og_title = models.CharField(
+    old_og_title = models.CharField(
         verbose_name=_(u'Title Tag and Title when shared on Facebook/ Twitter.'),
         max_length=255,
         help_text=_(u'Title when shared on Facebook.'),
@@ -142,14 +142,14 @@ class AllinkMetaTagFieldsModel(models.Model):
         null=True
     )
 
-    og_description = models.CharField(
+    old_og_description = models.CharField(
         verbose_name=_(u'Meta Description for Search Engines and when shared on Facebook.'),
         max_length=255,
         help_text=_(u'Description when shared on Facebook/ Twitter.'),
         blank=True,
         null=True
     )
-    disable_base_title = models.BooleanField(
+    old_disable_base_title = models.BooleanField(
         _(u'Disable base title'),
         help_text=_(u'If disabled, only the page title will be shown. Everything behind and including the "|" will be removed.'),
         default=False

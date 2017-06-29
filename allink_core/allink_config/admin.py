@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django import forms
 from django.contrib import admin
+from django.conf import settings
 from django.utils.decorators import method_decorator
 from django.views.decorators.http import require_POST
 from django.utils.translation import ugettext_lazy as _
@@ -8,6 +9,8 @@ from django.utils.translation import ugettext_lazy as _
 from cms.extensions import TitleExtensionAdmin
 from solo.admin import SingletonModelAdmin
 from webpack_loader.utils import get_files
+from parler.admin import TranslatableAdmin, TranslatableModelForm
+from aldryn_translation_tools.admin import AllTranslationsMixin
 
 from allink_core.allink_config.models import AllinkConfig, AllinkMetaTagExtension
 from allink_core.allink_base.forms.fields import ColorField
@@ -16,7 +19,7 @@ from allink_core.allink_base.utils import get_project_color_choices
 require_POST = method_decorator(require_POST)
 
 
-class AllinkConfigAdminForm(forms.ModelForm):
+class AllinkConfigAdminForm(TranslatableModelForm):
     theme_color = ColorField(label=_(u'Theme Color'), help_text=_(u'Theme color for Android Chrome'), required=False)
     mask_icon_color = ColorField(label=_(u'Mask Icon Color'), help_text=_(u'Mask icon color for safari-pinned-tab.svg'), required=False)
     msapplication_tilecolor = ColorField(label=_(u'MS Application Title Color'), help_text=_(u'MS application TitleColor Field'), required=False)
@@ -27,7 +30,7 @@ class AllinkConfigAdminForm(forms.ModelForm):
 
 
 @admin.register(AllinkConfig)
-class AllinkConfigAdmin(SingletonModelAdmin):
+class AllinkConfigAdmin(AllTranslationsMixin, TranslatableAdmin, SingletonModelAdmin):
     form = AllinkConfigAdminForm
 
     class Media:
