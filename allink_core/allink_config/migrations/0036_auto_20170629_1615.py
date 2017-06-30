@@ -31,7 +31,6 @@ def _get_translation(obj, translation_class):
             return translations.get(language_code=language_code)
 
 
-
 class Migration(migrations.Migration):
 
     dependencies = [

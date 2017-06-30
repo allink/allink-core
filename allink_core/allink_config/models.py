@@ -258,6 +258,13 @@ class AllinkConfig(SingletonModel, TranslatableModel):
         # invalidate cache for favicon templatetag
         cache.delete('favicon_context')
 
+    def save(self, *args, **kwargs):
+        if self.pk:
+            self.set_to_cache()
+        else:
+            self.pk = 1
+        super(SingletonModel, self).save(*args, **kwargs)
+
     @classmethod
     def get_cache_key(cls):
         prefix = 'solo'
@@ -267,7 +274,7 @@ class AllinkConfig(SingletonModel, TranslatableModel):
     def get_solo(cls):
         cache_key = cls.get_cache_key()
         obj_dict = cache.get(cache_key)
-
+        obj_dict = None
         if obj_dict:
             obj = cls()
             for name, value in obj_dict.items():
@@ -276,8 +283,10 @@ class AllinkConfig(SingletonModel, TranslatableModel):
                 else:
                     setattr(obj, name, value)
         else:
-            obj, created = cls.objects.get_or_create(pk=1)
-            if created:
+            try:
+                obj = cls.objects.get(pk=1)
+            except cls.DoesNotExist:
+                obj = cls.objects.create()
                 obj.create_translation(get_language(), default_base_title='')
             obj.set_to_cache()
         return obj
