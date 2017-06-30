@@ -18,11 +18,6 @@ def render_meta_og(context, obj=None, page_title=None, base_page_title=None, ima
     or get it from either the page
     or the app content (then supply the object)
     """
-    cachekey = 'meta_og_%s' % hashlib.md5(str('%s_%s_%s_%s_%s_%s_%s' % (obj.__class__ if obj else '', obj.id if obj else '', page_title, base_page_title, image, og_title, description)).encode('utf-8')).hexdigest()
-    cached_context = cache.get(cachekey, None)
-    if cached_context is not None:
-        context.update(cached_context)
-        return context
 
     allink_config = AllinkConfig.get_solo()
     site = getattr(context.request, 'site')
@@ -152,7 +147,7 @@ def render_meta_og(context, obj=None, page_title=None, base_page_title=None, ima
         'google_site_verification': allink_config.google_site_verification,
     }
     context.update(additional_context)
-    cache.set(cachekey, additional_context, 60 * 5)
+
     return context
 
 
