@@ -163,7 +163,11 @@ ALLINK_LOCALE_PATHS = [
     '/app/allink_core/djangocms_vid/locale',
     '/app/allink_core/djangocms_pdf/locale',
 ]
+# ####################################################################################
+#
+# # Thumbnail
 
+THUMBNAIL_QUALITY = 85
 
 # ####################################################################################
 #
