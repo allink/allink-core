@@ -21,6 +21,7 @@ Each release is divided into the following main categories:
 ###### REQUIREMENTS
 ###### DATA MIGRATIONS
 ### NEW
+- Metatags on Apps, and default base title in allink_config are translatable now.
 
 
 ## v0.0.10
