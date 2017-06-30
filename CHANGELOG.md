@@ -16,6 +16,7 @@ Each release is divided into the following main categories:
 
 ### IMPORTANT
 ###### SETTINGS
+- import THUMBNAIL_QUALITY (we set it to 85), also clean thumbnail cache './manage.py  thumbnail_cleanup' on local/ stage/ production
 ###### TEMPLATES
 ###### URLS
 ###### REQUIREMENTS
