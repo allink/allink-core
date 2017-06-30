@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from django import forms
 from django.contrib import admin
-from django.conf import settings
 from django.utils.decorators import method_decorator
 from django.views.decorators.http import require_POST
 from django.utils.translation import ugettext_lazy as _
@@ -10,7 +9,6 @@ from cms.extensions import TitleExtensionAdmin
 from solo.admin import SingletonModelAdmin
 from webpack_loader.utils import get_files
 from parler.admin import TranslatableAdmin, TranslatableModelForm
-from aldryn_translation_tools.admin import AllTranslationsMixin
 
 from allink_core.allink_config.models import AllinkConfig, AllinkMetaTagExtension
 from allink_core.allink_base.forms.fields import ColorField
@@ -30,7 +28,7 @@ class AllinkConfigAdminForm(TranslatableModelForm):
 
 
 @admin.register(AllinkConfig)
-class AllinkConfigAdmin(AllTranslationsMixin, TranslatableAdmin, SingletonModelAdmin):
+class AllinkConfigAdmin(TranslatableAdmin, SingletonModelAdmin):
     form = AllinkConfigAdminForm
 
     class Media:
