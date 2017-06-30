@@ -274,7 +274,6 @@ class AllinkConfig(SingletonModel, TranslatableModel):
     def get_solo(cls):
         cache_key = cls.get_cache_key()
         obj_dict = cache.get(cache_key)
-        obj_dict = None
         if obj_dict:
             obj = cls()
             for name, value in obj_dict.items():
