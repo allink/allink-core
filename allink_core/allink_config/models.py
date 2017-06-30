@@ -276,13 +276,10 @@ class AllinkConfig(SingletonModel, TranslatableModel):
                 else:
                     setattr(obj, name, value)
         else:
-            try:
-                obj, created = cls.objects.get_or_create(pk=1)
-                if created:
-                    obj.create_translation(get_language(), default_base_title='')
-                obj.set_to_cache()
-            except:
-                raise
+            obj, created = cls.objects.get_or_create(pk=1)
+            if created:
+                obj.create_translation(get_language(), default_base_title='')
+            obj.set_to_cache()
         return obj
 
 
