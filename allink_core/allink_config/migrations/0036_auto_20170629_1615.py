@@ -24,10 +24,11 @@ def _get_translation(obj, translation_class):
     try:
         return translations.get(language_code=language_code)
     except translation_class.DoesNotExist:
-        return translations.get()
-    except:
-        obj.create_translation(language_code, default_base_title='')
-        return translations.get(language_code=language_code)
+        try:
+            return translations.get()
+        except:
+            obj.create_translation(language_code, default_base_title='')
+            return translations.get(language_code=language_code)
 
 
 

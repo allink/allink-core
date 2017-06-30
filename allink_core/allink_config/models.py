@@ -243,7 +243,7 @@ class AllinkConfig(SingletonModel, TranslatableModel):
             fields.update({
                 field.name: getattr(self.get_translation(get_language()), field.name) for field in self.translations.model._meta.get_fields() if field.name not in ['master', 'language_code']
             })
-        except:
+        except self.translations.model.DoesNotExist:
             self.create_translation(get_language(), default_base_title='')
             fields.update({
                 field.name: getattr(self, field.name) for field in self.translations.model._meta.get_fields() if field.name not in ['master', 'language_code']
