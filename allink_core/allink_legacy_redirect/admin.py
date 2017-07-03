@@ -15,7 +15,7 @@ from allink_core.allink_legacy_redirect.resources import AllinkLegacyLinkResourc
 
 class AllinkLegacyLinkAdmin(ImportMixin, admin.ModelAdmin):
     list_display = ['old', 'link', 'link_object', 'active', 'match_subpages', 'last_test_result', 'last_test_date', 'manual_test']
-    list_editable = ['active', 'match_subpages']
+    # list_editable = ['active', 'match_subpages']
     readonly_fields = ['last_test_result', 'last_test_date']
     form = AllinkLegacyChangeAdminForm
     resource_class = AllinkLegacyLinkResource

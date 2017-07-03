@@ -27,7 +27,7 @@ def _get_translation(obj, translation_class):
         try:
             return translations.get()
         except:
-            obj.create_translation(language_code, default_base_title='')
+            translation_class.objects.create(master_id=obj.pk, language_code=language_code, default_base_title='')
             return translations.get(language_code=language_code)
 
 
