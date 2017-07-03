@@ -16,8 +16,8 @@ def link_attribute_string(instance, request=None):
     attributes += ' data-softpage-variation="large"' if instance.softpage_large_enabled else ''
     attributes += ' data-smooth-scroll' if instance.link_anchor else ''
     attributes += ' data-softpage-variation="small"' if instance.softpage_small_enabled else ''
-    attributes += ' data-softpage-disabled' if instance.link_special == 'account_login' and request.user.is_authenticated else ''
-    attributes += ' data-submit-form' if instance.link_special == 'account_logout' and request.user.is_authenticated else ''
+    attributes += ' data-softpage-disabled' if instance.link_special == 'account_login' and request.user.is_authenticated() else ''
+    attributes += ' data-submit-form' if instance.link_special == 'account_logout' and request.user.is_authenticated() else ''
     attributes += ' role="button"' if hasattr(instance, "type") and instance.type == 'btn' else ''
     return attributes
 
