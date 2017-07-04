@@ -169,6 +169,12 @@ ALLINK_LOCALE_PATHS = [
 
 THUMBNAIL_QUALITY = 85
 
+THUMBNAIL_OPTIMIZE_COMMAND = {
+    'png': 'optipng {filename}',
+    'gif': 'optipng {filename}',
+    'jpeg': 'jpegoptim {filename}'
+}
+
 # ####################################################################################
 #
 # # Debug Toolbar
