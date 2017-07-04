@@ -567,6 +567,10 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
 
     def get_correct_template(self, file='content'):
 
+        cached_template = cache.get('plugin_template_%s_%s' % (self.id, file))
+        if cached_template:
+            return cached_template
+
         template = '{}/plugins/{}/{}.html'.format(self.data_model._meta.app_label, self.template, file)
 
         # check if project specific template
@@ -580,6 +584,9 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
                 # we can't guess all possible custom templates
                 # so this is a fallback for all custom plugins
                 template = 'app_content/plugins/{}/{}.html'.format('grid_static', file)
+
+        # cache for one year, so we don't have to many lookups on file system
+        cache.set('plugin_template_%s_%s' % (self.id, file), template, 60 * 60 * 24 * 365)
         return template
 
     def get_field_info(self, fieldname):
