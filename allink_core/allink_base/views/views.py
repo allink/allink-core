@@ -47,7 +47,7 @@ class AllinkBasePluginLoadMoreView(ListView):
             return self.plugin.get_render_queryset_for_display(filters=filters)
 
     def get_paginate_by(self, queryset):
-        if getattr(self.plugin, 'paginated_by', None) != 0:
+        if getattr(self, 'plugin', None) and getattr(self.plugin, 'paginated_by', None) != 0:
             return self.plugin.paginated_by
         else:
             return None
