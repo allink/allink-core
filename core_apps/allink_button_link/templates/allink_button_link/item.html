@@ -1,0 +1,43 @@
+{% load cms_tags sekizai_tags i18n thumbnail allink_image_tags allink_user_tags allink_members_tags allink_link_tags %}
+{% comment %}
+    LOGOUT: requires a form to submit with the POST method (check if logged in an in group 'members')
+{% endcomment %}
+{% if instance.link_special == 'account_logout' and user.is_authenticated %}
+    <form class="button-link-plugin__form" method="post" action="{{instance.get_link_url}}">
+    {% csrf_token %}
+{% endif %}
+    <a href="{{ instance.get_link_url }}"
+    class="button-link-plugin__link {{instance|link_classes}}"
+    {{ instance|link_attribute_string:request }}
+    >{% spaceless %}
+
+        {# content for image modal #}
+        {% if instance.image_modal_enabled and instance.link_file %}
+            <span class="image-modal-content" style="display: none;">
+                {% render_image width_alias="1-of-1" ratio="x-y" image=instance.link_file %}
+            </span>
+        {% endif %}
+
+        {# if button is login-button to member area, check if logged in and in group 'members' #}
+        {% if instance.link_special == 'account_login' and user.is_authenticated %}
+            {% trans 'Member Area' %}
+        {% else %}
+            {{ instance.label }}
+        {% endif %}
+
+        {# display the file's name' and 'description' attribute when linked to a file #}
+        {% if instance.link_file.name %}
+            {{ instance.link_file.name }}
+        {% endif %}
+        {% if instance.link_file.description %}
+            {{ instance.link_file.description }}
+        {% endif %}
+
+{% endspaceless %}</a>
+
+{% comment %}
+    LOGOUT
+{% endcomment %}
+{% if instance.link_special == 'account_logout' and user.is_authenticated %}
+    </form>
+{% endif %}

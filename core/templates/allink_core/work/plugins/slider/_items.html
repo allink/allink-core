@@ -1,0 +1,43 @@
+{% load cms_tags allink_cms_tags sekizai_tags i18n thumbnail allink_image_tags %}
+
+{% for object in object_list %}
+    <div class="swiper-slide app-list-slide swiper-slide-{{object.id}}">
+
+        {% if object.preview_image %}
+            <div class="app-list-slide__image-container">
+                {% render_image image=object.preview_image ratio="2-1" %}
+            </div>
+        {% endif %}
+
+        <div class="app-list-slide__overlay"></div>
+
+        <div class="app-list-slide__content-container">
+            <div class="manage-spacings">
+                {% if object.title %}
+                    <div class="app-list-slide__heading-container">
+                        <h2 class="app-list-slide__heading">
+                            {% render_model_ajax object "title" %}
+                        </h2>
+                    </div>
+                {% endif %}
+                {% if object.lead %}
+                    <div class="text-container app-list-slide__lead">
+                        {{object.lead}}
+                    </div>
+                {% endif %}
+                {% if instance.detail_link_enabled and object.show_detail_link %}
+                    <div class="link-container">
+                        <a class="app-list-slide__detail-link app-list__detail-link" href="{{object.get_absolute_url}}">
+                            {% if instance.detail_link_text %}
+                                {{ instance.detail_link_text }}
+                            {% else %}
+                                {% trans "More" %}
+                            {% endif %}
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+    </div>
+{% endfor %}

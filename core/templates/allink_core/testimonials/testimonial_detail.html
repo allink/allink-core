@@ -1,0 +1,83 @@
+{% extends base_template|default:"base.html" %}
+
+{% load cms_tags allink_cms_tags sekizai_tags i18n thumbnail %}
+
+
+{% block content %}
+    <div class="content-section app-content-plugin testimonial-plugin detail-view container-enabled">
+        <div class="container" data-scroll-spy>
+
+            {% if object.images %}
+                <div class="image-container header-image-container">
+                    {% include "slider_detail/content.html" with display_title=False title_content=object.title %}
+                </div>
+            {% endif %}
+
+            {% render_placeholder object.header_placeholder %}
+
+            <header class="section-heading">
+                <h1 class="heading">
+                    {% render_model_ajax object "title" %}
+                </h1>
+            </header>
+
+            <div class="app-detail-col-container col-2-1">
+
+                <div class="col">
+                    <div class="text-container">
+                        {# optional: lead #}
+                        {% if object.job_title or object.job_function %}
+                            <p class="lead">
+                                {% if object.job_title %}
+                                    {{object.job_title}}<br>
+                                {% endif %}
+                                {{object.job_function}}
+                            </p>
+                        {% endif %}
+                        {# we wouldn't be here if the text was empty #}
+                        {{object.text}}
+                        {% render_placeholder object.content_placeholder %}
+                    </div>
+                </div>{# end .col #}
+
+                <div class="col">
+                    <div class="manage-spacings">
+                        <div class="text-container">
+                            {% if object.email %}
+                                <h2 class="heading">
+                                    {% trans "Contact" %}
+                                </h2>
+                            {% endif %}
+                            <p>
+                                {% if object.email %}
+                                    <a href="mailto:{{object.email}}">
+                                        {{object.email}}
+                                    </a><br>
+                                {% endif %}
+                                {% if object.phone %}
+                                    {% trans 'Phone:' %}
+                                    <a href="tel:{{object.phone}}">
+                                        {{object.phone_formatted}}
+                                    </a><br>
+                                {% endif %}
+                                {% if object.mobile %}
+                                    {% trans 'Mobile:' %}
+                                    <a href="tel:{{object.mobile}}">
+                                        {{object.mobile_formatted}}
+                                    </a><br>
+                                {% endif %}
+                                {% if object.fax %}
+                                    {% trans 'Fax:' %}
+                                    <a href="tel:{{object.fax}}">
+                                        {{object.fax_formatted}}
+                                    </a><br>
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                </div>{# end .col #}
+
+            </div>{# end .col-container #}
+        </div>
+    </div>
+{% endblock %}

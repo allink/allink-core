@@ -1,0 +1,37 @@
+{% extends base_template|default:"base.html" %}
+
+{% load cms_tags sekizai_tags i18n thumbnail %}
+
+
+{% block content %}
+    <div class="content-section app-content-plugin locations-plugin detail-view container-enabled">
+        <div class="container" data-scroll-spy>
+            <div class="manage-spacings">
+                {% if object.images %}
+                    <div class="image-container">
+                       {% include "slider_detail/content.html" with display_title=False title_content=object.title %}
+                    </div>
+                {% endif %}
+
+                {% render_placeholder object.header_placeholder %}
+
+                {% if object.title %}
+                    <header class="heading-container">
+                        <h1 class="heading">
+                            {{ object.title }}
+                        </h1>
+                    </header>
+                {% endif %}
+                    <div class="text-container">
+                        {# optional: lead #}
+                        {% if object.lead %}
+                            <p class="lead">
+                                {{object.lead|striptags}}
+                            </p>
+                        {% endif %}
+                        {% render_placeholder object.content_placeholder %}
+                    </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

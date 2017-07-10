@@ -1,0 +1,20 @@
+{% load thumbnail %}
+
+{% if instance.video_id %}
+    <div class="content-plugin video-embed-plugin">
+        <div class="embed-container {% if instance.ratio %}ratio-{{instance.ratio}}{% endif %}">
+            {% comment %}
+                YouTube
+            {% endcomment %}
+            {% if instance.video_service == "youtube" %}
+                <iframe width="560" height="315" src="//www.youtube.com/embed/{{instance.video_id}}?rel=0&showinfo=0{% if instance.auto_start_enabled %}&autoplay=1{% endif %}" frameborder="0" {% if instance.allow_fullscreen_enabled %}webkitAllowFullScreen mozallowfullscreen allowfullscreen{% endif %}></iframe>
+
+            {% comment %}
+                Vimeo
+            {% endcomment %}
+            {% elif instance.video_service == "vimeo" %}
+                <iframe src="//player.vimeo.com/video/{{instance.video_id}}?color=ffc000&title=0&byline=0&portrait=0{% if instance.auto_start_enabled %}&autoplay=1{% endif %}" width="640" height="360" frameborder="0" {% if instance.allow_fullscreen_enabled %}webkitAllowFullScreen mozallowfullscreen allowfullscreen{% endif %}></iframe>
+            {% endif %}
+        </div>
+    </div>
+{% endif %}

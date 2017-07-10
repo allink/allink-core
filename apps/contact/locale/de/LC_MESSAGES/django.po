@@ -1,0 +1,136 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-06-28 13:42+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: allink_core/apps/contact/abstract_models.py:11
+msgid "-- between --"
+msgstr "-- zwischen --"
+
+#: allink_core/apps/contact/abstract_models.py:20
+msgid "-- please choose --"
+msgstr "-- bitte auswählen --"
+
+#: allink_core/apps/contact/abstract_models.py:21
+msgid "Phone"
+msgstr "Telefon"
+
+#: allink_core/apps/contact/abstract_models.py:22
+msgid "Email"
+msgstr "E-Mail"
+
+#: allink_core/apps/contact/abstract_models.py:26
+msgid "Please contact me via"
+msgstr "Kontakt erwünscht per"
+
+#: allink_core/apps/contact/abstract_models.py:31
+#: allink_core/apps/contact/forms.py:20
+msgid "Date"
+msgstr "Datum"
+
+#: allink_core/apps/contact/abstract_models.py:37
+msgid "Time"
+msgstr "Zeit"
+
+#: allink_core/apps/contact/abstract_models.py:73
+msgid "Contact Request"
+msgstr "Kontaktanfrage"
+
+#: allink_core/apps/contact/abstract_models.py:74
+msgid "Contact Requests"
+msgstr "Kontaktanfragen"
+
+#: allink_core/apps/contact/admin.py:17
+msgid "Contact via"
+msgstr "Kontaktieren per"
+
+#: allink_core/apps/contact/cms_apps.py:8
+msgid "Contact Apphook"
+msgstr "Kontakt Apphook"
+
+#: allink_core/apps/contact/cms_plugins.py:33
+msgid "Predifined variations"
+msgstr "Vordefinierte css-Klassen"
+
+#: allink_core/apps/contact/cms_plugins.py:34
+msgid ""
+"Instructions: Single selection is made by clicking on an option. Multiple "
+"selections are achieved by pressing and holding down the Command-key (Mac) "
+"or Control-Key (Windows) <strong>and</strong> clicking the options you would "
+"like to apply."
+msgstr ""
+"Anleitung: Einzelauswahl durch Klicken auf die gewünschte Option. "
+"Mehrfachwahl kann durch Drücken und Halten der Command-Taste (Mac) or "
+"Control-Taste (Windows) <strong>und</strong> Anklicken der gewünschten "
+"Optionen erzielt werden."
+
+#: allink_core/apps/contact/cms_plugins.py:45
+msgid "ContactRequest"
+msgstr "Kontaktanfrage"
+
+#: allink_core/apps/contact/cms_plugins.py:46
+msgid "allink"
+msgstr ""
+
+#: allink_core/apps/contact/cms_toolbars.py:19
+msgid "Forms"
+msgstr "Formulare"
+
+#: allink_core/apps/contact/forms.py:16
+msgid "E-Mail"
+msgstr ""
+
+#: allink_core/apps/contact/forms.py:24
+msgid "Please choose a date."
+msgstr "Bitte wählen Sie ein Datum."
+
+#: allink_core/apps/contact/forms.py:33
+msgid "Date has to be in the future."
+msgstr "Das Datum muss in der Zukunft liegen."
+
+#: allink_core/apps/contact/forms.py:36 allink_core/apps/contact/forms.py:43
+#: allink_core/apps/contact/forms.py:50 allink_core/apps/contact/forms.py:57
+msgid "This field is required."
+msgstr "Dieses Feld wird benötigt."
+
+#~ msgid "Salutation"
+#~ msgstr "Anrede"
+
+#~ msgid "Company"
+#~ msgstr "Firma"
+
+#~ msgid "Thanks for your request."
+#~ msgstr "Danke für Ihre Anfrage."
+
+#~ msgid "Close window"
+#~ msgstr "Fenster schliessen"
+
+#~ msgid "(required)"
+#~ msgstr "(benötigt)"
+
+#~ msgid "Choose date and time"
+#~ msgstr "Wann sollen wir Sie anrufen?"
+
+#~ msgid "Choose a date"
+#~ msgstr "Bitte ein Datum wählen"
+
+#~ msgid "Choose a time"
+#~ msgstr "Bitte Zeit wählen"
+
+#~ msgid "Submit"
+#~ msgstr "Senden"

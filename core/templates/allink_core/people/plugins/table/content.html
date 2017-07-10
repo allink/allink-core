@@ -1,0 +1,14 @@
+{% extends "app_content/plugins/table/content.html" %}
+{% load i18n %}
+
+{% block app_content_section_name_classes %}people-plugin{% endblock app_content_section_name_classes %}
+
+{% block table_class %}table-alumni{% endblock table_class %}
+
+{% block table_head %}
+    <th>{% trans "Name" %}</th>
+    <th>{% trans "Firmenname/Beruf" %}</th>
+    <th>{% trans "Ort" %}</th>
+    <th>{% trans "Kontakt" %}</th>
+    <th>&nbsp;</th>
+{% endblock table_head %}

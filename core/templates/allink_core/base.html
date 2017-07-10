@@ -1,0 +1,75 @@
+{% extends "base_root.html" %}
+{% load i18n staticfiles cms_tags menu_tags %}
+
+
+{% block body_class %}tpl-base{% endblock %}
+
+{% block body_content %}
+
+    {% block header %}
+
+        <header class="site-header compact-mode-enabled">
+            <div class="container">
+
+                <div class="navbar-brand">
+                    <a href="{% url "pages-root" %}">
+                        <img class="logo" src="{% static "images/branding/cedes-logo.svg" %}" alt="{{ request.site.name }}" />
+                    </a>
+                </div>
+
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#primary-nav" aria-expanded="false" aria-controls="primary-nav">
+                    <span class="sr-only">{% trans "Toggle navigation" %}</span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <div id="primary-nav" class="primary-nav" role="navigation">
+                    {% block navbar %}
+                        <nav class="nav">
+                            <h2 class="sr-only">{% trans "Navigation" %}</h2>
+                            {% render_model_block request.current_page "changelist" %}
+                                {% with dropdown="true" %}
+                                    <ul class="nav navbar-nav">
+                                        {% show_menu 0 1 100 100 "includes/menu/navigation.html" %}
+                                    </ul>
+                                {% endwith %}
+                            {% endrender_model_block %}
+                        </nav>
+                    {% endblock navbar %}
+                </div>
+            </div>
+        </header>
+
+        {# required to hold the space for fixed headers #}
+        <div class="site-header-buffer"></div>
+
+    {% endblock header %}
+
+    {# start: content #}
+    <hr class="sr-only" id="page-content" />
+    {% block content_container %}
+        <section class="site-content">
+            {% block content %}{% endblock %}
+        </section>
+    {% endblock content_container %}
+    <hr class="sr-only" />
+    {# end: content #}
+
+    {% block footer %}
+        <footer class="site-footer inverted-colors" role="contentinfo">
+            
+            {% static_placeholder "footer" %}
+
+        </footer>
+    {% endblock footer %}
+
+    {% block to_the_top %}
+        <a href="#page-top" class="to-the-top" data-smooth-scroll>
+            <span class="inner">
+                <span class="sr-only">
+                    {% trans "To the top" %}
+                </span>
+            </span>
+        </a>
+    {% endblock to_the_top %}
+
+{% endblock body_content %}

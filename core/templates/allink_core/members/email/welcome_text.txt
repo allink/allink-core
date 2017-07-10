@@ -1,0 +1,5 @@
+{% load i18n %}
+{% blocktrans %}
+welcome
+{{ set_password_link }}
+{% endblocktrans %}

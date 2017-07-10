@@ -1,0 +1,21 @@
+{% load cms_tags sekizai_tags i18n thumbnail allink_image_tags %}
+
+{% if follow_text and forloop.counter == follow_position %}
+    {% include "allink_instagram/plugins/grid_static/_follow.html" %}
+{% endif %}
+
+<style>
+    .instagramfeed-plugin-container .grid-item {
+        width: calc(100% / {{items_per_row}});
+    }
+</style>
+
+<div class="grid-item">
+    {% if object.big %}
+        <div class="image-container">
+            <a href="{{object.link}}" target="_blank">
+                <img src="{{object.big}}" alt="{{object.caption}}">
+            </a>
+        </div>
+    {% endif %}
+</div>

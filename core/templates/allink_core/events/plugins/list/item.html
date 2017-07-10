@@ -1,0 +1,38 @@
+{% load cms_tags allink_cms_tags sekizai_tags i18n thumbnail allink_image_tags %}
+
+<div class="list-item {% if appended %}appended{% endif %}">
+
+    <div class="col col-1">
+        <div class="manage-spacings">
+            <div class="text-container date-container">
+                {{object.event_date_time}}
+{#                {{object.event_date_time|date:"d.m.Y"}}#}
+            </div>
+        </div>
+    </div>
+
+    <div class="col col-2">
+        <div class="manage-spacings">
+            <div class="text-container">
+                <p>
+                    <strong>{% render_model_ajax object "title" %}</strong><br>
+                    {{object.lead|striptags}}
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col col-3">
+        {% if instance.detail_link_enabled and object.show_detail_link %}
+            <div class="text-container">
+                <a class="text" href="{{object.get_absolute_url}}">
+                    {% if instance.detail_link_text %}
+                        {{ instance.detail_link_text }}
+                    {% else %}
+                        {% trans "More" %}
+                    {% endif %}
+                </a>
+            </div>
+        {% endif %}
+    </div>
+
+</div>

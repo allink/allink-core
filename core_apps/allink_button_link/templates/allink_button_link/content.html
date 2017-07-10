@@ -1,0 +1,17 @@
+{% load cms_tags staticfiles sekizai_tags thumbnail %}
+
+{% spaceless %}
+
+    <div class="content-plugin button-link-plugin {{ instance.css_classes }}">
+
+        <ul class="button-link-plugin__list">
+            {% for plugin in instance.child_plugin_instances %}
+                <li class="button-link-plugin__list-item">
+                    {% render_plugin plugin %}
+                </li>
+            {% endfor %}
+        </ul>
+
+    </div>
+
+{% endspaceless %}

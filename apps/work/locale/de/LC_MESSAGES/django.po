@@ -1,0 +1,86 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-06-28 13:42+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: allink_core/apps/work/abstract_models.py:29
+msgid "Preview Image"
+msgstr "Vorschaubild"
+
+#: allink_core/apps/work/abstract_models.py:51
+msgid "Project / Reference"
+msgstr "Projekt / Referenz"
+
+#: allink_core/apps/work/abstract_models.py:52
+msgid "Projects / References"
+msgstr "Projekte / Referenzen"
+
+#: allink_core/apps/work/abstract_models.py:62
+msgid "Slug"
+msgstr ""
+
+#: allink_core/apps/work/abstract_models.py:66
+msgid "Leave blank to auto-generate a unique slug."
+msgstr "Leer lassen, um den Slug automatisch zu generieren."
+
+#: allink_core/apps/work/abstract_models.py:69
+msgid "Lead Text"
+msgstr ""
+
+#: allink_core/apps/work/abstract_models.py:70
+msgid ""
+"Teaser text that in some cases is used in the list view and/or in the detail "
+"view."
+msgstr ""
+"Teaser-Text, welcher in der Listenansicht und/oder in der Detailansicht "
+"verwendet wird."
+
+#: allink_core/apps/work/abstract_models.py:84
+msgid ""
+"Select and arrange specific entries, or, leave blank to select all. (If "
+"manual entries are selected the category filtering will be ignored.)"
+msgstr ""
+"Wählen und ordnen Sie spezifische Einträge oder leer lassen, um alle zu "
+"wählen. (Kategorienfilterung wird bei manuellen Einträgen nicht angewandt.)"
+
+#: allink_core/apps/work/cms_apps.py:8
+msgid "Work Apphook"
+msgstr ""
+
+#: allink_core/apps/work/cms_menus.py:15
+msgid "Work menu"
+msgstr ""
+
+#: allink_core/apps/work/pdf.py:553
+msgid "Highlights"
+msgstr ""
+
+#~ msgid "Detailed Text"
+#~ msgstr "Detailtext"
+
+#~ msgid "The full text in detail view."
+#~ msgstr "Der gesamte Text für die Detailansicht."
+
+#~ msgid "Images"
+#~ msgstr "Bilder"
+
+#~ msgid "The first image will be used as preview image."
+#~ msgstr "Das erst Bild wird als Vorschaubild verwendet."
+
+#~ msgid "More"
+#~ msgstr "Mehr"

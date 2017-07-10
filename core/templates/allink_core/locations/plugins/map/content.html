@@ -1,0 +1,80 @@
+{% load cms_tags sekizai_tags i18n thumbnail %}
+
+{% comment %}
+
+    Map Config
+
+{% endcomment %}
+
+{# A map only makes sense, when locations are assigned #}
+{% if object_list %}
+
+    <div class="locations-plugin map-container {{ instance.css_classes }}">
+
+        <div class="locations-map" id="map-{{instance.id}}" data-zoom-level="{{instance.zoom_level}}"></div>
+
+        <script type="text/javascript">
+
+            {# init map array if hasn't already been set #}
+            if(!window.MAPS) {
+                window.MAPS = [];
+            }
+
+            var map_locations = {
+                id: {{instance.id}},
+                locations: {
+                    {# loop through locations #}
+                    {% for object in object_list %}
+                        {# LAT and LNG are required #}
+                        {% if object.lat or object.lng %}
+                            {{forloop.counter}}: {
+                                lat: '{{object.lat}}',
+                                lng: '{{object.lng}}',
+                                infowindow_content: '{% spaceless %}
+                                <div class="map-info-box">
+                                    <address>
+                                        <div class="block text-container">'
+                                            {% if object.title %}
+                                                + '<strong>{{object.title}}</strong>'
+                                            {% endif %}
+                                            {% if object.street %}
+                                                + '<br>{{object.street}} {{object.street_nr}}'
+                                            {% endif %}
+                                            {% if object.zip_code or object.place %}
+                                                + '<br>{{object.zip_code}} {{object.place}}'
+                                            {% endif %}
+                                        + '</div>'
+                                        + '<div class="block text-container">'
+                                            {% if object.phone %}
+                                                + 'T <a class="text" href="tel:{{object.phone}}">{{object.phone_formatted}}</a>'
+                                            {% endif %}
+                                            {% if object.mobile %}
+                                                + '<br>M <a class="text" href="tel:{{object.mobile}}">{{object.mobile_formatted}}</a>'
+                                            {% endif %}
+                                            {% if object.fax %}
+                                                + '<br>F <a class="text" href="tel:{{object.fax}}">{{object.fax_formatted}}</a>'
+                                            {% endif %}
+                                            {% if object.email %}
+                                                + '<br>E <a class="text" href="mailto:{{object.email}}">{{object.email}}</a>'
+                                            {% endif %}
+                                            {% if object.map_link %}
+                                                + '<br><br><a class="text" href="{{object.map_link}}" target="_blank">{% trans "Directions" %}</a>'
+                                            {% endif %}
+                                        + '</div>'
+                                    + '</address>
+                                </div>
+                                {% endspaceless %}',
+                            },
+                        {% endif %}
+                    {% endfor %}
+                }
+            }
+
+            // add map to array
+            window.MAPS.push(map_locations);
+
+        </script>
+
+    </div>
+
+{% endif %}

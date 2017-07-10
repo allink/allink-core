@@ -1,0 +1,9 @@
+{% load i18n %}
+<div class="grid-item instagram-follow__outer inverted-colors">
+    <div class="instagram-follow__inner manage-spacings">
+        <h2 class="instagram-follow__text">{{ follow_text }}</h2>
+        <a class="instagram-follow__link" target="_blank" href="https://instagram.com/{{ account_name }}">
+            <span class="instagram-follow__icon__text">{% trans "Follow us" %}</span>
+        </a>
+    </div>
+</div>

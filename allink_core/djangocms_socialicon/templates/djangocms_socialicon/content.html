@@ -1,9 +1,0 @@
-{% load cms_tags staticfiles sekizai_tags thumbnail %}
-
-<div class="social-icons-container">
-    <ul>
-        {% for plugin in instance.child_plugin_instances %}
-            {% render_plugin plugin %}
-        {% endfor %}
-    </ul>
-</div>

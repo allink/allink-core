@@ -1,0 +1,296 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-06-28 13:42+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: allink_core/core_apps/allink_content/cms_plugins.py:16
+msgid "Content"
+msgstr ""
+
+#: allink_core/core_apps/allink_content/cms_plugins.py:17
+#: allink_core/core_apps/allink_content/cms_plugins.py:99
+msgid "allink"
+msgstr ""
+
+#: allink_core/core_apps/allink_content/cms_plugins.py:37
+msgid "Display Options"
+msgstr "Darstellungsoptionen"
+
+#: allink_core/core_apps/allink_content/cms_plugins.py:46
+msgid "Full width background image"
+msgstr "Hintergrundbild volle Breite"
+
+#: allink_core/core_apps/allink_content/cms_plugins.py:53
+msgid "Container background image"
+msgstr "Hintergrundbild in Container"
+
+#: allink_core/core_apps/allink_content/cms_plugins.py:59
+msgid "Video background (Important: Only works if all fields are set)"
+msgstr ""
+"Hintergrundvideo (Wichtig: Funktioniert nur, wenn alle Felder ausgefüllt "
+"sind.)"
+
+#: allink_core/core_apps/allink_content/cms_plugins.py:68
+msgid "Advanced Options"
+msgstr "Erweiterte Einstellungen"
+
+#: allink_core/core_apps/allink_content/cms_plugins.py:98
+msgid "Column"
+msgstr "Spalte"
+
+#: allink_core/core_apps/allink_content/forms.py:19
+#: allink_core/core_apps/allink_content/models.py:75
+msgid "Template"
+msgstr ""
+
+#: allink_core/core_apps/allink_content/forms.py:24
+msgid "Background color"
+msgstr "Hintergrundfarbe"
+
+#: allink_core/core_apps/allink_content/forms.py:29
+msgid "Predifined variations"
+msgstr "Vordefinierte Variationen"
+
+#: allink_core/core_apps/allink_content/forms.py:30
+msgid ""
+"Instructions: Single selection is made by clicking on an option. Multiple "
+"selections are achieved by pressing and holding down the Command-key (Mac) "
+"or Control-Key (Windows) <strong>and</strong> clicking the options you would "
+"like to apply."
+msgstr ""
+"Anleitung: Einzelauswahl durch Klicken auf die gewünschte Option. "
+"Mehrfachwahl kann durch Drücken und Halten der Command-Taste (Mac) or "
+"Control-Taste (Windows) <strong>und</strong> Anklicken der gewünschten "
+"Optionen erzielt werden."
+
+#: allink_core/core_apps/allink_content/forms.py:40
+msgid ""
+"You can only change the template if it has the same amount of columns as the "
+"previous template."
+msgstr ""
+
+#: allink_core/core_apps/allink_content/models.py:50
+#: allink_core/core_apps/allink_content/models.py:257
+msgid "Title"
+msgstr "Titel"
+
+#: allink_core/core_apps/allink_content/models.py:51
+msgid "The section title"
+msgstr ""
+
+#: allink_core/core_apps/allink_content/models.py:57
+msgid "Section Title Size"
+msgstr ""
+
+#: allink_core/core_apps/allink_content/models.py:63
+msgid "Activate \"container\""
+msgstr ""
+
+#: allink_core/core_apps/allink_content/models.py:64
+msgid "If checked, an inner container with a maximum width is added"
+msgstr ""
+
+#: allink_core/core_apps/allink_content/models.py:68
+msgid "Set a predefined background color"
+msgstr "Vordefinierte Hintergrundfarbe setzen"
+
+#: allink_core/core_apps/allink_content/models.py:76
+msgid "Choose a template."
+msgstr "Template wählen."
+
+#: allink_core/core_apps/allink_content/models.py:80
+msgid "Activate overlay styles"
+msgstr "Overlay-Syles aktivieren"
+
+#: allink_core/core_apps/allink_content/models.py:81
+msgid ""
+"If checked, the predefined overlay styles are applied (suitable when text is "
+"over an image/video)"
+msgstr ""
+"Falls angewählt, werden die vordefinierten Overlay-Styles angewandt "
+"(Nützlich, falls Text über einem Bild oder Video dargestellt wird)."
+
+#: allink_core/core_apps/allink_content/models.py:85
+msgid "Activate \"full height\" mode"
+msgstr "\"full height\"-Modus aktivieren"
+
+#: allink_core/core_apps/allink_content/models.py:86
+msgid ""
+"If checked, the section will use the available height of the device's/"
+"browser's screen."
+msgstr ""
+"Falls angewählt, wird der Abschnitt die verfügbare Höhe des Geräts/Browsers "
+"nutzten."
+
+#: allink_core/core_apps/allink_content/models.py:90
+msgid "Activate Parallax effect"
+msgstr "Parallax-Effekt aktivieren"
+
+#: allink_core/core_apps/allink_content/models.py:91
+msgid "If checked, the parallax effect is enabled."
+msgstr "Falls angewählt, ist der Parallax-Effekt aktiv."
+
+#: allink_core/core_apps/allink_content/models.py:95
+#: allink_core/core_apps/allink_content/models.py:102
+msgid "Background-Image"
+msgstr "Hintergrundbild"
+
+#: allink_core/core_apps/allink_content/models.py:96
+msgid ""
+"Adds a background image to the inner container of a content section. "
+"Activating \"overlay styles\" is recommended."
+msgstr ""
+"Fügt ein Hintergrundbild zum inneren Container eines Inhaltsabschnitts "
+"hinzu. \"Overlay-Styles\" aktivieren empfohlen."
+
+#: allink_core/core_apps/allink_content/models.py:103
+msgid ""
+"Optional: Set a background image for the content section.<br>Note: This is "
+"meant for decorative purposes only and should be used with care."
+msgstr ""
+
+#: allink_core/core_apps/allink_content/models.py:110
+msgid "Source"
+msgstr "Quelle"
+
+#: allink_core/core_apps/allink_content/models.py:111
+msgid ""
+"Recommended video settings:<br><br>Format: mp4<br>Codec: H.264<br>Target "
+"Bitrate: 2 (video loads quick and runs smooth)<br>Audio: Not recommended (no "
+"audio = smaller file size and less annoyed visitors)<br>File size: Dependent "
+"of video length. Generally speaking: Less is more."
+msgstr ""
+"Empfohlene Video-Einstellungen:<br><br>Format: mp4<br>Codec: H.264<br>Target "
+"Bitrate: 2 (Video lädt schnell und läuft ohne Stocken)<br>Audio: Nicht "
+"empfohlen (kein Audio = kleinere Dateigrösse und weniger verärgerte "
+"Besucher)<br>Dateigrösse: Abhängig von der Länge des Videos. Allgemein: "
+"Weniger ist mehr."
+
+#: allink_core/core_apps/allink_content/models.py:118
+msgid "Video Start Image"
+msgstr "Video-Startbild"
+
+#: allink_core/core_apps/allink_content/models.py:120
+msgid ""
+"This image is displayed while the video is loading. Ideally the very first "
+"frame of the video is used, in order to make the transition as smooth as "
+"possible."
+msgstr ""
+"Dieses Bild wird angezeigt, während das Video lädt. Am besten das allererste "
+"Frame des Videos benutzen, damit der Beginn ohne Stocken verläuft."
+
+#: allink_core/core_apps/allink_content/models.py:125
+msgid "Mobile Image"
+msgstr "Bild für Mobile"
+
+#: allink_core/core_apps/allink_content/models.py:127
+msgid ""
+"The image that is being displayed instead of the video on mobile devices."
+msgstr "Das Bild, das auf Mobile anstelle des Videos angezeigt wird."
+
+#: allink_core/core_apps/allink_content/models.py:132
+msgid "Mobile Image Alignment (horizontal)"
+msgstr "Ausrichtung des Bilds für Mobile (horizontal)"
+
+#: allink_core/core_apps/allink_content/models.py:133
+msgid ""
+"Which part of the image ist the most important one and <strong>must</strong> "
+"be visible? Because we use the available space, there is a chance that a "
+"part (left and/or right) is not visible."
+msgstr ""
+"Welcher Bildteil ist am wichtigsten und <strong>muss</strong> sichtbar sein? "
+"Je nach Bildschirmgrösse kann es sein, dass ein Teil (links und/oder rechts) "
+"nicht sichtbar ist."
+
+#: allink_core/core_apps/allink_content/models.py:139
+msgid "ID"
+msgstr ""
+
+#: allink_core/core_apps/allink_content/models.py:142
+msgid ""
+"ID of this content section which can be used for anchor reference from links."
+"<br>Note: Only letters, numbers and hyphen. No spaces or special chars."
+msgstr ""
+"ID für diesen Inhaltsabschnitt, die für eine Anker-Verlinkung verwendet "
+"werden kann. <br>Hinweis: Nur Buchstaben, Ziffern und Bindestriche (-). "
+"Keine Sonderzeichen oder Abstände."
+
+#: allink_core/core_apps/allink_content/models.py:146
+msgid "Ignore for pdf export"
+msgstr "Beim PDF-Export ignorieren"
+
+#: allink_core/core_apps/allink_content/models.py:147
+msgid "If checked, the content plugin will be ignored when generting a pdf."
+msgstr "Falls angewählt, wird dieser Abschnitt für den PDF-Export ignoriert."
+
+#: allink_core/core_apps/allink_content/models.py:218
+#, python-format
+msgid "Incorrect file type: %(value)s"
+msgstr "Falscher Dateityp: %(value)s"
+
+#: allink_core/core_apps/allink_content/models.py:263
+msgid "Order Mobile"
+msgstr "Sortierung für Mobile"
+
+#: allink_core/core_apps/allink_content/models.py:264
+msgid ""
+"Some columns should be ordered differently on mobile devices when columns "
+"are stacked vertically. This option allows you to define the position of the "
+"this column.<br><br>Note: Columns ordering is ascending (lowest number "
+"displayed first)"
+msgstr ""
+"Gewisse Spalten sollten auf Mobile anders geordnet werden, da diese vertikal "
+"gestapelt werden.Mit dieser Option können Sie die Reihenfolge der Spalten "
+"bestimmen.<br><br>Hinweis: Die Spaltensortierung ist absteigend (Kleinste "
+"Zahl wird zuerst angezeigt.)"
+
+#: allink_core/core_apps/allink_content/models.py:269
+msgid "Alignment horizontal mobile"
+msgstr "Horizontale Ausrichtung für Mobile"
+
+#: allink_core/core_apps/allink_content/models.py:272
+msgid ""
+"This option overrides the projects default alignment for mobile. (Usually "
+"\"left\")"
+msgstr ""
+"Diese Einstellung überschreibt den Standard für die horizontale Ausrichtung "
+"auf Mobile. (Normalerweise \"links\")"
+
+#: allink_core/core_apps/allink_content/models.py:277
+msgid "Alignment horizontal desktop"
+msgstr "Horizontale Ausrichtung auf Desktop"
+
+#: allink_core/core_apps/allink_content/models.py:280
+msgid ""
+"This option overrides the projects default alignment for desktop. (Usually "
+"\"left\")"
+msgstr ""
+"Diese Einstellung überschreibt den Standard für die horizontale Ausrichtung "
+"auf Desktop. (Normalerweise \"links\")"
+
+#: allink_core/core_apps/allink_content/models.py:285
+msgid "Alignment vertical desktop"
+msgstr "Vertikale Ausrichtung auf Desktop"
+
+#: allink_core/core_apps/allink_content/models.py:288
+msgid ""
+"This option overrides the projects default alignment for desktop. (Usually "
+"\"top\")"
+msgstr ""
+"Diese Einstellung überschreibt den Standard für die vertikale Ausrichtung "
+"auf Desktop. (Normalerweise \"oben\")"

@@ -1,0 +1,7 @@
+{% load i18n %}
+
+{% include 'partials/forms/non_field_errors.html' %}
+
+{% for field in form %}
+    {% include 'partials/forms/form_field.html' with field=field style=style %}
+{% endfor %}

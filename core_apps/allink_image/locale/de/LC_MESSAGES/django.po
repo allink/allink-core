@@ -1,0 +1,122 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-06-28 13:42+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: allink_core/core_apps/allink_image/cms_plugins.py:14
+#: allink_core/core_apps/allink_image/models.py:25
+msgid "Image"
+msgstr "Bild"
+
+#: allink_core/core_apps/allink_image/cms_plugins.py:15
+msgid "allink"
+msgstr ""
+
+#: allink_core/core_apps/allink_image/cms_plugins.py:41
+msgid "Additional settings"
+msgstr "Erweiterte Einstellungen"
+
+#: allink_core/core_apps/allink_image/cms_plugins.py:48
+msgid "Link settings"
+msgstr "Link-Einstellungen"
+
+#: allink_core/core_apps/allink_image/forms.py:14
+msgid "Link Internal"
+msgstr "Interner Link"
+
+#: allink_core/core_apps/allink_image/forms.py:26
+msgid "Special Links"
+msgstr ""
+
+#: allink_core/core_apps/allink_image/forms.py:31
+#: allink_core/core_apps/allink_image/models.py:31
+msgid "Ratio"
+msgstr "Seitenverhältnis"
+
+#: allink_core/core_apps/allink_image/forms.py:32
+msgid ""
+"This option overrides the default image ratio set for images in a colum of a "
+"content section."
+msgstr ""
+"Diese Option überschreibt die Standardeinstellung für "
+"Bildseitenverhältnisse, die für Bilder in einer Spalte gesetzt ist."
+
+#: allink_core/core_apps/allink_image/forms.py:38
+#: allink_core/core_apps/allink_image/models.py:49
+msgid "Set a predefined background color"
+msgstr "Vordefinierte Hintergrundfarbe wählen"
+
+#: allink_core/core_apps/allink_image/forms.py:43
+msgid "Predifined variations"
+msgstr "Vordefiniert Variationen"
+
+#: allink_core/core_apps/allink_image/forms.py:44
+msgid ""
+"Instructions: Single selection is made by clicking on an option. Multiple "
+"selections are achieved by pressing and holding down the Command-key (Mac) "
+"or Control-Key (Windows) <strong>and</strong> clicking the options you would "
+"like to apply."
+msgstr ""
+"Anleitung: Einzelwahl durch Klicken auf die gewünschte Option. Mehrfachwahl "
+"kann durch Drücken und Halten der Command-Taste (Mac) or Control-Taste "
+"(Windows) <strong>und</strong> Anklicken der gewünschten Optionen erzielt "
+"werden."
+
+#: allink_core/core_apps/allink_image/models.py:37
+msgid "Placeholder Background Color"
+msgstr "Platzhalter Hintergrundfarbe"
+
+#: allink_core/core_apps/allink_image/models.py:40
+msgid ""
+"Show default image placeholder background color.<br><strong>Important:</"
+"strong> Disabling this option results in a transparent background even if a "
+"specific color is set (this makes sense when a transparent PNG image is used)"
+msgstr ""
+"Standard-Hintergrundfarbe für Platzhalterbilder anzeigen.<br><strong>Wichtig:"
+"</strong> Wenn diese Option deaktiviert ist, wird ein transparenter "
+"Hintergrund angezeigt, auch wenn eine Farbe gewählt wurde (Sinnvoll für "
+"transparente PNGs)."
+
+#: allink_core/core_apps/allink_image/models.py:43
+msgid "Loader Icon"
+msgstr "Lade-Icon"
+
+#: allink_core/core_apps/allink_image/models.py:46
+msgid ""
+"Show the icon that is used as long as the image is loading."
+"<br><strong>Important:</strong> Disable this option if a transparent PNG "
+"image is used."
+msgstr ""
+"Icon anzeigen, während das Bild lädt.<br><strong>Wichtig:</strong> Für "
+"transparente PNGs sollte diese Option deaktiviert werden."
+
+#: allink_core/core_apps/allink_image/models.py:55
+msgid "Caption text"
+msgstr "Bildunterschrift"
+
+#: allink_core/core_apps/allink_image/models.py:57
+msgid "Provide a description, attribution, copyright or other information."
+msgstr "Für Beschreibung, Zuordnung, Copyright oder andere Informationen."
+
+#: allink_core/core_apps/allink_image/models.py:60
+msgid "Attributes"
+msgstr "Attribute"
+
+#: allink_core/core_apps/allink_image/models.py:94
+msgid "<file is missing>"
+msgstr "<Datei fehlt>"

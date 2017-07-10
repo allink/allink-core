@@ -1,0 +1,141 @@
+{% load cms_tags staticfiles sekizai_tags i18n thumbnail %}
+
+{% block app_content_plugin_container %}
+    <div class="app-list app-content-plugin {{instance.get_model_name}}-plugin app-content-plugin-{{instance.id}} {{instance.css_classes}} {% block app_content_container_additional_classes %}{% endblock app_content_container_additional_classes %}" {% block app_content_container_additional_attributes %}{% endblock app_content_container_additional_attributes %}>
+
+        {% comment %}
+            Optional: Section before content
+        {% endcomment %}
+        {% block app_content_inner_container_before %}
+        {% endblock app_content_inner_container_before %}
+
+        {% comment %}
+            Main Content Container
+        {% endcomment %}
+        {% block app_content_inner_container %}
+
+            {% comment %}
+                Heading Container
+            {% endcomment %}
+            {% block app_content_heading_container %}
+
+                {% comment %}
+                    Optional: Category List
+                {% endcomment %}
+                {% block app_content_category_container %}
+                    {% if instance.category_navigation_enabled %}
+                        {# utility block #}
+                        {% block app_content_category_container_before %}{% endblock app_content_category_container_before %}
+                        <ul class="custom-nav-tabs app-content-categories">
+                            {% if instance.category_navigation_all %}
+                                <li class="custom-nav-tabs__item active">
+                                    <a class="custom-nav-tabs__link ajax-load-items" href="{{ by_category }}">
+                                        <span>
+                                            {% block app_content_category_all_text %}
+                                                {% trans 'All' %}
+                                            {% endblock app_content_category_all_text %}
+                                        </span>
+                                    </a>
+                                </li>
+                            {% endif %}
+                        {% for category in category_navigation %}
+                            <li class="custom-nav-tabs__item {% if not instance.category_navigation_all and forloop.first %}active {% endif %}">
+                                <a class="custom-nav-tabs__link ajax-load-items" href="{{ by_category }}&category={{ category.id }}">
+                                    <span>
+                                        {{category.name}}
+                                    </span>
+                                </a>
+                            </li>
+                        {% endfor %}
+                        </ul>
+                        {# utility block #}
+                        {% block app_content_category_container_after %}{% endblock app_content_category_container_after %}
+                    {% endif %}
+                {% endblock app_content_category_container %}
+                {% comment %}
+                    Optional: Filter Fields
+                {% endcomment %}
+                {% block app_content_filter_container %}
+                    {% if instance.filter_fields %}
+                        <div class="filter-container" data-ajax-filter-base-url="{{by_category}}">
+                            <div class="filter-container-inner">
+                                {% spaceless %}
+                                    {# utility block #}
+                                    {% block app_content_filter_container_before %}{% endblock app_content_filter_container_before %}
+                                        {% for filter, options in instance.get_filter_fields_with_options.items %}
+                                            <select class="form-control selectpicker app-content-filter" title="{% trans options.0 %}" id="filter-{{filter}}" name="filter-{{filter}}" required>
+                                                {% for value, option in options.1 %}
+                                                    <option value="{{ value }}">{{ option }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        {% endfor %}
+                                    {# utility block #}
+                                    {% block app_content_filter_container_after %}{% endblock app_content_filter_container_after %}
+                                {% endspaceless %}
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endblock app_content_filter_container %}
+
+            {% endblock app_content_heading_container %}
+
+            {% comment %}
+                Optional: Section BEFORE the objects
+            {% endcomment %}
+            {% block app_content_objects_before %}
+            {% endblock app_content_objects_before %}
+
+            {% comment %}
+                Object Loop
+            {% endcomment %}
+            {% block app_content_objects_content_container %}
+
+                {% comment %}
+                    Required container for optional Softpage setting
+                {% endcomment %}
+                <div {% if instance.softpage_enabled %}data-trigger-softpage{% endif %}>
+
+                    {% comment %}
+                        Container for objects
+                    {% endcomment %}
+                    {% block app_content_objects_container %}
+                    {% endblock app_content_objects_container %}
+
+                </div>
+            {% endblock app_content_objects_content_container %}
+
+            {% comment %}
+                Optional: Section AFTER the objects
+            {% endcomment %}
+            {% block app_content_objects_after %}
+            {% endblock app_content_objects_after %}
+
+        {% endblock app_content_inner_container %}
+
+        {% comment %}
+            Optional: Section after content
+        {% endcomment %}
+        {% block app_content_inner_container_after %}
+        {% endblock app_content_inner_container_after %}
+
+        {% comment %}
+            Optional: 'Load More'
+        {% endcomment %}
+        {% block app_content_load_more_container %}
+            {% if instance.pagination_type == "load" or instance.pagination_type == "load_rest" %}
+                <div class="load-more-container" {% if not next_page_url %}style="display:none;"{% endif %}>
+                    <a href="{{ next_page_url }}" class="app-list__load-more-link btn-load-more ajax-load-items append" {% block app_content_load_more_attr %}{% endblock app_content_load_more_attr %} data-btn-ajax-loader>
+                        <span class="btn-text">
+                            {% if instance.load_more_button_text %}
+                                {{ instance.load_more_button_text }}
+                            {% else %}
+                                {% trans "Load More" %}
+                            {% endif %}
+                        </span>
+                    </a>
+                </div>
+            {% endif %}
+        {% endblock app_content_load_more_container %}
+
+    </div>
+{% endblock app_content_plugin_container %}

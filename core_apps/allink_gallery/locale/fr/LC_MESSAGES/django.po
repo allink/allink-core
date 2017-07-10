@@ -1,0 +1,121 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-06-28 13:42+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: allink_core/core_apps/allink_gallery/cms_plugins.py:13
+msgid "Gallery"
+msgstr ""
+
+#: allink_core/core_apps/allink_gallery/cms_plugins.py:14
+#: allink_core/core_apps/allink_gallery/cms_plugins.py:59
+msgid "allink"
+msgstr ""
+
+#: allink_core/core_apps/allink_gallery/cms_plugins.py:32
+msgid "Slider Options"
+msgstr ""
+
+#: allink_core/core_apps/allink_gallery/cms_plugins.py:40
+msgid "Advanced Options"
+msgstr ""
+
+#: allink_core/core_apps/allink_gallery/cms_plugins.py:58
+#: allink_core/core_apps/allink_gallery/models.py:97
+msgid "Image"
+msgstr ""
+
+#: allink_core/core_apps/allink_gallery/forms.py:22
+#: allink_core/core_apps/allink_gallery/models.py:27
+msgid "Ratio"
+msgstr ""
+
+#: allink_core/core_apps/allink_gallery/forms.py:23
+msgid "This option overrides the default settings for the gallery plugin."
+msgstr ""
+
+#: allink_core/core_apps/allink_gallery/forms.py:28
+#: allink_core/core_apps/allink_gallery/models.py:22
+msgid "Template"
+msgstr ""
+
+#: allink_core/core_apps/allink_gallery/forms.py:34
+msgid "Predifined variations"
+msgstr ""
+
+#: allink_core/core_apps/allink_gallery/forms.py:35
+msgid ""
+"Instructions: Single selection is made by clicking on an option. Multiple "
+"selections are achieved by pressing and holding down the Command-key (Mac) "
+"or Control-Key (Windows) <strong>and</strong> clicking the options you would "
+"like to apply."
+msgstr ""
+
+#: allink_core/core_apps/allink_gallery/forms.py:54
+msgid ""
+"There are only {} characters allowed in text field. Currently there are {} "
+"characters."
+msgstr ""
+
+#: allink_core/core_apps/allink_gallery/models.py:23
+msgid "Choose a template."
+msgstr ""
+
+#: allink_core/core_apps/allink_gallery/models.py:33
+msgid "Fullscreen option visible"
+msgstr ""
+
+#: allink_core/core_apps/allink_gallery/models.py:35
+msgid "This option enables a fullscreen button for this gallery."
+msgstr ""
+
+#: allink_core/core_apps/allink_gallery/models.py:38
+msgid "Gallery counter visible"
+msgstr ""
+
+#: allink_core/core_apps/allink_gallery/models.py:40
+msgid "This option enables a gallery counter."
+msgstr ""
+
+#: allink_core/core_apps/allink_gallery/models.py:43
+msgid "Autostart"
+msgstr ""
+
+#: allink_core/core_apps/allink_gallery/models.py:45
+msgid "This option enables autoplay for this gallery."
+msgstr ""
+
+#: allink_core/core_apps/allink_gallery/models.py:87
+msgid "Title"
+msgstr ""
+
+#: allink_core/core_apps/allink_gallery/models.py:93
+msgid "Text"
+msgstr ""
+
+#: allink_core/core_apps/allink_gallery/templates/allink_gallery/slider/content.html:18
+msgid "Previous Slide"
+msgstr ""
+
+#: allink_core/core_apps/allink_gallery/templates/allink_gallery/slider/content.html:23
+msgid "Next Slide"
+msgstr ""
+
+#: allink_core/core_apps/allink_gallery/templates/allink_gallery/slider/content.html:37
+msgid "Fullscreen Gallery"
+msgstr ""

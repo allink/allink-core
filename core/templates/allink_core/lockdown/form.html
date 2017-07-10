@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load i18n allink_helpers %}
+
+{% block navigation %}{% endblock %}
+
+{% block body_class %}{{super}} tpl-lockdown{% endblock %}
+
+{% block content %}
+    <div class="content-section lockdown-section container-enabled" data-scroll-spy>
+        <div class="container">
+            <div class="lockdown-plugin">
+                <div class="text-container">
+                    <h1 class="lockdown-plugin__heading">{% trans 'Coming soon!' %}</h1>
+                    <p class="lockdown-plugin__text">{% trans 'This site is not yet available to the public.' %}</p>
+                    {% if form %}
+                        {% include "partials/forms/non_field_errors.html" %}
+                        {% trans "Preview" as cta %}
+                        {% include "partials/forms/form.html" with class="lockdown-plugin__form" action='.' method="post" no_ajax=1 cta=cta close_btn_enabled=False %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}{% endblock %}

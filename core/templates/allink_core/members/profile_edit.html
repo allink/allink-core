@@ -1,0 +1,13 @@
+{% extends "account/ajax_base.html" %}
+{% load i18n allink_members_tags%}
+
+{% block softpage_title %}{% trans "Change Password" %}{% endblock %}
+
+{% block content %}
+    {% include 'partials/forms/non_field_errors.html' %}
+
+    {% url "members:profile_edit" as action%}
+    {% trans "Save" as cta %}
+    {% include "partials/forms/form.html" with class='profile-edit-form' action=action cta=cta %}
+
+{% endblock %}

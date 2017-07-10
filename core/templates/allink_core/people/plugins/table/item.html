@@ -1,0 +1,32 @@
+{% load cms_tags allink_cms_tags allink_cms_tags allink_cms_tags sekizai_tags i18n thumbnail allink_image_tags %}
+
+<tr class="{% if appended %}appended{% endif %}">
+    <td>
+        {% if object.title %}
+            {% render_model_ajax object "title" %}
+        {% endif %}
+    </td>
+    <td>
+        {% if object.website %}
+            <a href="{{object.website}}" target="_blank" data-softpage-disabled>
+        {% endif %}
+            {% if object.company_name %}
+                {% render_model_ajax object "company_name" %}
+            {% endif %}
+        {% if object.website %}
+            </a>
+        {% endif %}
+    </td>
+    <td>
+        {% if object.place %}
+            {% render_model_ajax object "place" %}
+        {% endif %}
+    </td>
+    <td>
+        {% if object.email %}
+            <a href="mailto:{{object.email}}" data-softpage-disabled>
+                {{object.email}}
+            </a>
+        {% endif %}
+    </td>
+</tr>

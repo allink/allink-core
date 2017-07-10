@@ -1,0 +1,35 @@
+{% extends "app_content/app_content.html" %}
+
+{% load cms_tags staticfiles sekizai_tags i18n thumbnail %}
+
+{# We don't want the category navigation when the slider template is chosen. This makes sure it's removed. #}
+{% block app_content_category_container %}
+{% endblock app_content_category_container %}
+
+{# We don't want the 'load more' button when the slider is activated #}
+{% block app_content_load_more_container %}
+{% endblock app_content_load_more_container %}
+
+{% block app_content_objects_container %}
+
+    <div class="swiper-container swiper-default overlay-bg-enabled">
+        <div class="swiper-wrapper">
+            {% include "work/plugins/slider/_items.html" %}
+        </div>
+
+        <div class="swiper-pagination"></div>
+
+        <a href="#" class="swiper-button-prev swiper-button" data-softpage-disabled>
+            <i class="sr-only" lang="en">
+                {% trans "Previous Slide" %}
+            </i>
+        </a>
+        <a href="#" class="swiper-button-next swiper-button" data-softpage-disabled>
+            <i class="sr-only" lang="en">
+                {% trans "Next Slide" %}
+            </i>
+        </a>
+
+    </div>
+
+{% endblock app_content_objects_container %}

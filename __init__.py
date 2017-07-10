@@ -1,0 +1,58 @@
+import os
+
+VERSION = (1, 0, 0)
+__version__ = '.'.join(map(str, VERSION))
+
+
+def get_short_version():
+    return '%s.%s' % (VERSION[0], VERSION[1])
+
+# Cheeky setting that allows each template to be accessible by two paths.
+# Eg: the template 'oscar/templates/oscar/base.html' can be accessed via both
+# 'base.html' and 'oscar/base.html'.  This allows Oscar's templates to be
+# extended by templates with the same filename
+
+ALLINK_CORE_MAIN_TEMPLATE_DIRS = [
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), 'core/templates/allink_core'),
+]
+
+ALLINK_CORE_ALLINK_APPS = [
+    'allink_core.apps.contact',
+    'allink_core.apps.config',
+    'allink_core.apps.events',
+    'allink_core.apps.locations',
+    'allink_core.apps.news',
+    'allink_core.apps.members',
+    'allink_core.apps.people',
+    'allink_core.apps.testimonials',
+    'allink_core.apps.work',
+]
+
+def get_core_apps(overrides=None):
+    """
+    Return a list of oscar's apps amended with any passed overrides
+    """
+    if not overrides:
+        return ALLINK_CORE_ALLINK_APPS
+
+    # Conservative import to ensure that this file can be loaded
+    # without the presence Django.
+    from django.utils import six
+    if isinstance(overrides, six.string_types):
+        raise ValueError(
+            "get_core_apps expects a list or tuple of apps "
+            "to override")
+
+    def get_app_label(app_label, overrides):
+        pattern = app_label.replace('allink_core.apps.', '')
+        for override in overrides:
+            if override.endswith(pattern):
+                if 'dashboard' in override and 'dashboard' not in pattern:
+                    continue
+                return override
+        return app_label
+
+    apps = []
+    for app_label in ALLINK_CORE_ALLINK_APPS:
+        apps.append(get_app_label(app_label, overrides))
+    return apps

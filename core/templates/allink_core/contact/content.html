@@ -1,0 +1,5 @@
+{% load thumbnail allink_image_tags %}
+
+<div class="form-container contact-plugin">
+    {% include "contact/forms/request_base.html" with form=instance.get_form plugin_id=instance.id %}
+</div>

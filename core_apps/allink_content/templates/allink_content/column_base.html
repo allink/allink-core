@@ -1,0 +1,23 @@
+{% load cms_tags %}
+
+{# utility block #}
+{% block column_outer_content_before %}{% endblock column_outer_content_before %}
+
+<div class="content-section__col content-section__col-{{forloop.counter}} {{ instance.css_classes }} {% block column_additional_css_classes %}{% endblock column_additional_css_classes %}" {% block column_additional_attributes %}{% endblock column_additional_attributes %}>
+
+    {# utility block #}
+    {% block column_inner_content_before %}{% endblock column_inner_content_before %}
+
+    <div class="content-section__column-manage-spacings">
+        {% for plugin in instance.child_plugin_instances %}
+            {% render_plugin plugin %}
+        {% endfor %}
+    </div>
+
+    {# utility block #}
+    {% block column_inner_content_after %}{% endblock column_inner_content_after %}
+
+</div>
+
+{# utility block #}
+{% block column_outer_content_after %}{% endblock column_outer_content_after %}

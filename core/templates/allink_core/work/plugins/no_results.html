@@ -1,0 +1,15 @@
+{% extends "app_content/app_content_base.html" %}
+
+{% load cms_tags staticfiles sekizai_tags thumbnail %}
+
+{# reset unwanted blocks #}
+{% block app_content_heading_container %}
+{% endblock app_content_heading_container %}
+
+{% block app_content_load_more_container %}
+{% endblock app_content_load_more_container %}
+
+{# load no results template #}
+{% block app_content_objects_container %}
+    {% include "news/plugins/_no_results.html" %}
+{% endblock app_content_objects_container %}

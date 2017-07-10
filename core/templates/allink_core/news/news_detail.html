@@ -1,0 +1,107 @@
+{% extends base_template|default:"base.html" %}
+
+{% load cms_tags allink_cms_tags sekizai_tags i18n allink_image_tags thumbnail %}
+
+{% block content %}
+
+    <article class="app-detail news-plugin" data-scroll-spy="default">
+
+        {% comment %}
+            Check if header placeholder containers plugins
+        {% endcomment %}
+        {% placeholder_has_content placeholder=object.header_placeholder as header_placeholder_has_content %}
+
+        {% comment %}
+            Header
+        {% endcomment %}
+        <div class="content-section app-detail__header container-enabled {% if not header_placeholder_has_content and not object.preview_image %}app-detail__header--empty{% endif %}">
+            <div class="content-section__container">
+                <div class="app-detail__col-container">
+
+                    <div class="app-detail__header-col">
+
+                        {# render placeholder #}
+                        {% render_placeholder object.header_placeholder %}
+
+                        {# fallback: use preview image #}
+                        {% if object.preview_image and not header_placeholder_has_content %}
+                            <div class="image-container app-detail__header-image-container">
+                                {% render_image image=object.preview_image width_alias="2-of-3" %}
+                            </div>
+                        {% endif %}
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        {% comment %}
+            Content
+        {% endcomment %}
+        <div class="content-section app-detail__content container-enabled">
+            <div class="content-section__container">
+
+                <header class="app-detail__heading-conatiner">
+                    <h2 class="app-detail__heading">
+                        {% render_model_ajax object "title" %}
+                    </h2>
+                    {% if object.created %}
+                        <div class="app-detail__created">
+                            {{object.created|date:"j.n.Y"}}
+                        </div>
+                    {% endif %}
+                </header>
+
+                <div class="app-detail__col-container app-detail__col-2-1">
+
+                    <div class="app-detail__col app-detail__col-1">
+                        {% if object.lead %}
+                            <div class="app-detail__lead">
+                                {{object.lead}}
+                            </div>
+                        {% endif %}
+                        <div class="app-detail__content-container">
+                            {% placeholder_has_content placeholder=object.content_placeholder as content_placeholder_has_content %}
+                            {% if content_placeholder_has_content %}
+                                <div class="app-detail__content-container">
+                            {% endif %}
+                        {% render_placeholder object.content_placeholder %}
+                            {% if content_placeholder_has_content %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>{# end .app-detail__col #}
+
+
+                    {% comment %}
+                        IMPORTANT: If the second column is not need, delete it, otherwise it will create an unnecessary spacing on mobile
+                    {% endcomment %}
+                    <div class="app-detail__col app-detail__col-2">
+                        <div class="app-detail__col-2-manage-spacings">
+                            <div class="text-container">
+                                <h4>Lorem Ipsum</h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa id hic aut aliqu nsectetur adipisicing elit. Ipsa id hic au.</p>
+                            </div>
+                            <div class="text-container">
+                                <h4>Lorem Ipsum</h4>
+                                <p>Beispiel Text</p>
+                            </div>
+                            <div class="text-container">
+                                <h4>Lorem Ipsum</h4>
+                                <p>Beispiel Text</p>
+                            </div>
+                            <div class="text-container">
+                                <h4>Lorem Ipsum</h4>
+                                <p>Beispiel Text</p>
+                            </div>
+                        </div>
+                    </div>{# end .app-detail__col #}
+
+                </div>{# end .app-detail__col-container #}
+            </div>
+        </div>
+
+    </article>
+
+{% endblock %}

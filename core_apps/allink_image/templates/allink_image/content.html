@@ -1,0 +1,40 @@
+{% load thumbnail allink_image_tags cache allink_link_tags %}
+
+{% comment %}
+    cache for half a year, invalidated when edited
+{% endcomment %}
+{% cache 15552000 content_image instance.id %}
+    <div class="content-plugin image-plugin image-container {{ instance.css_classes }}">
+
+        {# start render figure/figcaption #}
+        {% if instance.caption_text %}
+            <figure class="image-plugin__figure">
+        {% endif %}
+        {# end render figure/figcaption #}
+
+            {% if instance.get_link_url %}
+                <a href="{{ instance.get_link_url }}"
+                class="image-plugin__link {{instance|link_classes}}"
+                {{ instance|link_attribute_string:request }}
+                >
+            {% endif %}
+
+                {% render_image image=instance.picture ratio=instance.ratio icon_enabled=instance.icon_enabled bg_enabled=instance.bg_enabled %}
+
+                {% if instance.image_modal_enabled and instance.link_file %}
+                    <div class="image-modal-content" style="display: none;">
+                        {% render_image width_alias="1-of-1" ratio="x-y" image=instance.link_file %}
+                    </div>
+                {% endif %}
+
+            {% if instance.get_link_url %}
+                </a>
+            {% endif %}
+        {# start render figure/figcaption #}
+        {% if instance.caption_text %}
+                <figcaption class="image-plugin__figcaption">{{ instance.caption_text }}</figcaption>
+            </figure>
+        {% endif %}
+
+    </div>
+{% endcache %}

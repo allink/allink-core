@@ -1,0 +1,109 @@
+{% load thumbnail %}
+{% if image %}
+    <picture id="{{ picture_id }}" class="lazyloader {% if not icon_enabled %}no-icon{% endif %} {% if not bg_enabled %}no-bg{% endif %} {% if bg_color and bg_color != 0 %}project-color-{{bg_color}}{% endif %}">
+
+        {# end render figure/figcaption #}
+
+        <!--[if IE 9]><video style="display: none;"><![endif]-->
+
+        {# XXL #}
+        {% if thumbnail_xxl %}
+            <source
+                data-srcset="{{thumbnail_xxl.url}}, {{thumbnail_xxl.high_resolution.url}} 2x"
+                media="(min-width:1600px)"
+                >
+        {% endif %}
+
+        {# XL #}
+        {% if thumbnail_xl %}
+            <source
+                data-srcset="{{thumbnail_xl.url}}, {{thumbnail_xl.high_resolution.url}} 2x"
+                media="(min-width:1200px)"
+                >
+        {% endif %}
+
+        {# LG #}
+        {% if thumbnail_lg %}
+        <source
+            data-srcset="{{thumbnail_xl.url}}, {{thumbnail_lg.high_resolution.url}} 2x"
+            media="(min-width:992px)"
+            >
+        {% endif %}
+
+        {# MD #}
+        {% if thumbnail_md %}
+        <source
+            data-srcset="{{thumbnail_xl.url}}, {{thumbnail_md.high_resolution.url}} 2x"
+            media="(min-width:768px)"
+            >
+        {% endif %}
+
+        {# SM #}
+        {% if thumbnail_sm %}
+        <source
+            data-srcset="{{thumbnail_sm.url}}, {{thumbnail_sm.high_resolution.url}} 2x"
+            media="(min-width:576px)"
+            >
+        {% endif %}
+
+        <!--[if IE 9]></video><![endif]-->
+
+        {# XS #}
+        <img
+            class="lazyload"
+            data-srcset="{{thumbnail_xs.url}}, {{thumbnail_xs.high_resolution.url}} 2x"
+            {% if instance.picture.default_alt_text and not instance.attributes.alt %} alt="{{ instance.picture.default_alt_text }}"{% endif %}
+            {{ instance.attributes_str }}
+        >
+
+        <style>
+
+            {% comment %}
+                The magic CSS placeholder "hack"
+            {% endcomment %}
+
+            {% if ratio_percent_xs %}
+                #{{ picture_id }} {
+                    padding-bottom: {{ ratio_percent_xs }};
+                }
+            {% endif %}
+            {% if ratio_percent_sm %}
+                @media (min-width:576px) {
+                    #{{ picture_id }} {
+                        padding-bottom: {{ ratio_percent_sm }};
+                    }
+                }
+            {% endif %}
+            {% if ratio_percent_md %}
+                @media (min-width:768px) {
+                    #{{ picture_id }} {
+                        padding-bottom: {{ ratio_percent_md }};
+                    }
+                }
+            {% endif %}
+            {% if ratio_percent_lg %}
+                @media (min-width:992px) {
+                    #{{ picture_id }} {
+                        padding-bottom: {{ ratio_percent_lg }};
+                    }
+                }
+            {% endif %}
+            {% if ratio_percent_xl %}
+                @media (min-width:1200px) {
+                    #{{ picture_id }} {
+                        padding-bottom: {{ ratio_percent_xl }};
+                    }
+                }
+            {% endif %}
+            {% if ratio_percent_xxl %}
+                @media (min-width:1600px) {
+                    #{{ picture_id }} {
+                        padding-bottom: {{ ratio_percent_xxl }};
+                    }
+                }
+            {% endif %}
+
+        </style>
+
+    </picture>
+{% endif %}

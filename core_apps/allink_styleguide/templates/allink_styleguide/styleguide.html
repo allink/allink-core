@@ -1,0 +1,459 @@
+{% extends "base.html" %}
+{% load i18n cms_tags allink_seo_tags %}
+
+{% block meta_tags %}
+    {% render_meta_og page_title='Styleguide' %}
+{% endblock meta_tags %}
+
+{% block body_class %}tpl-styleguide{% endblock %}
+
+{% block logo_addition_container %}
+{% endblock logo_addition_container %}
+
+{% block content %}
+<section class="site-content">
+
+    {% comment %}
+        Display
+    {% endcomment %}
+    <div class="content-section styleguide-section inverted-colors has-bg-color" style="background:#999;">
+        <div class="content-section__container">
+            <div class="text-container">
+                <h1 class="display-1">Display 1</h1>
+            </div>
+        </div>
+    </div>
+
+    {% comment %}
+        Headings
+    {% endcomment %}
+    <div class="content-section styleguide-section">
+        <div class="content-section__container">
+
+            <div class="text-container">
+                <h2>Titel Gross</h2>
+                <p>Accumsan interdum aenean ut natoque placerat vestibulum quisque habitasse dapibus cum adipiscing tortor tincidunt suspendisse platea proin fermentum vehicula ultricies nec.</p>
+                <h3>Titel Mittel</h3>
+                <p>Interdum aenean <a href="#" class="text">Beispiel Link innerhalb von Text</a> ut natoque placerat vestibulum quisque habitasse dapibus cum adipiscing tortor tincidunt suspendisse.</p>
+                <h4>Titel Klein</h4>
+                <p>Eleifend lectus orci molestie. Parturient sed at ac duis semper dapibus dictumst class curabitur felis etiam eu inceptos praesent a himenaeos nec at quis enim tincidunt a volutpat hendrerit a suspendisse tempus aliquam.</p>
+            </div>
+        </div>
+    </div>
+
+    {% comment %}
+        Paragraphs
+    {% endcomment %}
+    <div class="content-section styleguide-section">
+        <div class="content-section__container">
+
+            <header class="content-section__section-heading-container">
+                <h1 class="content-section__section-heading">Paragraphs</h1>
+            </header>
+
+            <div class="text-container">
+                <p class="lead">Text Large - Parturient sed at ac duis semper dapibus dictumst class curabitur felis etiam eu inceptos praesent a himenaeos nec at quis enim tincidunt a volutpat hendrerit a suspendisse tempus aliquam.</p>
+                <p>Text Normal = Default ParaLead Paragraph - Parturient sed at ac duis semper dapibus dictumst class curabitur felis etiam eu inceptos praesent a himenaeos nec at quis enim tincidunt a volutpat hendrerit a suspendisse tempus aliquam.</p>
+                <p class="small">Text Small = Default ParaLead Paragraph - Parturient sed at ac duis semper dapibus dictumst class curabitur felis etiam eu inceptos praesent a himenaeos nec at quis enim tincidunt a volutpat hendrerit a suspendisse tempus aliquam.</p>
+            </div>
+        </div>
+    </div>
+
+
+    {% comment %}
+        Lists
+    {% endcomment %}
+    <div class="content-section styleguide-section inverted-colors has-bg-color" style="background:#999;">
+        <div class="content-section__container">
+
+            <header class="content-section__section-heading-container">
+                <h1 class="content-section__section-heading">Lists</h1>
+            </header>
+
+            <div class="text-container">
+                <p>Parturient sed at ac duis semper dapibus dictumst class curabitur</p>
+                <h2>Unordered</h2>
+                <ul>
+                    <li>Long List Item Accumsan interdum aenean ut natoque placerat vestibulum quisque habitasse dapibus cum adipiscing tortor tincidunt suspendisse platea proin fermentum vehicula ultricies nec.</li>
+                    <li>List Item Example</li>
+                    <li>List Item Example</li>
+                    <li>List Item Example</li>
+                </ul>
+                <h2>Ordered</h2>
+                <ol>
+                    <li>Long List Item Accumsan interdum aenean ut natoque placerat vestibulum quisque habitasse dapibus cum adipiscing tortor tincidunt suspendisse platea proin fermentum vehicula ultricies nec.</li>
+                    <li>List Item Example</li>
+                    <li>List Item Example</li>
+                    <li>List Item Example</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    {% comment %}
+        Buttons
+    {% endcomment %}
+
+    <div class="content-section styleguide-section btn-section">
+        <div class="content-section__container">
+
+            <header class="content-section__section-heading-container">
+                <h1 class="content-section__section-heading">Buttons</h1>
+            </header>
+
+            <div class="manage-spacings">
+                <div class="text-container">
+                    <h2>btn (small)</h2>
+                </div>
+                <div class="form-container">
+                    <form>
+                        <div class="btn-container">
+                            <a href="#" class="btn btn-sm btn-default">Default</a>
+                            <a href="#" class="btn btn-sm btn-primary">Primary</a>
+                            <a href="#" class="btn btn-sm btn-success">Success</a>
+                            <a href="#" class="btn btn-sm btn-info">Info</a>
+                            <a href="#" class="btn btn-sm btn-warning">Warning</a>
+                            <a href="#" class="btn btn-sm btn-danger">Danger</a>
+                            <a href="#" class="btn btn-sm btn-link">Muted</a>
+                        </div>
+                    </form>
+                </div>
+                <div class="text-container">
+                    <h2>btn (normal)</h2>
+                </div>
+                <div class="form-container">
+                    <form>
+                        <div class="btn-container">
+                            <a href="#" class="btn btn-default">Default</a>
+                            <a href="#" class="btn btn-primary">Primary</a>
+                            <a href="#" class="btn btn-success">Success</a>
+                            <a href="#" class="btn btn-info">Info</a>
+                            <a href="#" class="btn btn-warning">Warning</a>
+                            <a href="#" class="btn btn-danger">Danger</a>
+                            <a href="#" class="btn btn-link">Muted</a>
+                        </div>
+                    </form>
+                </div>
+                <div class="text-container">
+                    <h2>btn (large)</h2>
+                </div>
+                <div class="form-container">
+                    <form>
+                        <div class="btn-container">
+                            <a href="#" class="btn btn-lg btn-default">Default</a>
+                            <a href="#" class="btn btn-lg btn-primary">Primary</a>
+                            <a href="#" class="btn btn-lg btn-success">Success</a>
+                            <a href="#" class="btn btn-lg btn-info">Info</a>
+                            <a href="#" class="btn btn-lg btn-warning">Warning</a>
+                            <a href="#" class="btn btn-lg btn-danger">Danger</a>
+                            <a href="#" class="btn btn-lg btn-link">Muted</a>
+                        </div>
+                    </form>
+                </div>
+                <div class="text-container">
+                    <h2>btn (disabled)</h2>
+                </div>
+                <div class="form-container">
+                    <form>
+                        <div class="btn-container">
+                            <a href="#" class="btn btn-default disabled">Default</a>
+                            <a href="#" class="btn btn-primary disabled">Primary</a>
+                            <a href="#" class="btn btn-success disabled">Success</a>
+                            <a href="#" class="btn btn-info disabled">Info</a>
+                            <a href="#" class="btn btn-warning disabled">Warning</a>
+                            <a href="#" class="btn btn-danger disabled">Danger</a>
+                            <a href="#" class="btn btn-muted disabled">Muted</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% comment %}
+        Form
+    {% endcomment %}
+
+    <div class="content-section styleguide-section">
+        <div class="content-section__container">
+
+            <header class="content-section__section-heading-container">
+                <h1 class="content-section__section-heading">Form (Default)</h1>
+            </header>
+
+            <div class="manage-spacings">
+                <div class="form-container">
+                    <form class="form-default validate-form" method="post" action="">
+                        <div class="form-group">
+                            <label class="control-label" for="group">
+                                 <span class="label-text">
+                                     {% trans "Button Group" %}
+                                 </span>
+                            </label>
+                            <div class="input-group">
+                                <input type="text" name="group" class="form-control" placeholder="Search for...">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button">Go!</button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="text">
+                                 <span class="label-text">
+                                     {% trans "Text" %}
+                                 </span>
+                                 <span class="required-symbol">
+                                     ({% trans "required" %})
+                                 </span>
+                            </label>
+                            <input class="form-control" id="text" name="text" type="text" placeholder="Placeholder Text" required>
+                        </div>
+                        <div class="form-group has-error">
+                            <label class="control-label" for="text">
+                                 <span class="label-text">
+                                     {% trans "Input has error" %}
+                                 </span>
+                                 <span class="required-symbol">
+                                     ({% trans "required" %})
+                                 </span>
+                            </label>
+                            <input class="form-control error" id="text" name="text" type="text" placeholder="Placeholder Text" required>
+                            <ul class="errorlist">
+                                <li>Example error message</li>
+                            </ul>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="text-d">
+                                 <span class="label-text">
+                                     {% trans "Disabled Field" %}
+                                 </span>
+                            </label>
+                            <input class="form-control" id="text-d" name="text-d" type="text" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="message">
+                                 <span class="label-text">
+                                     {% trans "Textarea (with text)" %}
+                                 </span>
+                            </label>
+                            <textarea class="form-control" cols="40" id="message" name="message" rows="5">{% spaceless %}
+                                Default Text - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse. Duis aute irure dolor in reprehenderit in voluptate velit esse commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.
+                            {% endspaceless %}
+                            </textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="select">
+                                 <span class="label-text">
+                                     {% trans "Select a Choice" %}
+                                 </span>
+                                <span class="required-symbol">
+                                    ({% trans "required" %})
+                                </span>
+                            </label>
+                            <select class="form-control selectpicker" title="Please Select..." id="select" name="select" required>
+                                <option value="First Choice">
+                                    First Choice
+                                </option>
+                                <option value="Second Choice">
+                                    Second Choice
+                                </option>
+                                <option value="Third Choice">
+                                    Third Choice
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="file-upload">
+                                 <span class="label-text">
+                                     {% trans "Custom File Upload" %}
+                                 </span>
+                            </label>
+                            <div class="custom-file-upload">
+                                <input type="file" id="file-upload" value="Select file...">
+                                <label class="control-label" for="file-upload">
+                                     Select file...
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="textarea">
+                                 <span class="label-text">
+                                     {% trans "Textarea (blank)" %}
+                                 </span>
+                                <span class="required-symbol">
+                                    ({% trans "required" %})
+                                </span>
+                            </label>
+                            <textarea class="form-control" cols="40" id="textarea" name="textarea" rows="5" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="date1">
+                                 <span class="label-text">
+                                     {% trans "Datepicker 1 (required)" %}
+                                 </span>
+                                 <span class="required-symbol">
+                                     ({% trans "required" %})
+                                 </span>
+                            </label>
+                            <div class="datepicker-container">
+                                <input class="datepicker" id="date1" name="date1" type="text" placeholder="{% trans "Select date..." %}" required>
+                                <span class="calendar-btn">
+                                    <span class="sr-only">{% trans "Open Time Picker" %}</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="date2">
+                                 <span class="label-text">
+                                     {% trans "Datepicker 2" %}
+                                 </span>
+                            </label>
+                            <div class="datepicker-container">
+                                <input class="datepicker" id="date2" name="date2" type="text" placeholder="{% trans "Select date..." %}">
+                                <span class="calendar-btn">
+                                    <span class="sr-only">{% trans "Open Time Picker" %}</span>
+                                </span>
+                                <span class="clear-btn">
+                                    <span class="sr-only">{% trans "Clear Field" %}</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">
+                                 <span class="label-text">
+                                     {% trans "Check all that apply (checkbox)" %}
+                                 </span>
+                            </label>
+                            <div class="form-group">
+                                <div class="checkbox">
+                                    <label>
+                                        <input name="checkbox" type="checkbox" value="First Choice">
+                                        <span class="custom-checkbox"></span>
+                                        First Choice
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input name="checkbox" type="checkbox" value="Second Choice">
+                                        <span class="custom-checkbox"></span>
+                                        Second Choice
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input name="checkbox" type="checkbox" value="Third Choice">
+                                        <span class="custom-checkbox"></span>
+                                        Third Choice
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">
+                                 <span class="label-text">
+                                     {% trans "Select a Choice (radio)" %}
+                                 </span>
+                            </label>
+                            <div class="">
+                                <div class="radio">
+                                    <label>
+                                        <input name="radio" type="radio" value="First Choice" checked >
+                                        <span class="custom-radio"></span>
+                                        First Choice
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input name="radio" type="radio" value="Second Choice">
+                                        <span class="custom-radio"></span>
+                                        Second Choice
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input name="radio" type="radio" value="Third Choice">
+                                        <span class="custom-radio"></span>
+                                        Third Choice
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="url">
+                                 <span class="label-text">
+                                     {% trans "URL" %}
+                                 </span>
+                            </label>
+                            <input class="form-control" id="url" name="url" type="text">
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <button class="btn btn-default" name="submit" type="submit">
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    {% comment %}
+        Form
+    {% endcomment %}
+
+    <div class="content-section styleguide-section inverted-colors has-bg-color project" style="background:#999;">
+        <div class="content-section__container">
+
+            <header class="content-section__section-heading-container">
+                <h1 class="content-section__section-heading">Form (Inverted Colors)</h1>
+            </header>
+
+            <div class="manage-spacings">
+                <div class="form-container">
+                    <form class="form-default validate-form" method="post" action="">
+                        <div class="form-group">
+                            <label class="control-label" for="group">
+                                 <span class="label-text">
+                                     {% trans "Button Group" %}
+                                 </span>
+                            </label>
+                            <div class="input-group">
+                                <input type="text" name="group" class="form-control" placeholder="Search for...">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button">Go!</button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="text">
+                                 <span class="label-text">
+                                     {% trans "Text" %}
+                                 </span>
+                                 <span class="required-symbol">
+                                     ({% trans "required" %})
+                                 </span>
+                            </label>
+                            <input class="form-control" id="text" name="text" type="text" placeholder="Placeholder Text" required>
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <button class="btn btn-default" name="submit" type="submit">
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+{% endblock content %}
+
+{% block footer %}
+{% endblock footer %}

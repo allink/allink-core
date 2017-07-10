@@ -1,0 +1,185 @@
+{% load cms_tags staticfiles sekizai_tags allink_image_tags thumbnail %}
+
+{% comment %}
+
+    Only display a section, if the minimum requirements are met:
+    Has a section title, OR at least one column has at leasts one child
+
+{% endcomment %}
+
+{% if instance.section_has_content %}
+
+    {# utility block #}
+    {% block content_section_before %}{% endblock content_section_before %}
+
+    <div {% if instance.anchor %}id="{{ instance.anchor }}"{% endif %} class="content-section {{ instance.css_classes }} {% block content_section_additional_css_classes %}{% endblock content_section_additional_css_classes %}" {{instance.attributes|safe}} {% block content_section_additional_attributes %}{% endblock content_section_additional_attributes %}>
+
+        {# utility block #}
+        {% block content_section_inner_before %}{% endblock content_section_inner_before %}
+
+        {# Optional: Full with background image #}
+        {% if instance.bg_image_outer_container %}
+            <div class="content-section__bg-image-ratio">
+            {# hold on: only display the background image if there is no video #}
+            {% if not instance.video_file and not instance.video_poster_image and not instance.video_mobile_image %}
+                <div class="content-section__bg-image-outer">
+                    {% if instance.full_height_enabled and instance.parallax_enabled %}
+                        {% render_image image=instance.bg_image_outer_container width_alias="parallax-fullscreen" %}
+                    {% elif instance.full_height_enabled %}
+                        {% render_image image=instance.bg_image_outer_container width_alias="fullscreen" %}
+                    {% elif instance.parallax_enabled %}
+                        {% render_image image=instance.bg_image_outer_container width_alias="parallax" %}
+                    {% elif instance.dynamic_height_enabled %}
+                        {% render_image image=instance.bg_image_outer_container width_alias="section-dynamic" %}
+                    {% else %}
+                        {% render_image image=instance.bg_image_outer_container width_alias="section-ratio" %}
+                    {% endif %}
+                </div>
+            {% endif %}
+        {% endif %}
+
+        {# Optional: Video background #}
+        {% if instance.video_file and instance.video_poster_image and instance.video_mobile_image  %}
+
+            {# utility block #}
+            {% block video_container_before %}{% endblock video_container_before %}
+
+            <div class="content-section__video-container">
+
+                {# utility block #}
+                {% block video_container_inner_before %}{% endblock video_container_inner_before %}
+
+                <video id="video-{{ instance.id }}" class="the-video on-pause" playsinline muted autoplay loop poster="{% thumbnail instance.video_poster_image 1400x9999 %}">
+                    <source src="{{ instance.video_file.url }}" type="video/mp4">
+                </video>
+
+                <div class="content-section__video-mobile-image">
+                {% if instance.full_height_enabled %}
+                    {% render_image image=instance.video_mobile_image width_alias="video-mobile-fullheight" %}
+                {% else %}
+                    {% render_image image=instance.video_mobile_image width_alias="video-mobile" %}
+                {% endif %}
+                </div>
+
+                {# utility block #}
+                {% block video_container_inner_after %}{% endblock video_container_inner_after %}
+
+            </div>
+
+            {# utility block #}
+            {% block video_container_after %}{% endblock video_container_after %}
+
+        {% endif %}
+
+        {# Optional: Overlay Styles enabled #}
+        {% if instance.overlay_enabled and instance.bg_image_outer_container or instance.overlay_enabled and instance.video_file or instance.overlay_enabled and instance.bg_color %}
+            {# utility block #}
+            {% block outer_overlay_before %}{% endblock outer_overlay_before %}
+            <div class="content-section__outer-overlay"></div>
+            {# utility block #}
+            {% block outer_overlay_after %}{% endblock outer_overlay_after %}
+        {% endif %}
+
+        {# utility block #}
+        {% block main_col_container_before %}{% endblock main_col_container_before %}
+        <div class="content-section__template__{{instance.template}} content-section__main-col-container">
+
+            {# utility block #}
+            {% block main_col_container_inner_before %}{% endblock main_col_container_inner_before %}
+
+            <div class="content-section__container {% block content_section_container_additional_css_classes %}{% endblock content_section_container_additional_css_classes %}" {% block content_section_container_additional_attributes %}{% endblock content_section_container_additional_attributes %}>
+
+                {# utility block #}
+                {% block container_inner_before %}{% endblock container_inner_before %}
+
+                <div class="content-section__inner">
+
+                    {% if not instance.bg_image_outer_container and instance.bg_image_inner_container %}
+                        <div class="content-section__bg-image-inner">
+                            {% render_image image=instance.bg_image_inner_container width_alias="container" %}
+                        </div>
+                    {% endif %}
+
+                    {# Optional: Overlay #}
+                    {% if instance.overlay_enabled and instance.bg_image_inner_container %}
+                        {# utility block #}
+                        {% block inner_overlay_before %}{% endblock inner_overlay_before %}
+                        <div class="content-section__inner-overlay"></div>
+                        {# utility block #}
+                        {% block inner_overlay_after %}{% endblock inner_overlay_after %}
+                    {% endif %}
+
+                    {# Optional: Extra container #}
+                    {% if not instance.bg_image_outer_container and instance.bg_image_inner_container %}
+                        <div class="content-section__main-text-container">
+                    {% endif %}
+
+                        {# Optional: Section Heading #}
+                        {% if instance.title %}
+                            {# utility block #}
+                            {% block section_heading_container_before %}{% endblock section_heading_container_before %}
+                            <header class="content-section__section-heading-container">
+                                {# utility block #}
+                                {% block section_heading_before %}{% endblock section_heading_before %}
+                                <h2 class="content-section__section-heading">
+                                    {# utility block #}
+                                    {% block section_heading_inner_before %}{% endblock section_heading_inner_before %}
+                                    {# the actual heading #}
+                                    {{ instance.title }}
+                                    {# utility block #}
+                                    {% block section_heading_inner_after %}{% endblock section_heading_inner_after %}
+                                </h2>
+                                {# utility block #}
+                                {% block section_heading_after %}{% endblock section_heading_after %}
+                            </header>
+                            {# utility block #}
+                            {% block section_heading_container_after %}{% endblock section_heading_container_after %}
+                        {% endif %}
+
+                        {# utility block #}
+                        {% block col_container_before %}{% endblock col_container_before %}
+                        <div class="content-section__col-container">
+                            <div class="content-section__col-container-inner">
+                                {# utility block #}
+                                {% block col_container_inner_before %}{% endblock col_container_inner_before %}
+                                {% for plugin in instance.child_plugin_instances %}
+                                    {% render_plugin plugin %}
+                                {% endfor %}
+                                {# utility block #}
+                                {% block col_container_inner_after %}{% endblock col_container_inner_after %}
+                            </div>
+                        </div>
+                        {# utility block #}
+                        {% block col_container_after %}{% endblock col_container_after %}
+
+                    {# Optional: Extra container #}
+                    {% if not instance.bg_image_outer_container and instance.bg_image_inner_container %}
+                        </div>
+                    {% endif %}
+
+                </div>{# .inner #}
+
+                {# utility block #}
+                {% block container_inner_after %}{% endblock container_inner_after %}
+
+            </div>{# .container #}
+
+            {# utility block #}
+            {% block main_col_container_inner_after %}{% endblock main_col_container_inner_after %}
+
+        </div>{# .main-col-container #}
+
+        {# Optional: Full with background image #}
+        {% if instance.bg_image_outer_container %}
+            </div>
+        {% endif %}
+
+        {# utility block #}
+        {% block content_section_inner_after %}{% endblock content_section_inner_after %}
+
+    </div>{# .content-section #}
+
+    {# utility block #}
+    {% block content_section_after %}{% endblock content_section_after %}
+
+{% endif %}

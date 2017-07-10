@@ -1,0 +1,1088 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-06-28 13:42+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: allink_core/core/admin.py:22 allink_core/core/admin.py:24
+#: allink_core/core/admin.py:83 allink_core/core/admin.py:108
+#: allink_core/core/cms_plugins.py:29 allink_core/core/cms_plugins.py:31
+#: allink_core/core/cms_plugins.py:40 allink_core/core/cms_plugins.py:126
+msgid "Categories"
+msgstr ""
+
+#: allink_core/core/admin.py:31 allink_core/core/admin.py:33
+#: allink_core/core/cms_plugins.py:48 allink_core/core/cms_plugins.py:50
+#: allink_core/core/models/models.py:397
+msgid "Categories for Navigation"
+msgstr ""
+
+#: allink_core/core/admin.py:37 allink_core/core/cms_plugins.py:54
+msgid ""
+"You can explicitly define the categories for the category navigation here. "
+"This will override the automatically set of categories. (From \"Filter & "
+"Ordering\" but not from the \"Manual entries\")"
+msgstr ""
+
+#: allink_core/core/admin.py:91
+msgid "SEO"
+msgstr ""
+
+#: allink_core/core/cms_plugins.py:38
+msgid "Categories (AND operator)"
+msgstr ""
+
+#: allink_core/core/cms_plugins.py:43
+msgid ""
+"Use this field if you want to further restrict your result set. This option "
+"allows you to create a conjunction between the first set of categories in "
+"field \"Categories\" and the ones specified here."
+msgstr ""
+
+#: allink_core/core/cms_plugins.py:59
+msgid "Filter Fields"
+msgstr ""
+
+#: allink_core/core/cms_plugins.py:60
+msgid "A Select Dropdown will be displayed for this Fields."
+msgstr ""
+
+#: allink_core/core/cms_plugins.py:66 allink_core/core/models/models.py:380
+msgid "Template"
+msgstr ""
+
+#: allink_core/core/cms_plugins.py:72
+msgid "Predifined variations"
+msgstr ""
+
+#: allink_core/core/cms_plugins.py:73
+msgid ""
+"Instructions: Single selection is made by clicking on an option. Multiple "
+"selections are achieved by pressing and holding down the Command-key (Mac) "
+"or Control-Key (Windows) <strong>and</strong> clicking the options you would "
+"like to apply."
+msgstr ""
+
+#: allink_core/core/cms_plugins.py:78
+msgid "Ordering"
+msgstr ""
+
+#: allink_core/core/cms_plugins.py:91
+msgid "App Content"
+msgstr ""
+
+#: allink_core/core/cms_plugins.py:92
+msgid "allink Apps"
+msgstr ""
+
+#: allink_core/core/cms_plugins.py:117
+msgid "Display Options"
+msgstr ""
+
+#: allink_core/core/cms_plugins.py:134
+msgid "Filter & Ordering"
+msgstr ""
+
+#: allink_core/core/cms_plugins.py:142
+msgid "Select entries manually"
+msgstr ""
+
+#: allink_core/core/cms_plugins.py:150
+msgid "Category Navigation Options"
+msgstr ""
+
+#: allink_core/core/cms_plugins.py:163
+msgid "Number of entries"
+msgstr ""
+
+#: allink_core/core/cms_plugins.py:173
+msgid "Pagination Options"
+msgstr ""
+
+#: allink_core/core/cms_plugins.py:184
+msgid "Additional Options"
+msgstr ""
+
+#: allink_core/core/cms_plugins.py:192
+msgid "Grid Options"
+msgstr ""
+
+#: allink_core/core/cms_toolbars.py:20
+msgid "Apps"
+msgstr ""
+
+#: allink_core/core/cms_toolbars.py:25
+#: allink_core/core_apps/allink_pdf/models.py:14
+msgid "{}"
+msgstr ""
+
+#: allink_core/core/cms_toolbars.py:29
+msgid "{} List"
+msgstr ""
+
+#: allink_core/core/cms_toolbars.py:32
+msgid "Add new {}"
+msgstr ""
+
+#: allink_core/core/forms/fields.py:58
+msgid "Please choose a predefined color."
+msgstr ""
+
+#: allink_core/core/forms/fields.py:93
+msgid "pages"
+msgstr ""
+
+#: allink_core/core/forms/widgets.py:20
+msgid ""
+"Thumbnail is created when publication is saved. And a PDF document is "
+"assigned."
+msgstr ""
+
+#: allink_core/core/models/choices.py:19
+msgid "Mr."
+msgstr ""
+
+#: allink_core/core/models/choices.py:20
+msgid "Mrs."
+msgstr ""
+
+#: allink_core/core/models/choices.py:32
+msgid "Left"
+msgstr ""
+
+#: allink_core/core/models/choices.py:33
+msgid "Center"
+msgstr ""
+
+#: allink_core/core/models/choices.py:34
+msgid "Right"
+msgstr ""
+
+#: allink_core/core/models/choices.py:42
+msgid "Top"
+msgstr ""
+
+#: allink_core/core/models/choices.py:43
+msgid "Middle"
+msgstr ""
+
+#: allink_core/core/models/choices.py:44
+msgid "Bottom"
+msgstr ""
+
+#: allink_core/core/models/choices.py:59
+msgid "Title Large"
+msgstr ""
+
+#: allink_core/core/models/choices.py:60
+msgid "Title Medium"
+msgstr ""
+
+#: allink_core/core/models/choices.py:61
+msgid "Title Small"
+msgstr ""
+
+#: allink_core/core/models/choices.py:88
+msgid "Facebook"
+msgstr ""
+
+#: allink_core/core/models/choices.py:89
+msgid "Instagram"
+msgstr ""
+
+#: allink_core/core/models/choices.py:90
+msgid "Pinterest"
+msgstr ""
+
+#: allink_core/core/models/choices.py:91
+msgid "Twitter"
+msgstr ""
+
+#: allink_core/core/models/choices.py:92
+msgid "Snapchat"
+msgstr ""
+
+#: allink_core/core/models/choices.py:93
+msgid "Linkedin"
+msgstr ""
+
+#: allink_core/core/models/choices.py:94
+msgid "Spotify"
+msgstr ""
+
+#: allink_core/core/models/choices.py:95
+msgid "Xing"
+msgstr ""
+
+#: allink_core/core/models/choices.py:96
+msgid "Youtube"
+msgstr ""
+
+#: allink_core/core/models/choices.py:97
+msgid "Vimeo"
+msgstr ""
+
+#: allink_core/core/models/choices.py:98
+msgid "Google Plus"
+msgstr ""
+
+#: allink_core/core/models/choices.py:99
+msgid "TripAdvisor"
+msgstr ""
+
+#: allink_core/core/models/choices.py:100
+msgid "kununu"
+msgstr ""
+
+#: allink_core/core/models/choices.py:120
+msgid "Small"
+msgstr ""
+
+#: allink_core/core/models/choices.py:121
+msgid "Medium"
+msgstr ""
+
+#: allink_core/core/models/choices.py:122
+msgid "Large"
+msgstr ""
+
+#: allink_core/core/models/choices.py:158
+msgid "New window"
+msgstr ""
+
+#: allink_core/core/models/choices.py:159
+msgid "Softpage large"
+msgstr ""
+
+#: allink_core/core/models/choices.py:160
+msgid "Softpage small"
+msgstr ""
+
+#: allink_core/core/models/choices.py:161
+msgid "Lightbox (Forms)"
+msgstr ""
+
+#: allink_core/core/models/choices.py:162
+msgid "Lightbox (Image)"
+msgstr ""
+
+#: allink_core/core/models/choices.py:166
+msgid "Member Login"
+msgstr ""
+
+#: allink_core/core/models/choices.py:167
+msgid "Member Logout"
+msgstr ""
+
+#: allink_core/core/models/choices.py:168
+msgid "Member Change Passwort"
+msgstr ""
+
+#: allink_core/core/models/choices.py:169
+msgid "Member Reset Passwort"
+msgstr ""
+
+#: allink_core/core/models/choices.py:170
+msgid "Member Edit Profile"
+msgstr ""
+
+#: allink_core/core/models/choices.py:173
+msgid "Contact Form"
+msgstr ""
+
+#: allink_core/core/models/fields.py:31
+msgid "Icon"
+msgstr ""
+
+#: allink_core/core/models/fields.py:51
+msgid "Zip Code Field"
+msgstr ""
+
+#: allink_core/core/models/models.py:68
+msgid "created"
+msgstr ""
+
+#: allink_core/core/models/models.py:69
+msgid "modified"
+msgstr ""
+
+#: allink_core/core/models/models.py:76
+msgid "Active"
+msgstr ""
+
+#: allink_core/core/models/models.py:86
+msgid "og:Image"
+msgstr ""
+
+#: allink_core/core/models/models.py:87
+msgid ""
+"Preview image when page/post is shared on Facebook/ Twitter. <br>Min. 1200 x "
+"630 for best results. If not set, the one from the preview image will be "
+"used, if not set or not in a app context, the one defined in allink_settings "
+"will be used."
+msgstr ""
+
+#: allink_core/core/models/models.py:92
+msgid "Disable base title"
+msgstr ""
+
+#: allink_core/core/models/models.py:93
+msgid ""
+"If disabled, only the page title will be shown. Everything behind and "
+"including the \"|\" will be removed."
+msgstr ""
+"Falls deaktiviert, wird nur der Seitentitel angezeigt. Alles nach und "
+"inklusive \"|\" wird nicht angezeigt."
+
+#: allink_core/core/models/models.py:164
+msgid "Published"
+msgstr ""
+
+#: allink_core/core/models/models.py:268
+msgid "Title Tag and Title when shared on Facebook/ Twitter."
+msgstr ""
+
+#: allink_core/core/models/models.py:270
+msgid "Title when shared on Facebook."
+msgstr ""
+
+#: allink_core/core/models/models.py:275
+msgid "Meta Description for Search Engines and when shared on Facebook."
+msgstr ""
+
+#: allink_core/core/models/models.py:277
+msgid "Description when shared on Facebook/ Twitter."
+msgstr ""
+
+#: allink_core/core/models/models.py:381
+msgid "Choose a template."
+msgstr ""
+
+#: allink_core/core/models/models.py:385
+msgid "Show category navigation"
+msgstr ""
+
+#: allink_core/core/models/models.py:386
+msgid ""
+"If checked, a filter navigation with all selected categories is displayed."
+"<br>Please note: A category is only displayed if it contains items."
+msgstr ""
+
+#: allink_core/core/models/models.py:390
+msgid "Show category \"all\""
+msgstr ""
+
+#: allink_core/core/models/models.py:391
+msgid "If checked, a category \"all\" in filter navigation is displayed."
+msgstr ""
+
+#: allink_core/core/models/models.py:398
+msgid ""
+"You can explicitly define the categories for the category navigation here. "
+"This will override the automatically set of categories (either the one "
+"generated from \"Filter & Ordering\" or \"Manual entries\")"
+msgstr ""
+
+#: allink_core/core/models/models.py:402
+msgid "Show detailed information in Softpage"
+msgstr ""
+
+#: allink_core/core/models/models.py:403
+msgid ""
+"If checked, the detail view of an entry will be displayed in a \"softpage\". "
+"Otherwise the page will be reloaded."
+msgstr ""
+
+#: allink_core/core/models/models.py:407
+msgid "Show detail link"
+msgstr ""
+
+#: allink_core/core/models/models.py:408
+msgid "If checked, a link/button to the detail view will be displayed."
+msgstr ""
+
+#: allink_core/core/models/models.py:412
+msgid "Grid items per row"
+msgstr ""
+
+#: allink_core/core/models/models.py:413
+msgid "Only applied if a \"Grid\" template has been selected."
+msgstr ""
+
+#: allink_core/core/models/models.py:418
+msgid "Max. entries per page"
+msgstr ""
+
+#: allink_core/core/models/models.py:420
+msgid ""
+"Limit the number of entries (in case of the \"load more\" pagination type: "
+"entries per page). Default is \"0\" (show all entries)"
+msgstr ""
+
+#: allink_core/core/models/models.py:423
+msgid "Pagination Type"
+msgstr ""
+
+#: allink_core/core/models/models.py:429
+msgid "Text for \"Load More\"-Button"
+msgstr ""
+
+#: allink_core/core/models/models.py:430
+msgid ""
+"If left blank, a default text will be used. <br>Note: Should the default "
+"text be adjusted site-wide, please contact the project manager (such changes "
+"can be made on a code level)"
+msgstr ""
+
+#: allink_core/core/models/models.py:436
+msgid "Text for \"Detail\"-Link"
+msgstr ""
+
+#: allink_core/core/models/models.py:437
+msgid ""
+"If left blank, a default text will be used.<br>Note: Should the default text "
+"be adjusted site-wide, please contact the project manager (such changes can "
+"be made on a code level)"
+msgstr ""
+
+#: allink_core/core/models/models.py:565
+#: allink_core/core/templates/app_content/app_content_base.html:39
+msgid "All"
+msgstr "Tous"
+
+#: allink_core/core/models/models.py:678
+msgid "Send internal e-mail"
+msgstr ""
+
+#: allink_core/core/models/models.py:680
+msgid "Send confirmation mail to defined internal e-mail addresses."
+msgstr ""
+
+#: allink_core/core/models/models.py:689
+msgid "Internal e-mail addresses"
+msgstr "Interne E-Mail-Adressen"
+
+#: allink_core/core/models/models.py:692
+msgid "Sender e-mail address"
+msgstr "E-Mail-Absender"
+
+#: allink_core/core/models/models.py:697
+msgid "Send external e-mail"
+msgstr ""
+
+#: allink_core/core/models/models.py:699
+msgid "Send confirmation mail to customer."
+msgstr ""
+
+#: allink_core/core/models/models.py:702
+msgid "Thank you text"
+msgstr ""
+
+#: allink_core/core/models/models.py:705
+msgid "This text will be shown, after form completion."
+msgstr ""
+
+#: allink_core/core/models/models.py:708
+msgid "Display labels"
+msgstr ""
+
+#: allink_core/core/models/models.py:750
+msgid "Street"
+msgstr ""
+
+#: allink_core/core/models/models.py:756
+msgid "Street Nr."
+msgstr ""
+
+#: allink_core/core/models/models.py:762
+msgid "Address Additional"
+msgstr ""
+
+#: allink_core/core/models/models.py:768
+msgid "Zip Code"
+msgstr ""
+
+#: allink_core/core/models/models.py:773
+msgid "Place"
+msgstr ""
+
+#: allink_core/core/models/models.py:786 allink_core/core/models/models.py:942
+#: allink_core/core/models/models.py:1115
+#: allink_core/core/templates/allink_core/contact/forms/request_base.html:52
+msgid "Phone"
+msgstr "Téléphone"
+
+#: allink_core/core/models/models.py:787 allink_core/core/models/models.py:793
+#: allink_core/core/models/models.py:799
+msgid ""
+"We automatically handle phone number formatting, Please provide the number "
+"in the following format \"+41 43 123 45 67\"."
+msgstr ""
+
+#: allink_core/core/models/models.py:792
+msgid "Mobile"
+msgstr ""
+
+#: allink_core/core/models/models.py:798
+msgid "Fax"
+msgstr ""
+
+#: allink_core/core/models/models.py:804
+#: allink_core/core/models/models.py:1105
+#: allink_core/core/templates/allink_core/contact/forms/request_base.html:87
+msgid "Email"
+msgstr "E-mail"
+
+#: allink_core/core/models/models.py:809
+#: allink_core/core/templates/allink_core/people/plugins/table_2/content.html:13
+msgid "Website"
+msgstr ""
+
+#: allink_core/core/models/models.py:846
+msgid "New Page"
+msgstr ""
+
+#: allink_core/core/models/models.py:849
+msgid "If provided, overrides the external link and New Apphook-Page."
+msgstr ""
+
+#: allink_core/core/models/models.py:853
+msgid "New Apphook-Page"
+msgstr ""
+
+#: allink_core/core/models/models.py:856
+msgid "If provided, overrides the external link."
+msgstr ""
+
+#: allink_core/core/models/models.py:861
+msgid "To which object directs the url."
+msgstr ""
+
+#: allink_core/core/models/models.py:866
+msgid "Dotted Path to referenced Model"
+msgstr ""
+
+#: allink_core/core/models/models.py:871
+msgid "Name of the App-URL to use."
+msgstr ""
+
+#: allink_core/core/models/models.py:881
+msgid "Keyword arguments used to reverse url."
+msgstr ""
+
+#: allink_core/core/models/models.py:933
+msgid "Provide a valid URL to an external website."
+msgstr ""
+
+#: allink_core/core/models/models.py:936
+msgid "Email address"
+msgstr "E-mail"
+
+#: allink_core/core/models/models.py:948
+msgid "Anchor"
+msgstr ""
+
+#: allink_core/core/models/models.py:951
+msgid ""
+"Appends the value only after the internal or external link.Do <em>not</em> "
+"include a preceding \"#\" symbol."
+msgstr ""
+
+#: allink_core/core/models/models.py:955
+msgid "Link Target"
+msgstr ""
+
+#: allink_core/core/models/models.py:961
+msgid "file"
+msgstr ""
+
+#: allink_core/core/models/models.py:966
+msgid "Special Links"
+msgstr ""
+
+#: allink_core/core/models/models.py:973
+msgid "Attributes"
+msgstr ""
+
+#: allink_core/core/models/models.py:1063
+#, python-format
+msgid "Only one of %(fields)s or %(last_field)s may be given."
+msgstr ""
+
+#: allink_core/core/models/models.py:1076
+#, python-format
+msgid ""
+"%(anchor_field_verbose_name)s is not allowed together with %(field_name)s"
+msgstr ""
+
+#: allink_core/core/models/models.py:1089
+msgid "Salutation"
+msgstr ""
+
+#: allink_core/core/models/models.py:1095
+msgid "First Name"
+msgstr "Prénom"
+
+#: allink_core/core/models/models.py:1100
+msgid "Last Name"
+msgstr "Nom"
+
+#: allink_core/core/models/models.py:1109
+msgid "Company"
+msgstr ""
+
+#: allink_core/core/models/models.py:1122
+msgid "Message"
+msgstr "Message"
+
+#: allink_core/core/templates/allink_core/404.html:5
+#: allink_core/core/templates/allink_core/500.html:5
+msgid "The requested page is not available"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/404.html:14
+#: allink_core/core/templates/allink_core/500.html:14
+msgid "The requested page is not available."
+msgstr ""
+
+#: allink_core/core/templates/allink_core/404.html:15
+#: allink_core/core/templates/allink_core/500.html:15
+msgid "Continue to homepage"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/admin/aldryn_common/widgets/sortedm2m_widget.html:4
+msgid "Type into this box to filter down the list."
+msgstr ""
+
+#: allink_core/core/templates/allink_core/admin/aldryn_common/widgets/sortedm2m_widget.html:5
+msgid "Filter"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/admin/aldryn_common/widgets/sortedm2m_widget.html:20
+msgid "Choose items and order by drag & drop."
+msgstr ""
+
+#: allink_core/core/templates/allink_core/admin/change_form.html:18
+msgid "Home"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/admin/change_form.html:21
+#, python-format
+msgid "Add %(name)s"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/admin/change_form.html:33
+msgid "History"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/admin/change_form.html:35
+msgid "View on site"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/admin/change_form.html:47
+msgid "Please correct the error below."
+msgstr ""
+
+#: allink_core/core/templates/allink_core/admin/change_form.html:47
+msgid "Please correct the errors below."
+msgstr ""
+
+#: allink_core/core/templates/allink_core/admin/submit_line.html:3
+#: allink_core/core/templates/allink_core/members/profile_edit.html:10
+msgid "Save"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/admin/submit_line.html:6
+#: allink_core/core/templates/allink_core/cms/toolbar/dragitem.html:41
+msgid "Delete"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/admin/submit_line.html:8
+msgid "Save as new"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/admin/submit_line.html:9
+msgid "Save and add another"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/admin/submit_line.html:10
+msgid "Save and continue editing"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/base.html:29
+msgid "Navigation"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/base.html:38
+msgid "Toggle navigation"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/base.html:77
+msgid "Sitemap"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/base.html:113
+msgid "Follow us on social networks"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/base.html:130
+msgid "To the top"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/base_root.html:68
+msgid "Shortcuts"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/base_root.html:69
+msgid "Go to home"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/base_root.html:70
+msgid "Jump to navigation"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/base_root.html:71
+msgid "Jump to content"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/base_root.html:72
+#: allink_core/core/templates/allink_core/people/people_detail.html:50
+#: allink_core/core/templates/allink_core/testimonials/testimonial_detail.html:56
+msgid "Contact"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/cms/plugins/widgets/ckeditor.html:47
+#: allink_core/core/templates/allink_core/cms/plugins/widgets/ckeditor.html:50
+msgid "CMS Plugins"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/cms/plugins/widgets/ckeditor.html:48
+msgid "Add CMS Plugin"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/cms/plugins/widgets/ckeditor.html:49
+msgid "Edit CMS Plugin"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/cms/plugins/widgets/ckeditor.html:55
+msgid "Standard Plugins"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/cms/toolbar/dragitem.html:13
+msgid "Edit"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/cms/toolbar/dragitem.html:18
+msgid "You cannot add plugins to this plugin."
+msgstr ""
+
+#: allink_core/core/templates/allink_core/cms/toolbar/dragitem.html:20
+msgid "Add plugin"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/cms/toolbar/dragitem.html:26
+msgid "This plugin cannot be moved or edited outside of its parent"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/cms/toolbar/dragitem.html:33
+msgid "Cut"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/cms/toolbar/dragitem.html:34
+msgid "Copy"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/cms/toolbar/dragitem.html:36
+msgid "Paste"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/cms/toolbar/dragitem.html:37
+msgid "Clipboard is empty."
+msgstr ""
+
+#: allink_core/core/templates/allink_core/cms/toolbar/dragitem.html:38
+msgid "This plugin does not allow plugins of this type as nested plugins."
+msgstr ""
+
+#: allink_core/core/templates/allink_core/cms/toolbar/dragitem.html:39
+msgid "This plugin cannot have nested plugins."
+msgstr ""
+
+#: allink_core/core/templates/allink_core/cms/toolbar/dragitem.html:48
+msgid "Filter plugins..."
+msgstr ""
+
+#: allink_core/core/templates/allink_core/contact/email/request_subject.txt:2
+#: allink_core/core/templates/allink_core/contact/forms/confirmation.html:8
+#: allink_core/core/templates/allink_core/contact/forms/confirmation.html:11
+msgid "Thanks for your request."
+msgstr ""
+
+#: allink_core/core/templates/allink_core/contact/email/request_subject_internal.txt:2
+msgid "Contact Request"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/contact/forms/confirmation.html:14
+msgid "Close window"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/contact/forms/request_base.html:25
+msgid "Contact us"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/contact/forms/request_base.html:43
+msgid "Please contact me via"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/contact/forms/request_base.html:44
+#: allink_core/core/templates/allink_core/contact/forms/request_base.html:53
+#: allink_core/core/templates/allink_core/contact/forms/request_base.html:62
+#: allink_core/core/templates/allink_core/contact/forms/request_base.html:88
+msgid "(required)"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/contact/forms/request_base.html:61
+msgid "Choose date and time"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/contact/forms/request_base.html:67
+msgid "Choose a date"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/contact/forms/request_base.html:77
+msgid "Choose a time"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/contact/forms/request_base.html:128
+msgid "Submit"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/djangocms_file/default/folder.html:14
+msgid "No files were found in the specified folder."
+msgstr ""
+
+#: allink_core/core/templates/allink_core/events/email/registration_subject.txt:2
+#: allink_core/core/templates/allink_core/events/forms/confirmation.html:4
+msgid "Thanks for your registration"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/events/email/registration_subject_internal.txt:2
+msgid "Event Registration"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/events/forms/registration.html:5
+msgid "Register"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/events/plugins/grid_static/item.html:33
+#: allink_core/core/templates/allink_core/events/plugins/list/item.html:31
+#: allink_core/core/templates/allink_core/events/plugins/slider/item.html:41
+#: allink_core/core/templates/allink_core/news/plugins/grid_static/item.html:33
+#: allink_core/core/templates/allink_core/news/plugins/list/item.html:31
+#: allink_core/core/templates/allink_core/news/plugins/slider/item.html:41
+#: allink_core/core/templates/allink_core/people/plugins/table_2/item.html:32
+#: allink_core/core/templates/allink_core/work/plugins/grid_static/item.html:36
+#: allink_core/core/templates/allink_core/work/plugins/list/item.html:27
+#: allink_core/core/templates/app_content/plugins/grid_dynamic/item.html:36
+#: allink_core/core/templates/app_content/plugins/grid_static/item.html:36
+#: allink_core/core/templates/app_content/plugins/list/item.html:41
+#: allink_core/core/templates/app_content/plugins/slider/item.html:34
+#: allink_core/core/templates/app_content/plugins/table/item.html:28
+msgid "More"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/includes/menu/pagenav.html:4
+msgid "previous"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/includes/menu/pagenav.html:26
+msgid "next"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/locations/plugins/map/content.html:61
+msgid "Directions"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/lockdown/form.html:13
+msgid "Coming soon!"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/lockdown/form.html:14
+msgid "This site is not yet available to the public."
+msgstr ""
+
+#: allink_core/core/templates/allink_core/lockdown/form.html:17
+msgid "Preview"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/members/email/member_modified_subject.txt:2
+msgid "Member modified email address."
+msgstr "Mitglied hat E-Mail-Adresse geändert."
+
+#: allink_core/core/templates/allink_core/members/email/member_modified_text.txt:2
+#, python-format
+msgid ""
+"\n"
+"Good Day,\n"
+"\n"
+"The Member %(member_nr)s has a new email address: %(member_email)s.\n"
+"Please update the email address in other systems (Flightnet, FileMaker "
+"Database).\n"
+"\n"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/members/email/welcome_subject.txt:2
+msgid "subject"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/members/email/welcome_text.txt:2
+#, python-format
+msgid ""
+"\n"
+"welcome\n"
+"%(set_password_link)s\n"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/members/login/confirmation.html:4
+msgid "Your login was successful."
+msgstr ""
+
+#: allink_core/core/templates/allink_core/members/profile_edit.html:4
+msgid "Change Password"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/people/people_detail.html:60
+#: allink_core/core/templates/allink_core/testimonials/testimonial_detail.html:66
+msgid "Phone:"
+msgstr "Téléphone:"
+
+#: allink_core/core/templates/allink_core/people/people_detail.html:66
+#: allink_core/core/templates/allink_core/testimonials/testimonial_detail.html:72
+msgid "Mobile:"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/people/people_detail.html:72
+#: allink_core/core/templates/allink_core/testimonials/testimonial_detail.html:78
+msgid "Fax:"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/people/plugins/grid_static/item.html:23
+msgid "E-Mail"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/people/plugins/table/content.html:9
+#: allink_core/core/templates/allink_core/people/plugins/table_2/content.html:11
+msgid "Name"
+msgstr "Nom"
+
+#: allink_core/core/templates/allink_core/people/plugins/table/content.html:10
+msgid "Firmenname/Beruf"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/people/plugins/table/content.html:11
+msgid "Ort"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/people/plugins/table/content.html:12
+msgid "Kontakt"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/people/plugins/table_2/content.html:12
+msgid "Beruf"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/work/work_detail.html:78
+msgid "Download PDF"
+msgstr ""
+
+#: allink_core/core/templates/app_content/app_content_base.html:144
+msgid "Load More"
+msgstr "Mehr"
+
+#: allink_core/core/templates/app_content/plugins/grid_dynamic/_no_results.html:4
+#: allink_core/core/templates/app_content/plugins/grid_static/_no_results.html:4
+#: allink_core/core/templates/app_content/plugins/list/_no_results.html:4
+#: allink_core/core/templates/app_content/plugins/slider/_no_results.html:4
+#: allink_core/core/templates/app_content/plugins/table/_no_results.html:4
+msgid "No entries found with the applied filters."
+msgstr ""
+
+#: allink_core/core/templates/app_content/plugins/slider/content.html:26
+msgid "Previous Slide"
+msgstr ""
+
+#: allink_core/core/templates/app_content/plugins/slider/content.html:31
+msgid "Next Slide"
+msgstr ""
+
+#: allink_core/core/templates/app_content/plugins/table/content.html:11
+msgid "Title"
+msgstr ""
+
+#: allink_core/core/templates/app_content/plugins/table/content.html:12
+msgid "Text Preview"
+msgstr ""
+
+#: allink_core/core/templates/partials/forms/confirmation.html:4
+msgid "The form has been submitted successfully."
+msgstr ""
+
+#: allink_core/core/templates/partials/forms/form_base.html:42
+msgid "Close"
+msgstr ""
+
+#: allink_core/core/templates/partials/forms/form_field.html:15
+msgid "required"
+msgstr ""
+
+#: allink_core/core/templates/partials/forms/form_field.html:46
+msgid "Open Calendar"
+msgstr ""
+
+#: allink_core/core/templates/partials/forms/form_field.html:51
+msgid "Open Time Picker"
+msgstr ""
+
+#: allink_core/core/templates/partials/forms/form_field.html:58
+msgid "Clear Field"
+msgstr ""
+
+#: allink_core/core/templates/templatetags/allink_plugin_ajax.html:22
+msgid "Add plugin to"
+msgstr ""
+
+#: allink_core/core/templatetags/allink_image_tags.py:202
+msgid ""
+"Please create a folder \"favicons\" and upload the complete favicon set."
+msgstr ""
+
+#: allink_core/core/views.py:83
+#, python-format
+msgid "Empty list and '%(class_name)s.allow_empty' is False."
+msgstr ""
+
+#: allink_core/core/views.py:155
+msgid "Something went wrong with your subscription. Please try again later."
+msgstr ""
+
+#: allink_core/core_apps/allink_pdf/cms_plugins.py:12
+msgid "PDF Page Break"
+msgstr ""
+
+#: allink_core/core_apps/allink_pdf/cms_plugins.py:13
+msgid "allink"
+msgstr ""

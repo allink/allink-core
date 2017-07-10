@@ -1,0 +1,169 @@
+{% load widget_tweaks i18n allink_form_tags %}
+
+{% if field.is_hidden %}
+    {{ field }}
+{% else %}
+    {% block control_group %}
+        <div class="form-group field-type-{{ field|widget_type }} {% if field.errors %}has-error{% endif %}">
+            {% block label %}
+                {% if not nolabel and field|widget_type != 'checkboxinput' and field|widget_type != 'radioselect' %}
+                    {% spaceless %}
+                        <label class="control-label {% if field.field.required %} required{% endif %}" for="{{ field.auto_id }}">
+                            <span class="label-text">
+                                {{ field.label|safe }}
+                            </span>{% if field.field.required %}<span class="required-symbol">
+                                    ({% trans "required" %})
+                                </span>
+                            {% endif %}
+                        </label>
+                    {% endspaceless %}
+                {% endif %}
+            {% endblock %}
+
+            {% block controls %}
+                <div class="form-field-container {% if field|widget_type == 'radioselect' %} radio-group{% endif %}">
+                    {% block widget %}
+
+                        {# Date AND/OR Time #}
+
+                        {% if field|widget_type == 'datetimeinput' or field|widget_type == 'dateinput' or field|widget_type == 'timeinput' %}
+
+                            <div class="datepicker-container">
+                                {% comment %}
+                                    Need a specific widget attribute? Here's how to get it:
+                                    {{field.field.widget.attrs.enableTime}}
+                                {% endcomment %}
+                                {% if field.field.required %}
+                                    {% render_field field class+="datepicker form-control" required="required" %}
+                                {% else %}
+                                    {% render_field field class+="datepicker form-control" %}
+                                {% endif %}
+
+                                {# If a date has to be selected, show the calendar button #}
+                                {% if field|widget_type == 'datetimeinput' or field|widget_type == 'dateinput' %}
+                                    <span class="calendar-btn">
+                                        <span class="sr-only">{% trans "Open Calendar" %}</span>
+                                    </span>
+                                {# if it's time only, we want a time button #}
+                                {% else %}
+                                    <span class="time-btn">
+                                        <span class="sr-only">{% trans "Open Time Picker" %}</span>
+                                    </span>
+                                {% endif %}
+
+                                {# If the field is OPTIONAL, we have to be able to clear it #}
+                                {% if not field.field.required %}
+                                    <span class="clear-btn">
+                                        <span class="sr-only">{% trans "Clear Field" %}</span>
+                                    </span>
+                                {% endif %}
+                            </div>
+
+
+                        {# Dropdown Select #}
+
+                        {% elif field|widget_type == 'select' %}
+
+                            {% if field.field.required %}
+                                {% render_field field class+="selectpicker form-control" required="required" %}
+                            {% else %}
+                                {% render_field field class+="selectpicker form-control" %}
+                            {% endif %}
+
+
+                        {# Checkbox #}
+
+                        {% elif field|widget_type == 'checkboxinput' %}
+                            <div class="checkbox">
+                                <label for="{{ field.auto_id }}" class="{% if field.field.required %}required{% endif %}">
+                                    {% render_field field %}
+                                    <div class="custom-checkbox"></div>
+                                    {% if not nolabel %}
+                                        {{ field.label|safe }}
+                                    {% endif %}
+                                </label>
+                            </div>
+
+
+                        {# Radio #}
+
+                        {% elif field|widget_type == 'radioselect' %}
+                            {% if not nolabel %}
+                                {{ field.label|safe }}
+                            {% endif %}
+                            {% for choice in field %}
+                                <div class="radio">
+                                    <label>
+                                        {{choice.tag}}<span class="dot"></span>
+                                        {{choice.choice_label}}
+                                    </label>
+                                </div>
+                            {% endfor %}
+
+
+                        {# Default #}
+
+                        {% else %}
+
+                            {% comment %}
+
+                                Default (with placeholder):
+
+                                Only display an input placeholder in the following cases:
+
+                                1: In a "Form Plugin" we can choose a "placeholder-enabled" option that will add the placeholder attributes
+
+                                2: A 'placeholder_enabled=True' is passed to either a form or a form_field include-tag
+
+                            {% endcomment %}
+                            {% if instance.label_layout == 'placeholder' or placeholder_enabled == True %}
+                                {% if field.field.required %}
+                                    {% render_field field class+="form-control" required="required" placeholder=field.label %}
+                                {% else %}
+                                    {% render_field field class+="form-control" placeholder=field.label %}
+                                {% endif %}
+
+                            {% comment %}
+
+                                Default (withOUT placeholder):
+
+                                Forcefully set placeholder='', to make sure they are NOT being displayed
+
+                            {% endcomment %}
+                            {% else %}
+                                {% if field.field.required %}
+                                    {% render_field field class+="form-control" required="required" placeholder='' %}
+                                {% else %}
+                                    {% render_field field class+="form-control" placeholder='' %}
+                                {% endif %}
+                            {% endif %}
+
+                        {% endif %}
+
+                    {% endblock %}
+
+                    {% block errors %}
+                        {% if not noerror %}
+                            {% if field.errors %}
+                                <ul class="errorlist">
+                                    {% for error in field.errors %}
+                                        <li>{{ error }}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        {% endif %}
+                    {% endblock %}
+
+                    {% block help_text %}
+                        {% if field.help_text %}
+                            <span class='help-block'>
+                                {# We allow HTML within form help fields #}
+                                {{ field.help_text|safe }}
+                            </span>
+                        {% endif %}
+                    {% endblock %}
+                </div>
+            {% endblock %}
+        </div>
+    {% endblock %}
+{% endif %}

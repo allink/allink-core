@@ -1,0 +1,76 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-06-28 13:42+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: allink_core/core_apps/allink_categories/admin.py:21
+msgid "Project app"
+msgstr ""
+
+#: allink_core/core_apps/allink_categories/admin.py:22
+#: allink_core/core_apps/allink_categories/models.py:57
+msgid ""
+"Please specify the app which uses this categories. All apps specified in "
+"parent category are automatically added."
+msgstr ""
+
+#: allink_core/core_apps/allink_categories/admin.py:40
+#: allink_core/core_apps/allink_categories/models.py:77
+msgid "Identifier"
+msgstr ""
+
+#: allink_core/core_apps/allink_categories/admin.py:41
+msgid ""
+"Identifier used for backward reference on a app model. (e.g display category "
+"name on People app, e.g Marketing)"
+msgstr ""
+
+#: allink_core/core_apps/allink_categories/cms_toolbars.py:22
+msgid "Allink"
+msgstr ""
+
+#: allink_core/core_apps/allink_categories/cms_toolbars.py:27
+#: allink_core/core_apps/allink_categories/models.py:104
+msgid "Categories"
+msgstr ""
+
+#: allink_core/core_apps/allink_categories/models.py:67
+msgid "Tag"
+msgstr ""
+
+#: allink_core/core_apps/allink_categories/models.py:69
+msgid ""
+"auto-generated categories use this tag, to identify which app generated the "
+"category."
+msgstr ""
+
+#: allink_core/core_apps/allink_categories/models.py:86
+msgid "name"
+msgstr ""
+
+#: allink_core/core_apps/allink_categories/models.py:92
+msgid "slug"
+msgstr ""
+
+#: allink_core/core_apps/allink_categories/models.py:95
+msgid "Provide a “slug” or leave blank for an automatically generated one."
+msgstr ""
+
+#: allink_core/core_apps/allink_categories/models.py:103
+msgid "Category"
+msgstr ""

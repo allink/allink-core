@@ -1,0 +1,92 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-06-28 13:42+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: allink_core/core_apps/allink_legacy_redirect/admin.py:38
+msgid "Test redirect"
+msgstr "Weiterleitung testen"
+
+#: allink_core/core_apps/allink_legacy_redirect/admin.py:43
+msgid "Manual testing"
+msgstr "Manuell testen"
+
+#: allink_core/core_apps/allink_legacy_redirect/cms_toolbars.py:26
+msgid "Allink"
+msgstr ""
+
+#: allink_core/core_apps/allink_legacy_redirect/cms_toolbars.py:31
+msgid "Legacy Redirect"
+msgstr ""
+
+#: allink_core/core_apps/allink_legacy_redirect/forms.py:12
+msgid "New Page"
+msgstr "Neue Seite"
+
+#: allink_core/core_apps/allink_legacy_redirect/models.py:15
+msgid "Old Link"
+msgstr "Alter Link"
+
+#: allink_core/core_apps/allink_legacy_redirect/models.py:18
+msgid "Overwrite Link"
+msgstr "Externer Link"
+
+#: allink_core/core_apps/allink_legacy_redirect/models.py:22
+msgid "Overwrites 'New Page', use for special urls that are not listed there"
+msgstr "Überschreibt 'Neue Seite'"
+
+#: allink_core/core_apps/allink_legacy_redirect/models.py:26
+msgid "Active"
+msgstr "Aktiv"
+
+#: allink_core/core_apps/allink_legacy_redirect/models.py:30
+msgid "Match subpages"
+msgstr "Auf Unterseiten anwenden"
+
+#: allink_core/core_apps/allink_legacy_redirect/models.py:32
+msgid "If True, matches all subpages and redirects them to this link."
+msgstr ""
+"Falls gesetzt, werden alle Unterseiten des alten Links auch weitergeleitet."
+
+#: allink_core/core_apps/allink_legacy_redirect/models.py:35
+msgid "Result of last test"
+msgstr "Resultat des letzten Tests"
+
+#: allink_core/core_apps/allink_legacy_redirect/models.py:37
+msgid ""
+"Was the last automatic test successfull? (True = Yes, False = No, None = Not "
+"yet tested)"
+msgstr ""
+"War der letzte automatische Test erfolgreich? (True = Ja, False = Nein, None "
+"= Bisher nicht getestet)"
+
+#: allink_core/core_apps/allink_legacy_redirect/models.py:40
+msgid "Date of last test"
+msgstr "Datum des letzten Tests"
+
+#: allink_core/core_apps/allink_legacy_redirect/models.py:46
+msgid "Legacy Link"
+msgstr ""
+
+#: allink_core/core_apps/allink_legacy_redirect/models.py:47
+msgid "Legacy Links"
+msgstr ""
+
+#: allink_core/core_apps/allink_legacy_redirect/resources.py:9
+msgid "Zielseite"
+msgstr "Zielseite"

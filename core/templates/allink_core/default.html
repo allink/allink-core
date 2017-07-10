@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load i18n staticfiles cms_tags %}
+
+{% block body_class %}tpl-default{% endblock %}
+
+{% comment %}
+    unfortunately it's not possible on pages with placeholder-tags to use conditionaly extends tags.
+{% endcomment %}
+{% block header %}
+    {% if request.is_ajax %}
+    {% else %}
+        {{ block.super }}
+    {% endif %}
+{% endblock header %}
+
+{% block content %}
+    {% placeholder "content" %}
+{% endblock content %}
+
+{% block footer %}
+    {% if request.is_ajax %}
+    {% else %}
+        {{ block.super }}
+    {% endif %}
+{% endblock footer %}

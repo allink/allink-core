@@ -1,0 +1,175 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-06-28 13:42+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: allink_core/apps/locations/abstract_models.py:33
+msgid "Preview Image"
+msgstr ""
+
+#: allink_core/apps/locations/abstract_models.py:41
+msgid "Latitude"
+msgstr ""
+
+#: allink_core/apps/locations/abstract_models.py:46
+msgid "Longitude"
+msgstr ""
+
+#: allink_core/apps/locations/abstract_models.py:52
+msgid "Map Link"
+msgstr ""
+
+#: allink_core/apps/locations/abstract_models.py:53
+msgid ""
+"This could be a <strong>Google Places</strong> or <strong>Directions</"
+"strong> link."
+msgstr ""
+
+#: allink_core/apps/locations/abstract_models.py:58
+msgid "Monday morning or whole day"
+msgstr ""
+
+#: allink_core/apps/locations/abstract_models.py:59
+msgid "Tuesday morning or whole day"
+msgstr ""
+
+#: allink_core/apps/locations/abstract_models.py:60
+msgid "Wednesday morning or whole day"
+msgstr ""
+
+#: allink_core/apps/locations/abstract_models.py:61
+msgid "Thursday morning or whole day"
+msgstr ""
+
+#: allink_core/apps/locations/abstract_models.py:62
+msgid "Friday morning or whole day"
+msgstr ""
+
+#: allink_core/apps/locations/abstract_models.py:63
+msgid "Saturday morning or whole day"
+msgstr ""
+
+#: allink_core/apps/locations/abstract_models.py:64
+msgid "Sunday morning or whole day"
+msgstr ""
+
+#: allink_core/apps/locations/abstract_models.py:65
+msgid "Monday afternoon"
+msgstr ""
+
+#: allink_core/apps/locations/abstract_models.py:66
+msgid "Tuesday afternoon"
+msgstr ""
+
+#: allink_core/apps/locations/abstract_models.py:67
+msgid "Wednesday afternoon"
+msgstr ""
+
+#: allink_core/apps/locations/abstract_models.py:68
+msgid "Thursday afternoon"
+msgstr ""
+
+#: allink_core/apps/locations/abstract_models.py:69
+msgid "Friday afternoon"
+msgstr ""
+
+#: allink_core/apps/locations/abstract_models.py:70
+msgid "Saturday afternoon"
+msgstr ""
+
+#: allink_core/apps/locations/abstract_models.py:71
+msgid "Sunday afternoon"
+msgstr ""
+
+#: allink_core/apps/locations/abstract_models.py:88
+msgid "Project / Reference"
+msgstr ""
+
+#: allink_core/apps/locations/abstract_models.py:89
+msgid "Projects / References"
+msgstr ""
+
+#: allink_core/apps/locations/abstract_models.py:130
+msgid "Now open"
+msgstr ""
+
+#: allink_core/apps/locations/abstract_models.py:216
+msgid "Slug"
+msgstr ""
+
+#: allink_core/apps/locations/abstract_models.py:220
+msgid "Leave blank to auto-generate a unique slug."
+msgstr ""
+
+#: allink_core/apps/locations/abstract_models.py:223
+msgid "Subtitle"
+msgstr ""
+
+#: allink_core/apps/locations/abstract_models.py:229
+msgid "Lead Text"
+msgstr ""
+
+#: allink_core/apps/locations/abstract_models.py:230
+msgid ""
+"Teaser text that in some cases is used in the list view and/or in the detail "
+"view."
+msgstr ""
+
+#: allink_core/apps/locations/abstract_models.py:235
+msgid "Opening hours"
+msgstr ""
+
+#: allink_core/apps/locations/abstract_models.py:237
+msgid ""
+"This Text will be used to show the Opening hours on the location detail "
+"page. If provided, the detailed opening hours will be overriden."
+msgstr ""
+
+#: allink_core/apps/locations/abstract_models.py:273
+msgid ""
+"Select and arrange specific entries, or, leave blank to select all. (If "
+"manual entries are selected the category filtering will be ignored.)"
+msgstr ""
+
+#: allink_core/apps/locations/abstract_models.py:278
+msgid "Zoom Level"
+msgstr ""
+
+#: allink_core/apps/locations/abstract_models.py:279
+msgid "The higher the number, the more we zoom in."
+msgstr ""
+
+#: allink_core/apps/locations/admin.py:36
+msgid "Opening hours (Detailed)"
+msgstr ""
+
+#: allink_core/apps/locations/admin.py:54
+msgid "Format: \"9:00-12:00  13:00-20:00\""
+msgstr ""
+
+#: allink_core/apps/locations/cms_apps.py:8
+msgid "Locations Apphook"
+msgstr ""
+
+#: allink_core/apps/locations/cms_menus.py:15
+msgid "Locations menu"
+msgstr ""
+
+#: allink_core/apps/locations/cms_plugins.py:32
+msgid "Map Options"
+msgstr ""
