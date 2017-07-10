@@ -47,7 +47,7 @@ class AllinkBasePluginLoadMoreView(ListView):
             return self.plugin.get_render_queryset_for_display(filters=filters)
 
     def get_paginate_by(self, queryset):
-        if getattr(self.plugin.paginated_by, None) != 0:
+        if getattr(self.plugin, 'paginated_by', None) != 0:
             return self.plugin.paginated_by
         else:
             return None
@@ -98,13 +98,13 @@ class AllinkBasePluginLoadMoreView(ListView):
         context.update({'request': self.request})
         context.update({'instance': self.plugin})
         context.update({'is_ajax': True})
-        if getattr(self.plugin.paginated_by, None) > 0:
+        if getattr(self.plugin, 'paginated_by', None) > 0:
             if context['page_obj'].number > 1:
                 context.update({'appended': True})
         json_context = {}
         # <cms-plugin class="cms-plugin-text-node cms-plugin cms-plugin-blog-events-title-16 cms-render-model">Infoabend Bildungsgang Farbgestaltung am Bau</cms-plugin>
         json_context['rendered_content'] = render_to_string(self.get_template_names(context)[0], context=context, request=context['request'])
-        if getattr(self.plugin.paginated_by, None) > 0 and context['page_obj'].has_next():  # no need to create next_page_url when no pagination should be displayed
+        if getattr(self.plugin, 'paginated_by', None) > 0 and context['page_obj'].has_next():  # no need to create next_page_url when no pagination should be displayed
             get_params = '&'.join(['%s=%s' % (k, v) for k, v in self.request.GET.items()])
             json_context['next_page_url'] = reverse('{}:more'.format(self.model._meta.model_name), kwargs={'page': context['page_obj'].next_page_number()}) + '?api_request=1&plugin_id={}&{}'.format(self.plugin.id, get_params)
             json_context['next_page_url'] = json_context['next_page_url'] + '&category={}'.format(self.category_id) if hasattr(self, 'category_id') else json_context['next_page_url']
