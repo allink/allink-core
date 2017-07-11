@@ -47,11 +47,6 @@ class AllinkLegacyLink(AllinkInternalLinkFieldsModel):
         null=True,
         blank=True
     )
-    redirect_when_logged_in = models.BooleanField(
-        _(u'Redirect when logged in'),
-        default=False,
-        help_text=(u'If True, current site will be redirected to translated language. If False, it redirects to the homepage')
-    )
 
     class Meta:
         verbose_name = _('Legacy Link')
