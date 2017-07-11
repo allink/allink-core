@@ -48,6 +48,7 @@ Each release is divided into the following main categories:
     - Make Datamigration on these apps as the ones on allink_apps (APP_seo_translation.py)
 ### NEW
 - Metatags on Apps, and default base title in allink_config are translatable now.
+- Disable copy, cut & delete options on ColumnPlugin
 
 
 ## v0.0.10

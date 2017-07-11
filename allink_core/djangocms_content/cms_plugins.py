@@ -106,7 +106,9 @@ class CMSAllinkContentColumnPlugin(CMSPluginBase):
     form = AllinkContentColumnPluginForm
     require_parent = True
 
-    disable_dragable_menu = True
+    disable_copyable_menu = True
+    disable_cutable_menu = True
+    disable_deletable_menu = True
 
     class Media:
         js = (get_files('djangocms_custom_admin')[0]['publicPath'], )
