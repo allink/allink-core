@@ -16,6 +16,7 @@ class CMSAllinkButtonLinkContainerPlugin(CMSPluginBase):
     allow_children = True
     child_classes = ['CMSAllinkButtonLinkPlugin']
     form = AllinkButtonLinkContainerPluginForm
+    cache = False
 
     class Media:
         js = (
@@ -58,6 +59,7 @@ class CMSAllinkButtonLinkPlugin(CMSPluginBase):
     change_form_template = 'admin/djangocms_button_link/change_form.html'
     render_template = 'djangocms_button_link/item.html'
     text_enabled = True
+    cache = False
 
     class Media:
         js = (get_files('djangocms_custom_admin')[0]['publicPath'], )
