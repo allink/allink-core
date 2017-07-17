@@ -12,10 +12,11 @@ from allink_core.core_apps.allink_button_link.forms import AllinkButtonLinkConta
 class CMSAllinkButtonLinkContainerPlugin(CMSPluginBase):
     model = AllinkButtonLinkContainerPlugin
     name = _('Button/ Link Container')
-    module = _("allink")
+    module = _('Generic')
     allow_children = True
     child_classes = ['CMSAllinkButtonLinkPlugin']
     form = AllinkButtonLinkContainerPluginForm
+    cache = False
 
     class Media:
         js = (
@@ -52,12 +53,13 @@ class CMSAllinkButtonLinkContainerPlugin(CMSPluginBase):
 class CMSAllinkButtonLinkPlugin(CMSPluginBase):
     model = AllinkButtonLinkPlugin
     name = _('Button/ Link')
-    module = _("allink")
+    module = _('Generic')
     allow_children = False
     form = AllinkButtonLinkPluginForm
     change_form_template = 'admin/allink_button_link/change_form.html'
     render_template = 'allink_button_link/item.html'
     text_enabled = True
+    cache = False
 
     class Media:
         js = (get_files('djangocms_custom_admin')[0]['publicPath'], )
@@ -94,6 +96,17 @@ class CMSAllinkButtonLinkPlugin(CMSPluginBase):
                 'email_body_text',
             )
         }),
+        (_('Additional form settings'), {
+            'classes': ('collapse',),
+            'fields': (
+                'send_internal_mail',
+                'internal_email_addresses',
+                'from_email_address',
+                'send_external_mail',
+                'thank_you_text',
+                'label_layout',
+            )
+        }),
         (_('Advanced settings'), {
             'classes': ('collapse',),
             'fields': (
@@ -111,5 +124,4 @@ class CMSAllinkButtonLinkPlugin(CMSPluginBase):
 
     def render(self, context, instance, placeholder):
         context = super(CMSAllinkButtonLinkPlugin, self).render(context, instance, placeholder)
-
         return context

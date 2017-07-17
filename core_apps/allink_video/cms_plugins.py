@@ -12,7 +12,7 @@ from allink_core.core_apps.allink_video.forms import AllinkVideoEmbedPluginForm,
 class CMSAllinkVideoEmbedPlugin(CMSPluginBase):
     model = AllinkVideoEmbedPlugin
     name = _('Video Embed')
-    module = _("allink")
+    module = _('Generic')
     form = AllinkVideoEmbedPluginForm
 
     class Media:
@@ -60,7 +60,7 @@ class CMSAllinkVideoEmbedPlugin(CMSPluginBase):
 class CMSAllinkVideoFilePlugin(CMSPluginBase):
     model = AllinkVideoFilePlugin
     name = _('Video File')
-    module = _("allink")
+    module = _('Generic')
     form = AllinkVideoFilePluginForm
 
     class Media:

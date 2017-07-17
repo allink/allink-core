@@ -502,9 +502,9 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
     def get_correct_template(self, file):
         # file can only be '_items', 'content', 'no_results'
         if file != 'no_results':
-            template = '{}/plugins/{}/{}.html'.format(self.data_model._meta.model_name, self.template, file)
+            template = '{}/plugins/{}/{}.html'.format(self.data_model._meta.app_label, self.template, file)
         else:
-            template = '{}/plugins/{}.html'.format(self.data_model._meta.model_name, file)
+            template = '{}/plugins/{}.html'.format(self.data_model._meta.app_label, file)
         return template
 
     def get_field_info(self, fieldname):
@@ -660,6 +660,44 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
         return ordered_qs
 
 
+class AllinkBaseSearchPlugin(CMSPlugin):
+
+    data_model = None
+
+    project_css_classes = ArrayField(
+        models.CharField(
+            max_length=50,
+            blank=True,
+            null=True
+        ),
+        blank=True,
+        null=True
+    )
+
+    cmsplugin_ptr = models.OneToOneField(
+        CMSPlugin,
+        related_name='%(app_label)s_%(class)s',
+        parent_link=True,
+    )
+
+    class Meta:
+        abstract = True
+
+    def __str__(self):
+        return str(self.pk)
+
+    def get_model_name(self):
+        return self.data_model._meta.model_name
+
+    @property
+    def css_classes(self):
+        css_classes = []
+        if getattr(self, 'project_css_classes'):
+            for css_class in getattr(self, 'project_css_classes'):
+                css_classes.append(css_class)
+        return ' '.join(css_classes)
+
+
 class AllinkBaseFormPlugin(CMSPlugin):
 
     form_class = None
@@ -669,7 +707,7 @@ class AllinkBaseFormPlugin(CMSPlugin):
         default=True,
         help_text=_(u'Send confirmation mail to defined internal e-mail addresses.')
     )
-    internal_email_adresses = ArrayField(
+    internal_email_addresses = ArrayField(
         models.EmailField(
             blank=True,
             null=True,
@@ -967,7 +1005,6 @@ class AllinkLinkFieldsModel(AllinkInternalLinkFieldsModel):
     )
     link_special = models.CharField(
         verbose_name=_(u'Special Links'),
-        choices=SPECIAL_LINKS_CHOICES,
         max_length=255,
         blank=True,
         null=True
@@ -1003,7 +1040,7 @@ class AllinkLinkFieldsModel(AllinkInternalLinkFieldsModel):
 
     @classmethod
     def get_link_special_choices(self):
-        return BLANK_CHOICE + SPECIAL_LINKS_CHOICES + get_additional_choices('SPECIAL_LINKS_CHOICES')
+        return BLANK_CHOICE + SPECIAL_LINKS_CHOICES + get_additional_choices('BUTTON_LINK_SPECIAL_LINKS_CHOICES')
 
     def get_link_url(self):
         internal_link = self.link
@@ -1018,7 +1055,15 @@ class AllinkLinkFieldsModel(AllinkInternalLinkFieldsModel):
         elif self.link_file:
             link = self.link_file.url
         elif self.link_special:
-            link = reverse(self.link_special)
+            try:
+                """
+                because we are always in a plugin (e.g Button, Image..)
+                and plugins can appear more than once on the same page,
+                the urls should always pass a plugin_id (not all urls do at the moment)
+                """
+                link = reverse(self.link_special, kwargs={'plugin_id': self.id})
+            except:
+                link = reverse(self.link_special)
         else:
             link = ''
         if self.link_anchor:

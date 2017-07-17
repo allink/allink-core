@@ -14,7 +14,7 @@ from allink_core.core_apps.allink_image.forms import AllinkImagePluginForm
 class CMSAllinkImagePlugin(CMSPluginBase):
     model = AllinkImagePlugin
     name = _('Image')
-    module = _("allink")
+    module = _('Generic')
     form = AllinkImagePluginForm
 
     class Media:

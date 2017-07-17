@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-28 13:42+0200\n"
+"POT-Creation-Date: 2017-07-17 09:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,14 +23,14 @@ msgid "Project app"
 msgstr ""
 
 #: allink_core/core_apps/allink_categories/admin.py:22
-#: allink_core/core_apps/allink_categories/models.py:57
+#: allink_core/core_apps/allink_categories/models.py:56
 msgid ""
 "Please specify the app which uses this categories. All apps specified in "
 "parent category are automatically added."
 msgstr ""
 
 #: allink_core/core_apps/allink_categories/admin.py:40
-#: allink_core/core_apps/allink_categories/models.py:77
+#: allink_core/core_apps/allink_categories/models.py:76
 msgid "Identifier"
 msgstr ""
 
@@ -45,32 +45,32 @@ msgid "Allink"
 msgstr ""
 
 #: allink_core/core_apps/allink_categories/cms_toolbars.py:27
-#: allink_core/core_apps/allink_categories/models.py:104
+#: allink_core/core_apps/allink_categories/models.py:103
 msgid "Categories"
 msgstr ""
 
-#: allink_core/core_apps/allink_categories/models.py:67
+#: allink_core/core_apps/allink_categories/models.py:66
 msgid "Tag"
 msgstr ""
 
-#: allink_core/core_apps/allink_categories/models.py:69
+#: allink_core/core_apps/allink_categories/models.py:68
 msgid ""
 "auto-generated categories use this tag, to identify which app generated the "
 "category."
 msgstr ""
 
-#: allink_core/core_apps/allink_categories/models.py:86
+#: allink_core/core_apps/allink_categories/models.py:85
 msgid "name"
 msgstr ""
 
-#: allink_core/core_apps/allink_categories/models.py:92
+#: allink_core/core_apps/allink_categories/models.py:91
 msgid "slug"
 msgstr ""
 
-#: allink_core/core_apps/allink_categories/models.py:95
+#: allink_core/core_apps/allink_categories/models.py:94
 msgid "Provide a “slug” or leave blank for an automatically generated one."
 msgstr ""
 
-#: allink_core/core_apps/allink_categories/models.py:103
+#: allink_core/core_apps/allink_categories/models.py:102
 msgid "Category"
 msgstr ""

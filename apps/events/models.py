@@ -2,7 +2,7 @@
 from allink_core.apps.events.abstract_models import (
     BaseEvents,
     BaseEventsTranslation,
-    BaseEventsPlugin,
+    BaseEventsAppContentPlugin,
     BaseEventsRegistration
 )
 from allink_core.core.loading import get_model
@@ -27,7 +27,7 @@ if not is_model_registered('events', 'EventsTranslation'):
 
 
 if not is_model_registered('events', 'EventsAppContentPlugin'):
-    class EventsAppContentPlugin(BaseEventsPlugin):
+    class EventsAppContentPlugin(BaseEventsAppContentPlugin):
         data_model = get_model('events', 'Events')
 
     __all__.append('EventsAppContentPlugin')

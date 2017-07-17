@@ -126,7 +126,7 @@ class BaseEventsTranslation(AllinkBaseTranslatedFieldsModel):
         app_label = 'events'
 
 
-class BaseEventsPlugin(AllinkBaseAppContentPlugin):
+class BaseEventsAppContentPlugin(AllinkBaseAppContentPlugin):
     manual_entries = SortedM2MModelField(
         'events.Events',
         blank=True,
@@ -138,7 +138,7 @@ class BaseEventsPlugin(AllinkBaseAppContentPlugin):
         # invalidate cache
         cache.delete_many([make_template_fragment_key('events_preview_image', [self.id, event.id]) for event in
                            get_model('events', 'Events').objects.all()])
-        super(BaseEventsPlugin, self).save(*args, **kwargs)
+        super(BaseEventsAppContentPlugin, self).save(*args, **kwargs)
 
     class Meta:
         abstract = True

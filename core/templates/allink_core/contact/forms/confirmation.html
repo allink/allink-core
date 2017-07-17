@@ -1,14 +1,18 @@
 {% load i18n %}
 
 <div class="text-container">
-    {% if plugin_instance %}
+    {% if inline %}
         {% if plugin_instance.thank_you_text %}
             <p>{{plugin_instance.thank_you_text}}</p>
         {% else %}
             <p>{% trans "Thanks for your request." %}</p>
         {% endif %}
     {% else %}
-        <p>{% trans "Thanks for your request." %}</p>
+        {% if plugin_instance.thank_you_text %}
+            <p>{{plugin_instance.thank_you_text}}</p>
+        {% else %}
+            <p>{% trans "Thanks for your request." %}</p>
+        {% endif %}
         <p>
             <a href="#" class="btn btn-default" data-close-form-modal>
                 {% trans "Close window" %}

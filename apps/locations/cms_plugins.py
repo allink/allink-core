@@ -10,7 +10,7 @@ LocationsAppContentPlugin = get_model('locations', 'LocationsAppContentPlugin')
 
 
 @plugin_pool.register_plugin
-class CMSLocationsPlugin(CMSAllinkBaseAppContentPlugin):
+class CMSLocationsAppContentPlugin(CMSAllinkBaseAppContentPlugin):
     """
     model:
     - where to store plugin instances
@@ -22,7 +22,7 @@ class CMSLocationsPlugin(CMSAllinkBaseAppContentPlugin):
     name = model.data_model.get_verbose_name_plural()
 
     def get_fieldsets(self, request, obj=None):
-        fieldsets = super(CMSLocationsPlugin, self).get_fieldsets(request, obj=None)
+        fieldsets = super(CMSLocationsAppContentPlugin, self).get_fieldsets(request, obj=None)
         fieldsets += (_('Map Options'), {
             'classes': (
                 'collapse',

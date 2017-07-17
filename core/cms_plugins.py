@@ -10,7 +10,7 @@ from django.contrib.admin.widgets import FilteredSelectMultiple
 from cms.plugin_base import CMSPluginBase
 from webpack_loader.utils import get_files
 
-from allink_core.core.models.models import AllinkBaseAppContentPlugin
+from allink_core.core.models.models import AllinkBaseAppContentPlugin, AllinkBaseSearchPlugin
 from allink_core.core.utils import get_project_css_classes
 
 
@@ -88,7 +88,7 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
     model = AllinkBaseAppContentPlugin
 
     name = _('App Content')
-    module = _(u'allink Apps')
+    module = _('allink apps')
     allow_children = True
     child_classes = ['LinkPlugin', 'Bootstrap3ButtonCMSPlugin']
     form = AllinkBaseAppContentPluginForm
@@ -252,3 +252,68 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
         context['category_navigation'] = instance.get_category_navigation()
 
         return context
+
+
+class AllinkBaseSearchPluginForm(forms.ModelForm):
+
+    class Meta:
+        model = AllinkBaseAppContentPlugin
+        exclude = ()
+
+    def __init__(self, *args, **kwargs):
+        super(AllinkBaseSearchPluginForm, self).__init__(*args, **kwargs)
+        if get_project_css_classes(self._meta.model.data_model._meta.model_name):
+            self.fields['project_css_classes'] = forms.MultipleChoiceField(
+                widget=forms.CheckboxSelectMultiple(),
+                label=_(u'Predifined variations'),
+                choices=get_project_css_classes(self._meta.model.data_model._meta.model_name),
+                required=False,
+            )
+
+
+class CMSAllinkBaseSearchPlugin(CMSPluginBase):
+    """
+    is not registered itself
+    only used to inherit from (for specific Search Plugins)
+    """
+    model = AllinkBaseSearchPlugin
+    render_template = 'work/plugins/search/content.html'
+    module = _('allink search')
+    form = AllinkBaseSearchPluginForm
+    search_form = None
+
+    class Media:
+        js = (get_files('djangocms_custom_admin')[0]['publicPath'], )
+        css = {
+            'all': (get_files('djangocms_custom_admin')[1]['publicPath'], )
+        }
+
+    def get_render_template(self, context, instance, placeholder):
+        return '{}/plugins/search/content.html'.format(self.model.data_model._meta.app_label)
+
+    def render(self, context, instance, placeholder):
+        context['instance'] = instance
+        context['placeholder'] = placeholder
+
+        form = self.search_form()
+        object_list = self.model.data_model.objects.active()
+
+        additional_context = [
+            ('form', form),
+            ('object_list', object_list),
+        ]
+
+        for key, val in additional_context:
+            context.update({key: val})
+
+        return context
+
+    def get_fieldsets(self, request, obj=None):
+        fieldsets = (
+            (None, {
+                'fields': [
+                    'project_css_classes',
+                ],
+            }),
+        )
+        return fieldsets

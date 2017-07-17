@@ -1,2 +1,10 @@
 {% extends "allink_mailchimp/signup_form_advanced_base.html" %}
 {% load i18n %}
+
+{% block newsletter_form_before %}
+<div class="content-plugin mailchimp-advanced-plugin">
+{% endblock newsletter_form_before %}
+
+{% block newsletter_form_after %}
+</div>
+{% endblock newsletter_form_after %}

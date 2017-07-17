@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-28 13:42+0200\n"
+"POT-Creation-Date: 2017-07-17 09:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,49 +23,58 @@ msgid "Button/ Link Container"
 msgstr ""
 
 #: allink_core/core_apps/allink_button_link/cms_plugins.py:15
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:55
-msgid "allink"
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:56
+msgid "Generic"
 msgstr ""
 
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:38
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:97
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:39
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:110
 msgid "Advanced settings"
 msgstr "Erweiterte Einstellungen"
 
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:54
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:55
 msgid "Button/ Link"
 msgstr ""
 
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:79
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:81
 msgid "Link settings"
 msgstr "Link Einstellungen"
 
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:90
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:92
 msgid "Additional email settings"
 msgstr "Erweiterte E-mail Einstellungen"
 
-#: allink_core/core_apps/allink_button_link/forms.py:23
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:99
+#, fuzzy
+#| msgid "Additional email settings"
+msgid "Additional form settings"
+msgstr "Erweiterte E-mail Einstellungen"
+
+#: allink_core/core_apps/allink_button_link/forms.py:25
 msgid "Predifined variations"
 msgstr "Vordefinierte CSS-Klassen"
 
-#: allink_core/core_apps/allink_button_link/forms.py:24
-msgid ""
-"Instructions: Single selection is made by clicking on an option. Multiple "
-"selections are achieved by pressing and holding down the Command-key (Mac) "
-"or Control-Key (Windows) <strong>and</strong> clicking the options you would "
-"like to apply."
-msgstr ""
-"Anleitung: Einzelauswahl durch Klicken auf die gewünschte Option. "
-"Mehrfachwahl kann durch Drücken und Halten der Command-Taste (Mac) or "
-"Control-Taste (Windows) <strong>und</strong> Anklicken der gewünschten "
-"Optionen erzielt werden."
-
-#: allink_core/core_apps/allink_button_link/forms.py:32
+#: allink_core/core_apps/allink_button_link/forms.py:33
 msgid "Link Internal"
 msgstr "Interner Link"
 
-#: allink_core/core_apps/allink_button_link/forms.py:49
+#: allink_core/core_apps/allink_button_link/forms.py:51
 msgid "Special Links"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/forms.py:54
+msgid ""
+"Important: In case the selected option is a <strong>form</strong>, make sure "
+"the select the <strong>Lightbox (Forms)</strong> from the <strong>link "
+"target</strong> options for best user experience."
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/forms.py:77
+msgid "Please supply at least one E-Mail Address."
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/forms.py:79
+msgid "Please supply an E-Mail Address."
 msgstr ""
 
 #: allink_core/core_apps/allink_button_link/model_fields.py:16
@@ -135,6 +144,44 @@ msgstr "Betreff"
 msgid "Body Text"
 msgstr "E-Mail Text"
 
+#: allink_core/core_apps/allink_button_link/models.py:117
+msgid "Send internal e-mail"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:119
+msgid "Send confirmation mail to defined internal e-mail addresses."
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:128
+msgid "Internal e-mail addresses"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:131
+msgid "Sender e-mail address"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:136
+msgid "Send external e-mail"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:138
+msgid "Send confirmation mail to customer."
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:141
+msgid "Thank you text"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:144
+msgid "This text will be shown, after form completion."
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:147
+#, fuzzy
+#| msgid "Display name"
+msgid "Display labels"
+msgstr "Anzeigename"
+
 #: allink_core/core_apps/allink_button_link/templates/admin/allink_button_link/widgets/icon.html:8
 msgid ""
 "No Iconsets configured! Please configure at least one Iconset before using "
@@ -146,3 +193,14 @@ msgstr ""
 #: allink_core/core_apps/allink_button_link/templates/allink_button_link/item.html:23
 msgid "Member Area"
 msgstr "Mitgliederbereich"
+
+#~ msgid ""
+#~ "Instructions: Single selection is made by clicking on an option. Multiple "
+#~ "selections are achieved by pressing and holding down the Command-key "
+#~ "(Mac) or Control-Key (Windows) <strong>and</strong> clicking the options "
+#~ "you would like to apply."
+#~ msgstr ""
+#~ "Anleitung: Einzelauswahl durch Klicken auf die gewünschte Option. "
+#~ "Mehrfachwahl kann durch Drücken und Halten der Command-Taste (Mac) or "
+#~ "Control-Taste (Windows) <strong>und</strong> Anklicken der gewünschten "
+#~ "Optionen erzielt werden."

@@ -38,9 +38,9 @@ def has_class(tag, cls):
 def read_file_open(image):
     """
     used for drawImage
-    reads a file from boto with its url/ and opens it 
-    returns a ImageReader object which can be directly be drawn   
-    needed, beacause media files cant be loaded directly from file stystem 
+    reads a file from boto with its url/ and opens it
+    returns a ImageReader object which can be directly be drawn
+    needed, beacause media files cant be loaded directly from file stystem
     (they are stored on s3)
     """
     try:
@@ -52,9 +52,9 @@ def read_file_open(image):
 def read_file(image):
     """
     used for Image(Flowable)
-    reads a file from boto with its url 
-    returns a ImageReader object which can be directly be drawn   
-    needed, beacause media files cant be loaded directly from file stystem 
+    reads a file from boto with its url
+    returns a ImageReader object which can be directly be drawn
+    needed, beacause media files cant be loaded directly from file stystem
     (they are stored on s3)
     """
     try:
@@ -289,19 +289,6 @@ class PdfWork(object):
                                       leading=22,
                                       spaceAfter=17.25 * mm)
                        )
-        stylesheet.add(ParagraphStyle(name='title-h3-highlights',
-                                      fontName='MessinaSansBold',
-                                      fontSize=14,
-                                      textColor=self.font_color,
-                                      spaceAfter=4 * mm)
-                       )
-        stylesheet.add(ParagraphStyle(name='list-bullet-highlights',
-                                      fontName='MessinaSansRegular',
-                                      fontSize=8.5,
-                                      textColor=self.font_color,
-                                      leading=10.5,
-                                      spaceAfter=3.25 * mm)
-                       )
         # ckeditor styles
         stylesheet.add(ParagraphStyle(name='title-h1',
                                       fontName='MessinaSansBold',
@@ -420,7 +407,7 @@ class PdfWork(object):
 
     def get_relevant_header_plugins(self):
         """
-        returns a list with only relevant plugins which are allowed in header_placeholder 
+        returns a list with only relevant plugins which are allowed in header_placeholder
         Plugins are directly inside the placeholder
         """
         all_plugins = get_plugins(
@@ -441,7 +428,7 @@ class PdfWork(object):
     def get_relevant_content_plugins(self):
         """
         returns a list with only relevant plugins from a queryset of plugins
-        Plugins are always children of CMSAllinkContentColumnPlugin or CMSAllinkContentPlugin itself 
+        Plugins are always children of CMSAllinkContentColumnPlugin or CMSAllinkContentPlugin itself
         """
         all_plugins = get_plugins(
             request=self.request,
@@ -468,18 +455,6 @@ class PdfWork(object):
             elif plugin.plugin_type == 'CMSAllinkPageBreakPlugin':
                 relevant_plugins.append(plugin)
         return relevant_plugins
-
-    # def append_highlights_list(self, items, style):
-    #     flowables = []
-    #     for line in items:
-    #         flowables.append(ListItem(Paragraph(line.text, self.styles[style]), leftIndent=10, value='circle'))
-    #     self.floatings.append(ListFlowable(flowables,
-    #                                        bulletType='bullet',
-    #                                        start='circle',
-    #                                        leftIndent=10,
-    #                                        bulletFontSize=3,
-    #                                        bulletOffsetY=-4,
-    #                                        spaceAfter=4 * mm))
 
     def append_pagebreak_plugin(self, plugin):
         self.floatings.append(PageBreak())
@@ -549,10 +524,8 @@ class PdfWork(object):
     def build(self):
         activate(self.language)
 
-        # highlights
-        self.floatings.append(Paragraph(_(u'Highlights'), self.styles['title-h3-highlights']))
         self.floatings.append(HRFlowable(spaceBefore=0.2 * mm, spaceAfter=5.25 * mm, color=self.transparent, thickness=0.5, width='100%'))
-        # self.append_highlights_list(self.item.highlights_set.all(), 'list-bullet-highlights')
+
         self.floatings.append(FrameBreak())
 
         # page title

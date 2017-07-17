@@ -25,7 +25,6 @@
                     {% block widget %}
 
                         {# Date AND/OR Time #}
-
                         {% if field|widget_type == 'datetimeinput' or field|widget_type == 'dateinput' or field|widget_type == 'timeinput' %}
 
                             <div class="datepicker-container">
@@ -62,7 +61,7 @@
 
                         {# Dropdown Select #}
 
-                        {% elif field|widget_type == 'select' %}
+                        {% elif field|widget_type == 'select' or field|widget_type == 'lazyselect' %}
 
                             {% if field.field.required %}
                                 {% render_field field class+="selectpicker form-control" required="required" %}

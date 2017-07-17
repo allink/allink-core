@@ -5,7 +5,7 @@ from parler.managers import TranslatableManager, TranslatableQuerySet
 class AllinkBaseModelQuerySet(TranslatableQuerySet):
 
     def active_entries(self):
-        return self.translated()\
+        return self.active_translations()\
             .filter(is_active=True)
 
     def filter_by_categories(self, categories):

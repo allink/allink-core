@@ -2,6 +2,7 @@
 
 from django import forms
 from django.utils.translation import ugettext_lazy as _
+from django.conf import settings
 
 from allink_core.core_apps.allink_legacy_redirect.models import AllinkLegacyLink
 from allink_core.core.forms.fields import SelectLinkField

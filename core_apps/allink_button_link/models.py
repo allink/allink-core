@@ -112,6 +112,56 @@ class AllinkButtonLinkPlugin(CMSPlugin, AllinkLinkFieldsModel):
         default='',
         blank=True,
     )
+    # form specific fields
+    send_internal_mail = models.BooleanField(
+        _(u'Send internal e-mail'),
+        default=True,
+        help_text=_(u'Send confirmation mail to defined internal e-mail addresses.')
+    )
+    internal_email_addresses = ArrayField(
+        models.EmailField(
+            blank=True,
+            null=True,
+        ),
+        blank=True,
+        null=True,
+        verbose_name=_(u'Internal e-mail addresses'),
+    )
+    from_email_address = models.EmailField(
+        _(u'Sender e-mail address'),
+        blank=True,
+        null=True
+    )
+    send_external_mail = models.BooleanField(
+        _(u'Send external e-mail'),
+        default=True,
+        help_text=_(u'Send confirmation mail to customer.')
+    )
+    thank_you_text = models.TextField(
+        _(u'Thank you text'),
+        blank=True,
+        null=True,
+        help_text=_(u'This text will be shown, after form completion.')
+    )
+    label_layout = models.CharField(
+        _(u'Display labels'),
+        max_length=15,
+        choices=(
+            ('stacked', 'Stacked with fields'),
+            ('side_by_side', 'Side by side with fields'),
+            ('placeholder', 'As placeholders'),
+        ),
+        default='stacked',
+    )
+    project_css_classes = ArrayField(
+        models.CharField(
+            max_length=50,
+            blank=True,
+            null=True
+        ),
+        blank=True,
+        null=True
+    )
 
     cmsplugin_ptr = CMSPluginField()
 
@@ -129,3 +179,13 @@ class AllinkButtonLinkPlugin(CMSPlugin, AllinkLinkFieldsModel):
                 parameters['body'] = urlquote(self.email_body_text)
             link = '{}?{}'.format(base, '&'.join('{}={}'.format(v, k) for (v, k) in parameters.items()))
         return link
+
+    @property
+    def css_classes(self):
+        css_classes = []
+        if getattr(self, 'project_css_classes'):
+            for css_class in getattr(self, 'project_css_classes'):
+                css_classes.append(css_class)
+        css_classes.append('side-by-side') if self.label_layout == 'side_by_side' else None
+        css_classes.append('placeholder-enabled') if self.label_layout == 'placeholder' else None
+        return ' '.join(css_classes)

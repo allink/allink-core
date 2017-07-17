@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-28 13:42+0200\n"
+"POT-Creation-Date: 2017-07-17 09:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,29 +24,33 @@ msgstr ""
 
 #: allink_core/core_apps/allink_social_icon/cms_plugins.py:13
 #: allink_core/core_apps/allink_social_icon/cms_plugins.py:27
-msgid "allink"
+msgid "Generic"
 msgstr ""
 
 #: allink_core/core_apps/allink_social_icon/cms_plugins.py:26
 msgid "Social Icon"
 msgstr ""
 
-#: allink_core/core_apps/allink_social_icon/models.py:18
+#: allink_core/core_apps/allink_social_icon/forms.py:19
+msgid "Predifined variations for Social Icon Plugin"
+msgstr ""
+
+#: allink_core/core_apps/allink_social_icon/models.py:29
 msgid "{}"
 msgstr ""
 
-#: allink_core/core_apps/allink_social_icon/models.py:24
+#: allink_core/core_apps/allink_social_icon/models.py:43
 msgid "Title"
 msgstr "Titel"
 
-#: allink_core/core_apps/allink_social_icon/models.py:25
+#: allink_core/core_apps/allink_social_icon/models.py:44
 msgid "SEO text (not visible) e.g. Follow allink on Instagram"
 msgstr "SEO-Text (nicht sichtbar), bsp.: Folge allink auf Instagram"
 
-#: allink_core/core_apps/allink_social_icon/models.py:31
+#: allink_core/core_apps/allink_social_icon/models.py:50
 msgid "Icon"
 msgstr ""
 
-#: allink_core/core_apps/allink_social_icon/models.py:36
+#: allink_core/core_apps/allink_social_icon/models.py:55
 msgid "Link"
 msgstr ""

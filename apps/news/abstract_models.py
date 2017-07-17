@@ -88,7 +88,7 @@ class BaseNewsTranslation(AllinkBaseTranslatedFieldsModel):
         app_label = 'news'
 
 
-class BaseNewsPlugin(AllinkBaseAppContentPlugin):
+class BaseNewsAppContentPlugin(AllinkBaseAppContentPlugin):
     manual_entries = SortedM2MModelField(
         'news.News',
         blank=True,
@@ -100,7 +100,7 @@ class BaseNewsPlugin(AllinkBaseAppContentPlugin):
         # invalidate cache
         cache.delete_many([make_template_fragment_key('news_preview_image', [self.id, news.id]) for news in
                            get_model('news', 'News').objects.all()])
-        super(BaseNewsPlugin, self).save(*args, **kwargs)
+        super(BaseNewsAppContentPlugin, self).save(*args, **kwargs)
 
     class Meta:
         abstract = True

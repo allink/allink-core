@@ -10,7 +10,7 @@ from allink_core.core_apps.allink_pdf.forms import AllinkPdfPageBreakPluginForm
 class CMSAllinkPageBreakPlugin(CMSPluginBase):
     model = AllinkPdfPageBreakPlugin
     name = _('PDF Page Break')
-    module = _("allink")
+    module = _('Generic')
     form = AllinkPdfPageBreakPluginForm
 
     def get_render_template(self, context, instance, placeholder):

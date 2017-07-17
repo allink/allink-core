@@ -11,7 +11,7 @@ from allink_core.core_apps.allink_group.forms import AllinkGroupContainerPluginF
 class CMSAllinkGroupContainerPlugin(CMSPluginBase):
     model = AllinkGroupContainerPlugin
     name = _('Group Container')
-    module = _("allink")
+    module = _('Generic')
     allow_children = True
     child_classes = ['CMSAllinkGroupPlugin', 'CMSAllinkButtonLinkContainerPlugin']
     form = AllinkGroupContainerPluginForm
@@ -38,7 +38,7 @@ class CMSAllinkGroupContainerPlugin(CMSPluginBase):
 class CMSAllinkGroupPlugin(CMSPluginBase):
     model = AllinkGroupPlugin
     name = _('Group')
-    module = _("allink")
+    module = _('Generic')
     allow_children = True
     child_classes = settings.CMS_ALLINK_GROUP_PLUGIN_CHILD_CLASSES
     form = AllinkGroupPluginForm

@@ -30,13 +30,13 @@ def send_request_email(form, plugin):
     message = {
         'auto_html': None,
         'auto_text': None,
-        'from_email': plugin.from_email_address if plugin and plugin.from_email_address else settings.CONTACT_REQUEST_EMAIL,
+        'from_email': plugin.from_email_address,
         'from_name': config.get_default_from_name(),
         'global_merge_vars': [
             {'name': 'detail_link', 'content': u'hello'},
             {'name': 'subscriber', 'content': subscriber}
         ],
-        'headers': {'Reply-To': plugin.from_email_address if plugin and plugin.from_email_address else settings.CONTACT_REQUEST_EMAIL},
+        'headers': {'Reply-To': plugin.from_email_address},
         'inline_css': True,
         'merge': True,
         'merge_language': 'mailchimp',
@@ -48,11 +48,7 @@ def send_request_email(form, plugin):
             'email': email_address,
             'name': config.get_default_from_name(),
             'type': 'to'
-        } for email_address in plugin.internal_email_adresses if email_address] if plugin and plugin.internal_email_adresses else [{
-            'email': config.default_to_email,
-            'name': config.get_default_from_name(),
-            'type': 'to'
-        }],
+        } for email_address in plugin.internal_email_addresses if email_address],
         'track_clicks': True,
         'track_opens': True
     }
@@ -84,7 +80,7 @@ def send_request_confirmation_email(form, plugin):
     message = {
         'auto_html': None,
         'auto_text': None,
-        'from_email': plugin.from_email_address if plugin and plugin.from_email_address else settings.CONTACT_REQUEST_EMAIL,
+        'from_email': plugin.from_email_address,
         'from_name': config.get_default_from_name(),
         'global_merge_vars': [
             {'name': 'first_name', 'content': form.data.get('first_name')},
@@ -94,7 +90,7 @@ def send_request_confirmation_email(form, plugin):
         ],
         'google_analytics_campaign': 'Contact Request',
         'google_analytics_domains': [config.get_google_analytics_domains()],
-        'headers': {'Reply-To': plugin.from_email_address if plugin and plugin.from_email_address else config.default_from_email},
+        'headers': {'Reply-To': plugin.from_email_address},
         'inline_css': True,
         'merge': True,
         'merge_language': 'mailchimp',
@@ -110,4 +106,4 @@ def send_request_confirmation_email(form, plugin):
         'track_clicks': True,
         'track_opens': True
     }
-    send_transactional_email(message=message, template_name='hrcampus_request_confirmation', translated=True, template_content=template_content)
+    send_transactional_email(message=message, template_name='hrcampus_request_confirmation_de', translated=False, template_content=template_content)

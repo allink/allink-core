@@ -9,7 +9,7 @@ EventsAppContentPlugin = get_model('events', 'EventsAppContentPlugin')
 
 
 @plugin_pool.register_plugin
-class CMSEventsPlugin(CMSAllinkBaseAppContentPlugin):
+class CMSEventsAppContentPlugin(CMSAllinkBaseAppContentPlugin):
     """
     model:
     - where to store plugin instances

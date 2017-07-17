@@ -1,0 +1,61 @@
+{% extends "app_content/app_content.html" %}
+{% load cms_tags staticfiles sekizai_tags i18n thumbnail %}
+
+{% block app_content_container_additional_classes %}work-search-plugin items-per-row-3{% endblock app_content_container_additional_classes %}
+
+{% block app_content_heading_container %}
+
+    <div class="app-list__special-container inverted-colors">
+
+        <div class="work-search-plugin__col-container">
+            <div class="work-search-plugin__col work-search-plugin__col-1">
+
+                <h2 class="work-search-plugin__heading">
+                    {% trans "Product search:" %}
+                </h2>
+
+                {% url "work:search" plugin_id=instance.id as action %}
+
+                <form action="{{action}}" class="work-search-plugin__form ajax-form validate-form" data-success-data-layer-event="search.sent" id="work-search-plugin-form-{{instance.id}}" data-ajax-response-container-id="work-search-results-container-{{instance.id}}" method="post" role="form" novalidate="novalidate">
+
+                    {% csrf_token %}
+
+                    <div class="work-search-plugin__form-inner">
+                        <input class="work-search-plugin__input form-control" id="id_q" name="q" required="" type="search" aria-required="true">
+                        <button class="work-search-plugin__btn" type="submit">
+                            <span class="work-search-plugin__btn-text btn-text">{% trans "Submit" %}</span>
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+            <div class="work-search-plugin__col work-search-plugin__col-2">
+
+                <div class="work-search-plugin__support-text">
+                    {% trans "Please contact us here for product support:" %}
+                </div>
+                <div class="work-search-plugin__support-btn-container">
+                    <a href="#" class="work-search-plugin__support-btn">
+                        {% trans "Support form" %}
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+{% endblock app_content_heading_container %}
+
+{% block app_content_objects_container %}
+
+    <div class="grid-static-container" data-trigger-softpage>
+        <div class="the-grid ajax-items-container" id="work-search-results-container-{{instance.id}}">
+            {% block app_content_objects %}
+                {% include 'work/plugins/search/_items.html' %}
+            {% endblock app_content_objects %}
+        </div>
+    </div>
+
+{% endblock app_content_objects_container %}

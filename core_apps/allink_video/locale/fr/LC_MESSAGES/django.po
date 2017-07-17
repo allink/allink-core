@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-28 13:42+0200\n"
+"POT-Creation-Date: 2017-07-17 09:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,7 +24,7 @@ msgstr ""
 
 #: allink_core/core_apps/allink_video/cms_plugins.py:15
 #: allink_core/core_apps/allink_video/cms_plugins.py:63
-msgid "allink"
+msgid "Generic"
 msgstr ""
 
 #: allink_core/core_apps/allink_video/cms_plugins.py:37
@@ -42,18 +42,9 @@ msgstr ""
 msgid "Video File"
 msgstr ""
 
-#: allink_core/core_apps/allink_video/forms.py:18
-#: allink_core/core_apps/allink_video/forms.py:41
-msgid "Predifined variations for Video Plugin"
-msgstr ""
-
 #: allink_core/core_apps/allink_video/forms.py:19
 #: allink_core/core_apps/allink_video/forms.py:42
-msgid ""
-"Instructions: Single selection is made by clicking on an option. Multiple "
-"selections are achieved by pressing and holding down the Command-key (Mac) "
-"or Control-Key (Windows) <strong>and</strong> clicking the options you would "
-"like to apply."
+msgid "Predifined variations for Video Plugin"
 msgstr ""
 
 #: allink_core/core_apps/allink_video/forms.py:24

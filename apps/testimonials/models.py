@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from allink_core.apps.testimonials.abstract_models import BaseTestimonials, BaseTestimonialsTranslation, BaseTestimonialsPlugin
+from allink_core.apps.testimonials.abstract_models import BaseTestimonials, BaseTestimonialsTranslation, BaseTestimonialsAppContentPlugin
 from allink_core.core.loading import get_model
 from allink_core.core.loading import is_model_registered
 
@@ -21,7 +21,7 @@ if not is_model_registered('testimonials', 'TestimonialsTranslation'):
 
 
 if not is_model_registered('testimonials', 'TestimonialsAppContentPlugin'):
-    class TestimonialsAppContentPlugin(BaseTestimonialsPlugin):
+    class TestimonialsAppContentPlugin(BaseTestimonialsAppContentPlugin):
         data_model = get_model('testimonials', 'Testimonials')
 
     __all__.append('TestimonialsAppContentPlugin')

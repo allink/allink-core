@@ -14,7 +14,7 @@ from allink_core.core_apps.allink_content.forms import AllinkContentPluginForm, 
 class CMSAllinkContentPlugin(CMSPluginBase):
     model = AllinkContentPlugin
     name = _('Content')
-    module = _("allink")
+    module = _('Generic')
     render_template = "allink_content/default/content.html"
     allow_children = True
     child_classes = ['ContentColumnPlugin']
@@ -98,7 +98,7 @@ class CMSAllinkContentPlugin(CMSPluginBase):
 class CMSAllinkContentColumnPlugin(CMSPluginBase):
     model = AllinkContentColumnPlugin
     name = _("Column")
-    module = _("allink")
+    module = _('Generic')
     render_template = "allink_content/default/column.html"
     parent_classes = ["AllinkContentPlugin"]
     allow_children = True
@@ -106,6 +106,9 @@ class CMSAllinkContentColumnPlugin(CMSPluginBase):
     form = AllinkContentColumnPluginForm
     require_parent = True
 
+    disable_copyable_menu = True
+    disable_cutable_menu = True
+    disable_deletable_menu = True
 
     class Media:
         js = (get_files('djangocms_custom_admin')[0]['publicPath'], )

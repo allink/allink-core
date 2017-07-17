@@ -24,6 +24,10 @@ from allink_core.core.utils import get_query
 
 
 class AllinkBasePluginLoadMoreView(ListView):
+    """
+    model =
+    plugin_model =
+    """
 
     def get_queryset(self):
         if self.plugin.manual_ordering == AllinkBaseAppContentPlugin.RANDOM:
@@ -61,7 +65,7 @@ class AllinkBasePluginLoadMoreView(ListView):
             paginator, page, queryset, is_paginated = self.paginate_queryset(queryset, page_size)
             if self.plugin.pagination_type == AllinkBaseAppContentPlugin.LOAD_REST:
                 # TODO is there a better query?
-                queryset = self.get_queryset().filter(~Q(id__in=list(paginator.page(1).object_list.values_list('id', flat=True))))
+                queryset = self.get_queryset().filter(~Q(id__in=[o.id for o in paginator.page(1).object_list]))
                 page = paginator.page(paginator.num_pages)
             context = {
                 'paginator': paginator,
@@ -112,17 +116,21 @@ class AllinkBasePluginLoadMoreView(ListView):
             if context['page_obj'].number > 1:
                 context.update({'appended': True})
         json_context = {}
-        json_context['rendered_content'] = render_to_string(self.get_template_names(context)[0], context=context, request=context['request'])
+        json_context['rendered_content'] = render_to_string(self.get_template_names(context)[0], context=context, request=self.request)
         if self.plugin.paginated_by > 0 and context['page_obj'].has_next():  # no need to create next_page_url when no pagination should be displayed
             get_params = '&'.join(['%s=%s' % (k, v) for k, v in self.request.GET.items()])
             json_context['next_page_url'] = reverse('{}:more'.format(self.model._meta.model_name), kwargs={'page': context['page_obj'].next_page_number()}) + '?api_request=1&plugin_id={}&{}'.format(self.plugin.id, get_params)
             json_context['next_page_url'] = json_context['next_page_url'] + '&category={}'.format(self.category_id) if hasattr(self, 'category_id') else json_context['next_page_url']
         else:
             json_context['next_page_url'] = None
-        return HttpResponse(content=json.dumps(json_context), content_type='application/json', status=200 if self.object_list else 206)
+        json_context['no_results'] = False if self.object_list else True
+        return HttpResponse(content=json.dumps(json_context), content_type='application/json', status=200)
 
 
 class AllinkBaseDetailView(TranslatableSlugMixin, DetailView):
+    """
+    model = Events
+    """
     def render_to_response(self, context, **response_kwargs):
         if self.request.is_ajax():
             context.update({'base_template': 'app_content/ajax_base.html'})
@@ -133,9 +141,9 @@ class AllinkBaseDetailView(TranslatableSlugMixin, DetailView):
 
 class AllinkBaseCreateView(CreateView):
     """
-        form_class =
-        template_name  =
-        success_url =
+    form_class =
+    template_name  =
+    success_url =
     """
     plugin = None
 
@@ -154,9 +162,7 @@ class AllinkBaseCreateView(CreateView):
         if self.request.is_ajax():
             context = self.get_context_data()
             try:
-                html = render_to_string(self.get_confirmation_template(), context)
-                return HttpResponse(html)
-            # TODO Handel error correctly
+                return self.json_response(context)
             except:
                 # sentry is not configured on localhost
                 if not settings.RAVEN_CONFIG.get('dsn'):
@@ -166,10 +172,17 @@ class AllinkBaseCreateView(CreateView):
         else:
             return HttpResponseRedirect(self.get_success_url())
 
+    def json_response(self, context):
+        json_context = {}
+        json_context['rendered_content'] = render_to_string(self.get_confirmation_template(), context=context, request=self.request)
+        return HttpResponse(content=json.dumps(json_context), content_type='application/json', status=200)
+
     def get_context_data(self, *args, **kwargs):
         context = super(AllinkBaseCreateView, self).get_context_data(*args, **kwargs)
+        # EventsRegister view doesn't have a plugin instance
         if self.plugin:
-            context.update({'plugin_instance': self.plugin})
+            context.update({'instance': self.plugin})
+            context.update({'inline': True if self.plugin._meta.model_name != 'allinkbuttonlinkplugin' else False})
         return context
 
     def get_confirmation_template(self):
@@ -182,17 +195,20 @@ class AllinkBaseCreateView(CreateView):
 
 
 class AllinkBaseAjaxFormView(FormView):
+    """
+    form_class =
+    plugin_class =
+    template_name = '.../plugins/search/_items.html'
+    """
 
     def dispatch(self, *args, **kwargs):
         plugin_id = self.kwargs.pop('plugin_id', None)
-        if plugin_id:
-            self.plugin = self.plugin_class.objects.get(id=plugin_id)
+        self.plugin = self.plugin_class.objects.get(id=plugin_id)
         return super(AllinkBaseAjaxFormView, self).dispatch(*args, **kwargs)
 
     def get_context_data(self, *args, **kwargs):
         context = super(AllinkBaseAjaxFormView, self).get_context_data(*args, **kwargs)
-        if self.plugin:
-            context.update({'instance': self.plugin})
+        context.update({'instance': self.plugin})
         return context
 
     def get_object_list(self, query_string):
@@ -206,15 +222,22 @@ class AllinkBaseAjaxFormView(FormView):
     def form_valid(self, form):
         context = self.get_context_data()
 
-        context.update({'request': self.request})
         context.update({'object_list': self.get_object_list(form.cleaned_data.get('q'))})
         context.update({'csrf_token_value': self.request.COOKIES['csrftoken']})
 
-        html = render_to_string(self.template_name, context)
-        return HttpResponse(html)
+        return self.json_response(context)
 
     def form_invalid(self, form):
         return self.render_to_response(self.get_context_data(form=form), status=206)
+
+    def json_response(self, context):
+        context.update({'request': self.request})
+        context.update({'instance': self.plugin})
+
+        json_context = {}
+        json_context['rendered_content'] = render_to_string(self.template_name, context=context, request=self.request)
+        json_context['no_results'] = False if context['object_list'] else True
+        return HttpResponse(content=json.dumps(json_context), content_type='application/json', status=200)
 
 
 # used to redirect page to external url

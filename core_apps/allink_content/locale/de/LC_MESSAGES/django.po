@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-28 13:42+0200\n"
+"POT-Creation-Date: 2017-07-17 09:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,69 +23,74 @@ msgid "Content"
 msgstr ""
 
 #: allink_core/core_apps/allink_content/cms_plugins.py:17
-#: allink_core/core_apps/allink_content/cms_plugins.py:99
-msgid "allink"
+#: allink_core/core_apps/allink_content/cms_plugins.py:101
+msgid "Generic"
 msgstr ""
 
 #: allink_core/core_apps/allink_content/cms_plugins.py:37
-msgid "Display Options"
+#, fuzzy
+#| msgid "Display Options"
+msgid "Section Options"
 msgstr "Darstellungsoptionen"
 
-#: allink_core/core_apps/allink_content/cms_plugins.py:46
-msgid "Full width background image"
-msgstr "Hintergrundbild volle Breite"
+#: allink_core/core_apps/allink_content/cms_plugins.py:47
+#, fuzzy
+#| msgid "Background-Image"
+msgid "Background Image (full width)"
+msgstr "Hintergrundbild"
 
-#: allink_core/core_apps/allink_content/cms_plugins.py:53
-msgid "Container background image"
-msgstr "Hintergrundbild in Container"
+#: allink_core/core_apps/allink_content/cms_plugins.py:55
+#, fuzzy
+#| msgid "Background-Image"
+msgid "Background Image (container)"
+msgstr "Hintergrundbild"
 
-#: allink_core/core_apps/allink_content/cms_plugins.py:59
-msgid "Video background (Important: Only works if all fields are set)"
+#: allink_core/core_apps/allink_content/cms_plugins.py:61
+#, fuzzy
+#| msgid "Video background (Important: Only works if all fields are set)"
+msgid "Background Video (Important: Only works if all fields are set)"
 msgstr ""
 "Hintergrundvideo (Wichtig: Funktioniert nur, wenn alle Felder ausgefüllt "
 "sind.)"
 
-#: allink_core/core_apps/allink_content/cms_plugins.py:68
+#: allink_core/core_apps/allink_content/cms_plugins.py:69
 msgid "Advanced Options"
 msgstr "Erweiterte Einstellungen"
 
-#: allink_core/core_apps/allink_content/cms_plugins.py:98
+#: allink_core/core_apps/allink_content/cms_plugins.py:100
 msgid "Column"
 msgstr "Spalte"
 
 #: allink_core/core_apps/allink_content/forms.py:19
-#: allink_core/core_apps/allink_content/models.py:75
+#: allink_core/core_apps/allink_content/models.py:61
 msgid "Template"
 msgstr ""
 
-#: allink_core/core_apps/allink_content/forms.py:24
+#: allink_core/core_apps/allink_content/forms.py:25
+#: allink_core/core_apps/allink_content/models.py:57
+msgid "Section Title Size"
+msgstr ""
+
+#: allink_core/core_apps/allink_content/forms.py:36
 msgid "Background color"
 msgstr "Hintergrundfarbe"
 
-#: allink_core/core_apps/allink_content/forms.py:29
+#: allink_core/core_apps/allink_content/forms.py:43
 msgid "Predifined variations"
 msgstr "Vordefinierte Variationen"
 
-#: allink_core/core_apps/allink_content/forms.py:30
-msgid ""
-"Instructions: Single selection is made by clicking on an option. Multiple "
-"selections are achieved by pressing and holding down the Command-key (Mac) "
-"or Control-Key (Windows) <strong>and</strong> clicking the options you would "
-"like to apply."
+#: allink_core/core_apps/allink_content/forms.py:49
+msgid "Predifined on screen Effect"
 msgstr ""
-"Anleitung: Einzelauswahl durch Klicken auf die gewünschte Option. "
-"Mehrfachwahl kann durch Drücken und Halten der Command-Taste (Mac) or "
-"Control-Taste (Windows) <strong>und</strong> Anklicken der gewünschten "
-"Optionen erzielt werden."
 
-#: allink_core/core_apps/allink_content/forms.py:40
+#: allink_core/core_apps/allink_content/forms.py:60
 msgid ""
 "You can only change the template if it has the same amount of columns as the "
 "previous template."
 msgstr ""
 
 #: allink_core/core_apps/allink_content/models.py:50
-#: allink_core/core_apps/allink_content/models.py:257
+#: allink_core/core_apps/allink_content/models.py:292
 msgid "Title"
 msgstr "Titel"
 
@@ -93,43 +98,23 @@ msgstr "Titel"
 msgid "The section title"
 msgstr ""
 
-#: allink_core/core_apps/allink_content/models.py:57
-msgid "Section Title Size"
-msgstr ""
-
-#: allink_core/core_apps/allink_content/models.py:63
-msgid "Activate \"container\""
-msgstr ""
-
-#: allink_core/core_apps/allink_content/models.py:64
-msgid "If checked, an inner container with a maximum width is added"
-msgstr ""
-
-#: allink_core/core_apps/allink_content/models.py:68
-msgid "Set a predefined background color"
-msgstr "Vordefinierte Hintergrundfarbe setzen"
-
-#: allink_core/core_apps/allink_content/models.py:76
+#: allink_core/core_apps/allink_content/models.py:62
 msgid "Choose a template."
 msgstr "Template wählen."
 
-#: allink_core/core_apps/allink_content/models.py:80
-msgid "Activate overlay styles"
-msgstr "Overlay-Syles aktivieren"
-
-#: allink_core/core_apps/allink_content/models.py:81
-msgid ""
-"If checked, the predefined overlay styles are applied (suitable when text is "
-"over an image/video)"
+#: allink_core/core_apps/allink_content/models.py:66
+msgid "Activate \"container\""
 msgstr ""
-"Falls angewählt, werden die vordefinierten Overlay-Styles angewandt "
-"(Nützlich, falls Text über einem Bild oder Video dargestellt wird)."
 
-#: allink_core/core_apps/allink_content/models.py:85
+#: allink_core/core_apps/allink_content/models.py:67
+msgid "If checked, an inner container with a maximum width is added"
+msgstr ""
+
+#: allink_core/core_apps/allink_content/models.py:71
 msgid "Activate \"full height\" mode"
 msgstr "\"full height\"-Modus aktivieren"
 
-#: allink_core/core_apps/allink_content/models.py:86
+#: allink_core/core_apps/allink_content/models.py:72
 msgid ""
 "If checked, the section will use the available height of the device's/"
 "browser's screen."
@@ -137,20 +122,66 @@ msgstr ""
 "Falls angewählt, wird der Abschnitt die verfügbare Höhe des Geräts/Browsers "
 "nutzten."
 
-#: allink_core/core_apps/allink_content/models.py:90
+#: allink_core/core_apps/allink_content/models.py:76
+msgid "Activate \"inverted text colors\""
+msgstr ""
+
+#: allink_core/core_apps/allink_content/models.py:77
+#, fuzzy
+#| msgid ""
+#| "If checked, the predefined overlay styles are applied (suitable when text "
+#| "is over an image/video)"
+msgid ""
+"If checked, the predefined inverted text colors are applied (suitable when "
+"using a background image/video)"
+msgstr ""
+"Falls angewählt, werden die vordefinierten Overlay-Styles angewandt "
+"(Nützlich, falls Text über einem Bild oder Video dargestellt wird)."
+
+#: allink_core/core_apps/allink_content/models.py:81
+#, fuzzy
+#| msgid "Activate overlay styles"
+msgid "Activate \"overlay\""
+msgstr "Overlay-Syles aktivieren"
+
+#: allink_core/core_apps/allink_content/models.py:82
+msgid ""
+"If checked, a predefined overlay background gradient/color is applied."
+"<br><strong>Important:</strong> Only applied when used in combination with a "
+"background image/video/color"
+msgstr ""
+
+#: allink_core/core_apps/allink_content/models.py:86
+msgid "Set a predefined background color"
+msgstr "Vordefinierte Hintergrundfarbe setzen"
+
+#: allink_core/core_apps/allink_content/models.py:92
+#, fuzzy
+#| msgid "Activate \"full height\" mode"
+msgid "Activate dynamic height"
+msgstr "\"full height\"-Modus aktivieren"
+
+#: allink_core/core_apps/allink_content/models.py:93
+msgid ""
+"If checked, the section's height will grow depending on the height of its "
+"children.<br>Note: This option is being ignored when \"full height\" or "
+"\"parallax\" are enabled."
+msgstr ""
+
+#: allink_core/core_apps/allink_content/models.py:97
 msgid "Activate Parallax effect"
 msgstr "Parallax-Effekt aktivieren"
 
-#: allink_core/core_apps/allink_content/models.py:91
+#: allink_core/core_apps/allink_content/models.py:98
 msgid "If checked, the parallax effect is enabled."
 msgstr "Falls angewählt, ist der Parallax-Effekt aktiv."
 
-#: allink_core/core_apps/allink_content/models.py:95
 #: allink_core/core_apps/allink_content/models.py:102
+#: allink_core/core_apps/allink_content/models.py:109
 msgid "Background-Image"
 msgstr "Hintergrundbild"
 
-#: allink_core/core_apps/allink_content/models.py:96
+#: allink_core/core_apps/allink_content/models.py:103
 msgid ""
 "Adds a background image to the inner container of a content section. "
 "Activating \"overlay styles\" is recommended."
@@ -158,17 +189,17 @@ msgstr ""
 "Fügt ein Hintergrundbild zum inneren Container eines Inhaltsabschnitts "
 "hinzu. \"Overlay-Styles\" aktivieren empfohlen."
 
-#: allink_core/core_apps/allink_content/models.py:103
+#: allink_core/core_apps/allink_content/models.py:110
 msgid ""
 "Optional: Set a background image for the content section.<br>Note: This is "
 "meant for decorative purposes only and should be used with care."
 msgstr ""
 
-#: allink_core/core_apps/allink_content/models.py:110
+#: allink_core/core_apps/allink_content/models.py:117
 msgid "Source"
 msgstr "Quelle"
 
-#: allink_core/core_apps/allink_content/models.py:111
+#: allink_core/core_apps/allink_content/models.py:118
 msgid ""
 "Recommended video settings:<br><br>Format: mp4<br>Codec: H.264<br>Target "
 "Bitrate: 2 (video loads quick and runs smooth)<br>Audio: Not recommended (no "
@@ -181,41 +212,32 @@ msgstr ""
 "Besucher)<br>Dateigrösse: Abhängig von der Länge des Videos. Allgemein: "
 "Weniger ist mehr."
 
-#: allink_core/core_apps/allink_content/models.py:118
+#: allink_core/core_apps/allink_content/models.py:125
 msgid "Video Start Image"
 msgstr "Video-Startbild"
 
-#: allink_core/core_apps/allink_content/models.py:120
+#: allink_core/core_apps/allink_content/models.py:127
+#, fuzzy
+#| msgid ""
+#| "This image is displayed while the video is loading. Ideally the very "
+#| "first frame of the video is used, in order to make the transition as "
+#| "smooth as possible."
 msgid ""
-"This image is displayed while the video is loading. Ideally the very first "
-"frame of the video is used, in order to make the transition as smooth as "
-"possible."
+"This image is displayed while the video is loading. Ideally, use an "
+"<strong>exact screen capture image</strong> of the very first frame of the "
+"video for best results."
 msgstr ""
 "Dieses Bild wird angezeigt, während das Video lädt. Am besten das allererste "
 "Frame des Videos benutzen, damit der Beginn ohne Stocken verläuft."
 
-#: allink_core/core_apps/allink_content/models.py:125
+#: allink_core/core_apps/allink_content/models.py:132
 msgid "Mobile Image"
 msgstr "Bild für Mobile"
 
-#: allink_core/core_apps/allink_content/models.py:127
+#: allink_core/core_apps/allink_content/models.py:134
 msgid ""
 "The image that is being displayed instead of the video on mobile devices."
 msgstr "Das Bild, das auf Mobile anstelle des Videos angezeigt wird."
-
-#: allink_core/core_apps/allink_content/models.py:132
-msgid "Mobile Image Alignment (horizontal)"
-msgstr "Ausrichtung des Bilds für Mobile (horizontal)"
-
-#: allink_core/core_apps/allink_content/models.py:133
-msgid ""
-"Which part of the image ist the most important one and <strong>must</strong> "
-"be visible? Because we use the available space, there is a chance that a "
-"part (left and/or right) is not visible."
-msgstr ""
-"Welcher Bildteil ist am wichtigsten und <strong>muss</strong> sichtbar sein? "
-"Je nach Bildschirmgrösse kann es sein, dass ein Teil (links und/oder rechts) "
-"nicht sichtbar ist."
 
 #: allink_core/core_apps/allink_content/models.py:139
 msgid "ID"
@@ -238,16 +260,24 @@ msgstr "Beim PDF-Export ignorieren"
 msgid "If checked, the content plugin will be ignored when generting a pdf."
 msgstr "Falls angewählt, wird dieser Abschnitt für den PDF-Export ignoriert."
 
-#: allink_core/core_apps/allink_content/models.py:218
+#: allink_core/core_apps/allink_content/models.py:202
+msgid "Standard"
+msgstr ""
+
+#: allink_core/core_apps/allink_content/models.py:203
+msgid "Project"
+msgstr ""
+
+#: allink_core/core_apps/allink_content/models.py:244
 #, python-format
 msgid "Incorrect file type: %(value)s"
 msgstr "Falscher Dateityp: %(value)s"
 
-#: allink_core/core_apps/allink_content/models.py:263
+#: allink_core/core_apps/allink_content/models.py:298
 msgid "Order Mobile"
 msgstr "Sortierung für Mobile"
 
-#: allink_core/core_apps/allink_content/models.py:264
+#: allink_core/core_apps/allink_content/models.py:299
 msgid ""
 "Some columns should be ordered differently on mobile devices when columns "
 "are stacked vertically. This option allows you to define the position of the "
@@ -259,11 +289,11 @@ msgstr ""
 "bestimmen.<br><br>Hinweis: Die Spaltensortierung ist absteigend (Kleinste "
 "Zahl wird zuerst angezeigt.)"
 
-#: allink_core/core_apps/allink_content/models.py:269
+#: allink_core/core_apps/allink_content/models.py:304
 msgid "Alignment horizontal mobile"
 msgstr "Horizontale Ausrichtung für Mobile"
 
-#: allink_core/core_apps/allink_content/models.py:272
+#: allink_core/core_apps/allink_content/models.py:307
 msgid ""
 "This option overrides the projects default alignment for mobile. (Usually "
 "\"left\")"
@@ -271,11 +301,11 @@ msgstr ""
 "Diese Einstellung überschreibt den Standard für die horizontale Ausrichtung "
 "auf Mobile. (Normalerweise \"links\")"
 
-#: allink_core/core_apps/allink_content/models.py:277
+#: allink_core/core_apps/allink_content/models.py:312
 msgid "Alignment horizontal desktop"
 msgstr "Horizontale Ausrichtung auf Desktop"
 
-#: allink_core/core_apps/allink_content/models.py:280
+#: allink_core/core_apps/allink_content/models.py:315
 msgid ""
 "This option overrides the projects default alignment for desktop. (Usually "
 "\"left\")"
@@ -283,14 +313,43 @@ msgstr ""
 "Diese Einstellung überschreibt den Standard für die horizontale Ausrichtung "
 "auf Desktop. (Normalerweise \"links\")"
 
-#: allink_core/core_apps/allink_content/models.py:285
+#: allink_core/core_apps/allink_content/models.py:320
 msgid "Alignment vertical desktop"
 msgstr "Vertikale Ausrichtung auf Desktop"
 
-#: allink_core/core_apps/allink_content/models.py:288
+#: allink_core/core_apps/allink_content/models.py:323
 msgid ""
 "This option overrides the projects default alignment for desktop. (Usually "
 "\"top\")"
 msgstr ""
 "Diese Einstellung überschreibt den Standard für die vertikale Ausrichtung "
 "auf Desktop. (Normalerweise \"oben\")"
+
+#~ msgid "Full width background image"
+#~ msgstr "Hintergrundbild volle Breite"
+
+#~ msgid "Container background image"
+#~ msgstr "Hintergrundbild in Container"
+
+#~ msgid ""
+#~ "Instructions: Single selection is made by clicking on an option. Multiple "
+#~ "selections are achieved by pressing and holding down the Command-key "
+#~ "(Mac) or Control-Key (Windows) <strong>and</strong> clicking the options "
+#~ "you would like to apply."
+#~ msgstr ""
+#~ "Anleitung: Einzelauswahl durch Klicken auf die gewünschte Option. "
+#~ "Mehrfachwahl kann durch Drücken und Halten der Command-Taste (Mac) or "
+#~ "Control-Taste (Windows) <strong>und</strong> Anklicken der gewünschten "
+#~ "Optionen erzielt werden."
+
+#~ msgid "Mobile Image Alignment (horizontal)"
+#~ msgstr "Ausrichtung des Bilds für Mobile (horizontal)"
+
+#~ msgid ""
+#~ "Which part of the image ist the most important one and <strong>must</"
+#~ "strong> be visible? Because we use the available space, there is a chance "
+#~ "that a part (left and/or right) is not visible."
+#~ msgstr ""
+#~ "Welcher Bildteil ist am wichtigsten und <strong>muss</strong> sichtbar "
+#~ "sein? Je nach Bildschirmgrösse kann es sein, dass ein Teil (links und/"
+#~ "oder rechts) nicht sichtbar ist."

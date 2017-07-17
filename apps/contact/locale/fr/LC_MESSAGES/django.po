@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-28 13:42+0200\n"
+"POT-Creation-Date: 2017-07-17 09:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -63,24 +63,16 @@ msgstr ""
 msgid "Contact Apphook"
 msgstr ""
 
-#: allink_core/apps/contact/cms_plugins.py:33
+#: allink_core/apps/contact/cms_plugins.py:34
 msgid "Predifined variations"
 msgstr ""
 
-#: allink_core/apps/contact/cms_plugins.py:34
-msgid ""
-"Instructions: Single selection is made by clicking on an option. Multiple "
-"selections are achieved by pressing and holding down the Command-key (Mac) "
-"or Control-Key (Windows) <strong>and</strong> clicking the options you would "
-"like to apply."
-msgstr ""
-
 #: allink_core/apps/contact/cms_plugins.py:45
-msgid "ContactRequest"
+msgid "Contact Form"
 msgstr ""
 
 #: allink_core/apps/contact/cms_plugins.py:46
-msgid "allink"
+msgid "allink forms"
 msgstr ""
 
 #: allink_core/apps/contact/cms_toolbars.py:19

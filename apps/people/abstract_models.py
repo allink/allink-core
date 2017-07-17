@@ -113,7 +113,7 @@ class BasePeopleTranslation(AllinkBaseTranslatedFieldsModel):
         app_label = 'people'
 
 
-class BasePeoplePlugin(AllinkBaseAppContentPlugin):
+class BasePeopleAppContentPlugin(AllinkBaseAppContentPlugin):
 
     manual_entries = SortedM2MModelField(
         'people.People',
@@ -126,7 +126,7 @@ class BasePeoplePlugin(AllinkBaseAppContentPlugin):
         # invalidate cache
         cache.delete_many([make_template_fragment_key('people_preview_image', [self.id, people.id]) for people in
                            get_model('people', 'People').objects.all()])
-        super(BasePeoplePlugin, self).save(*args, **kwargs)
+        super(BasePeopleAppContentPlugin, self).save(*args, **kwargs)
 
     class Meta:
         abstract = True

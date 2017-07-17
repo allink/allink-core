@@ -4,7 +4,6 @@ from django.db import models
 from django.core.cache import cache
 from django.core.cache.utils import make_template_fragment_key
 
-from cms.models.pluginmodel import CMSPlugin
 from cms.models.fields import PlaceholderField
 from adminsortable.models import SortableMixin
 from parler.models import TranslatableModel, TranslatedField
@@ -13,7 +12,7 @@ from filer.fields.image import FilerImageField
 
 from aldryn_translation_tools.models import TranslationHelperMixin
 from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
-from allink_core.core.models.models import AllinkBaseAppContentPlugin, AllinkBaseModel, AllinkBaseTranslatedFieldsModel
+from allink_core.core.models.models import AllinkBaseAppContentPlugin, AllinkBaseSearchPlugin, AllinkBaseModel, AllinkBaseTranslatedFieldsModel
 from allink_core.core.models.mixins import AllinkTranslatedAutoSlugifyMixin
 from allink_core.core.models.managers import AllinkBaseModelManager
 from allink_core.core.loading import get_model
@@ -77,7 +76,7 @@ class BaseWorkTranslation(AllinkBaseTranslatedFieldsModel):
         app_label = 'work'
 
 
-class BaseWorkPlugin(AllinkBaseAppContentPlugin):
+class BaseWorkAppContentPlugin(AllinkBaseAppContentPlugin):
 
     manual_entries = SortedM2MModelField(
         'work.Work',
@@ -90,14 +89,16 @@ class BaseWorkPlugin(AllinkBaseAppContentPlugin):
         # invalidate cache
         cache.delete_many([make_template_fragment_key('work_preview_image', [self.id, work.id]) for work in
                            get_model('work', 'Work').objects.all()])
-        super(BaseWorkPlugin, self).save(*args, **kwargs)
+        super(BaseWorkAppContentPlugin, self).save(*args, **kwargs)
 
     class Meta:
         abstract = True
         app_label = 'work'
 
 
-class BaseWorkSearchPlugin(CMSPlugin):
+class BaseWorkSearchPlugin(AllinkBaseSearchPlugin):
+
     class Meta:
         abstract = True
         app_label = 'work'
+

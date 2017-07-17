@@ -16,7 +16,6 @@ class NewsPluginLoadMore(AllinkBasePluginLoadMoreView):
 
 class NewsDetail(AllinkBaseDetailView):
     model = News
-    template_name = 'news/news_detail.html'
 
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()

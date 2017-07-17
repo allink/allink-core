@@ -244,7 +244,7 @@ class BaseLocationsTranslation(AllinkBaseTranslatedFieldsModel):
         app_label = 'locations'
 
 
-class BaseLocationsPlugin(AllinkBaseAppContentPlugin):
+class BaseLocationsAppContentPlugin(AllinkBaseAppContentPlugin):
 
     ZOOM_LEVEL_CHOICES = (
         (0, 0),
@@ -286,7 +286,7 @@ class BaseLocationsPlugin(AllinkBaseAppContentPlugin):
         # invalidate cache
         cache.delete_many([make_template_fragment_key('locations_preview_image', [self.id, locations.id]) for locations in
                            get_model('locations', 'Locations').objects.all()])
-        super(BaseLocationsPlugin, self).save(*args, **kwargs)
+        super(BaseLocationsAppContentPlugin, self).save(*args, **kwargs)
 
     class Meta:
         abstract = True

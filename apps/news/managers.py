@@ -7,7 +7,7 @@ from allink_core.core.models.managers import AllinkBaseModelQuerySet, AllinkBase
 class AllinkNewsQuerySet(AllinkBaseModelQuerySet):
     def active_entries(self):
         today = datetime.today()
-        return self.translated()\
+        return self.active_translations()\
             .filter(Q(is_active=True) & (Q(start__isnull=True) & Q(end__isnull=True)) | ((Q(start__lte=today) & Q(end__isnull=True)) | (Q(start__isnull=True) & Q(end__gte=today))) | (Q(start__lte=today) & Q(end__gte=today)))
 
 

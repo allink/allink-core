@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from allink_core.apps.locations.abstract_models import BaseLocations, BaseLocationsTranslation, BaseLocationsPlugin
+from allink_core.apps.locations.abstract_models import BaseLocations, BaseLocationsTranslation, BaseLocationsAppContentPlugin
 from allink_core.core.loading import get_model
 from allink_core.core.loading import is_model_registered
 
@@ -21,7 +21,7 @@ if not is_model_registered('locations', 'LocationsTranslation'):
 
 
 if not is_model_registered('locations', 'LocationsAppContentPlugin'):
-    class LocationsAppContentPlugin(BaseLocationsPlugin):
+    class LocationsAppContentPlugin(BaseLocationsAppContentPlugin):
         data_model = get_model('locations', 'Locations')
 
     __all__.append('LocationsAppContentPlugin')

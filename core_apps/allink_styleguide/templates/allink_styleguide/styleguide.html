@@ -72,14 +72,14 @@
 
             <div class="text-container">
                 <p>Parturient sed at ac duis semper dapibus dictumst class curabitur</p>
-                <h2>Unordered</h2>
+                <h3>Unordered</h3>
                 <ul>
                     <li>Long List Item Accumsan interdum aenean ut natoque placerat vestibulum quisque habitasse dapibus cum adipiscing tortor tincidunt suspendisse platea proin fermentum vehicula ultricies nec.</li>
                     <li>List Item Example</li>
                     <li>List Item Example</li>
                     <li>List Item Example</li>
                 </ul>
-                <h2>Ordered</h2>
+                <h3>Ordered</h3>
                 <ol>
                     <li>Long List Item Accumsan interdum aenean ut natoque placerat vestibulum quisque habitasse dapibus cum adipiscing tortor tincidunt suspendisse platea proin fermentum vehicula ultricies nec.</li>
                     <li>List Item Example</li>
@@ -103,7 +103,7 @@
 
             <div class="manage-spacings">
                 <div class="text-container">
-                    <h2>btn (small)</h2>
+                    <h3>btn (small)</h3>
                 </div>
                 <div class="form-container">
                     <form>
@@ -119,7 +119,7 @@
                     </form>
                 </div>
                 <div class="text-container">
-                    <h2>btn (normal)</h2>
+                    <h3>btn (normal)</h3>
                 </div>
                 <div class="form-container">
                     <form>
@@ -135,7 +135,7 @@
                     </form>
                 </div>
                 <div class="text-container">
-                    <h2>btn (large)</h2>
+                    <h3>btn (large)</h3>
                 </div>
                 <div class="form-container">
                     <form>
@@ -151,7 +151,7 @@
                     </form>
                 </div>
                 <div class="text-container">
-                    <h2>btn (disabled)</h2>
+                    <h3>btn (disabled)</h3>
                 </div>
                 <div class="form-container">
                     <form>
@@ -237,9 +237,20 @@
                                  </span>
                             </label>
                             <textarea class="form-control" cols="40" id="message" name="message" rows="5">{% spaceless %}
-                                Default Text - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse. Duis aute irure dolor in reprehenderit in voluptate velit esse commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.
+                                Default Text - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.
                             {% endspaceless %}
                             </textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="textarea">
+                                 <span class="label-text">
+                                     {% trans "Textarea (blank)" %}
+                                 </span>
+                                <span class="required-symbol">
+                                    ({% trans "required" %})
+                                </span>
+                            </label>
+                            <textarea class="form-control" cols="40" id="textarea" name="textarea" rows="5" required></textarea>
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="select">
@@ -274,17 +285,6 @@
                                      Select file...
                                 </label>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label" for="textarea">
-                                 <span class="label-text">
-                                     {% trans "Textarea (blank)" %}
-                                 </span>
-                                <span class="required-symbol">
-                                    ({% trans "required" %})
-                                </span>
-                            </label>
-                            <textarea class="form-control" cols="40" id="textarea" name="textarea" rows="5" required></textarea>
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="date1">

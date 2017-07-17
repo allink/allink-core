@@ -11,7 +11,7 @@ from allink_core.core_apps.allink_gallery.forms import AllinkGalleryPluginForm, 
 class CMSAllinkGalleryPlugin(CMSPluginBase):
     model = AllinkGalleryPlugin
     name = _('Gallery')
-    module = _("allink")
+    module = _('Generic')
     allow_children = True
     child_classes = ['CMSAllinkGalleryImagePlugin']
     form = AllinkGalleryPluginForm
@@ -56,7 +56,7 @@ class CMSAllinkGalleryPlugin(CMSPluginBase):
 class CMSAllinkGalleryImagePlugin(CMSPluginBase):
     model = AllinkGalleryImagePlugin
     name = _('Image')
-    module = _("allink")
+    module = _('Generic')
     allow_children = False
     form = AllinkGalleryImagePluginForm
 

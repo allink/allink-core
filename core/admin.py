@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from django import forms
 from django.contrib import admin
-from django.conf.urls import url
 from django.contrib.admin.widgets import FilteredSelectMultiple
 from django.core.cache import cache
 from django.utils.translation import ugettext_lazy as _

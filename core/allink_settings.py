@@ -20,6 +20,7 @@ ALLINK_INSTALLED_APPS = [
     'reportlab',
     'djangocms_snippet',
     'djangocms_attributes_field',
+    'django_countries',
 
     # allink core apps
     'allink_core.core',
@@ -75,12 +76,12 @@ CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [
     'SnippetPlugin',
     'AliasPlugin',
     # apps
-    'CMSLocationsPlugin',
-    'CMSPeoplePlugin',
-    'CMSWorkPlugin',
-    'CMSNewsPlugin',
-    'CMSEventsPlugin',
-    'CMSTestimonialPlugin',
+    'CMSLocationsAppContentPlugin',
+    'CMSPeopleAppContentPlugin',
+    'CMSWorkAppContentPlugin',
+    'CMSNewsAppContentPlugin',
+    'CMSEventsAppContentPlugin',
+    'CMSTestimonialsAppContentPlugin',
     # search
     'CMSWorkSearchPlugin',
     # core
@@ -113,6 +114,7 @@ ALLINK_MIDDLEWARE_CLASSES = [
 
 ALLINK_LOCALE_PATHS = [
     # project
+    '/app/locale_extra',
     '/app/locale',
     # apps
     '/app/allink_core/apps/news/locale',

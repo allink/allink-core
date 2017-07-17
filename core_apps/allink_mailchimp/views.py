@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import json
 from django.http import HttpResponse
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
@@ -32,8 +33,9 @@ class SignupViewBase(FormView):
         context = super(SignupViewBase, self).get_context_data(**kwargs)
         try:
             form.save()
-            html = render_to_string('allink_mailchimp/confirmation.html', context)
-            return HttpResponse(html)
+            json_context = {}
+            json_context['rendered_content'] = render_to_string('allink_mailchimp/confirmation.html', context=context, request=self.request)
+            return HttpResponse(content=json.dumps(json_context), content_type='application/json', status=200)
         except:
             # sentry is not configured on localhost
             if not settings.RAVEN_CONFIG.get('dsn'):

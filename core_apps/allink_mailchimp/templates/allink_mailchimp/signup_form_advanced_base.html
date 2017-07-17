@@ -1,4 +1,9 @@
 {% load i18n %}
+
+{# utility block #}
+{% block newsletter_form_before %}
+{% endblock newsletter_form_before %}
+
 <div class="mailchimp-group-item">
 
     {# reset if no accordion is used #}
@@ -16,7 +21,7 @@
     {% endblock accordion_container_before %}
 
         <div class="mailchimp-group-item-child">
-             <form 
+             <form
                 action="{% url 'mailchimp:signup_advanced' %}"
                 method="post"
                 class="mailchimp-form ajax-form validate-form {% block newsletter_form_additional_classes %}{% endblock newsletter_form_additional_classes %}"
@@ -82,3 +87,8 @@
      {% endblock accordion_container_after %}
 
 </div>
+
+{# utility block #}
+{% block newsletter_form_after %}
+{% endblock newsletter_form_after %}
+

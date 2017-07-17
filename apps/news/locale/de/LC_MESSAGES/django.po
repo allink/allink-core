@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-28 13:42+0200\n"
+"POT-Creation-Date: 2017-07-17 09:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,7 +23,7 @@ msgid "Preview Image"
 msgstr "Vorschaubild"
 
 #: allink_core/apps/news/abstract_models.py:40
-#: allink_core/apps/news/admin.py:27
+#: allink_core/apps/news/admin.py:25
 msgid "Template"
 msgstr ""
 
@@ -31,31 +31,27 @@ msgstr ""
 msgid "Choose a template."
 msgstr "Wählen Sie ein Template"
 
-#: allink_core/apps/news/abstract_models.py:70
+#: allink_core/apps/news/abstract_models.py:62
 msgid "News entry"
 msgstr "News-Eintrag"
 
-#: allink_core/apps/news/abstract_models.py:71
+#: allink_core/apps/news/abstract_models.py:63
 msgid "News"
 msgstr ""
 
-#: allink_core/apps/news/abstract_models.py:81
-#: allink_core/apps/news/abstract_models.py:173
+#: allink_core/apps/news/abstract_models.py:73
 msgid "Slug"
 msgstr ""
 
-#: allink_core/apps/news/abstract_models.py:85
-#: allink_core/apps/news/abstract_models.py:177
+#: allink_core/apps/news/abstract_models.py:77
 msgid "Leave blank to auto-generate a unique slug."
 msgstr "Leer lassen, um den Slug automatisch zu generieren."
 
-#: allink_core/apps/news/abstract_models.py:88
-#: allink_core/apps/news/abstract_models.py:180
+#: allink_core/apps/news/abstract_models.py:80
 msgid "Lead Text"
 msgstr ""
 
-#: allink_core/apps/news/abstract_models.py:89
-#: allink_core/apps/news/abstract_models.py:181
+#: allink_core/apps/news/abstract_models.py:81
 msgid ""
 "Teaser text that in some cases is used in the list view and/or in the detail "
 "view."
@@ -63,8 +59,7 @@ msgstr ""
 "Teaser-Text, welcher in der Listenansicht und/oder in der Detailansicht "
 "verwendet wird."
 
-#: allink_core/apps/news/abstract_models.py:103
-#: allink_core/apps/news/abstract_models.py:201
+#: allink_core/apps/news/abstract_models.py:95
 msgid ""
 "Select and arrange specific entries, or, leave blank to select all. (If "
 "manual entries are selected the category filtering will be ignored.)"
@@ -72,29 +67,11 @@ msgstr ""
 "Wählen und ordnen Sie spezifische Einträge oder leer lassen, um alle zu "
 "wählen. (Kategorienfilterung wird bei manuellen Einträgen nicht angewandt.)"
 
-#: allink_core/apps/news/abstract_models.py:128
-msgid "Event Form enabled"
-msgstr "Event-Formular aktiviert"
-
-#: allink_core/apps/news/abstract_models.py:133
-#, fuzzy
-#| msgid "Event Date"
-msgid "Event Date/ Time"
-msgstr "Event-Datum"
-
-#: allink_core/apps/news/abstract_models.py:150
-msgid "Event"
+#: allink_core/apps/news/admin.py:41
+msgid "Max. 400 characters."
 msgstr ""
 
-#: allink_core/apps/news/abstract_models.py:151
-msgid "Events"
-msgstr ""
-
-#: allink_core/apps/news/abstract_models.py:187
-msgid "Costs"
-msgstr "Kosten"
-
-#: allink_core/apps/news/admin.py:59 allink_core/apps/news/admin.py:112
+#: allink_core/apps/news/admin.py:59
 msgid "Published From/To"
 msgstr "Publiziert von/bis"
 
@@ -102,29 +79,34 @@ msgstr "Publiziert von/bis"
 msgid "News Apphook"
 msgstr ""
 
-#: allink_core/apps/news/cms_apps.py:15
-msgid "Events Apphook"
-msgstr ""
-
-#: allink_core/apps/news/cms_menus.py:16
+#: allink_core/apps/news/cms_menus.py:15
 #, fuzzy
 #| msgid "News entry"
 msgid "News menu"
 msgstr "News-Eintrag"
 
-#: allink_core/apps/news/cms_menus.py:35
-#, fuzzy
-#| msgid "Event Time"
-msgid "Events menu"
-msgstr "Event-Zeit"
-
-#: allink_core/apps/news/cms_toolbars.py:41
-msgid "Forms"
-msgstr "Formulare"
-
-#: allink_core/apps/news/views.py:33
+#: allink_core/apps/news/views.py:24
 msgid "{} is not published."
 msgstr ""
+
+#~ msgid "Event Form enabled"
+#~ msgstr "Event-Formular aktiviert"
+
+#, fuzzy
+#~| msgid "Event Date"
+#~ msgid "Event Date/ Time"
+#~ msgstr "Event-Datum"
+
+#~ msgid "Costs"
+#~ msgstr "Kosten"
+
+#, fuzzy
+#~| msgid "Event Time"
+#~ msgid "Events menu"
+#~ msgstr "Event-Zeit"
+
+#~ msgid "Forms"
+#~ msgstr "Formulare"
 
 #~ msgid "News entries"
 #~ msgstr "Newseinträge"

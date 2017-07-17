@@ -26,7 +26,7 @@ class WorkDetail(AllinkBaseDetailView):
 class WorkSearchAjaxView(AllinkBaseAjaxFormView):
     form_class = WorkSearchForm
     plugin_class = WorkSearchPlugin
-    template_name = 'work/plugins/search/content.html'
+    template_name = 'work/plugins/search/_items.html'
 
 
 def export_pdf(request, id):

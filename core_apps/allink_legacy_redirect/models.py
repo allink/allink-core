@@ -3,10 +3,11 @@ import requests
 from requests.exceptions import ConnectionError, RequestException
 
 from django.contrib import messages
+from django.conf import settings
 
 from django.db import models
 from django.utils.timezone import now
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import activate, deactivate, ugettext_lazy as _
 from allink_core.core.utils import base_url
 from allink_core.core.models.models import AllinkInternalLinkFieldsModel
 
@@ -41,6 +42,18 @@ class AllinkLegacyLink(AllinkInternalLinkFieldsModel):
         null=True,
         blank=True
     )
+    redirect_when_logged_out = models.BooleanField(
+        _(u'Redirect when logged out'),
+        default=False,
+        help_text=_(u'If True, current site will not redirect when user is logged in. If False, the page will be redirected.')
+    )
+    language = models.CharField(
+        _(u'Language'),
+        max_length=200,
+        choices=settings.LANGUAGES,
+        default=settings.LANGUAGES[0],
+        null=True
+    )
 
     class Meta:
         verbose_name = _('Legacy Link')
@@ -54,7 +67,11 @@ class AllinkLegacyLink(AllinkInternalLinkFieldsModel):
         if self.overwrite:
             return self.overwrite
         else:
-            return super(AllinkLegacyLink, self).link
+            if self.language:
+                activate(self.language)
+                link = super(AllinkLegacyLink, self).link
+                deactivate()
+                return link
 
     def test_redirect(self, request):
         result = False

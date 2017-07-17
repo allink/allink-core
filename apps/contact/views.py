@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from cms.models.pluginmodel import CMSPlugin
 from allink_core.core.loading import get_class, get_model
 from allink_core.core.views import AllinkBaseCreateView
 from allink_core.core_apps.allink_mandrill.config import MandrillConfig
@@ -21,8 +22,7 @@ class ContactRequestView(AllinkBaseCreateView):
 
     def dispatch(self, *args, **kwargs):
         plugin_id = self.kwargs.pop('plugin_id', None)
-        if plugin_id:
-            self.plugin = ContactRequestPlugin.objects.get(id=plugin_id)
+        self.plugin = CMSPlugin.objects.get(id=plugin_id).get_plugin_instance()[0]
         return super(ContactRequestView, self).dispatch(*args, **kwargs)
 
     def form_valid(self, form):
@@ -31,7 +31,7 @@ class ContactRequestView(AllinkBaseCreateView):
         return response
 
     def send_mail(self):
-        if not self.plugin or self.plugin.send_internal_mail:
+        if self.plugin.send_internal_mail:
             send_request_email(self.get_form(), self.plugin)
-        if not self.plugin or self.plugin.send_external_mail:
+        if self.plugin.send_external_mail:
             send_request_confirmation_email(self.get_form(), self.plugin)

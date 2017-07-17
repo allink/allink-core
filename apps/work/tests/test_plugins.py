@@ -12,7 +12,7 @@
 #
 # from allink_core.apps.work import DEFAULT_APP_NAMESPACE
 # from ..models import Work
-# from ..cms_plugins import CMSWorkPlugin
+# from ..cms_plugins import CMSWorkAppContentPlugin
 #
 # from . import DefaultApphookMixin, BaseWorkTest
 #

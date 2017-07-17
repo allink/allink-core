@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from allink_core.apps.work.abstract_models import BaseWork, BaseWorkTranslation, BaseWorkPlugin, BaseWorkSearchPlugin
+from allink_core.apps.work.abstract_models import BaseWork, BaseWorkTranslation, BaseWorkAppContentPlugin, BaseWorkSearchPlugin
 from allink_core.core.loading import get_model
 from allink_core.core.loading import is_model_registered
 
@@ -21,7 +21,7 @@ if not is_model_registered('work', 'WorkTranslation'):
 
 
 if not is_model_registered('work', 'WorkAppContentPlugin'):
-    class WorkAppContentPlugin(BaseWorkPlugin):
+    class WorkAppContentPlugin(BaseWorkAppContentPlugin):
         data_model = get_model('work', 'Work')
 
     __all__.append('WorkAppContentPlugin')

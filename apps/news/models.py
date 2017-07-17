@@ -2,7 +2,7 @@
 from allink_core.apps.news.abstract_models import (
     BaseNews,
     BaseNewsTranslation,
-    BaseNewsPlugin,
+    BaseNewsAppContentPlugin,
 )
 from allink_core.core.loading import get_model
 from allink_core.core.loading import is_model_registered
@@ -26,7 +26,7 @@ if not is_model_registered('news', 'NewsTranslation'):
 
 
 if not is_model_registered('news', 'NewsAppContentPlugin'):
-    class NewsAppContentPlugin(BaseNewsPlugin):
+    class NewsAppContentPlugin(BaseNewsAppContentPlugin):
         data_model = get_model('news', 'News')
 
     __all__.append('NewsAppContentPlugin')

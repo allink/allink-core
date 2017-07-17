@@ -9,7 +9,7 @@ NewsAppContentPlugin = get_model('news', 'NewsAppContentPlugin')
 
 
 @plugin_pool.register_plugin
-class CMSNewsPlugin(CMSAllinkBaseAppContentPlugin):
+class CMSNewsAppContentPlugin(CMSAllinkBaseAppContentPlugin):
     """
     model:
     - where to store plugin instances

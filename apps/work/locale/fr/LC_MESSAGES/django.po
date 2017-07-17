@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-28 13:42+0200\n"
+"POT-Creation-Date: 2017-07-17 09:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -62,6 +62,10 @@ msgstr ""
 msgid "Work menu"
 msgstr ""
 
-#: allink_core/apps/work/pdf.py:553
-msgid "Highlights"
+#: allink_core/apps/work/cms_plugins.py:42
+msgid "{} Search"
+msgstr ""
+
+#: allink_core/apps/work/forms.py:11
+msgid "Product Search"
 msgstr ""

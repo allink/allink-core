@@ -6,6 +6,5 @@ ContactRequestView = get_class('contact.views', 'ContactRequestView')
 
 
 urlpatterns = [
-    url(r'^request/$', ContactRequestView.as_view(), name='request'),
-    url(r'^request/(?P<plugin_id>[0-9]+)/$', ContactRequestView.as_view(), name='plugin-request'),
+    url(r'^request/(?P<plugin_id>[0-9]+)/$', ContactRequestView.as_view(), name='request'),
 ]

@@ -263,12 +263,13 @@ class BaseConfig(TranslatableModel, SingletonModel):
         else:
             try:
                 obj = cls.objects.get(pk=1)
+                obj.set_to_cache()
             except cls.DoesNotExist:
                 obj = cls.objects.create()
                 obj.create_translation(get_language(), default_base_title='')
+                obj.set_to_cache()
             except:
                 return None
-            obj.set_to_cache()
         return obj
 
 

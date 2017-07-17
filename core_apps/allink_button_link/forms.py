@@ -3,6 +3,7 @@ from django import forms
 from django.forms.widgets import Media, TextInput
 from djangocms_attributes_field.widgets import AttributesWidget
 from django.utils.translation import ugettext_lazy as _
+from django.contrib.postgres.forms import SplitArrayField
 
 from allink_core.core_apps.allink_button_link.models import AllinkButtonLinkContainerPlugin, AllinkButtonLinkPlugin
 from allink_core.core.utils import get_additional_choices
@@ -30,6 +31,7 @@ class AllinkButtonLinkContainerPluginForm(forms.ModelForm):
 class AllinkButtonLinkPluginForm(AllinkInternalLinkFieldMixin, forms.ModelForm):
 
     internal_link = SelectLinkField(label=_('Link Internal'), required=False)
+    internal_email_addresses = SplitArrayField(forms.EmailField(required=False), size=3, required=False)
 
     class Meta:
         model = AllinkButtonLinkPlugin
@@ -62,3 +64,17 @@ class AllinkButtonLinkPluginForm(AllinkInternalLinkFieldMixin, forms.ModelForm):
         media._js = ['cms/js/libs/jquery.min.js'] + media._js
         return media
     media = property(_get_media)
+
+
+    def clean(self):
+        from django.core.exceptions import ValidationError
+        # If special_link is a form which sends emails all the additional fields have to be supplied
+        if ':request' in self.cleaned_data.get('link_special') and \
+            (self.cleaned_data.get('send_internal_mail') == True
+             and not self.cleaned_data.get('internal_email_addresses')[0]
+             and not self.cleaned_data.get('internal_email_addresses')[1]
+             and not self.cleaned_data.get('internal_email_addresses')[2]):
+            self.add_error('internal_email_addresses', ValidationError(_(u'Please supply at least one E-Mail Address.')))
+        if ':request' in self.cleaned_data.get('link_special') and (self.cleaned_data.get('send_external_mail') == True and not self.cleaned_data.get('from_email_address')):
+            self.add_error('from_email_address', ValidationError(_(u'Please supply an E-Mail Address.')))
+        return self.cleaned_data

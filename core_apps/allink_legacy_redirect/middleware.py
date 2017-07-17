@@ -18,6 +18,10 @@ class AllinkLegacyRedirectMiddleware(object):
             link = AllinkLegacyLink.objects.get(Q(old=request.path) | Q(
                 old=request.path + '/') | Q(old=request.get_full_path()), active=True)
 
+            # if user is logged in, skip redirect
+            if link.redirect_when_logged_out and request.user.is_authenticated():
+                return
+
         except AllinkLegacyLink.DoesNotExist:
             # Here we handle the case that the old url
             # can have GET parameters, and some of them but not all
@@ -64,6 +68,10 @@ class AllinkLegacyRedirectMiddleware(object):
             # enabled (e.g. /en/ and /en/agency/), return
             # the longer one
             link = AllinkLegacyLink.objects.filter(old__in=olds, match_subpages=True, active=True).order_by('old').last()
+
+        # if user is logged in skip, redirect
+        if link and link.redirect_when_logged_out and request.user.is_authenticated():
+            return
 
         if not link:
             return

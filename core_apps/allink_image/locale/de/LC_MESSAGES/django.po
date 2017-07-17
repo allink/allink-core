@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-28 13:42+0200\n"
+"POT-Creation-Date: 2017-07-17 09:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,20 +18,20 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: allink_core/core_apps/allink_image/cms_plugins.py:14
+#: allink_core/core_apps/allink_image/cms_plugins.py:16
 #: allink_core/core_apps/allink_image/models.py:25
 msgid "Image"
 msgstr "Bild"
 
-#: allink_core/core_apps/allink_image/cms_plugins.py:15
-msgid "allink"
+#: allink_core/core_apps/allink_image/cms_plugins.py:17
+msgid "Generic"
 msgstr ""
 
-#: allink_core/core_apps/allink_image/cms_plugins.py:41
+#: allink_core/core_apps/allink_image/cms_plugins.py:43
 msgid "Additional settings"
 msgstr "Erweiterte Einstellungen"
 
-#: allink_core/core_apps/allink_image/cms_plugins.py:48
+#: allink_core/core_apps/allink_image/cms_plugins.py:50
 msgid "Link settings"
 msgstr "Link-Einstellungen"
 
@@ -43,12 +43,19 @@ msgstr "Interner Link"
 msgid "Special Links"
 msgstr ""
 
-#: allink_core/core_apps/allink_image/forms.py:31
+#: allink_core/core_apps/allink_image/forms.py:29
+msgid ""
+"Important: In case the selected option is a <strong>form</strong>, make sure "
+"the select the <strong>Lightbox (Forms)</strong> from the <strong>link "
+"target</strong> options for best user experience."
+msgstr ""
+
+#: allink_core/core_apps/allink_image/forms.py:32
 #: allink_core/core_apps/allink_image/models.py:31
 msgid "Ratio"
 msgstr "Seitenverhältnis"
 
-#: allink_core/core_apps/allink_image/forms.py:32
+#: allink_core/core_apps/allink_image/forms.py:33
 msgid ""
 "This option overrides the default image ratio set for images in a colum of a "
 "content section."
@@ -56,26 +63,14 @@ msgstr ""
 "Diese Option überschreibt die Standardeinstellung für "
 "Bildseitenverhältnisse, die für Bilder in einer Spalte gesetzt ist."
 
-#: allink_core/core_apps/allink_image/forms.py:38
+#: allink_core/core_apps/allink_image/forms.py:39
 #: allink_core/core_apps/allink_image/models.py:49
 msgid "Set a predefined background color"
 msgstr "Vordefinierte Hintergrundfarbe wählen"
 
-#: allink_core/core_apps/allink_image/forms.py:43
+#: allink_core/core_apps/allink_image/forms.py:46
 msgid "Predifined variations"
 msgstr "Vordefiniert Variationen"
-
-#: allink_core/core_apps/allink_image/forms.py:44
-msgid ""
-"Instructions: Single selection is made by clicking on an option. Multiple "
-"selections are achieved by pressing and holding down the Command-key (Mac) "
-"or Control-Key (Windows) <strong>and</strong> clicking the options you would "
-"like to apply."
-msgstr ""
-"Anleitung: Einzelwahl durch Klicken auf die gewünschte Option. Mehrfachwahl "
-"kann durch Drücken und Halten der Command-Taste (Mac) or Control-Taste "
-"(Windows) <strong>und</strong> Anklicken der gewünschten Optionen erzielt "
-"werden."
 
 #: allink_core/core_apps/allink_image/models.py:37
 msgid "Placeholder Background Color"
@@ -120,3 +115,14 @@ msgstr "Attribute"
 #: allink_core/core_apps/allink_image/models.py:94
 msgid "<file is missing>"
 msgstr "<Datei fehlt>"
+
+#~ msgid ""
+#~ "Instructions: Single selection is made by clicking on an option. Multiple "
+#~ "selections are achieved by pressing and holding down the Command-key "
+#~ "(Mac) or Control-Key (Windows) <strong>and</strong> clicking the options "
+#~ "you would like to apply."
+#~ msgstr ""
+#~ "Anleitung: Einzelwahl durch Klicken auf die gewünschte Option. "
+#~ "Mehrfachwahl kann durch Drücken und Halten der Command-Taste (Mac) or "
+#~ "Control-Taste (Windows) <strong>und</strong> Anklicken der gewünschten "
+#~ "Optionen erzielt werden."

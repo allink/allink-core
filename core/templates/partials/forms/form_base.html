@@ -1,13 +1,13 @@
 {% load i18n %}
 {% block form_container %}
     <form
-        class="form-default validate-form {% if not no_ajax %}ajax-form{% endif %} {{ class }} {% block form_additional_classes %}{% endblock form_additional_classes %}"
+        class="form-default {% if not validation_disabled %}validate-form{% endif %} {% if not ajax_disabled %}ajax-form{% endif %} {{ class }} {% block form_additional_classes %}{% endblock form_additional_classes %}"
         method="{{ method|default:"POST" }}"
-        novalidate="novalidate"
+        {% if not validation_disabled %}novalidate="novalidate"{% endif %}
         data-success-data-layer-event="{% if data_layer_event %}{{data_layer_event}}{% else %}form.sent{% endif %}"
         data-success-data-layer-event-identifier="{% if action %}{{action}}{% else %}{{ request.get_full_path }}{% endif %}"
         {% if success_url %}data-success-url="{{success_url}}"{% endif %}
-        {% if form_id %}data-form-container-id="{{ form_id }}"{% endif %}
+        {% if ajax_response_container_id %}data-ajax-response-container-id="{{ ajax_response_container_id }}"{% endif %}
         {% if action %}action="{{ action }}"{% endif %}
         {% if includes_files %}enctype="multipart/form-data"{% endif %}
         {% block form_additional_attributes %}{% endblock form_additional_attributes %}

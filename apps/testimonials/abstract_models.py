@@ -91,7 +91,7 @@ class BaseTestimonialsTranslation(AllinkBaseTranslatedFieldsModel):
         app_label = 'testimonials'
 
 
-class BaseTestimonialsPlugin(AllinkBaseAppContentPlugin):
+class BaseTestimonialsAppContentPlugin(AllinkBaseAppContentPlugin):
 
     manual_entries = SortedM2MModelField(
         'testimonials.Testimonials',
@@ -104,7 +104,7 @@ class BaseTestimonialsPlugin(AllinkBaseAppContentPlugin):
         # invalidate cache
         cache.delete_many([make_template_fragment_key('testimonials_preview_image', [self.id, testimonials.id]) for testimonials in
                            get_model('testimonials', 'Testimonials').objects.all()])
-        super(BaseTestimonialsPlugin, self).save(*args, **kwargs)
+        super(BaseTestimonialsAppContentPlugin, self).save(*args, **kwargs)
 
     class Meta:
         abstract = True

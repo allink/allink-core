@@ -9,7 +9,7 @@ PeopleAppContentPlugin = get_model('people', 'PeopleAppContentPlugin')
 
 
 @plugin_pool.register_plugin
-class CMSPeoplePlugin(CMSAllinkBaseAppContentPlugin):
+class CMSPeopleAppContentPlugin(CMSAllinkBaseAppContentPlugin):
     """
     model:
     - where to store plugin instances

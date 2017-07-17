@@ -77,9 +77,14 @@
                         </div>
                     </div>{# end .app_detail__col #}
 
+                    <div class="app_detail__col app_detail__col-2">
+                        <a href="{% url 'events:register' slug=object.slug %}" data-trigger-form-modal> {% trans 'Register' %}</a>
+                    </div>{# end .app_detail__col #}
+
                 </div>{# end .app-detail__col-container #}
             </div>
         </div>
+
 
     </div>
 

@@ -16,8 +16,8 @@ from .forms import AllinkSignupFormPluginForm
 @plugin_pool.register_plugin
 class CMSAllinkSignupFormPlugin(CMSPluginBase):
     model = AllinkSignupFormPlugin
-    name = _('Signup Form')
-    module = _("allink")
+    name = _(u'Signup Form')
+    module = _('allink forms')
     render_template = "allink_mailchimp/plugins/signup_form.html"
     allow_children = False
 

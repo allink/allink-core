@@ -15,7 +15,7 @@ from allink_core.core_apps.allink_instagram.forms import AllinkInstagramPluginFo
 class CMSAllinkInstagramPlugin(CMSPluginBase):
     model = AllinkInstagramPlugin
     name = _('Instagram Feed')
-    module = _('allink')
+    module = _('Generic')
     cache = False
     allow_children = False
     form = AllinkInstagramPluginForm

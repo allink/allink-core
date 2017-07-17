@@ -14,7 +14,7 @@ ContactRequestPlugin = get_model('contact', 'ContactRequestPlugin')
 
 
 class ContactRequestFormPluginForm(forms.ModelForm):
-    internal_email_adresses = SplitArrayField(forms.EmailField(required=False), size=3)
+    internal_email_addresses = SplitArrayField(forms.EmailField(required=False), size=3)
 
     class Media:
         js = (get_files('djangocms_custom_admin')[0]['publicPath'], )
@@ -24,7 +24,7 @@ class ContactRequestFormPluginForm(forms.ModelForm):
 
     class Meta:
         model = ContactRequestPlugin
-        fields = ('send_internal_mail', 'internal_email_adresses', 'from_email_address', 'send_external_mail', 'thank_you_text', 'label_layout', 'project_css_classes')
+        fields = ('send_internal_mail', 'internal_email_addresses', 'from_email_address', 'send_external_mail', 'thank_you_text', 'label_layout', 'project_css_classes')
 
     def __init__(self, *args, **kwargs):
         super(ContactRequestFormPluginForm, self).__init__(*args, **kwargs)
@@ -42,8 +42,8 @@ class ContactRequestFormPluginForm(forms.ModelForm):
 @plugin_pool.register_plugin
 class CMSAllinkContactRequestPlugin(CMSPluginBase):
     model = ContactRequestPlugin
-    name = _('ContactRequest')
-    module = _("allink")
+    name = _('Contact Form')
+    module = _('allink forms')
     form = ContactRequestFormPluginForm
 
     def get_render_template(self, context, instance, placeholder):

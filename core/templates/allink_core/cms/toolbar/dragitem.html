@@ -1,6 +1,6 @@
 {% load i18n l10n cms_tags %}
 
-{% with allow_children=plugin.get_plugin_instance.1.allow_children disable_child_plugins=plugin.get_plugin_instance.1.disable_child_plugins disable_dragable_menu=plugin.get_plugin_instance.1.disable_dragable_menu%}
+{% with allow_children=plugin.get_plugin_instance.1.allow_children disable_child_plugins=plugin.get_plugin_instance.1.disable_child_plugins disable_deletable_menu=plugin.get_plugin_instance.1.disable_deletable_menu disable_cutable_menu=plugin.get_plugin_instance.1.disable_cutable_menu disable_copyable_menu=plugin.get_plugin_instance.1.disable_copyable_menu %}
 <div class="cms-draggable cms-draggable-{{ plugin.pk|unlocalize }}
     {% if not allow_children %} cms-draggable-disabled{% endif %}
     {% if clipboard %} cms-draggable-from-clipboard{% endif %}">
@@ -20,29 +20,36 @@
                 <span class="cms-hover-tooltip cms-hover-tooltip-left cms-hover-tooltip-delay" data-cms-tooltip="{% trans "Add plugin" %}"></span>
                 {% endif %}
             </div>
-            <div class="cms-submenu cms-submenu-settings cms-submenu-btn cms-btn {% if disable_dragable_menu %}cms-btn-disabled{% endif %}"></div>
+            <div class="cms-submenu cms-submenu-settings cms-submenu-btn cms-btn"></div>
         {% else %}
             <div class="cms-hover-tooltip cms-hover-tooltip-left cms-plugin-disabled" tabindex="-1"
                 data-cms-tooltip="{% trans "This plugin cannot be moved or edited outside of its parent" %}">
                 <span class="cms-icon cms-icon-lock"></span>
             </div>
         {% endif %}
-        {% if not disable_dragable_menu %}
-            <div class="cms-submenu-dropdown cms-submenu-dropdown-settings">
-                <div class="cms-dropdown-inner">
-                    <div class="cms-submenu-item"><a data-cms-icon="scissors" data-rel="cut" href="#">{% trans "Cut" %}</a></div>
-                    <div class="cms-submenu-item"><a data-cms-icon="copy" data-rel="copy" href="#">{% trans "Copy" %}</a></div>
-                    <div class="cms-submenu-item">
-                        <a data-cms-icon="paste" data-rel="paste" href="#">{% trans "Paste" %}</a>
-                        <span class="cms-submenu-item-paste-tooltip cms-submenu-item-paste-tooltip-empty cms-hover-tooltip cms-hover-tooltip-left cms-hover-tooltip-delay" data-cms-tooltip="{% trans "Clipboard is empty." %}"></span>
-                        <span class="cms-submenu-item-paste-tooltip cms-submenu-item-paste-tooltip-restricted cms-hover-tooltip cms-hover-tooltip-left cms-hover-tooltip-delay" data-cms-tooltip="{% trans "This plugin does not allow plugins of this type as nested plugins." %}"></span>
-                        <span class="cms-submenu-item-paste-tooltip cms-submenu-item-paste-tooltip-disabled cms-hover-tooltip cms-hover-tooltip-left cms-hover-tooltip-delay" data-cms-tooltip="{% trans "This plugin cannot have nested plugins." %}"></span>
-                    </div>
-                    <div class="cms-submenu-item"><a data-cms-icon="bin" data-rel="delete" href="#">{% trans "Delete" %}</a></div>
-                    {% render_extra_menu_items plugin %}
+        <div class="cms-submenu-dropdown cms-submenu-dropdown-settings">
+            <div class="cms-dropdown-inner">
+                <div class="cms-submenu-item {% if disable_cutable_menu %}cms-submenu-item-disabled{% endif %}">
+                    <a data-cms-icon="scissors" data-rel="cut" href="#">{% trans "Cut" %}</a>
+                    <span class="cms-submenu-item-paste-tooltip cms-submenu-item-paste-tooltip-disabled cms-hover-tooltip cms-hover-tooltip-left cms-hover-tooltip-delay" data-cms-tooltip="{% trans "This plugin cannot be cut." %}" {% if disable_cutable_menu %}style="display: block;"{% endif %}></span>
                 </div>
+                <div class="cms-submenu-item {% if disable_copyable_menu %}cms-submenu-item-disabled{% endif %}">
+                    <a data-cms-icon="copy" data-rel="copy" href="#">{% trans "Copy" %}</a>
+                    <span class="cms-submenu-item-paste-tooltip cms-submenu-item-paste-tooltip-disabled cms-hover-tooltip cms-hover-tooltip-left cms-hover-tooltip-delay" data-cms-tooltip="{% trans "This plugin cannot be copied." %}" {% if disable_copyable_menu %}style="display: block;"{% endif %}></span>
+                </div>
+                <div class="cms-submenu-item">
+                    <a data-cms-icon="paste" data-rel="paste" href="#">{% trans "Paste" %}</a>
+                    <span class="cms-submenu-item-paste-tooltip cms-submenu-item-paste-tooltip-empty cms-hover-tooltip cms-hover-tooltip-left cms-hover-tooltip-delay" data-cms-tooltip="{% trans "Clipboard is empty." %}"></span>
+                    <span class="cms-submenu-item-paste-tooltip cms-submenu-item-paste-tooltip-restricted cms-hover-tooltip cms-hover-tooltip-left cms-hover-tooltip-delay" data-cms-tooltip="{% trans "This plugin does not allow plugins of this type as nested plugins." %}"></span>
+                    <span class="cms-submenu-item-paste-tooltip cms-submenu-item-paste-tooltip-disabled cms-hover-tooltip cms-hover-tooltip-left cms-hover-tooltip-delay" data-cms-tooltip="{% trans "This plugin cannot have nested plugins." %}"></span>
+                </div>
+                <div class="cms-submenu-item {% if disable_deletable_menu %}cms-submenu-item-disabled{% endif %}">
+                    <a data-cms-icon="bin" data-rel="delete" href="#">{% trans "Delete" %}</a>
+                    <span class="cms-submenu-item-paste-tooltip cms-submenu-item-paste-tooltip-disabled cms-hover-tooltip cms-hover-tooltip-left cms-hover-tooltip-delay" data-cms-tooltip="{% trans "This plugin cannot be deleted." %}" {% if disable_deletable_menu %}style="display: block;"{% endif %}></span>
+                </div>
+                {% render_extra_menu_items plugin %}
             </div>
-        {% endif %}
+        </div>
         {% if not clipboard %}
             <div class="cms-plugin-picker" data-touch-action="pan-y">
                 <div class="cms-quicksearch"><label><input type="text" placeholder="{% trans 'Filter plugins...' %}" /></label></div>

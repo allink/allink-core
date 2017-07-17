@@ -33,7 +33,10 @@
         <a href="{% add_preserved_filters history_url %}" class="historylink">{% trans "History" %}</a>
     </li>
     {# {% if has_absolute_url %}<li><a href="{{ original.get_absolute_url }}?build" class="viewsitelink">{% trans "Content" %}</a></li>{% endif %} #}
-    {% if has_absolute_url %}<li><a href="{{ absolute_url }}" class="viewsitelink">{% trans "View on site" %}</a></li>{% endif %}
+    {% if has_absolute_url %}
+        {# <li><a href="{{ original.get_absolute_url }}?structure" class="viewsitelink">{% trans "View structure" %}</a></li> #}
+        <li><a href="{{ absolute_url }}" class="viewsitelink">{% trans "View on site" %}</a></li>
+    {% endif %}
     {% endblock %}
   </ul>
 {% endif %}{% endif %}

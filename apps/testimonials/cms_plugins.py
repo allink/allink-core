@@ -9,7 +9,7 @@ TestimonialsAppContentPlugin = get_model('testimonials', 'TestimonialsAppContent
 
 
 @plugin_pool.register_plugin
-class CMSTestimonialsPlugin(CMSAllinkBaseAppContentPlugin):
+class CMSTestimonialsAppContentPlugin(CMSAllinkBaseAppContentPlugin):
     """
     model:
     - where to store plugin instances

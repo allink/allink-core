@@ -10,7 +10,7 @@ from allink_core.core_apps.allink_social_icon.forms import AllinkSocialIconConta
 class CMSAllinkSocialIconContainerPlugin(CMSPluginBase):
     model = AllinkSocialIconContainerPlugin
     name = _('Social Icon Container')
-    module = _("allink")
+    module = _('Generic')
     allow_children = True
     child_classes = ['CMSAllinkSocialIconPlugin']
     form = AllinkSocialIconContainerPluginForm
@@ -24,7 +24,7 @@ class CMSAllinkSocialIconContainerPlugin(CMSPluginBase):
 class CMSAllinkSocialIconPlugin(CMSPluginBase):
     model = AllinkSocialIconPlugin
     name = _('Social Icon')
-    module = _("allink")
+    module = _('Generic')
     allow_children = False
     form = AllinkSocialIconPluginForm
     text_enabled = False
