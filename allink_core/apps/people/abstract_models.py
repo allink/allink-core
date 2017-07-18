@@ -100,7 +100,8 @@ class BasePeopleTranslation(AllinkBaseTranslatedFieldsModel):
     job_function = models.CharField(
         _(u'Function'),
         max_length=255,
-        default=''
+        blank = True,
+        null = True,
     )
     lead = HTMLField(
         _(u'Lead Text'),
