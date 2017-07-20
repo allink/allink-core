@@ -62,9 +62,6 @@ class AllinkBaseModel(models.Model):
     # Is used to auto generate Category
     category_name_field = u'title'
 
-    created = AutoCreatedField(_('created'), editable=True)
-    modified = AutoLastModifiedField(_('modified'))
-
     ACTIVE = 1
     INACTIVE = 2
 
@@ -72,6 +69,9 @@ class AllinkBaseModel(models.Model):
         (ACTIVE, _('active')),
         (INACTIVE, _('inactive'))
     ]
+
+    created = AutoCreatedField(_('created'), editable=True)
+    modified = AutoLastModifiedField(_('modified'))
 
     categories = models.ManyToManyField(
         AllinkCategory,
