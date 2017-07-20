@@ -1,4 +1,4 @@
-{% load cms_tags allink_cms_tags sekizai_tags i18n thumbnail allink_image_tags %}
+{% load cms_tags allink_cms_tags sekizai_tags i18n thumbnail allink_image_tags cache %}
 
 {% if object_list %}
     {% for object in object_list %}
@@ -7,37 +7,40 @@
                 {% if object.preview_image %}
                     <div class="image-container">
                         <a href="{{object.get_absolute_url}}">
-                        {% render_image image=object.preview_image width_alias="1-of-3" %}
+                            {% cache 15552000 work_preview_image instance.id object.id %}
+                                {% render_image image=object.preview_image width_alias="1-of-3" %}
+                            {% endcache %}
                         </a>
                     </div>
                 {% endif %}
                 {% if object.title %}
                     <div class="heading-container">
-                        <h2 class="heading">
+                        <h3 class="heading">
                             {% render_model_ajax object "title" %}
-                        </h2>
+                        </h3>
                     </div>
                 {% endif %}
-                {% if object.downloads %}
-                    {% include "work/_downloads.html" with object=object %}
+                {% if object.lead %}
+                    <div class="text-container">
+                        <p>
+                            {{object.lead|striptags}}
+                        </p>
+                    </div>
                 {% endif %}
-                {% comment %}
-                    {% if instance.detail_link_enabled and object.show_detail_link %}
-                        <div class="link-container">
-                            <a href="{{object.get_absolute_url}}" class="app-list__detail-link">
-                                {% if instance.detail_link_text %}
-                                    {{ instance.detail_link_text }}
-                                {% else %}
-                                    {% trans "More" %}
-                                {% endif %}
-                            </a>
-                        </div>
-                    {% endif %}
-                {% endcomment %}
+                {% if instance.detail_link_enabled and object.show_detail_link %}
+                    <div class="link-container">
+                        <a href="{{object.get_absolute_url}}" class="app-list__detail-link">
+                            {% if instance.detail_link_text %}
+                                {{ instance.detail_link_text }}
+                            {% else %}
+                                {% trans "More" %}
+                            {% endif %}
+                        </a>
+                    </div>
+                {% endif %}
             </div>
         </div>
-
     {% endfor %}
 {% else %}
-    {% trans 'No matching entries found.' %}
+    {% trans 'No matching entries found.' %}asdfds
 {% endif %}

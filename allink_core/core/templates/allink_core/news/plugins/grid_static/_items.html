@@ -1,4 +1,4 @@
-{% load cms_tags allink_cms_tags sekizai_tags i18n thumbnail allink_image_tags %}
+{% load cms_tags allink_cms_tags sekizai_tags i18n thumbnail allink_image_tags cache %}
 
 {% for object in object_list %}
     <div class="grid-item {% if appended %}appended{% endif %}">
@@ -8,8 +8,10 @@
                     {% if instance.detail_link_enabled and object.show_detail_link %}
                         <a href="{{object.get_absolute_url}}">
                     {% endif %}
-                        {% render_image image=object.preview_image %}
-                    {% if instance.detail_link_enabled and object.show_detail_link %}
+                        {% cache 15552000 news_preview_image instance.id object.id %}
+                            {% render_image image=object.preview_image %}
+                        {% endcache %}
+                    {% if instance.detail_link_enabled  %}
                         </a>
                     {% endif %}
                 </div>
@@ -27,33 +29,21 @@
                 </div>
             {% endif %}
             {% if object.lead %}
-                <div class="text-container">
-                    <p>
-                        {{object.lead|striptags}}
-                    </p>
-                    {% if instance.detail_link_enabled and object.show_detail_link %}
-                        <p>
-                        <a class="text" href="{{object.get_absolute_url}}">
-                            {% if instance.detail_link_text %}
-                                {{ instance.detail_link_text }}
-                            {% else %}
-                                {% trans "More" %}
-                            {% endif %}
-                        </a>
-                    </p>
-                    {% endif %}
+                <div class="lead-container">
+                    {{object.lead|striptags}}
                 </div>
             {% endif %}
-            {% comment %}
-                {% if object.events.event_date_time %}
-                    <div class="text-container">
-                        <p>
-                            {{object.events.event_date_time|date:"l, j.n.Y"}}{% if object.events.event_time%}{{object.events.event_time|time:", G:i"}} {% trans 'Uhr' %}<br>{% endif %}
-                            {% if object.events.location %}{{object.events.location.title}}{% endif %}
-                        </p>
-                    </div>
-                {% endif %}
-            {% endcomment %}
+            {% if instance.detail_link_enabled and object.show_detail_link %}
+                <div class="link-container">
+                    <a href="{{object.get_absolute_url}}" class="app-list__detail-link">
+                        {% if instance.detail_link_text %}
+                            {{ instance.detail_link_text }}
+                        {% else %}
+                            {% trans "More" %}
+                        {% endif %}
+                    </a>
+                </div>
+            {% endif %}
         </div>
     </div>
 {% endfor %}

@@ -1,4 +1,4 @@
-{% load cms_tags allink_cms_tags sekizai_tags i18n thumbnail allink_image_tags %}
+{% load cms_tags allink_cms_tags sekizai_tags i18n thumbnail allink_image_tags cache %}
 
 {% for object in object_list %}
     <div class="grid-item {% if appended %}appended{% endif %}">
@@ -8,10 +8,17 @@
                     {% if instance.detail_link_enabled and object.show_detail_link %}
                         <a href="{{object.get_absolute_url}}">
                     {% endif %}
-                        {% render_image image=object.preview_image %}
-                    {% if instance.detail_link_enabled and object.show_detail_link %}
+                        {% cache 15552000 events_preview_image instance.id object.id %}
+                            {% render_image image=object.preview_image %}
+                        {% endcache %}
+                    {% if instance.detail_link_enabled  %}
                         </a>
                     {% endif %}
+                </div>
+            {% endif %}
+            {% if object.created %}
+                <div class="date-container">
+                    {% render_model_ajax object "created" %}
                 </div>
             {% endif %}
             {% if object.title %}
@@ -22,21 +29,19 @@
                 </div>
             {% endif %}
             {% if object.lead %}
-                <div class="text-container">
-                    <p>
-                        {{object.lead|striptags}}
-                    </p>
-                    {% if instance.detail_link_enabled and object.show_detail_link %}
-                        <p>
-                        <a class="text" href="{{object.get_absolute_url}}">
-                            {% if instance.detail_link_text %}
+                <div class="lead-container">
+                    {{object.lead|striptags}}
+                </div>
+            {% endif %}
+            {% if instance.detail_link_enabled and object.show_detail_link %}
+                <div class="link-container">
+                    <a href="{{object.get_absolute_url}}" class="app-list__detail-link">
+                        {% if instance.detail_link_text %}
                             {{ instance.detail_link_text }}
-                            {% else %}
+                        {% else %}
                             {% trans "More" %}
-                            {% endif %}
-                        </a>
-                    </p>
-                    {% endif %}
+                        {% endif %}
+                    </a>
                 </div>
             {% endif %}
         </div>

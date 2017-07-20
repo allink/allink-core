@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-17 09:21+0200\n"
+"POT-Creation-Date: 2017-07-20 10:23+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -60,17 +60,17 @@ msgstr "Leer lassen, um den Slug automatisch zu generieren."
 msgid "Function"
 msgstr "Funktion"
 
-#: allink_core/apps/people/abstract_models.py:106
+#: allink_core/apps/people/abstract_models.py:107
 msgid "Lead Text"
 msgstr ""
 
-#: allink_core/apps/people/abstract_models.py:107
+#: allink_core/apps/people/abstract_models.py:108
 msgid ""
 "Teaser text that in some cases is used in the list view and/or in the detail "
 "view."
 msgstr ""
 
-#: allink_core/apps/people/abstract_models.py:121
+#: allink_core/apps/people/abstract_models.py:122
 msgid ""
 "Select and arrange specific entries, or, leave blank to select all. (If "
 "manual entries are selected the category filtering will be ignored.)"

@@ -10,6 +10,7 @@ from django.db import models
 from django.db.models import Q
 from django.db.models.signals import post_delete
 from django.core.cache import cache
+from django.core.cache.utils import make_template_fragment_key
 from django.core.urlresolvers import NoReverseMatch
 from django.core.urlresolvers import reverse
 from django.core.exceptions import FieldDoesNotExist, FieldError
@@ -245,12 +246,12 @@ class AllinkBaseModel(models.Model):
             self.auto_generated_category = self.save_categories(new)
         # invalidate cache
         possible_plugin_classes = (self.__class__, ) + self.__class__.__bases__
-        plugin_classes = [x for x in plugin_pool.get_all_plugins() if hasattr(x, 'data_model') and x.data_model in possible_plugin_classes]
+        plugin_classes = [x for x in plugin_pool.get_all_plugins() if hasattr(x.model, 'data_model') and x.model.data_model in possible_plugin_classes]
         for plugin_class in plugin_classes:
             for plugin in plugin_class.model.objects.all():
                 cache.set('render_queryset_for_display_valid_keys_%s' % plugin.id, [], 60 * 60 * 24 * 360)
+        cache.delete_many([make_template_fragment_key('{}_preview_image'.format(self._meta.app_label), [plugin.id, self.id]) for plugin in get_model(self._meta.app_label, '{}AppContentPlugin'.format(self._meta.model_name)).objects.all()])
         super(AllinkBaseModel, self).save(*args, **kwargs)
-
 
 @receiver(post_delete)
 def post_delete_auto_generated_category(sender, instance, *args, **kwargs):

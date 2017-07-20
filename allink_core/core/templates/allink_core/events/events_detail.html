@@ -4,21 +4,32 @@
 
 {% block content %}
 
-    <div class="app-detail events-plugin" data-scroll-spy>
+    <article class="app-detail events-plugin" data-scroll-spy="default">
 
         {% comment %}
-            Header Section
+            Check if header placeholder containers plugins
         {% endcomment %}
-        <div class="content-section app-detail__header container-enabled">
+        {% placeholder_has_content placeholder=object.header_placeholder as header_placeholder_has_content %}
+
+        {% comment %}
+            Header
+        {% endcomment %}
+        <div class="content-section app-detail__header container-enabled {% if not header_placeholder_has_content and not object.preview_image %}app-detail__header--empty{% endif %}">
             <div class="content-section__container">
                 <div class="app-detail__col-container">
 
                     <div class="app-detail__header-col">
-                        {% if object.preview_image %}
-                            <div class="image-container">
+
+                        {# render placeholder #}
+                        {% render_placeholder object.header_placeholder %}
+
+                        {# fallback: use preview image #}
+                        {% if object.preview_image and not header_placeholder_has_content %}
+                            <div class="image-container app-detail__header-image-container">
                                 {% render_image image=object.preview_image width_alias="2-of-3" %}
                             </div>
                         {% endif %}
+
                     </div>
 
                 </div>
@@ -26,66 +37,73 @@
         </div>
 
         {% comment %}
-            Section Heading Container
-        {% endcomment %}
-        <div class="content-section app-detail__section-heading-container container-enabled">
-            <div class="content-section__container">
-                <div class="app-detail__col-container">
-
-                    <div class="app-detail__header-col">
-                        <h1 class="app-detail__section-heading">
-                            {% render_model_ajax object "title" %}
-                        </h1>
-                        <div class="date-container">
-                            {{object.created|date:"j.n.Y"}}
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-        {% comment %}
-            Content Section
+            Content
         {% endcomment %}
         <div class="content-section app-detail__content container-enabled">
             <div class="content-section__container">
-                <div class="app-detail__col-container app-detail__col-2-1">
 
-                    <div class="app_detail__col app_detail__col-1">
-                        <div class="lead-container">
-                            {% if object.lead %}
-                                <div class="text-container">
-                                    {# optional: lead #}
-                                    <p class="lead">
-                                        {{object.lead|striptags}}
-                                    </p>
-                                    {# we wouldn't be here if the text was empty #}
+                <header class="app-detail__heading-conatiner">
+                    <h2 class="app-detail__heading">
+                        {% render_model_ajax object "title" %}
+                    </h2>
+                    {% if object.created %}
+                        <div class="app-detail__created">
+                            {{object.created|date:"j.n.Y"}}
+                        </div>
+                    {% endif %}
+                </header>
+
+                <div class="app-detail__col-container app-detail__template__col-2-1">
+
+                    <div class="app-detail__col app-detail__col-1">
+                        {% if object.lead %}
+                            <div class="app-detail__lead">
+                                {{object.lead}}
+                            </div>
+                        {% endif %}
+                        <div class="app-detail__content-container">
+                            {% placeholder_has_content placeholder=object.content_placeholder as content_placeholder_has_content %}
+                            {% if content_placeholder_has_content %}
+                                <div class="app-detail__content-container">
+                            {% endif %}
+                        {% render_placeholder object.content_placeholder %}
+                            {% if content_placeholder_has_content %}
                                 </div>
                             {% endif %}
                         </div>
-                        <div class="app-detail__content-container">
-                            {% render_placeholder object.content_placeholder %}
-                        </div>
-                    </div>{# end .app_detail__col #}
+                    </div>{# end .app-detail__col #}
 
-                    <div class="app_detail__col app_detail__col-2">
-                        <div class="manage-spacings">
-                           {{object.costs}}
-                           {{object.duration}}
-                           {{object.location}}
-                        </div>
-                    </div>{# end .app_detail__col #}
 
-                    <div class="app_detail__col app_detail__col-2">
-                        <a href="{% url 'events:register' slug=object.slug %}" data-trigger-form-modal> {% trans 'Register' %}</a>
-                    </div>{# end .app_detail__col #}
+                    {% comment %}
+                        IMPORTANT: If the second column is not need, delete it, otherwise it will create an unnecessary spacing on mobile
+                    {% endcomment %}
+                    <div class="app-detail__col app-detail__col-2">
+                        <div class="app-detail__col-2-manage-spacings">
+
+                            {% comment %}
+                                edit on project basis
+                            {% endcomment %}
+                            <div class="text-container">
+                                <h4>Example Heading</h4>
+                                <p>Example Text</p>
+                            </div>
+                            <div class="text-container">
+                                <h4>Example Heading</h4>
+                                <p>Example Text</p>
+                            </div>
+                            <div class="text-container">
+                                <h4>Example Heading</h4>
+                                <p>Example Text</p>
+                            </div>
+
+                        </div>
+                    </div>{# end .app-detail__col #}
 
                 </div>{# end .app-detail__col-container #}
-            </div>
-        </div>
 
+            </div>{# end .content-section__container #}
+        </div>{# end .content-section #}
 
-    </div>
+    </article>
 
 {% endblock %}

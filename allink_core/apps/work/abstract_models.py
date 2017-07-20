@@ -87,8 +87,7 @@ class BaseWorkAppContentPlugin(AllinkBaseAppContentPlugin):
 
     def save(self, *args, **kwargs):
         # invalidate cache
-        cache.delete_many([make_template_fragment_key('work_preview_image', [self.id, work.id]) for work in
-                           get_model('work', 'Work').objects.all()])
+        cache.delete_many([make_template_fragment_key('work_preview_image', [self.id, work.id]) for work in get_model('work', 'Work').objects.all()])
         super(BaseWorkAppContentPlugin, self).save(*args, **kwargs)
 
     class Meta:

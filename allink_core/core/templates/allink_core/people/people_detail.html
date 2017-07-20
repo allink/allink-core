@@ -3,74 +3,107 @@
 {% load cms_tags allink_cms_tags sekizai_tags i18n allink_image_tags thumbnail %}
 
 {% block content %}
-    <div class="content-section app-content-plugin people-plugin detail-view container-enabled">
-        <div class="container" data-scroll-spy>
 
-            <header class="section-heading">
-                <h1 class="heading">
-                    {% render_model_ajax object "title" %}
-                </h1>
-            </header>
+    <article class="app-detail people-plugin" data-scroll-spy="default">
 
-            <div class="app-detail-col-container col-2-1">
+        {% comment %}
+            Check if header placeholder containers plugins
+        {% endcomment %}
+        {% placeholder_has_content placeholder=object.header_placeholder as header_placeholder_has_content %}
 
-                <div class="col">
-                    <div class="text-container">
-                        {# optional: lead #}
-{#                        {% if object.job_title or object.job_function %}#}
-{#                            <p class="lead">#}
-{#                                {% if object.job_title %}#}
-{#                                    {{object.job_title}}<br>#}
-{#                                {% endif %}#}
-{#                                {{object.job_function}}#}
-{#                            </p>#}
-{#                        {% endif %}#}
-                        {# we wouldn't be here if the text was empty #}
-                        {{object.text}}
+        {% comment %}
+            Header
+        {% endcomment %}
+        <div class="content-section app-detail__header container-enabled {% if not header_placeholder_has_content and not object.preview_image %}app-detail__header--empty{% endif %}">
+            <div class="content-section__container">
+                <div class="app-detail__col-container">
+
+                    <div class="app-detail__header-col">
+
+                        {# render placeholder #}
+                        {% render_placeholder object.header_placeholder %}
+
+                        {# fallback: use preview image #}
+                        {% if object.preview_image and not header_placeholder_has_content %}
+                            <div class="image-container app-detail__header-image-container">
+                                {% render_image image=object.preview_image width_alias="2-of-3" %}
+                            </div>
+                        {% endif %}
+
                     </div>
-                </div>{# end .col #}
 
-                <div class="col">
-                    <div class="manage-spacings">
-
-                        {% render_image image=object.preview_image width_alias="1-of-3" %}
-
-                        <div class="text-container">
-                            {% if object.email %}
-                                <h2 class="heading">
-                                    {% trans "Contact" %}
-                                </h2>
-                            {% endif %}
-                            <p>
-                                {% if object.email %}
-                                    <a href="mailto:{{object.email}}">
-                                        {{object.email}}
-                                    </a><br>
-                                {% endif %}
-                                {% if object.phone %}
-                                    {% trans 'Phone:' %}
-                                    <a href="tel:{{object.phone}}">
-                                        {{object.phone_formatted}}
-                                    </a><br>
-                                {% endif %}
-                                {% if object.mobile %}
-                                    {% trans 'Mobile:' %}
-                                    <a href="tel:{{object.mobile}}">
-                                        {{object.mobile_formatted}}
-                                    </a><br>
-                                {% endif %}
-                                {% if object.fax %}
-                                    {% trans 'Fax:' %}
-                                    <a href="tel:{{object.fax}}">
-                                        {{object.fax_formatted}}
-                                    </a><br>
-                                {% endif %}
-                            </p>
-                        </div>
-                    </div>
-                </div>{# end .col #}
-
-            </div>{# end .col-container #}
+                </div>
+            </div>
         </div>
-    </div>
+
+        {% comment %}
+            Content
+        {% endcomment %}
+        <div class="content-section app-detail__content container-enabled">
+            <div class="content-section__container">
+
+                <header class="app-detail__heading-conatiner">
+                    <h2 class="app-detail__heading">
+                        {% render_model_ajax object "title" %}
+                    </h2>
+                    {% if object.created %}
+                        <div class="app-detail__created">
+                            {{object.created|date:"j.n.Y"}}
+                        </div>
+                    {% endif %}
+                </header>
+
+                <div class="app-detail__col-container app-detail__template__col-2-1">
+
+                    <div class="app-detail__col app-detail__col-1">
+                        {% if object.lead %}
+                            <div class="app-detail__lead">
+                                {{object.lead}}
+                            </div>
+                        {% endif %}
+                        <div class="app-detail__content-container">
+                            {% placeholder_has_content placeholder=object.content_placeholder as content_placeholder_has_content %}
+                            {% if content_placeholder_has_content %}
+                                <div class="app-detail__content-container">
+                            {% endif %}
+                        {% render_placeholder object.content_placeholder %}
+                            {% if content_placeholder_has_content %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>{# end .app-detail__col #}
+
+
+                    {% comment %}
+                        IMPORTANT: If the second column is not need, delete it, otherwise it will create an unnecessary spacing on mobile
+                    {% endcomment %}
+                    <div class="app-detail__col app-detail__col-2">
+                        <div class="app-detail__col-2-manage-spacings">
+
+                            {% comment %}
+                                edit on project basis
+                            {% endcomment %}
+                            <div class="text-container">
+                                <h4>Example Heading</h4>
+                                <p>Example Text</p>
+                            </div>
+                            <div class="text-container">
+                                <h4>Example Heading</h4>
+                                <p>Example Text</p>
+                            </div>
+                            <div class="text-container">
+                                <h4>Example Heading</h4>
+                                <p>Example Text</p>
+                            </div>
+
+                        </div>
+                    </div>{# end .app-detail__col #}
+
+                </div>{# end .app-detail__col-container #}
+
+            </div>{# end .content-section__container #}
+        </div>{# end .content-section #}
+
+    </article>
+
 {% endblock %}

@@ -1,0 +1,55 @@
+{% load cms_tags allink_cms_tags sekizai_tags i18n thumbnail allink_image_tags %}
+
+{# A map only makes sense, when locations are assigned #}
+{% if object_list %}
+
+    {% for object in object_list %}
+
+        <div class="locations-plugin details-container {{ instance.css_classes }}">
+
+            <div class="text-container">
+                 {% if object.title %}
+                     <h3 class="details-container__heading">{% render_model_ajax object "title" %}</h3>
+                 {% endif %}
+                <p>
+                    {% if object.subtitle %}
+                        {{object.subtitle}}<br>
+                    {% endif %}
+                    {% if object.street %}
+                        {{object.street}} {{object.street_nr}}<br>
+                    {% endif %}
+                    {% if object.zip_code or object.place %}
+                        {{object.zip_code}} {{object.place}}
+                    {% endif %}
+                </p>
+
+                 <p>
+                     {% if object.phone %}
+                         {% trans "Phone:" %} <a class="text" href="tel:{{object.phone}}">{{object.phone_formatted}}</a><br>
+                     {% endif %}
+                     {% if object.mobile %}
+                         {% trans "Mobile:" %} <a class="text" href="tel:{{object.mobile}}">{{object.mobile_formatted}}</a><br>
+                     {% endif %}
+                     {% if object.fax %}
+                         {% trans "Fax:" %} <a class="text" href="tel:{{object.fax}}">{{object.fax_formatted}}</a><br>
+                     {% endif %}
+                     {% if object.email %}
+                         {% trans "E-Mail:" %} <a class="text" href="mailto:{{object.email}}">{{object.email}}</a><br>
+                     {% endif %}
+                 </p>
+
+                 {% if object.map_link %}
+                     <p><a class="text" href="{{object.map_link}}" target="_blank">{% trans "Directions" %}</a></p>
+                 {% endif %}
+
+                 {% if object.opening_hours_display %}
+                     <h4>{% trans "Opening hours" %}</h4>
+                     {{object.opening_hours_display}}
+                 {% endif %}
+            </div>
+
+        </div>
+
+    {% endfor %}
+
+{% endif %}

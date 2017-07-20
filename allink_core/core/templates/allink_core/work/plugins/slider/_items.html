@@ -1,11 +1,13 @@
-{% load cms_tags allink_cms_tags sekizai_tags i18n thumbnail allink_image_tags %}
+{% load cms_tags allink_cms_tags sekizai_tags i18n thumbnail allink_image_tags cache %}
 
 {% for object in object_list %}
     <div class="swiper-slide app-list-slide swiper-slide-{{object.id}}">
 
         {% if object.preview_image %}
             <div class="app-list-slide__image-container">
-                {% render_image image=object.preview_image ratio="2-1" %}
+                {% cache 15552000 work_preview_image instance.id object.id %}
+                    {% render_image image=object.preview_image width_alias="1-of-1" ratio="2-1" %}
+                {% endcache %}
             </div>
         {% endif %}
 
@@ -15,9 +17,9 @@
             <div class="manage-spacings">
                 {% if object.title %}
                     <div class="app-list-slide__heading-container">
-                        <h2 class="app-list-slide__heading">
+                        <h3 class="app-list-slide__heading">
                             {% render_model_ajax object "title" %}
-                        </h2>
+                        </h3>
                     </div>
                 {% endif %}
                 {% if object.lead %}

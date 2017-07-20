@@ -72,6 +72,7 @@ class AllinkGalleryPlugin(CMSPlugin):
         if getattr(self, 'project_css_classes'):
             for css_class in getattr(self, 'project_css_classes'):
                 css_classes.append(css_class)
+        css_classes.append("counter-enabled") if self.counter_enabled else None
         return ' '.join(css_classes)
 
     def save(self, *args, **kwargs):
