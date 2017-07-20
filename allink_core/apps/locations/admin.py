@@ -17,7 +17,7 @@ class LocationsAdmin(AllinkBaseAdminSortable):
         fieldsets = (
             (None, {
                 'fields': (
-                    'is_active',
+                    'status',
                     'title',
                     'slug',
                     'subtitle',

@@ -390,13 +390,13 @@ from {app_package}.models import {model_name}
 
 @admin.register({model_name})
 class {model_name}Admin(PlaceholderAdminMixin, AllinkBaseAdminSortable):
-    list_filter = ('is_active', 'categories',)
+    list_filter = ('status', 'categories',)
 
     def get_fieldsets(self, request, obj=None):
         fieldsets = (
             (None, {{
                 'fields': (
-                    'is_active',
+                    'status',
                     'title',
                     'slug',
                     'lead',

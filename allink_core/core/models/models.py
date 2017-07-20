@@ -65,14 +65,19 @@ class AllinkBaseModel(models.Model):
     created = AutoCreatedField(_('created'), editable=True)
     modified = AutoLastModifiedField(_('modified'))
 
+    ACTIVE = 1
+    INACTIVE = 2
+
+    STATUS_COICES = [
+        (ACTIVE, _('active')),
+        (INACTIVE, _('inactive'))
+    ]
+
     categories = models.ManyToManyField(
         AllinkCategory,
         blank=True
     )
-    is_active = models.BooleanField(
-        _(u'Active'),
-        default=True
-    )
+    status = models.IntegerField(_('status'), choices=STATUS_COICES, default=ACTIVE)
     auto_generated_category = models.OneToOneField(
         AllinkCategory,
         related_name=u'auto_generated_from_%(class)s',

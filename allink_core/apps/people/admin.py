@@ -10,13 +10,13 @@ People = get_model('people', 'People')
 @admin.register(People)
 class PeopleAdmin(AllinkBaseAdminSortable):
     search_fields = ('first_name', 'last_name',)
-    list_display = ('first_name', 'last_name', 'get_categories', 'is_active', 'created', 'modified',)
+    list_display = ('first_name', 'last_name', 'get_categories', 'status', 'created', 'modified',)
 
     def get_fieldsets(self, request, obj=None):
         fieldsets = (
             (None, {
                 'fields': (
-                    'is_active',
+                    'status',
                     ('first_name', 'last_name'),
                     'job_function',
                     'preview_image',

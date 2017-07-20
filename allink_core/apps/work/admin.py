@@ -11,13 +11,13 @@ Work = get_model('work', 'Work')
 
 @admin.register(Work)
 class WorkAdmin(PlaceholderAdminMixin, AllinkBaseAdminSortable):
-    list_filter = ('is_active', 'categories',)
+    list_filter = ('status', 'categories',)
 
     def get_fieldsets(self, request, obj=None):
         fieldsets = (
             (None, {
                 'fields': (
-                    'is_active',
+                    'status',
                     'title',
                     'slug',
                     'lead',

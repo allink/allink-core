@@ -27,5 +27,6 @@ Each release is divided into the following main categories:
 ###### DATA MIGRATIONS
 
 ### NEW
+- BooleanField is_active on AllinkBaseModel got changed to a IntegerField with choices named status.
 
 ### FIXES

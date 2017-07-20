@@ -35,7 +35,7 @@ class EventsContentAdminForm(AllinkBaseAdminForm):
 @admin.register(Events)
 class EventsAdmin(PlaceholderAdminMixin, AllinkBaseAdminSortable):
     form = EventsContentAdminForm
-    list_display = ('title', 'get_categories', 'event_date_time', 'is_active', )
+    list_display = ('title', 'get_categories', 'event_date_time', 'status', )
     # event_date_time = forms.DateTimeField(
     #     label=_(u'Date and Time'),
     #     widget=forms.widgets.DateTimeInput(
@@ -59,7 +59,7 @@ class EventsAdmin(PlaceholderAdminMixin, AllinkBaseAdminSortable):
         fieldsets = (
             (None, {
                 'fields': (
-                    'is_active',
+                    'status',
                     'title',
                     'slug',
                     'template',

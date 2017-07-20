@@ -47,9 +47,9 @@ class AllinkBaseAdminBase(AllTranslationsMixin, TranslatableAdmin):
     """
     form = AllinkBaseAdminForm
     search_fields = ('translations__title',)
-    list_display = ('title', 'get_categories', 'is_active', 'created', 'modified')
+    list_display = ('title', 'get_categories', 'status', 'created', 'modified')
     list_filter = (
-        'is_active',
+        'status',
         ('categories', admin.RelatedOnlyFieldListFilter,),
     )
 
@@ -65,7 +65,7 @@ class AllinkBaseAdminBase(AllTranslationsMixin, TranslatableAdmin):
         fieldsets = (
             (None, {
                 'fields': (
-                    'is_active',
+                    'status',
                     'title',
                     'lead',
                     'preview_image',
