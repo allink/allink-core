@@ -24,7 +24,7 @@ ALLINK_INSTALLED_APPS = [
 
     # allink core apps
     'allink_core.core',
-    'allink_core.core_apps.allink_seo',
+    'allink_core.core_apps.allink_cms',
     'allink_core.core_apps.allink_categories',
     'allink_core.core_apps.allink_mailchimp',
     'allink_core.core_apps.allink_styleguide',
@@ -141,7 +141,7 @@ ALLINK_LOCALE_PATHS = [
     '/app/allink_core/core/locale',
     # core_apps
     '/app/allink_core/core_apps/allink_categories/locale',
-    '/app/allink_core/core_apps/allink_seo/locale',
+    '/app/allink_core/core_apps/allink_cms/locale',
     '/app/allink_core/core_apps/allink_legacy_redirect/locale',
     '/app/allink_core/core_apps/allink_mailchimp/locale',
     '/app/allink_core/core_apps/allink_mandrill/locale',

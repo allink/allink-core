@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-20 10:23+0200\n"
+"POT-Creation-Date: 2017-07-21 17:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,7 +35,7 @@ msgid "Advanced Options"
 msgstr ""
 
 #: allink_core/core_apps/allink_gallery/cms_plugins.py:58
-#: allink_core/core_apps/allink_gallery/models.py:97
+#: allink_core/core_apps/allink_gallery/models.py:98
 msgid "Image"
 msgstr ""
 
@@ -91,11 +91,11 @@ msgstr ""
 msgid "This option enables autoplay for this gallery."
 msgstr ""
 
-#: allink_core/core_apps/allink_gallery/models.py:87
+#: allink_core/core_apps/allink_gallery/models.py:88
 msgid "Title"
 msgstr ""
 
-#: allink_core/core_apps/allink_gallery/models.py:93
+#: allink_core/core_apps/allink_gallery/models.py:94
 msgid "Text"
 msgstr ""
 

@@ -5,7 +5,7 @@ from cms.toolbar_pool import toolbar_pool
 from cms.utils import get_language_list
 from cms.extensions.toolbar import ExtensionToolbar
 
-from allink_core.core_apps.allink_seo.models import AllinkSEOExtension
+from allink_core.core_apps.allink_cms.models import AllinkSEOExtension
 
 
 @toolbar_pool.register

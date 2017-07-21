@@ -17,7 +17,7 @@ class AllinkBaseModifierMixin(object):
 
         apps_menu = self.toolbar.get_or_create_menu(
             'apps-menu'.format(self.model._meta.model_name),
-            _('Apps')
+            _('Modules')
         )
 
         menu = apps_menu.get_or_create_menu(

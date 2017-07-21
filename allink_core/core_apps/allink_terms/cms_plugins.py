@@ -11,7 +11,7 @@ from allink_core.core_apps.allink_terms.forms import AllinkTermsPluginForm
 class CMSAllinkTermsPlugin(CMSPluginBase):
     model = AllinkTermsPlugin
     name = _('Terms of Service')
-    module = _('allink apps')
+    module = _('allink modules')
     form = AllinkTermsPluginForm
     render_template = 'allink_terms/plugins/terms.html'
 

@@ -88,7 +88,7 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
     model = AllinkBaseAppContentPlugin
 
     name = _('App Content')
-    module = _('allink apps')
+    module = _('allink modules')
     allow_children = True
     child_classes = ['LinkPlugin', 'Bootstrap3ButtonCMSPlugin']
     form = AllinkBaseAppContentPluginForm
@@ -235,7 +235,7 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
             objects_list = firstpage.object_list
 
             # Load More
-            if instance.pagination_type == AllinkBaseAppContentPlugin.LOAD or instance.pagination_type == AllinkBaseAppContentPlugin.LOAD_REST and firstpage.has_next():
+            if (instance.pagination_type == AllinkBaseAppContentPlugin.LOAD or instance.pagination_type == AllinkBaseAppContentPlugin.LOAD_REST) and firstpage.has_next():
                 context['page_obj'] = firstpage
                 context.update({'next_page_url': reverse('{}:more'.format(self.model.data_model._meta.model_name), kwargs={'page': context['page_obj'].next_page_number()}) + '?api_request=1' + '&plugin_id={}'.format(instance.id)})
                 if instance.category_navigation_enabled and not instance.category_navigation_all:
