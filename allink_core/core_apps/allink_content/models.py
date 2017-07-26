@@ -131,7 +131,7 @@ class AllinkContentPlugin(CMSPlugin):
     video_mobile_image = FilerImageField(
         verbose_name=_(u'Mobile Image'),
         related_name="content_video_mobile_image",
-        help_text=_(u'The image that is being displayed instead of the video on mobile devices.'),
+        help_text=_(u'The image that is being displayed on mobile devices instead of the video.'),
         blank=True,
         null=True
     )
@@ -144,7 +144,7 @@ class AllinkContentPlugin(CMSPlugin):
     )
     ignore_in_pdf = models.BooleanField(
         _(u'Ignore for pdf export'),
-        help_text=_(u'If checked, the content plugin will be ignored when generting a pdf.'),
+        help_text=_(u'If checked, this content section will be ignored when generting a pdf.'),
         default=False
     )
     project_css_classes = ArrayField(

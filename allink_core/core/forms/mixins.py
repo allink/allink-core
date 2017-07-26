@@ -42,7 +42,7 @@ class AllinkInternalLinkFieldMixin(forms.ModelForm):
                 self.instance.link_model = None
                 self.instance.link_url_name = None
                 self.instance.link_url_kwargs = None
-            elif 'link_apphoock_page_id' in field_data:
+            elif 'link_apphook_page_id' in field_data:
                 self.instance.link_page = None
                 self.instance.link_apphook_page = Page.objects.get(id=field_data['link_apphook_page_id'])
                 self.instance.link_object_id = field_data['link_object_id']

@@ -4,6 +4,8 @@ from django.core.cache import cache
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 
+from cms.extensions import PageExtension
+
 from parler.models import TranslatableModel, TranslatedFieldsModel
 from filer.fields.image import FilerImageField
 from django.utils.translation import get_language
@@ -186,6 +188,10 @@ class BaseConfig(TranslatableModel, SingletonModel):
         _(u'Toolbar enabled?'),
         default=True
     )
+    config_allink_page_toolbar_enabled = models.BooleanField(
+        _(u'allink Page Extension Toolbar Enabled?'),
+        default=False
+    )
     google_site_verification = models.CharField(
         _(u'Google Site Verification Code'),
         blank=True,
@@ -285,6 +291,17 @@ class BaseConfigTranslation(TranslatedFieldsModel):
         null=True
     )
 
+    class Meta:
+        abstract = True
+        app_label = 'config'
+
+
+# Page Extensions
+class BaseAllinkPageExtension(PageExtension):
+    special_subnav_enabled = models.BooleanField(
+        _(u'Special Subnav enabled?'),
+        default=False
+    )
     class Meta:
         abstract = True
         app_label = 'config'

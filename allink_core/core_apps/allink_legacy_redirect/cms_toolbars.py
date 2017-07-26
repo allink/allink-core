@@ -23,7 +23,7 @@ class AllinkLegacyRedirectToolbar(CMSToolbar):
         position = admin_menu.find_first(Break, identifier=ADMIN_SITES_BREAK)
         allink_menu = admin_menu.get_or_create_menu(
             'allink-menu',
-            _('Allink'),
+            _('allink'),
             position=position
         )
 

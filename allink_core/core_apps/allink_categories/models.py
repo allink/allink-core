@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import django
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
 from django.utils.encoding import python_2_unicode_compatible
@@ -35,9 +34,6 @@ class CategoryManager(TranslatableManager, NS_NodeManager):
 
     def not_root(self, depth=100):
         return self.filter(depth__gte=depth)
-
-    if django.VERSION < (1, 8):
-        get_query_set = get_queryset
 
 
 @python_2_unicode_compatible
@@ -112,7 +108,6 @@ class AllinkCategory(AllinkTranslatedAutoSlugifyMixin, TranslationHelperMixin,
         self.__class__.objects.filter(pk=self.pk).delete(using)
         _delete_cached_translations(self)
         super(TranslatableModelMixin, self).delete()
-
 
     def __str__(self):
         return self.safe_translation_getter('name', any_language=True)

@@ -5,6 +5,8 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.http import require_POST
 from django.utils.translation import ugettext_lazy as _
 
+from cms.extensions import PageExtensionAdmin
+
 from solo.admin import SingletonModelAdmin
 from webpack_loader.utils import get_files
 from parler.admin import TranslatableAdmin
@@ -15,6 +17,7 @@ from allink_core.core.forms.fields import ColorField
 from allink_core.core.utils import get_project_color_choices
 
 Config = get_model('config', 'Config')
+AllinkPageExtension = get_model('config', 'AllinkPageExtension')
 require_POST = method_decorator(require_POST)
 
 
@@ -97,6 +100,7 @@ class ConfigAdmin(TranslatableAdmin, SingletonModelAdmin):
                 ('contactrequest_verbose', 'contactrequest_verbose_plural', 'contactrequest_toolbar_enabled', ),
                 ('eventsregistration_verbose', 'eventsregistration_verbose_plural', 'eventsregistration_toolbar_enabled', ),
                 ('terms_verbose', 'terms_verbose_plural', 'terms_toolbar_enabled', ),
+                'config_allink_page_toolbar_enabled',
             )
         }),
 
@@ -110,3 +114,9 @@ class ConfigAdmin(TranslatableAdmin, SingletonModelAdmin):
         }),
 
         return fieldsets
+
+
+@admin.register(AllinkPageExtension)
+class AllinkSEOExtensionAdmin(PageExtensionAdmin):
+    pass
+

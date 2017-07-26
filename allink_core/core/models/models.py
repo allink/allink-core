@@ -1090,7 +1090,6 @@ class AllinkLinkFieldsModel(AllinkInternalLinkFieldsModel):
         field_names_allowed_with_anchor = (
             'link_url',
             'link_page',
-            'link_internal',
             'link_apphook_page',
             'link_file',
         )
