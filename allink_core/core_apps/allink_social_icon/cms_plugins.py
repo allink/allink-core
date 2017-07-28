@@ -2,6 +2,7 @@
 from django.utils.translation import ugettext_lazy as _
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
+from allink_core.core.utils import get_additional_choices
 from allink_core.core_apps.allink_social_icon.models import AllinkSocialIconContainerPlugin, AllinkSocialIconPlugin
 from allink_core.core_apps.allink_social_icon.forms import AllinkSocialIconContainerPluginForm, AllinkSocialIconPluginForm
 
@@ -14,6 +15,20 @@ class CMSAllinkSocialIconContainerPlugin(CMSPluginBase):
     allow_children = True
     child_classes = ['CMSAllinkSocialIconPlugin']
     form = AllinkSocialIconContainerPluginForm
+    
+    def get_fieldsets(self, request, obj=None):
+        fieldsets = ()
+        if get_additional_choices('SOCIAL_ICON_CSS_CLASSES'):
+            fieldsets = (
+                (None, {
+                    'fields': (
+                        'project_css_classes',
+                    ),
+                }),
+            )
+
+        return fieldsets
+
 
     def get_render_template(self, context, instance, placeholder):
         template = 'allink_social_icon/content.html'
