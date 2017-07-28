@@ -19,7 +19,3 @@ class CMSEventsAppContentPlugin(CMSAllinkBaseAppContentPlugin):
     """
     model = EventsAppContentPlugin
     name = model.data_model.get_verbose_name_plural()
-
-    @classmethod
-    def get_render_queryset(cls):
-        return cls.model._default_manager.all()

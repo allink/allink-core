@@ -40,6 +40,7 @@ ALLINK_INSTALLED_APPS = [
     'allink_core.core_apps.allink_group',
     'allink_core.core_apps.allink_instagram',
     'allink_core.core_apps.allink_pdf',
+    'allink_core.core_apps.allink_cms',
 ]
 
 ####################################################################################
@@ -95,8 +96,8 @@ CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [
     'CMSAllinkButtonLinkContainerPlugin',
     'CMSAllinkGroupContainerPlugin',
     'CMSAllinkInstagramPlugin',
-    'CMSAllinkContactRequestPlugin'
-
+    'CMSAllinkContactRequestPlugin',
+    'CMSAllinkPageChooserPlugin'
 ]
 ####################################################################################
 
@@ -155,6 +156,7 @@ ALLINK_LOCALE_PATHS = [
     '/app/allink_core/core_apps/allink_social_icon/locale',
     '/app/allink_core/core_apps/allink_video/locale',
     '/app/allink_core/core_apps/allink_pdf/locale',
+    '/app/allink_core/core_apps/allink_cms/locale',
 ]
 
 

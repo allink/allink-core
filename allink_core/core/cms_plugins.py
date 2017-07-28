@@ -89,8 +89,7 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
 
     name = _('App Content')
     module = _('allink modules')
-    allow_children = True
-    child_classes = ['LinkPlugin', 'Bootstrap3ButtonCMSPlugin']
+    allow_children = False
     form = AllinkBaseAppContentPluginForm
 
     class Media:
@@ -98,10 +97,6 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
         css = {
             'all': (get_files('djangocms_custom_admin')[1]['publicPath'], )
         }
-
-    @classmethod
-    def get_render_queryset(cls):
-        return cls.model._default_manager.all()
 
     def get_fieldsets(self, request, obj=None):
         fieldsets = (

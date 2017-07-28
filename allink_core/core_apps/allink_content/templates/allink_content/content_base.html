@@ -20,22 +20,23 @@
         {# Optional: Full with background image #}
         {% if instance.bg_image_outer_container %}
             <div class="content-section__bg-image-ratio">
-            {# hold on: only display the background image if there is no video #}
-            {% if not instance.video_file and not instance.video_poster_image and not instance.video_mobile_image %}
-                <div class="content-section__bg-image-outer">
-                    {% if instance.full_height_enabled and instance.parallax_enabled %}
-                        {% render_image image=instance.bg_image_outer_container width_alias="parallax-fullscreen" %}
-                    {% elif instance.full_height_enabled %}
-                        {% render_image image=instance.bg_image_outer_container width_alias="fullscreen" %}
-                    {% elif instance.parallax_enabled %}
-                        {% render_image image=instance.bg_image_outer_container width_alias="parallax" %}
-                    {% elif instance.dynamic_height_enabled %}
-                        {% render_image image=instance.bg_image_outer_container width_alias="section-dynamic" %}
-                    {% else %}
-                        {% render_image image=instance.bg_image_outer_container width_alias="section-ratio" %}
-                    {% endif %}
-                </div>
-            {% endif %}
+                {# hold on: only display the background image if there is no video #}
+                {% if not instance.video_file and not instance.video_poster_image and not instance.video_mobile_image %}
+                    <div class="content-section__bg-image-outer">
+                        {% if instance.full_height_enabled and instance.parallax_enabled %}
+                            {% render_image image=instance.bg_image_outer_container width_alias="parallax-fullscreen" %}
+                        {% elif instance.full_height_enabled %}
+                            {% render_image image=instance.bg_image_outer_container width_alias="fullscreen" %}
+                        {% elif instance.parallax_enabled %}
+                            {% render_image image=instance.bg_image_outer_container width_alias="parallax" %}
+                        {% elif instance.dynamic_height_enabled %}
+                            {% render_image image=instance.bg_image_outer_container width_alias="section-dynamic" %}
+                        {% else %}
+                            {% render_image image=instance.bg_image_outer_container width_alias="section-ratio" %}
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </div>
         {% endif %}
 
         {# Optional: Video background #}

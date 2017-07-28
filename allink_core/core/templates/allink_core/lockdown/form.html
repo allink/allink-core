@@ -15,7 +15,7 @@
                     {% if form %}
                         {% include "partials/forms/non_field_errors.html" %}
                         {% trans "Preview" as cta %}
-                        {% include "partials/forms/form.html" with class="lockdown-plugin__form" action='.' method="post" no_ajax=1 cta=cta close_btn_enabled=False %}
+                        {% include "partials/forms/form.html" with class="lockdown-plugin__form" action='.' method="post" no_ajax=1 cta=cta close_btn_enabled=False ajax_disabled=True %}
                     {% endif %}
                 </div>
             </div>

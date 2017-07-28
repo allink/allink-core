@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-from allink_core.apps.config.abstract_models import BaseConfig, BaseConfigTranslation, BaseAllinkPageExtension
-from allink_core.core.loading import is_model_registered
+
 from cms.extensions.extension_pool import extension_pool
+from allink_core.core.loading import is_model_registered
+from allink_core.apps.config.abstract_models import BaseConfig, BaseConfigTranslation, BaseAllinkPageExtension
 
 __all__ = []
 

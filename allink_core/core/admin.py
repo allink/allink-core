@@ -27,18 +27,6 @@ class AllinkBaseAdminForm(TranslatableModelForm):
                 required=True,
                 queryset=self.instance.get_relevant_categories()
             )
-            self.fields['category_navigation'] = forms.ModelMultipleChoiceField(
-                label=_(u'Categories for Navigation'),
-                widget=FilteredSelectMultiple(
-                    verbose_name=_(u'Categories for Navigation'),
-                    is_stacked=True
-                ),
-                help_text=_(
-                    u'You can explicitly define the categories for the category navigation here. This will override the automatically set of categories. (From "Filter & Ordering" but not from the "Manual entries")'),
-                required=False,
-                queryset=self.instance.get_relevant_categories()
-            )
-
 
 class AllinkBaseAdminBase(AllTranslationsMixin, TranslatableAdmin):
     """

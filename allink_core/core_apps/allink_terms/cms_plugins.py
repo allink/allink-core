@@ -15,10 +15,6 @@ class CMSAllinkTermsPlugin(CMSPluginBase):
     form = AllinkTermsPluginForm
     render_template = 'allink_terms/plugins/terms.html'
 
-    @classmethod
-    def get_render_queryset(cls):
-        return cls.model._default_manager.all()
-
     def render(self, context, instance, placeholder):
 
         context['instance'] = instance
