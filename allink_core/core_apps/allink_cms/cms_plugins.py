@@ -17,7 +17,7 @@ class AllinkPageChooserPluginForm(forms.ModelForm):
 
 class AllinkPageInline(admin.StackedInline):
     model = AllinkPage
-    extra = 1
+    extra = 0
     verbose_name = _(u'Page')
     verbose_name_plural = _(u'Pages')
 
