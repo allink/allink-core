@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from aldryn_addons.utils import senv
-
+from django.conf import settings
 ####################################################################################
 
 # Installed =Apps
