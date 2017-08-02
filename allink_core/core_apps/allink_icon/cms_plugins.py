@@ -12,21 +12,21 @@ class AllinkIconPluginForm(forms.ModelForm):
     class Meta:
         model = AllinkIconPlugin
         exclude = ('page', 'position', 'placeholder', 'language', 'plugin_type')
-    
+
     def __init__(self, *args, **kwargs):
         super(AllinkIconPluginForm, self).__init__(*args, **kwargs)
-        
-        if get_additional_choices('ICON_CHOICES'):
+
+        if get_additional_choices('ICONS_CHOICES'):
             self.fields['icon'] = forms.ChoiceField(
                 widget=forms.Select(),
-                label=_(u'Icon choices for Social Icon Plugin'),
-                choices=get_additional_choices('ICON_CHOICES'),
+                label=_(u'Icon choices'),
+                choices=get_additional_choices('ICONS_CHOICES'),
                 required=True,
             )
         if get_additional_choices('ICON_CSS_CLASSES'):
             self.fields['project_css_classes'] = forms.MultipleChoiceField(
                 widget=forms.CheckboxSelectMultiple(),
-                label=_(u'Predifined variations for Social Icon Plugin'),
+                label=_(u'Predifined variations for Icon Plugin'),
                 choices=get_additional_choices('ICON_CSS_CLASSES'),
                 required=False,
             )

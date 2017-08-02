@@ -1,5 +1,11 @@
+{% load cms_tags allink_cms_tags sekizai_tags i18n thumbnail allink_image_tags %}
 
-{% for object in object_list %}
-    <a href="{{ object.get_absolute_url }}" target="_blank">{{ object.get_page_title }}</a>
-    <br>
-{% endfor %}
+<div class="content-plugin pagechooser-plugin">
+    <div class="pagechooser-plugin__container">
+        <select class="pagechooser-plugin__dropdown form-control selectpicker" title="{% trans "I'm planning a..." %}" data-dropup-auto="false" data-container="body">
+            {% for object in object_list %}
+                <option value="{{object.get_absolute_url}}">{{object.get_page_title}}</option>
+            {% endfor %}
+        </select>
+    </div>
+</div>

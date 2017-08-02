@@ -18,7 +18,8 @@
             {% endif %}
             {% if object.created %}
                 <div class="date-container">
-                    {% render_model_ajax object "created" %}
+                    {# Date format: https://docs.djangoproject.com/es/1.10/ref/templates/builtins/#std:templatefilter-date #}
+                    {{ object.created|date:"j.n.Y" }}
                 </div>
             {% endif %}
             {% if object.title %}

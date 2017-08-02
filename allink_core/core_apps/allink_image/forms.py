@@ -26,7 +26,7 @@ class AllinkImagePluginForm(AllinkInternalLinkFieldMixin, forms.ModelForm):
             label=_(u'Special Links'),
             widget=forms.Select(choices=self.instance.get_link_special_choices()),
             required=False,
-            help_text=_(u'Important: In case the selected option is a <strong>form</strong>, make sure the select the <strong>Lightbox (Forms)</strong> from the <strong>link target</strong> options for best user experience.'),
+            help_text=_(u'Important: In case the selected option is a <strong>form</strong>, make sure to select <strong>Lightbox (Forms)</strong> from the <strong>link target</strong> options for best user experience.'),
         )
         self.fields['ratio'] = forms.CharField(
             label=_(u'Ratio'),
