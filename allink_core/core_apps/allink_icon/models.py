@@ -1,19 +1,18 @@
 # -*- coding: utf-8 -*-
-
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import python_2_unicode_compatible
 from cms.models.pluginmodel import CMSPlugin
 from django.contrib.postgres.fields import ArrayField
 
-from django.conf import settings
-
 
 @python_2_unicode_compatible
-class AllinkSocialIconContainerPlugin(CMSPlugin):
-    """
-    A Container-Plugin for Social Icons
-    """
+class AllinkIconPlugin(CMSPlugin):
+    icon = models.CharField(
+        _(u'Icon'),
+        max_length=50
+    )
+    
     project_css_classes = ArrayField(
         models.CharField(
             max_length=50,
@@ -23,10 +22,10 @@ class AllinkSocialIconContainerPlugin(CMSPlugin):
         blank=True,
         null=True
     )
-
+    
     def __str__(self):
-        return _(u'{}').format(str(self.pk))
-
+        return u'{}'.format(self.icon)
+    
     @property
     def css_classes(self):
         css_classes = []
@@ -34,24 +33,3 @@ class AllinkSocialIconContainerPlugin(CMSPlugin):
             for css_class in getattr(self, 'project_css_classes'):
                 css_classes.append(css_class)
         return ' '.join(css_classes)
-
-
-@python_2_unicode_compatible
-class AllinkSocialIconPlugin(CMSPlugin):
-    title = models.CharField(
-        _(u'Title'),
-        help_text=_(u'SEO text (not visible) e.g. Follow allink on Instagram'),
-        max_length=255,
-        blank=True,
-        null=True
-    )
-    icon = models.CharField(
-        _(u'Icon'),
-        max_length=50
-    )
-    link = models.URLField(
-        _(u'Link')
-    )
-
-    def __str__(self):
-        return u'{}'.format(self.icon)

@@ -21,14 +21,6 @@ class AllinkSocialIconContainerPluginForm(forms.ModelForm):
                 required=False,
             )
 
-        if get_additional_choices('SOCIAL_ICONS_CHOICES'):
-            self.fields['icon'] = forms.ChoiceField(
-                widget=forms.Select(),
-                label=_(u'Icon choices for Social Icon Plugin'),
-                choices=get_additional_choices('SOCIAL_ICONS_CHOICES'),
-                required=False,
-            )
-
 class AllinkSocialIconPluginForm(forms.ModelForm):
 
     class Meta:
