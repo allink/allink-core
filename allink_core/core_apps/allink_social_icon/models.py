@@ -6,7 +6,7 @@ from django.utils.encoding import python_2_unicode_compatible
 from cms.models.pluginmodel import CMSPlugin
 from django.contrib.postgres.fields import ArrayField
 
-from allink_core.core.models.choices import SOCIAL_ICONS_CHOICES
+from django.conf import settings
 
 
 @python_2_unicode_compatible
@@ -48,8 +48,7 @@ class AllinkSocialIconPlugin(CMSPlugin):
     )
     icon = models.CharField(
         _(u'Icon'),
-        max_length=50,
-        choices=SOCIAL_ICONS_CHOICES
+        max_length=50
     )
     link = models.URLField(
         _(u'Link')

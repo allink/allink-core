@@ -21,8 +21,27 @@ class AllinkSocialIconContainerPluginForm(forms.ModelForm):
                 required=False,
             )
 
+        if get_additional_choices('SOCIAL_ICONS_CHOICES'):
+            self.fields['icon'] = forms.ChoiceField(
+                widget=forms.Select(),
+                label=_(u'Icon choices for Social Icon Plugin'),
+                choices=get_additional_choices('SOCIAL_ICONS_CHOICES'),
+                required=False,
+            )
+
 class AllinkSocialIconPluginForm(forms.ModelForm):
 
     class Meta:
         model = AllinkSocialIconPlugin
         exclude = ('page', 'position', 'placeholder', 'language', 'plugin_type')
+    
+    def __init__(self, *args, **kwargs):
+        super(AllinkSocialIconPluginForm, self).__init__(*args, **kwargs)
+
+        if get_additional_choices('SOCIAL_ICONS_CHOICES'):
+            self.fields['icon'] = forms.ChoiceField(
+                widget=forms.Select(),
+                label=_(u'Icon choices for Social Icon Plugin'),
+                choices=get_additional_choices('SOCIAL_ICONS_CHOICES'),
+                required=True,
+            )

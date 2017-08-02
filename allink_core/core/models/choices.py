@@ -64,45 +64,9 @@ VERTICAL_ALIGNMENT_CHOICES = (
 
 ####################################################################################
 
-# SOCIAL ICONS
-
-# Used in the 'Social Icon' plugin
-
-# Important: These keys have to match the map defined in the CSS variables
-
-FACEBOOK = 'facebook'
-INSTAGRAMM = 'instagram'
-PINTEREST = 'pinterest'
-TWITTER = 'twitter'
-SNAPCHAT = 'snapchat'
-SPOTIFY = 'spotify'
-LINKEDIN = 'linkedin'
-XING = 'xing'
+# VIDEO SERVICES
 YOUTUBE = 'youtube'
 VIMEO = 'vimeo'
-GOOGLEPLUS = 'googleplus'
-TRIPADVISOR = 'tripadvisor'
-KUNUNU = 'kununu'
-
-SOCIAL_ICONS_CHOICES = (
-    (FACEBOOK, _(u'Facebook')),
-    (INSTAGRAMM, _(u'Instagram')),
-    (PINTEREST, _(u'Pinterest')),
-    (TWITTER, _(u'Twitter')),
-    (SNAPCHAT, _(u'Snapchat')),
-    (LINKEDIN, _(u'Linkedin')),
-    (SPOTIFY, _(u'Spotify')),
-    (XING, _(u'Xing')),
-    (YOUTUBE, _(u'Youtube')),
-    (VIMEO, _(u'Vimeo')),
-    (GOOGLEPLUS, _(u'Google Plus')),
-    (TRIPADVISOR, _(u'TripAdvisor')),
-    (KUNUNU, _(u'kununu')),
-)
-
-####################################################################################
-
-# VIDEO SERVICES
 
 VIDEO_SERVICE_CHOICES = (
     (YOUTUBE, u'Youtube'),
