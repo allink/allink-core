@@ -65,10 +65,10 @@ class AllinkButtonLinkPluginForm(AllinkInternalLinkFieldMixin, forms.ModelForm):
         return media
     media = property(_get_media)
 
-
     def clean(self):
         from django.core.exceptions import ValidationError
         # If special_link is a form which sends emails all the additional fields have to be supplied
+        self.cleaned_data = super(AllinkButtonLinkPluginForm, self).clean()
         if ':request' in self.cleaned_data.get('link_special') and \
             (self.cleaned_data.get('send_internal_mail') == True
              and not self.cleaned_data.get('internal_email_addresses')[0]

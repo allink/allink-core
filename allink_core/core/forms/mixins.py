@@ -27,13 +27,14 @@ class AllinkInternalLinkFieldMixin(forms.ModelForm):
                         'link_model': self.instance.link_model
                     })
 
-    def save(self, *args, **kwargs):
+    def clean(self):
+        cleaned_data = super(AllinkInternalLinkFieldMixin, self).clean()
         for field_name, field in filter(lambda x: isinstance(x[1].widget, SearchSelectWidget), self.fields.items()):
-            self.save_search_select_field(field_name, field)
-        return super(AllinkInternalLinkFieldMixin, self).save(*args, **kwargs)
+            self.clean_search_select_field(field_name, field, cleaned_data)
+        return cleaned_data
 
-    def save_search_select_field(self, field_name, field):
-        if self.cleaned_data[field_name]:
+    def clean_search_select_field(self, field_name, field, cleaned_data):
+        if cleaned_data[field_name]:
             field_data = json.loads(self.cleaned_data[field_name])
             if 'page_id' in field_data:
                 self.instance.link_page = Page.objects.get(id=field_data['page_id'])
