@@ -11,8 +11,9 @@
         {% block form_additional_attributes %}{% endblock form_additional_attributes %}
         >
 
-        {# utility classes #}
-        {% block form_inner_before %}{% endblock form_inner_before %}
+        {# utility block #}
+        {% block form_inner_before %}
+        {% endblock form_inner_before %}
 
         {% block csrf_token_container %}
             {% if not method == "get" %}{% csrf_token %}{% endif %}
@@ -26,7 +27,7 @@
             </div>
         {% endblock form_heading_container %}
 
-        {# utility classes #}
+        {# utility block #}
         {% block form_fields_before %}
         {% endblock form_fields_before %}
 
@@ -35,6 +36,10 @@
                 {% include "partials/forms/form_field.html" with style='stacked' %}
             {% endif %}
         {% endfor %}
+
+        {# utility block #}
+        {% block form_fields_loop_after %}
+        {% endblock form_fields_loop_after %}
 
         <div class="form-group {% if form.contact_type.errors %}has-error{% endif %}">
             <label for="{{ form.contact_type.id_for_label }}" class="control-label required">
@@ -89,48 +94,30 @@
             {{ form.email.errors }}
         </div>
 
-        {% comment %}
-            {% if not request.GET.no_date  %}
-                <div class="form-group date-time-selection">
-                    <label class="control-label">Wann sollen wir Sie anrufen?</label>
-                    <div class="row">
-                        <div class="form-group {% if form.date.errors %}has-error{% endif %}">
-                        <label for="{{ form.date.id_for_label }}" class="sr-only">
-                            {% trans "Datum auswählen" %}
-                        </label>
-                            <div class="datepicker-container">
-                                <div class="datepicker">
-                                    {{ form.date }}
-                                    <span class="input-btn" data-toggle><i class="icomoon-calendar"></i></span>
-                                </div>
-                            </div>
-                            {{ form.date.errors }}
-                        </div>
-                        <div class="form-group {% if form.time.errors %}has-error{% endif %}">
-
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
-        {% endcomment %}
-
-        {# utility classes #}
+        {# utility block #}
         {% block form_fields_after %}
         {% endblock form_fields_after %}
 
         {% block form_btn_container %}
             <div class="form-group btn-container">
-                {# utility classes #}
-                {% block form_btn_container_before %}{% endblock form_btn_container_before %}
+
+                {# utility block #}
+                {% block form_btn_container_before %}
+                {% endblock form_btn_container_before %}
+
                 {% trans "Submit" as cta %}
                 <button class="{% block form_submit_btn_classes_container %}btn btn-{% block form_submit_btn_variation %}default{% endblock form_submit_btn_variation %}{% endblock form_submit_btn_classes_container %}" name="submit" type="submit">{{ cta }}</button>
-                {# utility classes #}
-                {% block form_btn_container_after %}{% endblock form_btn_container_after %}
+
+                {# utility block #}
+                {% block form_btn_container_after %}
+                {% endblock form_btn_container_after %}
+
             </div>
         {% endblock form_btn_container %}
 
-        {# utility classes #}
-        {% block form_inner_after %}{% endblock form_inner_after %}
+        {# utility block #}
+        {% block form_inner_after %}
+        {% endblock form_inner_after %}
 
     </form>
 {% endblock form_container %}

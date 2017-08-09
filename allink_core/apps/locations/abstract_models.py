@@ -85,8 +85,8 @@ class BaseLocations(SortableMixin, TranslationHelperMixin, AllinkTranslatedAutoS
         abstract = True
         app_label = 'locations'
         ordering = ('sort_order',)
-        verbose_name = _('Project / Reference')
-        verbose_name_plural = _('Projects / References')
+        verbose_name = _('Location')
+        verbose_name_plural = _('Locations')
 
     def value_has_changed_for_fields(instance, fields):
         """

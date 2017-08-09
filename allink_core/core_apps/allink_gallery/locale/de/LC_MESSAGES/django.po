@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-24 10:49+0200\n"
+"POT-Creation-Date: 2017-08-09 11:09+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -103,18 +103,18 @@ msgstr "Titel"
 msgid "Text"
 msgstr ""
 
-#: allink_core/core_apps/allink_gallery/templates/allink_gallery/slider/content.html:18
+#: allink_core/core_apps/allink_gallery/templates/allink_gallery/slider/content.html:19
 msgid "Previous Slide"
 msgstr "Vorheriges Slide"
 
-#: allink_core/core_apps/allink_gallery/templates/allink_gallery/slider/content.html:23
+#: allink_core/core_apps/allink_gallery/templates/allink_gallery/slider/content.html:26
 msgid "Next Slide"
 msgstr "Nächstes Slide"
 
-#: allink_core/core_apps/allink_gallery/templates/allink_gallery/slider/content.html:35
+#: allink_core/core_apps/allink_gallery/templates/allink_gallery/slider/content.html:39
 msgid "of"
 msgstr ""
 
-#: allink_core/core_apps/allink_gallery/templates/allink_gallery/slider/content.html:42
+#: allink_core/core_apps/allink_gallery/templates/allink_gallery/slider/content.html:46
 msgid "Fullscreen Gallery"
 msgstr "Vollbild-Galerie"

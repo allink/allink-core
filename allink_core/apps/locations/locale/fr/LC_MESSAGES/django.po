@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-24 10:49+0200\n"
+"POT-Creation-Date: 2017-08-09 11:09+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -97,11 +97,11 @@ msgid "Sunday afternoon"
 msgstr ""
 
 #: allink_core/apps/locations/abstract_models.py:88
-msgid "Project / Reference"
+msgid "Location"
 msgstr ""
 
 #: allink_core/apps/locations/abstract_models.py:89
-msgid "Projects / References"
+msgid "Locations"
 msgstr ""
 
 #: allink_core/apps/locations/abstract_models.py:131

@@ -1,6 +1,8 @@
 {% extends base_template|default:"base.html" %}
 
-{% load cms_tags allink_cms_tags sekizai_tags i18n allink_image_tags thumbnail %}
+{% load cms_tags allink_cms_tags sekizai_tags i18n allink_image_tags thumbnail cache %}
+
+{% block body_class %}tpl-app-detail{% endblock %}
 
 {% block content %}
 
@@ -42,7 +44,7 @@
         <div class="content-section app-detail__content container-enabled">
             <div class="content-section__container">
 
-                <header class="app-detail__heading-conatiner">
+                <header class="app-detail__heading-container">
                     <h2 class="app-detail__heading">
                         {% render_model_ajax object "title" %}
                     </h2>

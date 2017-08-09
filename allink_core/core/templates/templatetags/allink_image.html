@@ -1,6 +1,6 @@
 {% load thumbnail %}
 {% if image %}
-    <picture id="{{ picture_id }}" class="lazyloader {% if not icon_enabled %}no-icon{% endif %} {% if not bg_enabled %}no-bg{% endif %} {% if bg_color and bg_color != 0 %}project-color-{{bg_color}}{% endif %}">
+    <picture id="{{ picture_id }}" class="lazyloader {% if not icon_enabled %}no-icon{% endif %} {% if not bg_enabled %}no-bg{% endif %} {% if bg_color and bg_color != 0 %}project-color-{{bg_color}}{% endif %} {% if not lazyload_enabled %}lazyloader--disabled{% endif %}">
 
         {# end render figure/figcaption #}
 
@@ -9,7 +9,7 @@
         {# XXL #}
         {% if thumbnail_xxl %}
             <source
-                data-srcset="{{thumbnail_xxl.url}}, {{thumbnail_xxl.high_resolution.url}} 2x"
+                {% if lazyload_enabled %}data-{% endif %}srcset="{{thumbnail_xxl.url}}, {{thumbnail_xxl.high_resolution.url}} 2x"
                 media="(min-width:1600px)"
                 >
         {% endif %}
@@ -17,7 +17,7 @@
         {# XL #}
         {% if thumbnail_xl %}
             <source
-                data-srcset="{{thumbnail_xl.url}}, {{thumbnail_xl.high_resolution.url}} 2x"
+                {% if lazyload_enabled %}data-{% endif %}srcset="{{thumbnail_xl.url}}, {{thumbnail_xl.high_resolution.url}} 2x"
                 media="(min-width:1200px)"
                 >
         {% endif %}
@@ -25,7 +25,7 @@
         {# LG #}
         {% if thumbnail_lg %}
         <source
-            data-srcset="{{thumbnail_xl.url}}, {{thumbnail_lg.high_resolution.url}} 2x"
+            {% if lazyload_enabled %}data-{% endif %}srcset="{{thumbnail_xl.url}}, {{thumbnail_lg.high_resolution.url}} 2x"
             media="(min-width:992px)"
             >
         {% endif %}
@@ -33,7 +33,7 @@
         {# MD #}
         {% if thumbnail_md %}
         <source
-            data-srcset="{{thumbnail_xl.url}}, {{thumbnail_md.high_resolution.url}} 2x"
+            {% if lazyload_enabled %}data-{% endif %}srcset="{{thumbnail_xl.url}}, {{thumbnail_md.high_resolution.url}} 2x"
             media="(min-width:768px)"
             >
         {% endif %}
@@ -41,7 +41,7 @@
         {# SM #}
         {% if thumbnail_sm %}
         <source
-            data-srcset="{{thumbnail_sm.url}}, {{thumbnail_sm.high_resolution.url}} 2x"
+            {% if lazyload_enabled %}data-{% endif %}srcset="{{thumbnail_sm.url}}, {{thumbnail_sm.high_resolution.url}} 2x"
             media="(min-width:576px)"
             >
         {% endif %}
@@ -50,8 +50,8 @@
 
         {# XS #}
         <img
-            class="lazyload"
-            data-srcset="{{thumbnail_xs.url}}, {{thumbnail_xs.high_resolution.url}} 2x"
+            class="{% if lazyload_enabled %}lazyload{% endif %}"
+            {% if lazyload_enabled %}data-{% endif %}srcset="{{thumbnail_xs.url}}, {{thumbnail_xs.high_resolution.url}} 2x"
             {% if instance.picture.default_alt_text and not instance.attributes.alt %} alt="{{ instance.picture.default_alt_text }}"{% endif %}
             {{ instance.attributes_str }}
         >

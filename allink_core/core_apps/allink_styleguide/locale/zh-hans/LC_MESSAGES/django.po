@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-24 10:49+0200\n"
+"POT-Creation-Date: 2017-08-09 11:09+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,12 +18,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: allink_core/core_apps/allink_styleguide/templates/allink_styleguide/styleguide.html:196
-#: allink_core/core_apps/allink_styleguide/templates/allink_styleguide/styleguide.html:427
+#: allink_core/core_apps/allink_styleguide/templates/allink_styleguide/styleguide.html:459
 msgid "Button Group"
 msgstr ""
 
 #: allink_core/core_apps/allink_styleguide/templates/allink_styleguide/styleguide.html:209
-#: allink_core/core_apps/allink_styleguide/templates/allink_styleguide/styleguide.html:440
+#: allink_core/core_apps/allink_styleguide/templates/allink_styleguide/styleguide.html:472
 msgid "Text"
 msgstr ""
 
@@ -32,7 +32,7 @@ msgstr ""
 #: allink_core/core_apps/allink_styleguide/templates/allink_styleguide/styleguide.html:256
 #: allink_core/core_apps/allink_styleguide/templates/allink_styleguide/styleguide.html:267
 #: allink_core/core_apps/allink_styleguide/templates/allink_styleguide/styleguide.html:301
-#: allink_core/core_apps/allink_styleguide/templates/allink_styleguide/styleguide.html:443
+#: allink_core/core_apps/allink_styleguide/templates/allink_styleguide/styleguide.html:475
 msgid "required"
 msgstr ""
 
@@ -71,7 +71,7 @@ msgstr ""
 
 #: allink_core/core_apps/allink_styleguide/templates/allink_styleguide/styleguide.html:307
 #: allink_core/core_apps/allink_styleguide/templates/allink_styleguide/styleguide.html:320
-msgid "Open Time Picker"
+msgid "Open Date Picker"
 msgstr ""
 
 #: allink_core/core_apps/allink_styleguide/templates/allink_styleguide/styleguide.html:314
@@ -79,17 +79,43 @@ msgid "Datepicker 2"
 msgstr ""
 
 #: allink_core/core_apps/allink_styleguide/templates/allink_styleguide/styleguide.html:323
+#: allink_core/core_apps/allink_styleguide/templates/allink_styleguide/styleguide.html:339
+#: allink_core/core_apps/allink_styleguide/templates/allink_styleguide/styleguide.html:355
 msgid "Clear Field"
 msgstr ""
 
 #: allink_core/core_apps/allink_styleguide/templates/allink_styleguide/styleguide.html:330
+msgid "Date/Timepicker"
+msgstr ""
+
+#: allink_core/core_apps/allink_styleguide/templates/allink_styleguide/styleguide.html:334
+msgid "Select date/time..."
+msgstr ""
+
+#: allink_core/core_apps/allink_styleguide/templates/allink_styleguide/styleguide.html:336
+msgid "Open Date/Time Picker"
+msgstr ""
+
+#: allink_core/core_apps/allink_styleguide/templates/allink_styleguide/styleguide.html:346
+msgid "Timepicker"
+msgstr ""
+
+#: allink_core/core_apps/allink_styleguide/templates/allink_styleguide/styleguide.html:350
+msgid "Select time..."
+msgstr ""
+
+#: allink_core/core_apps/allink_styleguide/templates/allink_styleguide/styleguide.html:352
+msgid "Open Time Picker"
+msgstr ""
+
+#: allink_core/core_apps/allink_styleguide/templates/allink_styleguide/styleguide.html:362
 msgid "Check all that apply (checkbox)"
 msgstr ""
 
-#: allink_core/core_apps/allink_styleguide/templates/allink_styleguide/styleguide.html:360
+#: allink_core/core_apps/allink_styleguide/templates/allink_styleguide/styleguide.html:392
 msgid "Select a Choice (radio)"
 msgstr ""
 
-#: allink_core/core_apps/allink_styleguide/templates/allink_styleguide/styleguide.html:390
+#: allink_core/core_apps/allink_styleguide/templates/allink_styleguide/styleguide.html:422
 msgid "URL"
 msgstr ""

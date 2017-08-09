@@ -298,7 +298,7 @@
                             <div class="datepicker-container">
                                 <input class="datepicker" id="date1" name="date1" type="text" placeholder="{% trans "Select date..." %}" required>
                                 <span class="calendar-btn">
-                                    <span class="sr-only">{% trans "Open Time Picker" %}</span>
+                                    <span class="sr-only">{% trans "Open Date Picker" %}</span>
                                 </span>
                             </div>
                         </div>
@@ -311,6 +311,38 @@
                             <div class="datepicker-container">
                                 <input class="datepicker" id="date2" name="date2" type="text" placeholder="{% trans "Select date..." %}">
                                 <span class="calendar-btn">
+                                    <span class="sr-only">{% trans "Open Date Picker" %}</span>
+                                </span>
+                                <span class="clear-btn">
+                                    <span class="sr-only">{% trans "Clear Field" %}</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="date2">
+                                 <span class="label-text">
+                                     {% trans "Date/Timepicker" %}
+                                 </span>
+                            </label>
+                            <div class="datepicker-container">
+                                <input class="datepicker" data-enableTime data-altFormat="D, j. F Y, H:i" id="date2" name="date2" type="text" placeholder="{% trans "Select date/time..." %}">
+                                <span class="calendar-btn">
+                                    <span class="sr-only">{% trans "Open Date/Time Picker" %}</span>
+                                </span>
+                                <span class="clear-btn">
+                                    <span class="sr-only">{% trans "Clear Field" %}</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="date2">
+                                 <span class="label-text">
+                                     {% trans "Timepicker" %}
+                                 </span>
+                            </label>
+                            <div class="datepicker-container">
+                                <input class="datepicker" data-enableTime data-noCalendar data-altFormat="H:i" id="date2" name="date2" type="text" placeholder="{% trans "Select time..." %}">
+                                <span class="time-btn">
                                     <span class="sr-only">{% trans "Open Time Picker" %}</span>
                                 </span>
                                 <span class="clear-btn">

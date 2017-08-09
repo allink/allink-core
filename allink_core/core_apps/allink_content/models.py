@@ -107,7 +107,7 @@ class AllinkContentPlugin(CMSPlugin):
     )
     bg_image_outer_container = FilerImageField(
         verbose_name=_(u'Background-Image'),
-        help_text=_(u'Optional: Set a background image for the content section.<br>Note: This is meant for decorative purposes only and should be used with care.'),
+        help_text=_(u'Optional: Set a background image for the content section.'),
         related_name='%(app_label)s_%(class)s_bg_image',
         blank=True,
         null=True

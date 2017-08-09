@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-24 10:49+0200\n"
+"POT-Creation-Date: 2017-08-09 11:09+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -78,7 +78,7 @@ msgid "Members Apphook"
 msgstr ""
 
 #: allink_core/apps/members/cms_toolbars.py:27
-msgid "Allink"
+msgid "allink"
 msgstr ""
 
 #: allink_core/apps/members/views.py:87

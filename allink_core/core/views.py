@@ -200,6 +200,7 @@ class AllinkBaseAjaxFormView(FormView):
     plugin_class =
     template_name = '.../plugins/search/_items.html'
     """
+    search_fields =  ['translations__title', 'translations__lead']
 
     def dispatch(self, *args, **kwargs):
         plugin_id = self.kwargs.pop('plugin_id', None)
@@ -213,7 +214,7 @@ class AllinkBaseAjaxFormView(FormView):
 
     def get_object_list(self, query_string):
         if query_string:
-            entry_query = get_query(query_string, ['translations__title', 'translations__lead'])
+            entry_query = get_query(query_string, self.search_fields)
             object_list = self.plugin.data_model.objects.active().filter(entry_query).distinct()
         else:
             object_list = self.plugin.data_model.objects.active().all().distinct()

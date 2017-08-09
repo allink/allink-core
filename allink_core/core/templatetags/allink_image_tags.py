@@ -108,7 +108,7 @@ def get_unique_key(context):
 
 
 @register.inclusion_tag('templatetags/allink_image.html', takes_context=True)
-def render_image(context, image, ratio=None, width_alias=None, crop='smart', upscale=True, bw=False, high_resolution=True, icon_enabled=True, bg_enabled=True, bg_color=None):
+def render_image(context, image, ratio=None, width_alias=None, crop='smart', upscale=True, bw=False, high_resolution=True, icon_enabled=True, bg_enabled=True, bg_color=None, lazyload_enabled=True):
     """
     -> parameters:
     image: FilerImageField
@@ -154,6 +154,7 @@ def render_image(context, image, ratio=None, width_alias=None, crop='smart', ups
         context.update({'icon_enabled': icon_enabled})
         context.update({'bg_enabled': bg_enabled})
         context.update({'bg_color': bg_color})
+        context.update({'lazyload_enabled': lazyload_enabled})
 
         sizes = get_sizes_from_width_alias(width_alias)
         thumbnail_options = {'crop': crop, 'bw': bw, 'upscale': upscale, 'HIGH_RESOLUTION': high_resolution}

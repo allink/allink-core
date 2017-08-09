@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-24 10:49+0200\n"
+"POT-Creation-Date: 2017-08-09 11:09+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,279 +17,291 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: allink_core/apps/config/abstract_models.py:17
+#: allink_core/apps/config/abstract_models.py:18
 msgid "og:image"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:19
+#: allink_core/apps/config/abstract_models.py:20
 msgid ""
 "Default preview image when page/post is shared on Facebook. <br>Min. 1200 x "
 "630 for best results."
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:24
-#: allink_core/apps/config/admin.py:22
+#: allink_core/apps/config/abstract_models.py:25
+#: allink_core/apps/config/admin.py:25
 msgid "Theme Color"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:25
-#: allink_core/apps/config/admin.py:22
+#: allink_core/apps/config/abstract_models.py:26
+#: allink_core/apps/config/admin.py:25
 msgid "Theme color for Android Chrome"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:31
+#: allink_core/apps/config/abstract_models.py:32
 msgid "Mask icon color"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:32
-#: allink_core/apps/config/admin.py:23
+#: allink_core/apps/config/abstract_models.py:33
+#: allink_core/apps/config/admin.py:26
 msgid "Mask icon color for safari-pinned-tab.svg"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:38
+#: allink_core/apps/config/abstract_models.py:39
 msgid "msapplication TileColor"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:39
-#: allink_core/apps/config/admin.py:24
+#: allink_core/apps/config/abstract_models.py:40
+#: allink_core/apps/config/admin.py:27
 msgid "MS application TitleColor Field"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:45
+#: allink_core/apps/config/abstract_models.py:46
 msgid "Gallery Plugin max length of caption text Field"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:50
+#: allink_core/apps/config/abstract_models.py:51
 msgid "News verbose name"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:51
+#: allink_core/apps/config/abstract_models.py:52
 msgid "News entry"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:55
+#: allink_core/apps/config/abstract_models.py:56
 msgid "News verbose name plural"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:56
+#: allink_core/apps/config/abstract_models.py:57
 msgid "News"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:60
-#: allink_core/apps/config/abstract_models.py:74
-#: allink_core/apps/config/abstract_models.py:88
-#: allink_core/apps/config/abstract_models.py:102
-#: allink_core/apps/config/abstract_models.py:116
-#: allink_core/apps/config/abstract_models.py:130
-#: allink_core/apps/config/abstract_models.py:144
-#: allink_core/apps/config/abstract_models.py:158
-#: allink_core/apps/config/abstract_models.py:172
-#: allink_core/apps/config/abstract_models.py:186
+#: allink_core/apps/config/abstract_models.py:61
+#: allink_core/apps/config/abstract_models.py:75
+#: allink_core/apps/config/abstract_models.py:89
+#: allink_core/apps/config/abstract_models.py:103
+#: allink_core/apps/config/abstract_models.py:117
+#: allink_core/apps/config/abstract_models.py:131
+#: allink_core/apps/config/abstract_models.py:145
+#: allink_core/apps/config/abstract_models.py:159
+#: allink_core/apps/config/abstract_models.py:173
+#: allink_core/apps/config/abstract_models.py:187
 msgid "Toolbar enabled?"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:64
+#: allink_core/apps/config/abstract_models.py:65
 msgid "Events verbose name"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:65
+#: allink_core/apps/config/abstract_models.py:66
 msgid "Event"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:69
+#: allink_core/apps/config/abstract_models.py:70
 msgid "Events verbose name plural"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:70
+#: allink_core/apps/config/abstract_models.py:71
 msgid "Events"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:78
+#: allink_core/apps/config/abstract_models.py:79
 msgid "Events Registration verbose name"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:79
+#: allink_core/apps/config/abstract_models.py:80
 msgid "Event Registration"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:83
+#: allink_core/apps/config/abstract_models.py:84
 msgid "Events Registration verbose name plural"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:84
+#: allink_core/apps/config/abstract_models.py:85
 msgid "Event Registrations"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:92
+#: allink_core/apps/config/abstract_models.py:93
 msgid "Locations verbose name"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:93
+#: allink_core/apps/config/abstract_models.py:94
 msgid "Location"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:97
+#: allink_core/apps/config/abstract_models.py:98
 msgid "Locations verbose name plural"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:98
+#: allink_core/apps/config/abstract_models.py:99
 msgid "Locations"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:106
+#: allink_core/apps/config/abstract_models.py:107
 msgid "People verbose name"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:107
+#: allink_core/apps/config/abstract_models.py:108
 msgid "Person"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:111
+#: allink_core/apps/config/abstract_models.py:112
 msgid "People verbose name plural"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:112
+#: allink_core/apps/config/abstract_models.py:113
 msgid "People"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:120
+#: allink_core/apps/config/abstract_models.py:121
 msgid "Testimonials verbose name"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:121
+#: allink_core/apps/config/abstract_models.py:122
 msgid "Testimonial"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:125
+#: allink_core/apps/config/abstract_models.py:126
 msgid "Testimonials verbose name plural"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:126
+#: allink_core/apps/config/abstract_models.py:127
 msgid "Testimonials"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:134
+#: allink_core/apps/config/abstract_models.py:135
 msgid "Work verbose name"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:135
+#: allink_core/apps/config/abstract_models.py:136
 msgid "Project/ Reference"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:139
+#: allink_core/apps/config/abstract_models.py:140
 msgid "Work verbose name plural"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:140
+#: allink_core/apps/config/abstract_models.py:141
 msgid "Projects/ References"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:148
+#: allink_core/apps/config/abstract_models.py:149
 msgid "Members verbose name"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:149
+#: allink_core/apps/config/abstract_models.py:150
 msgid "Member"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:153
+#: allink_core/apps/config/abstract_models.py:154
 msgid "Members verbose name plural"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:154
+#: allink_core/apps/config/abstract_models.py:155
 msgid "Members"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:162
+#: allink_core/apps/config/abstract_models.py:163
 msgid "Contact verbose name"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:163
+#: allink_core/apps/config/abstract_models.py:164
 msgid "Contact request"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:167
+#: allink_core/apps/config/abstract_models.py:168
 msgid "Contact verbose name plural"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:168
+#: allink_core/apps/config/abstract_models.py:169
 msgid "Contact requests"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:176
+#: allink_core/apps/config/abstract_models.py:177
 msgid "Terms of Service verbose name"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:177
-#: allink_core/apps/config/abstract_models.py:182
+#: allink_core/apps/config/abstract_models.py:178
+#: allink_core/apps/config/abstract_models.py:183
 msgid "Terms of Service"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:181
+#: allink_core/apps/config/abstract_models.py:182
 msgid "Terms of Service verbose name plural"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:190
+#: allink_core/apps/config/abstract_models.py:191
+msgid "allink Page Extension Toolbar Enabled?"
+msgstr ""
+
+#: allink_core/apps/config/abstract_models.py:195
 msgid "Google Site Verification Code"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:196
+#: allink_core/apps/config/abstract_models.py:201
 msgid "Default to email"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:201
+#: allink_core/apps/config/abstract_models.py:206
 msgid "Default from email"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:208
+#: allink_core/apps/config/abstract_models.py:213
 msgid "Configuration"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:280
+#: allink_core/apps/config/abstract_models.py:290
 msgid "Base title"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:283
+#: allink_core/apps/config/abstract_models.py:293
 msgid ""
 "Default base title, Is also used for default base og:title when page/post is "
 "shared on Facebook. <br>If not supplied the name form Django Sites will be "
 "used instead."
 msgstr ""
 
-#: allink_core/apps/config/admin.py:23
+#: allink_core/apps/config/abstract_models.py:306
+msgid "Special Subnav enabled?"
+msgstr ""
+
+#: allink_core/apps/config/admin.py:26
 msgid "Mask Icon Color"
 msgstr ""
 
-#: allink_core/apps/config/admin.py:24
+#: allink_core/apps/config/admin.py:27
 msgid "MS Application Title Color"
 msgstr ""
 
-#: allink_core/apps/config/admin.py:49 allink_core/apps/config/admin.py:63
+#: allink_core/apps/config/admin.py:52 allink_core/apps/config/admin.py:66
 msgid "Site Meta"
 msgstr ""
 
-#: allink_core/apps/config/admin.py:74
+#: allink_core/apps/config/admin.py:77
 msgid "Email"
 msgstr ""
 
-#: allink_core/apps/config/admin.py:84
+#: allink_core/apps/config/admin.py:87
 msgid "App Names and Toolbar"
 msgstr ""
 
-#: allink_core/apps/config/admin.py:88
+#: allink_core/apps/config/admin.py:91
 msgid ""
 "Please notice that the plugin names will only change after restarting the "
 "server.(Please redeploy with Divio Cloud Dashboard.)"
 msgstr ""
 
-#: allink_core/apps/config/admin.py:103
+#: allink_core/apps/config/admin.py:107
 msgid "Gallery Plugin"
 msgstr ""
 
-#: allink_core/apps/config/cms_toolbars.py:25
-msgid "Allink"
+#: allink_core/apps/config/cms_toolbars.py:27
+msgid "allink"
 msgstr ""
 
-#: allink_core/apps/config/cms_toolbars.py:29
+#: allink_core/apps/config/cms_toolbars.py:31
 msgid "Config"
+msgstr ""
+
+#: allink_core/apps/config/cms_toolbars.py:43
+msgid "allink settings"
 msgstr ""

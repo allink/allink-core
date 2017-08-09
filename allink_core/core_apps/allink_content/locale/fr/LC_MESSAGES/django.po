@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-24 10:49+0200\n"
+"POT-Creation-Date: 2017-08-09 11:09+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -166,9 +166,7 @@ msgid ""
 msgstr ""
 
 #: allink_core/core_apps/allink_content/models.py:110
-msgid ""
-"Optional: Set a background image for the content section.<br>Note: This is "
-"meant for decorative purposes only and should be used with care."
+msgid "Optional: Set a background image for the content section."
 msgstr ""
 
 #: allink_core/core_apps/allink_content/models.py:117
@@ -200,7 +198,7 @@ msgstr ""
 
 #: allink_core/core_apps/allink_content/models.py:134
 msgid ""
-"The image that is being displayed instead of the video on mobile devices."
+"The image that is being displayed on mobile devices instead of the video."
 msgstr ""
 
 #: allink_core/core_apps/allink_content/models.py:139
@@ -218,7 +216,7 @@ msgid "Ignore for pdf export"
 msgstr ""
 
 #: allink_core/core_apps/allink_content/models.py:147
-msgid "If checked, the content plugin will be ignored when generting a pdf."
+msgid "If checked, this content section will be ignored when generting a pdf."
 msgstr ""
 
 #: allink_core/core_apps/allink_content/models.py:202

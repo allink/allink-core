@@ -50,7 +50,8 @@ class CMSAllinkImagePlugin(CMSPluginBase):
             (_('Link settings'), {
                 'classes': ('collapse',),
                 'fields': (
-                    ('link_url', 'internal_link',),
+                    'internal_link',
+                    'link_url',
                     ('link_mailto', 'link_phone'),
                     ('link_anchor', 'link_special'),
                     'link_file',
