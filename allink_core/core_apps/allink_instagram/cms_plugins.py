@@ -1,14 +1,33 @@
 # -*- coding: utf-8 -*-
 import random
+import requests
+from django import forms
 from django.utils.translation import ugettext_lazy as _
 from django.core.cache import cache
+
 from cms.plugin_pool import plugin_pool
 from cms.plugin_base import CMSPluginBase
 
-import requests
-
 from allink_core.core_apps.allink_instagram.models import AllinkInstagramPlugin
-from allink_core.core_apps.allink_instagram.forms import AllinkInstagramPluginForm
+
+
+class AllinkInstagramPluginForm(forms.ModelForm):
+
+    class Meta:
+        model = AllinkInstagramPlugin
+        fields = (
+            'template',
+            'items_per_row',
+            'paginated_by',
+        )
+
+    def __init__(self, *args, **kwargs):
+        super(AllinkInstagramPluginForm, self).__init__(*args, **kwargs)
+        self.fields['template'] = forms.CharField(
+            label=_(u'Template'),
+            widget=forms.Select(choices=self.instance.get_templates()),
+            required=True,
+        )
 
 
 @plugin_pool.register_plugin

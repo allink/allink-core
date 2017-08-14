@@ -1,10 +1,19 @@
 # -*- coding: utf-8 -*-
-
+from django import forms
 from django.utils.translation import ugettext_lazy as _
+
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
-from allink_core.core_apps.allink_terms.models import AllinkTerms, AllinkTermsPlugin
-from allink_core.core_apps.allink_terms.forms import AllinkTermsPluginForm
+
+from allink_core.core_apps.allink_terms.models import AllinkTerms
+from allink_core.core_apps.allink_terms.models import AllinkTermsPlugin
+
+
+class AllinkTermsPluginForm(forms.ModelForm):
+
+    class Meta:
+        model = AllinkTermsPlugin
+        exclude = ('page', 'position', 'placeholder', 'language', 'plugin_type')
 
 
 @plugin_pool.register_plugin

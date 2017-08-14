@@ -1,9 +1,18 @@
 # -*- coding: utf-8 -*-
+from django import forms
 from django.utils.translation import ugettext_lazy as _
+
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
+
 from allink_core.core_apps.allink_pdf.models import AllinkPdfPageBreakPlugin
-from allink_core.core_apps.allink_pdf.forms import AllinkPdfPageBreakPluginForm
+
+
+class AllinkPdfPageBreakPluginForm(forms.ModelForm):
+
+    class Meta:
+        model = AllinkPdfPageBreakPlugin
+        exclude = ('page', 'position', 'placeholder', 'language', 'plugin_type')
 
 
 @plugin_pool.register_plugin

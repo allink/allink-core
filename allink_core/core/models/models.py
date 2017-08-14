@@ -46,18 +46,6 @@ class AllinkBaseModel(models.Model):
     """
      An abstract base class model for every standard allink app
 
-     translateable fields defined in child model because parler can't handle translation override in abstract models
-          -> Translated Fields have to be specified in the child model
-
-              title = models.CharField(max_length=255, validators=[MaxLengthValidator(255)])
-              slug = models.SlugField(_(u'Slug'),
-                                       max_length=255,
-                                       default='',
-                                       blank=True,
-                                       help_text=_(u"Leave blank to auto-generate a unique slug."))
-
-    -> the AllinkBaseAdmin class expects the fields: 'title' and 'slug'
-
     """
 
     # Is used to auto generate Category
@@ -286,19 +274,12 @@ class AllinkBaseTranslatedFieldsModel(TranslatedFieldsModel):
 @python_2_unicode_compatible
 class AllinkBaseAppContentPlugin(CMSPlugin):
     """
-    Base plugin which provides standard functionality to inherit from
-    all Apps should inherit from this, to create a "app pointer plugin"
+    Base plugin which provides standard functionality
+    all Content App-Plugins should inherit from this, to create a "app pointer plugin"
 
     - allows to display application content for different apps
     - ability to filter and sort entries
     - manually select entries (search entries and select/ sort)
-
-    display opitions:
-    - amount of entries on first page
-    - column amount
-    - how to display detail page (softpage or external page)
-    - pagination ("Load more", "1 2 3 ... 4 5")
-
 
     """
 
@@ -379,6 +360,7 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
         null=True,
         default=None
     )
+    
     # manual_entries  -> defined in subclasses (no elegant way found to define this here.)
 
     template = models.CharField(

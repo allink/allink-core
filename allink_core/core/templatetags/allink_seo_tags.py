@@ -104,7 +104,7 @@ def render_meta_og(context, obj=None, page_title=None, base_page_title=None, ima
         )
 
         og_title = get_og_title(allink_config, og_title, obj.og_title, obj.title)
-        description = get_description(description, obj.og_description, obj.lead)
+        description = get_description(description, obj.og_description, getattr(obj, 'lead', ''))
         image_url = get_image_url(allink_config, image, getattr(obj, 'og_image'), getattr(obj, 'preview_image'))
 
     # cms page (no object is supplied)

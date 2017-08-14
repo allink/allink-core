@@ -1,10 +1,25 @@
 # -*- coding: utf-8 -*-
 from django.utils.translation import ugettext_lazy as _
+from django import forms
 from django.conf import settings
+
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
 from allink_core.core_apps.allink_group.models import AllinkGroupContainerPlugin, AllinkGroupPlugin
-from allink_core.core_apps.allink_group.forms import AllinkGroupContainerPluginForm, AllinkGroupPluginForm
+
+
+class AllinkGroupContainerPluginForm(forms.ModelForm):
+
+    class Meta:
+        model = AllinkGroupContainerPlugin
+        exclude = ('page', 'position', 'placeholder', 'language', 'plugin_type')
+
+
+class AllinkGroupPluginForm(forms.ModelForm):
+
+    class Meta:
+        model = AllinkGroupPlugin
+        exclude = ('page', 'position', 'placeholder', 'language', 'plugin_type')
 
 
 @plugin_pool.register_plugin

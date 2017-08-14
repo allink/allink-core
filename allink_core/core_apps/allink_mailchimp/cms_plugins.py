@@ -1,16 +1,23 @@
 # -*- coding: utf-8 -*-
-
+from django import forms
 from django.utils.translation import ugettext_lazy as _
-
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
 from webpack_loader.utils import get_files
 
 from .config import MailChimpConfig
+from .models import AllinkSignupFormPlugin
+
 config = MailChimpConfig()
 
-from .models import AllinkSignupFormPlugin
-from .forms import AllinkSignupFormPluginForm
+
+class AllinkSignupFormPluginForm(forms.ModelForm):
+
+    class Meta:
+        model = AllinkSignupFormPlugin
+        fields = (
+            'signup_form',
+        )
 
 
 @plugin_pool.register_plugin

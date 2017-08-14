@@ -1,16 +1,25 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
 from django.utils.html import format_html
+from django import forms
 from django.utils.translation import ugettext_lazy as _
 
 from import_export.admin import ImportMixin
 from import_export.formats import base_formats
 
 from allink_core.core.utils import base_url
-
-from allink_core.core_apps.allink_legacy_redirect.forms import AllinkLegacyChangeAdminForm
-from allink_core.core_apps.allink_legacy_redirect.models import AllinkLegacyLink
 from allink_core.core_apps.allink_legacy_redirect.resources import AllinkLegacyLinkResource
+from allink_core.core_apps.allink_legacy_redirect.models import AllinkLegacyLink
+from allink_core.core.forms.fields import SelectLinkField
+from allink_core.core.forms.mixins import AllinkInternalLinkFieldMixin
+
+
+class AllinkLegacyChangeAdminForm(AllinkInternalLinkFieldMixin, forms.ModelForm):
+    new_link = SelectLinkField(label=_('New Page'))
+
+    class Meta:
+        model = AllinkLegacyLink
+        fields = ['old', 'overwrite', 'active', 'match_subpages']
 
 
 class AllinkLegacyLinkAdmin(ImportMixin, admin.ModelAdmin):
