@@ -115,7 +115,7 @@ class AllinkButtonLinkPlugin(CMSPlugin, AllinkLinkFieldsModel):
     # form specific fields
     send_internal_mail = models.BooleanField(
         _(u'Send internal e-mail'),
-        default=True,
+        default=False,
         help_text=_(u'Send confirmation mail to defined internal e-mail addresses.')
     )
     internal_email_addresses = ArrayField(
@@ -134,7 +134,7 @@ class AllinkButtonLinkPlugin(CMSPlugin, AllinkLinkFieldsModel):
     )
     send_external_mail = models.BooleanField(
         _(u'Send external e-mail'),
-        default=True,
+        default=False,
         help_text=_(u'Send confirmation mail to customer.')
     )
     thank_you_text = models.TextField(

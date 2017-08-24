@@ -23,5 +23,5 @@ class ContactToolbar(CMSToolbar):
 
 
 
-if getattr(Config.get_solo(), 'contact_toolbar_enabled', True):
+if getattr(Config.get_solo(), 'contactrequest_toolbar_enabled', True):
     toolbar_pool.register(ContactToolbar)

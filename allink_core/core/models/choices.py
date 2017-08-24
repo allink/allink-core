@@ -126,17 +126,6 @@ TARGET_CHOICES = (
     (IMAGE_MODAL, _(u'Lightbox (Image)')),
 )
 
-SPECIAL_LINKS_CHOICES = (
-    ('account_login', _(u'Member Login')),
-    ('account_logout', _(u'Member Logout')),
-    ('account_change_password', _(u'Member Change Passwort')),
-    ('account_reset_password', _(u'Member Reset Passwort')),
-    ('members:profile_edit', _(u'Member Edit Profile')),
-    # ('members:register', _(u'Member Register')),
-    # ('members:password_reset_recover', _(u'Member Reset Passwort')),
-    ('contact:request', _(u'Contact Form')),
-)
-
 ####################################################################################
 
 # IMAGE

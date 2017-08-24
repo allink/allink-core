@@ -35,7 +35,7 @@ from cms.models.fields import PageField
 from allink_core.core.utils import base_url, get_additional_templates
 from allink_core.core.loading import get_model
 from allink_core.core.models.managers import AllinkBaseModelManager
-from allink_core.core.models.choices import SALUTATION_CHOICES, SPECIAL_LINKS_CHOICES, TARGET_CHOICES, NEW_WINDOW, SOFTPAGE_LARGE, SOFTPAGE_SMALL, FORM_MODAL, IMAGE_MODAL, BLANK_CHOICE
+from allink_core.core.models.choices import SALUTATION_CHOICES, TARGET_CHOICES, NEW_WINDOW, SOFTPAGE_LARGE, SOFTPAGE_SMALL, FORM_MODAL, IMAGE_MODAL, BLANK_CHOICE
 from allink_core.core.models.fields import ZipCodeField
 from allink_core.core.utils import get_additional_choices
 from allink_core.core_apps.allink_categories.models import AllinkCategory
@@ -360,7 +360,7 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
         null=True,
         default=None
     )
-    
+
     # manual_entries  -> defined in subclasses (no elegant way found to define this here.)
 
     template = models.CharField(
@@ -953,6 +953,7 @@ class AllinkLinkFieldsModel(AllinkInternalLinkFieldsModel):
         blank=True,
         default='',
         help_text=_(u'Provide a valid URL to an external website.'),
+        max_length=500,
     )
     link_mailto = models.EmailField(
         verbose_name=_(u'Email address'),
@@ -1028,7 +1029,7 @@ class AllinkLinkFieldsModel(AllinkInternalLinkFieldsModel):
 
     @classmethod
     def get_link_special_choices(self):
-        return BLANK_CHOICE + SPECIAL_LINKS_CHOICES + get_additional_choices('BUTTON_LINK_SPECIAL_LINKS_CHOICES')
+        return BLANK_CHOICE + get_additional_choices('BUTTON_LINK_SPECIAL_LINKS_CHOICES')
 
     def get_link_url(self):
         internal_link = self.link
