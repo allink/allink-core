@@ -1,1 +1,0 @@
-# allink-core repository
