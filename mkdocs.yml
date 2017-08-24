@@ -1,0 +1,14 @@
+site_name: allink-core
+pages:
+  - Introduction: 'index.md'
+  - Working on client project:
+    - 'Installation': 'client/install.md'
+    - 'Fork app': 'client/fork_app.md'
+    - 'Create new app': 'client/new_app.md'
+    - 'Translations': 'client/translations.md'
+  - Working on allink-core:
+    - 'Contribute': 'contribute/contribute.md'
+    - 'General help': 'contribute/help.md'
+
+
+theme: readthedocs
