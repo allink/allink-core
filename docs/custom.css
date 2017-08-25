@@ -1,0 +1,11 @@
+li.toctree-l3{
+    display: none;
+}
+
+a.toctree-l4{
+    display: none;
+  }
+
+.admonition code{
+    color: #E74C3C;
+}
