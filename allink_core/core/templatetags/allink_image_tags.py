@@ -1,16 +1,14 @@
 # -*- coding: utf-8 -*-
 from django import template
-from django.utils.translation import ugettext_lazy as _
 from django.core.cache import cache
 from django.conf import settings
-from django.contrib import messages
 
 from filer.models import Folder
 from easy_thumbnails.files import get_thumbnailer
 from easy_thumbnails.exceptions import InvalidImageFormatError
 
 from allink_core.core.loading import get_model
-from allink_core.core.utils import get_height_from_ratio, get_ratio_w_h
+from allink_core.core.utils import get_height_from_ratio, get_ratio_w_h, get_key_from_dict
 
 register = template.Library()
 
@@ -225,9 +223,9 @@ def render_favicons_set(context):
 
         config = Config.get_solo()
 
-        theme_color = getattr(config, 'theme_color', '#ffffff')
-        mask_icon_color = getattr(config, 'mask_icon_color', '#282828')
-        msapplication_tilecolor = getattr(config, 'msapplication_tilecolor', '#282828')
+        theme_color = get_key_from_dict(settings.PROJECT_COLORS, config.theme_color) if config.theme_color else '#ffffff'
+        mask_icon_color = get_key_from_dict(settings.PROJECT_COLORS, config.mask_icon_color) if config.mask_icon_color else '#282828'
+        msapplication_tilecolor = get_key_from_dict(settings.PROJECT_COLORS, config.msapplication_tilecolor) if config.msapplication_tilecolor else '#282828'
 
         extra_context.update({
             'apple_favs': apple_favs,

@@ -151,3 +151,12 @@ def get_query(query_string, search_fields):
             query = query & or_query
 
     return query
+
+
+def get_key_from_dict(dict, value):
+    """Takes a dict and a value, returns a list with matching keys."""
+    try:
+        return list(dict.keys())[list(dict.values()).index(value)]
+    except:
+        return None
+
