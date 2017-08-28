@@ -91,7 +91,7 @@ def get_ratio_w_h(ratio):
     returns width and height from string e.g. '1-2' or '4-3' as integer
     """
     w, h = ratio.split('-')
-    return int(w), int(h)
+    return float(w), float(h)
 
 
 def get_display(key, list):
