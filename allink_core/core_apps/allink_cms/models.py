@@ -13,7 +13,15 @@ class AllinkPageChooserPlugin(CMSPlugin):
         related_name='%(app_label)s_%(class)s',
         parent_link=True,
     )
-    
+
+    def copy_relations(self, oldinstance):
+        self.allinkpage_set.all().delete()
+
+        for allink_page in oldinstance.allinkpage_set.all():
+            allink_page.pk = None
+            allink_page.pagechooser_id = self.id
+            allink_page.save()
+
     class Meta:
         app_label = 'allink_cms'
 
@@ -29,15 +37,16 @@ class AllinkPage(models.Model):
     )
     just_descendants = models.BooleanField(
         _(u'Select just descendants'),
-        help_text=_(u'If checked and pages selected manually, only the descendants of the selected pages will be listed.'),
+        help_text=_(
+            u'If checked and pages selected manually, only the descendants of the selected pages will be listed.'),
         default=False
     )
     page = PageField()
-    
+
     class Meta:
         app_label = 'allink_cms'
         verbose_name = _(u'Page')
         verbose_name_plural = _(u'Pages')
-    
+
     def __str__(self):
         return str(self.page.get_menu_title())

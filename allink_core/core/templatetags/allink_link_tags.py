@@ -9,6 +9,8 @@ register = template.Library()
 def link_attribute_string(instance, request=None):
     attributes = ''
     attributes += 'target="_blank"' if instance.new_window_enabled else ''
+    # https://developers.google.com/web/tools/lighthouse/audits/noopener
+    attributes += ' rel="noopener"' if instance.new_window_enabled else ''
     attributes += ' data-trigger-form-modal' if instance.form_modal_enabled else ''
     attributes += ' data-trigger-image-modal' if instance.image_modal_enabled else ''
     attributes += ' data-cms-page' if instance.is_page_link else ''

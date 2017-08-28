@@ -25,16 +25,16 @@ class AllinkPageInline(admin.StackedInline):
 @plugin_pool.register_plugin
 class CMSAllinkPageChooserPlugin(CMSPluginBase):
     model = AllinkPageChooserPlugin
-    
+
     name = _('Page Chooser')
     module = _('Generic')
     cache = False
     form = AllinkPageChooserPluginForm
     inlines = [AllinkPageInline, ]
-    
+
     def get_render_template(self, context, instance, placeholder):
         return 'allink_cms/plugins/pagechooser/content.html'
-    
+
     def render(self, context, instance, placeholder):
         object_list = []
         for page in instance.allinkpage_set.all().order_by('id'):
@@ -45,4 +45,5 @@ class CMSAllinkPageChooserPlugin(CMSPluginBase):
                     object_list.append(page.page)
 
         context['object_list'] = object_list
+        context['instance'] = instance
         return context
