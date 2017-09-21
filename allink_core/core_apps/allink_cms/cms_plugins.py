@@ -5,7 +5,7 @@ from django.utils.translation import ugettext_lazy as _, get_language
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
 
-from allink_core.core_apps.allink_cms.models import AllinkPageChooserPlugin, AllinkPage
+from allink_core.core_apps.allink_cms.models import AllinkPageChooserPlugin, AllinkPage, AllinkLanguageChooserPlugin
 
 
 class AllinkPageChooserPluginForm(forms.ModelForm):
@@ -47,3 +47,15 @@ class CMSAllinkPageChooserPlugin(CMSPluginBase):
         context['object_list'] = object_list
         context['instance'] = instance
         return context
+
+
+@plugin_pool.register_plugin
+class CMSAllinkLanguageChooserPlugin(CMSPluginBase):
+    model = AllinkLanguageChooserPlugin
+
+    name = _('Language Chooser')
+    module = _('Generic')
+    cache = True
+
+    def get_render_template(self, context, instance, placeholder):
+        return 'allink_cms/plugins/languagechooser/content.html'

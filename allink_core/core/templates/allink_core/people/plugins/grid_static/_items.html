@@ -30,10 +30,10 @@
                         {{ object.units }}<br>
                     {% endif %}
                     {% if object.email %}
-                        <a href="mailto:{{object.email}}" data-softpage-disabled>{% trans "E-Mail" %}</a><br>
+                        <a class="text" href="mailto:{{object.email}}" data-softpage-disabled>{% trans "E-Mail" %}</a><br>
                     {% endif %}
                     {% if object.phone %}
-                        <a href="tel:{{object.phone}}" data-softpage-disabled>{{object.phone_formatted}}</a><br>
+                        <a href="tel:{{object.phone}}" data-softpage-disabled>{{object.phone}}</a><br>
                     {% endif %}
                 </p>
             </div>

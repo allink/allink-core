@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-09 11:09+0200\n"
+"POT-Creation-Date: 2017-09-20 09:58+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,61 +18,61 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:14
-msgid "Button/ Link Container"
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:15
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:56
-msgid "Generic"
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:39
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:110
-msgid "Advanced settings"
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:55
-msgid "Button/ Link"
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:81
-msgid "Link settings"
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:92
-msgid "Additional email settings"
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:99
-msgid "Additional form settings"
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/forms.py:25
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:30
 msgid "Predifined variations"
 msgstr ""
 
-#: allink_core/core_apps/allink_button_link/forms.py:33
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:38
 msgid "Link Internal"
 msgstr ""
 
-#: allink_core/core_apps/allink_button_link/forms.py:51
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:56
 msgid "Special Links"
 msgstr ""
 
-#: allink_core/core_apps/allink_button_link/forms.py:54
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:59
 msgid ""
 "Important: In case the selected option is a <strong>form</strong>, make sure "
 "to select <strong>Lightbox (Forms)</strong> from the <strong>link target</"
 "strong> options for best user experience."
 msgstr ""
 
-#: allink_core/core_apps/allink_button_link/forms.py:77
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:82
 msgid "Please supply at least one E-Mail Address."
 msgstr ""
 
-#: allink_core/core_apps/allink_button_link/forms.py:79
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:84
 msgid "Please supply an E-Mail Address."
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:91
+msgid "Button/ Link Container"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:92
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:133
+msgid "Generic"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:116
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:187
+msgid "Advanced settings"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:132
+msgid "Button/ Link"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:158
+msgid "Link settings"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:169
+msgid "Additional email settings"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:176
+msgid "Additional form settings"
 msgstr ""
 
 #: allink_core/core_apps/allink_button_link/model_fields.py:16

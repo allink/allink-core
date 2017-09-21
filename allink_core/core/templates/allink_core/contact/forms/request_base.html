@@ -43,8 +43,10 @@
 
         <div class="form-group {% if form.contact_type.errors %}has-error{% endif %}">
             <label for="{{ form.contact_type.id_for_label }}" class="control-label required">
-                <span class="label-text">{% trans "Please contact me via" %}</span>
-                <span class="required-symbol">{% trans "(required)" %}</span>
+                {% spaceless %}
+                    <span class="label-text">{% trans "Please contact me via" %}</span>
+                    <span class="required-symbol"><span class="sr-only">{% trans "(required)" %}</span></span>
+                {% endspaceless %}
             </label>
             {% render_field form.contact_type class+="selectpicker form-control" required="required" %}
             {{ form.contact_type.errors }}
@@ -53,7 +55,7 @@
         <div class="form-group phone-container {% if form.phone.errors %}has-error{% endif %}" style="display:none;">
             <label for="{{ form.phone.id_for_label }}" class="control-label required">
                 <span class="label-text">{% trans "Phone" %}</span>
-                <span class="required-symbol">{% trans "(required)" %}</span>
+                <span class="required-symbol"><span class="sr-only">{% trans "(required)" %}</span></span>
             </label>
             {% render_field form.phone class+="form-control" required="required" %}
             {{ form.phone.errors }}
@@ -62,7 +64,7 @@
         <div class="form-group col-1-1 phone-container" style="display:none;">
             <div class="control-label required">
                 <span class="label-text">{% trans "Choose date and time" %}</span>
-                <span class="required-symbol">{% trans "(required)" %}</span>
+                <span class="required-symbol"><span class="sr-only">{% trans "(required)" %}</span></span>
             </div>
             <div class="col-container">
                 <div class="col col-1 error-state-handler {% if form.date.errors %}has-error{% endif %}">
@@ -88,7 +90,7 @@
         <div class="form-group email-container {% if form.email.errors %}has-error{% endif %}" style="display:none;">
             <label for="{{ form.email.id_for_label }}" class="control-label required">
                 <span class="label-text">{% trans "Email" %}</span>
-               <span class="required-symbol">{% trans "(required)" %}</span>
+               <span class="required-symbol"><span class="sr-only">{% trans "(required)" %}</span></span>
             </label>
             {% render_field form.email class+="form-control" required="required" %}
             {{ form.email.errors }}

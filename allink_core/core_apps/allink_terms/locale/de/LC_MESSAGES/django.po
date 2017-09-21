@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-09 11:09+0200\n"
+"POT-Creation-Date: 2017-09-21 09:51+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,13 +18,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: allink_core/core_apps/allink_terms/cms_plugins.py:13
+#: allink_core/core_apps/allink_terms/cms_plugins.py:22
 #: allink_core/core_apps/allink_terms/models.py:48
 #: allink_core/core_apps/allink_terms/models.py:49
 msgid "Terms of Service"
 msgstr "AGBs"
 
-#: allink_core/core_apps/allink_terms/cms_plugins.py:14
+#: allink_core/core_apps/allink_terms/cms_plugins.py:23
 msgid "allink modules"
 msgstr ""
 

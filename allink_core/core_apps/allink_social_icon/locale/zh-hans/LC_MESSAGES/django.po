@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-09 11:09+0200\n"
+"POT-Creation-Date: 2017-09-20 09:58+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,25 +17,25 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: allink_core/core_apps/allink_social_icon/cms_plugins.py:13
-msgid "Social Icon Container"
-msgstr ""
-
-#: allink_core/core_apps/allink_social_icon/cms_plugins.py:14
-#: allink_core/core_apps/allink_social_icon/cms_plugins.py:42
-msgid "Generic"
-msgstr ""
-
-#: allink_core/core_apps/allink_social_icon/cms_plugins.py:41
-msgid "Social Icon"
-msgstr ""
-
-#: allink_core/core_apps/allink_social_icon/forms.py:19
+#: allink_core/core_apps/allink_social_icon/cms_plugins.py:22
 msgid "Predifined variations for Social Icon Plugin"
 msgstr ""
 
-#: allink_core/core_apps/allink_social_icon/forms.py:36
+#: allink_core/core_apps/allink_social_icon/cms_plugins.py:39
 msgid "Icon choices for Social Icon Plugin"
+msgstr ""
+
+#: allink_core/core_apps/allink_social_icon/cms_plugins.py:48
+msgid "Social Icon Container"
+msgstr ""
+
+#: allink_core/core_apps/allink_social_icon/cms_plugins.py:49
+#: allink_core/core_apps/allink_social_icon/cms_plugins.py:77
+msgid "Generic"
+msgstr ""
+
+#: allink_core/core_apps/allink_social_icon/cms_plugins.py:76
+msgid "Social Icon"
 msgstr ""
 
 #: allink_core/core_apps/allink_social_icon/models.py:28

@@ -50,3 +50,14 @@ class AllinkPage(models.Model):
 
     def __str__(self):
         return str(self.page.get_menu_title())
+
+# Language Chooser Plugin
+class AllinkLanguageChooserPlugin(CMSPlugin):
+    cmsplugin_ptr = models.OneToOneField(
+        CMSPlugin,
+        related_name='%(app_label)s_%(class)s',
+        parent_link=True,
+    )
+
+    class Meta:
+        app_label = 'allink_cms'

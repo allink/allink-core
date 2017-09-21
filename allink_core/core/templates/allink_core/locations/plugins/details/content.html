@@ -25,13 +25,13 @@
 
                  <p>
                      {% if object.phone %}
-                         {% trans "Phone:" %} <a class="text" href="tel:{{object.phone}}">{{object.phone_formatted}}</a><br>
+                         {% trans "Phone:" %} <a class="text" href="tel:{{object.phone}}">{{object.phone}}</a><br>
                      {% endif %}
                      {% if object.mobile %}
-                         {% trans "Mobile:" %} <a class="text" href="tel:{{object.mobile}}">{{object.mobile_formatted}}</a><br>
+                         {% trans "Mobile:" %} <a class="text" href="tel:{{object.mobile}}">{{object.mobile}}</a><br>
                      {% endif %}
                      {% if object.fax %}
-                         {% trans "Fax:" %} <a class="text" href="tel:{{object.fax}}">{{object.fax_formatted}}</a><br>
+                         {% trans "Fax:" %} <a class="text" href="tel:{{object.fax}}">{{object.fax}}</a><br>
                      {% endif %}
                      {% if object.email %}
                          {% trans "E-Mail:" %} <a class="text" href="mailto:{{object.email}}">{{object.email}}</a><br>

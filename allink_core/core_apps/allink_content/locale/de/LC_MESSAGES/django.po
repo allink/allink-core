@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-09 11:09+0200\n"
+"POT-Creation-Date: 2017-09-21 09:51+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,34 +18,62 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: allink_core/core_apps/allink_content/cms_plugins.py:16
+#: allink_core/core_apps/allink_content/cms_plugins.py:24
+#: allink_core/core_apps/allink_content/models.py:61
+msgid "Template"
+msgstr ""
+
+#: allink_core/core_apps/allink_content/cms_plugins.py:30
+#: allink_core/core_apps/allink_content/models.py:57
+msgid "Section Title Size"
+msgstr ""
+
+#: allink_core/core_apps/allink_content/cms_plugins.py:41
+msgid "Background color"
+msgstr "Hintergrundfarbe"
+
+#: allink_core/core_apps/allink_content/cms_plugins.py:48
+msgid "Predifined variations"
+msgstr "Vordefinierte Variationen"
+
+#: allink_core/core_apps/allink_content/cms_plugins.py:54
+msgid "Predifined on screen Effect"
+msgstr ""
+
+#: allink_core/core_apps/allink_content/cms_plugins.py:65
+msgid ""
+"You can only change the template if it has the same amount of columns as the "
+"previous template."
+msgstr ""
+
+#: allink_core/core_apps/allink_content/cms_plugins.py:84
 msgid "Content"
 msgstr ""
 
-#: allink_core/core_apps/allink_content/cms_plugins.py:17
-#: allink_core/core_apps/allink_content/cms_plugins.py:101
+#: allink_core/core_apps/allink_content/cms_plugins.py:85
+#: allink_core/core_apps/allink_content/cms_plugins.py:169
 msgid "Generic"
 msgstr ""
 
-#: allink_core/core_apps/allink_content/cms_plugins.py:37
+#: allink_core/core_apps/allink_content/cms_plugins.py:105
 #, fuzzy
 #| msgid "Display Options"
 msgid "Section Options"
 msgstr "Darstellungsoptionen"
 
-#: allink_core/core_apps/allink_content/cms_plugins.py:47
+#: allink_core/core_apps/allink_content/cms_plugins.py:115
 #, fuzzy
 #| msgid "Background-Image"
 msgid "Background Image (full width)"
 msgstr "Hintergrundbild"
 
-#: allink_core/core_apps/allink_content/cms_plugins.py:55
+#: allink_core/core_apps/allink_content/cms_plugins.py:123
 #, fuzzy
 #| msgid "Background-Image"
 msgid "Background Image (container)"
 msgstr "Hintergrundbild"
 
-#: allink_core/core_apps/allink_content/cms_plugins.py:61
+#: allink_core/core_apps/allink_content/cms_plugins.py:129
 #, fuzzy
 #| msgid "Video background (Important: Only works if all fields are set)"
 msgid "Background Video (Important: Only works if all fields are set)"
@@ -53,41 +81,13 @@ msgstr ""
 "Hintergrundvideo (Wichtig: Funktioniert nur, wenn alle Felder ausgefüllt "
 "sind.)"
 
-#: allink_core/core_apps/allink_content/cms_plugins.py:69
+#: allink_core/core_apps/allink_content/cms_plugins.py:137
 msgid "Advanced Options"
 msgstr "Erweiterte Einstellungen"
 
-#: allink_core/core_apps/allink_content/cms_plugins.py:100
+#: allink_core/core_apps/allink_content/cms_plugins.py:168
 msgid "Column"
 msgstr "Spalte"
-
-#: allink_core/core_apps/allink_content/forms.py:19
-#: allink_core/core_apps/allink_content/models.py:61
-msgid "Template"
-msgstr ""
-
-#: allink_core/core_apps/allink_content/forms.py:25
-#: allink_core/core_apps/allink_content/models.py:57
-msgid "Section Title Size"
-msgstr ""
-
-#: allink_core/core_apps/allink_content/forms.py:36
-msgid "Background color"
-msgstr "Hintergrundfarbe"
-
-#: allink_core/core_apps/allink_content/forms.py:43
-msgid "Predifined variations"
-msgstr "Vordefinierte Variationen"
-
-#: allink_core/core_apps/allink_content/forms.py:49
-msgid "Predifined on screen Effect"
-msgstr ""
-
-#: allink_core/core_apps/allink_content/forms.py:60
-msgid ""
-"You can only change the template if it has the same amount of columns as the "
-"previous template."
-msgstr ""
 
 #: allink_core/core_apps/allink_content/models.py:50
 #: allink_core/core_apps/allink_content/models.py:292

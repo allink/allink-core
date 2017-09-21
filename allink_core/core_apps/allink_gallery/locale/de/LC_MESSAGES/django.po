@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-09 11:09+0200\n"
+"POT-Creation-Date: 2017-09-21 09:51+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,54 +18,54 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: allink_core/core_apps/allink_gallery/cms_plugins.py:13
-msgid "Gallery"
-msgstr "Galerie"
-
-#: allink_core/core_apps/allink_gallery/cms_plugins.py:14
-#: allink_core/core_apps/allink_gallery/cms_plugins.py:59
-msgid "Generic"
-msgstr ""
-
-#: allink_core/core_apps/allink_gallery/cms_plugins.py:32
-msgid "Slider Options"
-msgstr "Slider-Optionen"
-
-#: allink_core/core_apps/allink_gallery/cms_plugins.py:40
-msgid "Advanced Options"
-msgstr "Erweiterte Optionen"
-
-#: allink_core/core_apps/allink_gallery/cms_plugins.py:58
-#: allink_core/core_apps/allink_gallery/models.py:98
-msgid "Image"
-msgstr "Bild"
-
-#: allink_core/core_apps/allink_gallery/forms.py:22
+#: allink_core/core_apps/allink_gallery/cms_plugins.py:25
 #: allink_core/core_apps/allink_gallery/models.py:27
 msgid "Ratio"
 msgstr "Seitenverhältnis"
 
-#: allink_core/core_apps/allink_gallery/forms.py:23
+#: allink_core/core_apps/allink_gallery/cms_plugins.py:26
 msgid "This option overrides the default settings for the gallery plugin."
 msgstr ""
 "Diese Einstellung überschreibt die Standardeinstellungen für den Galerie-"
 "Inhalt."
 
-#: allink_core/core_apps/allink_gallery/forms.py:28
+#: allink_core/core_apps/allink_gallery/cms_plugins.py:31
 #: allink_core/core_apps/allink_gallery/models.py:22
 msgid "Template"
 msgstr ""
 
-#: allink_core/core_apps/allink_gallery/forms.py:35
+#: allink_core/core_apps/allink_gallery/cms_plugins.py:38
 msgid "Predifined variations"
 msgstr ""
 
-#: allink_core/core_apps/allink_gallery/forms.py:54
+#: allink_core/core_apps/allink_gallery/cms_plugins.py:57
 msgid ""
 "There are only {} characters allowed in text field. Currently there are {} "
 "characters."
 msgstr ""
 "Es sind nur {} Zeichen im Textfeld erlaubt. Momentan sind es {} Zeichen."
+
+#: allink_core/core_apps/allink_gallery/cms_plugins.py:65
+msgid "Gallery"
+msgstr "Galerie"
+
+#: allink_core/core_apps/allink_gallery/cms_plugins.py:66
+#: allink_core/core_apps/allink_gallery/cms_plugins.py:111
+msgid "Generic"
+msgstr ""
+
+#: allink_core/core_apps/allink_gallery/cms_plugins.py:84
+msgid "Slider Options"
+msgstr "Slider-Optionen"
+
+#: allink_core/core_apps/allink_gallery/cms_plugins.py:92
+msgid "Advanced Options"
+msgstr "Erweiterte Optionen"
+
+#: allink_core/core_apps/allink_gallery/cms_plugins.py:110
+#: allink_core/core_apps/allink_gallery/models.py:98
+msgid "Image"
+msgstr "Bild"
 
 #: allink_core/core_apps/allink_gallery/models.py:23
 msgid "Choose a template."

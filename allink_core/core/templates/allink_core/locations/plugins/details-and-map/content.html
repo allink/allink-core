@@ -1,4 +1,4 @@
-{% load cms_tags allink_cms_tags sekizai_tags i18n thumbnail allink_image_tags %}
+{% load cms_tags allink_cms_tags sekizai_tags i18n thumbnail allink_image_tags cache %}
 
 {# A map only makes sense, when locations are assigned #}
 {% if object_list %}
@@ -9,32 +9,49 @@
 
             <div class="details-and-map-container__col-1 text-container">
                 {% if object.title %}
-                    <h3 class="details-and-map-container__heading">{% render_model_ajax object "title" %}</h3>
+                    <h4 class="details-and-map-container__heading">{% render_model_ajax object "title" %}</h4>
                 {% endif %}
-               <p>
-                   {% if object.subtitle %}
-                       {{object.subtitle}}<br>
-                   {% endif %}
-                   {% if object.street %}
-                       {{object.street}} {{object.street_nr}}<br>
-                   {% endif %}
-                   {% if object.zip_code or object.place %}
-                       {{object.zip_code}} {{object.place}}
-                   {% endif %}
-               </p>
+
+                {% if object.primary_contact.preview_image %}
+                    <div class="image-container">
+                        {% cache 15552000 people_preview_image instance.id object.id %}
+                            {% render_image image=object.primary_contact.preview_image %}
+                        {% endcache %}
+                    </div>
+                    <p>
+                        {% render_model_ajax object.primary_contact "first_name" %}&nbsp;{% render_model_ajax object.primary_contact "last_name" %}<br>
+                        {% if object.primary_contact.job_function %}
+                            {{object.primary_contact.job_function}}<br>
+                        {% endif %}
+                    </p>
+                {% endif %}
 
                 <p>
+                    {% if object.subtitle %}
+                        {{object.subtitle}}<br>
+                    {% endif %}
+                    {% if object.address_1 %}
+                        {{ object.address_1 }}<br>
+                        {{ object.address_2 }}<br>
+                        {{ object.address_3 }}<br>
+                    {% endif %}
+                    {% if object.address_4 %}
+                        {{ object.address_4 }}<br>
+                    {% endif %}
+                </p>
+
+                <p>
+                    {% if object.email %}
+                        <a class="text" href="mailto:{{object.email}}">{{object.email}}</a><br>
+                    {% endif %}
                     {% if object.phone %}
-                        {% trans "Telefon:" %} <a class="text" href="tel:{{object.phone}}">{{object.phone_formatted}}</a><br>
+                        {% trans "Phone:" %} <a href="tel:{{object.phone}}">{{object.phone}}</a><br>
                     {% endif %}
                     {% if object.mobile %}
-                        {% trans "Natel:" %} <a class="text" href="tel:{{object.mobile}}">{{object.mobile_formatted}}</a><br>
+                        {% trans "Mobile:" %} <a href="tel:{{object.mobile}}">{{object.mobile}}</a><br>
                     {% endif %}
                     {% if object.fax %}
-                        {% trans "Fax:" %} <a class="text" href="tel:{{object.fax}}">{{object.fax_formatted}}</a><br>
-                    {% endif %}
-                    {% if object.email %}
-                        {% trans "E-Mail:" %} <a class="text" href="mailto:{{object.email}}">{{object.email}}</a><br>
+                        {% trans "Fax:" %} <a href="tel:{{object.fax}}">{{object.fax}}</a><br>
                     {% endif %}
                 </p>
 
@@ -79,22 +96,24 @@
                                                 {% if object.title %}
                                                     + '<strong>{{object.title}}</strong>'
                                                 {% endif %}
-                                                {% if object.street %}
-                                                    + '<br>{{object.street}} {{object.street_nr}}'
+                                                {% if object.address_1 %}
+                                                    + '<br>{{ object.address_1 }}'
+                                                    + '<br>{{ object.address_2 }}<br>'
+                                                    + '<br>{{ object.address_3 }}<br>'
                                                 {% endif %}
-                                                {% if object.zip_code or object.place %}
-                                                    + '<br>{{object.zip_code}} {{object.place}}'
+                                                {% if object.address_4 %}
+                                                    + '<br>{{ object.address_4 }}<br>'
                                                 {% endif %}
                                             + '</div>'
                                             + '<div class="block text-container">'
                                                 {% if object.phone %}
-                                                    + 'T <a class="text" href="tel:{{object.phone}}">{{object.phone_formatted}}</a>'
+                                                    + 'T <a class="text" href="tel:{{object.phone}}">{{object.phone}}</a>'
                                                 {% endif %}
                                                 {% if object.mobile %}
-                                                    + '<br>M <a class="text" href="tel:{{object.mobile}}">{{object.mobile_formatted}}</a>'
+                                                    + '<br>M <a class="text" href="tel:{{object.mobile}}">{{object.mobile}}</a>'
                                                 {% endif %}
                                                 {% if object.fax %}
-                                                    + '<br>F <a class="text" href="tel:{{object.fax}}">{{object.fax_formatted}}</a>'
+                                                    + '<br>F <a class="text" href="tel:{{object.fax}}">{{object.fax}}</a>'
                                                 {% endif %}
                                                 {% if object.email %}
                                                     + '<br>E <a class="text" href="mailto:{{object.email}}">{{object.email}}</a>'

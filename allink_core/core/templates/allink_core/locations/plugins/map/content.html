@@ -40,13 +40,13 @@
                                         + '</div>'
                                         + '<div class="block text-container">'
                                             {% if object.phone %}
-                                                + 'T <a class="text" href="tel:{{object.phone}}">{{object.phone_formatted}}</a>'
+                                                + 'T <a class="text" href="tel:{{object.phone}}">{{object.phone}}</a>'
                                             {% endif %}
                                             {% if object.mobile %}
-                                                + '<br>M <a class="text" href="tel:{{object.mobile}}">{{object.mobile_formatted}}</a>'
+                                                + '<br>M <a class="text" href="tel:{{object.mobile}}">{{object.mobile}}</a>'
                                             {% endif %}
                                             {% if object.fax %}
-                                                + '<br>F <a class="text" href="tel:{{object.fax}}">{{object.fax_formatted}}</a>'
+                                                + '<br>F <a class="text" href="tel:{{object.fax}}">{{object.fax}}</a>'
                                             {% endif %}
                                             {% if object.email %}
                                                 + '<br>E <a class="text" href="mailto:{{object.email}}">{{object.email}}</a>'

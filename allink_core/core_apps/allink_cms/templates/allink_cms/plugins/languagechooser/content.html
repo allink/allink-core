@@ -1,0 +1,9 @@
+{% load i18n staticfiles cms_tags menu_tags %}
+
+<div class="content-plugin languagechooser-plugin">
+    <div class="languagechooser-plugin__container">
+        <ul class="languages languages--mobile">
+            {% language_chooser "includes/menu/langnav.html" "native" %}
+        </ul>
+    </div>
+</div>

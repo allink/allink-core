@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-09 11:09+0200\n"
+"POT-Creation-Date: 2017-09-21 09:51+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,44 +18,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: allink_core/core_apps/allink_image/cms_plugins.py:16
-#: allink_core/core_apps/allink_image/models.py:25
-msgid "Image"
-msgstr "Bild"
-
-#: allink_core/core_apps/allink_image/cms_plugins.py:17
-msgid "Generic"
-msgstr ""
-
-#: allink_core/core_apps/allink_image/cms_plugins.py:43
-msgid "Additional settings"
-msgstr "Erweiterte Einstellungen"
-
-#: allink_core/core_apps/allink_image/cms_plugins.py:50
-msgid "Link settings"
-msgstr "Link-Einstellungen"
-
-#: allink_core/core_apps/allink_image/forms.py:14
+#: allink_core/core_apps/allink_image/cms_plugins.py:18
 msgid "Link Internal"
 msgstr "Interner Link"
 
-#: allink_core/core_apps/allink_image/forms.py:26
+#: allink_core/core_apps/allink_image/cms_plugins.py:30
 msgid "Special Links"
 msgstr ""
 
-#: allink_core/core_apps/allink_image/forms.py:29
+#: allink_core/core_apps/allink_image/cms_plugins.py:33
 msgid ""
 "Important: In case the selected option is a <strong>form</strong>, make sure "
 "to select <strong>Lightbox (Forms)</strong> from the <strong>link target</"
 "strong> options for best user experience."
 msgstr ""
 
-#: allink_core/core_apps/allink_image/forms.py:32
+#: allink_core/core_apps/allink_image/cms_plugins.py:36
 #: allink_core/core_apps/allink_image/models.py:31
 msgid "Ratio"
 msgstr "Seitenverhältnis"
 
-#: allink_core/core_apps/allink_image/forms.py:33
+#: allink_core/core_apps/allink_image/cms_plugins.py:37
 msgid ""
 "This option overrides the default image ratio set for images in a colum of a "
 "content section."
@@ -63,14 +46,31 @@ msgstr ""
 "Diese Option überschreibt die Standardeinstellung für "
 "Bildseitenverhältnisse, die für Bilder in einer Spalte gesetzt ist."
 
-#: allink_core/core_apps/allink_image/forms.py:39
+#: allink_core/core_apps/allink_image/cms_plugins.py:43
 #: allink_core/core_apps/allink_image/models.py:49
 msgid "Set a predefined background color"
 msgstr "Vordefinierte Hintergrundfarbe wählen"
 
-#: allink_core/core_apps/allink_image/forms.py:46
+#: allink_core/core_apps/allink_image/cms_plugins.py:50
 msgid "Predifined variations"
 msgstr "Vordefiniert Variationen"
+
+#: allink_core/core_apps/allink_image/cms_plugins.py:59
+#: allink_core/core_apps/allink_image/models.py:25
+msgid "Image"
+msgstr "Bild"
+
+#: allink_core/core_apps/allink_image/cms_plugins.py:60
+msgid "Generic"
+msgstr ""
+
+#: allink_core/core_apps/allink_image/cms_plugins.py:86
+msgid "Additional settings"
+msgstr "Erweiterte Einstellungen"
+
+#: allink_core/core_apps/allink_image/cms_plugins.py:93
+msgid "Link settings"
+msgstr "Link-Einstellungen"
 
 #: allink_core/core_apps/allink_image/models.py:37
 msgid "Placeholder Background Color"

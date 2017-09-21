@@ -12,7 +12,7 @@
                             <span class="label-text">
                                 {{ field.label|safe }}
                             </span>{% if field.field.required %}<span class="required-symbol">
-                                    ({% trans "required" %})
+                                    <span class="sr-only">({% trans "required" %})</span>
                                 </span>
                             {% endif %}
                         </label>

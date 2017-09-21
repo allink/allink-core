@@ -99,7 +99,8 @@ CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [
     'CMSAllinkInstagramPlugin',
     'CMSAllinkContactRequestPlugin',
     'CMSAllinkPageChooserPlugin',
-    'CMSAllinkIconPlugin'
+    'CMSAllinkLanguageChooserPlugin',
+    'CMSAllinkIconPlugin',
 ]
 ####################################################################################
 
