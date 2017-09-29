@@ -1,9 +1,12 @@
 {% load i18n menu_tags %}
 {% get_language_info for LANGUAGE_CODE as lang %}
-{# DOCS: https://docs.djangoproject.com/en/1.5/topics/i18n/translation/#other-tags #}
 
 {% if languages|length > 1 %}
     {% for language in languages %}
-        <li class="child lang"><a href="{% page_language_url language.0 %}" class="{% if language.0 == current_language %}active{% endif %}"><span>{{ language.0 }}</span></a></li>
+        <li class="language-list__item {% if language.0 == current_language %}language-list__item--active{% endif %}">
+            <a class="language-list__link" href="{% page_language_url language.0 %}">
+                <span class="language-list__text">{{ language.0 }}</span>
+            </a>
+        </li>
     {% endfor %}
 {% endif %}

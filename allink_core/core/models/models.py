@@ -238,8 +238,15 @@ class AllinkBaseModel(models.Model):
         for plugin_class in plugin_classes:
             for plugin in plugin_class.model.objects.all():
                 cache.set('render_queryset_for_display_valid_keys_%s' % plugin.id, [], 60 * 60 * 24 * 360)
+                # search plugin
+                search_cache_keys_key = 'search_cache_keys_{}'.format(plugin.id)
+                search_cache_keys = cache.get(search_cache_keys_key, [])
+                cache.delete_many(search_cache_keys)
+                cache.delete(search_cache_keys_key)
+
         cache.delete_many([make_template_fragment_key('{}_preview_image'.format(self._meta.app_label), [plugin.id, self.id]) for plugin in get_model(self._meta.app_label, '{}AppContentPlugin'.format(self._meta.model_name)).objects.all()])
         super(AllinkBaseModel, self).save(*args, **kwargs)
+
 
 @receiver(post_delete)
 def post_delete_auto_generated_category(sender, instance, *args, **kwargs):
@@ -685,6 +692,15 @@ class AllinkBaseSearchPlugin(CMSPlugin):
                 css_classes.append(css_class)
         return ' '.join(css_classes)
 
+    def save(self, *args, **kwargs):
+        # clean cache
+        if self.id:
+            search_cache_keys_key = 'search_cache_keys_{}'.format(self.id)
+            search_cache_keys = cache.get(search_cache_keys_key)
+            cache.delete_many = (search_cache_keys)
+            cache.delete(search_cache_keys_key)
+        return super(AllinkBaseSearchPlugin, self).save(*args, **kwargs)
+
 
 class AllinkBaseFormPlugin(CMSPlugin):
 
@@ -912,8 +928,7 @@ class AllinkInternalLinkFieldsModel(models.Model):
             link = self.link_page.get_absolute_url()
         elif self.link_apphook_page:
             try:
-                obj_module = import_module('.'.join(self.link_model.split('.')[:-1]))
-                obj_model = getattr(obj_module, self.link_model.split('.')[-1])
+                obj_model = get_model(self.link_model.split('.')[-3], self.link_model.split('.')[-1])
                 obj = obj_model.objects.get(id=self.link_object_id)
                 url_kwargs = {key: getattr(obj, key) for key in self.link_url_kwargs}
                 url_name = u'{}:{}'.format(self.link_apphook_page.application_namespace, self.link_url_name)

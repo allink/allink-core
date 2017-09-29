@@ -6,6 +6,7 @@ import re
 
 from django.views.generic import ListView, DetailView, CreateView, FormView
 from django.db.models import Q
+from django.core.cache import cache
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.template.loader import get_template
@@ -200,7 +201,7 @@ class AllinkBaseAjaxFormView(FormView):
     plugin_class =
     template_name = '.../plugins/search/_items.html'
     """
-    search_fields =  ['translations__title', 'translations__lead']
+    search_fields = ['translations__title', 'translations__lead']
 
     def dispatch(self, *args, **kwargs):
         plugin_id = self.kwargs.pop('plugin_id', None)
@@ -214,10 +215,22 @@ class AllinkBaseAjaxFormView(FormView):
 
     def get_object_list(self, query_string):
         if query_string:
+            cache_key = 'search_{}_{}'.format(self.plugin.id, query_string.lower())
+            cached = cache.get(cache_key)
+            if cached:
+                return cached
             entry_query = get_query(query_string, self.search_fields)
             object_list = self.plugin.data_model.objects.active().filter(entry_query).distinct()
+            cache.set(cache_key, object_list, 60 * 60 * 24 * 180)
+            search_cache_keys_key = 'search_cache_keys_{}'.format(self.plugin.id)
+            search_cache_keys = cache.get(search_cache_keys_key)
+            if search_cache_keys:
+                search_cache_keys.append(cache_key)
+            else:
+                search_cache_keys = [cache_key]
+            cache.set(search_cache_keys_key, search_cache_keys, 60 * 60 * 24 * 360)
         else:
-            object_list = self.plugin.data_model.objects.active().all().distinct()
+            object_list = self.plugin.data_model.objects.active()
         return object_list
 
     def form_valid(self, form):

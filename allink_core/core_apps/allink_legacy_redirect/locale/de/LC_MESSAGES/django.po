@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-21 09:51+0200\n"
+"POT-Creation-Date: 2017-09-27 16:00+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,6 +29,12 @@ msgstr "Weiterleitung testen"
 #: allink_core/core_apps/allink_legacy_redirect/admin.py:51
 msgid "Manual testing"
 msgstr "Manuell testen"
+
+#: allink_core/core_apps/allink_legacy_redirect/admin.py:55
+#, fuzzy
+#| msgid "New Page"
+msgid "Page"
+msgstr "Neue Seite"
 
 #: allink_core/core_apps/allink_legacy_redirect/cms_toolbars.py:26
 msgid "allink"

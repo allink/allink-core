@@ -15,7 +15,7 @@ from allink_core.core.forms.mixins import AllinkInternalLinkFieldMixin
 
 
 class AllinkLegacyChangeAdminForm(AllinkInternalLinkFieldMixin, forms.ModelForm):
-    new_link = SelectLinkField(label=_('New Page'))
+    new_link = SelectLinkField(label=_('New Page'), required=False)
 
     class Meta:
         model = AllinkLegacyLink
@@ -49,6 +49,10 @@ class AllinkLegacyLinkAdmin(ImportMixin, admin.ModelAdmin):
         link = base_url() + obj.old
         return format_html('<a class="button" href="%s" target="_blank">Test</a>' % link)
     manual_test.short_description = _(u'Manual testing')
+
+    def link_object(self, obj):
+        return obj.link_object
+    link_object.short_description = _(u'Page')
 
 
 admin.site.register(AllinkLegacyLink, AllinkLegacyLinkAdmin)
