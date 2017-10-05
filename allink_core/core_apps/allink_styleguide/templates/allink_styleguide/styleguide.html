@@ -11,8 +11,6 @@
 {% endblock logo_addition_container %}
 
 {% block content %}
-<section class="site-content">
-
     {% comment %}
         Display
     {% endcomment %}
@@ -201,9 +199,8 @@
                             <label class="control-label" for="text">
                                  <span class="label-text">
                                      {% trans "Text" %}
-                                 </span>
-                                 <span class="required-symbol">
-                                     ({% trans "required" %})
+                                 </span><span class="required-symbol">
+                                     <span class="sr-only">({% trans "required" %})</span>
                                  </span>
                             </label>
                             <input class="form-control" id="text" name="text" type="text" placeholder="Placeholder Text" required>
@@ -212,9 +209,8 @@
                             <label class="control-label" for="text">
                                  <span class="label-text">
                                      {% trans "Input has error" %}
-                                 </span>
-                                 <span class="required-symbol">
-                                     ({% trans "required" %})
+                                 </span><span class="required-symbol">
+                                     <span class="sr-only">({% trans "required" %})</span>
                                  </span>
                             </label>
                             <input class="form-control error" id="text" name="text" type="text" placeholder="Placeholder Text" required>
@@ -256,9 +252,8 @@
                             <label class="control-label" for="select">
                                  <span class="label-text">
                                      {% trans "Select a Choice" %}
-                                 </span>
-                                <span class="required-symbol">
-                                    ({% trans "required" %})
+                                 </span><span class="required-symbol">
+                                    <span class="sr-only">({% trans "required" %})</span>
                                 </span>
                             </label>
                             <select class="form-control selectpicker" title="Please Select..." id="select" name="select" required>
@@ -290,9 +285,8 @@
                             <label class="control-label" for="date1">
                                  <span class="label-text">
                                      {% trans "Datepicker 1 (required)" %}
-                                 </span>
-                                 <span class="required-symbol">
-                                     ({% trans "required" %})
+                                 </span><span class="required-symbol">
+                                     <span class="sr-only">({% trans "required" %})</span>
                                  </span>
                             </label>
                             <div class="datepicker-container">
@@ -463,9 +457,8 @@
                             <label class="control-label" for="text">
                                  <span class="label-text">
                                      {% trans "Text" %}
-                                 </span>
-                                 <span class="required-symbol">
-                                     ({% trans "required" %})
+                                 </span><span class="required-symbol">
+                                     <span class="sr-only">({% trans "required" %})</span>
                                  </span>
                             </label>
                             <input class="form-control" id="text" name="text" type="text" placeholder="Placeholder Text" required>
@@ -483,8 +476,6 @@
 
         </div>
     </div>
-
-</section>
 {% endblock content %}
 
 {% block footer %}

@@ -90,7 +90,7 @@ msgstr ""
 "später erneut."
 
 #~ msgid "Member modified email address."
-#~ msgstr "Mitglied hat E-Mail Adresse mutiert."
+#~ msgstr "Mitglied hat E-Mail-Adresse mutiert."
 
 #~ msgid ""
 #~ "\n"

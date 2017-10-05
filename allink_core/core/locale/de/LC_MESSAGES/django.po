@@ -436,7 +436,7 @@ msgstr ""
 
 #: allink_core/core/models/models.py:721
 msgid "Internal e-mail addresses"
-msgstr "Interne E-Mail Adresse"
+msgstr "Interne E-Mail-Adresse"
 
 #: allink_core/core/models/models.py:724
 msgid "Sender e-mail address"
