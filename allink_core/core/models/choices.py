@@ -138,3 +138,5 @@ RATIO_CHOICES = (
     ('16-9', '16:9'),
 )
 RATIO_CHOICES_ORIG = RATIO_CHOICES + (('x-y', 'Original'),)
+
+IMAGE_WIDTH_ALIAS_CHOICES = ()

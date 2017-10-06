@@ -70,6 +70,12 @@ class AllinkImagePlugin(AllinkLinkFieldsModel, CMSPlugin):
         blank=True,
         null=True
     )
+    width_alias = models.CharField(
+        _(u'Width Alias'),
+        max_length=50,
+        blank=True,
+        null=True
+    )
 
     cmsplugin_ptr = CMSPluginField()
 

@@ -21,6 +21,7 @@ def link_attribute_string(instance, request=None):
     attributes += ' data-softpage-disabled' if instance.link_special == 'account_login' and request.user.is_authenticated else ''
     attributes += ' data-submit-form' if instance.link_special == 'account_logout' and request.user.is_authenticated else ''
     attributes += ' role="button"' if hasattr(instance, "type") and instance.type == 'btn' else ''
+    attributes += ' '.join([' {}={}'.format(k,v) for k,v in instance.link_attributes.items()]) if instance.link_attributes else ''
     return attributes
 
 

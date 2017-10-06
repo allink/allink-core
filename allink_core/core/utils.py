@@ -71,6 +71,18 @@ def get_ratio_choices_orig():
     return BLANK_CHOICE + RATIO_CHOICES_ORIG + get_additional_choices('RATIO_CHOICES')
 
 
+def get_image_width_alias_choices():
+    """
+    returns all projects specific ratio choices
+    including a 'original', which keeps the one from the file itself
+    """
+    from allink_core.core.models.choices import BLANK_CHOICE, IMAGE_WIDTH_ALIAS_CHOICES
+    image_width_alias_choices = get_additional_choices('IMAGE_WIDTH_ALIAS_CHOICES')
+    if image_width_alias_choices:
+        return BLANK_CHOICE + IMAGE_WIDTH_ALIAS_CHOICES + image_width_alias_choices
+    return None
+
+
 def get_height_from_ratio(width, ratio_w, ratio_h):
     """
     Used to calculate thumbnail height from given width and ratio

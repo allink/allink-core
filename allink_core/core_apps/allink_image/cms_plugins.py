@@ -6,7 +6,7 @@ from webpack_loader.utils import get_files
 
 from cms.plugin_pool import plugin_pool
 
-from allink_core.core.utils import get_ratio_choices_orig, get_additional_choices, get_project_color_choices
+from allink_core.core.utils import get_ratio_choices_orig, get_additional_choices, get_project_color_choices, get_image_width_alias_choices
 from allink_core.core_apps.allink_image.models import AllinkImagePlugin
 from allink_core.core.forms.fields import ColorField
 from allink_core.core.forms.fields import SelectLinkField
@@ -38,6 +38,13 @@ class AllinkImagePluginForm(AllinkInternalLinkFieldMixin, forms.ModelForm):
             widget=forms.Select(choices=get_ratio_choices_orig()),
             required=False,
         )
+        if get_image_width_alias_choices():
+            self.fields['width_alias'] = forms.CharField(
+                label=_(u'Width Alias'),
+                help_text=_(u'This option overrides the default image width_alias set for images in a column of a content section.'),
+                widget=forms.Select(choices=get_image_width_alias_choices()),
+                required=False,
+            )
         if get_project_color_choices():
             self.fields['bg_color'] = ColorField(
                 label=_(u'Set a predefined background color'),
@@ -105,6 +112,8 @@ class CMSAllinkImagePlugin(CMSPluginBase):
 
         if get_project_color_choices():
             fieldsets[0][1].get('fields').append('bg_color')
+        if get_image_width_alias_choices():
+            fieldsets[1][1].get('fields').append('width_alias')
         return fieldsets
 
     def get_render_template(self, context, instance, placeholder):
