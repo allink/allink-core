@@ -28,7 +28,7 @@ ALLINK_CORE_ALLINK_APPS = [
     'allink_core.apps.work',
 ]
 
-def get_core_apps(installed=None, overrides=None):
+def get_core_apps(overrides=None, installed=None):
     """
     Return a list of allink apps amended with any passed overrides
     """
