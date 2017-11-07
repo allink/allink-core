@@ -16,26 +16,28 @@ The Following command will create a new module called <code>work</code> inside t
 
 The console will output the steps needed to complete the process.
 ```
-The final step is to add "new_app.config" to INSTALLED_APPS (replacing
-the equivalent allink_core app). This can be achieved using allink's
-get_core_apps function - e.g.:
+The final step is uncomment "new_app.config" in OVERIDDED_ALLINK_CORE_APPS (replacing
+the equivalent allink_core app). e.g.:
 
-  # settings.py
-  ...
-  INSTALLED_APPS = [
-      'django.contrib.auth',
-      ...
-  ]
-  from allink_core import get_core_apps
-  INSTALLED_APPS = INSTALLED_APPS + get_core_apps(
-      ['new_app.config'])
+    # settings.py
+    ...
 
+    OVERIDDEN_ALLINK_CORE_APPS = [
+        # 'allink_apps.contact',
+        # 'allink_apps.events',
+        # 'allink_apps.locations',
+        # 'allink_apps.news',
+        # 'allink_apps.members',
+        # 'allink_apps.people',
+        # 'allink_apps.testimonials',
+        # 'allink_apps.work',
+    ]
 ```
 
 The files which have been created just provide you with the minimal file structure. But you are now ready to override and extend what ever you want.
 
 
-For a some more guidance use the management command <code>fork_app_help</code>. This provide you with some usefull comments in every file.
+For a some more guidance use the management command <code>fork_app_help</code>. This provides you with some usefull comments in every file.
 ```
 ./manage.py fork_app_help work allink_apps
 ```

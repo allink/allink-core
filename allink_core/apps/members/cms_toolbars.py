@@ -31,5 +31,4 @@ class MembersToolbar(CMSToolbar):
         url = reverse('admin:{}_{}_changelist'.format(self.model._meta.app_label, self.model._meta.model_name))
         allink_menu.add_sideframe_item(self.model.get_verbose_name_plural(), url=url)
 
-if getattr(Config.get_solo(), 'members_toolbar_enabled', True):
-    toolbar_pool.register(MembersToolbar)
+toolbar_pool.register(MembersToolbar)

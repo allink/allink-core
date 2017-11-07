@@ -23,5 +23,4 @@ class AllinkTermsToolbar(CMSToolbar):
         menu.add_sideframe_item(self.model._meta.verbose_name_plural, url=url)
 
 
-if getattr(Config.get_solo(), 'terms_toolbar_enabled', True):
-    toolbar_pool.register(AllinkTermsToolbar)
+toolbar_pool.register(AllinkTermsToolbar)

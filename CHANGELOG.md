@@ -19,6 +19,35 @@ Each release is divided into the following main categories:
 
 ###### SETTINGS
 
+- Only register allink apps when actaully needed
+
+```python
+# allink apps which are installed in this project
+INSTALLED_ALLINK_CORE_APPS = [
+    'allink_core.apps.config',
+    # 'allink_core.apps.contact',
+    # 'allink_core.apps.events',
+    # 'allink_core.apps.locations',
+    # 'allink_core.apps.news',
+    # 'allink_core.apps.members',
+    # 'allink_core.apps.people',
+    # 'allink_core.apps.testimonials',
+    # 'allink_core.apps.work',
+]
+# allink apps which are overriden in this project
+OVERIDDEN_ALLINK_CORE_APPS = [
+    # 'allink_apps.contact',
+    # 'allink_apps.events',
+    # 'allink_apps.locations',
+    # 'allink_apps.news',
+    # 'allink_apps.members',
+    # 'allink_apps.people',
+    # 'allink_apps.testimonials',
+    # 'allink_apps.work',
+]
+
+```
+
 ###### TEMPLATES
 
 ###### URLS

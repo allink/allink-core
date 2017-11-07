@@ -13,6 +13,4 @@ class WorkToolbar(AllinkBaseModifierMixin, CMSToolbar):
     model = Work
     app_label = Work._meta.app_label
 
-
-if getattr(Config.get_solo(), 'work_toolbar_enabled', True):
-    toolbar_pool.register(WorkToolbar)
+toolbar_pool.register(WorkToolbar)

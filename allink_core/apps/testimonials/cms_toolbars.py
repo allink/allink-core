@@ -14,5 +14,4 @@ class TestimonialsToolbar(AllinkBaseModifierMixin, CMSToolbar):
     app_label = Testimonials._meta.app_label
 
 
-if getattr(Config.get_solo(), 'testimonials_toolbar_enabled', True):
-    toolbar_pool.register(TestimonialsToolbar)
+toolbar_pool.register(TestimonialsToolbar)

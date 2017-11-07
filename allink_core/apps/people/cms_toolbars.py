@@ -14,5 +14,4 @@ class PeopleToolbar(AllinkBaseModifierMixin, CMSToolbar):
     app_label = People._meta.app_label
 
 
-if getattr(Config.get_solo(), 'people_toolbar_enabled', True):
-    toolbar_pool.register(PeopleToolbar)
+toolbar_pool.register(PeopleToolbar)

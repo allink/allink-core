@@ -17,8 +17,8 @@ ALLINK_CORE_MAIN_TEMPLATE_DIRS = [
 ]
 
 ALLINK_CORE_ALLINK_APPS = [
-    'allink_core.apps.contact',
     'allink_core.apps.config',
+    'allink_core.apps.contact',
     'allink_core.apps.events',
     'allink_core.apps.locations',
     'allink_core.apps.news',
@@ -28,12 +28,20 @@ ALLINK_CORE_ALLINK_APPS = [
     'allink_core.apps.work',
 ]
 
-def get_core_apps(overrides=None):
+def get_core_apps(installed=None, overrides=None):
     """
-    Return a list of oscar's apps amended with any passed overrides
+    Return a list of allink apps amended with any passed overrides
     """
+    installed_apps = []
+    if not installed:
+        installed_apps = ALLINK_CORE_ALLINK_APPS
+    else:
+        for app in installed:
+            if app in ALLINK_CORE_ALLINK_APPS:
+                installed_apps.append(app)
+
     if not overrides:
-        return ALLINK_CORE_ALLINK_APPS
+        return installed_apps
 
     # Conservative import to ensure that this file can be loaded
     # without the presence Django.
@@ -47,12 +55,10 @@ def get_core_apps(overrides=None):
         pattern = app_label.replace('allink_core.apps.', '')
         for override in overrides:
             if override.endswith(pattern):
-                if 'dashboard' in override and 'dashboard' not in pattern:
-                    continue
                 return override
         return app_label
 
     apps = []
-    for app_label in ALLINK_CORE_ALLINK_APPS:
+    for app_label in installed_apps:
         apps.append(get_app_label(app_label, overrides))
     return apps

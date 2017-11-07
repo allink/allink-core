@@ -358,20 +358,16 @@ def fork_app(label, folder_path, logger=None, help=False):
 
     # Final step needs to be done by hand
     msg = (
-        "The final step is to add '%s' to INSTALLED_APPS "
-        "(replacing the equivalent allink_core app). This can be "
-        "achieved using allink's get_core_apps function - e.g.:"
+        "The final step is to uncomment '%s' in OVERIDDED_ALLINK_CORE_APPS "
+        "(replacing the equivalent allink_core app). e.g.:"
     ) % app_package
     snippet = (
         "  # settings.py\n"
         "  ...\n"
-        "  INSTALLED_APPS = [\n"
-        "      'django.contrib.auth',\n"
+        "  OVERIDDED_ALLINK_CORE_APPS = [\n"
+        "      ['%s'],"
         "      ...\n"
         "  ]\n"
-        "  from allink_core import get_core_apps\n"
-        "  INSTALLED_APPS = INSTALLED_APPS + get_core_apps(\n"
-        "      ['%s'])"
     ) % app_package
     record = "\n%s\n\n%s" % (
         "\n".join(textwrap.wrap(msg)), snippet)

@@ -14,5 +14,4 @@ class LocationsToolbar(AllinkBaseModifierMixin, CMSToolbar):
     app_label = Locations._meta.app_label
 
 
-if getattr(Config.get_solo(), 'locations_toolbar_enabled', True):
-    toolbar_pool.register(LocationsToolbar)
+toolbar_pool.register(LocationsToolbar)

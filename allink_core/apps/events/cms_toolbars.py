@@ -20,8 +20,7 @@ class EventsToolbar(AllinkBaseModifierMixin, CMSToolbar):
     app_label = Events._meta.app_label
 
 
-if getattr(config, 'events_toolbar_enabled', True):
-    toolbar_pool.register(EventsToolbar)
+toolbar_pool.register(EventsToolbar)
 
 
 class EventsRegistrationToolbar(CMSToolbar):
