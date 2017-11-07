@@ -84,22 +84,11 @@ class ConfigAdmin(TranslatableAdmin, SingletonModelAdmin):
             )
         }),
 
-        fieldsets += (_('App Names and Toolbar'), {
+        fieldsets += (_('Toolbar'), {
             'classes': (
                 'collapse',
             ),
-            'description': _(u'Please notice that the plugin names will only change after restarting the server.(Please redeploy with Divio Cloud Dashboard.)'),
             'fields': (
-                ('news_verbose', 'news_verbose_plural', 'news_toolbar_enabled', ),
-                ('events_verbose', 'events_verbose_plural', 'events_toolbar_enabled', ),
-                ('locations_verbose', 'locations_verbose_plural', 'locations_toolbar_enabled', ),
-                ('people_verbose', 'people_verbose_plural', 'people_toolbar_enabled', ),
-                ('testimonials_verbose', 'testimonials_verbose_plural', 'testimonials_toolbar_enabled', ),
-                ('work_verbose', 'work_verbose_plural', 'work_toolbar_enabled', ),
-                ('members_verbose', 'members_verbose_plural', 'members_toolbar_enabled', ),
-                ('contactrequest_verbose', 'contactrequest_verbose_plural', 'contactrequest_toolbar_enabled', ),
-                ('eventsregistration_verbose', 'eventsregistration_verbose_plural', 'eventsregistration_toolbar_enabled', ),
-                ('terms_verbose', 'terms_verbose_plural', 'terms_toolbar_enabled', ),
                 'config_allink_page_toolbar_enabled',
             )
         }),
@@ -119,4 +108,3 @@ class ConfigAdmin(TranslatableAdmin, SingletonModelAdmin):
 @admin.register(AllinkPageExtension)
 class AllinkSEOExtensionAdmin(PageExtensionAdmin):
     pass
-

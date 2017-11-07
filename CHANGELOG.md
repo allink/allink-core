@@ -45,6 +45,7 @@ OVERIDDEN_ALLINK_CORE_APPS = [
     # 'allink_apps.testimonials',
     # 'allink_apps.work',
 ]
+INSTALLED_APPS.extend(get_core_apps(OVERIDDEN_ALLINK_CORE_APPS, INSTALLED_ALLINK_CORE_APPS))
 
 ```
 
