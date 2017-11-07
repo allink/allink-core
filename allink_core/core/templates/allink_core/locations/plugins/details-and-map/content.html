@@ -83,43 +83,44 @@
                         }
 
                         var map_locations = {
-                            id: {{object.id}},
+                            id: {{object.id|escapejs}},
+                            totalNumberOfLocations: {{object_list.count|escapejs}},
                             locations: {
                                 {# in case of this template, we only have 1 marker per map, so we have to hardcode the key "1" #}
                                 1: {
-                                    lat: '{{object.lat}}',
-                                    lng: '{{object.lng}}',
+                                    lat: '{{object.lat|escapejs}}',
+                                    lng: '{{object.lng|escapejs}}',
                                     infowindow_content: '{% spaceless %}
                                     <div class="map-info-box">
                                         <address>
                                             <div class="block text-container">'
                                                 {% if object.title %}
-                                                    + '<strong>{{object.title}}</strong>'
+                                                    + '<strong>{{object.title|escapejs}}</strong>'
                                                 {% endif %}
                                                 {% if object.address_1 %}
-                                                    + '<br>{{ object.address_1 }}'
-                                                    + '<br>{{ object.address_2 }}<br>'
-                                                    + '<br>{{ object.address_3 }}<br>'
+                                                    + '<br>{{ object.address_1 |escapejs}}'
+                                                    + '<br>{{ object.address_2 |escapejs}}<br>'
+                                                    + '<br>{{ object.address_3 |escapejs}}<br>'
                                                 {% endif %}
                                                 {% if object.address_4 %}
-                                                    + '<br>{{ object.address_4 }}<br>'
+                                                    + '<br>{{ object.address_4 |escapejs}}<br>'
                                                 {% endif %}
                                             + '</div>'
                                             + '<div class="block text-container">'
                                                 {% if object.phone %}
-                                                    + 'T <a class="text" href="tel:{{object.phone}}">{{object.phone}}</a>'
+                                                    + 'T <a class="text" href="tel:{{object.phone|escapejs}}">{{object.phone|escapejs}}</a>'
                                                 {% endif %}
                                                 {% if object.mobile %}
-                                                    + '<br>M <a class="text" href="tel:{{object.mobile}}">{{object.mobile}}</a>'
+                                                    + '<br>M <a class="text" href="tel:{{object.mobile|escapejs}}">{{object.mobile|escapejs}}</a>'
                                                 {% endif %}
                                                 {% if object.fax %}
-                                                    + '<br>F <a class="text" href="tel:{{object.fax}}">{{object.fax}}</a>'
+                                                    + '<br>F <a class="text" href="tel:{{object.fax|escapejs}}">{{object.fax|escapejs}}</a>'
                                                 {% endif %}
                                                 {% if object.email %}
-                                                    + '<br>E <a class="text" href="mailto:{{object.email}}">{{object.email}}</a>'
+                                                    + '<br>E <a class="text" href="mailto:{{object.email|escapejs}}">{{object.email|escapejs}}</a>'
                                                 {% endif %}
                                                 {% if object.map_link %}
-                                                    + '<br><br><a class="text" href="{{object.map_link}}" target="_blank">{% trans "Directions" %}</a>'
+                                                    + '<br><br><a class="text" href="{{object.map_link|escapejs}}" target="_blank">{% trans "Directions" %}</a>'
                                                 {% endif %}
                                             + '</div>'
                                         + '</address>

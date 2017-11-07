@@ -21,7 +21,7 @@
                     {% csrf_token %}
 
                     <div class="work-search-plugin__form-inner">
-                        <input class="work-search-plugin__input form-control" id="id_q" name="q" required="" type="search" aria-required="true">
+                        <input class="work-search-plugin__input form-control" id="id_q" name="q" required="" type="search" aria-required="true" data-live-search>
                         <button class="work-search-plugin__btn" type="submit">
                             <span class="work-search-plugin__btn-text btn-text">{% trans "Submit" %}</span>
                         </button>

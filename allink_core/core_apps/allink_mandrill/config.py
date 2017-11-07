@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from django.core.exceptions import AppRegistryNotReady
 
 
 class MandrillConfig:
@@ -6,8 +7,10 @@ class MandrillConfig:
         from django.conf import settings
         from allink_core.core.loading import get_model
 
-        Config = get_model('config', 'Config')
-        config = Config.get_solo()
+        try:
+            config = get_model('config', 'Config').get_solo()
+        except AppRegistryNotReady:
+            config = None
 
         self.apikey = getattr(settings, 'MANDRILL_API_KEY')
 

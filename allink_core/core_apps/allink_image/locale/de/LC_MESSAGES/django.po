@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-27 16:00+0200\n"
+"POT-Creation-Date: 2017-11-06 14:40+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -47,28 +47,45 @@ msgstr ""
 "Bildseitenverhältnisse, die für Bilder in einer Spalte gesetzt ist."
 
 #: allink_core/core_apps/allink_image/cms_plugins.py:43
+#: allink_core/core_apps/allink_image/models.py:74
+msgid "Width Alias"
+msgstr ""
+
+#: allink_core/core_apps/allink_image/cms_plugins.py:44
+#, fuzzy
+#| msgid ""
+#| "This option overrides the default image ratio set for images in a colum "
+#| "of a content section."
+msgid ""
+"This option overrides the default image width_alias set for images in a "
+"column of a content section."
+msgstr ""
+"Diese Option überschreibt die Standardeinstellung für "
+"Bildseitenverhältnisse, die für Bilder in einer Spalte gesetzt ist."
+
+#: allink_core/core_apps/allink_image/cms_plugins.py:50
 #: allink_core/core_apps/allink_image/models.py:49
 msgid "Set a predefined background color"
 msgstr "Vordefinierte Hintergrundfarbe wählen"
 
-#: allink_core/core_apps/allink_image/cms_plugins.py:50
+#: allink_core/core_apps/allink_image/cms_plugins.py:57
 msgid "Predifined variations"
 msgstr "Vordefiniert Variationen"
 
-#: allink_core/core_apps/allink_image/cms_plugins.py:59
+#: allink_core/core_apps/allink_image/cms_plugins.py:66
 #: allink_core/core_apps/allink_image/models.py:25
 msgid "Image"
 msgstr "Bild"
 
-#: allink_core/core_apps/allink_image/cms_plugins.py:60
+#: allink_core/core_apps/allink_image/cms_plugins.py:67
 msgid "Generic"
 msgstr ""
 
-#: allink_core/core_apps/allink_image/cms_plugins.py:86
+#: allink_core/core_apps/allink_image/cms_plugins.py:93
 msgid "Additional settings"
 msgstr "Erweiterte Einstellungen"
 
-#: allink_core/core_apps/allink_image/cms_plugins.py:93
+#: allink_core/core_apps/allink_image/cms_plugins.py:100
 msgid "Link settings"
 msgstr "Link-Einstellungen"
 
@@ -112,7 +129,7 @@ msgstr "Für Beschreibung, Zuordnung, Copyright oder andere Informationen."
 msgid "Attributes"
 msgstr "Attribute"
 
-#: allink_core/core_apps/allink_image/models.py:94
+#: allink_core/core_apps/allink_image/models.py:100
 msgid "<file is missing>"
 msgstr "<Datei fehlt>"
 

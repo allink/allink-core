@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-27 16:00+0200\n"
+"POT-Creation-Date: 2017-11-06 14:40+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -863,9 +863,9 @@ msgid "Fax:"
 msgstr ""
 
 #: allink_core/core/templates/allink_core/locations/plugins/details-and-map/content.html:59
-#: allink_core/core/templates/allink_core/locations/plugins/details-and-map/content.html:122
+#: allink_core/core/templates/allink_core/locations/plugins/details-and-map/content.html:123
 #: allink_core/core/templates/allink_core/locations/plugins/details/content.html:42
-#: allink_core/core/templates/allink_core/locations/plugins/map/content.html:55
+#: allink_core/core/templates/allink_core/locations/plugins/map/content.html:56
 msgid "Directions"
 msgstr ""
 
@@ -980,6 +980,11 @@ msgstr ""
 
 #: allink_core/core/templates/partials/forms/form_field.html:57
 msgid "Clear Field"
+msgstr ""
+
+#: allink_core/core/templates/partials/forms/form_field.html:67
+#: allink_core/core/templates/partials/forms/form_field.html:68
+msgid "Select file..."
 msgstr ""
 
 #: allink_core/core/templates/templatetags/allink_plugin_ajax.html:22

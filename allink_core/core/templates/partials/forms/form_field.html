@@ -59,6 +59,15 @@
                             </div>
 
 
+                        {# File Upload #}
+
+                        {% elif field|widget_type == 'clearablefileinput' %}
+                            <div class="custom-file-upload">
+                                <input id="{{ field.auto_id }}" type="file" value="{% trans "Select file..." %}">
+                                <label for="{{ field.auto_id }}">{% trans "Select file..." %}</label>
+                            </div>
+
+
                         {# Dropdown Select #}
 
                         {% elif field|widget_type == 'select' or field|widget_type == 'lazyselect' %}

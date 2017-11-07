@@ -27,6 +27,7 @@ class CMSLocationsAppContentPlugin(CMSAllinkBaseAppContentPlugin):
             'classes': (
                 'collapse',
                 'only_when_map',
+                'only_when_details_and_map',
             ),
             'fields': (
                 'zoom_level',

@@ -239,11 +239,10 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="textarea">
-                                 <span class="label-text">
-                                     {% trans "Textarea (blank)" %}
-                                 </span>
-                                <span class="required-symbol">
-                                    ({% trans "required" %})
+                                <span class="label-text">
+                                    {% trans "Textarea (blank)" %}
+                                </span><span class="required-symbol">
+                                    <span class="sr-only">({% trans "required" %})</span>
                                 </span>
                             </label>
                             <textarea class="form-control" cols="40" id="textarea" name="textarea" rows="5" required></textarea>
@@ -276,7 +275,7 @@
                             </label>
                             <div class="custom-file-upload">
                                 <input type="file" id="file-upload" value="Select file...">
-                                <label class="control-label" for="file-upload">
+                                <label for="file-upload">
                                      Select file...
                                 </label>
                             </div>

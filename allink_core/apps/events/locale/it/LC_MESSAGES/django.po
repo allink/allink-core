@@ -1,0 +1,96 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-11-06 14:40+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: allink_core/apps/events/abstract_models.py:34
+msgid "Preview Image"
+msgstr ""
+
+#: allink_core/apps/events/abstract_models.py:41
+#: allink_core/apps/events/admin.py:26
+msgid "Template"
+msgstr ""
+
+#: allink_core/apps/events/abstract_models.py:42
+msgid "Choose a template."
+msgstr ""
+
+#: allink_core/apps/events/abstract_models.py:60
+msgid "Event Form enabled"
+msgstr ""
+
+#: allink_core/apps/events/abstract_models.py:65
+msgid "Event Date/ Time"
+msgstr ""
+
+#: allink_core/apps/events/abstract_models.py:82
+msgid "Event"
+msgstr ""
+
+#: allink_core/apps/events/abstract_models.py:83
+msgid "Events"
+msgstr ""
+
+#: allink_core/apps/events/abstract_models.py:105
+msgid "Slug"
+msgstr ""
+
+#: allink_core/apps/events/abstract_models.py:109
+msgid "Leave blank to auto-generate a unique slug."
+msgstr ""
+
+#: allink_core/apps/events/abstract_models.py:112
+msgid "Lead Text"
+msgstr ""
+
+#: allink_core/apps/events/abstract_models.py:113
+msgid ""
+"Teaser text that in some cases is used in the list view and/or in the detail "
+"view."
+msgstr ""
+
+#: allink_core/apps/events/abstract_models.py:119
+msgid "Costs"
+msgstr ""
+
+#: allink_core/apps/events/abstract_models.py:133
+msgid ""
+"Select and arrange specific entries, or, leave blank to select all. (If "
+"manual entries are selected the category filtering will be ignored.)"
+msgstr ""
+
+#: allink_core/apps/events/admin.py:76
+msgid "Published From/To"
+msgstr ""
+
+#: allink_core/apps/events/cms_apps.py:8
+msgid "Events Apphook"
+msgstr ""
+
+#: allink_core/apps/events/cms_menus.py:15
+msgid "Events menu"
+msgstr ""
+
+#: allink_core/apps/events/cms_toolbars.py:31
+msgid "Forms"
+msgstr ""
+
+#: allink_core/apps/events/views.py:35
+msgid "{} is not published."
+msgstr ""

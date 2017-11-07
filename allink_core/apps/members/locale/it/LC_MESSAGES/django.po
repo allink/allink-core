@@ -1,0 +1,86 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-11-06 14:40+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: allink_core/apps/members/abstract_models.py:26
+msgid "Member Number"
+msgstr ""
+
+#: allink_core/apps/members/abstract_models.py:33
+msgid "Email"
+msgstr ""
+
+#: allink_core/apps/members/abstract_models.py:37
+msgid "First Name"
+msgstr ""
+
+#: allink_core/apps/members/abstract_models.py:44
+msgid "Last Name"
+msgstr ""
+
+#: allink_core/apps/members/abstract_models.py:50
+msgid "Language"
+msgstr ""
+
+#: allink_core/apps/members/abstract_models.py:60
+#: allink_core/apps/members/abstract_models.py:61
+msgid "Members"
+msgstr ""
+
+#: allink_core/apps/members/abstract_models.py:154
+msgid "Slug"
+msgstr ""
+
+#: allink_core/apps/members/abstract_models.py:158
+msgid "Leave blank to auto-generate a unique slug."
+msgstr ""
+
+#: allink_core/apps/members/abstract_models.py:168
+msgid "Log"
+msgstr ""
+
+#: allink_core/apps/members/abstract_models.py:173
+msgid "Description"
+msgstr ""
+
+#: allink_core/apps/members/admin.py:40
+msgid ""
+"Delete selected Members (and corresponding Users/ also removes member from "
+"mailchimplist)"
+msgstr ""
+
+#: allink_core/apps/members/admin.py:49
+msgid "Subscribe member to mailchimplist)"
+msgstr ""
+
+#: allink_core/apps/members/admin.py:57
+msgid "Send welcome email"
+msgstr ""
+
+#: allink_core/apps/members/cms_apps.py:8
+msgid "Members Apphook"
+msgstr ""
+
+#: allink_core/apps/members/cms_toolbars.py:27
+msgid "allink"
+msgstr ""
+
+#: allink_core/apps/members/views.py:87
+msgid "Something went wrong with your subscription. Please try again later."
+msgstr ""

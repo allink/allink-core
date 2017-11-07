@@ -100,15 +100,17 @@ class BasePeopleTranslation(AllinkBaseTranslatedFieldsModel):
     job_function = models.CharField(
         _(u'Function'),
         max_length=255,
-        blank = True,
-        null = True,
+        blank=True,
+        null=True,
     )
+
     lead = HTMLField(
         _(u'Lead Text'),
         help_text=_(u'Teaser text that in some cases is used in the list view and/or in the detail view.'),
         blank=True,
         null=True,
     )
+
     class Meta:
         abstract = True
         app_label = 'people'

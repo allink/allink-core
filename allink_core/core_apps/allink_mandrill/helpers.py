@@ -31,7 +31,7 @@ def send_transactional_email(message, template_content, language=None, translate
         mandrill_client = mandrill.Mandrill(getattr(settings, 'MANDRILL_API_KEY'))
         result = mandrill_client.messages.send_template(template_name=template_name, template_content=template_content, message=message, async=async)
         check_result_status(result)
-    except mandrill.Error:
+    except:
         client = Client(settings.RAVEN_CONFIG.get('dsn'))
         client.captureException()
         # sentry is not configured on localhost

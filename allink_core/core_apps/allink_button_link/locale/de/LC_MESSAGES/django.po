@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-27 16:00+0200\n"
+"POT-Creation-Date: 2017-11-06 14:40+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -69,13 +69,13 @@ msgstr "Link Einstellungen"
 
 #: allink_core/core_apps/allink_button_link/cms_plugins.py:169
 msgid "Additional email settings"
-msgstr "Erweiterte E-mail Einstellungen"
+msgstr "Erweiterte E-Mail Einstellungen"
 
 #: allink_core/core_apps/allink_button_link/cms_plugins.py:176
 #, fuzzy
 #| msgid "Additional email settings"
 msgid "Additional form settings"
-msgstr "Erweiterte E-mail Einstellungen"
+msgstr "Erweiterte E-Mail Einstellungen"
 
 #: allink_core/core_apps/allink_button_link/model_fields.py:16
 #: allink_core/core_apps/allink_button_link/models.py:73
