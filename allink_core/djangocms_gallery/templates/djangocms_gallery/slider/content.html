@@ -4,11 +4,19 @@
         <div class="swiper-container swiper-default swiper-gallery-plugin" {% if instance.auto_start_enabled == False %}data-autoplay="false"{% endif %}>
 
             <div class="swiper-wrapper">
+            {% if instance.folder %}
+                {% for image in instance.folder_images %}
+                    <div class="swiper-slide swiper-slide-{{image.id}}">
+                        {% include "djangocms_gallery/slider/folder_item.html" with image=image %}
+                    </div>
+                {% endfor %}
+            {% else %}
                 {% for plugin in instance.child_plugin_instances %}
                     <div class="swiper-slide swiper-slide-{{plugin.id}}">
                         {% render_plugin plugin %}
                     </div>
                 {% endfor %}
+            {% endif %}
             </div>
 
             <div class="swiper-pagination"></div>

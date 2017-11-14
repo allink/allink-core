@@ -247,6 +247,7 @@ class AllinkLinkFieldsModel(AllinkInternalLinkFieldsModel):
         blank=True,
         default='',
         help_text=_(u'Provide a valid URL to an external website.'),
+        max_length=500,
     )
     link_internal = SitemapField(
         verbose_name=_(u'Internal link'),
@@ -336,7 +337,15 @@ class AllinkLinkFieldsModel(AllinkInternalLinkFieldsModel):
         elif self.link_file:
             link = self.link_file.url
         elif self.link_special:
-            link = reverse(self.link_special)
+            try:
+                """
+                because we are always in a plugin (e.g Button, Image..)
+                and plugins can appear more than once on the same page,
+                the urls should always pass a plugin_id (not all urls do at the moment)
+                """
+                link = reverse(self.link_special, kwargs={'plugin_id': self.id})
+            except:
+                link = reverse(self.link_special)
         else:
             link = ''
         if self.link_anchor:

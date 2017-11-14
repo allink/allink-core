@@ -34,9 +34,10 @@
 
         {# XS #}
         <img
-            data-srcset="{{thumbnail_xs.url}}, {{thumbnail_xs.high_resolution.url}} 2x"
-            alt="{{ object.title }}"
             class="lazyload"
+            data-srcset="{{thumbnail_xs.url}}, {{thumbnail_xs.high_resolution.url}} 2x"
+            {% if instance.picture.default_alt_text and not instance.attributes.alt %} alt="{{ instance.picture.default_alt_text }}"{% endif %}
+            {{ instance.attributes_str }}
         >
 
         <style>

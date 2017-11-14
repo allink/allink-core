@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-27 12:07+0200\n"
+"POT-Creation-Date: 2017-09-01 16:04+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,14 +26,6 @@ msgstr ""
 #: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:209
 #: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:430
 msgid "Text"
-msgstr ""
-
-#: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:212
-#: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:223
-#: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:256
-#: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:290
-#: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:433
-msgid "required"
 msgstr ""
 
 #: allink_core_repo/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html:220

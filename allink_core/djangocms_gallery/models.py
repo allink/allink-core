@@ -6,10 +6,11 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import python_2_unicode_compatible
 from django.contrib.postgres.fields import ArrayField
-from django.core.validators import MaxLengthValidator
+from django.utils.functional import cached_property
 
 from cms.models.pluginmodel import CMSPlugin
 from filer.fields.image import FilerImageField
+from filer.fields.folder import FilerFolderField
 from djangocms_text_ckeditor.fields import HTMLField
 
 from allink_core.allink_base.utils import get_additional_templates
@@ -53,6 +54,11 @@ class AllinkGalleryPlugin(CMSPlugin):
         blank=True,
         null=True
     )
+    folder = FilerFolderField(
+        null=True,
+        blank=True,
+        help_text=_(u"All Images (.png, .gif, .jpg, .jpeg) will be used in gallery. If a folder is specified, the child plugin won't be rendered."),
+    )
 
     def __str__(self):
         if self.template:
@@ -65,6 +71,15 @@ class AllinkGalleryPlugin(CMSPlugin):
         for x, y in get_additional_templates('GALLERY'):
             templates += ((x, y),)
         return templates
+
+    @cached_property
+    def folder_images(self):
+        filename_extensions = ['png', 'gif', 'jpg', 'jpeg']
+        images = []
+        for image in self.folder.files:
+            if image.extension in filename_extensions:
+                images.append(image)
+        return images
 
     @property
     def css_classes(self):
