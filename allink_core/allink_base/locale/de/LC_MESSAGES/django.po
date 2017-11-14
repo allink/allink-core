@@ -570,10 +570,6 @@ msgstr "Telefon"
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:72
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:78
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:84
-#, fuzzy
-#| msgid ""
-#| "We automatically handle phone number formatting, Please provide the "
-#| "number in the following format \"+41 43 333 30 90\"."
 msgid ""
 "We automatically handle phone number formatting, Please provide the number "
 "in the following format \"+41 43 123 45 67\"."
