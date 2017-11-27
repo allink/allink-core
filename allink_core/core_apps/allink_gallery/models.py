@@ -6,10 +6,11 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import python_2_unicode_compatible
 from django.contrib.postgres.fields import ArrayField
-from django.core.validators import MaxLengthValidator
+from django.utils.functional import cached_property
 
 from cms.models.pluginmodel import CMSPlugin
 from filer.fields.image import FilerImageField
+from filer.fields.folder import FilerFolderField
 from djangocms_text_ckeditor.fields import HTMLField
 
 from allink_core.core.utils import get_additional_templates
@@ -31,7 +32,7 @@ class AllinkGalleryPlugin(CMSPlugin):
     )
     fullscreen_enabled = models.BooleanField(
         _(u'Fullscreen option visible'),
-        default=False,
+        default=True,
         help_text=_(u'This option enables a fullscreen button for this gallery.'),
     )
     counter_enabled = models.BooleanField(
@@ -52,6 +53,11 @@ class AllinkGalleryPlugin(CMSPlugin):
         ),
         blank=True,
         null=True
+    )
+    folder = FilerFolderField(
+        null=True,
+        blank=True,
+        help_text=_(u"All Images (.png, .gif, .jpg, .jpeg) will be used in gallery. If a folder is specified, the child plugin won't be rendered."),
     )
 
     def __str__(self):
@@ -74,6 +80,15 @@ class AllinkGalleryPlugin(CMSPlugin):
                 css_classes.append(css_class)
         css_classes.append("counter-enabled") if self.counter_enabled else None
         return ' '.join(css_classes)
+
+    @cached_property
+    def folder_images(self):
+        filename_extensions = ['png', 'gif', 'jpg', 'jpeg']
+        images = []
+        for image in self.folder.files:
+            if image.extension in filename_extensions:
+                images.append(image)
+        return images
 
     def save(self, *args, **kwargs):
         # invalidate cache

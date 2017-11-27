@@ -108,3 +108,4 @@ class ConfigAdmin(TranslatableAdmin, SingletonModelAdmin):
 @admin.register(AllinkPageExtension)
 class AllinkSEOExtensionAdmin(PageExtensionAdmin):
     pass
+

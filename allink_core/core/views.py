@@ -3,7 +3,6 @@
 import json
 import urllib.parse
 import re
-
 from django.views.generic import ListView, DetailView, CreateView, FormView
 from django.db.models import Q
 from django.core.cache import cache
@@ -13,7 +12,7 @@ from django.template.loader import get_template
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
 from django.conf import settings
-from django.http import HttpResponse, HttpResponseRedirect, HttpResponsePermanentRedirect
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponsePermanentRedirect, Http404
 from django.template.loader import render_to_string
 from django.template import TemplateDoesNotExist
 
@@ -132,6 +131,14 @@ class AllinkBaseDetailView(TranslatableSlugMixin, DetailView):
     """
     model = Events
     """
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        context = self.get_context_data(object=self.object)
+        if not self.object.is_published() and not request.user.is_staff:
+            raise Http404(_('{} is not published.'.format(self.model.get_verbose_name())))
+        else:
+            return self.render_to_response(context)
+
     def render_to_response(self, context, **response_kwargs):
         if self.request.is_ajax():
             context.update({'base_template': 'app_content/ajax_base.html'})

@@ -639,17 +639,21 @@ msgstr "Nachricht"
 #: allink_core/core/templates/allink_core/404.html:5
 #: allink_core/core/templates/allink_core/500.html:5
 msgid "The requested page is not available"
-msgstr ""
+msgstr "Die angeforderte Seite ist nicht vorhanden."
 
 #: allink_core/core/templates/allink_core/404.html:14
 #: allink_core/core/templates/allink_core/500.html:14
 msgid "The requested page is not available."
-msgstr ""
+<<<<<<< HEAD
+msgstr "Die angeforderte Seite ist nicht verfügbar."
+=======
+msgstr "Die angeforderte Seite ist nicht vorhanden."
+>>>>>>> 3fadcd62fe81d200d9e10520a7cc8156cd233147
 
 #: allink_core/core/templates/allink_core/404.html:15
 #: allink_core/core/templates/allink_core/500.html:15
 msgid "Continue to homepage"
-msgstr ""
+msgstr "Zur Startseite"
 
 #: allink_core/core/templates/allink_core/admin/aldryn_common/widgets/sortedm2m_widget.html:4
 msgid "Type into this box to filter down the list."

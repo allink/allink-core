@@ -581,17 +581,17 @@ msgstr "Message"
 #: allink_core/core/templates/allink_core/404.html:5
 #: allink_core/core/templates/allink_core/500.html:5
 msgid "The requested page is not available"
-msgstr ""
+msgstr "La page recherchée n'existe pas."
 
 #: allink_core/core/templates/allink_core/404.html:14
 #: allink_core/core/templates/allink_core/500.html:14
 msgid "The requested page is not available."
-msgstr ""
+msgstr "La page recherchée n'existe pas."
 
 #: allink_core/core/templates/allink_core/404.html:15
 #: allink_core/core/templates/allink_core/500.html:15
 msgid "Continue to homepage"
-msgstr ""
+msgstr "Retour à la page d'accueil"
 
 #: allink_core/core/templates/allink_core/admin/aldryn_common/widgets/sortedm2m_widget.html:4
 msgid "Type into this box to filter down the list."

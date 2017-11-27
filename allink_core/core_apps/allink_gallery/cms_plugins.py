@@ -79,6 +79,7 @@ class CMSAllinkGalleryPlugin(CMSPluginBase):
             (None, {
                 'fields': (
                     'template',
+                    'folder',
                 ),
             }),
             (_('Slider Options'), {
