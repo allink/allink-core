@@ -16,13 +16,13 @@ The Following command will create a new module called <code>work</code> inside t
 
 The console will output the steps needed to complete the process.
 ```
-The final step is uncomment "new_app.config" in OVERIDDED_ALLINK_CORE_APPS (replacing
+The final step is uncomment "new_app.config" in OVERRIDDED_ALLINK_CORE_APPS (replacing
 the equivalent allink_core app). e.g.:
 
     # settings.py
     ...
 
-    OVERIDDEN_ALLINK_CORE_APPS = [
+    OVERRIDDEN_ALLINK_CORE_APPS = [
         # 'allink_apps.contact',
         # 'allink_apps.events',
         # 'allink_apps.locations',

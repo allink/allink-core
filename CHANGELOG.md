@@ -35,7 +35,7 @@ INSTALLED_ALLINK_CORE_APPS = [
     # 'allink_core.apps.work',
 ]
 # allink apps which are overriden in this project
-OVERIDDEN_ALLINK_CORE_APPS = [
+OVERRIDDEN_ALLINK_CORE_APPS = [
     # 'allink_apps.contact',
     # 'allink_apps.events',
     # 'allink_apps.locations',
@@ -45,7 +45,7 @@ OVERIDDEN_ALLINK_CORE_APPS = [
     # 'allink_apps.testimonials',
     # 'allink_apps.work',
 ]
-INSTALLED_APPS.extend(get_core_apps(OVERIDDEN_ALLINK_CORE_APPS, INSTALLED_ALLINK_CORE_APPS))
+INSTALLED_APPS.extend(get_core_apps(OVERRIDDEN_ALLINK_CORE_APPS, INSTALLED_ALLINK_CORE_APPS))
 
 ```
 
