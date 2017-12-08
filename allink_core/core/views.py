@@ -3,7 +3,6 @@
 import json
 import urllib.parse
 import re
-
 from django.views.generic import ListView, DetailView, CreateView, FormView
 from django.db.models import Q
 from django.core.cache import cache
@@ -13,7 +12,7 @@ from django.template.loader import get_template
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
 from django.conf import settings
-from django.http import HttpResponse, HttpResponseRedirect, HttpResponsePermanentRedirect
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponsePermanentRedirect, Http404
 from django.template.loader import render_to_string
 from django.template import TemplateDoesNotExist
 
@@ -132,6 +131,14 @@ class AllinkBaseDetailView(TranslatableSlugMixin, DetailView):
     """
     model = Events
     """
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        context = self.get_context_data(object=self.object)
+        if not self.object.is_published() and not request.user.is_staff:
+            raise Http404(_('{} is not published.'.format(self.model.get_verbose_name())))
+        else:
+            return self.render_to_response(context)
+
     def render_to_response(self, context, **response_kwargs):
         if self.request.is_ajax():
             context.update({'base_template': 'app_content/ajax_base.html'})
@@ -154,7 +161,7 @@ class AllinkBaseCreateView(CreateView):
          data-filled form and errors.
         """
         if self.request.is_ajax():
-            return self.json_response(self.get_context_data(form=form), self.template_name, 206)
+            return self.render_to_response(self.get_context_data(form=form), status=206)
         else:
             return super(AllinkBaseCreateView, self).form_invalid(form)
 
@@ -163,7 +170,7 @@ class AllinkBaseCreateView(CreateView):
         if self.request.is_ajax():
             context = self.get_context_data()
             try:
-                return self.json_response(context, self.get_confirmation_template(), 200)
+                return self.json_response(context)
             except:
                 # sentry is not configured on localhost
                 if not settings.RAVEN_CONFIG.get('dsn'):
@@ -173,10 +180,10 @@ class AllinkBaseCreateView(CreateView):
         else:
             return HttpResponseRedirect(self.get_success_url())
 
-    def json_response(self, context, template, status):
+    def json_response(self, context):
         json_context = {}
-        json_context['rendered_content'] = render_to_string(template, context=context, request=self.request)
-        return HttpResponse(content=json.dumps(json_context), content_type='application/json', status=status)
+        json_context['rendered_content'] = render_to_string(self.get_confirmation_template(), context=context, request=self.request)
+        return HttpResponse(content=json.dumps(json_context), content_type='application/json', status=200)
 
     def get_context_data(self, *args, **kwargs):
         context = super(AllinkBaseCreateView, self).get_context_data(*args, **kwargs)
