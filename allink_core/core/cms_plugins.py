@@ -199,15 +199,15 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
         file = 'no_results' if not context['object_list'] else 'content'
         return instance.get_correct_template(file)
 
-    def get_queryset_by_category(self, instance, filters):
+    def get_queryset_by_category(self, instance, filters, request):
         # manual entries
         if instance.manual_entries.prefetch_related('manual_entries').exists():
             objects_list = instance.get_selected_entries(filters=filters)
         # category navigation and no category "all" (only first category is relevant)
         elif instance.category_navigation_enabled and not instance.category_navigation_all:
-            objects_list = instance.get_render_queryset_for_display(category=instance.get_first_category(), filters=filters)
+            objects_list = instance.get_render_queryset_for_display(category=instance.get_first_category(), filters=filters, request=request)
         else:
-            objects_list = instance.get_render_queryset_for_display(filters=filters)
+            objects_list = instance.get_render_queryset_for_display(filters=filters, request=request)
         return objects_list
 
     def render(self, context, instance, placeholder):
@@ -217,11 +217,11 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
         if instance.manual_ordering == AllinkBaseAppContentPlugin.RANDOM:
             objects_list, path = context['request'].session.get("random_plugin_queryset_%s" % instance.id, ([], None))
             if (objects_list and path == context['request'].path) or not objects_list:
-                objects_list = self.get_queryset_by_category(instance, filters)
+                objects_list = self.get_queryset_by_category(instance, filters, context['request'])
                 context['request'].session["random_plugin_queryset_%s" % instance.id] = (objects_list, context['request'].path)
         # not random ordering
         else:
-            objects_list = self.get_queryset_by_category(instance, filters)
+            objects_list = self.get_queryset_by_category(instance, filters, context['request'])
 
         # Paginate Objects
         if instance.paginated_by > 0:

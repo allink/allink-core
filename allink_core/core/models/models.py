@@ -603,7 +603,7 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
         else:
             return queryset.distinct()
 
-    def get_render_queryset_for_display(self, category=None, filters={}):
+    def get_render_queryset_for_display(self, category=None, filters={}, request=None):
         """
          returns all data_model objects distinct to id which are in the selected categories
           - category: category instance
@@ -613,7 +613,7 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
 
         valid_cache_keys = cache.get('render_queryset_for_display_valid_keys_%s' % self.id, [])
         cache_key = 'render_queryset_for_display_%s_%s_%s' % (self.id, category.id if category else '', json.dumps(filters))
-        if cache_key in valid_cache_keys:
+        if hasattr(request, 'toolbar') and not request.toolbar.edit_mode and cache_key in valid_cache_keys:
             cached_qs = cache.get(cache_key, None)
 
             if cached_qs:
