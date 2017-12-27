@@ -17,6 +17,8 @@ Each release is divided into the following main categories:
 
 ### IMPORTANT
 
+- Location Plugin Template: `details-and-map` has been renamed to `details_and_map` because of django naming conventions (underlines only), which should be the standard for future plugin template folders.
+
 ###### SETTINGS
 
 - Only register allink apps when actaully needed
