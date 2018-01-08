@@ -13,9 +13,7 @@
 <div class="grid-item">
     {% if object.big %}
         <div class="image-container">
-            <a href="{{object.link}}" target="_blank">
-                <img src="{{object.big}}" alt="{{object.caption}}">
-            </a>
+            <img src="{{ object.big }}" alt="{{ object.caption }}">
         </div>
     {% endif %}
 </div>
