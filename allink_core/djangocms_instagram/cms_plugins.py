@@ -47,7 +47,6 @@ class CMSAllinkInstagramPlugin(CMSPluginBase):
         for image in nodes:
             image_urls.append({
                 'id': image['id'],
-                'link': image['link'],
                 'small': image['thumbnail_resources'][1]['src'],
                 'big': image['thumbnail_resources'][4]['src'],
                 'caption': image['caption']
