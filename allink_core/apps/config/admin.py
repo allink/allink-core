@@ -28,7 +28,7 @@ class ConfigAdminForm(TranslatableModelForm):
 
     class Meta(forms.ModelForm):
         model = Config
-        fields = ['theme_color', 'mask_icon_color', 'msapplication_tilecolor']
+        exclude = ()
 
 
 @admin.register(Config)

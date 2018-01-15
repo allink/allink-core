@@ -13,7 +13,7 @@ from solo.models import SingletonModel
 
 
 @python_2_unicode_compatible
-class BaseConfig(TranslatableModel, SingletonModel):
+class BaseConfig(SingletonModel, TranslatableModel):
     default_og_image = FilerImageField(
         verbose_name=_(u'og:image'),
         help_text=_(
