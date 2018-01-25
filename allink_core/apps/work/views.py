@@ -21,12 +21,16 @@ class WorkPluginLoadMore(AllinkBasePluginLoadMoreView):
 
 class WorkDetail(AllinkBaseDetailView):
     model = Work
+    template_name ='work/work_detail.html'
 
 
 class WorkSearchAjaxView(AllinkBaseAjaxFormView):
     form_class = WorkSearchForm
     plugin_class = WorkSearchPlugin
-    template_name = 'work/plugins/search/_items.html'
+
+    def get_template_names(self):
+        template_name = 'work/plugins/{}/_items.html'.format(self.plugin.template)
+        return [template_name]
 
 
 def export_pdf(request, id):

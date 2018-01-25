@@ -34,8 +34,15 @@
     </li>
     {# {% if has_absolute_url %}<li><a href="{{ original.get_absolute_url }}?build" class="viewsitelink">{% trans "Content" %}</a></li>{% endif %} #}
     {% if has_absolute_url %}
-        {# <li><a href="{{ original.get_absolute_url }}?structure" class="viewsitelink">{% trans "View structure" %}</a></li> #}
-        <li><a href="{{ absolute_url }}" class="viewsitelink">{% trans "View on site" %}</a></li>
+        <li><a href="{{ original.get_absolute_url }}?structure" class="viewsitelink" onclick="closeSideframe()">{% trans "View structure" %}</a></li>
+        <li><a href="{{ absolute_url }}" class="viewsitelink" onclick="closeSideframe()">{% trans "View on site" %}</a></li>
+        <script>
+            function closeSideframe() {
+                try {
+                    window.top.CMS.$('.cms-sideframe-close').trigger('click.cms.sideframe');
+                } catch(e) {}
+            }
+        </script>
     {% endif %}
     {% endblock %}
   </ul>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-06 14:40+0100\n"
+"POT-Creation-Date: 2017-12-19 11:50+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,7 +23,7 @@ msgid "Preview Image"
 msgstr ""
 
 #: allink_core/apps/news/abstract_models.py:40
-#: allink_core/apps/news/admin.py:25
+#: allink_core/apps/news/admin.py:24
 msgid "Template"
 msgstr ""
 
@@ -63,11 +63,11 @@ msgid ""
 "manual entries are selected the category filtering will be ignored.)"
 msgstr ""
 
-#: allink_core/apps/news/admin.py:41
+#: allink_core/apps/news/admin.py:40
 msgid "Max. 400 characters."
 msgstr ""
 
-#: allink_core/apps/news/admin.py:59
+#: allink_core/apps/news/admin.py:58
 msgid "Published From/To"
 msgstr ""
 
@@ -77,8 +77,4 @@ msgstr ""
 
 #: allink_core/apps/news/cms_menus.py:15
 msgid "News menu"
-msgstr ""
-
-#: allink_core/apps/news/views.py:24
-msgid "{} is not published."
 msgstr ""

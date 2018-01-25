@@ -40,12 +40,6 @@ class BaseContactRequest(AllinkSimpleRegistrationFieldsModel):
         null=True
     )
 
-    class Meta:
-        abstract = True
-        app_label = 'contact'
-        verbose_name = _(u'Contact Request')
-        verbose_name_plural = _(u'Contact Requests')
-
     def __str__(self):
         return u'%s %s' % (self.first_name, self.last_name)
 
@@ -70,6 +64,12 @@ class BaseContactRequest(AllinkSimpleRegistrationFieldsModel):
             return getattr(Config.get_solo(), field_name)
         except:
             return cls._meta.verbose_name_plural
+
+    class Meta:
+        abstract = True
+        app_label = 'contact'
+        verbose_name = _(u'Contact Request')
+        verbose_name_plural = _(u'Contact Requests')
 
 
 class BaseContactRequestPlugin(AllinkBaseFormPlugin):

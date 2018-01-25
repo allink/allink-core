@@ -358,13 +358,13 @@ def fork_app(label, folder_path, logger=None, help=False):
 
     # Final step needs to be done by hand
     msg = (
-        "The final step is to uncomment '%s' in OVERIDDED_ALLINK_CORE_APPS "
+        "The final step is to uncomment '%s' in OVERRIDDEN_ALLINK_CORE_APPS "
         "(replacing the equivalent allink_core app). e.g.:"
     ) % app_package
     snippet = (
         "  # settings.py\n"
         "  ...\n"
-        "  OVERIDDED_ALLINK_CORE_APPS = [\n"
+        "  OVERRIDDEN_ALLINK_CORE_APPS = [\n"
         "      ['%s'],"
         "      ...\n"
         "  ]\n"
@@ -703,8 +703,6 @@ class {model_name}Detail(AllinkBaseDetailView):
 class {model_name}SearchAjaxView(AllinkBaseAjaxFormView):
     form_class = {model_name}SearchForm
     plugin_class = {model_name}SearchPlugin
-    template_name = '{label}/plugins/search/_items.html'
-
 
 '''
 

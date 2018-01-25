@@ -4,7 +4,7 @@ from django.core.cache import cache
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 
-from cms.extensions import PageExtension
+from cms.extensions import PageExtension, TitleExtension
 from parler.models import TranslatableModel, TranslatedFieldsModel
 from filer.fields.image import FilerImageField
 from django.utils.translation import get_language
@@ -70,6 +70,7 @@ class BaseConfig(SingletonModel, TranslatableModel):
 
     class Meta:
         abstract = True
+        app_label = 'config'
         verbose_name = _(u'Configuration')
 
     def __str__(self):
@@ -166,6 +167,14 @@ class BaseAllinkPageExtension(PageExtension):
         _(u'Special Subnav enabled?'),
         default=False
     )
+
+    class Meta:
+        abstract = True
+        app_label = 'config'
+
+
+# Title  Extensions
+class BaseAllinkTitleExtension(TitleExtension):
 
     class Meta:
         abstract = True

@@ -24,14 +24,9 @@
             {% endif %}
             {% if object.title %}
                 <div class="heading-container">
-                    <h2 class="heading">
+                    <h3 class="heading">
                         {% render_model_ajax object "title" %}
-                    </h2>
-                </div>
-            {% endif %}
-            {% if object.lead %}
-                <div class="lead-container">
-                    {{object.lead|striptags}}
+                    </h3>
                 </div>
             {% endif %}
             {% if instance.detail_link_enabled and object.show_detail_link %}

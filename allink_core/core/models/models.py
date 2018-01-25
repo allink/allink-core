@@ -5,6 +5,7 @@ import json
 import phonenumbers
 from importlib import import_module
 
+from django.utils.functional import cached_property
 from django.conf import settings
 from django.db import models
 from django.db.models import Q
@@ -553,6 +554,7 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
     def get_first_category(self):
         return self.categories.first()
 
+    @cached_property
     def get_category_navigation(self):
         category_navigation = []
         # if manual entries are selected the category navigation
@@ -649,6 +651,13 @@ class AllinkBaseSearchPlugin(CMSPlugin):
 
     data_model = None
 
+    template = models.CharField(
+        _(u'Template'),
+        help_text=_(u'Choose a template.'),
+        max_length=50,
+        default='search_grid_static'
+    )
+
     project_css_classes = ArrayField(
         models.CharField(
             max_length=50,
@@ -682,14 +691,21 @@ class AllinkBaseSearchPlugin(CMSPlugin):
                 css_classes.append(css_class)
         return ' '.join(css_classes)
 
-    def save(self, *args, **kwargs):
-        # clean cache
-        if self.id:
-            search_cache_keys_key = 'search_cache_keys_{}'.format(self.id)
-            search_cache_keys = cache.get(search_cache_keys_key)
-            cache.delete_many = (search_cache_keys)
-            cache.delete(search_cache_keys_key)
-        return super(AllinkBaseSearchPlugin, self).save(*args, **kwargs)
+    @classmethod
+    def get_templates(cls):
+        templates = ()
+        for x, y in get_additional_templates('{}_search'.format(cls.data_model._meta.model_name)):
+            templates += ((x, y),)
+        return templates
+
+    # def save(self, *args, **kwargs):
+    #     # clean cache
+    #     if self.id:
+    #         search_cache_keys_key = 'search_cache_keys_{}'.format(self.id)
+    #         search_cache_keys = cache.get(search_cache_keys_key)
+    #         cache.delete_many = (search_cache_keys)
+    #         cache.delete(search_cache_keys_key)
+    #     return super(AllinkBaseSearchPlugin, self).save(*args, **kwargs)
 
 
 class AllinkBaseFormPlugin(CMSPlugin):
@@ -912,7 +928,7 @@ class AllinkInternalLinkFieldsModel(models.Model):
     class Meta:
         abstract = True
 
-    @property
+    @cached_property
     def link(self):
         if self.link_page:
             link = self.link_page.get_absolute_url()
@@ -929,7 +945,7 @@ class AllinkInternalLinkFieldsModel(models.Model):
             link = ''
         return link
 
-    @property
+    @cached_property
     def link_object(self):
         if self.link_page:
             link_obj = self.link_page

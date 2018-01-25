@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-06 14:40+0100\n"
+"POT-Creation-Date: 2017-12-19 11:50+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,7 +23,7 @@ msgid "Preview Image"
 msgstr ""
 
 #: allink_core/apps/events/abstract_models.py:41
-#: allink_core/apps/events/admin.py:26
+#: allink_core/apps/events/admin.py:25
 msgid "Template"
 msgstr ""
 
@@ -75,7 +75,7 @@ msgid ""
 "manual entries are selected the category filtering will be ignored.)"
 msgstr ""
 
-#: allink_core/apps/events/admin.py:76
+#: allink_core/apps/events/admin.py:75
 msgid "Published From/To"
 msgstr ""
 
@@ -87,10 +87,6 @@ msgstr ""
 msgid "Events menu"
 msgstr ""
 
-#: allink_core/apps/events/cms_toolbars.py:31
+#: allink_core/apps/events/cms_toolbars.py:30
 msgid "Forms"
-msgstr ""
-
-#: allink_core/apps/events/views.py:35
-msgid "{} is not published."
 msgstr ""

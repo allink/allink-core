@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-06 14:40+0100\n"
+"POT-Creation-Date: 2017-12-19 11:50+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -47,11 +47,11 @@ msgstr ""
 msgid "Time"
 msgstr ""
 
-#: allink_core/apps/contact/abstract_models.py:73
+#: allink_core/apps/contact/abstract_models.py:71
 msgid "Contact Request"
 msgstr ""
 
-#: allink_core/apps/contact/abstract_models.py:74
+#: allink_core/apps/contact/abstract_models.py:72
 msgid "Contact Requests"
 msgstr ""
 

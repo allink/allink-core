@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-06 14:40+0100\n"
+"POT-Creation-Date: 2017-12-19 11:50+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: allink_core/core_apps/allink_gallery/cms_plugins.py:25
-#: allink_core/core_apps/allink_gallery/models.py:27
+#: allink_core/core_apps/allink_gallery/models.py:28
 msgid "Ratio"
 msgstr ""
 
@@ -28,7 +28,7 @@ msgid "This option overrides the default settings for the gallery plugin."
 msgstr ""
 
 #: allink_core/core_apps/allink_gallery/cms_plugins.py:31
-#: allink_core/core_apps/allink_gallery/models.py:22
+#: allink_core/core_apps/allink_gallery/models.py:23
 msgid "Template"
 msgstr ""
 
@@ -47,71 +47,77 @@ msgid "Gallery"
 msgstr ""
 
 #: allink_core/core_apps/allink_gallery/cms_plugins.py:66
-#: allink_core/core_apps/allink_gallery/cms_plugins.py:111
+#: allink_core/core_apps/allink_gallery/cms_plugins.py:112
 msgid "Generic"
 msgstr ""
 
-#: allink_core/core_apps/allink_gallery/cms_plugins.py:84
+#: allink_core/core_apps/allink_gallery/cms_plugins.py:85
 msgid "Slider Options"
 msgstr ""
 
-#: allink_core/core_apps/allink_gallery/cms_plugins.py:92
+#: allink_core/core_apps/allink_gallery/cms_plugins.py:93
 msgid "Advanced Options"
 msgstr ""
 
-#: allink_core/core_apps/allink_gallery/cms_plugins.py:110
-#: allink_core/core_apps/allink_gallery/models.py:98
+#: allink_core/core_apps/allink_gallery/cms_plugins.py:111
+#: allink_core/core_apps/allink_gallery/models.py:113
 msgid "Image"
 msgstr ""
 
-#: allink_core/core_apps/allink_gallery/models.py:23
+#: allink_core/core_apps/allink_gallery/models.py:24
 msgid "Choose a template."
 msgstr ""
 
-#: allink_core/core_apps/allink_gallery/models.py:33
+#: allink_core/core_apps/allink_gallery/models.py:34
 msgid "Fullscreen option visible"
 msgstr ""
 
-#: allink_core/core_apps/allink_gallery/models.py:35
+#: allink_core/core_apps/allink_gallery/models.py:36
 msgid "This option enables a fullscreen button for this gallery."
 msgstr ""
 
-#: allink_core/core_apps/allink_gallery/models.py:38
+#: allink_core/core_apps/allink_gallery/models.py:39
 msgid "Gallery counter visible"
 msgstr ""
 
-#: allink_core/core_apps/allink_gallery/models.py:40
+#: allink_core/core_apps/allink_gallery/models.py:41
 msgid "This option enables a gallery counter."
 msgstr ""
 
-#: allink_core/core_apps/allink_gallery/models.py:43
+#: allink_core/core_apps/allink_gallery/models.py:44
 msgid "Autostart"
 msgstr ""
 
-#: allink_core/core_apps/allink_gallery/models.py:45
+#: allink_core/core_apps/allink_gallery/models.py:46
 msgid "This option enables autoplay for this gallery."
 msgstr ""
 
-#: allink_core/core_apps/allink_gallery/models.py:88
+#: allink_core/core_apps/allink_gallery/models.py:60
+msgid ""
+"All Images (.png, .gif, .jpg, .jpeg) will be used in gallery. If a folder is "
+"specified, the child plugin won't be rendered."
+msgstr ""
+
+#: allink_core/core_apps/allink_gallery/models.py:103
 msgid "Title"
 msgstr ""
 
-#: allink_core/core_apps/allink_gallery/models.py:94
+#: allink_core/core_apps/allink_gallery/models.py:109
 msgid "Text"
 msgstr ""
 
-#: allink_core/core_apps/allink_gallery/templates/allink_gallery/slider/content.html:19
+#: allink_core/core_apps/allink_gallery/templates/allink_gallery/slider/content.html:27
 msgid "Previous Slide"
 msgstr ""
 
-#: allink_core/core_apps/allink_gallery/templates/allink_gallery/slider/content.html:26
+#: allink_core/core_apps/allink_gallery/templates/allink_gallery/slider/content.html:34
 msgid "Next Slide"
 msgstr ""
 
-#: allink_core/core_apps/allink_gallery/templates/allink_gallery/slider/content.html:39
+#: allink_core/core_apps/allink_gallery/templates/allink_gallery/slider/content.html:47
 msgid "of"
 msgstr ""
 
-#: allink_core/core_apps/allink_gallery/templates/allink_gallery/slider/content.html:46
+#: allink_core/core_apps/allink_gallery/templates/allink_gallery/slider/content.html:54
 msgid "Fullscreen Gallery"
 msgstr ""

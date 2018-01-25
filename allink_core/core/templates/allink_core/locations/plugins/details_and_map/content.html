@@ -45,13 +45,13 @@
                         <a class="text" href="mailto:{{object.email}}">{{object.email}}</a><br>
                     {% endif %}
                     {% if object.phone %}
-                        {% trans "Phone:" %} <a href="tel:{{object.phone}}">{{object.phone}}</a><br>
+                        {% trans "Phone:" %} <a href="tel:{{object.phone}}">{{object.phone_formatted}}</a><br>
                     {% endif %}
                     {% if object.mobile %}
-                        {% trans "Mobile:" %} <a href="tel:{{object.mobile}}">{{object.mobile}}</a><br>
+                        {% trans "Mobile:" %} <a href="tel:{{object.mobile}}">{{object.mobile_formatted}}</a><br>
                     {% endif %}
                     {% if object.fax %}
-                        {% trans "Fax:" %} <a href="tel:{{object.fax}}">{{object.fax}}</a><br>
+                        {% trans "Fax:" %} <a href="tel:{{object.fax}}">{{object.fax_formatted}}</a><br>
                     {% endif %}
                 </p>
 
@@ -98,23 +98,23 @@
                                                     + '<strong>{{object.title|escapejs}}</strong>'
                                                 {% endif %}
                                                 {% if object.address_1 %}
-                                                    + '<br>{{ object.address_1 |escapejs}}'
-                                                    + '<br>{{ object.address_2 |escapejs}}<br>'
-                                                    + '<br>{{ object.address_3 |escapejs}}<br>'
+                                                    + '<br>{{ object.address_1|escapejs}}'
+                                                    + '<br>{{ object.address_2|escapejs}}<br>'
+                                                    + '<br>{{ object.address_3|escapejs}}<br>'
                                                 {% endif %}
                                                 {% if object.address_4 %}
-                                                    + '<br>{{ object.address_4 |escapejs}}<br>'
+                                                    + '<br>{{ object.address_4|escapejs}}<br>'
                                                 {% endif %}
                                             + '</div>'
                                             + '<div class="block text-container">'
                                                 {% if object.phone %}
-                                                    + 'T <a class="text" href="tel:{{object.phone|escapejs}}">{{object.phone|escapejs}}</a>'
+                                                    + 'T <a class="text" href="tel:{{object.phone|escapejs}}">{{object.phone_formatted|escapejs}}</a>'
                                                 {% endif %}
                                                 {% if object.mobile %}
-                                                    + '<br>M <a class="text" href="tel:{{object.mobile|escapejs}}">{{object.mobile|escapejs}}</a>'
+                                                    + '<br>M <a class="text" href="tel:{{object.mobile|escapejs}}">{{object.mobile_formatted|escapejs}}</a>'
                                                 {% endif %}
                                                 {% if object.fax %}
-                                                    + '<br>F <a class="text" href="tel:{{object.fax|escapejs}}">{{object.fax|escapejs}}</a>'
+                                                    + '<br>F <a class="text" href="tel:{{object.fax|escapejs}}">{{object.fax_formatted|escapejs}}</a>'
                                                 {% endif %}
                                                 {% if object.email %}
                                                     + '<br>E <a class="text" href="mailto:{{object.email|escapejs}}">{{object.email|escapejs}}</a>'

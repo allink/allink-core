@@ -200,7 +200,6 @@ class AllinkBaseAjaxFormView(FormView):
     """
     form_class =
     plugin_class =
-    template_name = '.../plugins/search/_items.html'
     """
     search_fields = ['translations__title', 'translations__lead']
 
@@ -250,7 +249,7 @@ class AllinkBaseAjaxFormView(FormView):
         context.update({'instance': self.plugin})
 
         json_context = {}
-        json_context['rendered_content'] = render_to_string(self.template_name, context=context, request=self.request)
+        json_context['rendered_content'] = render_to_string(self.get_template_names()[0], context=context, request=self.request)
         json_context['no_results'] = False if context['object_list'] else True
         return HttpResponse(content=json.dumps(json_context), content_type='application/json', status=200)
 

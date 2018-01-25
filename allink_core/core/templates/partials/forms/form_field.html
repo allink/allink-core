@@ -97,12 +97,14 @@
 
                         {% elif field|widget_type == 'radioselect' %}
                             {% if not nolabel %}
-                                {{ field.label|safe }}
+                                <div class="radio-group__label">
+                                    {{ field.label|safe }}
+                                </div>
                             {% endif %}
                             {% for choice in field %}
                                 <div class="radio">
                                     <label>
-                                        {{choice.tag}}<span class="dot"></span>
+                                        {{choice.tag}}<span class="custom-radio"></span>
                                         {{choice.choice_label}}
                                     </label>
                                 </div>

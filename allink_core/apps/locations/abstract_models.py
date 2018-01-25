@@ -5,6 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.db import models
 from django.core.cache import cache
 from django.core.cache.utils import make_template_fragment_key
+from django.utils.functional import cached_property
 
 from cms.models.fields import PlaceholderField
 from adminsortable.models import SortableMixin
@@ -195,6 +196,7 @@ class BaseLocations(SortableMixin, TranslationHelperMixin, AllinkTranslatedAutoS
             False
         )
 
+    @cached_property
     def gmaps_link(self):
         """
         Returns google maps link with query of current store

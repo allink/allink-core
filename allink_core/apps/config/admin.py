@@ -5,7 +5,7 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.http import require_POST
 from django.utils.translation import ugettext_lazy as _
 
-from cms.extensions import PageExtensionAdmin
+from cms.extensions import PageExtensionAdmin, TitleExtensionAdmin
 
 from solo.admin import SingletonModelAdmin
 from webpack_loader.utils import get_files
@@ -18,6 +18,7 @@ from allink_core.core.utils import get_project_color_choices
 
 Config = get_model('config', 'Config')
 AllinkPageExtension = get_model('config', 'AllinkPageExtension')
+AllinkTitleExtension = get_model('config', 'AllinkTitleExtension')
 require_POST = method_decorator(require_POST)
 
 
@@ -106,6 +107,10 @@ class ConfigAdmin(TranslatableAdmin, SingletonModelAdmin):
 
 
 @admin.register(AllinkPageExtension)
-class AllinkSEOExtensionAdmin(PageExtensionAdmin):
+class AllinkPageExtensionAdmin(PageExtensionAdmin):
+    pass
+
+@admin.register(AllinkTitleExtension)
+class AllinkPageExtensionAdmin(TitleExtensionAdmin):
     pass
 

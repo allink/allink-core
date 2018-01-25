@@ -23,13 +23,6 @@
                     </h3>
                 </div>
             {% endif %}
-            {% if object.lead %}
-                <div class="text-container">
-                    <p>
-                        {{object.lead|striptags}}
-                    </p>
-                </div>
-            {% endif %}
             {% if instance.detail_link_enabled and object.show_detail_link %}
                 <div class="link-container">
                     <a href="{{object.get_absolute_url}}" class="app-list__detail-link">

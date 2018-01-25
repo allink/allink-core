@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-06 14:40+0100\n"
+"POT-Creation-Date: 2017-12-19 11:50+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,139 +17,139 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: allink_core/apps/locations/abstract_models.py:33
+#: allink_core/apps/locations/abstract_models.py:34
 msgid "Preview Image"
 msgstr ""
 
-#: allink_core/apps/locations/abstract_models.py:41
+#: allink_core/apps/locations/abstract_models.py:42
 msgid "Latitude"
 msgstr ""
 
-#: allink_core/apps/locations/abstract_models.py:46
+#: allink_core/apps/locations/abstract_models.py:47
 msgid "Longitude"
 msgstr ""
 
-#: allink_core/apps/locations/abstract_models.py:52
+#: allink_core/apps/locations/abstract_models.py:53
 msgid "Map Link"
 msgstr ""
 
-#: allink_core/apps/locations/abstract_models.py:53
+#: allink_core/apps/locations/abstract_models.py:54
 msgid ""
 "This could be a <strong>Google Places</strong> or <strong>Directions</"
 "strong> link."
 msgstr ""
 
-#: allink_core/apps/locations/abstract_models.py:58
+#: allink_core/apps/locations/abstract_models.py:59
 msgid "Monday morning or whole day"
 msgstr ""
 
-#: allink_core/apps/locations/abstract_models.py:59
+#: allink_core/apps/locations/abstract_models.py:60
 msgid "Tuesday morning or whole day"
 msgstr ""
 
-#: allink_core/apps/locations/abstract_models.py:60
+#: allink_core/apps/locations/abstract_models.py:61
 msgid "Wednesday morning or whole day"
 msgstr ""
 
-#: allink_core/apps/locations/abstract_models.py:61
+#: allink_core/apps/locations/abstract_models.py:62
 msgid "Thursday morning or whole day"
 msgstr ""
 
-#: allink_core/apps/locations/abstract_models.py:62
+#: allink_core/apps/locations/abstract_models.py:63
 msgid "Friday morning or whole day"
 msgstr ""
 
-#: allink_core/apps/locations/abstract_models.py:63
+#: allink_core/apps/locations/abstract_models.py:64
 msgid "Saturday morning or whole day"
 msgstr ""
 
-#: allink_core/apps/locations/abstract_models.py:64
+#: allink_core/apps/locations/abstract_models.py:65
 msgid "Sunday morning or whole day"
 msgstr ""
 
-#: allink_core/apps/locations/abstract_models.py:65
+#: allink_core/apps/locations/abstract_models.py:66
 msgid "Monday afternoon"
 msgstr ""
 
-#: allink_core/apps/locations/abstract_models.py:66
+#: allink_core/apps/locations/abstract_models.py:67
 msgid "Tuesday afternoon"
 msgstr ""
 
-#: allink_core/apps/locations/abstract_models.py:67
+#: allink_core/apps/locations/abstract_models.py:68
 msgid "Wednesday afternoon"
 msgstr ""
 
-#: allink_core/apps/locations/abstract_models.py:68
+#: allink_core/apps/locations/abstract_models.py:69
 msgid "Thursday afternoon"
 msgstr ""
 
-#: allink_core/apps/locations/abstract_models.py:69
+#: allink_core/apps/locations/abstract_models.py:70
 msgid "Friday afternoon"
 msgstr ""
 
-#: allink_core/apps/locations/abstract_models.py:70
+#: allink_core/apps/locations/abstract_models.py:71
 msgid "Saturday afternoon"
 msgstr ""
 
-#: allink_core/apps/locations/abstract_models.py:71
+#: allink_core/apps/locations/abstract_models.py:72
 msgid "Sunday afternoon"
 msgstr ""
 
-#: allink_core/apps/locations/abstract_models.py:88
+#: allink_core/apps/locations/abstract_models.py:89
 msgid "Location"
 msgstr ""
 
-#: allink_core/apps/locations/abstract_models.py:89
+#: allink_core/apps/locations/abstract_models.py:90
 msgid "Locations"
 msgstr ""
 
-#: allink_core/apps/locations/abstract_models.py:131
+#: allink_core/apps/locations/abstract_models.py:134
 msgid "Now open"
 msgstr ""
 
-#: allink_core/apps/locations/abstract_models.py:217
+#: allink_core/apps/locations/abstract_models.py:221
 msgid "Slug"
 msgstr ""
 
-#: allink_core/apps/locations/abstract_models.py:221
+#: allink_core/apps/locations/abstract_models.py:225
 msgid "Leave blank to auto-generate a unique slug."
 msgstr ""
 
-#: allink_core/apps/locations/abstract_models.py:224
+#: allink_core/apps/locations/abstract_models.py:228
 msgid "Subtitle"
 msgstr ""
 
-#: allink_core/apps/locations/abstract_models.py:230
+#: allink_core/apps/locations/abstract_models.py:234
 msgid "Lead Text"
 msgstr ""
 
-#: allink_core/apps/locations/abstract_models.py:231
+#: allink_core/apps/locations/abstract_models.py:235
 msgid ""
 "Teaser text that in some cases is used in the list view and/or in the detail "
 "view."
 msgstr ""
 
-#: allink_core/apps/locations/abstract_models.py:236
+#: allink_core/apps/locations/abstract_models.py:240
 msgid "Opening hours"
 msgstr ""
 
-#: allink_core/apps/locations/abstract_models.py:238
+#: allink_core/apps/locations/abstract_models.py:242
 msgid ""
 "This Text will be used to show the Opening hours on the location detail "
 "page. If provided, the detailed opening hours will be overriden."
 msgstr ""
 
-#: allink_core/apps/locations/abstract_models.py:274
+#: allink_core/apps/locations/abstract_models.py:278
 msgid ""
 "Select and arrange specific entries, or, leave blank to select all. (If "
 "manual entries are selected the category filtering will be ignored.)"
 msgstr ""
 
-#: allink_core/apps/locations/abstract_models.py:279
+#: allink_core/apps/locations/abstract_models.py:283
 msgid "Zoom Level"
 msgstr ""
 
-#: allink_core/apps/locations/abstract_models.py:280
+#: allink_core/apps/locations/abstract_models.py:284
 msgid "The higher the number, the more we zoom in."
 msgstr ""
 

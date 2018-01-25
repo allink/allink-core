@@ -9,6 +9,7 @@ from adminsortable.models import SortableMixin
 from parler.models import TranslatableModel, TranslatedField, TranslatedFieldsModel
 from djangocms_text_ckeditor.fields import HTMLField
 from filer.fields.image import FilerImageField
+from django.utils.functional import cached_property
 
 from aldryn_translation_tools.models import TranslationHelperMixin
 from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
@@ -79,7 +80,7 @@ class BasePeople(SortableMixin, TranslationHelperMixin, AllinkTranslatedAutoSlug
     def title(self):
         return u'{} {}'.format(self.first_name, self.last_name)
 
-    @property
+    @cached_property
     def units(self):
         units = []
         for unit in self.categories.filter(identifier='units'):

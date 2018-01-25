@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-08 09:08+0100\n"
+"POT-Creation-Date: 2017-12-19 11:50+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,7 +23,7 @@ msgid "Preview Image"
 msgstr "Vorschaubild"
 
 #: allink_core/apps/news/abstract_models.py:40
-#: allink_core/apps/news/admin.py:25
+#: allink_core/apps/news/admin.py:24
 msgid "Template"
 msgstr ""
 
@@ -67,11 +67,11 @@ msgstr ""
 "Wählen und ordnen Sie spezifische Einträge oder leer lassen, um alle zu "
 "wählen. (Kategorienfilterung wird bei manuellen Einträgen nicht angewandt.)"
 
-#: allink_core/apps/news/admin.py:41
+#: allink_core/apps/news/admin.py:40
 msgid "Max. 400 characters."
 msgstr ""
 
-#: allink_core/apps/news/admin.py:59
+#: allink_core/apps/news/admin.py:58
 msgid "Published From/To"
 msgstr "Publiziert von/bis"
 

@@ -3,7 +3,7 @@
 {% block form_container %}
     <form
         id="default-contact-form"
-        class="form-default validate-form default-contact-form side-by-side {{instance.css_classes}}{% if not no_ajax %} ajax-form{% endif %} {{ class }} {% block form_additional_classes %}{% endblock form_additional_classes %}"
+        class="form-default validate-form default-contact-form {% block form_style %}side-by-side{% endblock form_style %} {{instance.css_classes}}{% if not no_ajax %} ajax-form{% endif %} {{ class }} {% block form_additional_classes %}{% endblock form_additional_classes %}"
         method="{{ method|default:"POST" }}"
         novalidate="novalidate"
         action="{% url "contact:request" plugin_id=instance.id %}"

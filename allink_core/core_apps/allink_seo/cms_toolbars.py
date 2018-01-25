@@ -15,9 +15,8 @@ class AllinkSEOExtensionToolbar(ExtensionToolbar):
     def populate(self):
         current_page_menu = self._setup_extension_toolbar()
         if current_page_menu and self.toolbar.edit_mode:
-            position = 5
-            sub_menu = self._get_sub_menu(current_page_menu, 'submenu_label', _(u'SEO'), position)
 
+            sub_menu = self._get_sub_menu(current_page_menu, 'submenu_label', _(u'SEO'), position=5)
             languages = get_language_list(self._get_page().site_id)
 
             for language in languages:

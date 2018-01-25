@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-08 09:08+0100\n"
+"POT-Creation-Date: 2017-12-19 11:50+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,12 +31,12 @@ msgstr ""
 "Facebook. <br>Min. 1200 x 630 px"
 
 #: allink_core/apps/config/abstract_models.py:25
-#: allink_core/apps/config/admin.py:25
+#: allink_core/apps/config/admin.py:26
 msgid "Theme Color"
 msgstr ""
 
 #: allink_core/apps/config/abstract_models.py:26
-#: allink_core/apps/config/admin.py:25
+#: allink_core/apps/config/admin.py:26
 msgid "Theme color for Android Chrome"
 msgstr ""
 
@@ -45,7 +45,7 @@ msgid "Mask icon color"
 msgstr ""
 
 #: allink_core/apps/config/abstract_models.py:33
-#: allink_core/apps/config/admin.py:26
+#: allink_core/apps/config/admin.py:27
 msgid "Mask icon color for safari-pinned-tab.svg"
 msgstr ""
 
@@ -54,7 +54,7 @@ msgid "msapplication TileColor"
 msgstr ""
 
 #: allink_core/apps/config/abstract_models.py:40
-#: allink_core/apps/config/admin.py:27
+#: allink_core/apps/config/admin.py:28
 msgid "MS application TitleColor Field"
 msgstr ""
 
@@ -78,15 +78,15 @@ msgstr ""
 msgid "Default from email"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:73
+#: allink_core/apps/config/abstract_models.py:74
 msgid "Configuration"
 msgstr "Konfiguration"
 
-#: allink_core/apps/config/abstract_models.py:150
+#: allink_core/apps/config/abstract_models.py:151
 msgid "Base title"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:153
+#: allink_core/apps/config/abstract_models.py:154
 msgid ""
 "Default base title, Is also used for default base og:title when page/post is "
 "shared on Facebook. <br>If not supplied the name form Django Sites will be "
@@ -96,43 +96,43 @@ msgstr ""
 "Sharen auf Facebook gebraucht. <br>Wenn nicht gesetzt, wird als Standard der "
 "name von Django-Sites verwendet."
 
-#: allink_core/apps/config/abstract_models.py:166
+#: allink_core/apps/config/abstract_models.py:167
 msgid "Special Subnav enabled?"
 msgstr ""
 
-#: allink_core/apps/config/admin.py:26
+#: allink_core/apps/config/admin.py:27
 msgid "Mask Icon Color"
 msgstr ""
 
-#: allink_core/apps/config/admin.py:27
+#: allink_core/apps/config/admin.py:28
 msgid "MS Application Title Color"
 msgstr ""
 
-#: allink_core/apps/config/admin.py:52 allink_core/apps/config/admin.py:66
+#: allink_core/apps/config/admin.py:53 allink_core/apps/config/admin.py:67
 msgid "Site Meta"
 msgstr ""
 
-#: allink_core/apps/config/admin.py:77
+#: allink_core/apps/config/admin.py:78
 msgid "Email"
 msgstr ""
 
-#: allink_core/apps/config/admin.py:87
+#: allink_core/apps/config/admin.py:88
 msgid "Toolbar"
 msgstr ""
 
-#: allink_core/apps/config/admin.py:96
+#: allink_core/apps/config/admin.py:97
 msgid "Gallery Plugin"
 msgstr ""
 
-#: allink_core/apps/config/cms_toolbars.py:27
+#: allink_core/apps/config/cms_toolbars.py:30
 msgid "allink"
 msgstr ""
 
-#: allink_core/apps/config/cms_toolbars.py:31
+#: allink_core/apps/config/cms_toolbars.py:34
 msgid "Config"
 msgstr ""
 
-#: allink_core/apps/config/cms_toolbars.py:43
+#: allink_core/apps/config/cms_toolbars.py:46
 msgid "allink settings"
 msgstr ""
 

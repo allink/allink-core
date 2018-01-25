@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-06 14:40+0100\n"
+"POT-Creation-Date: 2017-12-19 11:50+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,57 +17,57 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: allink_core/apps/people/abstract_models.py:27
+#: allink_core/apps/people/abstract_models.py:28
 msgid "Salutation"
 msgstr ""
 
-#: allink_core/apps/people/abstract_models.py:32
+#: allink_core/apps/people/abstract_models.py:33
 msgid "First Name"
 msgstr ""
 
-#: allink_core/apps/people/abstract_models.py:36
+#: allink_core/apps/people/abstract_models.py:37
 msgid "Last Name"
 msgstr ""
 
-#: allink_core/apps/people/abstract_models.py:44
+#: allink_core/apps/people/abstract_models.py:45
 msgid "Company Name"
 msgstr ""
 
-#: allink_core/apps/people/abstract_models.py:50
+#: allink_core/apps/people/abstract_models.py:51
 msgid "Preview Image"
 msgstr ""
 
-#: allink_core/apps/people/abstract_models.py:71
+#: allink_core/apps/people/abstract_models.py:72
 msgid "Person"
 msgstr ""
 
-#: allink_core/apps/people/abstract_models.py:72
+#: allink_core/apps/people/abstract_models.py:73
 msgid "People"
 msgstr ""
 
-#: allink_core/apps/people/abstract_models.py:94
+#: allink_core/apps/people/abstract_models.py:95
 msgid "Slug"
 msgstr ""
 
-#: allink_core/apps/people/abstract_models.py:98
+#: allink_core/apps/people/abstract_models.py:99
 msgid "Leave blank to auto-generate a unique slug."
 msgstr ""
 
-#: allink_core/apps/people/abstract_models.py:101
+#: allink_core/apps/people/abstract_models.py:102
 msgid "Function"
 msgstr ""
 
-#: allink_core/apps/people/abstract_models.py:108
+#: allink_core/apps/people/abstract_models.py:109
 msgid "Lead Text"
 msgstr ""
 
-#: allink_core/apps/people/abstract_models.py:109
+#: allink_core/apps/people/abstract_models.py:110
 msgid ""
 "Teaser text that in some cases is used in the list view and/or in the detail "
 "view."
 msgstr ""
 
-#: allink_core/apps/people/abstract_models.py:124
+#: allink_core/apps/people/abstract_models.py:125
 msgid ""
 "Select and arrange specific entries, or, leave blank to select all. (If "
 "manual entries are selected the category filtering will be ignored.)"

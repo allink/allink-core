@@ -19,7 +19,6 @@ class EventsContentAdminForm(AllinkBaseAdminForm):
 
     def __init__(self, *args, **kwargs):
         super(EventsContentAdminForm, self).__init__(*args, **kwargs)
-        self.fields['categories'].initial = AllinkCategory.objects.not_root().filter(translations__name__iexact=self._meta.model._meta.model_name)
 
         if get_additional_choices('ADDITIONAL_EVENTS_DETAIL_TEMPLATES'):
             self.fields['template'] = forms.CharField(
