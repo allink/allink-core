@@ -196,5 +196,7 @@ def update_context_google_tag_manager(context, page_name='NOPAGE_NAME', page_id=
     # If its a Button Link we will try to compile it like  this id="Kontakt88_plugin7451_Support-Formular"
     # If the Button Link Plugin is inside a static placeholder we will use the placeholder.slot and id instead of
     # page infos
-    context.update({'form_name': '{}{}_plugin{}_{}'.format(page_name, page_id, plugin_id, name)})
+    form_name = '{}{}_plugin{}_{}'.format(page_name, page_id, plugin_id, name)
+    form_name = form_name.replace(' ', '-')
+    context.update({'form_name': form_name})
     return context
