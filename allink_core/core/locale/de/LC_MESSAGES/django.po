@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-19 11:50+0100\n"
+"POT-Creation-Date: 2018-01-26 09:47+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,8 +20,8 @@ msgstr ""
 
 #: allink_core/core/admin.py:22 allink_core/core/admin.py:24
 #: allink_core/core/admin.py:71 allink_core/core/admin.py:96
-#: allink_core/core/cms_plugins.py:28 allink_core/core/cms_plugins.py:30
-#: allink_core/core/cms_plugins.py:39 allink_core/core/cms_plugins.py:119
+#: allink_core/core/cms_plugins.py:27 allink_core/core/cms_plugins.py:29
+#: allink_core/core/cms_plugins.py:38 allink_core/core/cms_plugins.py:119
 msgid "Categories"
 msgstr "Kategorien"
 
@@ -29,7 +29,7 @@ msgstr "Kategorien"
 msgid "SEO"
 msgstr ""
 
-#: allink_core/core/cms_plugins.py:37
+#: allink_core/core/cms_plugins.py:36
 msgid "Categories (AND operator)"
 msgstr "Kategorien (AND Operator)"
 
@@ -67,11 +67,12 @@ msgstr "Filter-Felder"
 msgid "A Select Dropdown will be displayed for this Fields."
 msgstr "Für diese Felder wird ein Dropdown angezeigt."
 
-#: allink_core/core/cms_plugins.py:65 allink_core/core/models/models.py:365
+#: allink_core/core/cms_plugins.py:65 allink_core/core/cms_plugins.py:278
+#: allink_core/core/models/models.py:365 allink_core/core/models/models.py:655
 msgid "Template"
 msgstr ""
 
-#: allink_core/core/cms_plugins.py:72 allink_core/core/cms_plugins.py:263
+#: allink_core/core/cms_plugins.py:72 allink_core/core/cms_plugins.py:272
 msgid "Predifined variations"
 msgstr "Vordefinierte css-Klassen"
 
@@ -121,7 +122,7 @@ msgstr "Zusätzliche Optionen"
 msgid "Grid Options"
 msgstr "Grid Optionen"
 
-#: allink_core/core/cms_plugins.py:276
+#: allink_core/core/cms_plugins.py:290
 #, fuzzy
 #| msgid "allink"
 msgid "allink search"
@@ -309,7 +310,7 @@ msgstr "Meta-Beschreibung für Suchmaschinen und falls auf Facebook geteilt."
 msgid "Description when shared on Facebook/ Twitter."
 msgstr "Beschreibung auf Facebook oder Twitter, falls geteilt."
 
-#: allink_core/core/models/models.py:366
+#: allink_core/core/models/models.py:366 allink_core/core/models/models.py:656
 msgid "Choose a template."
 msgstr "Wählen Sie ein Template."
 
@@ -424,76 +425,76 @@ msgstr ""
 msgid "All"
 msgstr "Alle"
 
-#: allink_core/core/models/models.py:702
+#: allink_core/core/models/models.py:716
 msgid "Send internal e-mail"
 msgstr "Internes E-Mail versenden"
 
-#: allink_core/core/models/models.py:704
+#: allink_core/core/models/models.py:718
 msgid "Send confirmation mail to defined internal e-mail addresses."
 msgstr ""
 "Falls angewählt, wird ein Bestätigungsmail an die definierten E-Mail-"
 "Aderessen verschickt."
 
-#: allink_core/core/models/models.py:713
+#: allink_core/core/models/models.py:727
 msgid "Internal e-mail addresses"
 msgstr "Interne E-Mail-Adresse"
 
-#: allink_core/core/models/models.py:716
+#: allink_core/core/models/models.py:730
 msgid "Sender e-mail address"
 msgstr "Absender E-Mail-Adresse"
 
-#: allink_core/core/models/models.py:721
+#: allink_core/core/models/models.py:735
 msgid "Send external e-mail"
 msgstr "Externes E-Mail versenden"
 
-#: allink_core/core/models/models.py:723
+#: allink_core/core/models/models.py:737
 msgid "Send confirmation mail to customer."
 msgstr "Falls angewählt, wird ein Bestätigungsmail an den Kunden geschickt."
 
-#: allink_core/core/models/models.py:726
+#: allink_core/core/models/models.py:740
 msgid "Thank you text"
 msgstr "Dankestext"
 
-#: allink_core/core/models/models.py:729
+#: allink_core/core/models/models.py:743
 msgid "This text will be shown, after form completion."
 msgstr "Dieser Text wird angezeigt, nachdem das Formular abgesendet wurde."
 
-#: allink_core/core/models/models.py:732
+#: allink_core/core/models/models.py:746
 msgid "Display labels"
 msgstr "Labels darstellen"
 
-#: allink_core/core/models/models.py:774
+#: allink_core/core/models/models.py:788
 msgid "Street"
 msgstr "Strasse"
 
-#: allink_core/core/models/models.py:780
+#: allink_core/core/models/models.py:794
 msgid "Street Nr."
 msgstr "Nummer"
 
-#: allink_core/core/models/models.py:786
+#: allink_core/core/models/models.py:800
 msgid "Address Additional"
 msgstr "Adresszusatz"
 
-#: allink_core/core/models/models.py:792
+#: allink_core/core/models/models.py:806
 msgid "Zip Code"
 msgstr "Postleitzahl"
 
-#: allink_core/core/models/models.py:797
+#: allink_core/core/models/models.py:811
 msgid "Place"
 msgstr "Ort"
 
-#: allink_core/core/models/models.py:803
+#: allink_core/core/models/models.py:817
 msgid "Country"
 msgstr ""
 
-#: allink_core/core/models/models.py:816 allink_core/core/models/models.py:972
-#: allink_core/core/models/models.py:1161
+#: allink_core/core/models/models.py:830 allink_core/core/models/models.py:986
+#: allink_core/core/models/models.py:1175
 #: allink_core/core/templates/allink_core/contact/forms/request_base.html:57
 msgid "Phone"
 msgstr "Telefon"
 
-#: allink_core/core/models/models.py:817 allink_core/core/models/models.py:823
-#: allink_core/core/models/models.py:829
+#: allink_core/core/models/models.py:831 allink_core/core/models/models.py:837
+#: allink_core/core/models/models.py:843
 #, fuzzy
 #| msgid ""
 #| "We automatically handle phone number formatting, Please provide the "
@@ -503,69 +504,69 @@ msgid ""
 "in the following format \"+41 43 123 45 67\"."
 msgstr "Bitte die Telefonnummer im Format \"+41 43 333 30 90\" angeben."
 
-#: allink_core/core/models/models.py:822
+#: allink_core/core/models/models.py:836
 msgid "Mobile"
 msgstr ""
 
-#: allink_core/core/models/models.py:828
+#: allink_core/core/models/models.py:842
 msgid "Fax"
 msgstr ""
 
-#: allink_core/core/models/models.py:834
-#: allink_core/core/models/models.py:1150
+#: allink_core/core/models/models.py:848
+#: allink_core/core/models/models.py:1164
 #: allink_core/core/templates/allink_core/contact/forms/request_base.html:92
 msgid "Email"
 msgstr "E-Mail"
 
-#: allink_core/core/models/models.py:839
+#: allink_core/core/models/models.py:853
 msgid "Website"
 msgstr ""
 
-#: allink_core/core/models/models.py:876
+#: allink_core/core/models/models.py:890
 msgid "New Page"
 msgstr "Neue Seite"
 
-#: allink_core/core/models/models.py:879
+#: allink_core/core/models/models.py:893
 msgid "If provided, overrides the external link and New Apphook-Page."
 msgstr ""
 
-#: allink_core/core/models/models.py:883
+#: allink_core/core/models/models.py:897
 msgid "New Apphook-Page"
 msgstr ""
 
-#: allink_core/core/models/models.py:886
+#: allink_core/core/models/models.py:900
 msgid "If provided, overrides the external link."
 msgstr ""
 
-#: allink_core/core/models/models.py:891
+#: allink_core/core/models/models.py:905
 msgid "To which object directs the url."
 msgstr ""
 
-#: allink_core/core/models/models.py:896
+#: allink_core/core/models/models.py:910
 msgid "Dotted Path to referenced Model"
 msgstr ""
 
-#: allink_core/core/models/models.py:901
+#: allink_core/core/models/models.py:915
 msgid "Name of the App-URL to use."
 msgstr ""
 
-#: allink_core/core/models/models.py:911
+#: allink_core/core/models/models.py:925
 msgid "Keyword arguments used to reverse url."
 msgstr ""
 
-#: allink_core/core/models/models.py:962
+#: allink_core/core/models/models.py:976
 msgid "Provide a valid URL to an external website."
 msgstr "Gültige URL zu einer externen Website angeben."
 
-#: allink_core/core/models/models.py:966
+#: allink_core/core/models/models.py:980
 msgid "Email address"
 msgstr "E-Mail-Adresse"
 
-#: allink_core/core/models/models.py:978
+#: allink_core/core/models/models.py:992
 msgid "Anchor"
 msgstr "Anker"
 
-#: allink_core/core/models/models.py:981
+#: allink_core/core/models/models.py:995
 #, fuzzy
 #| msgid ""
 #| "Appends the value only after the internal or external link.Do <em>not</"
@@ -577,11 +578,11 @@ msgstr ""
 "Hängt den Wert nur an einen internen oder externen Link. <strong>Kein</"
 "strong>  führendes \"#\"-Zeichen angeben."
 
-#: allink_core/core/models/models.py:985
+#: allink_core/core/models/models.py:999
 msgid "Link Target"
 msgstr ""
 
-#: allink_core/core/models/models.py:989
+#: allink_core/core/models/models.py:1003
 msgid ""
 "Recommended combinations:<br><br>- Link Internal: No selection (loads page "
 "in current window/tab) or any of the <strong>Softpage</strong> options<br>- "
@@ -591,48 +592,48 @@ msgid ""
 "<strong>New window</strong><br>"
 msgstr ""
 
-#: allink_core/core/models/models.py:998
+#: allink_core/core/models/models.py:1012
 msgid "file"
 msgstr "Datei"
 
-#: allink_core/core/models/models.py:1003
+#: allink_core/core/models/models.py:1017
 msgid "Special Links"
 msgstr ""
 
-#: allink_core/core/models/models.py:1009
+#: allink_core/core/models/models.py:1023
 msgid "Attributes"
 msgstr "Attribute"
 
-#: allink_core/core/models/models.py:1106
+#: allink_core/core/models/models.py:1120
 #, python-format
 msgid "Only one of %(fields)s or %(last_field)s may be given."
 msgstr ""
 "Nur eines der Felder %(fields)s oder %(last_field)s darf angegeben werden."
 
-#: allink_core/core/models/models.py:1119
+#: allink_core/core/models/models.py:1133
 #, python-format
 msgid ""
 "%(anchor_field_verbose_name)s is not allowed together with %(field_name)s"
 msgstr ""
 "%(anchor_field_verbose_name)s kann nicht mit %(field_name)s verwendet werden."
 
-#: allink_core/core/models/models.py:1132
+#: allink_core/core/models/models.py:1146
 msgid "Salutation"
 msgstr "Anrede"
 
-#: allink_core/core/models/models.py:1138
+#: allink_core/core/models/models.py:1152
 msgid "First Name"
 msgstr "Vorname"
 
-#: allink_core/core/models/models.py:1144
+#: allink_core/core/models/models.py:1158
 msgid "Last Name"
 msgstr "Nachname"
 
-#: allink_core/core/models/models.py:1155
+#: allink_core/core/models/models.py:1169
 msgid "Company"
 msgstr "Firma"
 
-#: allink_core/core/models/models.py:1168
+#: allink_core/core/models/models.py:1182
 msgid "Message"
 msgstr "Nachricht"
 
@@ -862,7 +863,7 @@ msgid "Choose a time"
 msgstr "Wählen Sie ein Template."
 
 #: allink_core/core/templates/allink_core/contact/forms/request_base.html:110
-#: allink_core/core/templates/allink_core/work/plugins/search/content.html:26
+#: allink_core/core/templates/allink_core/work/plugins/search_grid_static/content.html:26
 msgid "Submit"
 msgstr ""
 
@@ -884,21 +885,16 @@ msgid "Register"
 msgstr ""
 
 #: allink_core/core/templates/allink_core/events/plugins/_no_results.html:4
-#: allink_core/core/templates/allink_core/locations/plugins/_no_results.html:3
-#: allink_core/core/templates/allink_core/news/plugins/_no_results.html:4
-#: allink_core/core/templates/allink_core/people/plugins/_no_results.html:4
-#: allink_core/core/templates/allink_core/testimonials/plugins/_no_results.html:4
-#: allink_core/core/templates/allink_core/work/plugins/_no_results.html:3
-msgid "No entries found with the applied filters."
-msgstr "Keine Einträge für die gewählten Filter verfügbar."
+msgid "There are no upcoming events at the moment."
+msgstr ""
 
 #: allink_core/core/templates/allink_core/events/plugins/grid_static/_items.html:43
-#: allink_core/core/templates/allink_core/news/plugins/grid_static/_items.html:43
+#: allink_core/core/templates/allink_core/news/plugins/grid_static/_items.html:38
 #: allink_core/core/templates/allink_core/testimonials/plugins/grid_static/_items.html:41
-#: allink_core/core/templates/allink_core/work/plugins/grid_dynamic/_items.html:39
-#: allink_core/core/templates/allink_core/work/plugins/grid_static/_items.html:39
+#: allink_core/core/templates/allink_core/work/plugins/grid_dynamic/_items.html:32
+#: allink_core/core/templates/allink_core/work/plugins/grid_static/_items.html:32
 #: allink_core/core/templates/allink_core/work/plugins/list/_items.html:44
-#: allink_core/core/templates/allink_core/work/plugins/search/_items.html:36
+#: allink_core/core/templates/allink_core/work/plugins/search_grid_static/_items.html:36
 #: allink_core/core/templates/allink_core/work/plugins/slider/_items.html:36
 #: allink_core/core/templates/allink_core/work/plugins/table/_items.html:29
 msgid "More"
@@ -912,35 +908,39 @@ msgstr "Vorheriges Slide"
 msgid "next"
 msgstr ""
 
-#: allink_core/core/templates/allink_core/locations/plugins/details-and-map/content.html:48
+#: allink_core/core/templates/allink_core/locations/plugins/_no_results.html:3
+msgid "There are no locations published at the moment."
+msgstr "Zurzeit sind keine Standorte veröffentlicht."
+
 #: allink_core/core/templates/allink_core/locations/plugins/details/content.html:28
+#: allink_core/core/templates/allink_core/locations/plugins/details_and_map/content.html:48
 msgid "Phone:"
 msgstr "Telefon:"
 
-#: allink_core/core/templates/allink_core/locations/plugins/details-and-map/content.html:51
 #: allink_core/core/templates/allink_core/locations/plugins/details/content.html:31
+#: allink_core/core/templates/allink_core/locations/plugins/details_and_map/content.html:51
 msgid "Mobile:"
 msgstr ""
 
-#: allink_core/core/templates/allink_core/locations/plugins/details-and-map/content.html:54
 #: allink_core/core/templates/allink_core/locations/plugins/details/content.html:34
+#: allink_core/core/templates/allink_core/locations/plugins/details_and_map/content.html:54
 msgid "Fax:"
-msgstr ""
-
-#: allink_core/core/templates/allink_core/locations/plugins/details-and-map/content.html:59
-#: allink_core/core/templates/allink_core/locations/plugins/details-and-map/content.html:123
-#: allink_core/core/templates/allink_core/locations/plugins/details/content.html:42
-#: allink_core/core/templates/allink_core/locations/plugins/map/content.html:56
-msgid "Directions"
-msgstr ""
-
-#: allink_core/core/templates/allink_core/locations/plugins/details-and-map/content.html:63
-#: allink_core/core/templates/allink_core/locations/plugins/details/content.html:46
-msgid "Opening hours"
 msgstr ""
 
 #: allink_core/core/templates/allink_core/locations/plugins/details/content.html:37
 msgid "E-Mail:"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/locations/plugins/details/content.html:42
+#: allink_core/core/templates/allink_core/locations/plugins/details_and_map/content.html:59
+#: allink_core/core/templates/allink_core/locations/plugins/details_and_map/content.html:123
+#: allink_core/core/templates/allink_core/locations/plugins/map/content.html:56
+msgid "Directions"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/locations/plugins/details/content.html:46
+#: allink_core/core/templates/allink_core/locations/plugins/details_and_map/content.html:63
+msgid "Opening hours"
 msgstr ""
 
 #: allink_core/core/templates/allink_core/lockdown/form.html:13
@@ -991,15 +991,34 @@ msgstr ""
 msgid "Change Password"
 msgstr "Passwort ändern"
 
+#: allink_core/core/templates/allink_core/news/plugins/_no_results.html:4
+msgid "There are no news at the moment."
+msgstr "Zurzeit gibt es keine Neuigkeiten."
+
+#: allink_core/core/templates/allink_core/people/plugins/_no_results.html:4
+#| msgid "No entries found with the applied filters."
+msgid "No people found with the applied filters."
+msgstr "Keine Personen für die gewählten Filter gefunden."
+
 #: allink_core/core/templates/allink_core/people/plugins/grid_static/_items.html:33
 msgid "E-Mail"
 msgstr ""
 
-#: allink_core/core/templates/allink_core/work/plugins/search/_items.html:45
+#: allink_core/core/templates/allink_core/testimonials/plugins/_no_results.html:4
+#, fuzzy
+#| msgid "No entries found with the applied filters."
+msgid "No testimonials found with the applied filters."
+msgstr "Keine Einträge für die gewählten Filter verfügbar."
+
+#: allink_core/core/templates/allink_core/work/plugins/_no_results.html:4
+msgid "There are no projects published at the moment."
+msgstr ""
+
+#: allink_core/core/templates/allink_core/work/plugins/search_grid_static/_items.html:45
 msgid "No matching entries found."
 msgstr ""
 
-#: allink_core/core/templates/allink_core/work/plugins/search/content.html:14
+#: allink_core/core/templates/allink_core/work/plugins/search_grid_static/content.html:14
 msgid "Product search:"
 msgstr ""
 

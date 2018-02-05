@@ -22,4 +22,4 @@ class MailChimpConfig:
         - if set to True a Welcome Email will be sent and the double opt-in process will be used
         - if set to False no Welcome Email will be sent and the user gets subscribed directly to the list
         """
-        self.double_optin = getattr(settings, 'MAILCHIMP_DOUBLE_OPTIN', False)
+        self.double_optin = getattr(settings, 'MAILCHIMP_DOUBLE_OPTIN', True)

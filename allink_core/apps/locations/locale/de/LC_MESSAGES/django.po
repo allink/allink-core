@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-19 11:50+0100\n"
+"POT-Creation-Date: 2018-01-26 09:47+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -106,27 +106,27 @@ msgstr "Standort"
 msgid "Locations"
 msgstr "Standorte"
 
-#: allink_core/apps/locations/abstract_models.py:134
+#: allink_core/apps/locations/abstract_models.py:132
 msgid "Now open"
 msgstr "Jetzt geöffnet"
 
-#: allink_core/apps/locations/abstract_models.py:221
+#: allink_core/apps/locations/abstract_models.py:219
 msgid "Slug"
 msgstr ""
 
-#: allink_core/apps/locations/abstract_models.py:225
+#: allink_core/apps/locations/abstract_models.py:223
 msgid "Leave blank to auto-generate a unique slug."
 msgstr "Leer lassen, um den Slug automatisch zu generieren."
 
-#: allink_core/apps/locations/abstract_models.py:228
+#: allink_core/apps/locations/abstract_models.py:226
 msgid "Subtitle"
 msgstr "Untertitel"
 
-#: allink_core/apps/locations/abstract_models.py:234
+#: allink_core/apps/locations/abstract_models.py:232
 msgid "Lead Text"
 msgstr ""
 
-#: allink_core/apps/locations/abstract_models.py:235
+#: allink_core/apps/locations/abstract_models.py:233
 msgid ""
 "Teaser text that in some cases is used in the list view and/or in the detail "
 "view."
@@ -134,11 +134,11 @@ msgstr ""
 "Teaser text, welcher in der Listenansicht und/oder in der Detailansicht "
 "verwendet wird."
 
-#: allink_core/apps/locations/abstract_models.py:240
+#: allink_core/apps/locations/abstract_models.py:238
 msgid "Opening hours"
 msgstr "Öffnungszeiten"
 
-#: allink_core/apps/locations/abstract_models.py:242
+#: allink_core/apps/locations/abstract_models.py:240
 msgid ""
 "This Text will be used to show the Opening hours on the location detail "
 "page. If provided, the detailed opening hours will be overriden."
@@ -146,7 +146,7 @@ msgstr ""
 "Dieser Text wird benötigt, um die Öffnungszeiten in der Detailansicht "
 "darzustellen. Überschreibt die Öffnungszeiten (detailliert)."
 
-#: allink_core/apps/locations/abstract_models.py:278
+#: allink_core/apps/locations/abstract_models.py:276
 msgid ""
 "Select and arrange specific entries, or, leave blank to select all. (If "
 "manual entries are selected the category filtering will be ignored.)"
@@ -154,11 +154,11 @@ msgstr ""
 "Wählen und ordnen Sie spezifische Einträge oder leer lassen, um alle zu "
 "wählen. (Kategorienfilterung wird bei manuellen Einträgen nicht angewandt.)"
 
-#: allink_core/apps/locations/abstract_models.py:283
+#: allink_core/apps/locations/abstract_models.py:281
 msgid "Zoom Level"
 msgstr ""
 
-#: allink_core/apps/locations/abstract_models.py:284
+#: allink_core/apps/locations/abstract_models.py:282
 msgid "The higher the number, the more we zoom in."
 msgstr "Je höher die Zahl, desto stärker ist die Vergrösserung."
 
