@@ -3,12 +3,13 @@
     LOGOUT: requires a form to submit with the POST method (check if logged in an in group 'members')
 {% endcomment %}
 {% if instance.link_special == 'account_logout' and user.is_authenticated %}
-    <form class="button-link-plugin__form" method="post" action="{{instance.get_link_url}}">
+    <form class="button-link-plugin__form" method="post" action="{{instance.get_link_url}}"  id="{{ form_name }}">
     {% csrf_token %}
 {% endif %}
     <a href="{{ instance.get_link_url }}"
     class="button-link-plugin__link {{instance|link_classes}}"
     {{ instance|link_attribute_string:request }}
+    id="{{ form_name }}"
     >{% spaceless %}
 
         {# content for image modal #}

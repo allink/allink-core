@@ -14,14 +14,15 @@ from django.template.loader import get_template
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
 from django.conf import settings
-from django.http import HttpResponse, HttpResponseRedirect, HttpResponsePermanentRedirect, Http404
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponsePermanentRedirect
 from django.template.loader import render_to_string
 from django.template import TemplateDoesNotExist
+
 from parler.views import TranslatableSlugMixin
 
-from allink_core.core.models.models import AllinkBaseModel, AllinkBaseAppContentPlugin
+from allink_core.core.models.models import AllinkBaseAppContentPlugin
 from allink_core.core_apps.allink_categories.models import AllinkCategory
-from allink_core.core.utils import get_query
+from allink_core.core.utils import get_query, update_context_google_tag_manager
 
 
 class AllinkBasePluginLoadMoreView(ListView):
@@ -132,15 +133,6 @@ class AllinkBaseDetailView(TranslatableSlugMixin, DetailView):
     """
     model = Events
     """
-
-    def get(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        if not request.user.is_staff and self.object.status == self.object.INACTIVE:
-            raise Http404(_("The requested content is not published.") % {'class_name': self.__class__.__name__})
-        context = self.get_context_data(object=self.object)
-
-        return self.render_to_response(context)
-
     def render_to_response(self, context, **response_kwargs):
         if self.request.is_ajax():
             context.update({'base_template': 'app_content/ajax_base.html'})
@@ -189,6 +181,17 @@ class AllinkBaseCreateView(CreateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(AllinkBaseCreateView, self).get_context_data(*args, **kwargs)
+
+        # We place the Form Class Name in the context so we can use it as a identifier for the google tag Manager as
+        # well as generally making it easier to identify involved classes
+
+        # TODO: Page id + plugin id + View und Form Class name als Id für Form // Button
+        # self.plugin.page.__str__(), self.plugin.page.id,
+        # self.plugin.id)
+
+        # form_name += '_' + self.__class__.__name__
+        context = update_context_google_tag_manager(context, self.plugin.page.__str__(), self.plugin.page.id,
+                                                    self.plugin.id, self.__class__.__name__)
         # EventsRegister view doesn't have a plugin instance
         if self.plugin:
             context.update({'instance': self.plugin})

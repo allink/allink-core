@@ -11,7 +11,7 @@ from cms.plugin_pool import plugin_pool
 from webpack_loader.utils import get_files
 
 from allink_core.core_apps.allink_button_link.models import AllinkButtonLinkContainerPlugin, AllinkButtonLinkPlugin
-from allink_core.core.utils import get_additional_choices
+from allink_core.core.utils import get_additional_choices, update_context_google_tag_manager
 from allink_core.core.forms.fields import SelectLinkField
 from allink_core.core.forms.mixins import AllinkInternalLinkFieldMixin
 
@@ -196,9 +196,20 @@ class CMSAllinkButtonLinkPlugin(CMSPluginBase):
         return static('aldryn_bootstrap3/img/type/button.png')
 
     def get_render_template(self, context, instance, placeholder):
+
         template = 'allink_button_link/item.html'
         return template
 
     def render(self, context, instance, placeholder):
         context = super(CMSAllinkButtonLinkPlugin, self).render(context, instance, placeholder)
+        if instance.page:
+            context = update_context_google_tag_manager(page_name=instance.page.__str__(), page_id=instance.page.id,
+                                                        plugin_id=instance.id, name=instance.label, context=context)
+        else:
+            try:
+                context = update_context_google_tag_manager(page_name=instance.placeholder.slot,
+                                                            page_id=instance.placeholder.id,
+                                                            plugin_id=instance.id, name=instance.label, context=context)
+            except AttributeError:
+                context = update_context_google_tag_manager(plugin_id=instance.id, name=instance.label, context=context)
         return context

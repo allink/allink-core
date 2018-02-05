@@ -188,3 +188,13 @@ def get_all_fields_from_form(instance):
         if field not in fields:
             fields.append(field)
     return fields
+
+
+def update_context_google_tag_manager(context, page_name='NOPAGE_NAME', page_id='NOPAGE_ID', plugin_id='NOPLUGIN_ID', name='NONAME'):
+    # form_name = '{}{}_{}_{}'.format(page_name, page_id, plugin_id, name)
+    # If we have a form we will compile a id like this id="Kontakt88_plugin7451_SupportView"
+    # If its a Button Link we will try to compile it like  this id="Kontakt88_plugin7451_Support-Formular"
+    # If the Button Link Plugin is inside a static placeholder we will use the placeholder.slot and id instead of
+    # page infos
+    context.update({'form_name': '{}{}_plugin{}_{}'.format(page_name, page_id, plugin_id, name)})
+    return context

@@ -1,6 +1,7 @@
 {% load i18n %}
 {% block form_container %}
     <form
+        id="{{ form_name }}"
         class="form-default {% if not validation_disabled %}validate-form{% endif %} {% if not ajax_disabled %}ajax-form{% endif %} {{ class }} {% block form_additional_classes %}{% endblock form_additional_classes %}"
         method="{{ method|default:"POST" }}"
         {% if not validation_disabled %}novalidate="novalidate"{% endif %}

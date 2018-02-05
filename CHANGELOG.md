@@ -61,5 +61,6 @@ INSTALLED_APPS.extend(get_core_apps(OVERRIDDEN_ALLINK_CORE_APPS, INSTALLED_ALLIN
 
 ### NEW
 - BooleanField is_active on AllinkBaseModel got changed to a IntegerField with choices named status.
+- Added automatic ids to forms and ButtonLinkPlugin to make it easier to use google tag manager.
 
 ### FIXES
