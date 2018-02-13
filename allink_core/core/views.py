@@ -14,13 +14,12 @@ from django.template.loader import get_template
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
 from django.conf import settings
-from django.http import HttpResponse, HttpResponseRedirect, HttpResponsePermanentRedirect
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponsePermanentRedirect, Http404
 from django.template.loader import render_to_string
 from django.template import TemplateDoesNotExist
-
 from parler.views import TranslatableSlugMixin
 
-from allink_core.core.models.models import AllinkBaseAppContentPlugin
+from allink_core.core.models.models import AllinkBaseModel, AllinkBaseAppContentPlugin
 from allink_core.core_apps.allink_categories.models import AllinkCategory
 from allink_core.core.utils import get_query, update_context_google_tag_manager
 
@@ -133,6 +132,15 @@ class AllinkBaseDetailView(TranslatableSlugMixin, DetailView):
     """
     model = Events
     """
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        if not request.user.is_staff and self.object.status == self.object.INACTIVE:
+            raise Http404(_("The requested content is not published.") % {'class_name': self.__class__.__name__})
+        context = self.get_context_data(object=self.object)
+
+        return self.render_to_response(context)
+
     def render_to_response(self, context, **response_kwargs):
         if self.request.is_ajax():
             context.update({'base_template': 'app_content/ajax_base.html'})
