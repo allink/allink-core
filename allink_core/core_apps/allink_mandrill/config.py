@@ -16,7 +16,7 @@ class MandrillConfig:
 
         self.default_transactional_template_name = getattr(settings, 'MANDRILL_DEFAULT_TRANSACTIONAL_TEMPLATE', 'default')
         self.default_from_email = getattr(config, 'default_from_email', 'itcrowd@allink.ch')
-        self.default_to_email = getattr(config, 'default_from_email', 'itcrowd@allink.ch')
+        self.default_to_email = getattr(config, 'default_to_email', 'itcrowd@allink.ch')
 
     def get_default_from_name(self):
         from django.contrib.sites.models import Site
