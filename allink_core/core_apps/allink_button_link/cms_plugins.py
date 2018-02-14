@@ -11,7 +11,8 @@ from cms.plugin_pool import plugin_pool
 from webpack_loader.utils import get_files
 
 from allink_core.core_apps.allink_button_link.models import AllinkButtonLinkContainerPlugin, AllinkButtonLinkPlugin
-from allink_core.core.utils import get_additional_choices, update_context_google_tag_manager
+from allink_core.core.utils import get_additional_choices, update_context_google_tag_manager, get_ratio_choices
+from allink_core.core.models.choices import BLANK_CHOICE, NEW_WINDOW, SOFTPAGE_LARGE, SOFTPAGE_SMALL, FORM_MODAL, IMAGE_MODAL
 from allink_core.core.forms.fields import SelectLinkField
 from allink_core.core.forms.mixins import AllinkInternalLinkFieldMixin
 
@@ -34,6 +35,15 @@ class AllinkButtonLinkContainerPluginForm(forms.ModelForm):
 
 
 class AllinkButtonLinkPluginForm(AllinkInternalLinkFieldMixin, forms.ModelForm):
+
+    LINK_TARGET_REDUCED = (
+        (NEW_WINDOW, _(u'New window')),
+        (SOFTPAGE_LARGE, _(u'Softpage large')),
+        (SOFTPAGE_SMALL, _(u'Softpage small')),
+    )
+
+    link_target_reduced = forms.ChoiceField(label=_('Link Target'), required=False,
+                                            choices=BLANK_CHOICE + LINK_TARGET_REDUCED)
 
     internal_link = SelectLinkField(label=_('Link Internal'), required=False)
     internal_email_addresses = SplitArrayField(forms.EmailField(required=False), size=3, required=False)
@@ -58,6 +68,13 @@ class AllinkButtonLinkPluginForm(AllinkInternalLinkFieldMixin, forms.ModelForm):
             required=False,
             help_text=_(u'Important: In case the selected option is a <strong>form</strong>, make sure to select <strong>Lightbox (Forms)</strong> from the <strong>link target</strong> options for best user experience.'),
         )
+        self.fields['ratio'] = forms.CharField(
+            label=_(u'Ratio'),
+            help_text=_(u'This option overrides the default ratio setting for embeded videos.'),
+            widget=forms.Select(choices=get_ratio_choices()),
+            required=False,
+        )
+        self.initial['link_target_reduced'] = self.instance.link_target
 
     def _get_media(self):
         """
@@ -72,17 +89,85 @@ class AllinkButtonLinkPluginForm(AllinkInternalLinkFieldMixin, forms.ModelForm):
 
     def clean(self):
         from django.core.exceptions import ValidationError
+        cleaned_data = super(AllinkButtonLinkPluginForm, self).clean()
+        template = cleaned_data.get("template")
+
+        # if template has changed, delete all obsolete fields
+        old_template = self.initial.get('template')
+        if old_template:
+            if template != old_template:
+                if old_template == AllinkButtonLinkPlugin.DEFAULT_LINK:
+                    cleaned_data['internal_link'] = None
+                    cleaned_data['link_page'] = None
+                    cleaned_data['link_apphook_page'] = None
+                    cleaned_data['link_object_id'] = None
+                    cleaned_data['link_model'] = None
+                    cleaned_data['link_url_name'] = None
+                    cleaned_data['link_url_kwargs'] = None
+                    cleaned_data['link_url'] = ''
+                    cleaned_data['link_anchor'] = ''
+                    cleaned_data['link_target'] = None
+                    cleaned_data['link_target_reduced'] = None
+                elif old_template == AllinkButtonLinkPlugin.FORM_LINK:
+                    cleaned_data['link_special'] = None
+                    cleaned_data['send_internal_mail'] = None
+                    cleaned_data['internal_email_addresses'] = None
+                    cleaned_data['from_email_address'] = None
+                    cleaned_data['send_external_mail'] = None
+                    cleaned_data['thank_you_text'] = None
+                    cleaned_data['label_layout'] = None
+                elif old_template == AllinkButtonLinkPlugin.FILE_LINK and template != AllinkButtonLinkPlugin.IMAGE_LINK:
+                    cleaned_data['link_file'] = None
+                elif old_template == AllinkButtonLinkPlugin.IMAGE_LINK and template != AllinkButtonLinkPlugin.FILE_LINK:
+                    cleaned_data['link_file'] = None
+                elif template == AllinkButtonLinkPlugin.VIDEO_EMBEDDED_LINK:
+                    cleaned_data['video_id'] = None
+                    cleaned_data['video_service'] = None
+                    cleaned_data['ratio'] = None
+                    cleaned_data['auto_start_enabled'] = None
+                    cleaned_data['allow_fullscreen_enabled'] = None
+                elif template == AllinkButtonLinkPlugin.VIDEO_FILE_LINK:
+                    cleaned_data['video_file'] = None
+                    cleaned_data['video_poster_image'] = None
+                    cleaned_data['auto_start_enabled'] = None
+                    cleaned_data['video_muted_enabled'] = None
+                    cleaned_data['poster_only_on_mobile'] = None
+                elif template == AllinkButtonLinkPlugin.EMAIL_LINK:
+                    cleaned_data['link_mailto'] = None
+                    cleaned_data['email_subject'] = None
+                    cleaned_data['email_body_text'] = None
+                elif template == AllinkButtonLinkPlugin.PHONE_LINK:
+                    cleaned_data['link_phone'] = None
+
         # If special_link is a form which sends emails all the additional fields have to be supplied
-        self.cleaned_data = super(AllinkButtonLinkPluginForm, self).clean()
-        if ':request' in self.cleaned_data.get('link_special') and \
-            (self.cleaned_data.get('send_internal_mail') == True
-             and not self.cleaned_data.get('internal_email_addresses')[0]
-             and not self.cleaned_data.get('internal_email_addresses')[1]
-             and not self.cleaned_data.get('internal_email_addresses')[2]):
+        if ':request' in cleaned_data.get('link_special') and \
+            (cleaned_data.get('send_internal_mail') == True
+             and not cleaned_data.get('internal_email_addresses')[0]
+             and not cleaned_data.get('internal_email_addresses')[1]
+             and not cleaned_data.get('internal_email_addresses')[2]):
             self.add_error('internal_email_addresses', ValidationError(_(u'Please supply at least one E-Mail Address.')))
-        if ':request' in self.cleaned_data.get('link_special') and (self.cleaned_data.get('send_external_mail') == True and not self.cleaned_data.get('from_email_address')):
+        if ':request' in cleaned_data.get('link_special') and (cleaned_data.get('send_external_mail') == True and not cleaned_data.get('from_email_address')):
             self.add_error('from_email_address', ValidationError(_(u'Please supply an E-Mail Address.')))
-        return self.cleaned_data
+
+        #  always open external_links in new tab
+        if cleaned_data['link_url']:
+            cleaned_data['link_target'] = NEW_WINDOW
+
+        # set the link_target according to the button template
+        if template == AllinkButtonLinkPlugin.DEFAULT_LINK:
+            cleaned_data['link_target'] = cleaned_data.get('link_target_reduced') if cleaned_data.get('link_target_reduced') else None
+        elif template == AllinkButtonLinkPlugin.FORM_LINK:
+            cleaned_data['link_target'] = FORM_MODAL
+        elif template == AllinkButtonLinkPlugin.FILE_LINK:
+            cleaned_data['link_target'] = NEW_WINDOW
+        elif template == AllinkButtonLinkPlugin.IMAGE_LINK:
+            cleaned_data['link_target'] = IMAGE_MODAL
+        elif template == AllinkButtonLinkPlugin.VIDEO_EMBEDDED_LINK:
+            cleaned_data['link_target'] = IMAGE_MODAL
+        elif template == AllinkButtonLinkPlugin.VIDEO_FILE_LINK:
+            cleaned_data['link_target'] = IMAGE_MODAL
+
+        return cleaned_data
 
 
 @plugin_pool.register_plugin
@@ -147,6 +232,7 @@ class CMSAllinkButtonLinkPlugin(CMSPluginBase):
     fieldsets = (
         (None, {
             'fields': (
+                'template',
                 'label',
                 'type',
                 'btn_context',
@@ -155,27 +241,50 @@ class CMSAllinkButtonLinkPlugin(CMSPluginBase):
                 # ('icon_left', 'icon_right', 'btn_block',),
             ),
         }),
-        (_('Link settings'), {
-            # 'classes': ('collapse',),
+        (_('Internal/External link settings'), {
+            'classes': (
+                'only_when_default_link',
+            ),
             'fields': (
                 'internal_link',
                 'link_url',
-                ('link_mailto', 'link_phone'),
-                ('link_anchor', 'link_special'),
-                'link_file',
-                'link_target',
+                'link_anchor',
+                'link_target_reduced',
             )
         }),
-        (_('Additional email settings'), {
-            'classes': ('collapse',),
+        (_('File link settings'), {
+            'classes': (
+                'only_when_file_link',
+                'only_when_image_link',
+            ),
             'fields': (
+                'link_file',
+            )
+        }),
+        (_('Phone link settings'), {
+            'classes': (
+                'only_when_phone_link',
+            ),
+            'fields': (
+                'link_phone',
+            )
+        }),
+        (_('Email link settings'), {
+            'classes': (
+                'only_when_email_link',
+            ),
+            'fields': (
+                'link_mailto',
                 'email_subject',
                 'email_body_text',
             )
         }),
-        (_('Additional form settings'), {
-            'classes': ('collapse',),
+        (_('Form link settings'), {
+            'classes': (
+                'only_when_form_link',
+            ),
             'fields': (
+                'link_special',
                 'send_internal_mail',
                 'internal_email_addresses',
                 'from_email_address',
@@ -184,10 +293,43 @@ class CMSAllinkButtonLinkPlugin(CMSPluginBase):
                 'label_layout',
             )
         }),
+        (_('Video (Embedded) link settings'), {
+            'classes': (
+                'only_when_video_embedded_link',
+            ),
+            'fields': (
+                'video_id',
+                'video_service',
+                'ratio',
+                'auto_start_enabled',
+                'allow_fullscreen_enabled',
+            )
+        }),
+        (_('Video (File) link settings'), {
+            'classes': (
+                'only_when_video_file_link',
+            ),
+            'fields': (
+                'video_file',
+                'video_poster_image',
+                'auto_start_enabled',
+                'video_muted_enabled',
+                'poster_only_on_mobile',
+                # 'video_file_width',
+                # 'video_file_height',
+                # 'allow_fullscreen_enabled',
+            )
+        }),
         (_('Advanced settings'), {
             'classes': ('collapse',),
             'fields': (
                 'link_attributes',
+            )
+        }),
+        (_('Hidden settings'), {
+            'classes': ('hidden',),
+            'fields': (
+                'link_target',
             )
         }),
     )

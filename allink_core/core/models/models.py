@@ -1114,18 +1114,6 @@ class AllinkLinkFieldsModel(AllinkInternalLinkFieldsModel):
             for key, value in link_fields.items()
             if value
         }
-        if len(provided_link_fields) > 1:
-            # Too many fields have a value.
-            verbose_names = sorted(link_field_verbose_names.values())
-            error_msg = _('Only one of %(fields)s or %(last_field)s may be given.') % {
-                'fields': ', '.join(verbose_names[:-1]),
-                'last_field': verbose_names[-1],
-            }
-            error_fields = list(provided_link_fields.keys())
-            if 'link_page' in error_fields:
-                error_fields.remove('link_page')
-            errors = {}.fromkeys(error_fields, error_msg)
-            raise ValidationError(errors)
 
         if anchor_field_value:
             for field_name in provided_link_fields.keys():
