@@ -64,3 +64,4 @@ INSTALLED_APPS.extend(get_core_apps(OVERRIDDEN_ALLINK_CORE_APPS, INSTALLED_ALLIN
 - Added automatic ids to forms and ButtonLinkPlugin to make it easier to use google tag manager.
 
 ### FIXES
+- Added striptags in `allink_seo_tags.py` to model field `lead`, because it can contain html.

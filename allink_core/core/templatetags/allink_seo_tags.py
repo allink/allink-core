@@ -3,6 +3,7 @@ import hashlib
 
 from django import template
 from django.core.cache import cache
+from django.utils.html import strip_tags
 
 from allink_core.core.loading import get_model
 
@@ -104,7 +105,7 @@ def render_meta_og(context, obj=None, page_title=None, base_page_title=None, ima
         )
 
         og_title = get_og_title(allink_config, og_title, obj.og_title, obj.title)
-        description = get_description(description, obj.og_description, getattr(obj, 'lead', ''))
+        description = get_description(description, obj.og_description, strip_tags(getattr(obj, 'lead', '')))
         image_url = get_image_url(allink_config, image, getattr(obj, 'og_image'), getattr(obj, 'preview_image'))
 
     # cms page (no object is supplied)
