@@ -96,17 +96,17 @@ class AllinkButtonLinkPlugin(CMSPlugin, AllinkLinkFieldsModel):
         default=DEFAULT_LINK
     )
     label = models.CharField(
-        verbose_name=_(u'Display name'),
+        verbose_name=_(u'Link text'),
         blank=True,
         default='',
         max_length=255,
     )
     type = model_fields.LinkOrButton(
-        verbose_name=_(u'Type'),
+        verbose_name=_(u'Display type'),
     )
     # button specific fields
     btn_context = model_fields.Context(
-        verbose_name=_(u'Context'),
+        verbose_name=_(u'Variation'),
         choices=choices.BUTTON_CONTEXT_CHOICES,
         default=choices.BUTTON_CONTEXT_DEFAULT,
     )
@@ -264,6 +264,19 @@ class AllinkButtonLinkPlugin(CMSPlugin, AllinkLinkFieldsModel):
     allow_fullscreen_enabled = models.BooleanField(
         _(u'Allow fullscreen'),
         default=True
+    )
+
+    data_modal_escape_close_enabled = models.BooleanField(
+        _(u'Escape key closes modal'),
+        default=True,
+    )
+    data_modal_overlay_close_enabled = models.BooleanField(
+        _(u'Click on overlay closes modal'),
+        default=True,
+    )
+    data_modal_button_close_enabled = models.BooleanField(
+        _(u'Display close button'),
+        default=True,
     )
 
     cmsplugin_ptr = CMSPluginField()

@@ -44,8 +44,8 @@ class Size(forms.fields.ChoiceField):
 class LinkOrButton(forms.fields.ChoiceField):
     widget = widgets.LinkOrButton
     CHOICES = (
-        ('lnk', 'link'),
-        ('btn', 'button'),
+        ('lnk', 'Link'),
+        ('btn', 'Button'),
     )
     DEFAULT = 'lnk'
 

@@ -12,7 +12,7 @@ from webpack_loader.utils import get_files
 
 from allink_core.core_apps.allink_button_link.models import AllinkButtonLinkContainerPlugin, AllinkButtonLinkPlugin
 from allink_core.core.utils import get_additional_choices, update_context_google_tag_manager, get_ratio_choices
-from allink_core.core.models.choices import BLANK_CHOICE, NEW_WINDOW, SOFTPAGE_LARGE, SOFTPAGE_SMALL, FORM_MODAL, IMAGE_MODAL
+from allink_core.core.models.choices import BLANK_CHOICE, NEW_WINDOW, SOFTPAGE_LARGE, SOFTPAGE_SMALL, FORM_MODAL, IMAGE_MODAL, DEFAULT_MODAL
 from allink_core.core.forms.fields import SelectLinkField
 from allink_core.core.forms.mixins import AllinkInternalLinkFieldMixin
 
@@ -163,9 +163,9 @@ class AllinkButtonLinkPluginForm(AllinkInternalLinkFieldMixin, forms.ModelForm):
         elif template == AllinkButtonLinkPlugin.IMAGE_LINK:
             cleaned_data['link_target'] = IMAGE_MODAL
         elif template == AllinkButtonLinkPlugin.VIDEO_EMBEDDED_LINK:
-            cleaned_data['link_target'] = IMAGE_MODAL
+            cleaned_data['link_target'] = DEFAULT_MODAL
         elif template == AllinkButtonLinkPlugin.VIDEO_FILE_LINK:
-            cleaned_data['link_target'] = IMAGE_MODAL
+            cleaned_data['link_target'] = DEFAULT_MODAL
 
         return cleaned_data
 
@@ -234,12 +234,17 @@ class CMSAllinkButtonLinkPlugin(CMSPluginBase):
             'fields': (
                 'template',
                 'label',
+            ),
+        }),
+        (_('Link style'), {
+            'classes': (
+                'collapse',
+            ),
+            'fields': (
                 'type',
                 'btn_context',
-                # 'txt_context',
                 'btn_size',
-                # ('icon_left', 'icon_right', 'btn_block',),
-            ),
+            )
         }),
         (_('Internal/External link settings'), {
             'classes': (
@@ -318,6 +323,20 @@ class CMSAllinkButtonLinkPlugin(CMSPluginBase):
                 # 'video_file_width',
                 # 'video_file_height',
                 # 'allow_fullscreen_enabled',
+            )
+        }),
+        (_('Modal Closing options'), {
+            'classes': (
+                'collapse',
+                'only_when_image_link',
+                'only_when_form_link',
+                'only_when_video_embedded_link',
+                'only_when_video_file_link',
+            ),
+            'fields': (
+                'data_modal_escape_close_enabled',
+                'data_modal_overlay_close_enabled',
+                'data_modal_button_close_enabled',
             )
         }),
         (_('Advanced settings'), {

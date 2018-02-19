@@ -1,4 +1,5 @@
 {% load cms_tags sekizai_tags i18n thumbnail allink_image_tags allink_user_tags allink_members_tags allink_link_tags %}
+{% spaceless %}
 {% comment %}
     LOGOUT: requires a form to submit with the POST method (check if logged in an in group 'members')
 {% endcomment %}
@@ -6,57 +7,62 @@
     <form class="button-link-plugin__form" method="post" action="{{instance.get_link_url}}"  id="{{ form_name }}">
     {% csrf_token %}
 {% endif %}
-    <a href="{{ instance.get_link_url }}"
+<a href="{{ instance.get_link_url }}"
     class="button-link-plugin__link {{instance|link_classes}}"
     {{ instance|link_attribute_string:request }}
     id="{{ form_name }}"
-    >{% spaceless %}
+    >
 
-        {# content for image modal #}
-        {% if instance.image_modal_enabled and instance.link_file %}
-            <span class="image-modal-content" style="display: none;">
-                {% render_image width_alias="1-of-1" ratio="x-y" image=instance.link_file %}
-            </span>
-        {% endif %}
+    {# content for image modal #}
+    {% if instance.image_modal_enabled and instance.link_file %}
+        <span class="image-modal-content" style="display: none;">
+            {% render_image width_alias="1-of-1" ratio="x-y" image=instance.link_file %}
+        </span>
+    {% endif %}
 
-        {# display youtube video in image modal #}
-        {% if instance.template == "video_embedded_link" %}
-            <span class="image-modal-content" style="display: none;">
-                <span class="embed-container ratio-16-9" style="display: block;">
+    {# video modal #}
+    {% if instance.template == "video_embedded_link" or instance.template == "video_file_link" %}
+        <span id="video-modal-{{instance.id}}" style="display: none;">
 
+            {# display video from video service #}
+            {% if instance.template == "video_embedded_link" %}
+                <span class="embed-container ratio-{% if instance.ratio %}{{instance.ratio}}{% else %}16-9{% endif %}" style="display: block;">
                     {# YouTube #}
                     {% if instance.video_service == "youtube" %}
                         <iframe class="lazyload" width="560" height="315" data-src="//www.youtube.com/embed/{{instance.video_id}}?rel=0&showinfo=0{% if instance.auto_start_enabled %}&autoplay=1{% endif %}" frameborder="0" {% if instance.allow_fullscreen_enabled %}webkitAllowFullScreen mozallowfullscreen allowfullscreen{% endif %}></iframe>
-
                     {# Vimeo #}
                     {% elif instance.video_service == "vimeo" %}
                         <iframe class="lazyload" data-src="//player.vimeo.com/video/{{instance.video_id}}?color=ffc000&title=0&byline=0&portrait=0{% if instance.auto_start_enabled %}&autoplay=1{% endif %}" width="640" height="360" frameborder="0" {% if instance.allow_fullscreen_enabled %}webkitAllowFullScreen mozallowfullscreen allowfullscreen{% endif %}></iframe>
                     {% endif %}
-
                 </span>
-            </span>
-        {% endif %}
+            {% endif %}
 
-        {# if button is login-button to member area, check if logged in and in group 'members' #}
-        {% if instance.link_special == 'account_login' and user.is_authenticated %}
-            {% trans 'Member Area' %}
-        {% else %}
-            {{ instance.label }}
-        {% endif %}
+            {# display video file #}
+            {% if instance.template == "video_file_link" %}
+                TBD: video_file_link
+            {% endif %}
 
-        {# display the file's name' and 'description' attribute when linked to a file #}
-        {% if instance.link_file.name %}
-            {{ instance.link_file.name }}
-        {% endif %}
-        {% if instance.link_file.description %}
-            {{ instance.link_file.description }}
-        {% endif %}
+        </span>
+    {% endif %}
 
-{% endspaceless %}</a>
+    {# if button is login-button to member area, check if logged in and in group 'members' #}
+    {% if instance.link_special == 'account_login' and user.is_authenticated %}
+        {% trans 'Member Area' %}
+    {% else %}
+        {{ instance.label }}
+    {% endif %}
 
+    {# display the file's name' and 'description' attribute when linked to a file #}
+    {% if instance.link_file.name %}
+        {{ instance.link_file.name }}
+    {% endif %}
+    {% if instance.link_file.description %}
+        {{ instance.link_file.description }}
+    {% endif %}
+</a>
 {% comment %}
     LOGOUT
 {% endcomment %}
 {% if instance.link_special == 'account_logout' and user.is_authenticated %}
     </form>
-{% endif %}
+{% endif %}{% endspaceless %}

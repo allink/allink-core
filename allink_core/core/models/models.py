@@ -36,7 +36,7 @@ from cms.models.fields import PageField
 from allink_core.core.utils import base_url, get_additional_templates
 from allink_core.core.loading import get_model
 from allink_core.core.models.managers import AllinkBaseModelManager
-from allink_core.core.models.choices import SALUTATION_CHOICES, TARGET_CHOICES, NEW_WINDOW, SOFTPAGE_LARGE, SOFTPAGE_SMALL, FORM_MODAL, IMAGE_MODAL, BLANK_CHOICE
+from allink_core.core.models.choices import SALUTATION_CHOICES, TARGET_CHOICES, NEW_WINDOW, SOFTPAGE_LARGE, SOFTPAGE_SMALL, FORM_MODAL, IMAGE_MODAL, DEFAULT_MODAL, BLANK_CHOICE
 from allink_core.core.models.fields import ZipCodeField
 from allink_core.core.utils import get_additional_choices
 from allink_core.core_apps.allink_categories.models import AllinkCategory
@@ -999,14 +999,7 @@ class AllinkLinkFieldsModel(AllinkInternalLinkFieldsModel):
         _(u'Link Target'),
         choices=TARGET_CHOICES,
         null=True,
-        blank=True,
-        help_text=_(u'Recommended combinations:<br><br>'
-                    u'- Link Internal: No selection (loads page in current window/tab) or any of the <strong>Softpage</strong> options<br>'
-                    u'- Link External: <strong>New window</strong><br>'
-                    u'- Special Links (usually forms): <strong>Lightbox (Forms)</strong><br>'
-                    u'- Link to an image: <strong>Lightbox (Image)</strong><br>'
-                    u'- Link to a document (e.g. PDF): <strong>New window</strong><br>'
-        ),
+        blank=True
     )
     link_file = FilerFileField(
         verbose_name=_(u'file'),
@@ -1047,6 +1040,10 @@ class AllinkLinkFieldsModel(AllinkInternalLinkFieldsModel):
     @property
     def image_modal_enabled(self):
         return True if self.link_target == IMAGE_MODAL else False
+
+    @property
+    def default_modal_enabled(self):
+        return True if self.link_target == DEFAULT_MODAL else False
 
     @classmethod
     def get_link_special_choices(self):

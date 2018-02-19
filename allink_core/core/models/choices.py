@@ -117,6 +117,7 @@ SOFTPAGE_LARGE = 2
 SOFTPAGE_SMALL = 3
 FORM_MODAL = 4
 IMAGE_MODAL = 5
+DEFAULT_MODAL = 6
 
 TARGET_CHOICES = (
     (NEW_WINDOW, _(u'New window')),
@@ -124,6 +125,7 @@ TARGET_CHOICES = (
     (SOFTPAGE_SMALL, _(u'Softpage (small)')),
     (FORM_MODAL, _(u'Lightbox (Forms)')),
     (IMAGE_MODAL, _(u'Lightbox (Image)')),
+    (DEFAULT_MODAL, _(u'Lightbox (Default)')),
 )
 
 ####################################################################################
