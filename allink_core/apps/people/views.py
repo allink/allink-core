@@ -15,3 +15,4 @@ class PeoplePluginLoadMore(AllinkBasePluginLoadMoreView):
 
 class PeopleDetail(AllinkBaseDetailView):
     model = People
+

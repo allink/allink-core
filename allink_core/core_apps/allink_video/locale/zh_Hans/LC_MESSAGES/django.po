@@ -1,0 +1,148 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-04-27 09:22+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: allink_core/core_apps/allink_video/cms_plugins.py:24
+#: allink_core/core_apps/allink_video/cms_plugins.py:47
+msgid "Predifined variations for Video Plugin"
+msgstr ""
+
+#: allink_core/core_apps/allink_video/cms_plugins.py:29
+#: allink_core/core_apps/allink_video/models.py:72
+msgid "Ratio"
+msgstr ""
+
+#: allink_core/core_apps/allink_video/cms_plugins.py:30
+msgid "This option overrides the default ratio setting for embeded videos."
+msgstr ""
+
+#: allink_core/core_apps/allink_video/cms_plugins.py:56
+msgid "Video Embed"
+msgstr ""
+
+#: allink_core/core_apps/allink_video/cms_plugins.py:57
+#: allink_core/core_apps/allink_video/cms_plugins.py:105
+msgid "Generic"
+msgstr ""
+
+#: allink_core/core_apps/allink_video/cms_plugins.py:79
+#: allink_core/core_apps/allink_video/cms_plugins.py:122
+msgid "Video settings"
+msgstr ""
+
+#: allink_core/core_apps/allink_video/cms_plugins.py:87
+#: allink_core/core_apps/allink_video/cms_plugins.py:131
+msgid "Advanced settings"
+msgstr ""
+
+#: allink_core/core_apps/allink_video/cms_plugins.py:104
+#: allink_core/core_apps/allink_video/models.py:102
+msgid "Video File"
+msgstr ""
+
+#: allink_core/core_apps/allink_video/models.py:24
+msgid "Attributes"
+msgstr ""
+
+#: allink_core/core_apps/allink_video/models.py:59
+msgid "Allink Video Embed"
+msgstr ""
+
+#: allink_core/core_apps/allink_video/models.py:62
+msgid "Video ID"
+msgstr ""
+
+#: allink_core/core_apps/allink_video/models.py:64
+msgid ""
+"Only provide the ID. The correct URL will automatically be generated."
+"<br><br>YouTube: https://www.youtube.com/watch?v=<strong>12345678</strong> "
+"(the ID is <strong>12345678</strong>)<br>Vimeo: https://vimeo.com/"
+"<strong>12345678</strong> (the ID is <strong>12345678</strong>)"
+msgstr ""
+
+#: allink_core/core_apps/allink_video/models.py:67
+msgid "Video Service"
+msgstr ""
+
+#: allink_core/core_apps/allink_video/models.py:78
+#: allink_core/core_apps/allink_video/models.py:136
+msgid "Autostart"
+msgstr ""
+
+#: allink_core/core_apps/allink_video/models.py:80
+msgid ""
+"<strong>Important:</strong> Autoplaying videos with audio is not "
+"recommended. Use wisely. "
+msgstr ""
+
+#: allink_core/core_apps/allink_video/models.py:83
+#: allink_core/core_apps/allink_video/models.py:140
+msgid "Allow fullscreen"
+msgstr ""
+
+#: allink_core/core_apps/allink_video/models.py:99
+msgid "Allink Video File"
+msgstr ""
+
+#: allink_core/core_apps/allink_video/models.py:103
+msgid ""
+"Recommended video settings:<br><br>Format: mp4<br>Codec: H.264<br>Target "
+"Bitrate: 2 (video loads quick and runs smooth)<br>Audio: Not recommended (no "
+"audio = smaller file size and less annoyed visitors)<br>File size: Dependent "
+"of video length. Generally speaking: Less is more."
+msgstr ""
+
+#: allink_core/core_apps/allink_video/models.py:109
+msgid "Video Start Image"
+msgstr ""
+
+#: allink_core/core_apps/allink_video/models.py:112
+msgid ""
+"Image that is being displayed while the video is loading. Ideally the very "
+"first frame of the video is used, in order to make the transition as smooth "
+"as possible.<br><br><strong>Imoprtant:</strong> Make sure the aspect ratio "
+"of the image is <strong>exactly the same</strong> as the video, otherwise "
+"the video height will shrink or grow when the playback starts."
+msgstr ""
+
+#: allink_core/core_apps/allink_video/models.py:116
+msgid "Video width"
+msgstr ""
+
+#: allink_core/core_apps/allink_video/models.py:121
+msgid "Video height"
+msgstr ""
+
+#: allink_core/core_apps/allink_video/models.py:126
+msgid "Muted"
+msgstr ""
+
+#: allink_core/core_apps/allink_video/models.py:127
+msgid "Caution: Autoplaying videos with audio is not recommended. Use wisely."
+msgstr ""
+
+#: allink_core/core_apps/allink_video/models.py:131
+msgid "Image Only (Mobile)"
+msgstr ""
+
+#: allink_core/core_apps/allink_video/models.py:132
+msgid ""
+"Disable video on mobile devices and only show the start image without video "
+"control."
+msgstr ""

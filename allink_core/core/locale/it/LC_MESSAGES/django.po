@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-26 09:47+0100\n"
+"POT-Creation-Date: 2018-04-27 08:54+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,13 +19,13 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: allink_core/core/admin.py:22 allink_core/core/admin.py:24
-#: allink_core/core/admin.py:71 allink_core/core/admin.py:96
+#: allink_core/core/admin.py:72 allink_core/core/admin.py:97
 #: allink_core/core/cms_plugins.py:27 allink_core/core/cms_plugins.py:29
-#: allink_core/core/cms_plugins.py:38 allink_core/core/cms_plugins.py:119
+#: allink_core/core/cms_plugins.py:38 allink_core/core/cms_plugins.py:122
 msgid "Categories"
 msgstr ""
 
-#: allink_core/core/admin.py:79
+#: allink_core/core/admin.py:80
 msgid "SEO"
 msgstr ""
 
@@ -40,80 +40,82 @@ msgid ""
 "field \"Categories\" and the ones specified here."
 msgstr ""
 
-#: allink_core/core/cms_plugins.py:47 allink_core/core/cms_plugins.py:49
-#: allink_core/core/models/models.py:382
+#: allink_core/core/cms_plugins.py:49 allink_core/core/cms_plugins.py:51
+#: allink_core/core/models/models.py:387
 msgid "Categories for Navigation"
 msgstr ""
 
-#: allink_core/core/cms_plugins.py:53
+#: allink_core/core/cms_plugins.py:55
 msgid ""
 "You can explicitly define the categories for the category navigation here. "
 "This will override the automatically set of categories. (From \"Filter & "
 "Ordering\" but not from the \"Manual entries\")"
 msgstr ""
 
-#: allink_core/core/cms_plugins.py:58
+#: allink_core/core/cms_plugins.py:61
 msgid "Filter Fields"
 msgstr ""
 
-#: allink_core/core/cms_plugins.py:59
+#: allink_core/core/cms_plugins.py:62
 msgid "A Select Dropdown will be displayed for this Fields."
 msgstr ""
 
-#: allink_core/core/cms_plugins.py:65 allink_core/core/cms_plugins.py:278
-#: allink_core/core/models/models.py:365 allink_core/core/models/models.py:655
+#: allink_core/core/cms_plugins.py:68 allink_core/core/cms_plugins.py:287
+#: allink_core/core/models/models.py:370 allink_core/core/models/models.py:688
+#: allink_core/core_apps/allink_info_box/cms_plugins.py:26
+#: allink_core/core_apps/allink_info_box/models.py:33
 msgid "Template"
 msgstr ""
 
-#: allink_core/core/cms_plugins.py:72 allink_core/core/cms_plugins.py:272
+#: allink_core/core/cms_plugins.py:75 allink_core/core/cms_plugins.py:281
 msgid "Predifined variations"
 msgstr ""
 
-#: allink_core/core/cms_plugins.py:77
+#: allink_core/core/cms_plugins.py:80
 msgid "Ordering"
 msgstr ""
 
-#: allink_core/core/cms_plugins.py:90
+#: allink_core/core/cms_plugins.py:93
 msgid "App Content"
 msgstr ""
 
-#: allink_core/core/cms_plugins.py:91
+#: allink_core/core/cms_plugins.py:94
 msgid "allink modules"
 msgstr ""
 
-#: allink_core/core/cms_plugins.py:110
+#: allink_core/core/cms_plugins.py:113
 msgid "Display Options"
 msgstr ""
 
-#: allink_core/core/cms_plugins.py:127
+#: allink_core/core/cms_plugins.py:130
 msgid "Filter & Ordering"
 msgstr ""
 
-#: allink_core/core/cms_plugins.py:135
+#: allink_core/core/cms_plugins.py:138
 msgid "Select entries manually"
 msgstr ""
 
-#: allink_core/core/cms_plugins.py:143
+#: allink_core/core/cms_plugins.py:146
 msgid "Category Navigation Options"
 msgstr ""
 
-#: allink_core/core/cms_plugins.py:156
+#: allink_core/core/cms_plugins.py:159
 msgid "Number of entries"
 msgstr ""
 
-#: allink_core/core/cms_plugins.py:166
+#: allink_core/core/cms_plugins.py:169
 msgid "Pagination Options"
 msgstr ""
 
-#: allink_core/core/cms_plugins.py:177
+#: allink_core/core/cms_plugins.py:180
 msgid "Additional Options"
 msgstr ""
 
-#: allink_core/core/cms_plugins.py:185
+#: allink_core/core/cms_plugins.py:188
 msgid "Grid Options"
 msgstr ""
 
-#: allink_core/core/cms_plugins.py:290
+#: allink_core/core/cms_plugins.py:299
 msgid "allink search"
 msgstr ""
 
@@ -191,24 +193,28 @@ msgstr ""
 msgid "Large"
 msgstr ""
 
-#: allink_core/core/models/choices.py:122
+#: allink_core/core/models/choices.py:123
 msgid "New window"
 msgstr ""
 
-#: allink_core/core/models/choices.py:123
+#: allink_core/core/models/choices.py:124
 msgid "Softpage (large)"
 msgstr ""
 
-#: allink_core/core/models/choices.py:124
+#: allink_core/core/models/choices.py:125
 msgid "Softpage (small)"
 msgstr ""
 
-#: allink_core/core/models/choices.py:125
+#: allink_core/core/models/choices.py:126
 msgid "Lightbox (Forms)"
 msgstr ""
 
-#: allink_core/core/models/choices.py:126
+#: allink_core/core/models/choices.py:127
 msgid "Lightbox (Image)"
+msgstr ""
+
+#: allink_core/core/models/choices.py:128
+msgid "Lightbox (Default)"
 msgstr ""
 
 #: allink_core/core/models/fields.py:31
@@ -221,31 +227,31 @@ msgstr ""
 msgid "Zip Code Field"
 msgstr ""
 
-#: allink_core/core/models/models.py:59
+#: allink_core/core/models/models.py:60
 msgid "active"
 msgstr ""
 
-#: allink_core/core/models/models.py:60
+#: allink_core/core/models/models.py:61
 msgid "inactive"
 msgstr ""
 
-#: allink_core/core/models/models.py:63
+#: allink_core/core/models/models.py:64
 msgid "created"
 msgstr ""
 
-#: allink_core/core/models/models.py:64
+#: allink_core/core/models/models.py:65
 msgid "modified"
 msgstr ""
 
-#: allink_core/core/models/models.py:70
+#: allink_core/core/models/models.py:71
 msgid "status"
 msgstr ""
 
-#: allink_core/core/models/models.py:78
+#: allink_core/core/models/models.py:79
 msgid "og:Image"
 msgstr ""
 
-#: allink_core/core/models/models.py:79
+#: allink_core/core/models/models.py:80
 msgid ""
 "Preview image when page/post is shared on Facebook/ Twitter. <br>Min. 1200 x "
 "630 for best results. If not set, the one from the preview image will be "
@@ -253,327 +259,314 @@ msgid ""
 "will be used."
 msgstr ""
 
-#: allink_core/core/models/models.py:84
+#: allink_core/core/models/models.py:85
 msgid "Disable base title"
 msgstr ""
 
-#: allink_core/core/models/models.py:85
+#: allink_core/core/models/models.py:86
 msgid ""
 "If disabled, only the page title will be shown. Everything behind and "
 "including the \"|\" will be removed."
 msgstr ""
 
-#: allink_core/core/models/models.py:146
+#: allink_core/core/models/models.py:151
 msgid "Published"
 msgstr ""
 
-#: allink_core/core/models/models.py:257
+#: allink_core/core/models/models.py:262
 msgid "Title Tag and Title when shared on Facebook/ Twitter."
 msgstr ""
 
-#: allink_core/core/models/models.py:259
+#: allink_core/core/models/models.py:264
 msgid "Title when shared on Facebook."
 msgstr ""
 
-#: allink_core/core/models/models.py:264
+#: allink_core/core/models/models.py:269
 msgid "Meta Description for Search Engines and when shared on Facebook."
 msgstr ""
 
-#: allink_core/core/models/models.py:266
+#: allink_core/core/models/models.py:271
 msgid "Description when shared on Facebook/ Twitter."
 msgstr ""
 
-#: allink_core/core/models/models.py:366 allink_core/core/models/models.py:656
+#: allink_core/core/models/models.py:371 allink_core/core/models/models.py:689
+#: allink_core/core_apps/allink_info_box/models.py:34
 msgid "Choose a template."
 msgstr ""
 
-#: allink_core/core/models/models.py:370
+#: allink_core/core/models/models.py:375
 msgid "Show category navigation"
 msgstr ""
 
-#: allink_core/core/models/models.py:371
+#: allink_core/core/models/models.py:376
 msgid ""
 "If checked, a filter navigation with all selected categories is displayed."
 "<br>Please note: A category is only displayed if it contains items."
 msgstr ""
 
-#: allink_core/core/models/models.py:375
+#: allink_core/core/models/models.py:380
 msgid "Show category \"all\""
 msgstr ""
 
-#: allink_core/core/models/models.py:376
+#: allink_core/core/models/models.py:381
 msgid "If checked, a category \"all\" in filter navigation is displayed."
 msgstr ""
 
-#: allink_core/core/models/models.py:383
+#: allink_core/core/models/models.py:388
 msgid ""
 "You can explicitly define the categories for the category navigation here. "
 "This will override the automatically set of categories (either the one "
 "generated from \"Filter & Ordering\" or \"Manual entries\")"
 msgstr ""
 
-#: allink_core/core/models/models.py:387
+#: allink_core/core/models/models.py:392
 msgid "Show detailed information in Softpage"
 msgstr ""
 
-#: allink_core/core/models/models.py:388
+#: allink_core/core/models/models.py:393
 msgid ""
 "If checked, the detail view of an entry will be displayed in a \"softpage\". "
 "Otherwise the page will be reloaded."
 msgstr ""
 
-#: allink_core/core/models/models.py:392
+#: allink_core/core/models/models.py:397
 msgid "Show detail link"
 msgstr ""
 
-#: allink_core/core/models/models.py:393
+#: allink_core/core/models/models.py:398
 msgid "If checked, a link/button to the detail view will be displayed."
 msgstr ""
 
-#: allink_core/core/models/models.py:397
+#: allink_core/core/models/models.py:402
 msgid "Grid items per row"
 msgstr ""
 
-#: allink_core/core/models/models.py:398
+#: allink_core/core/models/models.py:403
 msgid "Only applied if a \"Grid\" template has been selected."
 msgstr ""
 
-#: allink_core/core/models/models.py:403
+#: allink_core/core/models/models.py:408
 msgid "Max. entries per page"
 msgstr ""
 
-#: allink_core/core/models/models.py:405
+#: allink_core/core/models/models.py:410
 msgid ""
 "Limit the number of entries (in case of the \"load more\" pagination type: "
 "entries per page). Default is \"0\" (show all entries)"
 msgstr ""
 
-#: allink_core/core/models/models.py:408
+#: allink_core/core/models/models.py:413
 msgid "Pagination Type"
 msgstr ""
 
-#: allink_core/core/models/models.py:414
+#: allink_core/core/models/models.py:419
 msgid "Text for \"Load ..\"-Button"
 msgstr ""
 
-#: allink_core/core/models/models.py:415
+#: allink_core/core/models/models.py:420
 msgid ""
 "If left blank, a default text will be used. <br>Note: Should the default "
 "text be adjusted site-wide, please contact the project manager (such changes "
 "can be made on a code level)"
 msgstr ""
 
-#: allink_core/core/models/models.py:421
+#: allink_core/core/models/models.py:426
 msgid "Text for \"Detail\"-Link"
 msgstr ""
 
-#: allink_core/core/models/models.py:422
+#: allink_core/core/models/models.py:427
 msgid ""
 "If left blank, a default text will be used.<br>Note: Should the default text "
 "be adjusted site-wide, please contact the project manager (such changes can "
 "be made on a code level)"
 msgstr ""
 
-#: allink_core/core/models/models.py:541
+#: allink_core/core/models/models.py:546
 #: allink_core/core/templates/app_content/app_content_base.html:39
 msgid "All"
 msgstr ""
 
-#: allink_core/core/models/models.py:716
+#: allink_core/core/models/models.py:749
 msgid "Send internal e-mail"
 msgstr ""
 
-#: allink_core/core/models/models.py:718
+#: allink_core/core/models/models.py:751
 msgid "Send confirmation mail to defined internal e-mail addresses."
 msgstr ""
 
-#: allink_core/core/models/models.py:727
+#: allink_core/core/models/models.py:760
 msgid "Internal e-mail addresses"
 msgstr ""
 
-#: allink_core/core/models/models.py:730
+#: allink_core/core/models/models.py:763
 msgid "Sender e-mail address"
 msgstr ""
 
-#: allink_core/core/models/models.py:735
+#: allink_core/core/models/models.py:768
 msgid "Send external e-mail"
 msgstr ""
 
-#: allink_core/core/models/models.py:737
+#: allink_core/core/models/models.py:770
 msgid "Send confirmation mail to customer."
 msgstr ""
 
-#: allink_core/core/models/models.py:740
+#: allink_core/core/models/models.py:773
 msgid "Thank you text"
 msgstr ""
 
-#: allink_core/core/models/models.py:743
+#: allink_core/core/models/models.py:776
 msgid "This text will be shown, after form completion."
 msgstr ""
 
-#: allink_core/core/models/models.py:746
+#: allink_core/core/models/models.py:779
 msgid "Display labels"
 msgstr ""
 
-#: allink_core/core/models/models.py:788
+#: allink_core/core/models/models.py:821
 msgid "Street"
 msgstr ""
 
-#: allink_core/core/models/models.py:794
+#: allink_core/core/models/models.py:827
 msgid "Street Nr."
 msgstr ""
 
-#: allink_core/core/models/models.py:800
+#: allink_core/core/models/models.py:833
 msgid "Address Additional"
 msgstr ""
 
-#: allink_core/core/models/models.py:806
+#: allink_core/core/models/models.py:839
 msgid "Zip Code"
 msgstr ""
 
-#: allink_core/core/models/models.py:811
+#: allink_core/core/models/models.py:844
 msgid "Place"
 msgstr ""
 
-#: allink_core/core/models/models.py:817
+#: allink_core/core/models/models.py:850
 msgid "Country"
 msgstr ""
 
-#: allink_core/core/models/models.py:830 allink_core/core/models/models.py:986
-#: allink_core/core/models/models.py:1175
+#: allink_core/core/models/models.py:863
+#: allink_core/core/models/models.py:1019
+#: allink_core/core/models/models.py:1198
 #: allink_core/core/templates/allink_core/contact/forms/request_base.html:57
 msgid "Phone"
 msgstr ""
 
-#: allink_core/core/models/models.py:831 allink_core/core/models/models.py:837
-#: allink_core/core/models/models.py:843
+#: allink_core/core/models/models.py:864 allink_core/core/models/models.py:870
+#: allink_core/core/models/models.py:876
 msgid ""
 "We automatically handle phone number formatting, Please provide the number "
 "in the following format \"+41 43 123 45 67\"."
 msgstr ""
 
-#: allink_core/core/models/models.py:836
+#: allink_core/core/models/models.py:869
 msgid "Mobile"
 msgstr ""
 
-#: allink_core/core/models/models.py:842
+#: allink_core/core/models/models.py:875
 msgid "Fax"
 msgstr ""
 
-#: allink_core/core/models/models.py:848
-#: allink_core/core/models/models.py:1164
+#: allink_core/core/models/models.py:881
+#: allink_core/core/models/models.py:1187
 #: allink_core/core/templates/allink_core/contact/forms/request_base.html:92
 msgid "Email"
 msgstr ""
 
-#: allink_core/core/models/models.py:853
+#: allink_core/core/models/models.py:886
 msgid "Website"
 msgstr ""
 
-#: allink_core/core/models/models.py:890
+#: allink_core/core/models/models.py:923
 msgid "New Page"
 msgstr ""
 
-#: allink_core/core/models/models.py:893
+#: allink_core/core/models/models.py:926
 msgid "If provided, overrides the external link and New Apphook-Page."
 msgstr ""
 
-#: allink_core/core/models/models.py:897
+#: allink_core/core/models/models.py:930
 msgid "New Apphook-Page"
 msgstr ""
 
-#: allink_core/core/models/models.py:900
+#: allink_core/core/models/models.py:933
 msgid "If provided, overrides the external link."
 msgstr ""
 
-#: allink_core/core/models/models.py:905
+#: allink_core/core/models/models.py:938
 msgid "To which object directs the url."
 msgstr ""
 
-#: allink_core/core/models/models.py:910
+#: allink_core/core/models/models.py:943
 msgid "Dotted Path to referenced Model"
 msgstr ""
 
-#: allink_core/core/models/models.py:915
+#: allink_core/core/models/models.py:948
 msgid "Name of the App-URL to use."
 msgstr ""
 
-#: allink_core/core/models/models.py:925
+#: allink_core/core/models/models.py:958
 msgid "Keyword arguments used to reverse url."
 msgstr ""
 
-#: allink_core/core/models/models.py:976
+#: allink_core/core/models/models.py:1009
 msgid "Provide a valid URL to an external website."
 msgstr ""
 
-#: allink_core/core/models/models.py:980
+#: allink_core/core/models/models.py:1013
 msgid "Email address"
 msgstr ""
 
-#: allink_core/core/models/models.py:992
+#: allink_core/core/models/models.py:1025
 msgid "Anchor"
 msgstr ""
 
-#: allink_core/core/models/models.py:995
+#: allink_core/core/models/models.py:1028
 msgid ""
 "Appends the value only after the internal or external link.<br>Do "
 "<strong>not</strong> include a preceding \"#\" symbol."
 msgstr ""
 
-#: allink_core/core/models/models.py:999
+#: allink_core/core/models/models.py:1032
 msgid "Link Target"
 msgstr ""
 
-#: allink_core/core/models/models.py:1003
-msgid ""
-"Recommended combinations:<br><br>- Link Internal: No selection (loads page "
-"in current window/tab) or any of the <strong>Softpage</strong> options<br>- "
-"Link External: <strong>New window</strong><br>- Special Links (usually "
-"forms): <strong>Lightbox (Forms)</strong><br>- Link to an image: "
-"<strong>Lightbox (Image)</strong><br>- Link to a document (e.g. PDF): "
-"<strong>New window</strong><br>"
-msgstr ""
-
-#: allink_core/core/models/models.py:1012
+#: allink_core/core/models/models.py:1038
 msgid "file"
 msgstr ""
 
-#: allink_core/core/models/models.py:1017
+#: allink_core/core/models/models.py:1043
 msgid "Special Links"
 msgstr ""
 
-#: allink_core/core/models/models.py:1023
+#: allink_core/core/models/models.py:1049
 msgid "Attributes"
 msgstr ""
 
-#: allink_core/core/models/models.py:1120
-#, python-format
-msgid "Only one of %(fields)s or %(last_field)s may be given."
-msgstr ""
-
-#: allink_core/core/models/models.py:1133
+#: allink_core/core/models/models.py:1156
 #, python-format
 msgid ""
 "%(anchor_field_verbose_name)s is not allowed together with %(field_name)s"
 msgstr ""
 
-#: allink_core/core/models/models.py:1146
+#: allink_core/core/models/models.py:1169
 msgid "Salutation"
 msgstr ""
 
-#: allink_core/core/models/models.py:1152
+#: allink_core/core/models/models.py:1175
 msgid "First Name"
 msgstr ""
 
-#: allink_core/core/models/models.py:1158
+#: allink_core/core/models/models.py:1181
 msgid "Last Name"
 msgstr ""
 
-#: allink_core/core/models/models.py:1169
+#: allink_core/core/models/models.py:1192
 msgid "Company"
 msgstr ""
 
-#: allink_core/core/models/models.py:1182
+#: allink_core/core/models/models.py:1205
 msgid "Message"
 msgstr ""
 
@@ -684,7 +677,7 @@ msgid "Jump to footer"
 msgstr ""
 
 #: allink_core/core/templates/allink_core/base_root.html:102
-#: allink_core/core/templates/partials/forms/form_base.html:47
+#: allink_core/core/templates/partials/forms/form_base.html:48
 msgid "Close"
 msgstr ""
 
@@ -1012,7 +1005,11 @@ msgstr ""
 msgid "Add plugin to"
 msgstr ""
 
-#: allink_core/core/views.py:172
+#: allink_core/core/views.py:139
+msgid "The requested content is not published."
+msgstr ""
+
+#: allink_core/core/views.py:180
 msgid "Something went wrong with your subscription. Please try again later."
 msgstr ""
 
@@ -1033,6 +1030,7 @@ msgstr ""
 #: allink_core/core_apps/allink_cms/cms_plugins.py:30
 #: allink_core/core_apps/allink_cms/cms_plugins.py:57
 #: allink_core/core_apps/allink_icon/cms_plugins.py:39
+#: allink_core/core_apps/allink_info_box/cms_plugins.py:36
 #: allink_core/core_apps/allink_pdf/cms_plugins.py:22
 msgid "Generic"
 msgstr ""
@@ -1069,6 +1067,50 @@ msgstr ""
 
 #: allink_core/core_apps/allink_icon/cms_plugins.py:29
 msgid "Predifined variations for Icon Plugin"
+msgstr ""
+
+#: allink_core/core_apps/allink_info_box/cms_plugins.py:35
+msgid "Info Box"
+msgstr ""
+
+#: allink_core/core_apps/allink_info_box/models.py:14
+msgid "Always visible"
+msgstr ""
+
+#: allink_core/core_apps/allink_info_box/models.py:15
+msgid "1x"
+msgstr ""
+
+#: allink_core/core_apps/allink_info_box/models.py:16
+msgid "2x"
+msgstr ""
+
+#: allink_core/core_apps/allink_info_box/models.py:17
+msgid "3x"
+msgstr ""
+
+#: allink_core/core_apps/allink_info_box/models.py:18
+msgid "4x"
+msgstr ""
+
+#: allink_core/core_apps/allink_info_box/models.py:19
+msgid "5x"
+msgstr ""
+
+#: allink_core/core_apps/allink_info_box/models.py:23
+msgid "Display duration"
+msgstr ""
+
+#: allink_core/core_apps/allink_info_box/models.py:24
+msgid "After how many times/clicks should the box not be visible anymore"
+msgstr ""
+
+#: allink_core/core_apps/allink_info_box/models.py:29
+msgid "Transparent background"
+msgstr ""
+
+#: allink_core/core_apps/allink_info_box/templates/allink_info_box/plugins/default/content.html:13
+msgid "Show info box"
 msgstr ""
 
 #: allink_core/core_apps/allink_pdf/cms_plugins.py:21

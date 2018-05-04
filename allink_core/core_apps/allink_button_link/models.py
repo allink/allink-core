@@ -4,6 +4,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import python_2_unicode_compatible
 from django.contrib.postgres.fields import ArrayField
+from django.utils.functional import cached_property
 from django.utils.http import urlquote
 
 from cms.models.pluginmodel import CMSPlugin
@@ -235,24 +236,9 @@ class AllinkButtonLinkPlugin(CMSPlugin, AllinkLinkFieldsModel):
         blank=True,
         null=True,
     )
-    video_file_width = models.IntegerField(
-        _(u'Video width'),
-        blank=True,
-        null=True,
-    )
-    video_file_height = models.IntegerField(
-        _(u'Video height'),
-        blank=True,
-        null=True,
-    )
     video_muted_enabled = models.BooleanField(
         _(u'Muted'),
         help_text=_(u'Caution: Autoplaying videos with audio is not recommended. Use wisely.'),
-        default=True
-    )
-    poster_only_on_mobile = models.BooleanField(
-        _(u'Image Only (Mobile)'),
-        help_text=_(u'Disable video on mobile devices and only show the start image without video control.'),
         default=True
     )
     # video (embed and file) specific fields
@@ -265,7 +251,7 @@ class AllinkButtonLinkPlugin(CMSPlugin, AllinkLinkFieldsModel):
         _(u'Allow fullscreen'),
         default=True
     )
-
+    # modal closing options
     data_modal_escape_close_enabled = models.BooleanField(
         _(u'Escape key closes modal'),
         default=True,
@@ -285,7 +271,12 @@ class AllinkButtonLinkPlugin(CMSPlugin, AllinkLinkFieldsModel):
         return u'{}'.format(self.label)
 
     def get_link_url(self):
-        base = super(AllinkButtonLinkPlugin, self).get_link_url()
+        # TODO backwards compatibility, remove new release
+        return self.link_url_typed
+
+    @cached_property
+    def link_url_typed(self):
+        base = super(AllinkButtonLinkPlugin, self).link_url_typed
         link = base
         if self.link_mailto:
             parameters = {}

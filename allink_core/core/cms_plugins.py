@@ -39,7 +39,9 @@ class AllinkBaseAppContentPluginForm(forms.ModelForm):
                     is_stacked=True
                 ),
                 help_text=_(
-                    u'Use this field if you want to further restrict your result set. This option allows you to create a conjunction between the first set of categories in field "Categories" and the ones specified here.'),
+                    u'Use this field if you want to further restrict your result set. This option allows you to create'
+                    u' a conjunction between the first set of categories in field "Categories" and the ones '
+                    u'specified here.'),
                 required=False,
                 queryset=self.instance.data_model.get_relevant_categories()
             )
@@ -50,7 +52,8 @@ class AllinkBaseAppContentPluginForm(forms.ModelForm):
                     is_stacked=True
                 ),
                 help_text=_(
-                    u'You can explicitly define the categories for the category navigation here. This will override the automatically set of categories. (From "Filter & Ordering" but not from the "Manual entries")'),
+                    u'You can explicitly define the categories for the category navigation here. This will override the'
+                    u' automatically set of categories. (From "Filter & Ordering" but not from the "Manual entries")'),
                 required=False,
                 queryset=self.instance.data_model.get_relevant_categories()
             )
@@ -201,60 +204,66 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
 
     def get_queryset_by_category(self, instance, filters, request):
         # manual entries
-        if instance.manual_entries.prefetch_related('manual_entries').exists():
-            objects_list = instance.get_selected_entries(filters=filters)
+        if instance.fetch_manual_entries:
+            object_list = instance.get_selected_entries(filters=filters)
         # category navigation and no category "all" (only first category is relevant)
         elif instance.category_navigation_enabled and not instance.category_navigation_all:
-            objects_list = instance.get_render_queryset_for_display(category=instance.get_first_category(),
-                                                                    filters=filters, request=request)
+            object_list = instance.get_render_queryset_for_display(category=instance.fetch_first_category, filters=filters, request=request)
         else:
-            objects_list = instance.get_render_queryset_for_display(filters=filters, request=request)
-        return objects_list
+            object_list = instance.get_render_queryset_for_display(filters=filters, request=request)
+        return object_list
 
     def render(self, context, instance, placeholder):
         # getting filter parameters and attributes
-        filters = {re.sub('filter-%s-' % instance.data_model._meta.model_name, '', k): v for k, v in
-                   context['request'].GET.items() if
-                   (k.startswith('filter-%s-' % instance.data_model._meta.model_name) and v != 'None')}
-        # random ordering needs sessioncaching for objects_list
+        filters = {re.sub('filter-%s-' % instance.data_model._meta.model_name, '', k):
+                       v for k, v in context['request'].GET.items()
+                   if (k.startswith('filter-%s-' % instance.data_model._meta.model_name) and v != 'None')}
+
+        # random ordering needs sessioncaching for object_list
         if instance.manual_ordering == AllinkBaseAppContentPlugin.RANDOM:
-            objects_list, path = context['request'].session.get("random_plugin_queryset_%s" % instance.id, ([], None))
-            if (objects_list and path == context['request'].path) or not objects_list:
-                objects_list = self.get_queryset_by_category(instance, filters, context['request'])
-                context['request'].session["random_plugin_queryset_%s" % instance.id] = (
-                objects_list, context['request'].path)
+            object_list, path = context['request'].session.get("random_plugin_queryset_%s" % instance.id, ([], None))
+            if (object_list and path == context['request'].path) or not object_list:
+                object_list = self.get_queryset_by_category(instance, filters, context['request'])
+                context['request'].session["random_plugin_queryset_%s" % instance.id] = (object_list,
+                                                                                         context['request'].path)
+
         # not random ordering
         else:
-            objects_list = self.get_queryset_by_category(instance, filters, context['request'])
+            object_list = self.get_queryset_by_category(instance, filters, context['request'])
 
         # Paginate Objects
         if instance.paginated_by > 0:
-            paginator = Paginator(objects_list, instance.paginated_by)
+            paginator = Paginator(object_list, instance.paginated_by)
             firstpage = paginator.page(1)
-            objects_list = firstpage.object_list
+            object_list = firstpage.object_list
 
             # Load More
             if (
-                    instance.pagination_type == AllinkBaseAppContentPlugin.LOAD or instance.pagination_type == AllinkBaseAppContentPlugin.LOAD_REST) and firstpage.has_next():
+                        instance.pagination_type == AllinkBaseAppContentPlugin.LOAD or
+                        instance.pagination_type == AllinkBaseAppContentPlugin.LOAD_REST) and firstpage.has_next():
                 context['page_obj'] = firstpage
-                context.update({'next_page_url': reverse('{}:more'.format(self.model.data_model._meta.model_name),
-                                                         kwargs={'page': context[
-                                                             'page_obj'].next_page_number()}) + '?api_request=1' + '&plugin_id={}'.format(
-                    instance.id)})
+                context.update(
+                    {'next_page_url': reverse('{}:more'.format(self.model.data_model._meta.model_name),
+                                              kwargs={
+                                                  'page': context['page_obj'].next_page_number()}) + '?api_request=1' +
+                                      '&plugin_id={}'.format(instance.id)})
+
                 if instance.category_navigation_enabled and not instance.category_navigation_all:
                     context['next_page_url'] = context['next_page_url'] + '&category={}'.format(
-                        instance.get_first_category().id)
+                        instance.fetch_first_category.id)
 
         # category navigation
         if instance.category_navigation_enabled or instance.filter_fields:
-            context.update({'by_category': reverse('{}:more'.format(self.model.data_model._meta.model_name),
-                                                   kwargs={'page': 1}) + '?api_request=1' + '&plugin_id={}'.format(
-                instance.id)})
+            context.update(
+                {'by_category': reverse('{}:more'.format(self.model.data_model._meta.model_name),
+                                        kwargs={'page': 1}) + '?api_request=1' + '&plugin_id={}'.format(instance.id)})
 
         context['instance'] = instance
         context['placeholder'] = placeholder
-        context['object_list'] = objects_list
-        context['category_navigation'] = instance.get_category_navigation
+        context['object_list'] = object_list
+
+        if instance.category_navigation_enabled:
+            context['category_navigation'] = instance.fetch_category_navigation
 
         return context
 

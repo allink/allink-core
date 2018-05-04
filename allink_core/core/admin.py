@@ -28,6 +28,7 @@ class AllinkBaseAdminForm(TranslatableModelForm):
                 queryset=self.instance.get_relevant_categories()
             )
 
+
 class AllinkBaseAdminBase(AllTranslationsMixin, TranslatableAdmin):
     """
       Inlines for images have to be handled in the specific admin class
@@ -96,11 +97,9 @@ class AllinkBaseAdminBase(AllTranslationsMixin, TranslatableAdmin):
     get_categories.short_description = _(u'Categories')
 
 
-class AllinkBaseAdmin(NonSortableParentAdmin, AllinkBaseAdminBase):
+class AllinkBaseAdmin(AllinkBaseAdminBase, NonSortableParentAdmin):
     pass
 
 
 class AllinkBaseAdminSortable(SortableAdmin, AllinkBaseAdminBase):
-    def do_sorting_view(self, request, model_type_id=None):
-        super(AllinkBaseAdminSortable, self).do_sorting_view(request, model_type_id)
-        cache.clear()
+    pass

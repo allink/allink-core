@@ -12,8 +12,8 @@
         {% endif %}
         {# end render figure/figcaption #}
 
-            {% if instance.get_link_url %}
-                <a href="{{ instance.get_link_url }}"
+            {% if instance.link_url_typed %}
+                <a href="{{ instance.link_url_typed }}"
                 class="image-plugin__link {{instance|link_classes}}"
                 {{ instance|link_attribute_string:request }}
                 >
@@ -27,7 +27,7 @@
                     </div>
                 {% endif %}
 
-            {% if instance.get_link_url %}
+            {% if instance.link_url_typed %}
                 </a>
             {% endif %}
         {# start render figure/figcaption #}

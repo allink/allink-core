@@ -1,13 +1,17 @@
 {% load cms_tags sekizai_tags i18n thumbnail allink_image_tags allink_user_tags allink_members_tags allink_link_tags %}
 {% spaceless %}
 {% comment %}
+
+    IMPORTANT NOTE: Some editors automatically add a NEW LINE at the end of the document. This causes undesired extra space after the <a> tag. So every time you adjust this file, make sure to open/save it in an editor that does NOT add a new line before committing.
+
     LOGOUT: requires a form to submit with the POST method (check if logged in an in group 'members')
+
 {% endcomment %}
 {% if instance.link_special == 'account_logout' and user.is_authenticated %}
-    <form class="button-link-plugin__form" method="post" action="{{instance.get_link_url}}"  id="{{ form_name }}">
+    <form class="button-link-plugin__form" method="post" action="{{instance.link_url_typed}}"  id="{{ form_name }}">
     {% csrf_token %}
 {% endif %}
-<a href="{{ instance.get_link_url }}"
+<a href="{{ instance.link_url_typed }}"
     class="button-link-plugin__link {{instance|link_classes}}"
     {{ instance|link_attribute_string:request }}
     id="{{ form_name }}"
@@ -39,26 +43,51 @@
 
             {# display video file #}
             {% if instance.template == "video_file_link" %}
-                TBD: video_file_link
+                {# create thumbnail #}
+                {% thumbnail instance.video_poster_image 1500x9999 upscale=False as placeholder_image %}
+
+                <div class="content-plugin video-file-plugin video-{{ instance.id }} on-pause {% if instance.auto_start_enabled %}autoplay-enabled{% endif %} {% if instance.poster_only_on_mobile %}poster-only-on-mobile{% endif %}">
+
+                    <video
+                        id="video-{{ instance.id }}"
+                        class="the-video"
+                        playsinline
+                        preload="none"
+                        {% if instance.video_muted_enabled %}muted{% endif %}
+                        {% if instance.auto_start_enabled %}autoplay{% endif %}
+                        loop
+                        poster="{{ placeholder_image.url }}">
+                        <source src="{{ instance.video_file.url }}" type="video/mp4">
+                    </video>
+
+                    <div class="video-controls">
+                        <span></span>
+                    </div>
+
+                </div>
             {% endif %}
 
         </span>
     {% endif %}
 
-    {# if button is login-button to member area, check if logged in and in group 'members' #}
-    {% if instance.link_special == 'account_login' and user.is_authenticated %}
-        {% trans 'Member Area' %}
-    {% else %}
-        {{ instance.label }}
-    {% endif %}
+    {# the actual link text #}
+    <span class="button-link-plugin__text">
+        {# if button is login-button to member area, check if logged in and in group 'members' #}
+        {% if instance.link_special == 'account_login' and user.is_authenticated %}
+            {% trans 'Member Area' %}
+        {% else %}
+            {{ instance.label }}
+        {% endif %}
 
-    {# display the file's name' and 'description' attribute when linked to a file #}
-    {% if instance.link_file.name %}
-        {{ instance.link_file.name }}
-    {% endif %}
-    {% if instance.link_file.description %}
-        {{ instance.link_file.description }}
-    {% endif %}
+        {# display the file's name' and 'description' attribute when linked to a file #}
+        {% if instance.link_file.name %}
+            {{ instance.link_file.name }}
+        {% endif %}
+        {% if instance.link_file.description %}
+            {{ instance.link_file.description }}
+        {% endif %}
+    </span>
+
 </a>
 {% comment %}
     LOGOUT

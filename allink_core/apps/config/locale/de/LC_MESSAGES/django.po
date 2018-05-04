@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-26 09:47+0100\n"
+"POT-Creation-Date: 2018-04-27 08:54+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -82,11 +82,11 @@ msgstr ""
 msgid "Configuration"
 msgstr "Konfiguration"
 
-#: allink_core/apps/config/abstract_models.py:151
+#: allink_core/apps/config/abstract_models.py:152
 msgid "Base title"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:154
+#: allink_core/apps/config/abstract_models.py:155
 msgid ""
 "Default base title, Is also used for default base og:title when page/post is "
 "shared on Facebook. <br>If not supplied the name form Django Sites will be "
@@ -96,7 +96,7 @@ msgstr ""
 "Sharen auf Facebook gebraucht. <br>Wenn nicht gesetzt, wird als Standard der "
 "name von Django-Sites verwendet."
 
-#: allink_core/apps/config/abstract_models.py:167
+#: allink_core/apps/config/abstract_models.py:168
 msgid "Special Subnav enabled?"
 msgstr ""
 

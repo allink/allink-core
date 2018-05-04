@@ -3,6 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.db import models
 from django.core.cache import cache
 from django.core.cache.utils import make_template_fragment_key
+from django.utils.functional import cached_property
 
 from cms.models.fields import PlaceholderField
 from adminsortable.models import SortableMixin
@@ -72,11 +73,11 @@ class BasePeople(SortableMixin, TranslationHelperMixin, AllinkTranslatedAutoSlug
         verbose_name = _('Person')
         verbose_name_plural = _('People')
 
-    @property
+    @cached_property
     def full_name(self):
         return u'{} {}'.format(self.first_name, self.last_name)
 
-    @property
+    @cached_property
     def title(self):
         return u'{} {}'.format(self.first_name, self.last_name)
 
@@ -86,6 +87,8 @@ class BasePeople(SortableMixin, TranslationHelperMixin, AllinkTranslatedAutoSlug
         for unit in self.categories.filter(identifier='units'):
             units.append(unit.name)
         return ','.join(units)
+
+
 
 
 class BasePeopleTranslation(AllinkBaseTranslatedFieldsModel):

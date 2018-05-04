@@ -3,6 +3,7 @@ from django.conf.urls import url
 
 from allink_core.core.loading import get_class
 
+
 WorkPluginLoadMore = get_class('work.views', 'WorkPluginLoadMore')
 WorkDetail = get_class('work.views', 'WorkDetail')
 WorkSearchAjaxView = get_class('work.views', 'WorkSearchAjaxView')
@@ -15,3 +16,4 @@ urlpatterns = [
     url(r'^search/(?P<plugin_id>[0-9]+)/$', WorkSearchAjaxView.as_view(), name='search'),
     url(r'^export-pdf/(?P<id>[0-9]+)/$', export_pdf, name='export-pdf'),
 ]
+

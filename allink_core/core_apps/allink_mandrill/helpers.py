@@ -6,8 +6,6 @@ from django.utils.translation import get_language
 from django.utils.translation import ugettext_lazy as _
 from .config import MandrillConfig
 
-config = MandrillConfig()
-
 
 def check_result_status(result):
     if result[0].get('status') != 'sent' and result[0].get('status') != 'queued':
@@ -19,6 +17,7 @@ def check_result_status(result):
 
 
 def send_transactional_email(message, template_content, language=None, translated=False, template_name=None, async=False):
+    config = MandrillConfig()
 
     if not template_name:
         template_name = config.default_transactional_template_name

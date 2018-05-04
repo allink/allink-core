@@ -13,7 +13,8 @@ def link_attribute_string(instance, request=None):
     attributes += ' rel=noopener' if instance.new_window_enabled else ''
     attributes += ' data-trigger-form-modal' if instance.form_modal_enabled else ''
     attributes += ' data-trigger-image-modal' if instance.image_modal_enabled else ''
-    attributes += ' data-trigger-default-modal data-default-modal-variation=video-modal data-default-modal-content-container-id=video-modal-{}'.format(instance.id) if instance.default_modal_enabled else ''
+    attributes += ' data-trigger-default-modal' if instance.default_modal_enabled else ''
+    attributes += ' data-default-modal-variation=video-modal data-default-modal-content-container-id=video-modal-{}'.format(instance.id) if (hasattr(instance, 'template') and getattr(instance, 'template') == 'video_embedded_link') or (hasattr(instance, 'template') and getattr(instance, 'template') == 'video_file_link') else ''
 
     if instance.image_modal_enabled or instance.default_modal_enabled or instance.form_modal_enabled:
         attributes += ' data-modal-escape-close-method-enabled=true' if hasattr(instance, 'data_modal_escape_close_enabled') and instance.data_modal_escape_close_enabled else ''

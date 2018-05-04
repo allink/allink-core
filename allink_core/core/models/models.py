@@ -20,6 +20,7 @@ from django.contrib.postgres.fields import ArrayField
 from django.dispatch import receiver
 from django.utils.encoding import python_2_unicode_compatible, force_text
 from django.utils.translation import ugettext_lazy as _, override
+from django.utils.functional import cached_property
 from cms.utils.i18n import get_current_language, get_default_language
 from cms.models.pluginmodel import CMSPlugin
 from cms.plugin_pool import plugin_pool
@@ -116,15 +117,19 @@ class AllinkBaseModel(models.Model):
             result |= root.get_descendants()
         return result
 
-    @property
+    @cached_property
     def next(self):
         return self.get_next(self)
 
-    @property
+    @cached_property
     def previous(self):
         return self.get_previous(self)
 
-    @property
+    @cached_property
+    def fetch_categories(self):
+        return self.categories.all()
+
+    @cached_property
     def show_detail_link(self):
         return True if getattr(self, 'content_placeholder') else False
 
@@ -456,7 +461,7 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
     def get_ordering_choices(cls):
         return cls.ORDERING
 
-    @property
+    @cached_property
     def css_classes(self):
         css_classes = []
         if getattr(self, 'project_css_classes'):
@@ -473,7 +478,7 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
         self.manual_entries = oldinstance.manual_entries.all()
 
     def get_selected_entries(self, filters={}):
-        queryset = self.manual_entries.select_related().active_entries().filter(**filters)
+        queryset = self.fetch_manual_entries.filter(**filters)
         return self._apply_ordering_to_queryset_for_display(queryset)
 
     def get_model_name(self):
@@ -551,29 +556,54 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
             options.update({filter_key: (dict(self.FILTER_FIELD_CHOICES)[fieldname]['verbose'], filters)})
         return options
 
-    def get_first_category(self):
+    @cached_property
+    def fetch_categories(self):
+        return self.categories.all()
+
+    @cached_property
+    def fetch_first_category(self):
         return self.categories.first()
 
     @cached_property
+    def fetch_categories_and(self):
+        return self.categories_and.all()
+
+    @cached_property
+    def fetch_manual_entries(self):
+        return self.manual_entries.all().active_entries()
+
+    @cached_property
+    def fetch_category_navigation(self):
+        return self.category_navigation.all()
+
+    def get_first_category(self):
+        # TODO backwards compatibility, remove new release
+        return self.categories.first()
+
     def get_category_navigation(self):
+        # TODO backwards compatibility, remove new release
+        return self.fetch_category_navigation
+
+    @cached_property
+    def fetch_category_navigation(self):
         category_navigation = []
         # if manual entries are selected the category navigation
         # is created from all distinct categories in selected entries
-        if self.manual_entries.exists():
-            for entry in self.manual_entries.all():
-                for category in entry.categories.all():
+        if self.fetch_manual_entries:
+            for entry in self.fetch_manual_entries:
+                for category in entry.fetch_categories:
                     if category not in category_navigation:
                         category_navigation.append(category)
         else:
             # override auto category nav
-            if self.category_navigation.exists():
-                for category in self.category_navigation.all():
+            if self.fetch_category_navigation:
+                for category in self.fetch_category_navigation:
                     if self.get_render_queryset_for_display(category).exists():
                         category_navigation.append(category)
             # auto category nav
             else:
-                if self.categories.exists():
-                    for category in self.categories.all():
+                if self.fetch_categories:
+                    for category in self.fetch_categories:
                         if self.get_render_queryset_for_display(category).exists():
                             category_navigation.append(category)
                 # auto category nav, if no categories are specified
@@ -624,26 +654,29 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
                 return cached_qs
 
         # apply filters from request
-        queryset = self.data_model.objects.active().filter(**filters)
+        queryset = self.data_model.objects.active().prefetch_related('categories').filter(**filters)
 
         if self.categories.exists() or category:
             if category:
                 queryset = queryset.filter_by_category(category)
             else:
-                queryset = queryset.filter_by_categories(categories=self.categories.all())
+                queryset = queryset.filter_by_categories(categories=self.fetch_categories)
 
-            if self.categories_and.exists():
-                queryset = queryset.filter_by_categories(categories=self.categories_and.all())
+            if self.fetch_categories_and:
+                queryset = queryset.filter_by_categories(categories=self.fetch_categories_and)
 
         ordered_qs = self._apply_ordering_to_queryset_for_display(queryset)
 
+        # hook for perfecting related to make the cache more effective
+        ordered_qs = self.get_queryset_with_prefetch_related(ordered_qs)
+
         # cache for for a half year and add to valid cache keys
-        if ordered_qs.exists():
-            cache.set(cache_key, ordered_qs, 60 * 60 * 24 * 180)
-        else:
-            cache.set(cache_key, 'empty', 60 * 60 * 24 * 180)
+        cache.set(cache_key, ordered_qs, 60 * 60 * 24 * 180)
         valid_cache_keys.append(cache_key)
         cache.set('render_queryset_for_display_valid_keys_%s' % self.id, valid_cache_keys, 60 * 60 * 24 * 360)
+        return ordered_qs
+
+    def get_queryset_with_prefetch_related(self, ordered_qs):
         return ordered_qs
 
 
@@ -683,7 +716,7 @@ class AllinkBaseSearchPlugin(CMSPlugin):
     def get_model_name(self):
         return self.data_model._meta.model_name
 
-    @property
+    @cached_property
     def css_classes(self):
         css_classes = []
         if getattr(self, 'project_css_classes'):
@@ -771,7 +804,7 @@ class AllinkBaseFormPlugin(CMSPlugin):
     def get_form(self):
         return self.form_class()
 
-    @property
+    @cached_property
     def css_classes(self):
         css_classes = []
         if getattr(self, 'project_css_classes'):
@@ -858,25 +891,25 @@ class AllinkContactFieldsModel(models.Model):
     class Meta:
         abstract = True
 
-    @property
+    @cached_property
     def phone_formatted(self):
         if self.phone:
             x = phonenumbers.parse(str(self.phone), None)
             return (str(phonenumbers.format_number(x, phonenumbers.PhoneNumberFormat.INTERNATIONAL)))
 
-    @property
+    @cached_property
     def mobile_formatted(self):
         if self.mobile:
             x = phonenumbers.parse(str(self.mobile), None)
             return (str(phonenumbers.format_number(x, phonenumbers.PhoneNumberFormat.INTERNATIONAL)))
 
-    @property
+    @cached_property
     def fax_formatted(self):
         if self.fax:
             x = phonenumbers.parse(str(self.fax), None)
             return (str(phonenumbers.format_number(x, phonenumbers.PhoneNumberFormat.INTERNATIONAL)))
 
-    @property
+    @cached_property
     def website_clean(self):
         if self.website:
             website = urlparse(self.website)
@@ -960,7 +993,7 @@ class AllinkInternalLinkFieldsModel(models.Model):
             link_obj = None
         return link_obj
 
-    @property
+    @cached_property
     def is_page_link(self):
         if self.link_page:
             return True
@@ -1021,23 +1054,23 @@ class AllinkLinkFieldsModel(AllinkInternalLinkFieldsModel):
     class Meta:
         abstract = True
 
-    @property
+    @cached_property
     def new_window_enabled(self):
         return True if self.link_target == NEW_WINDOW and not self.form_modal_enabled and not self.softpage_large_enabled and not self.softpage_small_enabled else False
 
-    @property
+    @cached_property
     def softpage_large_enabled(self):
         return True if self.link_target == SOFTPAGE_LARGE else False
 
-    @property
+    @cached_property
     def softpage_small_enabled(self):
         return True if self.link_target == SOFTPAGE_SMALL else False
 
-    @property
+    @cached_property
     def form_modal_enabled(self):
         return True if self.link_target == FORM_MODAL else False
 
-    @property
+    @cached_property
     def image_modal_enabled(self):
         return True if self.link_target == IMAGE_MODAL else False
 
@@ -1050,6 +1083,11 @@ class AllinkLinkFieldsModel(AllinkInternalLinkFieldsModel):
         return BLANK_CHOICE + get_additional_choices('BUTTON_LINK_SPECIAL_LINKS_CHOICES')
 
     def get_link_url(self):
+        # TODO backwards compatibility, remove new release
+        return self.link_url_typed
+
+    @cached_property
+    def link_url_typed(self):
         internal_link = self.link
         if internal_link:
             link = internal_link

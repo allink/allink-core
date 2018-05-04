@@ -5,8 +5,7 @@ from parler.managers import TranslatableManager, TranslatableQuerySet
 class AllinkBaseModelQuerySet(TranslatableQuerySet):
 
     def active_entries(self):
-        return self.active_translations()\
-            .filter(status=1)
+        return self.filter(status=1)
 
     def filter_by_categories(self, categories):
         return self.active_entries()\
@@ -33,7 +32,7 @@ class AllinkBaseModelQuerySet(TranslatableQuerySet):
     # A-Z
     def title_asc(self):
         # TODO
-        # result = self.active_translations().order_by('translations__title', 'id').distinct('translations__title', 'id')
+        # result = self.order_by('translations__title', 'id').distinct('translations__title', 'id')
         # def remove_dublicates(seq):
         #     seen = set()
         #     seen_add = seen.add

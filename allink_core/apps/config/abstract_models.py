@@ -105,14 +105,15 @@ class BaseConfig(SingletonModel, TranslatableModel):
         timeout = 60 * 60 * 24 * 180
         cache.set(cache_key, self.to_dict(), timeout)
 
-        # invalidate cache for favicon templatetag
-        cache.delete('favicon_context')
 
     def save(self, *args, **kwargs):
         if self.pk:
             self.set_to_cache()
         else:
             self.pk = 1
+
+        # invalidate cache for favicon templatetag
+        cache.delete('favicon_context')
         super(SingletonModel, self).save(*args, **kwargs)
 
     @classmethod

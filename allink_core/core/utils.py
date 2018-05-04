@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 import re
-
+from os.path import splitext
 from django.db.models import Q
 from allink_core.core.constants import STOP_WORDS_RE
 from django.conf import settings
+from django.utils.text import get_valid_filename as get_valid_filename_django
+from django.template.defaultfilters import slugify
 
 
 _base_url = None
@@ -119,6 +121,21 @@ def replace_line_breaks(string):
     """replaces: '\r\n' and '\n\r' and '\r' and '\n' and with '<br />' """
     r = '<br />'
     return string.replace('\r\n', r).replace('\n\r', r).replace('\r', r).replace('\n', r)
+
+
+def get_valid_filename(s):
+    """
+    like the regular get_valid_filename, but also slugifies away umlauts and
+    stuff. Copied from django-filer
+    """
+    s = get_valid_filename_django(s)
+    filename, ext = splitext(s)
+    filename = slugify(filename)
+    ext = slugify(ext)
+    if ext:
+        return "%s.%s" % (filename, ext)
+    else:
+        return "%s" % (filename,)
 
 
 def normalize_query(query_string):

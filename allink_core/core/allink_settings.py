@@ -182,6 +182,7 @@ THUMBNAIL_OPTIMIZE_COMMAND = {
 #
 # # Debug Toolbar
 
+
 def show_toolbar(request):
     return senv('DEBUG_TOOLBAR_ENABLED', False)
 

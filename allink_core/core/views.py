@@ -198,8 +198,8 @@ class AllinkBaseCreateView(CreateView):
         # self.plugin.id)
 
         # form_name += '_' + self.__class__.__name__
-        context = update_context_google_tag_manager(context, self.plugin.page.__str__(), self.plugin.page.id,
-                                                    self.plugin.id, self.__class__.__name__)
+        plugin_id = getattr(self.plugin, 'id') if self.plugin else None
+        context = update_context_google_tag_manager(context, self.request.current_page.__str__(), self.request.current_page.id, plugin_id, self.__class__.__name__)
         # EventsRegister view doesn't have a plugin instance
         if self.plugin:
             context.update({'instance': self.plugin})

@@ -110,43 +110,42 @@ class AllinkButtonLinkPluginForm(AllinkInternalLinkFieldMixin, forms.ModelForm):
                     cleaned_data['link_target_reduced'] = None
                 elif old_template == AllinkButtonLinkPlugin.FORM_LINK:
                     cleaned_data['link_special'] = None
-                    cleaned_data['send_internal_mail'] = None
+                    cleaned_data['send_internal_mail'] = True
                     cleaned_data['internal_email_addresses'] = None
                     cleaned_data['from_email_address'] = None
-                    cleaned_data['send_external_mail'] = None
+                    cleaned_data['send_external_mail'] = True
                     cleaned_data['thank_you_text'] = None
-                    cleaned_data['label_layout'] = None
+                    cleaned_data['label_layout'] = 'stacked'
                 elif old_template == AllinkButtonLinkPlugin.FILE_LINK and template != AllinkButtonLinkPlugin.IMAGE_LINK:
                     cleaned_data['link_file'] = None
                 elif old_template == AllinkButtonLinkPlugin.IMAGE_LINK and template != AllinkButtonLinkPlugin.FILE_LINK:
                     cleaned_data['link_file'] = None
-                elif template == AllinkButtonLinkPlugin.VIDEO_EMBEDDED_LINK:
+                elif old_template == AllinkButtonLinkPlugin.VIDEO_EMBEDDED_LINK:
                     cleaned_data['video_id'] = None
                     cleaned_data['video_service'] = None
                     cleaned_data['ratio'] = None
-                    cleaned_data['auto_start_enabled'] = None
-                    cleaned_data['allow_fullscreen_enabled'] = None
-                elif template == AllinkButtonLinkPlugin.VIDEO_FILE_LINK:
+                    cleaned_data['auto_start_enabled'] = False
+                    cleaned_data['allow_fullscreen_enabled'] = True
+                elif old_template == AllinkButtonLinkPlugin.VIDEO_FILE_LINK:
                     cleaned_data['video_file'] = None
                     cleaned_data['video_poster_image'] = None
-                    cleaned_data['auto_start_enabled'] = None
-                    cleaned_data['video_muted_enabled'] = None
-                    cleaned_data['poster_only_on_mobile'] = None
-                elif template == AllinkButtonLinkPlugin.EMAIL_LINK:
+                    cleaned_data['auto_start_enabled'] = False
+                    cleaned_data['video_muted_enabled'] = True
+                elif old_template == AllinkButtonLinkPlugin.EMAIL_LINK:
                     cleaned_data['link_mailto'] = None
                     cleaned_data['email_subject'] = None
                     cleaned_data['email_body_text'] = None
-                elif template == AllinkButtonLinkPlugin.PHONE_LINK:
+                elif old_template == AllinkButtonLinkPlugin.PHONE_LINK:
                     cleaned_data['link_phone'] = None
 
-        # If special_link is a form which sends emails all the additional fields have to be supplied
-        if ':request' in cleaned_data.get('link_special') and \
+        # If template is a form which sends emails all the additional fields have to be supplied
+        if template == AllinkButtonLinkPlugin.FORM_LINK and \
             (cleaned_data.get('send_internal_mail') == True
              and not cleaned_data.get('internal_email_addresses')[0]
              and not cleaned_data.get('internal_email_addresses')[1]
              and not cleaned_data.get('internal_email_addresses')[2]):
             self.add_error('internal_email_addresses', ValidationError(_(u'Please supply at least one E-Mail Address.')))
-        if ':request' in cleaned_data.get('link_special') and (cleaned_data.get('send_external_mail') == True and not cleaned_data.get('from_email_address')):
+        if template == AllinkButtonLinkPlugin.FORM_LINK and (cleaned_data.get('send_external_mail') == True and not cleaned_data.get('from_email_address')):
             self.add_error('from_email_address', ValidationError(_(u'Please supply an E-Mail Address.')))
 
         #  always open external_links in new tab
@@ -319,10 +318,6 @@ class CMSAllinkButtonLinkPlugin(CMSPluginBase):
                 'video_poster_image',
                 'auto_start_enabled',
                 'video_muted_enabled',
-                'poster_only_on_mobile',
-                # 'video_file_width',
-                # 'video_file_height',
-                # 'allow_fullscreen_enabled',
             )
         }),
         (_('Modal Closing options'), {
