@@ -134,6 +134,26 @@ class BaseEventsAppContentPlugin(AllinkBaseAppContentPlugin):
                     'manual entries are selected the category filtering will be ignored.)')
     )
 
+    # FILTERING
+    DEFAULT = 'default'
+    UPCOMING = 'upcoming'
+    PAST = 'past'
+
+    FILTERING = (
+        (DEFAULT, '---------'),
+        (UPCOMING, 'upcoming'),
+        (PAST, 'past'),
+    )
+
+    def _apply_filtering_to_queryset_for_display(self, queryset):
+        # upcoming
+        if self.manual_filtering == BaseEventsAppContentPlugin.UPCOMING:
+            return queryset.upcoming_entries()
+        # past
+        elif self.manual_filtering == BaseEventsAppContentPlugin.PAST:
+            return queryset.past_entries()
+        return queryset
+
     def save(self, *args, **kwargs):
         # invalidate cache
         cache.delete_many([make_template_fragment_key('events_preview_image', [self.id, event.id]) for event in

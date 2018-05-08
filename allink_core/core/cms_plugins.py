@@ -76,6 +76,11 @@ class AllinkBaseAppContentPluginForm(forms.ModelForm):
                 choices=get_project_css_classes(self._meta.model.data_model._meta.model_name),
                 required=False,
             )
+        self.fields['manual_filtering'] = forms.CharField(
+            label=_(u'Filtering'),
+            required=False,
+            widget=forms.Select(choices=self.instance.get_filtering_choices() if hasattr(self.instance, 'get_filtering_choices') else [])
+        )
         self.fields['manual_ordering'] = forms.CharField(
             label=_(u'Ordering'),
             required=False,
@@ -130,6 +135,7 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
         fieldsets += (_('Filter & Ordering'), {
             'classes': ('collapse',),
             'fields': (
+                'manual_filtering',
                 'manual_ordering',
                 'filter_fields',
             )

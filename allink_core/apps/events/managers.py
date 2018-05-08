@@ -24,6 +24,14 @@ class AllinkEventsQuerySet(AllinkBaseModelQuerySet):
             .order_by('categories__tree_id', 'categories__lft', 'event_date_time')\
             .distinct()
 
+    def upcoming_entries(self):
+        today = datetime.today()
+        return self.filter(event_date_time__gte=today)
+
+    def past_entries(self):
+        today = datetime.today()
+        return self.filter(event_date_time__lte=today)
+
 
 class AllinkEventsManager(AllinkBaseModelManager):
     queryset_class = AllinkEventsQuerySet

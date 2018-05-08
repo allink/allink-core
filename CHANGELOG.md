@@ -62,6 +62,7 @@ INSTALLED_APPS.extend(get_core_apps(OVERRIDDEN_ALLINK_CORE_APPS, INSTALLED_ALLIN
 ### NEW
 - BooleanField is_active on AllinkBaseModel got changed to a IntegerField with choices named status.
 - Added automatic ids to forms and ButtonLinkPlugin to make it easier to use google tag manager.
+- Added option `manual_filtering` to `AllinkBaseAppContentPlugin`. Applies individual query filters to app queryset. Override in app instance (i.e. events) for custom filters. For an implementation example see `allink_core/apps/events/abstract_models.py`
 
 ### FIXES
 - Added striptags in `allink_seo_tags.py` to model field `lead`, because it can contain html.

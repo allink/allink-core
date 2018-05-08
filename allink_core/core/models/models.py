@@ -330,6 +330,10 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
         (CATEGORY, 'category ordering'),
     )
 
+    FILTERING = (
+        (DEFAULT, '---------'),
+    )
+
     # FILTER FIELDS
     FILTER_FIELD_CHOICES = (
         # ('categories', {
@@ -349,6 +353,12 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
         AllinkCategory,
         blank=True,
         related_name='%(app_label)s_%(class)s_categories_and'
+    )
+
+    manual_filtering = models.CharField(
+        max_length=50,
+        null=True,
+        blank=True
     )
 
     manual_ordering = models.CharField(
@@ -456,6 +466,10 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
         for x, y in get_additional_templates(cls.data_model._meta.model_name):
             templates += ((x, y),)
         return templates
+
+    @classmethod
+    def get_filtering_choices(cls):
+        return cls.FILTERING
 
     @classmethod
     def get_ordering_choices(cls):
@@ -613,6 +627,14 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
                     category_navigation = list(AllinkCategory.objects.filter(id__in=categories).distinct())
         return category_navigation
 
+    def _apply_filtering_to_queryset_for_display(self, queryset):
+        """
+        applies individual query filters on given queryset.
+        override in app instance (i.e. events) for custom filters
+        see allink_core/apps/events/abstract_models.py for reference
+        """
+        return queryset
+
     def _apply_ordering_to_queryset_for_display(self, queryset):
         # latest
         if self.manual_ordering == AllinkBaseAppContentPlugin.LATEST:
@@ -654,7 +676,7 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
                 return cached_qs
 
         # apply filters from request
-        queryset = self.data_model.objects.active().prefetch_related('categories').filter(**filters)
+        queryset = self._apply_filtering_to_queryset_for_display(self.data_model.objects.active().prefetch_related('categories').filter(**filters))
 
         if self.categories.exists() or category:
             if category:
