@@ -1,0 +1,120 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-05-18 16:21+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: allink_core/core_apps/allink_image/cms_plugins.py:18
+msgid "Link Internal"
+msgstr ""
+
+#: allink_core/core_apps/allink_image/cms_plugins.py:30
+msgid "Special Links"
+msgstr ""
+
+#: allink_core/core_apps/allink_image/cms_plugins.py:33
+msgid ""
+"Important: In case the selected option is a <strong>form</strong>, make sure "
+"to select <strong>Lightbox (Forms)</strong> from the <strong>link target</"
+"strong> options for best user experience."
+msgstr ""
+
+#: allink_core/core_apps/allink_image/cms_plugins.py:36
+#: allink_core/core_apps/allink_image/models.py:31
+msgid "Ratio"
+msgstr ""
+
+#: allink_core/core_apps/allink_image/cms_plugins.py:37
+msgid ""
+"This option overrides the default image ratio set for images in a colum of a "
+"content section."
+msgstr ""
+
+#: allink_core/core_apps/allink_image/cms_plugins.py:43
+#: allink_core/core_apps/allink_image/models.py:74
+msgid "Width Alias"
+msgstr ""
+
+#: allink_core/core_apps/allink_image/cms_plugins.py:44
+msgid ""
+"This option overrides the default image width_alias set for images in a "
+"column of a content section."
+msgstr ""
+
+#: allink_core/core_apps/allink_image/cms_plugins.py:50
+#: allink_core/core_apps/allink_image/models.py:49
+msgid "Set a predefined background color"
+msgstr ""
+
+#: allink_core/core_apps/allink_image/cms_plugins.py:57
+msgid "Predifined variations"
+msgstr ""
+
+#: allink_core/core_apps/allink_image/cms_plugins.py:66
+#: allink_core/core_apps/allink_image/models.py:25
+msgid "Image"
+msgstr ""
+
+#: allink_core/core_apps/allink_image/cms_plugins.py:67
+msgid "Generic"
+msgstr ""
+
+#: allink_core/core_apps/allink_image/cms_plugins.py:93
+msgid "Additional settings"
+msgstr ""
+
+#: allink_core/core_apps/allink_image/cms_plugins.py:100
+msgid "Link settings"
+msgstr ""
+
+#: allink_core/core_apps/allink_image/models.py:37
+msgid "Placeholder Background Color"
+msgstr ""
+
+#: allink_core/core_apps/allink_image/models.py:40
+msgid ""
+"Show default image placeholder background color.<br><strong>Important:</"
+"strong> Disabling this option results in a transparent background even if a "
+"specific color is set (this makes sense when a transparent PNG image is used)"
+msgstr ""
+
+#: allink_core/core_apps/allink_image/models.py:43
+msgid "Loader Icon"
+msgstr ""
+
+#: allink_core/core_apps/allink_image/models.py:46
+msgid ""
+"Show the icon that is used as long as the image is loading."
+"<br><strong>Important:</strong> Disable this option if a transparent PNG "
+"image is used."
+msgstr ""
+
+#: allink_core/core_apps/allink_image/models.py:55
+msgid "Caption text"
+msgstr ""
+
+#: allink_core/core_apps/allink_image/models.py:57
+msgid "Provide a description, attribution, copyright or other information."
+msgstr ""
+
+#: allink_core/core_apps/allink_image/models.py:60
+msgid "Attributes"
+msgstr ""
+
+#: allink_core/core_apps/allink_image/models.py:100
+msgid "<file is missing>"
+msgstr ""

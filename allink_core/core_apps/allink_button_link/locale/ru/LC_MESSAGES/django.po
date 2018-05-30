@@ -1,0 +1,361 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-05-18 16:26+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:31
+msgid "Predifined variations"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:40
+msgid "New window"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:41
+msgid "Softpage large"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:42
+msgid "Softpage small"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:45
+msgid "Link Target"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:48
+msgid "Link Internal"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:66
+msgid "Special Links"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:69
+msgid ""
+"Important: In case the selected option is a <strong>form</strong>, make sure "
+"to select <strong>Lightbox (Forms)</strong> from the <strong>link target</"
+"strong> options for best user experience."
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:72
+#: allink_core/core_apps/allink_button_link/models.py:215
+msgid "Ratio"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:73
+msgid "This option overrides the default ratio setting for embeded videos."
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:147
+msgid "Please supply at least one E-Mail Address."
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:149
+msgid "Please supply an E-Mail Address."
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:175
+msgid "Button/ Link Container"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:176
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:217
+msgid "Generic"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:200
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:337
+msgid "Advanced settings"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:216
+msgid "Button/ Link"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:238
+msgid "Link style"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:248
+msgid "Internal/External link settings"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:259
+msgid "File link settings"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:268
+msgid "Phone link settings"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:276
+msgid "Email link settings"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:286
+msgid "Form link settings"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:300
+msgid "Video (Embedded) link settings"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:312
+msgid "Video (File) link settings"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:323
+msgid "Modal Closing options"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:343
+msgid "Hidden settings"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/model_fields.py:16
+msgid "Type"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/model_fields.py:47
+#: allink_core/core_apps/allink_button_link/models.py:123
+msgid "Context"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:27
+msgid "Alignment horizontal desktop"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:30
+msgid ""
+"This option overrides the projects default alignment for desktop. (Usually "
+"\"left\")"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:35
+msgid "Alignment horizontal mobile"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:38
+msgid ""
+"This option overrides the projects default alignment for mobile. (Usually "
+"\"left\")"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:53
+msgid "{}"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:81
+msgid "Internal/External"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:82
+msgid "File (Download)"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:83
+msgid "Image"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:84
+msgid "Phone"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:85
+msgid "Email"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:86
+msgid "Form"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:87
+msgid "Video (Embedded)"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:88
+msgid "Video (File)"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:93
+msgid "Link type"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:94
+msgid "Choose a link type in order to display its options below."
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:100
+msgid "Link text"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:106
+msgid "Display type"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:110
+msgid "Variation"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:115
+msgid "Size"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:118
+msgid "Block"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:130
+msgid "Icon left"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:133
+msgid "Icon right"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:138
+msgid "Subject"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:144
+msgid "Body Text"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:150
+msgid "Send internal e-mail"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:152
+msgid "Send confirmation mail to defined internal e-mail addresses."
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:161
+msgid "Internal e-mail addresses"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:164
+msgid "Sender e-mail address"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:169
+msgid "Send external e-mail"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:171
+msgid "Send confirmation mail to customer."
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:174
+msgid "Thank you text"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:177
+msgid "This text will be shown, after form completion."
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:180
+msgid "Display labels"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:200
+msgid "Video ID"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:203
+msgid ""
+"Only provide the ID. The correct URL will automatically be generated."
+"<br><br>YouTube: https://www.youtube.com/watch?v=<strong>12345678</strong> "
+"(the ID is <strong>12345678</strong>)<br>Vimeo: https://vimeo.com/"
+"<strong>12345678</strong> (the ID is <strong>12345678</strong>)"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:208
+msgid "Video Service"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:223
+msgid "Video File"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:225
+msgid ""
+"Recommended video settings:<br><br>Format: mp4<br>Codec: H.264<br>Target "
+"Bitrate: 2 (video loads quick and runs smooth)<br>Audio: Not recommended (no "
+"audio = smaller file size and less annoyed visitors)<br>File size: Dependent "
+"of video length. Generally speaking: Less is more."
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:232
+msgid "Video Start Image"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:235
+msgid ""
+"Image that is being displayed while the video is loading. Ideally the very "
+"first frame of the video is used, in order to make the transition as smooth "
+"as possible.<br><br><strong>Imoprtant:</strong> Make sure the aspect ratio "
+"of the image is <strong>exactly the same</strong> as the video, otherwise "
+"the video height will shrink or grow when the playback starts."
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:240
+msgid "Muted"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:241
+msgid "Caution: Autoplaying videos with audio is not recommended. Use wisely."
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:246
+msgid "Autostart"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:248
+msgid ""
+"<strong>Important:</strong> Autoplaying videos with audio is not "
+"recommended. Use wisely. "
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:251
+msgid "Allow fullscreen"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:256
+msgid "Escape key closes modal"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:260
+msgid "Click on overlay closes modal"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/models.py:264
+msgid "Display close button"
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/templates/admin/allink_button_link/widgets/icon.html:8
+msgid ""
+"No Iconsets configured! Please configure at least one Iconset before using "
+"this widget."
+msgstr ""
+
+#: allink_core/core_apps/allink_button_link/templates/allink_button_link/item.html:77
+msgid "Member Area"
+msgstr ""

@@ -48,7 +48,7 @@ class Icon(models.CharField):
 class ZipCodeField(PositiveIntegerField):
     default_validators = [MaxValueValidator(9999)]
     default_field_class = fields.ZipCode
-    description = _("Zip Code Field")
+    description = _(u'Zip Code Field')
 
     def formfield(self, **kwargs):
         defaults = {
