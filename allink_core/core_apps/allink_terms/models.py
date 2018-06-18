@@ -103,5 +103,9 @@ class AllinkTerms(TranslatableModel, TimeFramedModel):
 
 @python_2_unicode_compatible
 class AllinkTermsPlugin(CMSPlugin):
+
+    class Meta:
+        app_label = 'allink_terms'
+
     def __str__(self):
         return str(self.pk)
