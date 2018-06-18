@@ -47,6 +47,7 @@ class AllinkTerms(TranslatableModel, TimeFramedModel):
     class Meta:
         verbose_name = _(u'Terms of Service')
         verbose_name_plural = _(u'Terms of Service')
+        app_label = 'allink_terms'
 
     def __str__(self):
         return _(u'Terms - %s') % self.get_status_display()
