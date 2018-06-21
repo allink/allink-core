@@ -44,26 +44,30 @@
                         {% include 'partials/forms/form_field.html' with field=newsletter_signup_form.last_name nolabel=True %}
                         {% include 'partials/forms/form_field.html' with field=newsletter_signup_form.email nolabel=True %}
 
-                        <div class="newsletter__lead">
-                            {{ allink_config.newsletter_lead|safe }}
-                        </div>
+                        {% if allink_config.newsletter_lead %}
+                            <div class="newsletter__lead">
+                                {{ allink_config.newsletter_lead|safe }}
+                            </div>
+                        {% endif %}
 
-                        {# receiving options #}
-                        <div class="newsletter__receiving-options">
+                        {# permission options #}
+                        <div class="newsletter__permission-options">
                             {% include 'partials/forms/form_field.html' with field=newsletter_signup_form.permission_direct_mail %}
                             {% include 'partials/forms/form_field.html' with field=newsletter_signup_form.permission_personalised_online_advertising %}
                         </div>
 
-                        <div class="newsletter__consent__container">
-                            <div class="newsletter__consent__heading">
-                                <a data-toggle="collapse" href="#group-content-1" aria-expanded="false" aria-controls="group-content-1" class="collapsed" data-collapse-toggle>
-                                    {% trans 'Declaration of consent' %}
-                                </a>
+                        {% if allink_config.newsletter_declaration_of_consent %}
+                            <div class="newsletter__consent__container">
+                                <div class="newsletter__consent__heading">
+                                    <a data-toggle="collapse" href="#group-content-1" aria-expanded="false" aria-controls="group-content-1" class="collapsed" data-collapse-toggle>
+                                        {% trans 'Declaration of consent' %}
+                                    </a>
+                                </div>
+                                <div class="newsletter__consent__content collapse" id="group-content-1">
+                                    {{ allink_config.newsletter_declaration_of_consent|safe }}
+                                </div>
                             </div>
-                            <div class="newsletter__consent__content collapse" id="group-content-1">
-                                {{ allink_config.newsletter_declaration_of_consent|safe }}
-                            </div>
-                        </div>
+                        {% endif %}
 
                         <div class="input-group">
                            {% block newsletter_btn_container %}
