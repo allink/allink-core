@@ -10,6 +10,7 @@ from filer.fields.image import FilerImageField
 from django.utils.translation import get_language
 from filer.models.imagemodels import Image
 from solo.models import SingletonModel
+from djangocms_text_ckeditor.fields import HTMLField
 
 
 @python_2_unicode_compatible
@@ -155,6 +156,18 @@ class BaseConfigTranslation(TranslatedFieldsModel):
             u'Default base title, Is also used for default base og:title when page/post is shared on Facebook. <br>If not supplied the name form Django Sites will be used instead.'),
         blank=True,
         null=True
+    )
+    newsletter_lead = HTMLField(
+        _(u'Newsletter Signup Text'),
+        help_text=_(u'Teaser text in the newsletter signup view (data usage explainer).'),
+        blank=True,
+        null=True,
+    )
+    newsletter_declaration_of_consent = HTMLField(
+        _(u'Declaration of consent'),
+        help_text=_(u'Detailed declaration of consent.'),
+        blank=True,
+        null=True,
     )
 
     class Meta:

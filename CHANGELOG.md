@@ -90,6 +90,7 @@ INSTALLED_APPS.extend(get_core_apps(OVERRIDDEN_ALLINK_CORE_APPS, INSTALLED_ALLIN
 
     ...
     ```
+- New Newsletter plugin with associated text fields in the config app. On mailchimp add the custom fields `GDPR_EMAIL` and `GDPR_ADS` to your list. Add `'allink_core.apps.newsletter',` to `INSTALLED_ALLINK_CORE_APPS` and `('newsletter:signup', _(u'Mailchimp Newsletter Signup')),` to `BUTTON_LINK_SPECIAL_LINKS_CHOICES` to use it in your project.
 
 ### FIXES
 - Added striptags in `allink_seo_tags.py` to model field `lead`, because it can contain html.

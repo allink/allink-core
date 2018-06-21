@@ -28,8 +28,9 @@ def link_attribute_string(instance, request=None):
     attributes += ' data-softpage-disabled' if instance.link_special == 'account_login' and request.user.is_authenticated else ''
     attributes += ' data-cms-page' if instance.link and (instance.softpage_large_enabled or instance.softpage_small_enabled) else ''
     attributes += ' data-submit-form' if instance.link_special == 'account_logout' and request.user.is_authenticated else ''
+    attributes += ' data-form-modal-variation=newsletter-form' if instance.link_special == 'newsletter:signup' else ''
     attributes += ' role=button' if hasattr(instance, "type") and instance.type == 'btn' else ''
-    attributes += ' '.join([' {}={}'.format(k,v) for k,v in instance.link_attributes.items()]) if instance.link_attributes else ''
+    attributes += ' '.join([' {}={}'.format(k, v) if v else ' {}'.format(k) for k, v in instance.link_attributes.items()]) if instance.link_attributes else ''
     return attributes
 
 

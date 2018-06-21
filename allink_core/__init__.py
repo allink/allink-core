@@ -26,6 +26,7 @@ ALLINK_CORE_ALLINK_APPS = [
     'allink_core.apps.people',
     'allink_core.apps.testimonials',
     'allink_core.apps.work',
+    'allink_core.apps.newsletter',
 ]
 
 def get_core_apps(overrides=None, installed=None):

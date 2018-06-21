@@ -1,0 +1,115 @@
+{% load i18n solo_tags %}
+{% get_solo 'config.Config' as allink_config %}
+
+{# utility block #}
+{% block newsletter_form_before %}
+{% endblock newsletter_form_before %}
+
+<div class="mailchimp-group-item newsletter" id="newsletter-form">
+
+    {# reset if no accordion is used #}
+    {% block accordion_container_before %}
+        <header class="">
+            <h3 class="heading">
+                {% block newsletter_heading_text %}
+                    {% trans "Subscribe to Newsletter" %}
+                {% endblock newsletter_heading_text %}
+           </h3>
+        </header>
+    {% endblock accordion_container_before %}
+
+        <div class="mailchimp-group-item-child">
+             <form
+                action="{% url 'newsletter:signup' %}"
+                method="post"
+                class="mailchimp-form ajax-form validate-form {% block newsletter_form_additional_classes %}{% endblock newsletter_form_additional_classes %}"
+                role="form"
+                id="{% block newsletter_form_id %}mailchimp-signup-form{% endblock newsletter_form_id %}"
+                data-success-data-layer-event="{% block newsletter_success_data_layer_event %}newsletter.sent{% endblock newsletter_success_data_layer_event %}"
+                data-ajax-response-container-id="newsletter-form"
+                {% block newsletter_form_additional_attributes %}{% endblock newsletter_form_additional_attributes %}
+                >
+
+                {# utility block #}
+                {% block newsletter_form_group_before %}
+                {% endblock newsletter_form_group_before %}
+
+                {% csrf_token %}
+
+                {% block newsletter_input_group_container %}
+                    <div class="form-group">
+                        <input name="language" id="id_language" type="hidden" value="{{ request.LANGUAGE_CODE }}">
+                        {% include 'partials/forms/form_field.html' with field=newsletter_signup_form.salutation widget="checkbox" nolabel=True %}
+                        {% include 'partials/forms/form_field.html' with field=newsletter_signup_form.first_name nolabel=True %}
+                        {% include 'partials/forms/form_field.html' with field=newsletter_signup_form.last_name nolabel=True %}
+                        {% include 'partials/forms/form_field.html' with field=newsletter_signup_form.email nolabel=True %}
+
+                        <div class="newsletter__lead">
+                            {{ allink_config.newsletter_lead|safe }}
+                        </div>
+
+                        {# receiving options #}
+                        <div class="newsletter__receiving-options">
+                            {% include 'partials/forms/form_field.html' with field=newsletter_signup_form.permission_direct_mail %}
+                            {% include 'partials/forms/form_field.html' with field=newsletter_signup_form.permission_personalised_online_advertising %}
+                        </div>
+
+                        <div class="newsletter__consent__container">
+                            <div class="newsletter__consent__heading">
+                                <a data-toggle="collapse" href="#group-content-1" aria-expanded="false" aria-controls="group-content-1" class="collapsed" data-collapse-toggle>
+                                    {% trans 'Declaration of consent' %}
+                                </a>
+                            </div>
+                            <div class="newsletter__consent__content collapse" id="group-content-1">
+                                {{ allink_config.newsletter_declaration_of_consent|safe }}
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                           {% block newsletter_btn_container %}
+                               <span class="input-group-btn">
+                                   <button type="submit" class="{% block newsletter_btn_classes_container %}btn btn-{% block newsletter_btn_variation %}primary{% endblock newsletter_btn_variation %}{% endblock newsletter_btn_classes_container %}" {% block newsletter_btn_ajax_loader %}data-btn-ajax-loader{% endblock newsletter_btn_ajax_loader %}>
+                                       <span class="btn-text">
+                                           {% block newsletter_btn_text %}
+                                               {% trans "Signup" %}
+                                           {% endblock newsletter_btn_text %}
+                                       </span>
+                                   </button>
+                               </span>
+                           {% endblock newsletter_btn_container %}
+                        </div>
+                    </div>
+                {% endblock newsletter_input_group_container %}
+
+                {# utility block #}
+                {% block newsletter_form_group_after %}
+                {% endblock newsletter_form_group_after %}
+
+                {# something wrong with the email format #}
+                {% if newsletter_signup_form.email.errors %}
+                    <div class="alert alert-danger">
+                        {{newsletter_signup_form.email.errors}}
+                    </div>
+                {% endif %}
+
+                {# any other error messages #}
+                {% if newsletter_signup_form.non_field_errors %}
+                    {% for error in newsletter_signup_form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            {{ error|escape }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+            </form>
+         </div>
+
+     {% block accordion_container_after %}
+     {% endblock accordion_container_after %}
+
+</div>
+
+{# utility block #}
+{% block newsletter_form_after %}
+{% endblock newsletter_form_after %}
+

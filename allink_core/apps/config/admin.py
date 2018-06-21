@@ -103,6 +103,16 @@ class ConfigAdmin(TranslatableAdmin, SingletonModelAdmin):
             )
         }),
 
+        fieldsets += (_('Newsletter Signup'), {
+            'classes': (
+                'collapse',
+            ),
+            'fields': (
+                'newsletter_lead',
+                'newsletter_declaration_of_consent',
+            )
+        }),
+
         return fieldsets
 
 
