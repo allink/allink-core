@@ -25,7 +25,7 @@ class LocationsAdmin(AllinkBaseAdminSortable):
                     ('street', 'street_nr',),
                     'street_additional',
                     ('zip_code', 'place',),
-                    'countries',
+                    'country',
                     ('phone', 'mobile',),
                     ('email', 'fax',),
                     'website',

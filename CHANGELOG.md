@@ -94,3 +94,4 @@ INSTALLED_APPS.extend(get_core_apps(OVERRIDDEN_ALLINK_CORE_APPS, INSTALLED_ALLIN
 
 ### FIXES
 - Added striptags in `allink_seo_tags.py` to model field `lead`, because it can contain html.
+- Replace `countries` field with `country` in locations admin
