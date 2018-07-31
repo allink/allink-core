@@ -24,9 +24,17 @@ Each release is divided into the following main categories:
 ALLINK_PAGE_TOOLBAR_ENABLED = False
 ```
 
-- !! make sure CACHES and MIDDLEWARE settings is correct!!
--> every placeholder will be cached strictly!
+- every cms placeholder will be cached strictly!
+
+manual updates in all projects:
+-> make sure CACHES and MIDDLEWARE settings is correct!! (see default settings below)
+-> make sure to delete django_dbcache manually on production as there are a lot of stale cache entries
+-> make sure to delete all template caches in the overwritten templates (search for "{% cache") (also remove the imports)
+-> run the cache warmer (for the moment locally). You just have to feed it with the sitemap.xml. You find an example [here.](https://gist.github.com/tuerlefl/028f338b63e6d951601d96b567b2bdd0)
+
+special cases:
 -> if the project uses valid_from/ valid_to on e.g News or Events, this need a custom cache invalidation
+-> in projects where the cache backend is "UWSGI_CACHE" make sure, you remove the env variables "UWSGI_CACHE2" and "CACHE_URL" from production/ stage
 
 use this a default:
 ```python
@@ -90,15 +98,13 @@ CMS_CACHE_DURATIONS = {'content': 15552000, 'menus': 15552000, 'permissions': 15
 
 PARLER_ENABLE_CACHING = False
 
+# this is default on divio cloud anyway
 # CACHES = {
 #     'default': {
 #         'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
 #         'LOCATION': 'django_dbcache',
 #     }
 # }
-
-CACHE_TEMPLATE_FRAGMENT_LIFETIME = 15552000
-CACHE_TEMPLATE_FRAGMENT_BACKEND = 'default'
 
 # =Disable CACHING local
 STAGE = senv('STAGE', 'local').lower()
@@ -114,23 +120,7 @@ if STAGE in {'local', 'test'}:
         'default': {
             'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
         },
-        # 'default': {
-        #     # 'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
-        #     # 'LOCATION': 'django_dbcache',
-        #     'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        #     'LOCATION': 'unique-snowflake',
-        # },
-        'locmem': {
-            'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-            'LOCATION': 'unique-snowflake',
-        },
-        'db': {
-            'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
-            'LOCATION': 'django_dbcache',
-        }
     }
-    CACHE_TEMPLATE_FRAGMENT_LIFETIME = 15552000
-    CACHE_TEMPLATE_FRAGMENT_BACKEND = 'default'
 
 ```
 
