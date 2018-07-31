@@ -146,7 +146,6 @@ if STAGE in {'local', 'test'}:
 ### NEW
 - all manual caching stuff has been removed! (e.g events_preview_image, news_preview_image etc.)
 - AllinkBaseModel djangocms placeholder cache invalidation on save
-- THUMBNAIL_QUALITY = 60
 - AllinkButton Plugin is now "cache = False"
 
 
