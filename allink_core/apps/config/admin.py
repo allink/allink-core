@@ -85,15 +85,6 @@ class ConfigAdmin(TranslatableAdmin, SingletonModelAdmin):
             )
         }),
 
-        fieldsets += (_('Toolbar'), {
-            'classes': (
-                'collapse',
-            ),
-            'fields': (
-                'config_allink_page_toolbar_enabled',
-            )
-        }),
-
         fieldsets += (_('Gallery Plugin'), {
             'classes': (
                 'collapse',

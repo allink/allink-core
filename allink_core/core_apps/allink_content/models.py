@@ -14,7 +14,7 @@ from filer.fields.file import FilerFileField
 from allink_core.core.utils import get_additional_templates
 from allink_core.core.models.choices import HORIZONTAL_ALIGNMENT_CHOICES, VERTICAL_ALIGNMENT_CHOICES
 
-from settings import ALLOWED_VIDEO_EXTENSIONS
+from django.conf import settings
 
 
 @python_2_unicode_compatible
@@ -239,7 +239,7 @@ class AllinkContentPlugin(CMSPlugin):
                 return u'({})'.format(self.template)
 
     def clean(self):
-        if (self.video_file and self.video_file.extension not in ALLOWED_VIDEO_EXTENSIONS):
+        if (self.video_file and self.video_file.extension not in settings.ALLOWED_VIDEO_EXTENSIONS):
             raise ValidationError(
                 _('Incorrect file type: %(value)s'),
                 params={'value': self.video_file.extension},

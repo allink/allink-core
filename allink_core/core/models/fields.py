@@ -4,6 +4,7 @@ from django.core.validators import MaxValueValidator
 from django.db import models
 from django.db.models.fields import PositiveIntegerField
 from django.utils.translation import ugettext as _
+from parler.fields import TranslatedField, TranslatedFieldDescriptor
 
 from cms.models.pluginmodel import CMSPlugin
 

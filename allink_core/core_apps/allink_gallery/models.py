@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from django.core.cache import cache
-from django.core.cache.utils import make_template_fragment_key
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import python_2_unicode_compatible
@@ -91,9 +89,6 @@ class AllinkGalleryPlugin(CMSPlugin):
         return images
 
     def save(self, *args, **kwargs):
-        # invalidate cache
-        for child in self.get_children():
-            cache.delete(make_template_fragment_key('slider_image', [child.id]))
         super(AllinkGalleryPlugin, self).save(*args, **kwargs)
 
 
@@ -120,6 +115,4 @@ class AllinkGalleryImagePlugin(CMSPlugin):
         return self.parent.allink_gallery_allinkgalleryplugin.template
 
     def save(self, *args, **kwargs):
-        # invalidate cache
-        cache.delete(make_template_fragment_key('slider_image', [self.id]))
         super(AllinkGalleryImagePlugin, self).save(*args, **kwargs)

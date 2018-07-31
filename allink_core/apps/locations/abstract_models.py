@@ -3,13 +3,11 @@ import datetime
 from functools import reduce
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
-from django.core.cache import cache
-from django.core.cache.utils import make_template_fragment_key
 from django.utils.functional import cached_property
 
 from cms.models.fields import PlaceholderField
 from adminsortable.models import SortableMixin
-from parler.models import TranslatableModel, TranslatedField, TranslatedFieldsModel
+from parler.models import TranslatableModel, TranslatedField
 from djangocms_text_ckeditor.fields import HTMLField
 from filer.fields.image import FilerImageField
 
@@ -18,7 +16,6 @@ from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
 from allink_core.core.models.models import AllinkBaseAppContentPlugin, AllinkBaseModel, AllinkContactFieldsModel, AllinkAddressFieldsModel, AllinkBaseTranslatedFieldsModel
 from allink_core.core.models.mixins import AllinkTranslatedAutoSlugifyMixin
 from allink_core.core.models.managers import AllinkBaseModelManager
-from allink_core.core.loading import get_model
 
 
 class BaseLocations(SortableMixin, TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, TranslatableModel, AllinkContactFieldsModel, AllinkAddressFieldsModel, AllinkBaseModel):
@@ -241,6 +238,7 @@ class BaseLocationsTranslation(AllinkBaseTranslatedFieldsModel):
         blank=True,
         null=True,
     )
+
     class Meta:
         abstract = True
         app_label = 'locations'
@@ -285,9 +283,6 @@ class BaseLocationsAppContentPlugin(AllinkBaseAppContentPlugin):
     )
 
     def save(self, *args, **kwargs):
-        # invalidate cache
-        cache.delete_many([make_template_fragment_key('locations_preview_image', [self.id, locations.id]) for locations in
-                           get_model('locations', 'Locations').objects.all()])
         super(BaseLocationsAppContentPlugin, self).save(*args, **kwargs)
 
     class Meta:

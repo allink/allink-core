@@ -132,6 +132,7 @@ ALLINK_LOCALE_PATHS = [
     '/app/allink_core/apps/people/locale',
     '/app/allink_core/apps/testimonials/locale',
     '/app/allink_core/apps/work/locale',
+    '/app/allink_core/apps/newsletter/locale',
 
     # '/app/allink_apps/news/locale',
     # '/app/allink_apps/events/locale',
@@ -170,7 +171,7 @@ ALLINK_LOCALE_PATHS = [
 #
 # # Thumbnail
 
-THUMBNAIL_QUALITY = 85
+THUMBNAIL_QUALITY = 60
 
 THUMBNAIL_OPTIMIZE_COMMAND = {
     'png': 'optipng {filename}',
@@ -190,3 +191,10 @@ def show_toolbar(request):
 DEBUG_TOOLBAR_CONFIG = {
     "SHOW_TOOLBAR_CALLBACK": show_toolbar,
 }
+
+
+#  ####################################################################################
+#
+# # allink Page Extension
+
+ALLINK_PAGE_TOOLBAR_ENABLED = False

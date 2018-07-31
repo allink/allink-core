@@ -47,8 +47,7 @@ class AllinkPageExtensionToolbar(ExtensionToolbar):
                     disabled=not self.toolbar.edit_mode, position=5)
 
 
-if getattr(Config.get_solo(), 'config_allink_page_toolbar_enabled', True):
-    toolbar_pool.register(AllinkPageExtensionToolbar)
+toolbar_pool.register(AllinkPageExtensionToolbar)
 
 
 class AllinkTitleExtensionToolbar(ExtensionToolbar):

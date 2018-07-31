@@ -55,7 +55,6 @@ class CMSAllinkLanguageChooserPlugin(CMSPluginBase):
 
     name = _('Language Chooser')
     module = _('Generic')
-    cache = True
 
     def get_render_template(self, context, instance, placeholder):
         return 'allink_cms/plugins/languagechooser/content.html'

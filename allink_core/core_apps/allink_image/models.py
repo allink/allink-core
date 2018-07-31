@@ -4,8 +4,6 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _, ugettext
 from django.utils.encoding import python_2_unicode_compatible
 from django.contrib.postgres.fields import ArrayField
-from django.core.cache import cache
-from django.core.cache.utils import make_template_fragment_key
 
 from djangocms_attributes_field.fields import AttributesField
 from cms.models.pluginmodel import CMSPlugin
@@ -103,6 +101,4 @@ class AllinkImagePlugin(AllinkLinkFieldsModel, CMSPlugin):
         self.picture = oldinstance.picture
 
     def save(self, *args, **kwargs):
-        # invalidate cache
-        cache.delete(make_template_fragment_key('content_image', [self.id]))
         super(AllinkImagePlugin, self).save(*args, **kwargs)

@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
+from django.conf import settings
 from menus.menu_pool import menu_pool
 from menus.base import Modifier
 from cms.models import Page
-from allink_core.core.loading import get_class, get_model
+from allink_core.core.loading import get_class
 
-Config = get_model('config', 'Config')
 
 class AllinkPageMenuModifier(Modifier):
 
@@ -24,5 +24,5 @@ class AllinkPageMenuModifier(Modifier):
                 node.attr["special_nav"] = page['allinkpageextension']
         return nodes
 
-if getattr(Config.get_solo(), 'config_allink_page_toolbar_enabled', True):
+if getattr(settings, 'ALLINK_PAGE_TOOLBAR_ENABLED', False):
     menu_pool.register_modifier(get_class('config.cms_menus', 'AllinkPageMenuModifier'))

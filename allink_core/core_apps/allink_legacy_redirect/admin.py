@@ -13,7 +13,6 @@ from allink_core.core_apps.allink_legacy_redirect.models import AllinkLegacyLink
 from allink_core.core.forms.fields import SelectLinkField
 from allink_core.core.forms.mixins import AllinkInternalLinkFieldMixin
 
-
 class AllinkLegacyChangeAdminForm(AllinkInternalLinkFieldMixin, forms.ModelForm):
     new_link = SelectLinkField(label=_('New Page'), required=False)
 

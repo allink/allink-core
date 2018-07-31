@@ -97,9 +97,6 @@ class BaseNewsAppContentPlugin(AllinkBaseAppContentPlugin):
     )
 
     def save(self, *args, **kwargs):
-        # invalidate cache
-        cache.delete_many([make_template_fragment_key('news_preview_image', [self.id, news.id]) for news in
-                           get_model('news', 'News').objects.all()])
         super(BaseNewsAppContentPlugin, self).save(*args, **kwargs)
 
     class Meta:

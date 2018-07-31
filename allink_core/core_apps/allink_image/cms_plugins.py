@@ -119,3 +119,7 @@ class CMSAllinkImagePlugin(CMSPluginBase):
     def get_render_template(self, context, instance, placeholder):
         template = 'allink_image/content.html'
         return template
+
+    @classmethod
+    def get_render_queryset(cls):
+        return cls.model._default_manager.all().select_related('picture')

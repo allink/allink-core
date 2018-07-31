@@ -631,7 +631,7 @@ class {model_name}AppContentPlugin(AllinkBaseAppContentPlugin):
 
     def save(self, *args, **kwargs):
         # invalidate cache
-        cache.delete_many([make_template_fragment_key('{label}_preview_image', [self.id, {label}.id]) for {label} in {model_name}.objects.all()])
+        # cache.delete_many([make_template_fragment_key('{label}_preview_image', [self.id, {label}.id]) for {label} in {model_name}.objects.all()])
         super({model_name}AppContentPlugin, self).save(*args, **kwargs)
 
     class Meta:

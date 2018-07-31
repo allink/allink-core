@@ -155,9 +155,6 @@ class BaseEventsAppContentPlugin(AllinkBaseAppContentPlugin):
         return queryset
 
     def save(self, *args, **kwargs):
-        # invalidate cache
-        cache.delete_many([make_template_fragment_key('events_preview_image', [self.id, event.id]) for event in
-                           get_model('events', 'Events').objects.all()])
         super(BaseEventsAppContentPlugin, self).save(*args, **kwargs)
 
     class Meta:

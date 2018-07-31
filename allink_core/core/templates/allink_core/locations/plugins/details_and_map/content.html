@@ -14,9 +14,7 @@
 
                 {% if object.primary_contact.preview_image %}
                     <div class="image-container">
-                        {% cache 15552000 people_preview_image instance.id object.id %}
-                            {% render_image image=object.primary_contact.preview_image %}
-                        {% endcache %}
+                        {% render_image image=object.primary_contact.preview_image %}
                     </div>
                     <p>
                         {% render_model_ajax object.primary_contact "first_name" %}&nbsp;{% render_model_ajax object.primary_contact "last_name" %}<br>

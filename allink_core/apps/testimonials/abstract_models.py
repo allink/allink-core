@@ -101,9 +101,6 @@ class BaseTestimonialsAppContentPlugin(AllinkBaseAppContentPlugin):
     )
 
     def save(self, *args, **kwargs):
-        # invalidate cache
-        cache.delete_many([make_template_fragment_key('testimonials_preview_image', [self.id, testimonials.id]) for testimonials in
-                           get_model('testimonials', 'Testimonials').objects.all()])
         super(BaseTestimonialsAppContentPlugin, self).save(*args, **kwargs)
 
     class Meta:

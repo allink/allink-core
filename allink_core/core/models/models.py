@@ -1,17 +1,13 @@
 # -*- coding: utf-8 -*-
 import urllib.parse
 from urllib.parse import urlparse
-import json
 import phonenumbers
 from importlib import import_module
 
-from django.utils.functional import cached_property
 from django.conf import settings
 from django.db import models
 from django.db.models import Q
 from django.db.models.signals import post_delete
-from django.core.cache import cache
-from django.core.cache.utils import make_template_fragment_key
 from django.core.urlresolvers import NoReverseMatch
 from django.core.urlresolvers import reverse
 from django.core.exceptions import FieldDoesNotExist, FieldError
@@ -228,20 +224,23 @@ class AllinkBaseModel(models.Model):
             self.save_translations(*args, **kwargs)
         if self._meta.model_name in dict(settings.PROJECT_APP_MODEL_CATEGORY_TAG_CHOICES).keys():
             self.auto_generated_category = self.save_categories(new)
-        # invalidate cache
-        possible_plugin_classes = (self.__class__, ) + self.__class__.__bases__
-        plugin_classes = [x for x in plugin_pool.get_all_plugins() if hasattr(x.model, 'data_model') and x.model.data_model in possible_plugin_classes]
-        for plugin_class in plugin_classes:
-            for plugin in plugin_class.model.objects.all():
-                cache.set('render_queryset_for_display_valid_keys_%s' % plugin.id, [], 60 * 60 * 24 * 360)
-                # search plugin
-                search_cache_keys_key = 'search_cache_keys_{}'.format(plugin.id)
-                search_cache_keys = cache.get(search_cache_keys_key, [])
-                cache.delete_many(search_cache_keys)
-                cache.delete(search_cache_keys_key)
-
-        cache.delete_many([make_template_fragment_key('{}_preview_image'.format(self._meta.app_label), [plugin.id, self.id]) for plugin in get_model(self._meta.app_label, '{}AppContentPlugin'.format(self._meta.model_name)).objects.all()])
         super(AllinkBaseModel, self).save(*args, **kwargs)
+
+        # we need to invalidate all placeholder cache keys,
+        # where a plugin is placed that displayes data from this model
+        # adapted from cms/models/pagemodel.py
+        from cms.cache import invalidate_cms_page_cache
+        invalidate_cms_page_cache()
+
+        relevant_models = (self.__class__, ) + self.__class__.__bases__
+        relevant_plugin_classes = [x for x in plugin_pool.get_all_plugins() if hasattr(x.model, 'data_model') and x.model.data_model in relevant_models]
+
+        # get all pages where a relevant plugin is placed
+        for plugin_class in relevant_plugin_classes:
+            for plugin in plugin_class.model.objects.all():
+                for language_code, language in settings.LANGUAGES:
+                    if plugin.page:
+                        plugin.placeholder.clear_cache(language_code, site_id=plugin.page.site_id)
 
 
 @receiver(post_delete)
@@ -665,16 +664,6 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
             -> adds additional query
         """
 
-        valid_cache_keys = cache.get('render_queryset_for_display_valid_keys_%s' % self.id, [])
-        cache_key = 'render_queryset_for_display_%s_%s_%s' % (self.id, category.id if category else '', json.dumps(filters))
-        if hasattr(request, 'toolbar') and not request.toolbar.edit_mode and cache_key in valid_cache_keys:
-            cached_qs = cache.get(cache_key, None)
-
-            if cached_qs:
-                if cached_qs == 'empty':
-                    return self.data_model.objects.none()
-                return cached_qs
-
         # apply filters from request
         queryset = self._apply_filtering_to_queryset_for_display(self.data_model.objects.active().prefetch_related('categories').filter(**filters))
 
@@ -692,10 +681,6 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
         # hook for perfecting related to make the cache more effective
         ordered_qs = self.get_queryset_with_prefetch_related(ordered_qs)
 
-        # cache for for a half year and add to valid cache keys
-        cache.set(cache_key, ordered_qs, 60 * 60 * 24 * 180)
-        valid_cache_keys.append(cache_key)
-        cache.set('render_queryset_for_display_valid_keys_%s' % self.id, valid_cache_keys, 60 * 60 * 24 * 360)
         return ordered_qs
 
     def get_queryset_with_prefetch_related(self, ordered_qs):
@@ -752,15 +737,6 @@ class AllinkBaseSearchPlugin(CMSPlugin):
         for x, y in get_additional_templates('{}_search'.format(cls.data_model._meta.model_name)):
             templates += ((x, y),)
         return templates
-
-    # def save(self, *args, **kwargs):
-    #     # clean cache
-    #     if self.id:
-    #         search_cache_keys_key = 'search_cache_keys_{}'.format(self.id)
-    #         search_cache_keys = cache.get(search_cache_keys_key)
-    #         cache.delete_many = (search_cache_keys)
-    #         cache.delete(search_cache_keys_key)
-    #     return super(AllinkBaseSearchPlugin, self).save(*args, **kwargs)
 
 
 class AllinkBaseFormPlugin(CMSPlugin):

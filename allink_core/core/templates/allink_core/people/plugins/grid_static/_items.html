@@ -9,9 +9,7 @@
                     {% if instance.detail_link_enabled and object.show_detail_link %}
                         <a href="{{object.get_absolute_url}}">
                     {% endif %}
-                        {% cache 15552000 people_preview_image instance.id object.id %}
-                            {% render_image image=object.preview_image %}
-                        {% endcache %}
+                        {% render_image image=object.preview_image %}
                     {% if instance.detail_link_enabled  %}
                         </a>
                     {% endif %}

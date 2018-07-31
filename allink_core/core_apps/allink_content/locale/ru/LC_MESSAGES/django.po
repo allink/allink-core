@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-18 16:26+0200\n"
+"POT-Creation-Date: 2018-07-25 18:13+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,7 +53,7 @@ msgid "Content"
 msgstr ""
 
 #: allink_core/core_apps/allink_content/cms_plugins.py:85
-#: allink_core/core_apps/allink_content/cms_plugins.py:169
+#: allink_core/core_apps/allink_content/cms_plugins.py:173
 msgid "Generic"
 msgstr ""
 
@@ -77,7 +77,7 @@ msgstr ""
 msgid "Advanced Options"
 msgstr ""
 
-#: allink_core/core_apps/allink_content/cms_plugins.py:168
+#: allink_core/core_apps/allink_content/cms_plugins.py:172
 msgid "Column"
 msgstr ""
 

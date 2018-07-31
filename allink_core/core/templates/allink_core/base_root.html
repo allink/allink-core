@@ -34,7 +34,9 @@
     {% render_favicons_set %}
 
     {# css #}
-    {% render_bundle 'app' 'css' %}
+    {% block webpack_css %}
+        {% render_bundle 'app' 'css' %}
+    {% endblock webpack_css %}
     {% render_block "css" %}
 
     {# Load external JavaScript#}
@@ -78,7 +80,9 @@
     {% endblock google_map_api_key %}
 
     {% render_block "js" %}
-    {% render_bundle 'app' 'js' %}
+    {% block webpack_js %}
+        {% render_bundle 'app' 'js' %}
+    {% endblock webpack_js %}
 
     {# Optional: Additional Scripts#}
     {% render_block "extrafoot" %}

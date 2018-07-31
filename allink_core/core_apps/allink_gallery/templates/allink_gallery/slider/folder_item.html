@@ -1,11 +1,7 @@
 {% load cms_tags sekizai_tags i18n thumbnail cache allink_image_tags %}
 
-{% cache 15552000 slider_image image.id %}
-    <div class="cms-plugin-start">
-
-        <div class="gallery-slide__image-container">
-            {% render_image image=image ratio=instance.get_plugin_image.0.ratio lazyload_enabled=False %}
-        </div>
-
+<div class="cms-plugin-start">
+    <div class="gallery-slide__image-container">
+        {% render_image image=image ratio=instance.get_plugin_image.0.ratio lazyload_enabled=False %}
     </div>
-{% endcache %}
+</div>

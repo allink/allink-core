@@ -7,9 +7,7 @@
                 {% if object.preview_image %}
                     <div class="image-container">
                         <a href="{{object.get_absolute_url}}">
-                            {% cache 15552000 work_preview_image instance.id object.id %}
-                                {% render_image image=object.preview_image width_alias="1-of-3" %}
-                            {% endcache %}
+                            {% render_image image=object.preview_image width_alias="1-of-3" %}
                         </a>
                     </div>
                 {% endif %}

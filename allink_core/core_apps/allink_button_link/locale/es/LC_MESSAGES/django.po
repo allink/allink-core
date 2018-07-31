@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-18 16:20+0200\n"
+"POT-Creation-Date: 2018-07-26 07:29+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -75,56 +75,56 @@ msgid "Button/ Link Container"
 msgstr ""
 
 #: allink_core/core_apps/allink_button_link/cms_plugins.py:176
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:217
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:216
 msgid "Generic"
 msgstr ""
 
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:200
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:337
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:199
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:335
 msgid "Advanced settings"
 msgstr ""
 
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:216
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:215
 msgid "Button/ Link"
 msgstr ""
 
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:238
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:236
 msgid "Link style"
 msgstr ""
 
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:248
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:246
 msgid "Internal/External link settings"
 msgstr ""
 
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:259
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:257
 msgid "File link settings"
 msgstr ""
 
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:268
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:266
 msgid "Phone link settings"
 msgstr ""
 
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:276
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:274
 msgid "Email link settings"
 msgstr ""
 
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:286
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:284
 msgid "Form link settings"
 msgstr ""
 
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:300
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:298
 msgid "Video (Embedded) link settings"
 msgstr ""
 
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:312
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:310
 msgid "Video (File) link settings"
 msgstr ""
 
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:323
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:321
 msgid "Modal Closing options"
 msgstr ""
 
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:343
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:341
 msgid "Hidden settings"
 msgstr ""
 

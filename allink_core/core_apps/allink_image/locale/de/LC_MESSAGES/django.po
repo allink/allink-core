@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-05 09:43+0200\n"
+"POT-Creation-Date: 2018-07-03 09:17+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,7 +34,7 @@ msgid ""
 msgstr ""
 
 #: allink_core/core_apps/allink_image/cms_plugins.py:36
-#: allink_core/core_apps/allink_image/models.py:31
+#: allink_core/core_apps/allink_image/models.py:29
 msgid "Ratio"
 msgstr "Seitenverhältnis"
 
@@ -47,7 +47,7 @@ msgstr ""
 "Bildseitenverhältnisse, die für Bilder in einer Spalte gesetzt ist."
 
 #: allink_core/core_apps/allink_image/cms_plugins.py:43
-#: allink_core/core_apps/allink_image/models.py:74
+#: allink_core/core_apps/allink_image/models.py:72
 msgid "Width Alias"
 msgstr ""
 
@@ -64,7 +64,7 @@ msgstr ""
 "Bildseitenverhältnisse, die für Bilder in einer Spalte gesetzt ist."
 
 #: allink_core/core_apps/allink_image/cms_plugins.py:50
-#: allink_core/core_apps/allink_image/models.py:49
+#: allink_core/core_apps/allink_image/models.py:47
 msgid "Set a predefined background color"
 msgstr "Vordefinierte Hintergrundfarbe wählen"
 
@@ -73,7 +73,7 @@ msgid "Predifined variations"
 msgstr "Vordefiniert Variationen"
 
 #: allink_core/core_apps/allink_image/cms_plugins.py:66
-#: allink_core/core_apps/allink_image/models.py:25
+#: allink_core/core_apps/allink_image/models.py:23
 msgid "Image"
 msgstr "Bild"
 
@@ -89,11 +89,11 @@ msgstr "Erweiterte Einstellungen"
 msgid "Link settings"
 msgstr "Link-Einstellungen"
 
-#: allink_core/core_apps/allink_image/models.py:37
+#: allink_core/core_apps/allink_image/models.py:35
 msgid "Placeholder Background Color"
 msgstr "Platzhalter Hintergrundfarbe"
 
-#: allink_core/core_apps/allink_image/models.py:40
+#: allink_core/core_apps/allink_image/models.py:38
 msgid ""
 "Show default image placeholder background color.<br><strong>Important:</"
 "strong> Disabling this option results in a transparent background even if a "
@@ -104,11 +104,11 @@ msgstr ""
 "Hintergrund angezeigt, auch wenn eine Farbe gewählt wurde (Sinnvoll für "
 "transparente PNGs)."
 
-#: allink_core/core_apps/allink_image/models.py:43
+#: allink_core/core_apps/allink_image/models.py:41
 msgid "Loader Icon"
 msgstr "Lade-Icon"
 
-#: allink_core/core_apps/allink_image/models.py:46
+#: allink_core/core_apps/allink_image/models.py:44
 msgid ""
 "Show the icon that is used as long as the image is loading."
 "<br><strong>Important:</strong> Disable this option if a transparent PNG "
@@ -117,19 +117,19 @@ msgstr ""
 "Icon anzeigen, während das Bild lädt.<br><strong>Wichtig:</strong> Für "
 "transparente PNGs sollte diese Option deaktiviert werden."
 
-#: allink_core/core_apps/allink_image/models.py:55
+#: allink_core/core_apps/allink_image/models.py:53
 msgid "Caption text"
 msgstr "Bildunterschrift"
 
-#: allink_core/core_apps/allink_image/models.py:57
+#: allink_core/core_apps/allink_image/models.py:55
 msgid "Provide a description, attribution, copyright or other information."
 msgstr "Für Beschreibung, Zuordnung, Copyright oder andere Informationen."
 
-#: allink_core/core_apps/allink_image/models.py:60
+#: allink_core/core_apps/allink_image/models.py:58
 msgid "Attributes"
 msgstr "Attribute"
 
-#: allink_core/core_apps/allink_image/models.py:100
+#: allink_core/core_apps/allink_image/models.py:98
 msgid "<file is missing>"
 msgstr "<Datei fehlt>"
 

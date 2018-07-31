@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-05 09:43+0200\n"
+"POT-Creation-Date: 2018-07-03 09:17+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -85,6 +85,37 @@ msgstr ""
 msgid "News menu"
 msgstr "News-Eintrag"
 
+#: allink_core/apps/newsletter/cms_apps.py:8
+msgid "Newsletter Apphook"
+msgstr ""
+
+#: allink_core/apps/newsletter/forms.py:14
+msgid "Salutation"
+msgstr "Anrede"
+
+#: allink_core/apps/newsletter/forms.py:19
+msgid "First Name"
+msgstr ""
+
+#: allink_core/apps/newsletter/forms.py:22
+msgid "Last Name"
+msgstr ""
+
+#: allink_core/apps/newsletter/forms.py:25
+#: allink_core/apps/newsletter/forms.py:32
+msgid "Email"
+msgstr "E-Mail"
+
+#: allink_core/apps/newsletter/forms.py:36
+msgid "Personalised online advertising"
+msgstr "personalisierte Online-Werbung"
+
+#: allink_core/apps/newsletter/views.py:44
+msgid "Something went wrong with your subscription. Please try again later."
+msgstr ""
+"Bei Ihrer Registrierung ist etwas schiefgelaufen. Bitte versuchen Sie es "
+"später erneut."
+
 #~ msgid "Event Form enabled"
 #~ msgstr "Event-Formular aktiviert"
 
@@ -118,9 +149,6 @@ msgstr "News-Eintrag"
 
 #~ msgid "The first image will be used as preview image."
 #~ msgstr "Das erst Bild wird als Vorschaubild verwendet."
-
-#~ msgid "Salutation"
-#~ msgstr "Anrede"
 
 #~ msgid "Company"
 #~ msgstr "Firma"

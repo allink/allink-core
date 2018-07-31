@@ -145,6 +145,10 @@ class CMSAllinkContentPlugin(CMSPluginBase):
         })
     )
 
+    @classmethod
+    def get_render_queryset(cls):
+        return cls.model._default_manager.all()
+
     def save_model(self, request, obj, form, change):
         response = super(CMSAllinkContentPlugin, self).save_model(request, obj, form, change)
         if obj.numchild == 0:

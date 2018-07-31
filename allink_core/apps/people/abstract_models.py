@@ -130,9 +130,6 @@ class BasePeopleAppContentPlugin(AllinkBaseAppContentPlugin):
     )
 
     def save(self, *args, **kwargs):
-        # invalidate cache
-        cache.delete_many([make_template_fragment_key('people_preview_image', [self.id, people.id]) for people in
-                           get_model('people', 'People').objects.all()])
         super(BasePeopleAppContentPlugin, self).save(*args, **kwargs)
 
     class Meta:

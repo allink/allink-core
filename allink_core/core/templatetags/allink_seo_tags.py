@@ -91,6 +91,11 @@ def render_meta_og(context, obj=None, page_title=None, base_page_title=None, ima
     allink_config = Config.get_solo()
     site = getattr(context.request, 'site')
 
+    page_title_final = None
+    og_title = None
+    description = None
+    image_url = None
+
     #  we pass a object when app content
     if obj:
 

@@ -9,11 +9,13 @@ from django.db import models
 from django.utils.timezone import now
 from django.utils.translation import activate, deactivate, ugettext_lazy as _
 from allink_core.core.utils import base_url
+from allink_core.core_apps.allink_legacy_redirect.utils import strip_anchor_part
 from allink_core.core.models.models import AllinkInternalLinkFieldsModel
 
 
 class AllinkLegacyLink(AllinkInternalLinkFieldsModel):
-    old = models.CharField(_(u'Old Link'), max_length=255, unique=True)
+    old = models.CharField(_(u'Old Link'), max_length=255, unique=True, help_text=u'We strip away the anchor part of the URL as this part is not passed to the server.')
+
     #  External Redirect
     overwrite = models.CharField(
         _(u'Overwrite Link'),
@@ -61,6 +63,10 @@ class AllinkLegacyLink(AllinkInternalLinkFieldsModel):
 
     def __str__(self):
         return self.old
+
+    def save(self, *args, **kwargs):
+        self.old = strip_anchor_part(self.old)
+        super(AllinkLegacyLink, self).save(*args, **kwargs)
 
     @property
     def link(self):

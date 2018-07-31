@@ -177,7 +177,6 @@ class CMSAllinkButtonLinkContainerPlugin(CMSPluginBase):
     allow_children = True
     child_classes = ['CMSAllinkButtonLinkPlugin']
     form = AllinkButtonLinkContainerPluginForm
-    cache = False
 
     class Media:
         js = (
@@ -220,7 +219,6 @@ class CMSAllinkButtonLinkPlugin(CMSPluginBase):
     change_form_template = 'admin/allink_button_link/change_form.html'
     render_template = 'allink_button_link/item.html'
     text_enabled = True
-    cache = False
 
     class Media:
         js = (get_files('djangocms_custom_admin')[0]['publicPath'], )
@@ -347,6 +345,10 @@ class CMSAllinkButtonLinkPlugin(CMSPluginBase):
             )
         }),
     )
+
+    @classmethod
+    def get_render_queryset(cls):
+        return cls.model._default_manager.all().select_related('video_file', 'video_poster_image', 'link_file', 'link_page', 'link_apphook_page')
 
     def icon_src(self, instance):
         return static('aldryn_bootstrap3/img/type/button.png')
