@@ -137,6 +137,7 @@ if STAGE in {'local', 'test'}:
 - all manual caching stuff has been removed! (e.g events_preview_image, news_preview_image etc.)
 - AllinkBaseModel djangocms placeholder cache invalidation on save
 - AllinkButton Plugin is now "cache = False"
+- AllinkBaseDetailView: optional app detail template override for each app category (naming convention: `<app_name>_<category_slug>_detail.html`)
 
 
 ### FIXES
