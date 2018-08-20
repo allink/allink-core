@@ -133,6 +133,15 @@ class AllinkBaseDetailView(TranslatableSlugMixin, DetailView):
     model = Events
     """
 
+    def get_template_names(self):
+        obj = self.get_object()
+        context = self.get_context_data(object=obj)
+        categories = context['object'].categories.all()
+        app_label = context['object']._meta.app_label
+        templates = ['{}/{}_{}_detail.html'.format(app_label, app_label, category.slug) for category in
+                     categories] + super().get_template_names()
+        return templates
+
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
         if not request.user.is_staff and self.object.status == self.object.INACTIVE:
@@ -146,11 +155,7 @@ class AllinkBaseDetailView(TranslatableSlugMixin, DetailView):
             context.update({'base_template': 'app_content/ajax_base.html'})
         else:
             context.update({'base_template': 'base.html'})
-
-        categories = context['object'].categories.all()
-        app_label = context['object']._meta.app_label
-        templates = ['{}/{}_{}_detail.html'.format(app_label, app_label, category.slug) for category in categories] + self.get_template_names()
-        return render_to_response(templates, context, context_instance=RequestContext(self.request))
+        return render_to_response(self.get_template_names(), context, context_instance=RequestContext(self.request))
 
 
 class AllinkBaseCreateView(CreateView):
