@@ -171,7 +171,7 @@ ALLINK_LOCALE_PATHS = [
 #
 # # Thumbnail
 
-THUMBNAIL_QUALITY = 80
+THUMBNAIL_QUALITY = 60
 
 THUMBNAIL_OPTIMIZE_COMMAND = {
     'png': 'optipng {filename}',

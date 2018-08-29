@@ -5,17 +5,18 @@
     {# create thumbnail #}
     {% thumbnail instance.video_poster_image 1500x9999 upscale=False as placeholder_image %}
 
-    <div class="content-plugin video-file-plugin video-{{ instance.id }} on-pause {% if instance.auto_start_enabled %}autoplay-enabled{% endif %}">
+    <div class="content-plugin video-file-plugin video-{{ instance.id }} on-pause {% if instance.auto_start_enabled %}autoplay-enabled{% endif %}" style="padding-bottom: calc(({{placeholder_image.height}} / {{placeholder_image.width}}) * 100%);">
 
         <video
             id="video-{{ instance.id }}"
-            class="the-video"
+            class="the-video lazyload"
             playsinline
             {% if instance.video_muted_enabled %}muted{% endif %}
             {% if instance.auto_start_enabled %}autoplay{% endif %}
+            {% if not instance.auto_start_enabled %}preload="none"{% endif %}
             loop
-            poster="{{ placeholder_image.url }}">
-            <source src="{{ instance.video_file.url }}" type="video/mp4">
+            data-poster="{{ placeholder_image.url }}">
+            <source {% if not instance.auto_start_enabled %}data-{% endif %}src="{{ instance.video_file.url }}" type="video/mp4">
         </video>
 
         <div class="video-controls">

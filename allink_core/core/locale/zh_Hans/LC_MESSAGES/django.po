@@ -159,7 +159,7 @@ msgstr "先生"
 
 #: allink_core/core/models/choices.py:20
 msgid "Mrs."
-msgstr "夫人"
+msgstr "女士"
 
 #: allink_core/core/models/choices.py:32
 msgid "Left"
@@ -476,7 +476,7 @@ msgstr ""
 #: allink_core/core/models/models.py:1185
 #: allink_core/core/templates/allink_core/contact/forms/request_base.html:92
 msgid "Email"
-msgstr ""
+msgstr "電子郵件"
 
 #: allink_core/core/models/models.py:884
 msgid "Website"
@@ -560,11 +560,11 @@ msgstr ""
 
 #: allink_core/core/models/models.py:1173
 msgid "First Name"
-msgstr ""
+msgstr "名稱"
 
 #: allink_core/core/models/models.py:1179
 msgid "Last Name"
-msgstr ""
+msgstr "姓氏"
 
 #: allink_core/core/models/models.py:1190
 msgid "Company"

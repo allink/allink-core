@@ -1,0 +1,24 @@
+{% load cms_tags allink_cms_tags sekizai_tags i18n %}
+
+{% comment %}
+
+    Global Modal Header Markup
+
+    Notes:
+    - {{ modal_type }} has to be one of the following options: softpage, form-modal, default-modal
+    - There are currently no default styles associated with it
+
+{% endcomment %}
+
+{% comment %}
+    <div class="modal-header-markup" style="display: none;">
+        <h2 class="tingle-modal-header__heading">
+            {{ title }}
+        </h2>
+        <a class="tingle-modal-header__link-close" href="#" data-close-{{ modal_type }}>
+            <span class="sr-only">
+                {% trans "Close" %}
+            </span>
+        </a>
+    </div>
+{% endcomment %}

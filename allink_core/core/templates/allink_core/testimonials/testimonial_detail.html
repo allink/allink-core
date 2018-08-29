@@ -6,6 +6,8 @@
 
 {% block content %}
 
+    {% include "modals/modal-header-markup.html" with title=object.title modal_type="softpage" %}
+
     <article class="app-detail testimonials-plugin" data-scroll-spy="default">
 
         {% comment %}
