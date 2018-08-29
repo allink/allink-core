@@ -81,7 +81,7 @@ MIDDLEWARE_CLASSES = [
 # django.middleware.cache.FetchFromCacheMiddleware
 
 
-CMS_PAGE_CACHE = True
+CMS_PAGE_CACHE = False
 # only set following key, when CMS_PLACEHOLDER_CACHE is enabled as well:
 # :17:cms-:1:1c526ad1bac1b1cce895c61f4a427529c672099d
 
