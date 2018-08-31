@@ -186,6 +186,7 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
         fieldsets += (_('Additional Options'), {
             'classes': ('collapse',),
             'fields': (
+                'apphook_page',
                 'detail_link_text',
                 'project_css_classes',
             )
@@ -203,6 +204,12 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
         }),
 
         return fieldsets
+
+    def get_application_namespace(self, instance):
+        if getattr(instance, 'apphook_page'):
+            return instance.apphook_page.application_namespace
+        else:
+            return self.model.data_model._meta.model_name
 
     def get_render_template(self, context, instance, placeholder):
         file = 'no_results' if not context['object_list'] else 'content'
@@ -249,7 +256,7 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
                         instance.pagination_type == AllinkBaseAppContentPlugin.LOAD_REST) and firstpage.has_next():
                 context['page_obj'] = firstpage
                 context.update(
-                    {'next_page_url': reverse('{}:more'.format(self.model.data_model._meta.model_name),
+                    {'next_page_url': reverse('{}:more'.format(self.get_application_namespace(instance)),
                                               kwargs={
                                                   'page': context['page_obj'].next_page_number()}) + '?api_request=1' +
                                       '&plugin_id={}'.format(instance.id)})
@@ -261,7 +268,7 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
         # category navigation
         if instance.category_navigation_enabled or instance.filter_fields:
             context.update(
-                {'by_category': reverse('{}:more'.format(self.model.data_model._meta.model_name),
+                {'by_category': reverse('{}:more'.format(self.get_application_namespace(instance)),
                                         kwargs={'page': 1}) + '?api_request=1' + '&plugin_id={}'.format(instance.id)})
 
         context['instance'] = instance
@@ -272,7 +279,6 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
             context['category_navigation'] = instance.fetch_category_navigation
 
         return context
-
 
 class AllinkBaseSearchPluginForm(forms.ModelForm):
     class Meta:

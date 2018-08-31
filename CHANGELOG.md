@@ -13,7 +13,41 @@ Each release is divided into the following main categories:
 - FIXES: General bugfixes
 
 
-## v1.0.1 (under development)
+## v1.0.2 (under development)
+
+### IMPORTANT
+- all plugin models inherit from AllinkBaseAppContentPlugin now have a field 'apphook_page'. Especially the ones created in the project itself (by new_app or fork_app)now have to be updated as well. Otherwise the plugins will fail when edited, because the Field was not added.
+for example:
+```python
+class ServicesAppContentPlugin(AllinkBaseAppContentPlugin):
+    ...
+    apphook_page = PageField(
+        verbose_name=_(u'Apphook Page'),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        help_text=_(u'If provided, this Apphook-Page will be used to generate the detail link.'),
+    )
+```
+
+
+###### SETTINGS
+
+###### TEMPLATES
+
+###### URLS
+
+###### REQUIREMENTS
+
+###### DATA MIGRATIONS
+
+### NEW
+- new templatetag 'get_absolute_url'. Use {% get_absolute_url object instance.apphook_page.application_namespace %} in a plugin template if you specified a different apphook than the default.
+
+### FIXES
+
+
+## v1.0.1
 
 ### IMPORTANT
 

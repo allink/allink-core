@@ -138,8 +138,9 @@ class AllinkBaseDetailView(TranslatableSlugMixin, DetailView):
         context = self.get_context_data(object=obj)
         categories = context['object'].categories.all()
         app_label = context['object']._meta.app_label
-        templates = ['{}/{}_{}_detail.html'.format(app_label, app_label, category.slug) for category in
-                     categories] + super().get_template_names()
+        templates = ['{}/{}_detail.html'.format(app_label, self.request.current_page.application_namespace)]
+        templates += ['{}/{}_{}_detail.html'.format(app_label, app_label, category.slug) for category in categories]
+        templates += super().get_template_names()
         return templates
 
     def get(self, request, *args, **kwargs):

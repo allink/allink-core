@@ -147,17 +147,20 @@ class AllinkBaseModel(models.Model):
     is_published.short_description = _(u'Published')
     is_published.boolean = True
 
-    def get_detail_view(self):
-        return '{}:detail'.format(self._meta.model_name)
+    def get_detail_view(self, application_namespace=None):
+        if application_namespace:
+            return '{}:detail'.format(application_namespace)
+        else:
+            return '{}:detail'.format(self._meta.model_name)
 
-    def get_absolute_url(self, language=None):
+    def get_absolute_url(self, language=None, application_namespace=None):
         from django.core.urlresolvers import reverse
         if not language:
             language = get_current_language() or get_default_language()
 
         slug, language = self.known_translation_getter(
             'slug', None, language_code=language)
-        app = self.get_detail_view()
+        app = self.get_detail_view(application_namespace)
         try:
             with override(language):
                 return reverse(app, kwargs={'slug': slug})
@@ -374,6 +377,7 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
     )
 
     # manual_entries  -> defined in subclasses (no elegant way found to define this here.)
+    # apphook_page -> defined in subclasses (no elegant way found to define this here.)
 
     template = models.CharField(
         _(u'Template'),

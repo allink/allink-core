@@ -1,4 +1,4 @@
-{% load cms_tags allink_cms_tags sekizai_tags i18n thumbnail allink_image_tags cache %}
+{% load cms_tags allink_cms_tags sekizai_tags i18n thumbnail allink_image_tags allink_link_tags cache %}
 
 {% for object in object_list %}
     <tr class="{% if appended %}appended{% endif %}">
@@ -22,7 +22,7 @@
         </td>
         {% if instance.detail_link_enabled and object.show_detail_link %}
             <td>
-                <a href="{{object.get_absolute_url}}" class="app-list__detail-link">
+                <a href="{% get_absolute_url object instance.apphook_page.application_namespace %}" class="app-list__detail-link">
                     {% if instance.detail_link_text %}
                         {{ instance.detail_link_text }}
                     {% else %}

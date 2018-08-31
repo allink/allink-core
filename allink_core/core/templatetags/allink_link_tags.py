@@ -49,3 +49,21 @@ def link_classes(instance):
         else:
             classes += ' text'
     return classes
+
+
+@register.simple_tag
+def get_absolute_url(obj, application_namespace=None):
+    """
+    :param obj:
+    a instance of a model which inherits from AllinkBaseModel
+    :param application_namespace:
+    String, either defined in some urls.py file
+    or in most cases directly in a CMS-Page (e.g. news_engimatt or news_leafs)
+    :return:
+    the absolute url to the detail view
+
+    example:
+    {% get_absolute_url object instance.apphook_page.application_namespace %}
+    """
+    return obj.get_absolute_url(application_namespace=application_namespace)
+

@@ -1,4 +1,4 @@
-{% load cms_tags allink_cms_tags sekizai_tags i18n thumbnail allink_image_tags cache %}
+{% load cms_tags allink_cms_tags sekizai_tags i18n thumbnail allink_image_tags allink_link_tags cache %}
 
 {% for object in object_list %}
 
@@ -7,7 +7,7 @@
             {% if object.preview_image %}
                 <div class="image-container">
                     {% if instance.detail_link_enabled and object.show_detail_link %}
-                        <a href="{{object.get_absolute_url}}">
+                        <a href="{% get_absolute_url object instance.apphook_page.application_namespace %}">
                     {% endif %}
                         {% render_image image=object.preview_image %}
                     {% if instance.detail_link_enabled  %}

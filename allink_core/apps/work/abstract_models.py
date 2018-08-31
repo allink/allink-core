@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
-from django.core.cache import cache
-from django.core.cache.utils import make_template_fragment_key
 
+from cms.models.fields import PageField
 from cms.models.fields import PlaceholderField
 from adminsortable.models import SortableMixin
 from parler.models import TranslatableModel, TranslatedField
@@ -15,7 +14,6 @@ from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
 from allink_core.core.models.models import AllinkBaseAppContentPlugin, AllinkBaseSearchPlugin, AllinkBaseModel, AllinkBaseTranslatedFieldsModel
 from allink_core.core.models.mixins import AllinkTranslatedAutoSlugifyMixin
 from allink_core.core.models.managers import AllinkBaseModelManager
-from allink_core.core.loading import get_model
 
 
 class BaseWork(SortableMixin, TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, TranslatableModel, AllinkBaseModel):
@@ -83,6 +81,13 @@ class BaseWorkAppContentPlugin(AllinkBaseAppContentPlugin):
         blank=True,
         help_text=_('Select and arrange specific entries, or, leave blank to select all. (If '
                     'manual entries are selected the category filtering will be ignored.)')
+    )
+    apphook_page = PageField(
+        verbose_name=_(u'Apphook Page'),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        help_text=_(u'If provided, this Apphook-Page will be used to generate the detail link.'),
     )
 
     def save(self, *args, **kwargs):
