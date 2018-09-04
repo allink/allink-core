@@ -560,11 +560,11 @@ msgstr ""
 
 #: allink_core/core/models/models.py:1173
 msgid "First Name"
-msgstr ""
+msgstr "Voornaam"
 
 #: allink_core/core/models/models.py:1179
 msgid "Last Name"
-msgstr ""
+msgstr "Naam"
 
 #: allink_core/core/models/models.py:1190
 msgid "Company"

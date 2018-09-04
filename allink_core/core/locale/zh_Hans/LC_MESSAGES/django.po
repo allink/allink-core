@@ -994,7 +994,7 @@ msgstr ""
 
 #: allink_core/core/templates/app_content/app_content_base.html:144
 msgid "Load More"
-msgstr ""
+msgstr "閱讀更多"
 
 #: allink_core/core/templates/partials/forms/confirmation.html:4
 msgid "The form has been submitted successfully."

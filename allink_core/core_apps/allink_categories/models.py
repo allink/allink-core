@@ -95,6 +95,7 @@ class AllinkCategory(AllinkTranslatedAutoSlugifyMixin, TranslationHelperMixin,
     )
 
     class Meta:
+        app_label = 'allink_categories'
         verbose_name = _('Category')
         verbose_name_plural = _('Categories')
 

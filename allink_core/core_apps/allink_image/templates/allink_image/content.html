@@ -25,6 +25,9 @@
     {% if instance.link_url_typed %}
         </a>
     {% endif %}
+    {% if instance.softpage_large_enabled or instance.softpage_small_enabled %}
+        {% include "modals/modal-header-markup.html" with title=instance.link_page modal_type="softpage" %}
+    {% endif %}
     {# start render figure/figcaption #}
     {% if instance.caption_text %}
         <figcaption class="image-plugin__figcaption">{{ instance.caption_text }}</figcaption>
