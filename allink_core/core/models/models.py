@@ -19,7 +19,6 @@ from django.utils.translation import ugettext_lazy as _, override
 from django.utils.functional import cached_property
 from cms.utils.i18n import get_current_language, get_default_language
 from cms.models.pluginmodel import CMSPlugin
-from cms.plugin_pool import plugin_pool
 
 from parler.models import TranslatedFieldsModel
 from filer.fields.image import FilerImageField
@@ -35,12 +34,13 @@ from allink_core.core.loading import get_model
 from allink_core.core.models.managers import AllinkBaseModelManager
 from allink_core.core.models.choices import SALUTATION_CHOICES, TARGET_CHOICES, NEW_WINDOW, SOFTPAGE_LARGE, SOFTPAGE_SMALL, FORM_MODAL, IMAGE_MODAL, DEFAULT_MODAL, BLANK_CHOICE
 from allink_core.core.models.fields import ZipCodeField
+from allink_core.core.models.mixins import AllinkInvalidatePlaceholderCacheMixin
 from allink_core.core.utils import get_additional_choices
 from allink_core.core_apps.allink_categories.models import AllinkCategory
 
 
 @python_2_unicode_compatible
-class AllinkBaseModel(models.Model):
+class AllinkBaseModel(AllinkInvalidatePlaceholderCacheMixin, models.Model):
     """
      An abstract base class model for every standard allink app
 
@@ -228,22 +228,6 @@ class AllinkBaseModel(models.Model):
         if self._meta.model_name in dict(settings.PROJECT_APP_MODEL_CATEGORY_TAG_CHOICES).keys():
             self.auto_generated_category = self.save_categories(new)
         super(AllinkBaseModel, self).save(*args, **kwargs)
-
-        # we need to invalidate all placeholder cache keys,
-        # where a plugin is placed that displayes data from this model
-        # adapted from cms/models/pagemodel.py
-        from cms.cache import invalidate_cms_page_cache
-        invalidate_cms_page_cache()
-
-        relevant_models = (self.__class__, ) + self.__class__.__bases__
-        relevant_plugin_classes = [x for x in plugin_pool.get_all_plugins() if hasattr(x.model, 'data_model') and x.model.data_model in relevant_models]
-
-        # get all pages where a relevant plugin is placed
-        for plugin_class in relevant_plugin_classes:
-            for plugin in plugin_class.model.objects.all():
-                for language_code, language in settings.LANGUAGES:
-                    if plugin.page:
-                        plugin.placeholder.clear_cache(language_code, site_id=plugin.page.site_id)
 
 
 @receiver(post_delete)

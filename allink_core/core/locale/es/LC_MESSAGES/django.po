@@ -155,11 +155,11 @@ msgstr ""
 
 #: allink_core/core/models/choices.py:19
 msgid "Mr."
-msgstr ""
+msgstr "Sr."
 
 #: allink_core/core/models/choices.py:20
 msgid "Mrs."
-msgstr ""
+msgstr "Sra."
 
 #: allink_core/core/models/choices.py:32
 msgid "Left"
@@ -560,11 +560,11 @@ msgstr ""
 
 #: allink_core/core/models/models.py:1173
 msgid "First Name"
-msgstr ""
+msgstr "Nombre"
 
 #: allink_core/core/models/models.py:1179
 msgid "Last Name"
-msgstr ""
+msgstr "Apellidos"
 
 #: allink_core/core/models/models.py:1190
 msgid "Company"
@@ -994,7 +994,7 @@ msgstr ""
 
 #: allink_core/core/templates/app_content/app_content_base.html:144
 msgid "Load More"
-msgstr ""
+msgstr "CARGAR"
 
 #: allink_core/core/templates/partials/forms/confirmation.html:4
 msgid "The form has been submitted successfully."

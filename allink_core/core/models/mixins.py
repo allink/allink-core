@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
-from django.db.models import Q
+from django.conf import settings
+
+from cms.plugin_pool import plugin_pool
 from aldryn_translation_tools.models import TranslatedAutoSlugifyMixin
 
 
@@ -39,3 +41,37 @@ class AllinkTranslatedAutoSlugifyMixin(TranslatedAutoSlugifyMixin):
                 setattr(self, self.slug_field_name, new_slug)
         # do not call direct superclass, it does the same (but less) again
         return super(TranslatedAutoSlugifyMixin, self).save(**kwargs)
+
+
+class AllinkInvalidatePlaceholderCacheMixin(object):
+    """
+    This Mixin is used in combination with a CMS-Plugin. It makes sure that the placeholder cache keys get deleted,
+    when the involved model instance is saved.
+
+    The Plugin must define a attribute 'data_model', otherwise it won't get deleted.
+    e.g:
+        class HistoryPlugin(CMSPlugin):
+            data_model = HistoryItem
+
+
+    Only the placeholder caches get deleted, which contain relevant plugins.
+
+    """
+
+    def save(self, *args, **kwargs):
+        super(AllinkInvalidatePlaceholderCacheMixin, self).save(*args, **kwargs)
+        # we need to invalidate all placeholder cache keys,
+        # where a plugin is placed that displayes data from this model
+        # adapted from cms/models/pagemodel.py
+        from cms.cache import invalidate_cms_page_cache
+        invalidate_cms_page_cache()
+
+        relevant_models = (self.__class__,) + self.__class__.__bases__
+        relevant_plugin_classes = [x for x in plugin_pool.get_all_plugins() if
+                                   hasattr(x.model, 'data_model') and x.model.data_model in relevant_models]
+
+        # get all pages where a relevant plugin is placed
+        for plugin_class in relevant_plugin_classes:
+            for plugin in plugin_class.model.objects.all():
+                for language_code, language in settings.LANGUAGES:
+                    plugin.placeholder.clear_cache(language_code, site_id=getattr(plugin.page, 'site_id', None))

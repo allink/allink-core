@@ -51,6 +51,11 @@ class ServicesAppContentPlugin(AllinkBaseAppContentPlugin):
 
 ### IMPORTANT
 
+- if you have custom plugins in this project, make sure:
+    1. that the model you display inherits from 'AllinkInvalidatePlaceholderCacheMixin'.
+    2. that you define an attribute 'data_model' on the Plugin
+
+
 ###### SETTINGS
 
 - config_allink_page_toolbar_enabled is now definded in settings (definde in allink_settings):
@@ -61,14 +66,14 @@ ALLINK_PAGE_TOOLBAR_ENABLED = False
 - every cms placeholder will be cached strictly!
 
 manual updates in all projects:
--> make sure CACHES and MIDDLEWARE settings is correct!! (see default settings below)
--> make sure to delete django_dbcache manually on production as there are a lot of stale cache entries
--> make sure to delete all template caches in the overwritten templates (search for "{% cache") (also remove the imports)
--> run the cache warmer (for the moment locally). You just have to feed it with the sitemap.xml. You find an example [here.](https://gist.github.com/tuerlefl/028f338b63e6d951601d96b567b2bdd0)
+- make sure CACHES and MIDDLEWARE settings is correct!! (see default settings below)
+- make sure to delete django_dbcache manually on production as there are a lot of stale cache entries
+- make sure to delete all template caches in the overwritten templates (search for "{% cache") (also remove the imports)
+- run the cache warmer (for the moment locally). You just have to feed it with the sitemap.xml. You find an example [here.](https://gist.github.com/tuerlefl/028f338b63e6d951601d96b567b2bdd0)
 
 special cases:
--> if the project uses valid_from/ valid_to on e.g News or Events, this need a custom cache invalidation
--> in projects where the cache backend is "UWSGI_CACHE" make sure, you remove the env variables "UWSGI_CACHE2" and "CACHE_URL" from production/ stage
+- if the project uses valid_from/ valid_to on e.g News or Events, this need a custom cache invalidation
+- in projects where the cache backend is "UWSGI_CACHE" make sure, you remove the env variables "UWSGI_CACHE2" and "CACHE_URL" from production/ stage
 
 use this a default:
 ```python
