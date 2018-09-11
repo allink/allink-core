@@ -41,7 +41,7 @@ msgstr ""
 
 #: allink_core/apps/newsletter/forms.py:36
 msgid "Personalised online advertising"
-msgstr "Annonces publicitaires digitales personnalisées"
+msgstr "Annonce publicitaire digitale personnalisée"
 
 #: allink_core/apps/newsletter/views.py:44
 msgid "Something went wrong with your subscription. Please try again later."
