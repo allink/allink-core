@@ -54,6 +54,7 @@ class ServicesAppContentPlugin(AllinkBaseAppContentPlugin):
 - if you have custom plugins in this project, make sure:
     1. that the model you display inherits from 'AllinkInvalidatePlaceholderCacheMixin'.
     2. that you define an attribute 'data_model' on the Plugin
+- make sure all plugins with forms have cache=False, otherwise CRSF token gets cached too. [more information](:https://github.com/divio/django-cms/issues/4330)
 
 
 ###### SETTINGS
