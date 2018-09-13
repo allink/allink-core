@@ -222,8 +222,6 @@ class WorkDetail(BaseWorkDetail):
     def render_to_response(self, context, **response_kwargs):
         if self.request.is_ajax():
             context.update({'base_template': 'app_content/ajax_base.html'})
-        else:
-            context.update({'base_template': 'base.html'})
         context.update({'hello': 'hello view is correctly overridden!!'})
         return render_to_response(self.get_template_names(), context, context_instance=RequestContext(self.request))
 
