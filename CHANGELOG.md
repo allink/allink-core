@@ -45,6 +45,7 @@ class ServicesAppContentPlugin(AllinkBaseAppContentPlugin):
 - new templatetag 'get_absolute_url'. Use {% get_absolute_url object instance.apphook_page.application_namespace %} in a plugin template if you specified a different apphook than the default.
 
 ### FIXES
+- Set new cache of Config app after save
 
 
 ## v1.0.1

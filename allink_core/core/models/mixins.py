@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from django.conf import settings
+from django.contrib.sites.models import Site
 
+from menus.menu_pool import menu_pool
 from cms.plugin_pool import plugin_pool
 from aldryn_translation_tools.models import TranslatedAutoSlugifyMixin
 
@@ -75,3 +77,7 @@ class AllinkInvalidatePlaceholderCacheMixin(object):
             for plugin in plugin_class.model.objects.all():
                 for language_code, language in settings.LANGUAGES:
                     plugin.placeholder.clear_cache(language_code, site_id=getattr(plugin.page, 'site_id', None))
+
+        # invalidate the menu for all sites
+        for site in Site.objects.all():
+            menu_pool.clear(site_id=site.id)

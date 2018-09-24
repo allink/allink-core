@@ -99,17 +99,19 @@ class BaseConfig(SingletonModel, TranslatableModel):
             })
         return fields
 
-    def set_to_cache(self):
-        cache_key = self.get_cache_key()
+    def set_to_cache(self, language_code=None):
+        language_code = get_language() if not language_code else language_code
+        cache_key = self.get_cache_key(language_code)
         timeout = 60 * 60 * 24 * 180
         cache.set(cache_key, self.to_dict(), timeout)
 
 
     def save(self, *args, **kwargs):
-        if self.pk:
-            self.set_to_cache()
-        else:
-            self.pk = 1
+
+        self.pk = 1
+
+        for language_code, language in settings.LANGUAGES:
+            self.set_to_cache(language_code)
 
         # invalidate cache for favicon templatetag
         cache.delete('favicon_context')
@@ -133,9 +135,10 @@ class BaseConfig(SingletonModel, TranslatableModel):
                         plugin.placeholder.clear_cache(language_code, site_id=plugin.page.site_id)
 
     @classmethod
-    def get_cache_key(cls):
+    def get_cache_key(cls, language_code=None):
+        language_code = get_language() if not language_code else language_code
         prefix = 'solo'
-        return '%s:%s_%s' % (prefix, cls.__name__.lower(), get_language())
+        return '%s:%s_%s' % (prefix, cls.__name__.lower(), language_code)
 
     @classmethod
     def get_solo(cls):
