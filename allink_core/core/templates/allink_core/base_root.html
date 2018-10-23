@@ -96,17 +96,21 @@
     {% endblock google_analytics %}
 
     {# Required! The .site-overlay can be used in various contexts (such as 'softpage' oder other modals)#}
-    <div class="site-overlay"></div>
+    {% block site_overlay %}
+        <div class="site-overlay"></div>
+    {% endblock site_overlay %}
 
     {# Required! For the fullscreen swiper gallery #}
-    <div class="swiper-fullscreen-container">
-        <a href="#" class="swiper-button-fullscreen-close tingle-modal__close" data-softpage-disabled data-close-swiper-fullscreen>
-            <i class="sr-only" lang="en">
-                {% trans "Close" %}
-            </i>
-        </a>
-        <div class="swiper-fullscreen"></div>
-    </div>
+    {% block fullscreen_gallery_markup %}
+        <div class="swiper-fullscreen-container">
+            <a href="#" class="swiper-button-fullscreen-close tingle-modal__close" data-softpage-disabled data-close-swiper-fullscreen>
+                <i class="sr-only" lang="en">
+                    {% trans "Close" %}
+                </i>
+            </a>
+            <div class="swiper-fullscreen"></div>
+        </div>
+    {% endblock fullscreen_gallery_markup %}
 
 </body>
 </html>

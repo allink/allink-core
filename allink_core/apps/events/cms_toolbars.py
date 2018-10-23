@@ -12,9 +12,6 @@ from allink_core.core.loading import get_model
 Events = get_model('events', 'Events')
 EventsRegistration = get_model('events', 'EventsRegistration')
 
-Config = get_model('config', 'Config')
-config = Config.get_solo()
-
 
 class EventsToolbar(AllinkBaseModifierMixin, CMSToolbar):
     model = Events

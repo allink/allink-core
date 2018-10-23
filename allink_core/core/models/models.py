@@ -125,9 +125,10 @@ class AllinkBaseModel(AllinkInvalidatePlaceholderCacheMixin, models.Model):
     def fetch_categories(self):
         return self.categories.all()
 
+    # deprecated
     @cached_property
     def show_detail_link(self):
-        return True if getattr(self, 'content_placeholder') else False
+        return True
 
     @classmethod
     def get_can_have_categories(cls):
@@ -480,7 +481,7 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
 
     def get_selected_entries(self, filters={}):
         queryset = self.fetch_manual_entries.filter(**filters)
-        return self._apply_ordering_to_queryset_for_display(queryset)
+        return self._get_queryset_with_prefetch_related(self._apply_ordering_to_queryset_for_display(queryset))
 
     def get_model_name(self):
         return self.data_model._meta.model_name
@@ -653,7 +654,7 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
         """
 
         # apply filters from request
-        queryset = self._apply_filtering_to_queryset_for_display(self.data_model.objects.active().prefetch_related('categories').filter(**filters))
+        queryset = self._apply_filtering_to_queryset_for_display(self.data_model.objects.active().filter(**filters))
 
         if self.categories.exists() or category:
             if category:
@@ -666,13 +667,13 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
 
         ordered_qs = self._apply_ordering_to_queryset_for_display(queryset)
 
-        # hook for perfecting related to make the cache more effective
-        ordered_qs = self.get_queryset_with_prefetch_related(ordered_qs)
+        # hook for prefetching related
+        ordered_qs = self._get_queryset_with_prefetch_related(ordered_qs)
 
         return ordered_qs
 
-    def get_queryset_with_prefetch_related(self, ordered_qs):
-        return ordered_qs
+    def _get_queryset_with_prefetch_related(self, ordered_qs):
+        return ordered_qs.prefetch_related('translations', 'preview_image')
 
 
 class AllinkBaseSearchPlugin(CMSPlugin):

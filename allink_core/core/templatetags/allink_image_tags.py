@@ -43,7 +43,8 @@ def get_width_alias_from_plugin(context):
             while (column_plugin is None):
                 if potential_column.plugin_type == 'CMSAllinkContentColumnPlugin':
                     column_plugin = potential_column
-                potential_column = potential_column.parent.get_plugin_instance()[0]
+                else:
+                    potential_column = potential_column.parent.get_plugin_instance()[0]
             if column_plugin.template == 'col-1':
                 return '1-of-1'
             elif column_plugin.template == 'col-1-1':

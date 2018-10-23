@@ -7,9 +7,6 @@ from allink_core.core.loading import get_model
 
 News = get_model('news', 'News')
 
-Config = get_model('config', 'Config')
-config = Config.get_solo()
-
 
 class NewsToolbar(AllinkBaseModifierMixin, CMSToolbar):
     model = News

@@ -90,5 +90,4 @@ class AllinkTitleExtensionToolbar(ExtensionToolbar):
                     '%s %s' % (self.action, title), url=url, disabled=not self.toolbar.edit_mode
                 )
 
-if getattr(Config.get_solo(), 'config_allink_title_toolbar_enabled', True):
-    toolbar_pool.register(AllinkTitleExtensionToolbar)
+toolbar_pool.register(AllinkTitleExtensionToolbar)

@@ -217,7 +217,7 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
 
     def get_queryset_by_category(self, instance, filters, request):
         # manual entries
-        if instance.fetch_manual_entries:
+        if instance.fetch_manual_entries:  # TODO unnecessary query? split up into two different Plugins?
             object_list = instance.get_selected_entries(filters=filters)
         # category navigation and no category "all" (only first category is relevant)
         elif instance.category_navigation_enabled and not instance.category_navigation_all:

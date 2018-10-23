@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-03 09:17+0200\n"
+"POT-Creation-Date: 2018-10-22 14:13+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,19 +18,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: allink_core/core_apps/allink_legacy_redirect/admin.py:18
+#: allink_core/core_apps/allink_legacy_redirect/admin.py:17
 msgid "New Page"
 msgstr "Neue Seite"
 
-#: allink_core/core_apps/allink_legacy_redirect/admin.py:46
+#: allink_core/core_apps/allink_legacy_redirect/admin.py:45
 msgid "Test redirect"
 msgstr "Weiterleitung testen"
 
-#: allink_core/core_apps/allink_legacy_redirect/admin.py:51
+#: allink_core/core_apps/allink_legacy_redirect/admin.py:50
 msgid "Manual testing"
 msgstr "Manuell testen"
 
-#: allink_core/core_apps/allink_legacy_redirect/admin.py:55
+#: allink_core/core_apps/allink_legacy_redirect/admin.py:54
 #, fuzzy
 #| msgid "New Page"
 msgid "Page"
@@ -44,36 +44,36 @@ msgstr ""
 msgid "Legacy Redirect"
 msgstr ""
 
-#: allink_core/core_apps/allink_legacy_redirect/models.py:16
+#: allink_core/core_apps/allink_legacy_redirect/models.py:17
 msgid "Old Link"
 msgstr "Alter Link"
 
-#: allink_core/core_apps/allink_legacy_redirect/models.py:19
+#: allink_core/core_apps/allink_legacy_redirect/models.py:21
 msgid "Overwrite Link"
 msgstr "Externer Link"
 
-#: allink_core/core_apps/allink_legacy_redirect/models.py:23
+#: allink_core/core_apps/allink_legacy_redirect/models.py:25
 msgid "Overwrites 'New Page', use for special urls that are not listed there"
 msgstr "Überschreibt 'Neue Seite'"
 
-#: allink_core/core_apps/allink_legacy_redirect/models.py:27
+#: allink_core/core_apps/allink_legacy_redirect/models.py:29
 msgid "Active"
 msgstr "Aktiv"
 
-#: allink_core/core_apps/allink_legacy_redirect/models.py:31
+#: allink_core/core_apps/allink_legacy_redirect/models.py:33
 msgid "Match subpages"
 msgstr "Auf Unterseiten anwenden"
 
-#: allink_core/core_apps/allink_legacy_redirect/models.py:33
+#: allink_core/core_apps/allink_legacy_redirect/models.py:35
 msgid "If True, matches all subpages and redirects them to this link."
 msgstr ""
 "Falls gesetzt, werden alle Unterseiten des alten Links auch weitergeleitet."
 
-#: allink_core/core_apps/allink_legacy_redirect/models.py:36
+#: allink_core/core_apps/allink_legacy_redirect/models.py:38
 msgid "Result of last test"
 msgstr "Resultat des letzten Tests"
 
-#: allink_core/core_apps/allink_legacy_redirect/models.py:38
+#: allink_core/core_apps/allink_legacy_redirect/models.py:40
 msgid ""
 "Was the last automatic test successfull? (True = Yes, False = No, None = Not "
 "yet tested)"
@@ -81,29 +81,29 @@ msgstr ""
 "War der letzte automatische Test erfolgreich? (True = Ja, False = Nein, None "
 "= Bisher nicht getestet)"
 
-#: allink_core/core_apps/allink_legacy_redirect/models.py:41
+#: allink_core/core_apps/allink_legacy_redirect/models.py:43
 msgid "Date of last test"
 msgstr "Datum des letzten Tests"
 
-#: allink_core/core_apps/allink_legacy_redirect/models.py:46
+#: allink_core/core_apps/allink_legacy_redirect/models.py:48
 msgid "Redirect when logged out"
 msgstr ""
 
-#: allink_core/core_apps/allink_legacy_redirect/models.py:48
+#: allink_core/core_apps/allink_legacy_redirect/models.py:50
 msgid ""
 "If True, current site will not redirect when user is logged in. If False, "
 "the page will be redirected."
 msgstr ""
 
-#: allink_core/core_apps/allink_legacy_redirect/models.py:51
+#: allink_core/core_apps/allink_legacy_redirect/models.py:53
 msgid "Language"
 msgstr ""
 
-#: allink_core/core_apps/allink_legacy_redirect/models.py:59
+#: allink_core/core_apps/allink_legacy_redirect/models.py:61
 msgid "Legacy Link"
 msgstr ""
 
-#: allink_core/core_apps/allink_legacy_redirect/models.py:60
+#: allink_core/core_apps/allink_legacy_redirect/models.py:62
 msgid "Legacy Links"
 msgstr ""
 

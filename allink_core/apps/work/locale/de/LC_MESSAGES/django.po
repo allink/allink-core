@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-03 09:17+0200\n"
+"POT-Creation-Date: 2018-10-22 14:13+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,31 +18,31 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: allink_core/apps/work/abstract_models.py:29
+#: allink_core/apps/work/abstract_models.py:27
 msgid "Preview Image"
 msgstr "Vorschaubild"
 
-#: allink_core/apps/work/abstract_models.py:51
+#: allink_core/apps/work/abstract_models.py:49
 msgid "Project / Reference"
 msgstr "Projekt / Referenz"
 
-#: allink_core/apps/work/abstract_models.py:52
+#: allink_core/apps/work/abstract_models.py:50
 msgid "Projects / References"
 msgstr "Projekte / Referenzen"
 
-#: allink_core/apps/work/abstract_models.py:62
+#: allink_core/apps/work/abstract_models.py:60
 msgid "Slug"
 msgstr ""
 
-#: allink_core/apps/work/abstract_models.py:66
+#: allink_core/apps/work/abstract_models.py:64
 msgid "Leave blank to auto-generate a unique slug."
 msgstr "Leer lassen, um den Slug automatisch zu generieren."
 
-#: allink_core/apps/work/abstract_models.py:69
+#: allink_core/apps/work/abstract_models.py:67
 msgid "Lead Text"
 msgstr "Lead Text"
 
-#: allink_core/apps/work/abstract_models.py:70
+#: allink_core/apps/work/abstract_models.py:68
 msgid ""
 "Teaser text that in some cases is used in the list view and/or in the detail "
 "view."
@@ -50,13 +50,22 @@ msgstr ""
 "Teaser-Text, welcher in der Listenansicht und/oder in der Detailansicht "
 "verwendet wird."
 
-#: allink_core/apps/work/abstract_models.py:84
+#: allink_core/apps/work/abstract_models.py:82
 msgid ""
 "Select and arrange specific entries, or, leave blank to select all. (If "
 "manual entries are selected the category filtering will be ignored.)"
 msgstr ""
 "Wählen und ordnen Sie spezifische Einträge oder leer lassen, um alle zu "
 "wählen. (Kategorienfilterung wird bei manuellen Einträgen nicht angewandt.)"
+
+#: allink_core/apps/work/abstract_models.py:86
+msgid "Apphook Page"
+msgstr ""
+
+#: allink_core/apps/work/abstract_models.py:90
+msgid ""
+"If provided, this Apphook-Page will be used to generate the detail link."
+msgstr ""
 
 #: allink_core/apps/work/cms_apps.py:8
 msgid "Work Apphook"

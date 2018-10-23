@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-03 09:17+0200\n"
+"POT-Creation-Date: 2018-10-22 14:13+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,50 +18,50 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: allink_core/apps/events/abstract_models.py:34
+#: allink_core/apps/events/abstract_models.py:33
 msgid "Preview Image"
 msgstr "Vorschaubild"
 
-#: allink_core/apps/events/abstract_models.py:41
+#: allink_core/apps/events/abstract_models.py:40
 #: allink_core/apps/events/admin.py:25
 msgid "Template"
 msgstr ""
 
-#: allink_core/apps/events/abstract_models.py:42
+#: allink_core/apps/events/abstract_models.py:41
 msgid "Choose a template."
 msgstr "Wählen Sie ein Template"
 
-#: allink_core/apps/events/abstract_models.py:60
+#: allink_core/apps/events/abstract_models.py:59
 msgid "Event Form enabled"
 msgstr "Event-Formular aktiviert"
 
-#: allink_core/apps/events/abstract_models.py:65
+#: allink_core/apps/events/abstract_models.py:64
 #, fuzzy
 #| msgid "Event Date"
 msgid "Event Date/ Time"
 msgstr "Event-Datum"
 
-#: allink_core/apps/events/abstract_models.py:82
+#: allink_core/apps/events/abstract_models.py:81
 msgid "Event"
 msgstr ""
 
-#: allink_core/apps/events/abstract_models.py:83
+#: allink_core/apps/events/abstract_models.py:82
 msgid "Events"
 msgstr ""
 
-#: allink_core/apps/events/abstract_models.py:105
+#: allink_core/apps/events/abstract_models.py:104
 msgid "Slug"
 msgstr ""
 
-#: allink_core/apps/events/abstract_models.py:109
+#: allink_core/apps/events/abstract_models.py:108
 msgid "Leave blank to auto-generate a unique slug."
 msgstr "Leer lassen, um den Slug automatisch zu generieren."
 
-#: allink_core/apps/events/abstract_models.py:112
+#: allink_core/apps/events/abstract_models.py:111
 msgid "Lead Text"
 msgstr ""
 
-#: allink_core/apps/events/abstract_models.py:113
+#: allink_core/apps/events/abstract_models.py:112
 msgid ""
 "Teaser text that in some cases is used in the list view and/or in the detail "
 "view."
@@ -69,17 +69,26 @@ msgstr ""
 "Teaser-Text, welcher in der Listenansicht und/oder in der Detailansicht "
 "verwendet wird."
 
-#: allink_core/apps/events/abstract_models.py:119
+#: allink_core/apps/events/abstract_models.py:118
 msgid "Costs"
 msgstr "Kosten"
 
-#: allink_core/apps/events/abstract_models.py:133
+#: allink_core/apps/events/abstract_models.py:132
 msgid ""
 "Select and arrange specific entries, or, leave blank to select all. (If "
 "manual entries are selected the category filtering will be ignored.)"
 msgstr ""
 "Wählen und ordnen Sie spezifische Einträge oder leer lassen, um alle zu "
 "wählen. (Kategorienfilterung wird bei manuellen Einträgen nicht angewandt.)"
+
+#: allink_core/apps/events/abstract_models.py:136
+msgid "Apphook Page"
+msgstr ""
+
+#: allink_core/apps/events/abstract_models.py:140
+msgid ""
+"If provided, this Apphook-Page will be used to generate the detail link."
+msgstr ""
 
 #: allink_core/apps/events/admin.py:75
 msgid "Published From/To"
@@ -95,7 +104,7 @@ msgstr ""
 msgid "Events menu"
 msgstr "Event-Zeit"
 
-#: allink_core/apps/events/cms_toolbars.py:34
+#: allink_core/apps/events/cms_toolbars.py:31
 msgid "Forms"
 msgstr "Formulare"
 

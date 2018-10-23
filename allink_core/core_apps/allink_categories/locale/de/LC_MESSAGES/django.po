@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-03 09:17+0200\n"
+"POT-Creation-Date: 2018-10-22 14:13+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -47,7 +47,7 @@ msgid "allink"
 msgstr ""
 
 #: allink_core/core_apps/allink_categories/cms_toolbars.py:27
-#: allink_core/core_apps/allink_categories/models.py:99
+#: allink_core/core_apps/allink_categories/models.py:100
 msgid "Categories"
 msgstr "Kategorien"
 
@@ -75,6 +75,6 @@ msgstr ""
 msgid "Provide a “slug” or leave blank for an automatically generated one."
 msgstr "Leer lassen, um den Slug automatisch zu generieren."
 
-#: allink_core/core_apps/allink_categories/models.py:98
+#: allink_core/core_apps/allink_categories/models.py:99
 msgid "Category"
 msgstr "Kategorie"
