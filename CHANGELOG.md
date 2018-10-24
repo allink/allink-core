@@ -13,7 +13,26 @@ Each release is divided into the following main categories:
 - FIXES: General bugfixes
 
 
-## v1.0.2 (under development)
+## v1.1.0 (under development)
+
+### IMPORTANT
+
+###### SETTINGS
+
+###### TEMPLATES
+
+###### URLS
+
+###### REQUIREMENTS
+
+###### DATA MIGRATIONS
+
+### NEW
+
+### FIXES
+
+
+## v1.0.2
 
 ### IMPORTANT
 - all plugin models inherit from AllinkBaseAppContentPlugin now have a field 'apphook_page'. Especially the ones created in the project itself (by new_app or fork_app)now have to be updated as well. Otherwise the plugins will fail when edited, because the Field was not added.
