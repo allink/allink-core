@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-22 14:13+0200\n"
+"POT-Creation-Date: 2018-11-08 15:03+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -388,7 +388,7 @@ msgstr ""
 "Kein Iconset konfiguriert. Bitte konfigurieren Sie mindestens ein Iconset "
 "vor der Nutzung des Widgets."
 
-#: allink_core/core_apps/allink_button_link/templates/allink_button_link/item.html:77
+#: allink_core/core_apps/allink_button_link/templates/allink_button_link/item.html:75
 msgid "Member Area"
 msgstr "Mitgliederbereich"
 

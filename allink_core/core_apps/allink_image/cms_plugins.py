@@ -122,4 +122,4 @@ class CMSAllinkImagePlugin(CMSPluginBase):
 
     @classmethod
     def get_render_queryset(cls):
-        return cls.model._default_manager.all().select_related('picture')
+        return cls.model._default_manager.all()

@@ -71,22 +71,8 @@
     {% endif %}
 
     {# the actual link text #}
-    <span class="button-link-plugin__text">
-        {# if button is login-button to member area, check if logged in and in group 'members' #}
-        {% if instance.link_special == 'account_login' and user.is_authenticated %}
-            {% trans 'Member Area' %}
-        {% else %}
-            {{ instance.label }}
-        {% endif %}
-
-        {# display the file's name' and 'description' attribute when linked to a file #}
-        {% if instance.link_file.name %}
-            {{ instance.link_file.name }}
-        {% endif %}
-        {% if instance.link_file.description %}
-            {{ instance.link_file.description }}
-        {% endif %}
-    </span>
+    {# quick and dirty fix that created an empty space at the link text. But since changes here are made very seldom this is bearable ;) #}
+    <span class="button-link-plugin__text">{# if button is login-button to member area, check if logged in and in group 'members' #}{% if instance.link_special == 'account_login' and user.is_authenticated %}{% trans 'Member Area' %}{% else %}{{ instance.label }}{% endif %}{# display the file's name' and 'description' attribute when linked to a file #}{% if instance.link_file.name %}{{ instance.link_file.name }}{% endif %}{% if instance.link_file.description %}{{ instance.link_file.description }}{% endif %}</span>
 
 </a>
 {% if instance.form_modal_enabled %}

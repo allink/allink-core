@@ -348,7 +348,7 @@ class CMSAllinkButtonLinkPlugin(CMSPluginBase):
 
     @classmethod
     def get_render_queryset(cls):
-        return cls.model._default_manager.all().select_related('video_file', 'video_poster_image', 'link_file', 'link_page', 'link_apphook_page')
+        return cls.model._default_manager.all()
 
     def icon_src(self, instance):
         return static('aldryn_bootstrap3/img/type/button.png')

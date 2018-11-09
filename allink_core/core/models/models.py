@@ -6,7 +6,7 @@ from importlib import import_module
 
 from django.conf import settings
 from django.db import models
-from django.db.models import Q
+from django.db.models import Q, QuerySet
 from django.db.models.signals import post_delete
 from django.core.urlresolvers import NoReverseMatch
 from django.core.urlresolvers import reverse
@@ -598,15 +598,19 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
                         category_navigation.append(category)
         else:
             # override auto category nav
-            if self.fetch_category_navigation:
-                for category in self.fetch_category_navigation:
-                    if self.get_render_queryset_for_display(category).exists():
-                        category_navigation.append(category)
+            if self.category_navigation.exists():
+                for category in self.category_navigation.all():
+                    if isinstance(self.get_render_queryset_for_display(category), QuerySet):
+                        if self.get_render_queryset_for_display(category).exists():
+                            category_navigation.append(category)
+                    else:
+                        if len(self.get_render_queryset_for_display(category)):
+                            category_navigation.append(category)
             # auto category nav
             else:
                 if self.fetch_categories:
                     for category in self.fetch_categories:
-                        if self.get_render_queryset_for_display(category).exists():
+                        if len(self.get_render_queryset_for_display(category)) or self.get_render_queryset_for_display(category).exists():
                             category_navigation.append(category)
                 # auto category nav, if no categories are specified
                 else:
@@ -641,7 +645,13 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
             return queryset.random()
         # category
         elif self.manual_ordering == AllinkBaseAppContentPlugin.CATEGORY:
-            return queryset.category()
+            # return queryset.category()
+            # https://code.djangoproject.com/ticket/24218
+            distinct_people = []
+            for person in queryset.category():
+                if person not in distinct_people:
+                    distinct_people.append(person)
+            return distinct_people
         else:
             return queryset.distinct()
 
@@ -673,6 +683,8 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
         return ordered_qs
 
     def _get_queryset_with_prefetch_related(self, ordered_qs):
+        if type(ordered_qs) is list:
+            return ordered_qs
         return ordered_qs.prefetch_related('translations', 'preview_image')
 
 
