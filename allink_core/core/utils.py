@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 import re
+import os
 from os.path import splitext
 from django.db.models import Q
 from allink_core.core.constants import STOP_WORDS_RE
 from django.conf import settings
 from django.utils.text import get_valid_filename as get_valid_filename_django
 from django.template.defaultfilters import slugify
-
-
+from filer.models import Folder
 _base_url = None
 
 
@@ -208,12 +208,35 @@ def get_all_fields_from_form(instance):
 
 
 def update_context_google_tag_manager(context, page_name='NOPAGE_NAME', page_id='NOPAGE_ID', plugin_id='NOPLUGIN_ID', name='NONAME'):
-    # form_name = '{}{}_{}_{}'.format(page_name, page_id, plugin_id, name)
-    # If we have a form we will compile a id like this id="Kontakt88_plugin7451_SupportView"
-    # If its a Button Link we will try to compile it like  this id="Kontakt88_plugin7451_Support-Formular"
-    # If the Button Link Plugin is inside a static placeholder we will use the placeholder.slot and id instead of
-    # page infos
+    """
+    form_name = '{}{}_{}_{}'.format(page_name, page_id, plugin_id, name)
+    If we have a form we will compile a id like this id="Kontakt88_plugin7451_SupportView"
+    If its a Button Link we will try to compile it like  this id="Kontakt88_plugin7451_Support-Formular"
+    If the Button Link Plugin is inside a static placeholder we will use the placeholder.slot and id instead of
+    page infos
+    """
     form_name = '{}{}_plugin{}_{}'.format(page_name, page_id, plugin_id, name)
     form_name = form_name.replace(' ', '-')
     context.update({'form_name': form_name})
     return context
+
+
+def create_folder_structure(parent_name, path=None):
+    """
+    takes a root folder name and the final path
+    eg.
+    parent_name = 'Order'
+    path = '<<oder_number>>/'
+
+    creates the django-filer folder structure
+    return the deepest folder
+    """
+    parent, __ = Folder.objects.get_or_create(name=parent_name)
+    path = os.path.dirname(path)
+    dirs = []
+    while path:
+        path, name = os.path.split(path)
+        dirs.append(name)
+    for name in dirs[::-1]:
+        parent, __ = Folder.objects.get_or_create(name=name, parent=parent)
+    return parent

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-08 15:03+0100\n"
+"POT-Creation-Date: 2018-11-23 14:58+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: allink_core/apps/config/abstract_models.py:21
+#: allink_core/apps/config/abstract_models.py:20
 msgid "og:image"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:23
+#: allink_core/apps/config/abstract_models.py:22
 msgid ""
 "Default preview image when page/post is shared on Facebook. <br>Min. 1200 x "
 "630 for best results."
@@ -30,59 +30,59 @@ msgstr ""
 "Standard-Vorschaubild für das Sharing einer Seite oder eines Posts auf "
 "Facebook. <br>Min. 1200 x 630 px"
 
-#: allink_core/apps/config/abstract_models.py:28
+#: allink_core/apps/config/abstract_models.py:27
 #: allink_core/apps/config/admin.py:26
 msgid "Theme Color"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:29
+#: allink_core/apps/config/abstract_models.py:28
 #: allink_core/apps/config/admin.py:26
 msgid "Theme color for Android Chrome"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:35
+#: allink_core/apps/config/abstract_models.py:34
 msgid "Mask icon color"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:36
+#: allink_core/apps/config/abstract_models.py:35
 #: allink_core/apps/config/admin.py:27
 msgid "Mask icon color for safari-pinned-tab.svg"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:42
+#: allink_core/apps/config/abstract_models.py:41
 msgid "msapplication TileColor"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:43
+#: allink_core/apps/config/abstract_models.py:42
 #: allink_core/apps/config/admin.py:28
 msgid "MS application TitleColor Field"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:49
+#: allink_core/apps/config/abstract_models.py:48
 msgid "Gallery Plugin max length of caption text Field"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:54
+#: allink_core/apps/config/abstract_models.py:53
 msgid "Google Site Verification Code"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:60
+#: allink_core/apps/config/abstract_models.py:59
 msgid "Default to email"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:65
+#: allink_core/apps/config/abstract_models.py:64
 msgid "Default from email"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:73
+#: allink_core/apps/config/abstract_models.py:72
 msgid "Configuration"
 msgstr "Konfiguration"
 
-#: allink_core/apps/config/abstract_models.py:171
+#: allink_core/apps/config/abstract_models.py:170
 msgid "Base title"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:174
+#: allink_core/apps/config/abstract_models.py:173
 msgid ""
 "Default base title, Is also used for default base og:title when page/post is "
 "shared on Facebook. <br>If not supplied the name form Django Sites will be "
@@ -92,23 +92,23 @@ msgstr ""
 "Sharen auf Facebook gebraucht. <br>Wenn nicht gesetzt, wird als Standard der "
 "name von Django-Sites verwendet."
 
-#: allink_core/apps/config/abstract_models.py:179
+#: allink_core/apps/config/abstract_models.py:178
 msgid "Newsletter Signup Text"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:180
+#: allink_core/apps/config/abstract_models.py:179
 msgid "Teaser text in the newsletter signup view (data usage explainer)."
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:185
+#: allink_core/apps/config/abstract_models.py:184
 msgid "Declaration of consent"
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:186
+#: allink_core/apps/config/abstract_models.py:185
 msgid "Detailed declaration of consent."
 msgstr ""
 
-#: allink_core/apps/config/abstract_models.py:199
+#: allink_core/apps/config/abstract_models.py:198
 msgid "Special Subnav enabled?"
 msgstr ""
 

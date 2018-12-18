@@ -1,7 +1,7 @@
 {% load thumbnail %}
 
 {% if instance.video_id %}
-    <div class="content-plugin video-embed-plugin">
+    <div class="content-plugin video-embed-plugin {{ instance.css_classes }}">
         <div class="embed-container {% if instance.ratio %}ratio-{{instance.ratio}}{% endif %}">
             {% comment %}
                 YouTube

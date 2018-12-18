@@ -48,13 +48,13 @@
                 {# utility block #}
                 {% block video_container_before %}{% endblock video_container_before %}
 
-                <div class="content-section__video-container">
+                <div class="content-section__video-container on-pause autoplay-enabled">
 
                     {# utility block #}
                     {% block video_container_inner_before %}{% endblock video_container_inner_before %}
 
-                    <video id="video-{{ instance.id }}" class="the-video on-pause" playsinline muted autoplay loop poster="{% thumbnail instance.video_poster_image 1400x9999 %}">
-                        <source src="{{ instance.video_file.url }}" type="video/mp4">
+                    <video id="video-{{ instance.id }}" class="the-video" playsinline muted loop data-autoplay data-poster="{% thumbnail instance.video_poster_image 1400x9999 %}">
+                        <source data-src="{{ instance.video_file.url }}" type="video/mp4">
                     </video>
 
                     <div class="content-section__video-mobile-image">
@@ -130,7 +130,7 @@
                                     {# utility block #}
                                     {% block section_heading_inner_before %}{% endblock section_heading_inner_before %}
                                     {# the actual heading #}
-                                    {{ instance.title }}
+                                    {{ instance.title|safe }}
                                     {# utility block #}
                                     {% block section_heading_inner_after %}{% endblock section_heading_inner_after %}
                                 </h2>

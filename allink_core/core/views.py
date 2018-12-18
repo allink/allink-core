@@ -1,4 +1,3 @@
-
 # -*- coding: utf-8 -*-
 
 import json
@@ -41,7 +40,9 @@ class AllinkBasePluginLoadMoreView(ListView):
         return queryset
 
     def get_queryset_by_category(self):
-        filters = {re.sub('filter-%s-' % self.plugin.data_model._meta.model_name, '', k): urllib.parse.unquote_plus(v) for k, v in self.request.GET.items() if (k.startswith('filter-%s-' % self.plugin.data_model._meta.model_name) and v != 'None')}
+        filters = {re.sub('filter-%s-' % self.plugin.data_model._meta.model_name, '', k): urllib.parse.unquote_plus(v)
+                   for k, v in self.request.GET.items() if
+                   (k.startswith('filter-%s-' % self.plugin.data_model._meta.model_name) and v != 'None')}
         if self.plugin.manual_entries.exists():
             if hasattr(self, 'category'):
                 return self.plugin.get_selected_entries(filters=filters).filter_by_category(self.category)
@@ -117,11 +118,16 @@ class AllinkBasePluginLoadMoreView(ListView):
             if context['page_obj'].number > 1:
                 context.update({'appended': True})
         json_context = {}
-        json_context['rendered_content'] = render_to_string(self.get_template_names(context)[0], context=context, request=self.request)
-        if self.plugin.paginated_by > 0 and context['page_obj'].has_next():  # no need to create next_page_url when no pagination should be displayed
+        json_context['rendered_content'] = render_to_string(self.get_template_names(context)[0], context=context,
+                                                            request=self.request)
+        if self.plugin.paginated_by > 0 and context[
+            'page_obj'].has_next():  # no need to create next_page_url when no pagination should be displayed
             get_params = '&'.join(['%s=%s' % (k, v) for k, v in self.request.GET.items()])
-            json_context['next_page_url'] = reverse('{}:more'.format(self.model._meta.model_name), kwargs={'page': context['page_obj'].next_page_number()}) + '?api_request=1&plugin_id={}&{}'.format(self.plugin.id, get_params)
-            json_context['next_page_url'] = json_context['next_page_url'] + '&category={}'.format(self.category_id) if hasattr(self, 'category_id') else json_context['next_page_url']
+            json_context['next_page_url'] = reverse('{}:more'.format(self.model._meta.model_name), kwargs={
+                'page': context['page_obj'].next_page_number()}) + '?api_request=1&plugin_id={}&{}'.format(
+                self.plugin.id, get_params)
+            json_context['next_page_url'] = json_context['next_page_url'] + '&category={}'.format(
+                self.category_id) if hasattr(self, 'category_id') else json_context['next_page_url']
         else:
             json_context['next_page_url'] = None
         json_context['no_results'] = False if self.object_list else True
@@ -165,6 +171,12 @@ class AllinkBaseCreateView(CreateView):
     """
     plugin = None
 
+    def get(self, request, *args, **kwargs):
+        self.object = None
+        response = super(AllinkBaseCreateView, self).get(request, *args, **kwargs)
+        response['X-Robots-Tag'] = 'noindex'
+        return response
+
     def form_invalid(self, form):
         """
          If the form is invalid, re-render the context data with the
@@ -207,7 +219,8 @@ class AllinkBaseCreateView(CreateView):
 
         # form_name += '_' + self.__class__.__name__
         plugin_id = getattr(self.plugin, 'id') if self.plugin else None
-        context = update_context_google_tag_manager(context, self.request.current_page.__str__(), self.request.current_page.id, plugin_id, self.__class__.__name__)
+        context = update_context_google_tag_manager(context, self.request.current_page.__str__(),
+                                                    self.request.current_page.id, plugin_id, self.__class__.__name__)
         # EventsRegister view doesn't have a plugin instance
         if self.plugin:
             context.update({'instance': self.plugin})
@@ -276,7 +289,8 @@ class AllinkBaseAjaxFormView(FormView):
         context.update({'instance': self.plugin})
 
         json_context = {}
-        json_context['rendered_content'] = render_to_string(self.get_template_names()[0], context=context, request=self.request)
+        json_context['rendered_content'] = render_to_string(self.get_template_names()[0], context=context,
+                                                            request=self.request)
         json_context['no_results'] = False if context['object_list'] else True
         return HttpResponse(content=json.dumps(json_context), content_type='application/json', status=200)
 

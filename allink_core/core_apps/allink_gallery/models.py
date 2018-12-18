@@ -90,6 +90,7 @@ class AllinkGalleryPlugin(CMSPlugin):
 
     def save(self, *args, **kwargs):
         super(AllinkGalleryPlugin, self).save(*args, **kwargs)
+        AllinkGalleryImagePlugin.objects.filter(parent_id=self.id).update(template=self.template, ratio=self.ratio)
 
 
 @python_2_unicode_compatible
@@ -105,14 +106,23 @@ class AllinkGalleryImagePlugin(CMSPlugin):
         blank=True,
         null=True
     )
+    template = models.CharField(
+        _(u'Template'),
+        help_text=_(u'Choose a template.'),
+        max_length=50,
+    )
+    ratio = models.CharField(
+        _(u'Ratio'),
+        max_length=50,
+        blank=True,
+        null=True
+    )
     image = FilerImageField(verbose_name=_(u'Image'))
 
     def __str__(self):
         return u'{}'.format(self.image)
 
-    @property
-    def template(self):
-        return self.parent.allink_gallery_allinkgalleryplugin.template
-
     def save(self, *args, **kwargs):
+        self.template = self.parent.allink_gallery_allinkgalleryplugin.template
+        self.ratio = self.parent.allink_gallery_allinkgalleryplugin.ratio
         super(AllinkGalleryImagePlugin, self).save(*args, **kwargs)

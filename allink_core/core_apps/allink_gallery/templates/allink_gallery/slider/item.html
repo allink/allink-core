@@ -6,7 +6,7 @@
     {% endif %}
 
     <div class="gallery-slide__image-container">
-        {% render_image image=instance.image ratio=instance.get_parent.get_plugin_instance.0.ratio lazyload_enabled=False %}
+        {% render_image image=instance.image ratio=instance.ratio lazyload_enabled=False %}
     </div>
 
     {% if instance.title or instance.text %}

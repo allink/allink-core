@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-08 15:03+0100\n"
+"POT-Creation-Date: 2018-11-23 14:58+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -68,7 +68,7 @@ msgid "A Select Dropdown will be displayed for this Fields."
 msgstr "Für diese Felder wird ein Dropdown angezeigt."
 
 #: allink_core/core/cms_plugins.py:68 allink_core/core/cms_plugins.py:299
-#: allink_core/core/models/models.py:368 allink_core/core/models/models.py:684
+#: allink_core/core/models/models.py:368 allink_core/core/models/models.py:696
 #: allink_core/core_apps/allink_info_box/cms_plugins.py:26
 #: allink_core/core_apps/allink_info_box/models.py:33
 msgid "Template"
@@ -324,7 +324,7 @@ msgstr "Meta-Beschreibung für Suchmaschinen und falls auf Facebook geteilt."
 msgid "Description when shared on Facebook/ Twitter."
 msgstr "Beschreibung auf Facebook oder Twitter, falls geteilt."
 
-#: allink_core/core/models/models.py:369 allink_core/core/models/models.py:685
+#: allink_core/core/models/models.py:369 allink_core/core/models/models.py:697
 #: allink_core/core_apps/allink_info_box/models.py:34
 msgid "Choose a template."
 msgstr "Wählen Sie ein Template."
@@ -440,77 +440,77 @@ msgstr ""
 msgid "All"
 msgstr "Alle"
 
-#: allink_core/core/models/models.py:736
+#: allink_core/core/models/models.py:748
 msgid "Send internal e-mail"
 msgstr "Internes E-Mail versenden"
 
-#: allink_core/core/models/models.py:738
+#: allink_core/core/models/models.py:750
 msgid "Send confirmation mail to defined internal e-mail addresses."
 msgstr ""
 "Falls angewählt, wird ein Bestätigungsmail an die definierten E-Mail-"
 "Aderessen verschickt."
 
-#: allink_core/core/models/models.py:747
+#: allink_core/core/models/models.py:759
 msgid "Internal e-mail addresses"
 msgstr "Interne E-Mail-Adresse"
 
-#: allink_core/core/models/models.py:750
+#: allink_core/core/models/models.py:762
 msgid "Sender e-mail address"
 msgstr "Absender E-Mail-Adresse"
 
-#: allink_core/core/models/models.py:755
+#: allink_core/core/models/models.py:767
 msgid "Send external e-mail"
 msgstr "Externes E-Mail versenden"
 
-#: allink_core/core/models/models.py:757
+#: allink_core/core/models/models.py:769
 msgid "Send confirmation mail to customer."
 msgstr "Falls angewählt, wird ein Bestätigungsmail an den Kunden geschickt."
 
-#: allink_core/core/models/models.py:760
+#: allink_core/core/models/models.py:772
 msgid "Thank you text"
 msgstr "Dankestext"
 
-#: allink_core/core/models/models.py:763
+#: allink_core/core/models/models.py:775
 msgid "This text will be shown, after form completion."
 msgstr "Dieser Text wird angezeigt, nachdem das Formular abgesendet wurde."
 
-#: allink_core/core/models/models.py:766
+#: allink_core/core/models/models.py:778
 msgid "Display labels"
 msgstr "Labels darstellen"
 
-#: allink_core/core/models/models.py:808
+#: allink_core/core/models/models.py:820
 msgid "Street"
 msgstr "Strasse"
 
-#: allink_core/core/models/models.py:814
+#: allink_core/core/models/models.py:826
 msgid "Street Nr."
 msgstr "Nummer"
 
-#: allink_core/core/models/models.py:820
+#: allink_core/core/models/models.py:832
 msgid "Address Additional"
 msgstr "Adresszusatz"
 
-#: allink_core/core/models/models.py:826
+#: allink_core/core/models/models.py:838
 msgid "Zip Code"
 msgstr "Postleitzahl"
 
-#: allink_core/core/models/models.py:831
+#: allink_core/core/models/models.py:843
 msgid "Place"
 msgstr "Ort"
 
-#: allink_core/core/models/models.py:837
+#: allink_core/core/models/models.py:849
 msgid "Country"
 msgstr ""
 
-#: allink_core/core/models/models.py:850
-#: allink_core/core/models/models.py:1006
-#: allink_core/core/models/models.py:1185
+#: allink_core/core/models/models.py:862
+#: allink_core/core/models/models.py:1018
+#: allink_core/core/models/models.py:1197
 #: allink_core/core/templates/allink_core/contact/forms/request_base.html:57
 msgid "Phone"
 msgstr "Telefon"
 
-#: allink_core/core/models/models.py:851 allink_core/core/models/models.py:857
-#: allink_core/core/models/models.py:863
+#: allink_core/core/models/models.py:863 allink_core/core/models/models.py:869
+#: allink_core/core/models/models.py:875
 #, fuzzy
 #| msgid ""
 #| "We automatically handle phone number formatting, Please provide the "
@@ -520,69 +520,69 @@ msgid ""
 "in the following format \"+41 43 123 45 67\"."
 msgstr "Bitte die Telefonnummer im Format \"+41 43 333 30 90\" angeben."
 
-#: allink_core/core/models/models.py:856
+#: allink_core/core/models/models.py:868
 msgid "Mobile"
 msgstr ""
 
-#: allink_core/core/models/models.py:862
+#: allink_core/core/models/models.py:874
 msgid "Fax"
 msgstr ""
 
-#: allink_core/core/models/models.py:868
-#: allink_core/core/models/models.py:1174
+#: allink_core/core/models/models.py:880
+#: allink_core/core/models/models.py:1186
 #: allink_core/core/templates/allink_core/contact/forms/request_base.html:92
 msgid "Email"
 msgstr "E-Mail"
 
-#: allink_core/core/models/models.py:873
+#: allink_core/core/models/models.py:885
 msgid "Website"
 msgstr ""
 
-#: allink_core/core/models/models.py:910
+#: allink_core/core/models/models.py:922
 msgid "New Page"
 msgstr "Neue Seite"
 
-#: allink_core/core/models/models.py:913
+#: allink_core/core/models/models.py:925
 msgid "If provided, overrides the external link and New Apphook-Page."
 msgstr ""
 
-#: allink_core/core/models/models.py:917
+#: allink_core/core/models/models.py:929
 msgid "New Apphook-Page"
 msgstr ""
 
-#: allink_core/core/models/models.py:920
+#: allink_core/core/models/models.py:932
 msgid "If provided, overrides the external link."
 msgstr ""
 
-#: allink_core/core/models/models.py:925
+#: allink_core/core/models/models.py:937
 msgid "To which object directs the url."
 msgstr ""
 
-#: allink_core/core/models/models.py:930
+#: allink_core/core/models/models.py:942
 msgid "Dotted Path to referenced Model"
 msgstr ""
 
-#: allink_core/core/models/models.py:935
+#: allink_core/core/models/models.py:947
 msgid "Name of the App-URL to use."
 msgstr ""
 
-#: allink_core/core/models/models.py:945
+#: allink_core/core/models/models.py:957
 msgid "Keyword arguments used to reverse url."
 msgstr ""
 
-#: allink_core/core/models/models.py:996
+#: allink_core/core/models/models.py:1008
 msgid "Provide a valid URL to an external website."
 msgstr "Gültige URL zu einer externen Website angeben."
 
-#: allink_core/core/models/models.py:1000
+#: allink_core/core/models/models.py:1012
 msgid "Email address"
 msgstr "E-Mail-Adresse"
 
-#: allink_core/core/models/models.py:1012
+#: allink_core/core/models/models.py:1024
 msgid "Anchor"
 msgstr "Anker"
 
-#: allink_core/core/models/models.py:1015
+#: allink_core/core/models/models.py:1027
 #, fuzzy
 #| msgid ""
 #| "Appends the value only after the internal or external link.Do <em>not</"
@@ -594,46 +594,46 @@ msgstr ""
 "Hängt den Wert nur an einen internen oder externen Link. <strong>Kein</"
 "strong>  führendes \"#\"-Zeichen angeben."
 
-#: allink_core/core/models/models.py:1019
+#: allink_core/core/models/models.py:1031
 msgid "Link Target"
 msgstr ""
 
-#: allink_core/core/models/models.py:1025
+#: allink_core/core/models/models.py:1037
 msgid "file"
 msgstr "Datei"
 
-#: allink_core/core/models/models.py:1030
+#: allink_core/core/models/models.py:1042
 msgid "Special Links"
 msgstr ""
 
-#: allink_core/core/models/models.py:1036
+#: allink_core/core/models/models.py:1048
 msgid "Attributes"
 msgstr "Attribute"
 
-#: allink_core/core/models/models.py:1143
+#: allink_core/core/models/models.py:1155
 #, python-format
 msgid ""
 "%(anchor_field_verbose_name)s is not allowed together with %(field_name)s"
 msgstr ""
 "%(anchor_field_verbose_name)s kann nicht mit %(field_name)s verwendet werden."
 
-#: allink_core/core/models/models.py:1156
+#: allink_core/core/models/models.py:1168
 msgid "Salutation"
 msgstr "Anrede"
 
-#: allink_core/core/models/models.py:1162
+#: allink_core/core/models/models.py:1174
 msgid "First Name"
 msgstr "Vorname"
 
-#: allink_core/core/models/models.py:1168
+#: allink_core/core/models/models.py:1180
 msgid "Last Name"
 msgstr "Nachname"
 
-#: allink_core/core/models/models.py:1179
+#: allink_core/core/models/models.py:1191
 msgid "Company"
 msgstr "Firma"
 
-#: allink_core/core/models/models.py:1192
+#: allink_core/core/models/models.py:1204
 msgid "Message"
 msgstr "Nachricht"
 
@@ -727,23 +727,23 @@ msgstr ""
 msgid "To the top"
 msgstr ""
 
-#: allink_core/core/templates/allink_core/base_root.html:64
+#: allink_core/core/templates/allink_core/base_root.html:66
 msgid "Go to homepage"
 msgstr ""
 
-#: allink_core/core/templates/allink_core/base_root.html:65
+#: allink_core/core/templates/allink_core/base_root.html:67
 msgid "Jump to navigation"
 msgstr "Zur Navigation springen"
 
-#: allink_core/core/templates/allink_core/base_root.html:66
+#: allink_core/core/templates/allink_core/base_root.html:68
 msgid "Jump to content"
 msgstr ""
 
-#: allink_core/core/templates/allink_core/base_root.html:67
+#: allink_core/core/templates/allink_core/base_root.html:69
 msgid "Jump to footer"
 msgstr ""
 
-#: allink_core/core/templates/allink_core/base_root.html:109
+#: allink_core/core/templates/allink_core/base_root.html:111
 #: allink_core/core/templates/partials/forms/form_base.html:48
 msgid "Close"
 msgstr "Schliessen"
@@ -1065,26 +1065,33 @@ msgstr "Mehr"
 msgid "The form has been submitted successfully."
 msgstr "Das Formular wurde erfolgreich versendet."
 
-#: allink_core/core/templates/partials/forms/form_field.html:15
+#: allink_core/core/templates/partials/forms/form_field.html:16
 msgid "required"
 msgstr "Pflichtfeld"
 
-#: allink_core/core/templates/partials/forms/form_field.html:45
+#: allink_core/core/templates/partials/forms/form_field.html:19
+#: allink_core/core/templates/partials/forms/form_field.html:105
+#, fuzzy
+#| msgid "Grid Options"
+msgid "Optional"
+msgstr "Grid Optionen"
+
+#: allink_core/core/templates/partials/forms/form_field.html:47
 msgid "Open Calendar"
 msgstr ""
 
-#: allink_core/core/templates/partials/forms/form_field.html:50
+#: allink_core/core/templates/partials/forms/form_field.html:52
 msgid "Open Time Picker"
 msgstr ""
 
-#: allink_core/core/templates/partials/forms/form_field.html:57
+#: allink_core/core/templates/partials/forms/form_field.html:59
 #, fuzzy
 #| msgid "Filter Fields"
 msgid "Clear Field"
 msgstr "Filter-Felder"
 
-#: allink_core/core/templates/partials/forms/form_field.html:67
-#: allink_core/core/templates/partials/forms/form_field.html:68
+#: allink_core/core/templates/partials/forms/form_field.html:69
+#: allink_core/core/templates/partials/forms/form_field.html:70
 msgid "Select file..."
 msgstr "File auswählen"
 

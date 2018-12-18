@@ -35,8 +35,6 @@
                 {% block newsletter_form_group_before %}
                 {% endblock newsletter_form_group_before %}
 
-                {% csrf_token %}
-
                 {% block newsletter_input_group_container %}
                     <div class="form-group">
                         <input name="language" id="id_language" type="hidden" value="{{ request.LANGUAGE_CODE }}">

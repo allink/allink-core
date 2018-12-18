@@ -27,7 +27,6 @@ class CMSAllinkSignupFormPlugin(CMSPluginBase):
     module = _('allink forms')
     render_template = "allink_mailchimp/plugins/signup_form.html"
     allow_children = False
-    cache = False
 
     form_class = AllinkSignupFormPluginForm
     success_url = '/success/'

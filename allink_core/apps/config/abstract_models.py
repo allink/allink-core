@@ -14,7 +14,6 @@ from filer.models.imagemodels import Image
 from solo.models import SingletonModel
 from djangocms_text_ckeditor.fields import HTMLField
 
-
 @python_2_unicode_compatible
 class BaseConfig(SingletonModel, TranslatableModel):
     default_og_image = FilerImageField(

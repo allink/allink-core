@@ -11,6 +11,7 @@ People = get_model('people', 'People')
 class PeopleAdmin(AllinkBaseAdminSortable):
     search_fields = ('first_name', 'last_name',)
     list_display = ('first_name', 'last_name', 'get_categories', 'status', 'created', 'modified',)
+    view_on_site = False
 
     def get_fieldsets(self, request, obj=None):
         fieldsets = (

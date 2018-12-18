@@ -16,6 +16,7 @@ def check_result_status(result):
             ))
 
 
+# backwards compat
 def send_transactional_email(message, template_content, language=None, translated=False, template_name=None, async=False):
     config = MandrillConfig()
 

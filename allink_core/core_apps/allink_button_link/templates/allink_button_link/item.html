@@ -10,8 +10,7 @@
 {% if instance.link_special == 'account_logout' and user.is_authenticated %}
     <form class="button-link-plugin__form" method="post" action="{{instance.link_url_typed}}"  id="{{ form_name }}">
     {% csrf_token %}
-{% endif %}
-<a href="{{ instance.link_url_typed }}"
+{% endif %}<a href="{{ instance.link_url_typed }}"
     class="button-link-plugin__link {{instance|link_classes}}"
     {{ instance|link_attribute_string:request }}
     id="{{ form_name }}"

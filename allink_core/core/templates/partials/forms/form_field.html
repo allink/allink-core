@@ -4,17 +4,19 @@
     {{ field }}
 {% else %}
     {% block control_group %}
-        <div class="form-group field-type-{{ field|widget_type }} {% if field.errors %}has-error{% endif %}">
+        <div class="form-group field-type-{{ field|widget_type }} {% if field.errors %}has-error{% endif %} {% if is_optional %}is-optional{% endif %}">
             {% block label %}
                 {% if not nolabel and field|widget_type != 'checkboxinput' and field|widget_type != 'radioselect' %}
                     {% spaceless %}
-                        <label class="control-label {% if field.field.required %} required{% endif %}" for="{{ field.auto_id }}">
+                        <label class="control-label {% if field.field.required %} required{% endif %}"
+                               for="{{ field.auto_id }}">
                             <span class="label-text">
                                 {{ field.label|safe }}
                             </span>{% if field.field.required %}<span class="required-symbol">
                                     <span class="sr-only">({% trans "required" %})</span>
                                 </span>
-                            {% endif %}
+                        {% endif %}
+                        {% if is_optional %}<span class="control-label__optional-text">{% trans "Optional" %}</span>{% endif %}
                         </label>
                     {% endspaceless %}
                 {% endif %}
@@ -43,7 +45,7 @@
                                     <span class="calendar-btn">
                                         <span class="sr-only">{% trans "Open Calendar" %}</span>
                                     </span>
-                                {# if it's time only, we want a time button #}
+                                    {# if it's time only, we want a time button #}
                                 {% else %}
                                     <span class="time-btn">
                                         <span class="sr-only">{% trans "Open Time Picker" %}</span>
@@ -67,7 +69,6 @@
                                 <label for="{{ field.auto_id }}">{% trans "Select file..." %}</label>
                             </div>
 
-
                         {# Dropdown Select #}
 
                         {% elif field|widget_type == 'select' or field|widget_type == 'lazyselect' %}
@@ -79,11 +80,12 @@
                             {% endif %}
 
 
-                        {# Checkbox #}
+                            {# Checkbox #}
 
                         {% elif field|widget_type == 'checkboxinput' %}
                             <div class="checkbox">
-                                <label for="{{ field.auto_id }}" class="{% if field.field.required %}required{% endif %}">
+                                <label for="{{ field.auto_id }}"
+                                       class="{% if field.field.required %}required{% endif %}">
                                     {% render_field field %}
                                     <div class="custom-checkbox"></div>
                                     {% if not nolabel %}
@@ -93,25 +95,26 @@
                             </div>
 
 
-                        {# Radio #}
+                            {# Radio #}
 
                         {% elif field|widget_type == 'radioselect' %}
                             {% if not nolabel %}
                                 <div class="radio-group__label">
                                     {{ field.label|safe }}
+                                    {% if is_optional %}<span class="control-label__optional-text">{% trans "Optional" %}</span>{% endif %}
                                 </div>
                             {% endif %}
                             {% for choice in field %}
                                 <div class="radio">
                                     <label>
-                                        {{choice.tag}}<span class="custom-radio"></span>
-                                        {{choice.choice_label}}
+                                        {{ choice.tag }}<span class="custom-radio"></span>
+                                        {{ choice.choice_label }}
                                     </label>
                                 </div>
                             {% endfor %}
 
 
-                        {# Default #}
+                            {# Default #}
 
                         {% else %}
 
@@ -127,13 +130,21 @@
 
                             {% endcomment %}
                             {% if instance.label_layout == 'placeholder' or placeholder_enabled == True %}
-                                {% if field.field.required %}
-                                    {% render_field field class+="form-control" required="required" placeholder=field.label %}
+                                {# backward compatibility #}
+                                {% if field.field.widget.attrs.placeholder %}
+                                    {% if field.field.required %}
+                                        {% render_field field class+="form-control" required="required" placeholder=field.field.widget.attrs.placeholder %}
+                                    {% else %}
+                                        {% render_field field class+="form-control" placeholder=field.field.widget.attrs.placeholder %}
+                                    {% endif %}
                                 {% else %}
-                                    {% render_field field class+="form-control" placeholder=field.label %}
+                                    {% if field.field.required %}
+                                        {% render_field field class+="form-control" required="required" placeholder=field.label %}
+                                    {% else %}
+                                        {% render_field field class+="form-control" placeholder=field.label %}
+                                    {% endif %}
                                 {% endif %}
-
-                            {% comment %}
+                                {% comment %}
 
                                 Default (withOUT placeholder):
 

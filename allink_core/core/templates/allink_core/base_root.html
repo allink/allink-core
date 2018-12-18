@@ -31,7 +31,9 @@
     {% endblock meta_tags %}
 
     {# Favicons #}
-    {% render_favicons_set %}
+    {% block favicons %}
+        {% render_favicons_set %}
+    {% endblock favicons %}
 
     {# css #}
     {% block webpack_css %}

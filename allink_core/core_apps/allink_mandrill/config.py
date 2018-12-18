@@ -15,8 +15,14 @@ class MandrillConfig:
         self.apikey = getattr(settings, 'MANDRILL_API_KEY')
 
         self.default_transactional_template_name = getattr(settings, 'MANDRILL_DEFAULT_TRANSACTIONAL_TEMPLATE', 'default')
-        self.default_from_email = getattr(config, 'default_from_email', 'itcrowd@allink.ch')
-        self.default_to_email = getattr(config, 'default_to_email', 'itcrowd@allink.ch')
+
+        if settings.ALLINK_MANDRILL_DEV_MODE:
+            # Testmode/ Development
+            self.default_from_email = settings.ALLINK_MANDRILL_DEV_MODE_FROM_EMAIL_ADDRESS
+            self.default_to_email = settings.ALLINK_MANDRILL_DEV_MODE_TO_EMAIL_ADDRESSES
+        else:
+            self.default_from_email = getattr(config, 'default_from_email', settings.ALLINK_MANDRILL_DEV_MODE_FROM_EMAIL_ADDRESS)
+            self.default_to_email = getattr(config, 'default_to_email', settings.ALLINK_MANDRILL_DEV_MODE_TO_EMAIL_ADDRESSES)
 
     def get_default_from_name(self):
         from django.contrib.sites.models import Site
