@@ -1,5 +1,5 @@
 {% load i18n menu_tags %}
-{% get_language_info for LANGUAGE_CODE as lang %}
+{% get_language_info for request.LANGUAGE_CODE as lang %}
 
 {% if languages|length > 1 %}
     {% for language in languages %}
