@@ -10,18 +10,15 @@ def set_fields_on_children(apps, schema_editor):
     AllinkGalleryImagePlugin = apps.get_model("allink_gallery", "AllinkGalleryImagePlugin")
 
     for child in AllinkGalleryImagePlugin.objects.all():
-        parent = AllinkGalleryPlugin.objects.get(id=child.parent_id)
+        try:
+            parent = AllinkGalleryPlugin.objects.get(id=child.parent_id)
 
-        child.template = parent.template
-        child.ratio = parent.ratio
+            child.template = parent.template
+            child.ratio = parent.ratio
 
-        child.save()
-
-
-    # child_type = 'AllinkGalleryImagePlugin'
-    #
-    # for child in CMSPlugin.objects.filter(plugin_type=child_type):
-    #     AllinkGalleryPlugin.objects.get(id=child.parent):
+            child.save()
+        except AllinkGalleryImagePlugin.DoesNotExist:
+            pass
 
 
 class Migration(migrations.Migration):
