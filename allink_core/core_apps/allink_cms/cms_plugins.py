@@ -57,4 +57,7 @@ class CMSAllinkLanguageChooserPlugin(CMSPluginBase):
     module = _('Generic')
 
     def get_render_template(self, context, instance, placeholder):
-        return 'allink_cms/plugins/languagechooser/content.html'
+        if context['request'].is_ajax() or context['request'].toolbar.edit_mode:
+            return 'allink_cms/plugins/languagechooser/content.html'
+        else:
+            return 'allink_cms/plugins/languagechooser/content_skeleton.html'
