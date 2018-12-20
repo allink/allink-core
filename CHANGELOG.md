@@ -66,8 +66,13 @@ from allink_core.core.allink_settings import *
 - if you have overriden any core form template (an ajax-form) with a {% csrf_token %} (most likely one of these: allink_mailchimp/signup_form_advanced_base.html or allink_mailchimp/signup_form_base.html) you need to remove the {% csrf_token %}.
 
 ###### URLS
+- you need to add:
+```python
+url(r'^cms-api/', include('allink_core.core_apps.allink_cms.urls', namespace='cms_api')),
+```
 
 ###### REQUIREMENTS
+- djangorestframework==3.7.0
 
 ###### DATA MIGRATIONS
 - we now save the link as a string to these plugins directly 'AllinkImagePlugin' and 'AllinkButtonLinkPlugin'. If you have models inherit from 'AllinkLinkFieldsModel' or 'AllinkInternalLinkFieldsModel' you have to write a migration manually. (for implementation have a look at the command below)
