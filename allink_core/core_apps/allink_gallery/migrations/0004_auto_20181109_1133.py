@@ -18,7 +18,7 @@ def set_fields_on_children(apps, schema_editor):
 
         except AllinkGalleryPlugin.DoesNotExist:
             # most likely a plugin in the clipboard
-            child.template = 'default'
+            child.template = 'slider'
         child.save()
 
 
