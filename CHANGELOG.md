@@ -101,6 +101,22 @@ cache.clear()
 ### NEW
 - we now save the data of the content-plugin to these plugins directly 'AllinkImagePlugin', 'AllinkGalleryPlugin', 'AllinkGalleryImagePlugin'
 - (allink-core-static dependent!) all forms with class "ajax-form" now get sent with the appropriate csrftoken which will be fetched from the cookie. you don't need a {% csrf_token %} in the template (this is why we can now cache CMSAllinkSignupFormPlugin and any other CMSPlugin displaying a form) -> if you decide to change cache=False to cache=True you must remove {% csrf_token %} from the template and clear cache! otherwise you will end up with a 403!
+- we added an easy and basic way to load plugins async. just add a template:
+../content_skeleton.html
+```html
+{% load cms_tags %}
+<div class="plugin--tpl-skeleton" data-rendered-plugin-url="{% url 'cms_api:plugins' id=instance.cmsplugin_ptr_id %}"></div>
+```
+and add the following to your Plugin in cms_plugins.py:
+```python
+    ...
+    def get_render_template(self, context, instance, placeholder):
+        if context['request'].is_ajax() or context['request'].toolbar.edit_mode:
+            return '<<path to template>>/content.html'
+        else:
+            return '<<path to template>>/content_skeleton.html'
+    ...
+``
 
 ### FIXES
 

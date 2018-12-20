@@ -17,7 +17,7 @@ def set_fields_on_children(apps, schema_editor):
             child.ratio = parent.ratio
 
             child.save()
-        except AllinkGalleryImagePlugin.DoesNotExist:
+        except AllinkGalleryPlugin.DoesNotExist:
             pass
 
 
