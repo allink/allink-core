@@ -16,9 +16,10 @@ def set_fields_on_children(apps, schema_editor):
             child.template = parent.template
             child.ratio = parent.ratio
 
-            child.save()
         except AllinkGalleryPlugin.DoesNotExist:
-            pass
+            # most likely a plugin in the clipboard
+            child.template = 'default'
+        child.save()
 
 
 class Migration(migrations.Migration):
