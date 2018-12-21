@@ -1,3 +1,2 @@
 {% load cms_tags %}
-
-<div class="languagechooser-plugin plugin--tpl-skeleton" data-rendered-plugin-url="{% url 'cms_api:plugins' id=instance.cmsplugin_ptr_id %}"></div>
+<div class="languagechooser-plugin plugin--tpl-skeleton" data-rendered-plugin-url="{% url 'cms_api:plugins' id=instance.cmsplugin_ptr_id %}" data-current-page={{ request.current_page.pk }}></div>
