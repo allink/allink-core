@@ -4,6 +4,9 @@ from django.contrib import admin
 from django.utils.decorators import method_decorator
 from django.views.decorators.http import require_POST
 from django.utils.translation import ugettext_lazy as _
+from django.shortcuts import redirect
+from django.conf.urls import url
+from django.core.cache import cache
 
 from cms.extensions import PageExtensionAdmin, TitleExtensionAdmin
 
@@ -35,6 +38,7 @@ class ConfigAdminForm(TranslatableModelForm):
 @admin.register(Config)
 class ConfigAdmin(TranslatableAdmin, SingletonModelAdmin):
     form = ConfigAdminForm
+    change_form_template = 'config/admin/change_form.html'
 
     class Media:
         js = (
@@ -105,6 +109,24 @@ class ConfigAdmin(TranslatableAdmin, SingletonModelAdmin):
         }),
 
         return fieldsets
+
+    def clearcache(self, request, object_id):
+        cache.clear()
+        info = self.model._meta.app_label, self.model._meta.model_name
+        return redirect('admin:%s_%s_changelist' % info)
+
+    def get_urls(self):
+        urls = super(ConfigAdmin, self).get_urls()
+        info = self.model._meta.app_label, self.model._meta.model_name
+        my_urls = [
+            url(
+                r'^(.+)/clearcache/$',
+                self.admin_site.admin_view(self.clearcache),
+                name='%s_%s_clearcache' % info
+            )
+        ]
+        return my_urls + urls
+
 
 
 @admin.register(AllinkPageExtension)
