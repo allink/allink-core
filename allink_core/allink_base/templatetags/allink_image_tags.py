@@ -74,19 +74,21 @@ def get_thumbnail(thumbnailer, thumbnail_options):
     """
     try:
         return thumbnailer.get_thumbnail(thumbnail_options)
-    except InvalidImageFormatError:
-        from filer.models import Folder
-        try:
-            files = Folder.objects.get(name='Wireframe').files
-        except Folder.DoesNotExist:
-            return None
-        for file in files:
-            if file.original_filename.startswith('image-not-found'):
-                try:
-                    return get_thumbnailer(file).get_thumbnail(thumbnail_options)
-                except InvalidImageFormatError:
-                    return None
-            return None
+    # TODO load image from static instead
+    # the image "image-not-found" is not present in many projects, so f** it. this is hitting the db.
+    # except InvalidImageFormatError:
+    #     from filer.models import Folder
+    #     try:
+    #         files = Folder.objects.get(name='Wireframe').files
+    #     except Folder.DoesNotExist:
+    #         return None
+    #     for file in files:
+    #         if file.original_filename.startswith('image-not-found'):
+    #             try:
+    #                 return get_thumbnailer(file).get_thumbnail(thumbnail_options)
+    #             except InvalidImageFormatError:
+    #                 return None
+    #         return None
     except:
         return None
 

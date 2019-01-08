@@ -19,6 +19,9 @@ def link_attribute_string(instance, request=None):
     attributes += ' data-softpage-disabled' if instance.link_special == 'account_login' and request.user.is_authenticated() else ''
     attributes += ' data-submit-form' if instance.link_special == 'account_logout' and request.user.is_authenticated() else ''
     attributes += ' role="button"' if hasattr(instance, "type") and instance.type == 'btn' else ''
+    # TBD
+    attributes += ' data-trigger-image-modal' if hasattr(instance, 'template') and instance.template == 'video_embedded_link' else ''
+    attributes += ' data-image-modal-video-link-enabled' if hasattr(instance, 'template') and instance.template == 'video_embedded_link' else ''
     return attributes
 
 

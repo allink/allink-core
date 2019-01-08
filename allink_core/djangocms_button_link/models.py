@@ -68,6 +68,37 @@ class AllinkButtonLinkContainerPlugin(CMSPlugin):
 
 @python_2_unicode_compatible
 class AllinkButtonLinkPlugin(CMSPlugin, AllinkLinkFieldsModel):
+
+    DEFAULT_LINK = 'default_link'
+    FILE_LINK = 'file_link'
+    IMAGE_LINK = 'image_link'
+    PHONE_LINK = 'phone_link'
+    EMAIL_LINK = 'email_link'
+    FORM_LINK = 'form_link'
+    VIDEO_EMBEDDED_LINK = 'video_embedded_link'
+    # VIDEO_FILE_LINK = 'video_file_link'
+
+    TEMPLATE_CHOICES = (
+        (DEFAULT_LINK, _(u'Internal/External')),
+        (FILE_LINK, _(u'File (Download)')),
+        (IMAGE_LINK, _(u'Image')),
+        (PHONE_LINK, _(u'Phone')),
+        (EMAIL_LINK, _(u'Email')),
+        (FORM_LINK, _(u'Form')),
+        (VIDEO_EMBEDDED_LINK, _(u'Video (Embedded)')),
+        # (VIDEO_FILE_LINK, _(u'Video (File)')),
+    )
+
+    # we re-use the template option to toggle fieldset visibility depending on the link types
+    template = models.CharField(
+        _(u'Link type'),
+        help_text=_(u'Choose a link type in order to display its options below.'),
+        max_length=50,
+        choices=TEMPLATE_CHOICES,
+        default=DEFAULT_LINK
+    )
+
+    # output types
     label = models.CharField(
         verbose_name=_(u'Display name'),
         blank=True,
@@ -97,6 +128,7 @@ class AllinkButtonLinkPlugin(CMSPlugin, AllinkLinkFieldsModel):
         default=choices.TEXT_LINK_CONTEXT_DEFAULT,
         blank=True,
     )
+
     # common fields
     icon_left = Icon(
         verbose_name=_(u'Icon left'),
@@ -118,6 +150,76 @@ class AllinkButtonLinkPlugin(CMSPlugin, AllinkLinkFieldsModel):
         default='',
         blank=True,
     )
+    # video embed specific fields
+    video_id = models.CharField(
+        verbose_name=_(u'Video ID'),
+        max_length=255,
+        help_text=_(
+            u'Only provide the ID. The correct URL will automatically be generated.<br><br>YouTube: https://www.youtube.com/watch?v=<strong>12345678</strong> (the ID is <strong>12345678</strong>)<br>Vimeo: https://vimeo.com/<strong>12345678</strong> (the ID is <strong>12345678</strong>)'),
+        blank=True,
+        null=True
+    )
+    video_service = models.CharField(
+        _(u'Video Service'),
+        max_length=50,
+        choices=choices.VIDEO_SERVICE_CHOICES,
+        blank=True,
+        null=True
+    )
+    ratio = models.CharField(
+        _(u'Ratio'),
+        max_length=50,
+        blank=True,
+        null=True
+    )
+
+    auto_start_enabled = models.BooleanField(
+        _(u'Autostart'),
+        default=False,
+        help_text=_(u'<strong>Important:</strong> Autoplaying videos with audio is not recommended. Use wisely. '),
+    )
+    allow_fullscreen_enabled = models.BooleanField(
+        _(u'Allow fullscreen'),
+        default=True
+    )
+
+    # # video file specific fields
+    # video_file = FilerFileField(
+    #     verbose_name=_(u'Video File'),
+    #     help_text=_(
+    #         u'Recommended video settings:<br><br>Format: mp4<br>Codec: H.264<br>Target Bitrate: 2 (video loads quick and runs smooth)<br>Audio: Not recommended (no audio = smaller file size and less annoyed visitors)<br>File size: Dependent of video length. Generally speaking: Less is more.'),
+    #     on_delete=models.SET_NULL,
+    #     null=True,
+    #     related_name='%(app_label)s_%(class)s_video_file',
+    # )
+    # video_poster_image = FilerImageField(
+    #     verbose_name=_(u'Video Start Image'),
+    #     related_name='%(app_label)s_%(class)s_video_poster_image',
+    #     help_text=_(
+    #         u'Image that is being displayed while the video is loading. Ideally the very first frame of the video is used, in order to make the transition as smooth as possible.<br><br><strong>Imoprtant:</strong> Make sure the aspect ratio of the image is <strong>exactly the same</strong> as the video, otherwise the video height will shrink or grow when the playback starts.'),
+    #     null=True
+    # )
+    # video_file_width = models.IntegerField(
+    #     _(u'Video width'),
+    #     blank=True,
+    #     null=True,
+    # )
+    # video_file_height = models.IntegerField(
+    #     _(u'Video height'),
+    #     blank=True,
+    #     null=True,
+    # )
+    # video_muted_enabled = models.BooleanField(
+    #     _(u'Muted'),
+    #     help_text=_(u'Caution: Autoplaying videos with audio is not recommended. Use wisely.'),
+    #     default=True
+    # )
+    # poster_only_on_mobile = models.BooleanField(
+    #     _(u'Image Only (Mobile)'),
+    #     help_text=_(u'Disable video on mobile devices and only show the start image without video control.'),
+    #     default=True
+    # )
+
 
     cmsplugin_ptr = CMSPluginField()
 

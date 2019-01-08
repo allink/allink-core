@@ -1,4 +1,4 @@
-from allink_core.allink_base.models.mixins import AllinkManualEntriesMixin, AllinkTranslatedAutoSlugifyMixin  # noqa
+from allink_core.allink_base.models.mixins import AllinkManualEntriesMixin, AllinkTranslatedAutoSlugifyMixin, AllinkInvalidatePlaceholderCacheMixin  # noqa
 from allink_core.allink_base.models.managers import AllinkBaseModelQuerySet, AllinkBaseModelManager  # noqa
 from allink_core.allink_base.models.model_fields import SitemapField, Classes, Icon, ZipCodeField  # noqa
 from allink_core.allink_base.models.reusable_fields import AllinkAddressFieldsModel, AllinkContactFieldsModel, AllinkMetaTagFieldsModel, AllinkLinkFieldsModel, AllinkSimpleRegistrationFieldsModel, AllinkInternalLinkFieldsModel  # noqa

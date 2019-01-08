@@ -1,13 +1,11 @@
 # -*- coding: utf-8 -*-
 import urllib.parse
-import json
 
 from django.conf import settings
 from django.template.loader import get_template
 from django.template import TemplateDoesNotExist
-from django.core.cache import cache
 from django.core.urlresolvers import NoReverseMatch
-from django.core.exceptions import FieldDoesNotExist, FieldError, ValidationError
+from django.core.exceptions import FieldDoesNotExist, FieldError
 from django.contrib.postgres.fields import ArrayField
 from django.db import models
 from django.db.models import Q
@@ -25,7 +23,7 @@ from model_utils.fields import AutoCreatedField, AutoLastModifiedField
 
 from allink_core.allink_base.utils import base_url, get_additional_templates
 from allink_core.allink_categories.models import AllinkCategory
-
+from allink_core.allink_base.models.mixins import AllinkInvalidatePlaceholderCacheMixin
 from allink_core.allink_base.models import Classes
 from allink_core.allink_base.models import AllinkBaseModelManager
 from allink_core.allink_base.models import AllinkMetaTagFieldsModel
@@ -59,7 +57,7 @@ class AllinkBaseImage(SortableMixin):
 
 
 @python_2_unicode_compatible
-class AllinkBaseModel(AllinkMetaTagFieldsModel):
+class AllinkBaseModel(AllinkInvalidatePlaceholderCacheMixin, AllinkMetaTagFieldsModel):
     """
      An abstract base class model for every standard allink app
 
@@ -265,18 +263,13 @@ class AllinkBaseModel(AllinkMetaTagFieldsModel):
             cat.save()
         return cat
 
+        
     def save(self, *args, **kwargs):
         new = not bool(self.id)
         if not new:
             self.save_translations(*args, **kwargs)
         if self._meta.model_name in dict(settings.PROJECT_APP_MODEL_CATEGORY_TAG_CHOICES).keys():
             self.auto_generated_category = self.save_categories(new)
-        # invalidate cache
-        possible_plugin_classes = (self.__class__, ) + self.__class__.__bases__
-        plugin_classes = [x for x in plugin_pool.get_all_plugins() if hasattr(x, 'data_model') and x.data_model in possible_plugin_classes]
-        for plugin_class in plugin_classes:
-            for plugin in plugin_class.model.objects.all():
-                cache.set('render_queryset_for_display_valid_keys_%s' % plugin.id, [], 60 * 60 * 24 * 360)
         super(AllinkBaseModel, self).save(*args, **kwargs)
 
 
@@ -363,11 +356,6 @@ class AllinkBasePlugin(CMSPlugin):
         if self.title:
             return u'{}'.format(self.title)
         return str(self.pk)
-
-    def save(self, *args, **kwargs):
-        # invalidate cache
-        cache.set('render_queryset_for_display_valid_keys_%s' % self.id, [], 60 * 60 * 24 * 360)
-        super(AllinkBasePlugin, self).save(*args, **kwargs)
 
 
 @python_2_unicode_compatible
@@ -567,10 +555,6 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
 
     def get_correct_template(self, file='content'):
 
-        cached_template = cache.get('plugin_template_%s_%s' % (self.id, file))
-        if cached_template:
-            return cached_template
-
         template = '{}/plugins/{}/{}.html'.format(self.data_model._meta.app_label, self.template, file)
 
         # check if project specific template
@@ -585,8 +569,6 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
                 # so this is a fallback for all custom plugins
                 template = 'app_content/plugins/{}/{}.html'.format('grid_static', file)
 
-        # cache for one year, so we don't have to many lookups on file system
-        cache.set('plugin_template_%s_%s' % (self.id, file), template, 60 * 60 * 24 * 365)
         return template
 
     def get_field_info(self, fieldname):
@@ -689,7 +671,7 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
         else:
             return queryset.distinct()
 
-    def get_render_queryset_for_display(self, category=None, filters={}):
+    def get_render_queryset_for_display(self, category=None, filters={}, request=None):
         """
          returns all data_model objects distinct to id which are in the selected categories
           - category: category instance
@@ -697,18 +679,8 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
             -> adds additional query
         """
 
-        valid_cache_keys = cache.get('render_queryset_for_display_valid_keys_%s' % self.id, [])
-        cache_key = 'render_queryset_for_display_%s_%s_%s' % (self.id, category.id if category else '', json.dumps(filters))
-        if cache_key in valid_cache_keys:
-            cached_qs = cache.get(cache_key, None)
-
-            if cached_qs:
-                if cached_qs == 'empty':
-                    return self.data_model.objects.none()
-                return cached_qs
-
         # apply filters from request
-        queryset = self.data_model.objects.active().filter(**filters)
+        queryset = self.data_model.objects.active().prefetch_related('categories').filter(**filters)
 
         if self.categories.exists() or category:
             if category:
@@ -721,13 +693,6 @@ class AllinkBaseAppContentPlugin(AllinkBasePlugin):
 
         ordered_qs = self._apply_ordering_to_queryset_for_display(queryset)
 
-        # cache for for a half year and add to valid cache keys
-        if ordered_qs.exists():
-            cache.set(cache_key, ordered_qs, 60 * 60 * 24 * 180)
-        else:
-            cache.set(cache_key, 'empty', 60 * 60 * 24 * 180)
-        valid_cache_keys.append(cache_key)
-        cache.set('render_queryset_for_display_valid_keys_%s' % self.id, valid_cache_keys, 60 * 60 * 24 * 360)
         return ordered_qs
 
 

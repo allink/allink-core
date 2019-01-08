@@ -286,7 +286,7 @@ class AllinkLinkFieldsModel(AllinkInternalLinkFieldsModel):
         blank=True
     )
     link_special = models.CharField(
-        verbose_name=_(u'Special Links'),
+        verbose_name=_(u'Form'),
         max_length=255,
         blank=True,
         null=True

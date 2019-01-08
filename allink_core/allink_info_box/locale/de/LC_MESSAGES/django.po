@@ -1,0 +1,76 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-12-17 10:38+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: allink_core_repo/allink_core/allink_info_box/cms_plugins.py:26
+#: allink_core_repo/allink_core/allink_info_box/models.py:33
+msgid "Template"
+msgstr ""
+
+#: allink_core_repo/allink_core/allink_info_box/cms_plugins.py:35
+msgid "Info Box"
+msgstr ""
+
+#: allink_core_repo/allink_core/allink_info_box/cms_plugins.py:36
+msgid "Generic"
+msgstr ""
+
+#: allink_core_repo/allink_core/allink_info_box/models.py:14
+msgid "Always visible"
+msgstr "Immer sichtbar"
+
+#: allink_core_repo/allink_core/allink_info_box/models.py:15
+msgid "1x"
+msgstr ""
+
+#: allink_core_repo/allink_core/allink_info_box/models.py:16
+msgid "2x"
+msgstr ""
+
+#: allink_core_repo/allink_core/allink_info_box/models.py:17
+msgid "3x"
+msgstr ""
+
+#: allink_core_repo/allink_core/allink_info_box/models.py:18
+msgid "4x"
+msgstr ""
+
+#: allink_core_repo/allink_core/allink_info_box/models.py:19
+msgid "5x"
+msgstr ""
+
+#: allink_core_repo/allink_core/allink_info_box/models.py:23
+msgid "Display duration"
+msgstr ""
+
+#: allink_core_repo/allink_core/allink_info_box/models.py:24
+msgid "After how many times/clicks should the box not be visible anymore"
+msgstr "Nach wieviel mal schliessen, erscheint das die Info Box nicht mehr."
+
+#: allink_core_repo/allink_core/allink_info_box/models.py:29
+msgid "Transparent background"
+msgstr "Transparenter Hintergrund"
+
+#: allink_core_repo/allink_core/allink_info_box/models.py:34
+msgid "Choose a template."
+msgstr ""
+
+#: allink_core_repo/allink_core/allink_info_box/templates/allink_info_box/plugins/default/content.html:13
+msgid "Show info box"
+msgstr "Info Box anzeigen"

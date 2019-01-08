@@ -50,6 +50,7 @@ ALLINK_INSTALLED_APPS = [
     'allink_core.djangocms_group',
     'allink_core.djangocms_instagram',
     'allink_core.djangocms_pdf',
+    'allink_core.allink_info_box',
 
 ]
 
@@ -91,6 +92,7 @@ ALLINK_PROJECT_APP_MODEL_WITH_CATEGORY_CHOICES = [
 
 ALLINK_CMS_PLACEHOLDER_CONF_PLUGINS = [
     'CMSAllinkContentPlugin',
+    'CMSAllinkInfoBoxPlugin',
 ]
 
 ####################################################################################
@@ -100,12 +102,14 @@ ALLINK_CMS_PLACEHOLDER_CONF_PLUGINS = [
 CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [
     'TextPlugin',
     'SnippetPlugin',
+    'AliasPlugin',
     # apps
     'CMSLocationsPlugin',
     'CMSPeoplePlugin',
     'CMSWorkPlugin',
     'CMSBlogPlugin',
     'CMSTestimonialPlugin',
+    'CMSSophieRequestPlugin',
     # core
     'CMSAllinkTermsPlugin',
     'CMSAllinkImagePlugin',
@@ -162,12 +166,13 @@ ALLINK_LOCALE_PATHS = [
     '/app/allink_core/djangocms_socialicon/locale',
     '/app/allink_core/djangocms_vid/locale',
     '/app/allink_core/djangocms_pdf/locale',
+    '/app/allink_core/allink_info_box/locale',
 ]
 # ####################################################################################
 #
 # # Thumbnail
 
-THUMBNAIL_QUALITY = 85
+THUMBNAIL_QUALITY = 60
 
 THUMBNAIL_OPTIMIZE_COMMAND = {
     'png': 'optipng {filename}',
@@ -175,9 +180,10 @@ THUMBNAIL_OPTIMIZE_COMMAND = {
     'jpeg': 'jpegoptim {filename}'
 }
 
-# ####################################################################################
+#  ####################################################################################
 #
 # # Debug Toolbar
+
 
 def show_toolbar(request):
     return senv('DEBUG_TOOLBAR_ENABLED', False)
@@ -186,3 +192,10 @@ def show_toolbar(request):
 DEBUG_TOOLBAR_CONFIG = {
     "SHOW_TOOLBAR_CALLBACK": show_toolbar,
 }
+
+
+#  ####################################################################################
+#
+# # allink Page Extension
+
+ALLINK_PAGE_TOOLBAR_ENABLED = False

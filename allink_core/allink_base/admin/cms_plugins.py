@@ -147,7 +147,7 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
             objects_list = instance.get_selected_entries(filters=filters)
         # category navigation and no category "all" (only first category is relevant)
         elif instance.category_navigation_enabled and not instance.category_navigation_all:
-            objects_list = instance.get_render_queryset_for_display(category=instance.get_first_category(), filters=filters)
+            objects_list = instance.get_render_queryset_for_display(category=instance.category_navigation.first(), filters=filters)
         else:
             objects_list = instance.get_render_queryset_for_display(filters=filters)
         return objects_list

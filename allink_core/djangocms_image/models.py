@@ -100,8 +100,3 @@ class AllinkImagePlugin(AllinkLinkFieldsModel, CMSPlugin):
 
     def copy_relations(self, oldinstance):
         self.picture = oldinstance.picture
-
-    def save(self, *args, **kwargs):
-        # invalidate cache
-        cache.delete(make_template_fragment_key('content_image', [self.id]))
-        super(AllinkImagePlugin, self).save(*args, **kwargs)

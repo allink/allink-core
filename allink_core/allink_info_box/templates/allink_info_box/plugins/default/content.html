@@ -1,0 +1,19 @@
+{% load i18n cms_tags %}
+<a
+    class="infobox-trigger"
+    href="#"
+    data-counter="{{ instance.counter }}"
+    data-trigger-default-modal
+    data-modal-escape-close-method-enabled="true"
+    data-modal-button-close-method-enabled="true"
+    data-modal-overlay-close-method-enabled="true"
+    data-default-modal-variation="infobox {% if instance.transparent_background %}infobox--background-hidden{% endif %}"
+    data-default-modal-content-container-id="infobox"
+>
+{% trans "Show info box" %}
+</a>
+<div id="infobox" style="display: none;">
+    {% for plugin in instance.child_plugin_instances %}
+        {% render_plugin plugin %}
+    {% endfor %}
+</div>

@@ -16,7 +16,6 @@ class CMSAllinkButtonLinkContainerPlugin(CMSPluginBase):
     allow_children = True
     child_classes = ['CMSAllinkButtonLinkPlugin']
     form = AllinkButtonLinkContainerPluginForm
-    cache = False
 
     class Media:
         js = (
@@ -59,7 +58,6 @@ class CMSAllinkButtonLinkPlugin(CMSPluginBase):
     change_form_template = 'admin/djangocms_button_link/change_form.html'
     render_template = 'djangocms_button_link/item.html'
     text_enabled = True
-    cache = False
 
     class Media:
         js = (get_files('djangocms_custom_admin')[0]['publicPath'], )
@@ -70,6 +68,7 @@ class CMSAllinkButtonLinkPlugin(CMSPluginBase):
     fieldsets = (
         (None, {
             'fields': (
+                'template',
                 'label',
                 'type',
                 'btn_context',
@@ -78,29 +77,84 @@ class CMSAllinkButtonLinkPlugin(CMSPluginBase):
                 # ('icon_left', 'icon_right', 'btn_block',),
             ),
         }),
-        (_('Link settings'), {
-            # 'classes': ('collapse',),
+        (_('Internal/External link settings'), {
+            'classes': (
+                'only_when_default_link',
+            ),
             'fields': (
                 'internal_link',
                 'link_url',
-                ('link_mailto', 'link_phone'),
-                ('link_anchor', 'link_special'),
-                'link_file',
-                'link_target',
+                'link_anchor',
+                'link_target_reduced',
             )
         }),
-        (_('Additional email settings'), {
-            'classes': ('collapse',),
+        (_('File link settings'), {
+            'classes': (
+                'only_when_file_link',
+                'only_when_image_link',
+            ),
             'fields': (
+                'link_file',
+            )
+        }),
+        (_('Phone link settings'), {
+            'classes': (
+                'only_when_phone_link',
+            ),
+            'fields': (
+                'link_phone',
+            )
+        }),
+        (_('Email link settings'), {
+            'classes': (
+                'only_when_email_link',
+            ),
+            'fields': (
+                'link_mailto',
                 'email_subject',
                 'email_body_text',
             )
         }),
+        (_('Form link settings'), {
+            'classes': (
+                'only_when_form_link',
+            ),
+            'fields': (
+                'link_special',
+            )
+        }),
+        (_('Video (Embedded) link settings'), {
+            'classes': (
+                'only_when_video_embedded_link',
+            ),
+            'fields': (
+                'video_id',
+                'video_service',
+                'ratio',
+                'auto_start_enabled',
+                'allow_fullscreen_enabled',
+            )
+        }),
+        # (_('Video (File) link settings'), {
+        #     'classes': (
+        #         'only_when_video_file_link',
+        #     ),
+        #     'fields': (
+        #
+        #     )
+        # }),
         (_('Advanced settings'), {
             'classes': ('collapse',),
             'fields': (
                 # 'extra_css_classes',
                 'link_attributes',
+            )
+        }),
+        (_('Hidden settings'), {
+            'classes': ('hidden',),
+            'fields': (
+                # 'extra_css_classes',
+                'link_target',
             )
         }),
     )

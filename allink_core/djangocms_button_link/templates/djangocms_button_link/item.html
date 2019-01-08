@@ -18,6 +18,24 @@
             </span>
         {% endif %}
 
+        {# display youtube video in image modal #}
+        {% if instance.template == "video_embedded_link" %}
+            <span class="image-modal-content" style="display: none;">
+                <span class="embed-container {% if instance.ratio %}ratio-{{instance.ratio}}{% else %}ratio-16-9{% endif %}" style="display: block;">
+
+                    {# YouTube #}
+                    {% if instance.video_service == "youtube" %}
+                        <iframe class="lazyload" width="560" height="315" data-src="//www.youtube.com/embed/{{instance.video_id}}?rel=0&showinfo=0{% if instance.auto_start_enabled %}&autoplay=1{% endif %}" frameborder="0" {% if instance.allow_fullscreen_enabled %}webkitAllowFullScreen mozallowfullscreen allowfullscreen{% endif %}></iframe>
+
+                    {# Vimeo #}
+                    {% elif instance.video_service == "vimeo" %}
+                        <iframe class="lazyload" data-src="//player.vimeo.com/video/{{instance.video_id}}?color=ffc000&title=0&byline=0&portrait=0{% if instance.auto_start_enabled %}&autoplay=1{% endif %}" width="640" height="360" frameborder="0" {% if instance.allow_fullscreen_enabled %}webkitAllowFullScreen mozallowfullscreen allowfullscreen{% endif %}></iframe>
+                    {% endif %}
+
+                </span>
+            </span>
+        {% endif %}
+
         {# if button is login-button to member area, check if logged in and in group 'members' #}
         {% if instance.link_special == 'account_login' and user.is_authenticated %}
             {% trans 'Member Area' %}

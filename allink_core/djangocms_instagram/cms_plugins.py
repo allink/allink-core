@@ -41,17 +41,17 @@ class CMSAllinkInstagramPlugin(CMSPluginBase):
     def get_images(self, account_name='', max_id=''):
         image_urls = []
         # for reference: http://stackoverflow.com/questions/17373886/how-can-i-get-a-users-media-from-instagram-without-authenticating-as-a-user/33783840#33783840
-        r = requests.get('https://www.instagram.com/{}/?__a=1&max_id={}'.format(account_name, max_id))
+        r = requests.get('https://www.instagram.com/{}/media/?max_id={}'.format(account_name, max_id))
         content = r.json()
-        nodes = content.get('user').get('media').get('nodes')
-        for image in nodes:
-            image_urls.append({
-                'id': image['id'],
-                'link': 'https://www.instagram.com/p/{}'.format(image['code']),
-                'small': image['thumbnail_resources'][1]['src'],
-                'big': image['thumbnail_resources'][4]['src'],
-                'caption': image['caption']
-            })
+        if hasattr(content, 'items'):
+            for image in content['items']:
+                image_urls.append({
+                    'id': image['id'],
+                    'link': image['link'],
+                    'small': image['images']['low_resolution']['url'],
+                    'big': image['images']['standard_resolution']['url'],
+                    'caption': image['caption']['text']
+                })
         return image_urls
 
     def get_follow_position(self, paginated_by):

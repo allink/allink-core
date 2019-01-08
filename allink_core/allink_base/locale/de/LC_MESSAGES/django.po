@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-09 14:29+0200\n"
+"POT-Creation-Date: 2018-12-17 10:38+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -77,7 +77,7 @@ msgstr "Grid Optionen"
 #: allink_core_repo/allink_core/allink_base/admin/forms.py:32
 #: allink_core_repo/allink_core/allink_base/admin/forms.py:72
 #: allink_core_repo/allink_core/allink_base/admin/forms.py:74
-#: allink_core_repo/allink_core/allink_base/models/models.py:488
+#: allink_core_repo/allink_core/allink_base/models/models.py:476
 msgid "Categories for Navigation"
 msgstr "Kategorien für die Navigation"
 
@@ -116,7 +116,7 @@ msgid "A Select Dropdown will be displayed for this Fields."
 msgstr "Für diese Felder wird ein Dropdown angezeigt."
 
 #: allink_core_repo/allink_core/allink_base/admin/forms.py:90
-#: allink_core_repo/allink_core/allink_base/models/models.py:471
+#: allink_core_repo/allink_core/allink_base/models/models.py:459
 msgid "Template"
 msgstr ""
 
@@ -336,52 +336,52 @@ msgstr ""
 msgid "Zip Code Field"
 msgstr "PLZ-Feld"
 
-#: allink_core_repo/allink_core/allink_base/models/models.py:102
+#: allink_core_repo/allink_core/allink_base/models/models.py:100
 msgid "created"
 msgstr "erstellt"
 
-#: allink_core_repo/allink_core/allink_base/models/models.py:103
+#: allink_core_repo/allink_core/allink_base/models/models.py:101
 msgid "modified"
 msgstr "geändert"
 
-#: allink_core_repo/allink_core/allink_base/models/models.py:110
+#: allink_core_repo/allink_core/allink_base/models/models.py:108
 msgid "Active"
 msgstr "Aktiv"
 
-#: allink_core_repo/allink_core/allink_base/models/models.py:194
+#: allink_core_repo/allink_core/allink_base/models/models.py:192
 msgid "Published"
 msgstr "Publiziert"
 
-#: allink_core_repo/allink_core/allink_base/models/models.py:294
+#: allink_core_repo/allink_core/allink_base/models/models.py:287
 #: allink_core_repo/allink_core/allink_base/templates/app_content/plugins/table/content.html:11
 msgid "Title"
 msgstr "Titel"
 
-#: allink_core_repo/allink_core/allink_base/models/models.py:295
+#: allink_core_repo/allink_core/allink_base/models/models.py:288
 msgid "The section title"
 msgstr "Abschnittstitel"
 
-#: allink_core_repo/allink_core/allink_base/models/models.py:301
+#: allink_core_repo/allink_core/allink_base/models/models.py:294
 msgid "Section Title Size"
 msgstr "Grösse Abschnittstitel"
 
-#: allink_core_repo/allink_core/allink_base/models/models.py:307
+#: allink_core_repo/allink_core/allink_base/models/models.py:300
 msgid "Activate \"container\""
 msgstr "\"container\" aktivieren"
 
-#: allink_core_repo/allink_core/allink_base/models/models.py:308
+#: allink_core_repo/allink_core/allink_base/models/models.py:301
 msgid "If checked, an inner container with a maximum width is added"
 msgstr "Fügt einen inneren Container mit einer maximalen Breite hinzu."
 
-#: allink_core_repo/allink_core/allink_base/models/models.py:312
+#: allink_core_repo/allink_core/allink_base/models/models.py:305
 msgid "Set a predefined background color"
 msgstr "Wählen Sie eine vordefinierte Hintergrundfarbe"
 
-#: allink_core_repo/allink_core/allink_base/models/models.py:318
+#: allink_core_repo/allink_core/allink_base/models/models.py:311
 msgid "Background-Image"
 msgstr "Hintergrundbild"
 
-#: allink_core_repo/allink_core/allink_base/models/models.py:319
+#: allink_core_repo/allink_core/allink_base/models/models.py:312
 msgid ""
 "Optional: Set a background image for the content section.<br>Note: This is "
 "meant for decorative purposes only and should be used with care."
@@ -390,15 +390,15 @@ msgstr ""
 "<br>Hinweis: Dies ist nur für dekorative Zwecke bestimmt und sollte mit "
 "Sorgfalt genutzt werden."
 
-#: allink_core_repo/allink_core/allink_base/models/models.py:472
+#: allink_core_repo/allink_core/allink_base/models/models.py:460
 msgid "Choose a template."
 msgstr "Wählen Sie ein Template."
 
-#: allink_core_repo/allink_core/allink_base/models/models.py:476
+#: allink_core_repo/allink_core/allink_base/models/models.py:464
 msgid "Show category navigation"
 msgstr "Kategorie-Navigation anzeigen"
 
-#: allink_core_repo/allink_core/allink_base/models/models.py:477
+#: allink_core_repo/allink_core/allink_base/models/models.py:465
 msgid ""
 "If checked, a filter navigation with all selected categories is displayed."
 "<br>Please note: A category is only displayed if it contains items."
@@ -407,16 +407,16 @@ msgstr ""
 "angezeigt. <br>Hinweis: Eine Kategorie wird nur dann angezeigt, wenn sie "
 "Einträge enthält."
 
-#: allink_core_repo/allink_core/allink_base/models/models.py:481
+#: allink_core_repo/allink_core/allink_base/models/models.py:469
 msgid "Show category \"all\""
 msgstr "Kategorie \"Alle\" anzeigen"
 
-#: allink_core_repo/allink_core/allink_base/models/models.py:482
+#: allink_core_repo/allink_core/allink_base/models/models.py:470
 msgid "If checked, a category \"all\" in filter navigation is displayed."
 msgstr ""
 "Falls angewählt, wird in der Navigation eine Kategorie \"Alle\" angezeigt."
 
-#: allink_core_repo/allink_core/allink_base/models/models.py:489
+#: allink_core_repo/allink_core/allink_base/models/models.py:477
 msgid ""
 "You can explicitly define the categories for the category navigation here. "
 "This will override the automatically set of categories (either the one "
@@ -426,11 +426,11 @@ msgstr ""
 "auswählen. Dies überschreibt die automatisch gewählten Kategorien. (Entweder "
 "die generierten von \"Filter & Sortierung\" oder von \"Manuelle Einträge\")"
 
-#: allink_core_repo/allink_core/allink_base/models/models.py:493
+#: allink_core_repo/allink_core/allink_base/models/models.py:481
 msgid "Show detailed information in Softpage"
 msgstr "Detailinformationen in Softpage anzeigen"
 
-#: allink_core_repo/allink_core/allink_base/models/models.py:494
+#: allink_core_repo/allink_core/allink_base/models/models.py:482
 msgid ""
 "If checked, the detail view of an entry will be displayed in a \"softpage\". "
 "Otherwise the page will be reloaded."
@@ -438,43 +438,43 @@ msgstr ""
 "Falls angewählt, wird die Detailansicht für einen Eintrag in einer Softpage "
 "angezeigt. Ansonsten wird die Seite neu geladen."
 
-#: allink_core_repo/allink_core/allink_base/models/models.py:498
+#: allink_core_repo/allink_core/allink_base/models/models.py:486
 msgid "Show detail link"
 msgstr "Detaillink anzeigen"
 
-#: allink_core_repo/allink_core/allink_base/models/models.py:499
+#: allink_core_repo/allink_core/allink_base/models/models.py:487
 msgid "If checked, a link/button to the detail view will be displayed."
 msgstr ""
 "Falls angewählt, wird in der Übersicht ein Link/Button zur Detailansicht "
 "angezeigt."
 
-#: allink_core_repo/allink_core/allink_base/models/models.py:503
+#: allink_core_repo/allink_core/allink_base/models/models.py:491
 msgid "Grid items per row"
 msgstr "Anzahl Einträge pro Zeile"
 
-#: allink_core_repo/allink_core/allink_base/models/models.py:504
+#: allink_core_repo/allink_core/allink_base/models/models.py:492
 msgid "Only applied if a \"Grid\" template has been selected."
 msgstr "Wird nur berücksichtigt, falls ein \"Grid\" template ausgewählt wurde."
 
-#: allink_core_repo/allink_core/allink_base/models/models.py:509
+#: allink_core_repo/allink_core/allink_base/models/models.py:497
 msgid "Max. entries per page"
 msgstr "Max. Einträge pro Seite"
 
-#: allink_core_repo/allink_core/allink_base/models/models.py:511
+#: allink_core_repo/allink_core/allink_base/models/models.py:499
 msgid ""
 "Limit the number of entries (in case of the \"load more\" pagination type: "
 "entries per page). Default is \"0\" (show all entries)"
 msgstr "Schränkt die Anzahl Einträge auf einer Seite ein."
 
-#: allink_core_repo/allink_core/allink_base/models/models.py:514
+#: allink_core_repo/allink_core/allink_base/models/models.py:502
 msgid "Pagination Type"
 msgstr "Pagination Typ"
 
-#: allink_core_repo/allink_core/allink_base/models/models.py:520
+#: allink_core_repo/allink_core/allink_base/models/models.py:508
 msgid "Text for \"Load More\"-Button"
 msgstr "Text für den \"Mehr laden\"-Button"
 
-#: allink_core_repo/allink_core/allink_base/models/models.py:521
+#: allink_core_repo/allink_core/allink_base/models/models.py:509
 msgid ""
 "If left blank, a default text will be used. <br>Note: Should the default "
 "text be adjusted site-wide, please contact the project manager (such changes "
@@ -484,11 +484,11 @@ msgstr ""
 "<br>Hinweis: Sollte der Standardtext für die gesamte Website geändert "
 "werden, kontaktieren Sie den Projektleiter."
 
-#: allink_core_repo/allink_core/allink_base/models/models.py:527
+#: allink_core_repo/allink_core/allink_base/models/models.py:515
 msgid "Text for \"Detail\"-Link"
 msgstr "Text für den \"Detail\"-Link"
 
-#: allink_core_repo/allink_core/allink_base/models/models.py:528
+#: allink_core_repo/allink_core/allink_base/models/models.py:516
 msgid ""
 "If left blank, a default text will be used.<br>Note: Should the default text "
 "be adjusted site-wide, please contact the project manager (such changes can "
@@ -498,47 +498,47 @@ msgstr ""
 "<br>Hinweis: Sollte der Standardtext für die gesamte Website geändert "
 "werden, kontaktieren Sie den Projektleiter."
 
-#: allink_core_repo/allink_core/allink_base/models/models.py:637
+#: allink_core_repo/allink_core/allink_base/models/models.py:619
 #: allink_core_repo/allink_core/allink_base/templates/app_content/app_content_base.html:39
 #: allink_core_repo/allink_core/allink_base/templates/app_content/app_content_base_legacy.html:57
 msgid "All"
 msgstr "Alle"
 
-#: allink_core_repo/allink_core/allink_base/models/models.py:739
+#: allink_core_repo/allink_core/allink_base/models/models.py:704
 msgid "Send internal e-mail"
 msgstr "Internes E-Mail versenden"
 
-#: allink_core_repo/allink_core/allink_base/models/models.py:741
+#: allink_core_repo/allink_core/allink_base/models/models.py:706
 msgid "Send confirmation mail to defined internal e-mail addresses."
 msgstr ""
 "Falls angewählt, wird ein Bestätigungsmail an die definierten E-Mail-"
 "Aderessen verschickt."
 
-#: allink_core_repo/allink_core/allink_base/models/models.py:750
+#: allink_core_repo/allink_core/allink_base/models/models.py:715
 msgid "Internal e-mail addresses"
 msgstr "Interne E-Mail Adresse"
 
-#: allink_core_repo/allink_core/allink_base/models/models.py:753
+#: allink_core_repo/allink_core/allink_base/models/models.py:718
 msgid "Sender e-mail address"
 msgstr "Absender E-Mail-Adresse"
 
-#: allink_core_repo/allink_core/allink_base/models/models.py:758
+#: allink_core_repo/allink_core/allink_base/models/models.py:723
 msgid "Send external e-mail"
 msgstr "Externes E-Mail versenden"
 
-#: allink_core_repo/allink_core/allink_base/models/models.py:760
+#: allink_core_repo/allink_core/allink_base/models/models.py:725
 msgid "Send confirmation mail to customer."
 msgstr "Falls angewählt, wird ein Bestätigungsmail an den Kunden geschickt."
 
-#: allink_core_repo/allink_core/allink_base/models/models.py:763
+#: allink_core_repo/allink_core/allink_base/models/models.py:728
 msgid "Thank you text"
 msgstr "Dankestext"
 
-#: allink_core_repo/allink_core/allink_base/models/models.py:766
+#: allink_core_repo/allink_core/allink_base/models/models.py:731
 msgid "This text will be shown, after form completion."
 msgstr "Dieser Text wird angezeigt, nachdem das Formular abgesendet wurde."
 
-#: allink_core_repo/allink_core/allink_base/models/models.py:769
+#: allink_core_repo/allink_core/allink_base/models/models.py:734
 msgid "Display labels"
 msgstr "Labels darstellen"
 
@@ -570,6 +570,10 @@ msgstr "Telefon"
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:72
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:78
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:84
+#, fuzzy
+#| msgid ""
+#| "We automatically handle phone number formatting, Please provide the "
+#| "number in the following format \"+41 43 333 30 90\"."
 msgid ""
 "We automatically handle phone number formatting, Please provide the number "
 "in the following format \"+41 43 123 45 67\"."
@@ -700,7 +704,7 @@ msgid "file"
 msgstr "Datei"
 
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:289
-msgid "Special Links"
+msgid "Form"
 msgstr ""
 
 #: allink_core_repo/allink_core/allink_base/models/reusable_fields.py:295
@@ -802,7 +806,7 @@ msgstr "Filter-Felder"
 msgid "Add plugin to"
 msgstr "Plugin hinzufügen zu"
 
-#: allink_core_repo/allink_core/allink_base/templatetags/allink_image_tags.py:345
+#: allink_core_repo/allink_core/allink_base/templatetags/allink_image_tags.py:347
 msgid ""
 "Please create a folder \"favicons\" and upload the complete favicon set."
 msgstr ""
