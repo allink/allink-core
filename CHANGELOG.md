@@ -26,7 +26,6 @@ Each release is divided into the following main categories:
 - you must set ALLINK_MANDRILL_DEV_MODE=True on development and all stage environments! (please also set ALLINK_MANDRILL_DEV_MODE=False on production in the environment variables)
 
 ###### TEMPLATES
-- we removed the context variable 'form_name' and moved the information to the button_link_plugin -> 'instance.unique_identifier'. if you have overridden allink_button_link/item.html you need to rename it.
 - to boost rendering of GalleryPlugins you can replace "ratio=instance.get_parent.get_plugin_instance.0.ratio" with "ratio=instance.ratio" in your gallery templates
 - if you have overriden any core form template (an ajax-form) with a {% csrf_token %} (most likely one of these: allink_mailchimp/signup_form_advanced_base.html or allink_mailchimp/signup_form_base.html) you need to remove the {% csrf_token %}.
 
