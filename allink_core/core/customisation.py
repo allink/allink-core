@@ -465,10 +465,9 @@ new_cms_plugins = '''# -*- coding: utf-8 -*-
 from django.utils.translation import ugettext_lazy as _
 from cms.plugin_pool import plugin_pool
 from cms.plugin_base import CMSPluginBase
-from allink_core.core.cms_plugins import CMSAllinkBaseAppContentPlugin, CMSAllinkBaseSearchPlugin
+from allink_core.core.cms_plugins import CMSAllinkBaseAppContentPlugin
 
-from {app_package}.models import {model_name}AppContentPlugin, {model_name}SearchPlugin
-from {app_package}.forms import {model_name}SearchForm
+from {app_package}.models import {model_name}AppContentPlugin
 
 
 @plugin_pool.register_plugin
@@ -482,23 +481,6 @@ class CMS{model_name}AppContentPlugin(CMSAllinkBaseAppContentPlugin):
     """
     model = {model_name}AppContentPlugin
     name = model.data_model.get_verbose_name_plural()
-
-
-@plugin_pool.register_plugin
-class CMS{model_name}SearchPlugin(CMSAllinkBaseSearchPlugin):
-    """
-    model:
-    - where to store plugin instances
-
-    search_form
-    - the form the user supplies the search query
-
-    name:
-    - name of the plugin
-    """
-    model = {model_name}SearchPlugin
-    search_form = {model_name}SearchForm
-    name = _(u'{{}} Search'.format(model.data_model.get_verbose_name_plural()))
 
 '''
 
@@ -531,14 +513,6 @@ class {model_name}Config(AppConfig):
 '''
 
 new_forms = '''# -*- coding: utf-8 -*-
-from django import forms
-from django.utils.translation import ugettext_lazy as _
-
-
-class {model_name}SearchForm(forms.Form):
-    q = forms.CharField(label=_(u'{model_name} Search'), required=False)
-
-
 '''
 
 new_models = '''# -*- coding: utf-8 -*-
@@ -557,7 +531,7 @@ from filer.fields.image import FilerImageField
 
 from aldryn_translation_tools.models import TranslationHelperMixin
 from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
-from allink_core.core.models.models import AllinkBaseAppContentPlugin, AllinkBaseSearchPlugin, AllinkBaseModel, AllinkBaseTranslatedFieldsModel
+from allink_core.core.models.models import AllinkBaseAppContentPlugin, AllinkBaseModel, AllinkBaseTranslatedFieldsModel
 from allink_core.core.models.mixins import AllinkTranslatedAutoSlugifyMixin
 from allink_core.core.models.managers import AllinkBaseModelManager
 
@@ -643,13 +617,6 @@ class {model_name}AppContentPlugin(AllinkBaseAppContentPlugin):
     class Meta:
         app_label = '{label}'
 
-
-class {model_name}SearchPlugin(AllinkBaseSearchPlugin):
-    data_model = {model_name}
-
-    class Meta:
-        app_label = '{label}'
-
 '''
 
 new_sitemaps = '''# -*- coding: utf-8 -*-
@@ -679,13 +646,12 @@ class {model_name}Sitemap(Sitemap):
 new_urls = '''# # -*- coding: utf-8 -*-
 from django.conf.urls import url
 
-from {app_package}.views import {model_name}PluginLoadMore, {model_name}Detail, {model_name}SearchAjaxView
+from {app_package}.views import {model_name}PluginLoadMore, {model_name}Detail
 
 
 urlpatterns = [
     url(r'^(?P<page>[0-9]*)/$', {model_name}PluginLoadMore.as_view(), name='more'),
     url(r'^(?P<slug>[\w-]+)/$', {model_name}Detail.as_view(), name='detail'),
-    url(r'^search/(?P<plugin_id>[0-9]+)/$', {model_name}SearchAjaxView.as_view(), name='search'),
 ]
 
 '''
@@ -693,8 +659,7 @@ urlpatterns = [
 new_views = '''# -*- coding: utf-8 -*-
 from allink_core.core.views import AllinkBasePluginLoadMoreView, AllinkBaseDetailView, AllinkBaseAjaxFormView
 
-from {app_package}.models import {model_name}, {model_name}AppContentPlugin, {model_name}SearchPlugin
-from {app_package}.forms import {model_name}SearchForm
+from {app_package}.models import {model_name}, {model_name}AppContentPlugin
 
 
 class {model_name}PluginLoadMore(AllinkBasePluginLoadMoreView):
@@ -704,11 +669,6 @@ class {model_name}PluginLoadMore(AllinkBasePluginLoadMoreView):
 
 class {model_name}Detail(AllinkBaseDetailView):
     model = {model_name}
-
-
-class {model_name}SearchAjaxView(AllinkBaseAjaxFormView):
-    form_class = {model_name}SearchForm
-    plugin_class = {model_name}SearchPlugin
 
 '''
 
@@ -788,7 +748,7 @@ def new_app(label, folder_path, logger=None):
         "2. add Plugins to CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES \n"
         "3. define templates/ create a new tuple {model_name_uppper}_PLUGIN_TEMPLATES \n"
         "4. (optional) add '('{model_name_lower}', '{model_name}'),' to PROJECT_APP_MODEL_WITH_CATEGORY_CHOICES if the app should have categories \n"
-        "5. create all required templates (default grid_static and search, detail and no_result)"
+        "5. create all required templates (default grid_static, detail and no_result)"
         "6. ./manage.py makemigrations {label} ./manage.py migrate\n\n"
     ).format(model_name=model_name, model_name_uppper=str.upper(model_name), model_name_lower=str.lower(model_name), app_package=app_package, label=label)
 

@@ -6,19 +6,19 @@ import re
 
 from django.views.generic import ListView, DetailView, CreateView, FormView
 from django.db.models import Q
-from django.core.cache import cache
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.template.loader import get_template
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
+from django.core.exceptions import ImproperlyConfigured
 from django.conf import settings
-from django.http import HttpResponse, HttpResponseRedirect, HttpResponsePermanentRedirect, Http404
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponsePermanentRedirect, Http404, JsonResponse
 from django.template.loader import render_to_string
 from django.template import TemplateDoesNotExist
 from parler.views import TranslatableSlugMixin
 
-from allink_core.core.models.models import AllinkBaseModel, AllinkBaseAppContentPlugin
+from allink_core.core.models.models import AllinkBaseAppContentPlugin
 from allink_core.core_apps.allink_categories.models import AllinkCategory
 from allink_core.core.utils import get_query, update_context_google_tag_manager
 
@@ -209,15 +209,6 @@ class AllinkBaseCreateView(CreateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(AllinkBaseCreateView, self).get_context_data(*args, **kwargs)
-
-        # We place the Form Class Name in the context so we can use it as a identifier for the google tag Manager as
-        # well as generally making it easier to identify involved classes
-
-        # TODO: Page id + plugin id + View und Form Class name als Id für Form // Button
-        # self.plugin.page.__str__(), self.plugin.page.id,
-        # self.plugin.id)
-
-        # form_name += '_' + self.__class__.__name__
         plugin_id = getattr(self.plugin, 'id') if self.plugin else None
         context = update_context_google_tag_manager(context, self.request.current_page.__str__(),
                                                     self.request.current_page.id, plugin_id, self.__class__.__name__)
@@ -236,6 +227,7 @@ class AllinkBaseCreateView(CreateView):
         return template
 
 
+# deprecated (only really used by WorkSearchAjaxView) will be renamed in AllinkBaseAjaxSearchFormView
 class AllinkBaseAjaxFormView(FormView):
     """
     form_class =
@@ -255,20 +247,8 @@ class AllinkBaseAjaxFormView(FormView):
 
     def get_object_list(self, query_string):
         if query_string:
-            # cache_key = 'search_{}_{}'.format(self.plugin.id, query_string.lower())
-            # cached = cache.get(cache_key)
-            # if cached:
-            #     return cached
             entry_query = get_query(query_string, self.search_fields)
             object_list = self.plugin.data_model.objects.active().filter(entry_query).distinct()
-            # cache.set(cache_key, object_list, 60 * 60 * 24 * 180)
-            # search_cache_keys_key = 'search_cache_keys_{}'.format(self.plugin.id)
-            # search_cache_keys = cache.get(search_cache_keys_key)
-            # if search_cache_keys:
-            #     search_cache_keys.append(cache_key)
-            # else:
-            #     search_cache_keys = [cache_key]
-            # cache.set(search_cache_keys_key, search_cache_keys, 60 * 60 * 24 * 360)
         else:
             object_list = self.plugin.data_model.objects.active()
         return object_list
@@ -293,6 +273,188 @@ class AllinkBaseAjaxFormView(FormView):
                                                             request=self.request)
         json_context['no_results'] = False if context['object_list'] else True
         return HttpResponse(content=json.dumps(json_context), content_type='application/json', status=200)
+
+
+class AllinkBasePluginAjaxFormView(FormView):
+    """
+    Use this class whenever you create a plugin which displays a form.
+
+    example implementation:
+
+    class ProductTrackingView(AllinkBasePluginAjaxFormView):
+        form_class = ProductTrackingForm
+        template_name = 'product/plugins/tracking/content.html'
+
+        success_template_name = 'product/plugins/tracking/success.html'
+        plugin_class = ProductTrackingPlugin
+        viewname = 'product:tracking'
+
+    example urls.py:
+    url(r'^tracking/(?P<plugin_id>[0-9]+)/$', ProductTrackingView.as_view(), name='tracking'),
+
+    to ensure that search engines do not index the view when called with GET (unstyled),
+    we only allow POST (the GET is with the cmsplugin render)
+    http_method_names = ['post']
+
+    therefore views inherit from this clas are not suitable for direct links
+    e.g all viewnames listed in BUTTON_LINK_SPECIAL_LINKS_CHOICES.
+    these views will be called by a GET request and not with ajax
+    """
+
+    http_method_names = ['post']
+
+    def post(self, request, *args, **kwargs):
+        """
+        Handles POST requests, instantiating a form instance with the passed
+        POST variables and then checked for validity.
+
+        adds the plugin instance from the plugin_id kwargs
+        """
+        plugin_id = self.kwargs.pop('plugin_id', None)
+        self.plugin = self.plugin_class.objects.get(id=plugin_id)
+
+        return super().post(request, *args, **kwargs)
+
+    def get_context_data(self, *args, **kwargs):
+        """
+        Add the plugin instance context, so it ca be rendered with all necessary data
+        and the same plugin template used by the cms
+        """
+        context = super().get_context_data(*args, **kwargs)
+        context.update({
+            'csrf_token_value': self.request.COOKIES.get('csrftoken'),
+            'request': self.request,
+            'instance': self.plugin,
+            'action': self.get_form_action(),
+        })
+        # to be removed? because we could actually track the form with ""
+        context = update_context_google_tag_manager(
+            context=context,
+            page_name=self.request.current_page.__str__(),
+            page_id=self.request.current_page.id,
+            plugin_id=self.plugin,
+            name=self.__class__.__name__
+        )
+        return context
+
+    def form_valid(self, form):
+        """
+        We return the response as json, with status code 200
+        """
+        context = self.get_context_data(form=form)
+        return self.get_json_response(
+            context=context,
+            status=200,
+            template_name=self.get_success_template_names()[0]
+        )
+
+    def form_invalid(self, form):
+        """
+        We return the response as json, with status code 206
+        """
+        return self.get_json_response(
+            context=self.get_context_data(form=form),
+            status=206,
+            template_name=self.get_template_names()[0]
+        )
+
+    def get_form_action(self):
+        """
+        Returns the reversed plugin url. which should points to this view.
+        """
+        return reverse(self.viewname, kwargs={'plugin_id': self.plugin.id})
+
+    def get_success_template_names(self):
+        """
+        Returns a list of template names to be used for the successfull request. Must return
+        a list. May not be called if form_valid is overridden.
+        """
+        if self.success_template_name is None:
+            raise ImproperlyConfigured(
+                "AllinkBasePluginAjaxFormView requires either a definition of "
+                "'success_template_name' or an implementation of 'get_success_template_names()'")
+        else:
+            return [self.success_template_name]
+
+    def get_json_response(self, context, status, template_name=None, data=None):
+        """
+        This response will most likely be handled by allink-core-static/js/modules/ajax-form.js
+
+        context: the context which will we passed to template_name
+        template_name: the template to render with
+        status: 200 or 206, most likely
+        data: additional response data (e.g 'success_url')
+
+        * there is no template needed, when we redirect to a success_url
+        """
+        if not data:
+            data = dict()
+
+        if template_name:
+            data.update({
+                'rendered_content': render_to_string(template_name, context=context, request=self.request)
+            })
+        return JsonResponse(data, status=status)
+
+# TODO
+# class AllinkBaseAjaxPluginSearchFormView(AllinkBasePluginAjaxFormView):
+#     """
+#     example implementation:
+#     class WorkSearchView
+#     form_class = WorkSearchForm
+#     template_name = 'work/plugins/search/content.html'
+#
+#     success_template_name = 'work/plugins/search/success.html' ?!
+#     plugin_class = WorkSearchPlugin
+#     viewname = 'work:search'
+#
+#     search_fields = ['translations__title', 'translations__lead']
+#     """
+#
+#     search_fields = ['translations__title', 'translations__lead']
+#
+#     def get_object_list(self, query_string):
+#         if query_string:
+#             entry_query = get_query(query_string, self.search_fields)
+#             object_list = self.plugin.data_model.objects.active().filter(entry_query).distinct()
+#         else:
+#             object_list = self.plugin.data_model.objects.active()
+#         return object_list
+#
+#     def form_valid(self, form):
+#         """
+#         - adds the serach result queryset to the context
+#         - adds no_results to json response, if empty queryset
+#         """
+#         context = self.get_context_data()
+#         context.update({'object_list': self.get_object_list(form.cleaned_data.get('q'))})
+#         data = {'no_results': False if context['object_list'] else True}
+#
+#         return self.get_json_response(
+#             context=context,
+#             status=200,
+#             template_name=self.get_template_names()[0],
+#             data=data
+#         )
+
+# TODO
+# class AllinkBaseAjaxPluginCreateView(AllinkBasePluginAjaxFormView):
+#     """
+#     # example implementation:
+#     # class OrderRequestView
+#     #     model = OrderRequest
+#     #     form_class = OrderRequestForm
+#     #     template_name = 'order/plugins/request/content.html'
+#     #
+#     #     success_template_name = 'order/plugins/request/success.html'
+#     #     plugin_class = OrderRequestPlugin
+#     #     viewname = 'order:request'
+#     """
+#     plugin = None
+#
+#     def form_valid(self, form):
+#         self.object = form.save()
+#         return super().form_valid(form)
 
 
 # used to redirect page to external url

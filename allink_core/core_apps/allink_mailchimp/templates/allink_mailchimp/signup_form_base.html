@@ -24,7 +24,7 @@
             <input name="email" id="id_email" type="email" placeholder="{% block newsletter_email_text %}{% trans "Your Email address" %}{% endblock newsletter_email_text %}" class="signup-form__input form-control" value="{{ mailchimp_signup_form.email.value|default:"" }}" required>
             {% block newsletter_btn_container %}
                 <span class="signup-form__input-group-btn input-group-btn">
-                    <button type="submit" class="signup-form__btn {% block newsletter_btn_classes_container %}{% endblock newsletter_btn_classes_container %}" {% block newsletter_btn_ajax_loader %}data-btn-ajax-loader{% endblock newsletter_btn_ajax_loader %}>
+                    <button type="submit" class="signup-form__btn {% block newsletter_btn_classes_container %}{% endblock newsletter_btn_classes_container %}" {% block newsletter_btn_ajax_loader %}{% endblock newsletter_btn_ajax_loader %}>
                         <span class="signup-form__btn-text btn-text">
                             {% block newsletter_btn_text %}
                                 {% trans "Send" %}

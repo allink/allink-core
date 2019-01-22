@@ -77,8 +77,11 @@
 {% if instance.form_modal_enabled %}
     {% include "modals/modal-header-markup.html" with title=instance.label modal_type="form-modal" %}
 {% endif %}
-{% if instance.softpage_large_enabled or instance.softpage_small_enabled %}
-    {% include "modals/modal-header-markup.html" with title=instance.link_page modal_type="softpage" %}
+{% if instance.link_page %}
+    {% comment %} All non-cms page links (i.e. apps) will already have the include in the detail templates {% endcomment %}
+    {% if instance.softpage_large_enabled or instance.softpage_small_enabled %}
+        {% include "modals/modal-header-markup.html" with title=instance.link_page modal_type="softpage" %}
+    {% endif %}
 {% endif %}
 {% comment %}
     LOGOUT
