@@ -23,10 +23,6 @@ Each release is divided into the following main categories:
 ### IMPORTANT
 
 ###### SETTINGS
-- update your settings to import *
-```python
-from allink_core.core.allink_settings import *
-```
 - you must set ALLINK_MANDRILL_DEV_MODE=True on development and all stage environments! (please also set ALLINK_MANDRILL_DEV_MODE=False on production in the environment variables)
 
 ###### TEMPLATES
