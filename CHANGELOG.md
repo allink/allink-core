@@ -13,45 +13,14 @@ Each release is divided into the following main categories:
 - FIXES: General bugfixes
 
 
+
+
+
+
+
 ## v1.1.0 (under development)
 
 ### IMPORTANT
-- for every app in PROJECT_LINK_APPHOOKS (or actually every app which inherits from AllinkBaseModel) which isn't a core-apps, you have to make sure, the handlers.py are added correctly. If you don't the links to this model will never be updated on post_save. For reference have a look at a implementation e.g. in allink_core/apps/news/config.py and allink_core/apps/news/handlers.py.
-- make sure you add the appropriate signal handlers to all allink_core/apps which were overwritten e.g.:
-__init__.py
-```python
-# -*- coding: utf-8 -*-
-default_app_config = 'apps.services.config.ServicesConfig'
-```
-config.py
-```python
-from django.apps import AppConfig
-
-
-class ServicesConfig(AppConfig):
-    name = 'apps.services'
-    verbose_name = "Services"
-
-    def ready(self):
-        import apps.services.handlers
-
-```
-hanlders.py
-```python
-from django.dispatch import receiver
-from django.db.models.signals import post_save
-from allink_core.core_apps.allink_cms.utils import handle_all_plugins_with_reference_to_instance
-
-from apps.services.models import Services
-
-
-@receiver(post_save, sender=Services, dispatch_uid='services.republish_pages_on_save')
-def republish_pages_on_save(sender, instance, **kwargs):
-    # when a model instance is saved, the plugins and pages referencing this object
-    # also have to be saved/published again
-    handle_all_plugins_with_reference_to_instance(instance)
-
-```
 
 ###### SETTINGS
 - update your settings to import *
@@ -70,38 +39,15 @@ from allink_core.core.allink_settings import *
 ```python
 url(r'^cms-api/', include('allink_core.core_apps.allink_cms.urls', namespace='cms_api')),
 ```
-
 ###### REQUIREMENTS
 - djangorestframework==3.7.0
 
 ###### DATA MIGRATIONS
-- we now save the link as a string to these plugins directly 'AllinkImagePlugin' and 'AllinkButtonLinkPlugin'. If you have models inherit from 'AllinkLinkFieldsModel' or 'AllinkInternalLinkFieldsModel' you have to write a migration manually. (for implementation have a look at the command below)
-- make sure you add the new config.py to all allink_core/apps which are overriden (this ensures, that the placeholders/ pages get invalidated/ republished, when a model instance is saved)
-```python
-...
-  def ready(self):
-      import allink_core.apps.people.handlers
-...
-```
-you must run on production!!! (after migrations)
-```python
-./manage.py set_denormalized_plugin_data
-```
-- have to save the gtm_identifier once for backwards compatibility 'AllinkButtonLinkPlugin'
-you must run on production!!! (after migrations)
-```python
-./manage.py set_denormalized_gtm_identifier
-```
-- you have to clear the cache on production:
-```python
-./manage.py shell
-from django.core.cache import cache
-cache.clear()
-```
+
 ### NEW
 - we now save the data of the content-plugin to these plugins directly 'AllinkImagePlugin', 'AllinkGalleryPlugin', 'AllinkGalleryImagePlugin'
 - (allink-core-static dependent!) all forms with class "ajax-form" now get sent with the appropriate csrftoken which will be fetched from the cookie. you don't need a {% csrf_token %} in the template (this is why we can now cache CMSAllinkSignupFormPlugin and any other CMSPlugin displaying a form) -> if you decide to change cache=False to cache=True you must remove {% csrf_token %} from the template and clear cache! otherwise you will end up with a 403!
-- we added an easy and basic way to load plugins async. just add a template:
+- we added a basic way to load plugins async. just add a template:
 ../content_skeleton.html
 ```html
 {% load cms_tags %}
@@ -119,7 +65,6 @@ and add the following to your Plugin in cms_plugins.py:
 ``
 
 ### FIXES
-
 
 ## v1.0.2
 
