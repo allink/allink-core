@@ -23,7 +23,17 @@ Each release is divided into the following main categories:
 ### IMPORTANT
 
 ###### SETTINGS
-- you must set ALLINK_MANDRILL_DEV_MODE=True on development and all stage environments! (please also set ALLINK_MANDRILL_DEV_MODE=False on production in the environment variables)
+- you must set ALLINK_MANDRILL_DEV_MODE=True on development and all stage environments! (please also set ALLINK_MANDRILL_DEV_MODE=False on production in the environment variables) and import the additional settings from allink_core into the local settings file:
+    ```python
+    ...
+    from allink_core.core.allink_settings import (
+        ...
+        ALLINK_MANDRILL_DEV_MODE_FROM_EMAIL_ADDRESS,
+        ALLINK_MANDRILL_DEV_MODE_TO_EMAIL_ADDRESSES,
+        ALLINK_MANDRILL_DEV_MODE,
+    )
+    ...
+    ```
 
 ###### TEMPLATES
 - to boost rendering of GalleryPlugins you can replace "ratio=instance.get_parent.get_plugin_instance.0.ratio" with "ratio=instance.ratio" in your gallery templates
