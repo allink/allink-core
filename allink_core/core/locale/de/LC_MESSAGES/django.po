@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-23 14:58+0100\n"
+"POT-Creation-Date: 2019-02-01 17:01+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -727,23 +727,23 @@ msgstr ""
 msgid "To the top"
 msgstr ""
 
-#: allink_core/core/templates/allink_core/base_root.html:66
+#: allink_core/core/templates/allink_core/base_root.html:65
 msgid "Go to homepage"
 msgstr ""
 
-#: allink_core/core/templates/allink_core/base_root.html:67
+#: allink_core/core/templates/allink_core/base_root.html:66
 msgid "Jump to navigation"
 msgstr "Zur Navigation springen"
 
-#: allink_core/core/templates/allink_core/base_root.html:68
+#: allink_core/core/templates/allink_core/base_root.html:67
 msgid "Jump to content"
 msgstr ""
 
-#: allink_core/core/templates/allink_core/base_root.html:69
+#: allink_core/core/templates/allink_core/base_root.html:68
 msgid "Jump to footer"
 msgstr ""
 
-#: allink_core/core/templates/allink_core/base_root.html:111
+#: allink_core/core/templates/allink_core/base_root.html:112
 #: allink_core/core/templates/partials/forms/form_base.html:48
 msgid "Close"
 msgstr "Schliessen"
@@ -820,6 +820,10 @@ msgstr "Dieses Plugin kann nicht gelöscht werden."
 #: allink_core/core/templates/allink_core/cms/toolbar/dragitem.html:55
 msgid "Filter plugins..."
 msgstr "Filter Plugins..."
+
+#: allink_core/core/templates/allink_core/config/admin/change_form.html:6
+msgid "clear cache"
+msgstr ""
 
 #: allink_core/core/templates/allink_core/contact/email/request_subject.txt:2
 #: allink_core/core/templates/allink_core/contact/forms/confirmation.html:8
@@ -1099,13 +1103,13 @@ msgstr "File auswählen"
 msgid "Add plugin to"
 msgstr "Plugin hinzufügen zu"
 
-#: allink_core/core/views.py:149
+#: allink_core/core/views.py:155
 #, fuzzy
 #| msgid "The requested page is not available."
 msgid "The requested content is not published."
 msgstr "Die angeforderte Seite ist nicht vorhanden."
 
-#: allink_core/core/views.py:188
+#: allink_core/core/views.py:200
 msgid "Something went wrong with your subscription. Please try again later."
 msgstr ""
 "Bei Ihrer Anmeldung ist etwas schiefgegangen. Bitte versuchen Sie es später "

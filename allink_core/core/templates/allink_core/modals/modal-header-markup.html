@@ -1,24 +1,24 @@
 {% load cms_tags allink_cms_tags sekizai_tags i18n %}
 
 {% comment %}
+    {{ modal_type }} has to be one of the following options: softpage, form-modal, default-modal
 
-    Global Modal Header Markup
-
-    Notes:
-    - {{ modal_type }} has to be one of the following options: softpage, form-modal, default-modal
-    - There are currently no default styles associated with it
+    IMPORTANT:
+    Only inline elements are allowed here, otherwise it creates problems in the CKEditor (a p-tag only allows inline elements as children)
 
 {% endcomment %}
 
-{% comment %}
-    <div class="modal-header-markup" style="display: none;">
-        <h2 class="tingle-modal-header__heading">
-            {{ title }}
-        </h2>
-        <a class="tingle-modal-header__link-close" href="#" data-close-{{ modal_type }}>
-            <span class="sr-only">
-                {% trans "Close" %}
+<span class="modal-header-markup" style="display: none;">
+    <span class="tingle-modal-header__container">
+        <span class="tingle-modal-header__inner">
+            <span class="tingle-modal-header__heading">
+                {{ title }}
             </span>
-        </a>
-    </div>
-{% endcomment %}
+            <a class="tingle-modal-header__link-close" href="#" data-close-{{ modal_type }}>
+                <span class="sr-only">
+                    {% trans "Close" %}
+                </span>
+            </a>
+        </span>
+    </span>
+</span>

@@ -39,7 +39,7 @@
                  </p>
 
                  {% if object.map_link %}
-                     <p><a class="text" href="{{object.map_link}}" target="_blank">{% trans "Directions" %}</a></p>
+                     <p><a class="text" href="{{object.map_link}}" target="_blank" rel="noopener">{% trans "Directions" %}</a></p>
                  {% endif %}
 
                  {% if object.opening_hours_display %}

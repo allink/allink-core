@@ -56,6 +56,24 @@ class AllinkContentPluginForm(forms.ModelForm):
                 initial='default',
                 required=False,
             )
+        if get_additional_choices('CONTENT_SPACINGS'):
+            self.fields['project_css_spacings_top_bottom'] = forms.ChoiceField(
+                label=_(u'Spacings top & bottom'),
+                choices=get_additional_choices('CONTENT_SPACINGS', blank=True),
+                required=False,
+            )
+        if get_additional_choices('CONTENT_SPACINGS'):
+            self.fields['project_css_spacings_top'] = forms.ChoiceField(
+                label=_(u'Spacings top'),
+                choices=get_additional_choices('CONTENT_SPACINGS', blank=True),
+                required=False,
+            )
+        if get_additional_choices('CONTENT_SPACINGS'):
+            self.fields['project_css_spacings_bottom'] = forms.ChoiceField(
+                label=_(u'Spacings bottom'),
+                choices=get_additional_choices('CONTENT_SPACINGS', blank=True),
+                required=False,
+            )
 
     def clean(self):
         cleaned_data = super(AllinkContentPluginForm, self).clean()
@@ -110,6 +128,14 @@ class CMSAllinkContentPlugin(CMSPluginBase):
                 'inverted_colors_enabled',
                 'overlay_enabled',
                 'bg_color',
+            ]
+        }),
+        (_('Spacings'), {
+            'classes': ('collapse',),
+            'fields': [
+                'project_css_spacings_top_bottom',
+                'project_css_spacings_top',
+                'project_css_spacings_bottom',
             ]
         }),
         (_('Background Image (full width)'), {

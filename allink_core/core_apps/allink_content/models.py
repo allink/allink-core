@@ -168,6 +168,27 @@ class AllinkContentPlugin(CMSPlugin):
         related_name='%(app_label)s_%(class)s',
         parent_link=True,
     )
+    project_css_spacings_top_bottom = models.CharField(
+        _(u'Spacings'),
+        help_text=_(u'Choose a spacing (top and bottom).'),
+        max_length=50,
+        blank=True,
+        null=True
+    )
+    project_css_spacings_top = models.CharField(
+        _(u'Spacings top'),
+        help_text=_(u'Choose a top spacing.'),
+        max_length=50,
+        blank=True,
+        null=True
+    )
+    project_css_spacings_bottom = models.CharField(
+        _(u'Spacings bottom'),
+        help_text=_(u'Choose a bottom spacing.'),
+        max_length=50,
+        blank=True,
+        null=True
+    )
 
     def __str__(self):
         return str(self.id)
@@ -268,6 +289,18 @@ class AllinkContentPlugin(CMSPlugin):
         css_classes.append("full-height-enabled") if self.full_height_enabled else None
         # "full-height" and "parallax" are stronger than "dynamic-height"
         css_classes.append("dynamic-height-enabled") if self.dynamic_height_enabled and not self.full_height_enabled and not self.parallax_enabled else None
+        return ' '.join(css_classes)
+
+    @property
+    def css_section_classes(self):
+        css_classes = []
+        if self.project_css_spacings_top:
+            css_classes.append('{}-top'.format(self.project_css_spacings_top))
+        if self.project_css_spacings_bottom:
+            css_classes.append('{}-bottom'.format(self.project_css_spacings_bottom))
+        if self.project_css_spacings_top_bottom:
+            css_classes = self.project_css_spacings_top_bottom
+            return css_classes
         return ' '.join(css_classes)
 
     @property

@@ -53,7 +53,7 @@
                                                 + '<br>E <a class="text" href="mailto:{{object.email}}">{{object.email}}</a>'
                                             {% endif %}
                                             {% if object.map_link %}
-                                                + '<br><br><a class="text" href="{{object.map_link}}" target="_blank">{% trans "Directions" %}</a>'
+                                                + '<br><br><a class="text" href="{{object.map_link}}" target="_blank" rel="noopener">{% trans "Directions" %}</a>'
                                             {% endif %}
                                         + '</div>'
                                     + '</address>

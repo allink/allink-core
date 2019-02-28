@@ -126,7 +126,7 @@ def render_meta_og(context, obj=None, page_title=None, base_page_title=None, ima
 
         try:
             # only when extension is there (cms page must not have a extension)
-            page_ext = page.get_title_obj().allinkmetatagextension
+            page_ext = page.get_title_obj().allinkseoextension
             page_ext_og_image = getattr(page_ext, 'og_image')
         except:
             page_ext = None
@@ -193,7 +193,7 @@ def render_softpage_title(context, obj=None, page_title=None, base_page_title=No
             cms_page_title = None
         try:
             # only when extension is there (cms page must not have a extension)
-            page_ext = page.get_title_obj().allinkmetatagextension
+            page_ext = page.get_title_obj().allinkseoextension
         except:
             page_ext = None
 
