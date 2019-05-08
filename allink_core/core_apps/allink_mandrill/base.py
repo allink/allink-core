@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import base64
+import mimetypes
 import mandrill
 from django import forms
 from django.conf import settings
@@ -92,6 +94,26 @@ class AllinkMandrillEmailBase:
         }
 
     @staticmethod
+    def create_attachment(fname, file, type=None):
+        """
+        :param fname:
+        e.g "myfile.txt"
+        :param file:
+        a Byte object
+        :param type:
+        mime type of file
+        :return:
+        a dict with the dict which mandrill expects
+        - including the file mime type
+        - including the file content as base64 encoded string e.g "ZXhhbXBsZSBmaWxl"
+        """
+        return {
+            "type": type if type else mimetypes.guess_type(file.name)[0],
+            "name": fname,
+            "content": base64.b64encode(file.read()).decode("utf-8")
+        }
+
+    @staticmethod
     def replace_linebreaks_with_html(content):
         r = '<br />'
         return content.replace('\r\n', r).replace('\n\r', r).replace('\r', r).replace('\n', r)
@@ -134,6 +156,21 @@ class AllinkMandrillEmailBase:
 
     def get_googleanalytics_domains(self):
         return [self.config.get_site_domain(), ]
+
+    def get_attachments(self):
+        """
+        :return:
+        returns a list with all attachments to be attached to the message
+        use self.create_attachment to add attachements
+        """
+        return list()
+
+    def get_images(self):
+        """
+        returns a list with all images to be attached to the message
+        use self.create_attachment to add images
+        """
+        return list()
 
     def send_transactional_email(self, message, template_content):
         if self.send_with_celery:
@@ -191,6 +228,8 @@ class AllinkMandrillEmailBase:
                     'track_clicks': self.track_clicks,
                     'track_opens': self.track_opens,
                     'view_content_link': self.view_content_link,
+                    'attachments': self.get_attachments(),
+                    'images': self.get_images(),
                 }
 
                 self.send_transactional_email(message=message, template_content=template_content)
