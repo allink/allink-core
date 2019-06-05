@@ -27,7 +27,6 @@ the equivalent allink_core app). e.g.:
         # 'apps.events',
         # 'apps.locations',
         # 'apps.news',
-        # 'apps.members',
         # 'apps.people',
         # 'apps.testimonials',
         # 'apps.work',

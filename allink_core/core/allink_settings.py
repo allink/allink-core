@@ -8,8 +8,6 @@ from django.conf import settings
 ALLINK_INSTALLED_APPS = [
     # apps
     'debug_toolbar',
-    'allauth',
-    'allauth.account',
     'webpack_loader',
     'adminsortable',
     'sortedm2m',
@@ -128,7 +126,6 @@ ALLINK_LOCALE_PATHS = [
     '/app/allink_core/apps/config/locale',
     '/app/allink_core/apps/contact/locale',
     '/app/allink_core/apps/locations/locale',
-    '/app/allink_core/apps/members/locale',
     '/app/allink_core/apps/people/locale',
     '/app/allink_core/apps/testimonials/locale',
     '/app/allink_core/apps/work/locale',
@@ -139,7 +136,6 @@ ALLINK_LOCALE_PATHS = [
     # '/app/allink_apps/config/locale',
     # '/app/allink_apps/contact/locale',
     # '/app/allink_apps/locations/locale',
-    # '/app/allink_apps/members/locale',
     # '/app/allink_apps/people/locale',
     # '/app/allink_apps/testimonials/locale',
     # '/app/allink_apps/work/locale',

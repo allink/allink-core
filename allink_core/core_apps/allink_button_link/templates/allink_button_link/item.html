@@ -1,16 +1,11 @@
-{% load cms_tags sekizai_tags i18n thumbnail allink_image_tags allink_user_tags allink_members_tags allink_link_tags %}
+{% load cms_tags sekizai_tags i18n thumbnail allink_image_tags allink_user_tags allink_link_tags %}
 {% spaceless %}
 {% comment %}
 
     IMPORTANT NOTE: Some editors automatically add a NEW LINE at the end of the document. This causes undesired extra space after the <a> tag. So every time you adjust this file, make sure to open/save it in an editor that does NOT add a new line before committing.
 
-    LOGOUT: requires a form to submit with the POST method (check if logged in an in group 'members')
-
 {% endcomment %}
-{% if instance.link_special == 'account_logout' and user.is_authenticated %}
-    <form class="button-link-plugin__form" method="post" action="{{instance.link_url_typed}}"  id="{{ form_name }}">
-    {% csrf_token %}
-{% endif %}<a href="{{ instance.link_url_typed }}"
+<a href="{{ instance.link_url_typed }}"
     class="button-link-plugin__link {{instance|link_classes}}"
     {{ instance|link_attribute_string:request }}
     id="{{ form_name }}"
@@ -71,7 +66,7 @@
 
     {# the actual link text #}
     {# quick and dirty fix that created an empty space at the link text. But since changes here are made very seldom this is bearable ;) #}
-    <span class="button-link-plugin__text">{# if button is login-button to member area, check if logged in and in group 'members' #}{% if instance.link_special == 'account_login' and user.is_authenticated %}{% trans 'Member Area' %}{% else %}{{ instance.label }}{% endif %}{# display the file's name' and 'description' attribute when linked to a file #}{% if instance.link_file.name %}{{ instance.link_file.name }}{% endif %}{% if instance.link_file.description %}{{ instance.link_file.description }}{% endif %}</span>
+    <span class="button-link-plugin__text">{{ instance.label }}{# display the file's name' and 'description' attribute when linked to a file #}{% if instance.link_file.name %}{{ instance.link_file.name }}{% endif %}{% if instance.link_file.description %}{{ instance.link_file.description }}{% endif %}</span>
 
 </a>
 {% if instance.form_modal_enabled %}
@@ -82,10 +77,4 @@
     {% if instance.softpage_large_enabled or instance.softpage_small_enabled %}
         {% include "modals/modal-header-markup.html" with title=instance.link_page modal_type="softpage" %}
     {% endif %}
-{% endif %}
-{% comment %}
-    LOGOUT
-{% endcomment %}
-{% if instance.link_special == 'account_logout' and user.is_authenticated %}
-    </form>
 {% endif %}{% endspaceless %}

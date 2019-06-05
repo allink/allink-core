@@ -12,7 +12,6 @@ At the moment not every app is documented in this guide. For reference please se
 ###### contact
 ###### events
 ###### locations
-###### members
 ###### news
 ###### people
 ###### testimonials
