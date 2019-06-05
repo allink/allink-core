@@ -17,13 +17,10 @@
         allink.ch
 
     -->
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="format-detection" content="telephone=no" />{% comment %} Removing ugly phone number links on Internet Explorer: https://msdn.microsoft.com/en-us/library/dn265018(v=vs.85).aspx {% endcomment %}
-
-    {# Google Tag Manager #}
-    {% google_tag_manager %}
 
     {# META / OpenGraph #}
     {% block meta_tags %}
@@ -37,13 +34,13 @@
 
     {# css #}
     {% block webpack_css %}
-        {% render_bundle 'app' 'css' %}
+        {% render_bundle 'app' 'css' attrs='rel="preload" as="style"' %}
     {% endblock webpack_css %}
     {% render_block "css" %}
 
     {# Load external JavaScript#}
     {# Included from: https://cdnjs.com/#}
-    <script src="//cdnjs.cloudflare.com/ajax/libs/picturefill/3.0.3/picturefill.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/picturefill/3.0.3/picturefill.min.js" async></script>
     <!--[if lt IE 9]>
         <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -57,6 +54,9 @@
 </head>
 
 <body id="page-top" class="noscript lang-{{ LANGUAGE_CODE }} {% block body_class %}tpl-root{% endblock %}" {% block body_additional_attributes %}{% endblock body_additional_attributes %}>
+
+    {# Google Tag Manager #}
+    {% google_tag_manager %}
     {% block h1_tag %}{% render_h1 %}{% endblock h1_tag %}
 
     {% block skip_links %}
