@@ -62,13 +62,11 @@ class AllinkContentPluginForm(forms.ModelForm):
                 choices=get_additional_choices('CONTENT_SPACINGS', blank=True),
                 required=False,
             )
-        if get_additional_choices('CONTENT_SPACINGS'):
             self.fields['project_css_spacings_top'] = forms.ChoiceField(
                 label=_(u'Spacings top'),
                 choices=get_additional_choices('CONTENT_SPACINGS', blank=True),
                 required=False,
             )
-        if get_additional_choices('CONTENT_SPACINGS'):
             self.fields['project_css_spacings_bottom'] = forms.ChoiceField(
                 label=_(u'Spacings bottom'),
                 choices=get_additional_choices('CONTENT_SPACINGS', blank=True),
@@ -136,7 +134,7 @@ class CMSAllinkContentPlugin(CMSPluginBase):
                 'project_css_spacings_top_bottom',
                 'project_css_spacings_top',
                 'project_css_spacings_bottom',
-            ]
+            ] if get_additional_choices('CONTENT_SPACINGS') else []
         }),
         (_('Background Image (full width)'), {
             'classes': ('collapse',),
