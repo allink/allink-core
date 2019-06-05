@@ -23,6 +23,14 @@ Each release is divided into the following main categories:
 ### IMPORTANT
 
 ###### SETTINGS
+- The apps 'members' and the package 'allauth' have been removed. Update the settings of your project:
+    - Remove the settings `AUTHENTICATION_BACKENDS`, `ACCOUNT_ADAPTER`, `ACCOUNT_LOGIN_ON_PASSWORD_RESET` and `MEMBERS_INITIAL_PWD`
+    - Remove members from `INSTALLED_ALLINK_CORE_APPS` and `OVERRIDDEN_ALLINK_CORE_APPS`
+    - Remove members APPHOOK in `PROJECT_LINK_APPHOOKS`
+    - Remove `MEMBERS_CSS_CLASSES`
+    - Remove account and members urls from `BUTTON_LINK_SPECIAL_LINKS_CHOICES`
+
+
 - you must set ALLINK_MANDRILL_DEV_MODE=True on development and all stage environments! (please also set ALLINK_MANDRILL_DEV_MODE=False on production in the environment variables) and import the additional settings from allink_core into the local settings file:
     ```python
     ...
@@ -40,11 +48,20 @@ Each release is divided into the following main categories:
 - if you have overriden any core form template (an ajax-form) with a {% csrf_token %} (most likely one of these: allink_mailchimp/signup_form_advanced_base.html or allink_mailchimp/signup_form_base.html) you need to remove the {% csrf_token %}.
 
 ###### URLS
+- Remove the following code from `i18n_patterns`:
+    ```python
+
+        # override allauth views
+        # url(r'^accounts/password/change/$', login_required(MembersChangePassword.as_view()), name='profile_edit'),
+
+        url(r'^accounts/', include('allauth.urls')),
+    ```
 - you need to add:
 ```python
 url(r'^cms-api/', include('allink_core.core_apps.allink_cms.urls', namespace='cms_api')),
 ```
 ###### REQUIREMENTS
+- Remove `django-allauth`
 - djangorestframework==3.7.0
 
 ###### DATA MIGRATIONS
