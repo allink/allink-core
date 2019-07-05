@@ -1,0 +1,3 @@
+{% load i18n %}
+{# quick and dirty fix that created an empty space at the link text. But since changes here are made very seldom this is bearable ;) #}
+{{ instance.label }}{# display the file's name' and 'description' attribute when linked to a file #}{% if instance.link_file.name %}{{ instance.link_file.name }}{% endif %}{% if instance.link_file.description %}{{ instance.link_file.description }}{% endif %}

@@ -4,7 +4,6 @@ from django.core.validators import MaxValueValidator
 from django.db import models
 from django.db.models.fields import PositiveIntegerField
 from django.utils.translation import ugettext as _
-from parler.fields import TranslatedField, TranslatedFieldDescriptor
 
 from cms.models.pluginmodel import CMSPlugin
 
@@ -18,6 +17,7 @@ from allink_core.core.forms import fields
 CMSPluginField = partial(
     models.OneToOneField,
     to=CMSPlugin,
+    on_delete=models.CASCADE,
     related_name='%(app_label)s_%(class)s',
     parent_link=True,
 )
@@ -29,7 +29,7 @@ class Icon(models.CharField):
 
     def __init__(self, *args, **kwargs):
         if 'verbose_name' not in kwargs:
-            kwargs['verbose_name'] = _(u'Icon')
+            kwargs['verbose_name'] = _('Icon')
         if 'max_length' not in kwargs:
             kwargs['max_length'] = 255
         if 'blank' not in kwargs:
@@ -49,7 +49,7 @@ class Icon(models.CharField):
 class ZipCodeField(PositiveIntegerField):
     default_validators = [MaxValueValidator(9999)]
     default_field_class = fields.ZipCode
-    description = _(u'Zip Code Field')
+    description = _('Zip Code Field')
 
     def formfield(self, **kwargs):
         defaults = {

@@ -17,7 +17,7 @@ class AdminPdfThumnailWidget(AdminFileWidget):
         if value:
             output.append(u'<img alt="%s" src="%s" height="200"/>' % (value.url, value.url,))
         else:
-            output.append(_(u'Thumbnail is created when publication is saved. And a PDF document is assigned.'))
+            output.append(_('Thumbnail is created when publication is saved. And a PDF document is assigned.'))
 
         # This is commented out b/c maybe you want to be able to override the thumbnail?
         # output.append(super(AdminFileWidget, self).render(name, value, attrs))
@@ -58,9 +58,9 @@ class SpectrumColorPicker(forms.widgets.TextInput):
     in the pushed colorFields, it could be used more flexible if needed.
     """
     class Media:
-        js = (get_files('djangocms_custom_admin')[0]['publicPath'], )
+        js = (get_files('djangocms_custom_admin')[1]['publicPath'], )
         css = {
-            'all': (get_files('djangocms_custom_admin')[1]['publicPath'], )
+            'all': (get_files('djangocms_custom_admin')[0]['publicPath'], )
         }
 
     def __init__(self, *args, **kwargs):
@@ -76,7 +76,7 @@ class SpectrumColorPicker(forms.widgets.TextInput):
         return palette
 
     def _render_js(self, _id, value):
-        js = u"""
+        js = """
             <script type="text/javascript">
                 document.addEventListener("DOMContentLoaded", function(event) {
                     if (!window.colorFields) {
@@ -94,7 +94,7 @@ class SpectrumColorPicker(forms.widgets.TextInput):
             </script>""" % (_id, value, self._get_project_color_choices())
         return js
 
-    def render(self, name, value, attrs=None):
+    def render(self, name, value, attrs=None, renderer=None):
         if 'id' not in attrs:
             attrs['id'] = "id_%s" % name
         if value:
@@ -102,16 +102,16 @@ class SpectrumColorPicker(forms.widgets.TextInput):
                 if val == value:
                     value = key
                     break
-        rendered = super(SpectrumColorPicker, self).render(name, value, attrs)
+        rendered = super(SpectrumColorPicker, self).render(name, value, attrs=attrs, renderer=None)
         return mark_safe(rendered + self._render_js(attrs['id'], value))
 
 
 class SearchSelectWidget(forms.widgets.Select):
 
     class Media:
-        js = (get_files('djangocms_custom_admin')[0]['publicPath'], )
+        js = (get_files('djangocms_custom_admin')[1]['publicPath'], )
         css = {
-            'all': (get_files('djangocms_custom_admin')[1]['publicPath'], )
+            'all': (get_files('djangocms_custom_admin')[0]['publicPath'], )
         }
 
     def __init__(self, attrs=None, choices=()):

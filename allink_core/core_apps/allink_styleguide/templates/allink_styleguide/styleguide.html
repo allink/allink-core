@@ -1,8 +1,8 @@
 {% extends "base.html" %}
-{% load i18n cms_tags allink_seo_tags %}
+{% load i18n cms_tags allink_meta_tags %}
 
 {% block meta_tags %}
-    {% render_meta_og page_title='Styleguide' %}
+    {% render_meta_og overwrite_dict="{page_title: 'Styleguide'}" %}
 {% endblock meta_tags %}
 
 {% block body_class %}tpl-styleguide{% endblock %}

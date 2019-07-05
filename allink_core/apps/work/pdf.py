@@ -4,7 +4,7 @@ from io import BytesIO
 from requests.exceptions import MissingSchema
 from PIL import Image as PILImage
 
-from django.utils.translation import activate, ugettext as _
+from django.utils.translation import activate
 
 from reportlab.platypus import BaseDocTemplate
 from reportlab.lib.pagesizes import A4
@@ -27,13 +27,16 @@ from allink_core.core.utils import get_height_from_ratio, get_ratio_w_h
 def clean(value):
     return value.replace('&', '&amp;')
 
+
 pt = 0.353
+
 
 def has_class(tag, cls):
     try:
         return True if tag['class'][0] == cls else False
     except KeyError:
         return False
+
 
 def read_file_open(image):
     """
@@ -48,6 +51,7 @@ def read_file_open(image):
     except MissingSchema:
         # localhost (read file from local file system)
         return image.path
+
 
 def read_file(image):
     """
@@ -76,7 +80,8 @@ def set_links(tag):
         if link['alt'].startswith('Button'):
             button = CMSPlugin.objects.get(id=link['id']).get_plugin_instance()[0]
             btn_reg = re.compile('<cms-plugin alt="Button.*?id="%s".*?</cms-plugin>' % link['id'])
-            cleaned = re.sub(btn_reg.pattern, r'<link href="%s"><u>%s</u></link>' % (base_url() + button.link_url_typed,
+            cleaned = re.sub(btn_reg.pattern, r'<link href="%s"><u>%s</u></link>' % (base_url()
+                                                                                     + button.link_url_typed,
                                                                                      button.label), str(cleaned),
                              flags=re.DOTALL)
     return cleaned
@@ -147,7 +152,7 @@ class NumberedCanvas(canvas.Canvas):
             self.drawRightString(147.25 * mm, 288 * mm, '{}/{}'.format(self._pageNumber, page_count))
 
 
-class PdfWork(object):
+class PdfWork:
 
     page_templates = None
 
@@ -212,7 +217,6 @@ class PdfWork(object):
 
         self.header_plugins = self.get_relevant_header_plugins()
         self.content_plugins = self.get_relevant_content_plugins()
-
 
     def init_page_templates(self):
 
@@ -367,7 +371,8 @@ class PdfWork(object):
         canvas.setFillColor(self.brand_color)
         canvas.rect(152.25 * mm, self.doc.height - 43.75 * mm, 52.75 * mm, 52.75 * mm, stroke=0, fill=1)
         if self.item.preview_image:
-            canvas.drawImage(ImageReader(read_file_open(self.item.preview_image)), 152.25 * mm, self.doc.height - 43.75 * mm, mask='auto', width = 52.75 * mm, height = 52.75 * mm)
+            canvas.drawImage(ImageReader(read_file_open(self.item.preview_image)), 152.25 * mm,
+                             self.doc.height - 43.75 * mm, mask='auto', width=52.75 * mm, height=52.75 * mm)
 
     def draw_footer(self, canvas, doc):
         canvas.setFont('MessinaSansRegular', 7.5, 9.5)
@@ -396,7 +401,8 @@ class PdfWork(object):
     def _later_pages(self, canvas, doc):
         canvas.setFont('MessinaSansBold', 7.5, 9.5)
         # break line when title to long
-        title_area = simpleSplit(clean(self.item.title), canvas._fontname, canvas._fontsize, self.first_page_settings['preview_image_width'])
+        title_area = simpleSplit(clean(self.item.title), canvas._fontname, canvas._fontsize,
+                                 self.first_page_settings['preview_image_width'])
         x = 152.25 * mm
         y = 288 * mm
         for line in title_area:
@@ -418,7 +424,6 @@ class PdfWork(object):
             template=None,
         )
         relevant_plugins = []
-
 
         for plugin in all_plugins:
             if plugin.plugin_type in self.allowed_header_plugins:
@@ -453,7 +458,7 @@ class PdfWork(object):
                                 if plugin.template == 'col-1-1' and child.plugin_type == 'CMSAllinkImagePlugin':
                                     continue
                                 if child.plugin_type in self.allowed_content_plugins:
-                                        relevant_plugins.append(child.get_plugin_instance()[0])
+                                    relevant_plugins.append(child.get_plugin_instance()[0])
             elif plugin.plugin_type == 'CMSAllinkPageBreakPlugin':
                 relevant_plugins.append(plugin)
         return relevant_plugins
@@ -469,7 +474,9 @@ class PdfWork(object):
             if tag[0] == 'list-bullet' or tag[0] == 'list-number':
                 list_flowables = []
                 for item in tag[1]:
-                    list_flowables.append(ListItem(Paragraph(item, self.styles[tag[0]]), leftIndent=10, value='circle'))
+                    list_flowables.append(ListItem(Paragraph(item, self.styles[tag[0]]),
+                                                   leftIndent=10,
+                                                   value='circle'))
                 self.floatings.append(ListFlowable(list_flowables,
                                                    bulletType='bullet',
                                                    start='circle',
@@ -483,7 +490,8 @@ class PdfWork(object):
             else:
                 self.floatings.append(KeepTogether(Paragraph(tag[1], self.styles[tag[0]])))
                 if tag[0] == 'title-h3':
-                    self.floatings.append(HRFlowable(spaceBefore=0.2 * mm, spaceAfter=5.25 * mm, color=self.transparent, thickness=0.5, width='100%'))
+                    self.floatings.append(HRFlowable(spaceBefore=0.2 * mm, spaceAfter=5.25 * mm,
+                                                     color=self.transparent, thickness=0.5, width='100%'))
 
     def append_image_plugin(self, plugin):
         if hasattr(plugin.djangocms_image_allinkimageplugin, 'picture'):
@@ -500,7 +508,11 @@ class PdfWork(object):
                     ratio_h = image.height
                 height = get_height_from_ratio(width, ratio_w, ratio_h)
 
-                self.floatings.append(Image(read_file(image), width=width, height=height, mask='auto', hAlign='LEFT', ))
+                self.floatings.append(Image(read_file(image),
+                                            width=width,
+                                            height=height,
+                                            mask='auto',
+                                            hAlign='LEFT', ))
                 self.floatings.append(Paragraph('', self.styles['main-title']))
 
     def append_content_plugin(self, plugin):
@@ -508,9 +520,11 @@ class PdfWork(object):
         # styles: title - h1, title - h2, title - h3
 
         if plugin.title:
-            self.floatings.append(KeepTogether(Paragraph(clean(plugin.title), self.styles['title-{}'.format(plugin.title_size)])))
+            self.floatings.append(KeepTogether(Paragraph(clean(plugin.title), self.styles['title-{}'.format(
+                plugin.title_size)])))
             if plugin.title_size == 'h3':
-                self.floatings.append(HRFlowable(spaceBefore=0.2 * mm, spaceAfter=5.25 * mm, color=self.transparent, thickness=0.5, width='100%'))
+                self.floatings.append(HRFlowable(spaceBefore=0.2 * mm, spaceAfter=5.25 * mm, color=self.transparent,
+                                                 thickness=0.5, width='100%'))
 
     def append_plugins(self, plugins):
         for plugin in plugins:
@@ -526,7 +540,8 @@ class PdfWork(object):
     def build(self):
         activate(self.language)
 
-        self.floatings.append(HRFlowable(spaceBefore=0.2 * mm, spaceAfter=5.25 * mm, color=self.transparent, thickness=0.5, width='100%'))
+        self.floatings.append(HRFlowable(spaceBefore=0.2 * mm, spaceAfter=5.25 * mm, color=self.transparent,
+                                         thickness=0.5, width='100%'))
 
         self.floatings.append(FrameBreak())
 

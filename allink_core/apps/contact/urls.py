@@ -1,10 +1,10 @@
 # # -*- coding: utf-8 -*-
-from django.conf.urls import url
+from django.urls import path
 from allink_core.core.loading import get_class
 
 ContactRequestView = get_class('contact.views', 'ContactRequestView')
 
 
 urlpatterns = [
-    url(r'^request/(?P<plugin_id>[0-9]+)/$', ContactRequestView.as_view(), name='request'),
+    path('request/<int:plugin_id>/', ContactRequestView.as_view(), name='request'),
 ]

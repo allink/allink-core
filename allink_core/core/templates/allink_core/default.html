@@ -7,7 +7,7 @@
     unfortunately it's not possible on pages with placeholder-tags to use conditionaly extends tags.
 {% endcomment %}
 {% block header %}
-    {% if request.is_ajax %}
+    {% if request.GET.softpage %}
     {% else %}
         {{ block.super }}
     {% endif %}
@@ -18,7 +18,7 @@
 {% endblock content %}
 
 {% block footer %}
-    {% if request.is_ajax %}
+    {% if request.GET.softpage %}
     {% else %}
         {{ block.super }}
     {% endif %}

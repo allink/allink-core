@@ -11,8 +11,8 @@ import allink_core
 
 def create_local_app_folder(local_app_path):
     if exists(local_app_path):
-        raise ValueError(
-            "There is already a '%s' folder! Aborting!" % local_app_path)
+        raise ValueError("There is already a '%s' folder! Aborting!" % local_app_path)
+
     for folder in subfolders(local_app_path):
         if not exists(folder):
             os.mkdir(folder)
@@ -59,137 +59,156 @@ def create_file(filepath, content=''):
 
 initial_snippet = '# -*- coding: utf-8 -*-\n'
 
-help_admin ='''
+help_admin = '''
 """
 use core:
-from allink_core.apps.work.admin import *  # noqa
+from allink_core.apps.{app_package}.admin import *  # noqa
 
 override example:
-from allink_core.apps.work.admin import *  # noqa
+from allink_core.apps.{app_package}.admin import *  # noqa
 
-admin.site.unregister(Work)
+admin.site.unregister({model_name})
 
-@admin.register(Work)
-class WorkAdmin(WorkAdmin):
+@admin.register({model_name})
+class {model_name}Admin({model_name}Admin):
     pass
 """\n'''
 
-help_apps ='''
+help_apps = '''
 """
 use core:
-from allink_core.apps.work.cms_apps import *  # noqa
+from allink_core.apps.{app_package}.cms_apps import *  # noqa
 
 override example:
 from allink_core.core.loading import unregister_cms_apps
-from allink_core.apps.work.cms_apps import *  # noqa
+from allink_core.apps.{app_package}.cms_apps import *  # noqa
 
-unregister_cms_apps(WorkApphook)
+unregister_cms_apps({model_name}Apphook)
 
-class WorkApphook(WorkApphook):
+class {model_name}Apphook({model_name}Apphook):
     def get_urls(self, page=None, language=None, **kwargs):
-        urls = super(WorkApphook, self).get_urls(page=None, language=None, **kwargs)
-        return urls + ['allink_apps.work.urls']
+        urls = super({model_name}Apphook, self).get_urls(page=None, language=None, **kwargs)
+        return urls + ['allink_apps.{app_package}.urls']
 
-apphook_pool.register(WorkApphook)
+apphook_pool.register({model_name}Apphook)
 """\n'''
 
-help_menus ='''
+help_menus = '''
 """
 use core:
-from allink_core.apps.work.cms_menus import *  # noqa
+from allink_core.apps.{app_package}.cms_menus import *  # noqa
 
 override example:
 from allink_core.core.loading import unregister_cms_menu
-from allink_core.apps.work.cms_menus import *  # noqa
+from allink_core.apps.{app_package}.cms_menus import *  # noqa
 
-unregister_cms_menu(WorkMenu)
+unregister_cms_menu({model_name}Menu)
 
-class WorkMenu(WorkMenu):
+class {model_name}Menu({model_name}Menu):
    pass
 
-menu_pool.register_menu(get_class('work.cms_menus', 'WorkMenu'))
+menu_pool.register_menu(get_class('{app_package}.cms_menus', '{model_name}Menu'))
 """\n'''
 
 
-help_cms_plugins ='''
+help_cms_plugins = '''
 """
 use core:
-from allink_core.apps.work.cms_plugins import *  # noqa
+from allink_core.apps.{app_package}.cms_plugins import *  # noqa
 
 override example:
-from allink_core.apps.work.cms_plugins import *  # noqa
+from allink_core.apps.{app_package}.cms_plugins import *  # noqa
 
-plugin_pool.unregister_plugin(CMSWorkAppContentPlugin)
+plugin_pool.unregister_plugin(CMS{model_name}AppContentPlugin)
 
 @plugin_pool.register_plugin
-class CMSWorkAppContentPlugin(CMSWorkAppContentPlugin):
+class CMS{model_name}AppContentPlugin(CMS{model_name}AppContentPlugin):
     pass
 """\n'''
 
-help_toolbars ='''
+help_toolbars = '''
 """
 use core:
-from allink_core.apps.work.cms_toolbars import *  # noqa
+from allink_core.apps.{app_package}.cms_toolbars import *  # noqa
 
 override example:
 from allink_core.allink_base.utils.loading import get_model
-from allink_core.apps.work.cms_toolbars import *  # noqa
+from allink_core.apps.{app_package}.cms_toolbars import *  # noqa
 
 from allink_core.core.cms_toolbars import AllinkBaseModifierMixin
 Config = get_model('config', 'Config')
 
-toolbar_pool.unregister(WorkToolbar)
+toolbar_pool.unregister({model_name}Toolbar)
 
 
-class WorkToolbar(WorkToolbar):
+class {model_name}Toolbar({model_name}Toolbar):
     pass
 
-if getattr(Config.get_solo(), 'work_toolbar_enabled', True):
-    toolbar_pool.register(WorkToolbar)
+if getattr(Config.get_solo(), '{app_package}_toolbar_enabled', True):
+    toolbar_pool.register({model_name}Toolbar)
     pass
 """\n'''
 
-help_models ='''
+help_models = '''
 """
 use core:
-from allink_core.apps.work.models import *  # noqa
+from allink_core.apps.{app_package}.models import *  # noqa
 
 override example:
 you don't have to override every model
 
 from django.db import models
-from allink_core.apps.work.abstract_models import BaseWork, BaseWorkTranslation, BaseWorkAppContentPlugin
+from allink_core.apps.{app_package}.abstract_models import Base{model_name}, Base{model_name}Translation, Base{model_name}AppContentPlugin
 from allink_core.core.loading import get_model
 
 
-class Work(BaseWork):
+class {model_name}(Base{model_name}):
     pass
 
 
-class WorkTranslation(BaseWorkTranslation):
+class {model_name}Translation(Base{model_name}Translation):
     pass
 
 
-class WorkAppContentPlugin(BaseWorkAppContentPlugin):
-    data_model = get_model('work', 'Work')
+class {model_name}AppContentPlugin(Base{model_name}AppContentPlugin):
+    data_model = get_model('{app_package}', '{model_name}')
     pass
 
-from allink_core.apps.work.models import *  # noqa
+from allink_core.apps.{app_package}.models import *  # noqa
 """\n'''
 
-snippet_sitemaps ='''# -*- coding: utf-8 -*-
+help_managers = '''
+"""
+use core:
+from allink_core.apps.{app_package}.managers import *  # noqa
+
+override example:
+# -*- coding: utf-8 -*-
+from datetime import datetime
+from django.db.models import Q
+from allink_core.apps.{app_package}.managers import Allink{model_name}QuerySet
+
+
+class Allink{model_name}QuerySet(Allink{model_name}QuerySet):
+    pass
+
+
+Allink{model_name}Manager = Allink{model_name}QuerySet.as_manager
+"""\n'''
+
+help_sitemaps = '''# -*- coding: utf-8 -*-
 """
 use core:
 no 'sitemaps.py' file needed
 
 override example:
-from allink_core.apps.work.sitemaps import WorkSitemap as CoreWorkSitemap
+from allink_core.apps.{app_package}.sitemaps import {model_name}Sitemap as Core{model_name}Sitemap
 
-class WorkSitemap(BaseWorkSitemap):
+class {model_name}Sitemap(Core{model_name}Sitemap):
     pass
 """\n'''
 
-snippet_urls ='''# -*- coding: utf-8 -*-
+snippet_urls = '''# -*- coding: utf-8 -*-
 """
 use core:
 no 'urls.py' file needed
@@ -200,27 +219,27 @@ make sure you also add the new urls to the cms_apps.py so djangocms knows about 
 ovverride the apphook, see example in cms_apps.py
 
 
-from django.conf.urls import url
-from allink_apps.work.views import new_view
+from django.urls import path
+from allink_apps.{app_package}.views import new_view
 
 
 urlpatterns = [
-    url(r'^new-view/(?P<id>[0-9]+)/$', new_view, name='new-view'),
+    path('new-view/<int:id>/', new_view, name='new-view'),
 ]
 """\n'''
 
-snippet_views ='''# -*- coding: utf-8 -*-
+snippet_views = '''# -*- coding: utf-8 -*-
 """
 use core:
 no 'views.py' file needed
 
 override example:
-from allink_core.apps.work.views import WorkDetail as CoreWorkDetail
+from allink_core.apps.{app_package}.views import {model_name}Detail as Core{model_name}Detail
 
-class WorkDetail(BaseWorkDetail):
+class {model_name}Detail(Base{model_name}Detail):
     ...
     def render_to_response(self, context, **response_kwargs):
-        if self.request.is_ajax():
+        if self.request.GET.get('softpage', None):
             context.update({'base_template': 'app_content/ajax_base.html'})
         context.update({'hello': 'hello view is correctly overridden!!'})
         return render_to_response(self.get_template_names(), context, context_instance=RequestContext(self.request))
@@ -229,16 +248,16 @@ class WorkDetail(BaseWorkDetail):
 import datetime
 from django.http import HttpResponse
 from allink_core.core.loading import get_model
-from allink_core.apps.work.pdf import PdfWork
+from allink_core.apps.{app_package}.pdf import Pdf{model_name}
 
-Work = get_model('work', 'Work')
+{model_name} = get_model('{app_package}', '{model_name}')
 
 def export_pdf(request, id):
     date = (datetime.date.today().strftime('%d-%m-%Y'))
 
-    item = Work.objects.get(id=id)
+    item = {model_name}.objects.get(id=id)
 
-    pdf = PdfWork(item, request)
+    pdf = Pdf{model_name}(item, request)
     output = pdf.build()
     filename = '%s_%s.pdf' % (item.title, date)
 
@@ -248,40 +267,51 @@ def export_pdf(request, id):
 """\n'''
 
 
-def fork_app(label, folder_path, logger=None, help=False):
+def fork_app(label, folder_path, logger=None, help=False):  # noqa
     """
     Create a custom version of one of allink's apps
     (help: Including helpful comments to get you started)
 
     """
 
+    # Create minimum app files
+    app_package = label
+    model_name = label.title().replace('_', '')
+
+    # Create all snippets
     snippet_admin = initial_snippet
     snippet_cms_apps = initial_snippet
     snippet_menus = initial_snippet
     snippet_cms_plugins = initial_snippet
     snippet_toolbars = initial_snippet
+    snippet_managers = initial_snippet
     snippet_models = initial_snippet
+    snippet_sitemaps = initial_snippet
 
     if help:
-        snippet_admin += help_admin
-        snippet_cms_apps += help_apps
-        snippet_menus += help_menus
-        snippet_cms_plugins += help_cms_plugins
-        snippet_toolbars += help_toolbars
-        snippet_models += help_models
+        snippet_admin += help_admin.format(app_package=label, model_name=model_name)
+        snippet_cms_apps += help_apps.format(app_package=label, model_name=model_name)
+        snippet_menus += help_menus.format(app_package=label, model_name=model_name)
+        snippet_cms_plugins += help_cms_plugins.format(app_package=label, model_name=model_name)
+        snippet_toolbars += help_toolbars.format(app_package=label, model_name=model_name)
+        snippet_managers += help_managers.format(app_package=label, model_name=model_name)
+        snippet_models += help_models.format(app_package=label, model_name=model_name)
+        snippet_sitemaps += help_sitemaps.format(app_package=label, model_name=model_name)
 
     snippet_admin += "from allink_core.apps.{}.admin import *  # noqa\n".format(label)
     snippet_cms_apps += "from allink_core.apps.{}.cms_apps import *  # noqa\n".format(label)
     snippet_menus += "from allink_core.apps.{}.cms_menus import *  # noqa\n".format(label)
     snippet_cms_plugins += "from allink_core.apps.{}.cms_plugins import *  # noqa\n".format(label)
     snippet_toolbars += "from allink_core.apps.{}.cms_toolbars import *  # noqa\n".format(label)
+    snippet_managers += "from allink_core.apps.{}.managers import *  # noqa\n".format(label)
     snippet_models += "from allink_core.apps.{}.models import *  # noqa\n".format(label)
 
     if logger is None:
         logger = logging.getLogger(__name__)
 
     # Check label is valid
-    valid_labels = [x.replace('allink_core.apps.', '') for x in allink_core.ALLINK_CORE_ALLINK_APPS if x.startswith('allink_core')]
+    valid_labels = [x.replace('allink_core.apps.', '')
+                    for x in allink_core.ALLINK_CORE_ALLINK_APPS if x.startswith('allink_core')]
     if label not in valid_labels:
         raise ValueError("There is no allink_core app that matches '%s'" % label)
 
@@ -346,6 +376,10 @@ def fork_app(label, folder_path, logger=None, help=False):
             logger.info("Creating sitemaps.py")
             create_file(join(local_app_path, 'sitemaps.py'), snippet_sitemaps)
 
+        if exists(os.path.join(allink_core_app_path, 'managers.py')):
+            logger.info("Creating managers.py")
+            create_file(join(local_app_path, 'managers.py'), snippet_managers)
+
         if exists(os.path.join(allink_core_app_path, 'urls.py')):
             logger.info("Creating urls.py")
             create_file(join(local_app_path, 'urls.py'), snippet_urls)
@@ -375,15 +409,16 @@ def fork_app(label, folder_path, logger=None, help=False):
 new_admin = '''# -*- coding: utf-8 -*-
 from django.contrib import admin
 from django import forms
-
+from adminsortable.admin import SortableAdmin
 from cms.admin.placeholderadmin import PlaceholderAdminMixin
-from allink_core.core.admin import AllinkBaseAdminSortable
+from parler.admin import TranslatableAdmin
+from allink_core.core.admin import AllinkMediaAdminMixin, AllinkSEOAdminMixin, AllinkCategoryAdminMixin, AllinkTeaserAdminMixin, AllinkCategoryAdminForm
 
 from {app_package}.models import {model_name}
 
 
 @admin.register({model_name})
-class {model_name}Admin(PlaceholderAdminMixin, AllinkBaseAdminSortable):
+class {model_name}Admin( AllinkMediaAdminMixin, AllinkSEOAdminMixin, AllinkCategoryAdminMixin, AllinkTeaserAdminMixin, PlaceholderAdminMixin, TranslatableAdmin, SortableAdmin):
     list_filter = ('status', 'categories',)
 
     def get_fieldsets(self, request, obj=None):
@@ -395,12 +430,13 @@ class {model_name}Admin(PlaceholderAdminMixin, AllinkBaseAdminSortable):
                     'slug',
                     'lead',
                     'preview_image',
-                ),
+                )
             }}),
         )
 
-        fieldsets += self.get_base_fieldsets()
-
+        fieldsets += self.get_category_fieldsets()
+        fieldsets += self.get_teaser_fieldsets()
+        fieldsets += self.get_seo_fieldsets()
         return fieldsets
 
     def formfield_for_dbfield(self, db_field, **kwargs):
@@ -480,7 +516,7 @@ class CMS{model_name}AppContentPlugin(CMSAllinkBaseAppContentPlugin):
     - name of the plugin
     """
     model = {model_name}AppContentPlugin
-    name = model.data_model.get_verbose_name_plural()
+    name = model.data_model._meta.verbose_name_plural
 
 '''
 
@@ -518,25 +554,27 @@ new_forms = '''# -*- coding: utf-8 -*-
 new_models = '''# -*- coding: utf-8 -*-
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
-from django.core.cache import cache
-from django.core.cache.utils import make_template_fragment_key
 
 from cms.models.fields import PageField
 from cms.models.pluginmodel import CMSPlugin
 from cms.models.fields import PlaceholderField
 from adminsortable.models import SortableMixin
-from parler.models import TranslatableModel, TranslatedField
+from parler.models import TranslatedField
 from djangocms_text_ckeditor.fields import HTMLField
 from filer.fields.image import FilerImageField
 
-from aldryn_translation_tools.models import TranslationHelperMixin
 from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
-from allink_core.core.models.models import AllinkBaseAppContentPlugin, AllinkBaseModel, AllinkBaseTranslatedFieldsModel
-from allink_core.core.models.mixins import AllinkTranslatedAutoSlugifyMixin
-from allink_core.core.models.managers import AllinkBaseModelManager
+from allink_core.core.models import (
+    AllinkCategoryFieldsModel,
+    AllinkBaseTranslatableModel,
+    AllinkBaseAppContentPlugin,
+    AllinkBaseTranslatedFieldsModel,
+)
+
+from allink_core.core.models.managers import AllinkBaseModelQuerySet
 
 
-class {model_name}(SortableMixin, TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, TranslatableModel, AllinkBaseModel):
+class {model_name}(SortableMixin, AllinkCategoryFieldsModel, AllinkBaseTranslatableModel):
     slug_source_field_name = 'title'
 
     title = TranslatedField(any_language=True)
@@ -544,10 +582,10 @@ class {model_name}(SortableMixin, TranslationHelperMixin, AllinkTranslatedAutoSl
     lead = TranslatedField()
 
     preview_image = FilerImageField(
-        verbose_name=_(u'Preview Image'),
+        verbose_name=_('Preview Image'),
         blank=True,
         null=True,
-        on_delete=models.SET_NULL,
+        on_delete=models.PROTECT,
         related_name='%(app_label)s_%(class)s_preview_image',
     )
     sort_order = models.PositiveIntegerField(
@@ -556,11 +594,16 @@ class {model_name}(SortableMixin, TranslationHelperMixin, AllinkTranslatedAutoSl
         db_index=True
     )
 
-    header_placeholder = PlaceholderField(u'{label}_header', related_name='%(app_label)s_%(class)s_header_placeholder')
-    content_placeholder = PlaceholderField(u'{label}_content', related_name='%(app_label)s_%(class)s_content_placeholder')
-    content_additional_placeholder = PlaceholderField(u'{label}_content_additional', related_name='%(app_label)s_%(class)s_content_additional_placeholder')
+    header_placeholder = PlaceholderField(
+        u'{label}_header',
+        related_name='%(app_label)s_%(class)s_header_placeholder'
+    )
+    content_placeholder = PlaceholderField(
+        u'{label}_content',
+        related_name='%(app_label)s_%(class)s_content_placeholder'
+    )
 
-    objects = AllinkBaseModelManager()
+    objects = AllinkCategoryModelManager()
 
     class Meta:
         app_label = '{label}'
@@ -570,21 +613,26 @@ class {model_name}(SortableMixin, TranslationHelperMixin, AllinkTranslatedAutoSl
 
 
 class {model_name}Translation(AllinkBaseTranslatedFieldsModel):
-    master = models.ForeignKey('{label}.{model_name}', related_name='translations', null=True)
+    master = models.ForeignKey(
+        '{label}.{model_name}',
+        on_delete=models.CASCADE,
+        related_name='translations',
+        null=True
+        )
 
     title = models.CharField(
         max_length=255
     )
     slug = models.SlugField(
-        _(u'Slug'),
+        _('Slug'),
         max_length=255,
         default='',
         blank=True,
-        help_text=_(u'Leave blank to auto-generate a unique slug.')
+        help_text=_('Leave blank to auto-generate a unique slug.')
     )
     lead = HTMLField(
-        _(u'Lead Text'),
-        help_text=_(u'Teaser text that in some cases is used in the list view and/or in the detail view.'),
+        _('Lead Text'),
+        help_text=_('Teaser text that in some cases is used in the list view and/or in the detail view.'),
         blank=True,
         null=True,
     )
@@ -602,20 +650,28 @@ class {model_name}AppContentPlugin(AllinkBaseAppContentPlugin):
                     'manual entries are selected the category filtering will be ignored.)')
     )
     apphook_page = PageField(
-        verbose_name=_(u'Apphook Page'),
+        verbose_name=_('Apphook Page'),
         null=True,
         blank=True,
-        on_delete=models.SET_NULL,
-        help_text=_(u'If provided, this Apphook-Page will be used to generate the detail link.'),
+        on_delete=models.PROTECT,
+        help_text=_('If provided, this Apphook-Page will be used to generate the detail link.'),
     )
-
-    def save(self, *args, **kwargs):
-        # invalidate cache
-        # cache.delete_many([make_template_fragment_key('{label}_preview_image', [self.id, {label}.id]) for {label} in {model_name}.objects.all()])
-        super({model_name}AppContentPlugin, self).save(*args, **kwargs)
 
     class Meta:
         app_label = '{label}'
+
+'''
+
+new_managers = '''# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+from allink_core.core.models.managers import AllinkCategoryModelQuerySet
+
+
+class Allink{model_name}QuerySet(AllinkCategoryModelQuerySet):
+    pass
+
+
+Allink{model_name}Manager = Allink{model_name}QuerySet.as_manager
 
 '''
 
@@ -644,14 +700,14 @@ class {model_name}Sitemap(Sitemap):
 '''
 
 new_urls = '''# # -*- coding: utf-8 -*-
-from django.conf.urls import url
+from django.urls import path
 
 from {app_package}.views import {model_name}PluginLoadMore, {model_name}Detail
 
 
 urlpatterns = [
-    url(r'^(?P<page>[0-9]*)/$', {model_name}PluginLoadMore.as_view(), name='more'),
-    url(r'^(?P<slug>[\w-]+)/$', {model_name}Detail.as_view(), name='detail'),
+    path('<int:page>/', {model_name}PluginLoadMore.as_view(), name='more'),
+    path('<slug:slug>/', {model_name}Detail.as_view(), name='detail'),
 ]
 
 '''
@@ -690,7 +746,6 @@ def new_app(label, folder_path, logger=None):
     logger.info("Creating package %s" % local_app_path)
     create_local_app_folder(local_app_path)
 
-
     # Create minimum app files
     app_package = local_app_path.replace('/', '.')
     model_name = label.title().replace('_', '')
@@ -704,6 +759,7 @@ def new_app(label, folder_path, logger=None):
     snippet_config = new_config.format(label=label, app_package=app_package, model_name=model_name)
     snippet_forms = new_forms.format(label=label, app_package=app_package, model_name=model_name)
     snippet_models = new_models.format(label=label, app_package=app_package, model_name=model_name)
+    snippet_managers = new_managers.format(label=label, app_package=app_package, model_name=model_name)
     snippet_sitemaps = new_sitemaps.format(label=label, app_package=app_package, model_name=model_name)
     snippet_urls = new_urls.format(label=label, app_package=app_package, model_name=model_name)
     snippet_views = new_views.format(label=label, app_package=app_package, model_name=model_name)
@@ -732,6 +788,9 @@ def new_app(label, folder_path, logger=None):
     logger.info("Creating models.py")
     create_file(join(local_app_path, 'models.py'), snippet_models)
 
+    logger.info("Creating managers.py")
+    create_file(join(local_app_path, 'managers.py'), snippet_managers)
+
     logger.info("Creating sitemaps.py")
     create_file(join(local_app_path, 'sitemaps.py'), snippet_sitemaps)
 
@@ -743,13 +802,22 @@ def new_app(label, folder_path, logger=None):
 
     # Final step needs to be done by hand
     msg = (
-        "The final steps:\n"
-        "1. add '{app_package}' to PROJECT_APPS \n"
-        "2. add Plugins to CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES \n"
-        "3. define templates/ create a new tuple {model_name_uppper}_PLUGIN_TEMPLATES \n"
-        "4. (optional) add '('{model_name_lower}', '{model_name}'),' to PROJECT_APP_MODEL_WITH_CATEGORY_CHOICES if the app should have categories \n"
-        "5. create all required templates (default grid_static, detail and no_result)"
-        "6. ./manage.py makemigrations {label} ./manage.py migrate\n\n"
-    ).format(model_name=model_name, model_name_uppper=str.upper(model_name), model_name_lower=str.lower(model_name), app_package=app_package, label=label)
+        """
+            The final steps:\n
+            1. add '{app_package}' to PROJECT_APPS \n
+            2. add Plugins to ALLINK_CONTENT_PLUGIN_CHILD_CLASSES \n
+            3. define templates/ create a new tuple {model_name_uppper}_PLUGIN_TEMPLATES \n
+            4. (optional) add '('{model_name_lower}', '{model_name}'),'
+            to PROJECT_APP_MODEL_WITH_CATEGORY_CHOICES if the app should have categories \n
+            5. create all required templates (default grid_static, detail and no_result)
+            6. ./manage.py makemigrations {label} ./manage.py migrate\n\n
+        """
+    ).format(
+        model_name=model_name,
+        model_name_uppper=str.upper(model_name),
+        model_name_lower=str.lower(model_name),
+        app_package=app_package,
+        label=label
+    )
 
     logger.info(msg)

@@ -19,43 +19,52 @@
         {% endif %}
         </div>
 
-        <div class="swiper-pagination"></div>
-
-        <a href="#" class="swiper-button-prev swiper-button" data-softpage-disabled>
-            <span class="swiper-button__inner swiper-button-prev__inner">
-                <i class="sr-only">
-                    {% trans "Previous Slide" %}
-                </i>
-            </span>
-        </a>
-        <a href="#" class="swiper-button-next swiper-button" data-softpage-disabled>
-            <span class="swiper-button__inner swiper-button-next__inner">
-                <i class="sr-only">
-                    {% trans "Next Slide" %}
-                </i>
-            </span>
-        </a>
-
     </div>
 
-    {% if instance.counter_enabled or instance.fullscreen_enabled%}
+    <a href="#" class="swiper-button-prev swiper-button" data-softpage-disabled>
+        <span class="swiper-button__inner swiper-button-prev__inner">
+            <i class="sr-only">
+                {% trans "Previous Slide" %}
+            </i>
+        </span>
+    </a>
+    <a href="#" class="swiper-button-next swiper-button" data-softpage-disabled>
+        <span class="swiper-button__inner swiper-button-next__inner">
+            <i class="sr-only">
+                {% trans "Next Slide" %}
+            </i>
+        </span>
+    </a>
 
-        <div class="swiper-optional-container">
-            {% if instance.counter_enabled %}
-                <div class="swiper-counter">
-                    <span class="swiper-counter__current">1</span>
-                    <span class="swiper-counter__separator"><span class="sr-only">{% trans "of" %}</span></span>
-                    <span class="swiper-counter__total">1</span>
-                </div>
-            {% endif %}
+    <div class="swiper-optional-container">
+        {# {% if instance.counter_enabled %} #}
+            <div class="swiper-counter">
+                <span class="swiper-counter__current">1</span>
+                <span class="swiper-counter__separator"><span class="sr-only">{% trans "of" %}</span></span>
+                <span class="swiper-counter__total">1</span>
+            </div>
+        {# {% endif %} #}
 
+        {% comment %}
             {% if instance.fullscreen_enabled %}
                 <a href="#" class="swiper-button-fullscreen" data-softpage-disabled data-trigger-swiper-fullscreen>
                     {% trans "Fullscreen Gallery" %}
                 </a>
             {% endif %}
-        </div>
+        {% endcomment %}
+    </div>
 
-    {% endif %}
+</div>
 
+<div class="swiper-content-container">
+    {% for plugin in instance.child_plugin_instances %}
+    <div class="swiper-content swiper-content-{{ forloop.counter }} {% if forloop.counter == 1 %}swiper-content--visible{% endif %}">
+        {% if plugin.title %}
+            <p class="swiper-content__text">{{ plugin.title }}</p>
+        {% endif %}
+        {% if plugin.text %}
+            <p class="swiper-content__text">{{ plugin.text }}</p>
+        {% endif %}
+    </div>
+    {% endfor %}
 </div>

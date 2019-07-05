@@ -1,18 +1,15 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from django.utils.encoding import python_2_unicode_compatible
 from cms.models.pluginmodel import CMSPlugin
 from django.contrib.postgres.fields import ArrayField
 
 
-@python_2_unicode_compatible
 class AllinkIconPlugin(CMSPlugin):
     icon = models.CharField(
-        _(u'Icon'),
+        _('Icon'),
         max_length=50
     )
-    
     project_css_classes = ArrayField(
         models.CharField(
             max_length=50,
@@ -22,10 +19,10 @@ class AllinkIconPlugin(CMSPlugin):
         blank=True,
         null=True
     )
-    
+
     def __str__(self):
         return u'{}'.format(self.icon)
-    
+
     @property
     def css_classes(self):
         css_classes = []

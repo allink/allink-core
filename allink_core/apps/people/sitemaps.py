@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.contrib.sitemaps import Sitemap
 
-from allink_core.core.loading import get_model, get_class
+from allink_core.core.loading import get_model
 
 People = get_model('people', 'People')
 

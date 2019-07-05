@@ -5,19 +5,19 @@
         <div class="manage-spacings">
             {% if object.preview_image %}
                 <div class="image-container">
-                    {% if instance.detail_link_enabled and object.show_detail_link %}
+                    {% if  instance.detail_link_enabled %}
                         <a href="{% get_absolute_url object instance.apphook_page.application_namespace %}">
                     {% endif %}
                         {% render_image image=object.preview_image %}
-                    {% if instance.detail_link_enabled  %}
+                    {% if  instance.detail_link_enabled %}
                         </a>
                     {% endif %}
                 </div>
             {% endif %}
-            {% if object.created %}
+            {% if object.entry_date %}
                 <div class="date-container">
                     {# Date format: https://docs.djangoproject.com/es/1.10/ref/templates/builtins/#std:templatefilter-date #}
-                    {{ object.created|date:"j.n.Y" }}
+                    {{ object.entry_date|date:"j.n.Y" }}
                 </div>
             {% endif %}
             {% if object.title %}
@@ -32,7 +32,7 @@
                     {{object.lead|striptags}}
                 </div>
             {% endif %}
-            {% if instance.detail_link_enabled and object.show_detail_link %}
+            {% if  instance.detail_link_enabled %}
                 <div class="link-container">
                     <a href="{% get_absolute_url object instance.apphook_page.application_namespace %}" class="app-list__detail-link">
                         {% if instance.detail_link_text %}

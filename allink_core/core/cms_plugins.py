@@ -4,13 +4,13 @@ import re
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 from django.core.paginator import Paginator
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.contrib.admin.widgets import FilteredSelectMultiple
 
 from cms.plugin_base import CMSPluginBase
 from webpack_loader.utils import get_files
 
-from allink_core.core.models.models import AllinkBaseAppContentPlugin, AllinkBaseSearchPlugin
+from allink_core.core.models import AllinkBaseAppContentPlugin, AllinkBaseSearchPlugin
 from allink_core.core.utils import get_project_css_classes
 
 
@@ -24,18 +24,18 @@ class AllinkBaseAppContentPluginForm(forms.ModelForm):
         # if app uses categories, populate 'categories' field
         if self.instance.get_app_can_have_categories():
             self.fields['categories'] = forms.ModelMultipleChoiceField(
-                label=_(u'Categories'),
+                label=_('Categories'),
                 widget=FilteredSelectMultiple(
-                    verbose_name=_(u'Categories'),
+                    verbose_name=_('Categories'),
                     is_stacked=True
                 ),
                 required=False,
                 queryset=self.instance.data_model.get_relevant_categories()
             )
             self.fields['categories_and'] = forms.ModelMultipleChoiceField(
-                label=_(u'Categories (AND operator)'),
+                label=_('Categories (AND operator)'),
                 widget=FilteredSelectMultiple(
-                    verbose_name=_(u'Categories'),
+                    verbose_name=_('Categories'),
                     is_stacked=True
                 ),
                 help_text=_(
@@ -46,43 +46,45 @@ class AllinkBaseAppContentPluginForm(forms.ModelForm):
                 queryset=self.instance.data_model.get_relevant_categories()
             )
             self.fields['category_navigation'] = forms.ModelMultipleChoiceField(
-                label=_(u'Categories for Navigation'),
+                label=_('Categories for Navigation'),
                 widget=FilteredSelectMultiple(
-                    verbose_name=_(u'Categories for Navigation'),
+                    verbose_name=_('Categories for Navigation'),
                     is_stacked=True
                 ),
                 help_text=_(
-                    u'You can explicitly define the categories for the category navigation here. This will override the'
+                    u'You can explicitly define the categories for the category navigation here. '
+                    u'This will override the'
                     u' automatically set of categories. (From "Filter & Ordering" but not from the "Manual entries")'),
                 required=False,
                 queryset=self.instance.data_model.get_relevant_categories()
             )
         self.fields['filter_fields'] = forms.TypedMultipleChoiceField(
-            label=_(u'Filter Fields'),
-            help_text=_(u'A Select Dropdown will be displayed for this Fields.'),
+            label=_('Filter Fields'),
+            help_text=_('A Select Dropdown will be displayed for this Fields.'),
             choices=((field[0], field[1]['verbose']) for field in self.instance.FILTER_FIELD_CHOICES),
             widget=forms.CheckboxSelectMultiple,
             required=False,
         )
         self.fields['template'] = forms.CharField(
-            label=_(u'Template'),
+            label=_('Template'),
             widget=forms.Select(choices=self.instance.get_templates()),
             required=True,
         )
         if get_project_css_classes(self._meta.model.data_model._meta.model_name):
             self.fields['project_css_classes'] = forms.MultipleChoiceField(
                 widget=forms.CheckboxSelectMultiple(),
-                label=_(u'Predifined variations'),
+                label=_('Predifined variations'),
                 choices=get_project_css_classes(self._meta.model.data_model._meta.model_name),
                 required=False,
             )
         self.fields['manual_filtering'] = forms.CharField(
-            label=_(u'Filtering'),
+            label=_('Filtering'),
             required=False,
-            widget=forms.Select(choices=self.instance.get_filtering_choices() if hasattr(self.instance, 'get_filtering_choices') else [])
+            widget=forms.Select(choices=self.instance.get_filtering_choices() if hasattr(
+                self.instance, 'get_filtering_choices') else [])
         )
         self.fields['manual_ordering'] = forms.CharField(
-            label=_(u'Ordering'),
+            label=_('Ordering'),
             required=False,
             widget=forms.Select(choices=self.instance.get_ordering_choices())
         )
@@ -101,9 +103,9 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
     form = AllinkBaseAppContentPluginForm
 
     class Media:
-        js = (get_files('djangocms_custom_admin')[0]['publicPath'],)
+        js = (get_files('djangocms_custom_admin')[1]['publicPath'],)
         css = {
-            'all': (get_files('djangocms_custom_admin')[1]['publicPath'],)
+            'all': (get_files('djangocms_custom_admin')[0]['publicPath'],)
         }
 
     def get_fieldsets(self, request, obj=None):
@@ -221,7 +223,8 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
             object_list = instance.get_selected_entries(filters=filters)
         # category navigation and no category "all" (only first category is relevant)
         elif instance.category_navigation_enabled and not instance.category_navigation_all:
-            object_list = instance.get_render_queryset_for_display(category=instance.fetch_first_category, filters=filters, request=request)
+            object_list = instance.get_render_queryset_for_display(
+                category=instance.fetch_first_category, filters=filters, request=request)
         else:
             object_list = instance.get_render_queryset_for_display(filters=filters, request=request)
         return object_list
@@ -229,7 +232,7 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
     def render(self, context, instance, placeholder):
         # getting filter parameters and attributes
         filters = {re.sub('filter-%s-' % instance.data_model._meta.model_name, '', k):
-                       v for k, v in context['request'].GET.items()
+                   v for k, v in context['request'].GET.items()
                    if (k.startswith('filter-%s-' % instance.data_model._meta.model_name) and v != 'None')}
 
         # random ordering needs sessioncaching for object_list
@@ -252,14 +255,14 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
 
             # Load More
             if (
-                        instance.pagination_type == AllinkBaseAppContentPlugin.LOAD or
-                        instance.pagination_type == AllinkBaseAppContentPlugin.LOAD_REST) and firstpage.has_next():
+                instance.pagination_type == AllinkBaseAppContentPlugin.LOAD
+                    or instance.pagination_type == AllinkBaseAppContentPlugin.LOAD_REST) and firstpage.has_next():
                 context['page_obj'] = firstpage
                 context.update(
                     {'next_page_url': reverse('{}:more'.format(self.get_application_namespace(instance)),
                                               kwargs={
-                                                  'page': context['page_obj'].next_page_number()}) + '?api_request=1' +
-                                      '&plugin_id={}'.format(instance.id)})
+                                                  'page': context['page_obj'].next_page_number()}) + '?api_request=1'
+                        + '&plugin_id={}'.format(instance.id)})
 
                 if instance.category_navigation_enabled and not instance.category_navigation_all:
                     context['next_page_url'] = context['next_page_url'] + '&category={}'.format(
@@ -280,6 +283,7 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
 
         return context
 
+
 class AllinkBaseSearchPluginForm(forms.ModelForm):
     class Meta:
         model = AllinkBaseAppContentPlugin
@@ -290,13 +294,13 @@ class AllinkBaseSearchPluginForm(forms.ModelForm):
         if get_project_css_classes(self._meta.model.data_model._meta.model_name):
             self.fields['project_css_classes'] = forms.MultipleChoiceField(
                 widget=forms.CheckboxSelectMultiple(),
-                label=_(u'Predifined variations'),
+                label=_('Predifined variations'),
                 choices=get_project_css_classes(self._meta.model.data_model._meta.model_name),
                 required=False,
             )
 
         self.fields['template'] = forms.CharField(
-            label=_(u'Template'),
+            label=_('Template'),
             widget=forms.Select(choices=self.instance.get_templates()),
             required=True,
         )
@@ -313,9 +317,9 @@ class CMSAllinkBaseSearchPlugin(CMSPluginBase):
     search_form = None
 
     class Media:
-        js = (get_files('djangocms_custom_admin')[0]['publicPath'],)
+        js = (get_files('djangocms_custom_admin')[1]['publicPath'],)
         css = {
-            'all': (get_files('djangocms_custom_admin')[1]['publicPath'],)
+            'all': (get_files('djangocms_custom_admin')[0]['publicPath'],)
         }
 
     def get_render_template(self, context, instance, placeholder):

@@ -18,8 +18,9 @@ from allink_core.core_apps.allink_categories.models import AllinkCategory
 
 class AllinkCategoryForm(TranslatableModelForm, MoveNodeForm):
     model_names = forms.MultipleChoiceField(
-        label=_(u'Project app'),
-        help_text=_(u'Please specify the app which uses this categories. All apps specified in parent category are automatically added.'),
+        label=_('Project app'),
+        help_text=_('Please specify the app which uses this categories. All apps specified in parent category '
+                    'are automatically added.'),
         choices=settings.PROJECT_APP_MODEL_WITH_CATEGORY_CHOICES,
         widget=forms.CheckboxSelectMultiple,
         required=False
@@ -37,8 +38,9 @@ class AllinkCategoryForm(TranslatableModelForm, MoveNodeForm):
 
         if get_additional_choices('PROJECT_CATEGORY_IDENTIFIERS'):
             self.fields['identifier'] = forms.ChoiceField(
-                label=_(u'Identifier'),
-                help_text=_(u'Identifier used for backward reference on a app model. (e.g display category name on People app, e.g Marketing)'),
+                label=_('Identifier'),
+                help_text=_('Identifier used for backward reference on a app model. (e.g display category name '
+                            'on People app, e.g Marketing)'),
                 choices=get_additional_choices('PROJECT_CATEGORY_IDENTIFIERS', blank=True),
                 required=False,
             )

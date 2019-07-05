@@ -1,6 +1,22 @@
 # -*- coding: utf-8 -*-
 from aldryn_addons.utils import senv
-from django.conf import settings
+
+__all__ = [
+    'ALLINK_INSTALLED_APPS',
+    'ALLINK_PROJECT_APP_MODEL_WITH_CATEGORY_CHOICES',
+    'ALLINK_CMS_PLACEHOLDER_CONF_PLUGINS',
+    'ALLINK_MIDDLEWARE',
+    'ALLINK_LOCALE_PATHS',
+    'ALLINK_PAGE_TOOLBAR_ENABLED',
+    'ALLINK_MANDRILL_DEV_MODE',
+    'ALLINK_MANDRILL_DEV_MODE_FROM_EMAIL_ADDRESS',
+    'ALLINK_MANDRILL_DEV_MODE_TO_EMAIL_ADDRESSES',
+    'ALLINK_CONTENT_PLUGIN_CHILD_CLASSES',
+    'THUMBNAIL_QUALITY',
+    'THUMBNAIL_OPTIMIZE_COMMAND',
+    'DEBUG_TOOLBAR_CONFIG',
+]
+
 ####################################################################################
 
 # Installed =Apps
@@ -8,8 +24,6 @@ from django.conf import settings
 ALLINK_INSTALLED_APPS = [
     # apps
     'debug_toolbar',
-    'allauth',
-    'allauth.account',
     'webpack_loader',
     'adminsortable',
     'sortedm2m',
@@ -21,10 +35,11 @@ ALLINK_INSTALLED_APPS = [
     'djangocms_snippet',
     'djangocms_attributes_field',
     'django_countries',
+    'django.contrib.postgres',
+    'inline_static',
 
     # allink core apps
     'allink_core.core',
-    'allink_core.core_apps.allink_seo',
     'allink_core.core_apps.allink_categories',
     'allink_core.core_apps.allink_mailchimp',
     'allink_core.core_apps.allink_styleguide',
@@ -32,17 +47,18 @@ ALLINK_INSTALLED_APPS = [
     # 'allink_core.core_apps.allink_terms',
 
     'allink_core.core_apps.allink_content',
+    'allink_core.core_apps.allink_teaser',
     'allink_core.core_apps.allink_image',
     'allink_core.core_apps.allink_gallery',
     'allink_core.core_apps.allink_video',
     'allink_core.core_apps.allink_social_icon',
     'allink_core.core_apps.allink_button_link',
-    'allink_core.core_apps.allink_group',
-    'allink_core.core_apps.allink_instagram',
-    'allink_core.core_apps.allink_pdf',
+    # 'allink_core.core_apps.allink_group',
+    # 'allink_core.core_apps.allink_pdf',
     'allink_core.core_apps.allink_cms',
-    'allink_core.core_apps.allink_icon',
-    'allink_core.core_apps.allink_info_box',
+    # 'allink_core.core_apps.allink_icon',
+    # 'allink_core.core_apps.allink_info_box',
+    'allink_core.core_apps.allink_seo_accordion',
 ]
 
 ####################################################################################
@@ -68,14 +84,15 @@ ALLINK_PROJECT_APP_MODEL_WITH_CATEGORY_CHOICES = [
 
 ALLINK_CMS_PLACEHOLDER_CONF_PLUGINS = [
     'CMSAllinkContentPlugin',
-    'CMSAllinkInfoBoxPlugin',
+    'Module',
+    # 'CMSAllinkInfoBoxPlugin',
 ]
 
 ####################################################################################
 
 # Assign Plugins which are allowed as child in Allink Content
 
-CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [
+ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [
     'TextPlugin',
     'SnippetPlugin',
     'AliasPlugin',
@@ -89,7 +106,8 @@ CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [
     # search
     'CMSWorkSearchPlugin',
     # core
-    'CMSAllinkTermsPlugin',
+    # 'CMSAllinkTermsPlugin',
+    'CMSAllinkTeaserPlugin',
     'CMSAllinkImagePlugin',
     'CMSAllinkGalleryPlugin',
     'CMSAllinkVideoEmbedPlugin',
@@ -97,18 +115,19 @@ CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [
     'CMSAllinkSocialIconContainerPlugin',
     'CMSAllinkSignupFormPlugin',
     'CMSAllinkButtonLinkContainerPlugin',
-    'CMSAllinkGroupContainerPlugin',
-    'CMSAllinkInstagramPlugin',
+    # 'CMSAllinkGroupContainerPlugin',
+    # 'CMSAllinkInstagramPlugin',
     'CMSAllinkContactRequestPlugin',
-    'CMSAllinkPageChooserPlugin',
+    # 'CMSAllinkPageChooserPlugin',
     'CMSAllinkLanguageChooserPlugin',
-    'CMSAllinkIconPlugin',
+    # 'CMSAllinkIconPlugin',
+    'CMSAllinkSEOAccordionContainerPlugin',
 ]
 ####################################################################################
 
 # Middlewareclassss
 
-ALLINK_MIDDLEWARE_CLASSES = [
+ALLINK_MIDDLEWARE = [
     'lockdown.middleware.LockdownMiddleware',
     'allink_core.core.middleware.AllinkUrlRedirectMiddleware',
     'allink_core.core_apps.allink_legacy_redirect.middleware.AllinkLegacyRedirectMiddleware',
@@ -128,7 +147,6 @@ ALLINK_LOCALE_PATHS = [
     '/app/allink_core/apps/config/locale',
     '/app/allink_core/apps/contact/locale',
     '/app/allink_core/apps/locations/locale',
-    '/app/allink_core/apps/members/locale',
     '/app/allink_core/apps/people/locale',
     '/app/allink_core/apps/testimonials/locale',
     '/app/allink_core/apps/work/locale',
@@ -139,7 +157,6 @@ ALLINK_LOCALE_PATHS = [
     # '/app/allink_apps/config/locale',
     # '/app/allink_apps/contact/locale',
     # '/app/allink_apps/locations/locale',
-    # '/app/allink_apps/members/locale',
     # '/app/allink_apps/people/locale',
     # '/app/allink_apps/testimonials/locale',
     # '/app/allink_apps/work/locale',
@@ -148,7 +165,6 @@ ALLINK_LOCALE_PATHS = [
     '/app/allink_core/core/locale',
     # core_apps
     '/app/allink_core/core_apps/allink_categories/locale',
-    '/app/allink_core/core_apps/allink_seo/locale',
     '/app/allink_core/core_apps/allink_legacy_redirect/locale',
     '/app/allink_core/core_apps/allink_mailchimp/locale',
     '/app/allink_core/core_apps/allink_mandrill/locale',
@@ -158,14 +174,12 @@ ALLINK_LOCALE_PATHS = [
     '/app/allink_core/core_apps/allink_gallery/locale',
     '/app/allink_core/core_apps/allink_group/locale',
     '/app/allink_core/core_apps/allink_image/locale',
-    '/app/allink_core/core_apps/allink_instagramm/locale',
     '/app/allink_core/core_apps/allink_social_icon/locale',
     '/app/allink_core/core_apps/allink_video/locale',
     '/app/allink_core/core_apps/allink_pdf/locale',
     '/app/allink_core/core_apps/allink_cms/locale',
     '/app/allink_core/core_apps/allink_icon/locale',
 ]
-
 
 # ####################################################################################
 #
@@ -178,6 +192,7 @@ THUMBNAIL_OPTIMIZE_COMMAND = {
     'gif': 'optipng {filename}',
     'jpeg': 'jpegoptim {filename}'
 }
+
 
 #  ####################################################################################
 #
@@ -192,13 +207,11 @@ DEBUG_TOOLBAR_CONFIG = {
     "SHOW_TOOLBAR_CALLBACK": show_toolbar,
 }
 
-
 #  ####################################################################################
 #
 # # allink Page Extension
 
 ALLINK_PAGE_TOOLBAR_ENABLED = False
-
 
 #  ####################################################################################
 #
@@ -207,4 +220,4 @@ ALLINK_PAGE_TOOLBAR_ENABLED = False
 ALLINK_MANDRILL_DEV_MODE = senv('ALLINK_MANDRILL_DEV_MODE', None)
 ALLINK_MANDRILL_DEV_MODE_FROM_EMAIL_ADDRESS = 'test@allink.ch'
 # we cant send to 'test@allink.ch' at the moment because of: https://support.google.com/a/answer/168383?hl=en
-ALLINK_MANDRILL_DEV_MODE_TO_EMAIL_ADDRESSES = ['itcrowd@allink.ch',]
+ALLINK_MANDRILL_DEV_MODE_TO_EMAIL_ADDRESSES = ['itcrowd@allink.ch', ]

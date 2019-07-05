@@ -38,4 +38,3 @@ if not is_model_registered('events', 'EventsRegistration'):
         pass
 
     __all__.append('EventsRegistration')
-

@@ -1,0 +1,9 @@
+{% load cms_tags %}
+
+<div class="seo-accordion" id="seo-accordion--{{instance.id}}">
+    <div class="seo-accordion__list">
+        {% for plugin in instance.child_plugin_instances %}
+            {% render_plugin plugin %}
+        {% endfor %}
+    </div>
+</div>

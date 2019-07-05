@@ -20,7 +20,7 @@
                 </div>
             {% endif %}
         </td>
-        {% if instance.detail_link_enabled and object.show_detail_link %}
+        {% if instance.detail_link_enabled %}
             <td>
                 <a href="{% get_absolute_url object instance.apphook_page.application_namespace %}" class="app-list__detail-link">
                     {% if instance.detail_link_text %}

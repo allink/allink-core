@@ -1,16 +1,20 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
+from adminsortable.admin import SortableAdmin
 
 from allink_core.core.loading import get_model
-from allink_core.core.admin import AllinkBaseAdminSortable
+from parler.admin import TranslatableAdmin
+from allink_core.core.admin import AllinkMediaAdminMixin, AllinkSEOAdminMixin, \
+    AllinkCategoryAdminMixin, AllinkTeaserAdminMixin
 
 People = get_model('people', 'People')
 
 
 @admin.register(People)
-class PeopleAdmin(AllinkBaseAdminSortable):
+class PeopleAdmin(AllinkMediaAdminMixin, AllinkSEOAdminMixin, AllinkCategoryAdminMixin, AllinkTeaserAdminMixin,
+                  TranslatableAdmin, SortableAdmin):
     search_fields = ('first_name', 'last_name',)
-    list_display = ('first_name', 'last_name', 'get_categories', 'status', 'created', 'modified',)
+    list_display = ('first_name', 'last_name', 'status', 'all_categories_column', 'created', 'modified',)
     view_on_site = False
 
     def get_fieldsets(self, request, obj=None):
@@ -29,10 +33,10 @@ class PeopleAdmin(AllinkBaseAdminSortable):
                     ('place', 'zip_code'),
                     'country',
                     'slug',
-                ),
+                )
             }),
         )
-
-        fieldsets += self.get_base_fieldsets()
-
+        fieldsets += self.get_category_fieldsets()
+        fieldsets += self.get_teaser_fieldsets()
+        fieldsets += self.get_seo_fieldsets()
         return fieldsets

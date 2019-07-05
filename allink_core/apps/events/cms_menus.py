@@ -7,7 +7,7 @@ from cms.menu_bases import CMSAttachMenu
 from allink_core.core.loading import get_model, get_class
 
 
-Events= get_model('events', 'Events')
+Events = get_model('events', 'Events')
 
 
 class EventsMenu(CMSAttachMenu):

@@ -10,14 +10,15 @@ from .config import MandrillConfig
 def check_result_status(result):
     if result[0].get('status') != 'sent' and result[0].get('status') != 'queued':
         raise mandrill.Error(
-            _(u"Mandrill hasn't raised an error but email could not been sent. (status: '{}', reason: '{}')").format(
+            _("Mandrill hasn't raised an error but email could not been sent. (status: '{}', reason: '{}')").format(
                 result[0].get('status'),
                 result[0].get('reject_reason')
             ))
 
 
 # backwards compat
-def send_transactional_email(message, template_content, language=None, translated=False, template_name=None, async=False):
+def send_transactional_email(message, template_content, language=None, translated=False,
+                             template_name=None, async=False):
     config = MandrillConfig()
 
     if not template_name:
@@ -29,7 +30,12 @@ def send_transactional_email(message, template_content, language=None, translate
 
     try:
         mandrill_client = mandrill.Mandrill(getattr(settings, 'MANDRILL_API_KEY'))
-        result = mandrill_client.messages.send_template(template_name=template_name, template_content=template_content, message=message, async=async)
+        result = mandrill_client.messages.send_template(
+            template_name=template_name,
+            template_content=template_content,
+            message=message,
+            async=async
+        )
         check_result_status(result)
     except:
         client = Client(settings.RAVEN_CONFIG.get('dsn'))

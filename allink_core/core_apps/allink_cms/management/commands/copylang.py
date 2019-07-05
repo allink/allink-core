@@ -71,8 +71,7 @@ class Command(BaseCommand):
             if options.get('page', None):
                 head = None
                 for page in pages:
-                    if page.get_title_obj(from_lang).title \
-                        == options.get('page'):
+                    if page.get_title_obj(from_lang).title == options.get('page'):
                         if head is not None:
                             raise CommandError('Page has to be unique on the site. Try the --tree_id option.')
                         head = page
@@ -99,7 +98,7 @@ class Command(BaseCommand):
             else:
                 if verbose:
                     self.stdout.write('Skipping page %s, language %s not defined\n' % (
-                    page.get_page_title(page.get_languages()[0]), from_lang))
+                        page.get_page_title(page.get_languages()[0]), from_lang))
 
         if copy_content:
             for static_placeholder in StaticPlaceholder.objects.all():

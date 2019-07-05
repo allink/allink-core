@@ -3,11 +3,9 @@ from django.contrib import admin
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 from cms.admin.placeholderadmin import PlaceholderAdminMixin
-
-
-from allink_core.core.admin import AllinkBaseAdminSortable
-from allink_core.core.admin import AllinkBaseAdminForm
-from allink_core.core_apps.allink_categories.models import AllinkCategory
+from parler.admin import TranslatableAdmin
+from allink_core.core.admin import AllinkMediaAdminMixin, AllinkSEOAdminMixin, AllinkCategoryAdminMixin, \
+    AllinkTeaserAdminMixin, AllinkCategoryAdminForm
 from allink_core.core.loading import get_model
 from allink_core.core.utils import get_additional_choices
 
@@ -15,14 +13,14 @@ Events = get_model('events', 'Events')
 EventsRegistration = get_model('events', 'EventsRegistration')
 
 
-class EventsContentAdminForm(AllinkBaseAdminForm):
+class EventsContentAdminForm(AllinkCategoryAdminForm):
 
     def __init__(self, *args, **kwargs):
         super(EventsContentAdminForm, self).__init__(*args, **kwargs)
 
         if get_additional_choices('ADDITIONAL_EVENTS_DETAIL_TEMPLATES'):
             self.fields['template'] = forms.CharField(
-                label=_(u'Template'),
+                label=_('Template'),
                 widget=forms.Select(choices=get_additional_choices('ADDITIONAL_EVENTS_DETAIL_TEMPLATES', blank=True)),
                 required=False,
             )
@@ -30,16 +28,18 @@ class EventsContentAdminForm(AllinkBaseAdminForm):
             self.fields['template'] = forms.CharField(widget=forms.HiddenInput(), required=False)
 
 
-
 @admin.register(Events)
-class EventsAdmin(PlaceholderAdminMixin, AllinkBaseAdminSortable):
+class EventsAdmin(AllinkMediaAdminMixin, AllinkSEOAdminMixin, AllinkCategoryAdminMixin,
+                  AllinkTeaserAdminMixin, PlaceholderAdminMixin,
+                  TranslatableAdmin):
     form = EventsContentAdminForm
-    list_display = ('title', 'get_categories', 'event_date_time', 'status', )
-    # event_date_time = forms.DateTimeField(
-    #     label=_(u'Date and Time'),
+    list_display = ('title', 'status', 'all_categories_column', 'entry_date',)
+
+    # entry_date = forms.DateTimeField(
+    #     label=_('Date and Time'),
     #     widget=forms.widgets.DateTimeInput(
     #         attrs={
-    #             'placeholder': _(u'Please choose date and time'),
+    #             'placeholder': _('Please choose date and time'),
     #             'data-dateFormat': 'Y-m-d H:i',
     #             'data-altFormat': 'D, j. F Y, H:i',
     #             'data-minDate': str(datetime.date.today() - datetime.timedelta(days=180)),
@@ -63,28 +63,30 @@ class EventsAdmin(PlaceholderAdminMixin, AllinkBaseAdminSortable):
                     'slug',
                     'template',
                     'preview_image',
-                    ('event_date_time', 'costs', ),
+                    ('entry_date', 'costs',),
                     'lead',
                     'location',
                     'form_enabled',
                     'created',
-                ),
+                )
             }),
         )
 
-        fieldsets += (_('Published From/To'), {
-            'classes': ('collapse',),
-            'fields': (
-                'start',
-                'end',
-            )
-        }),
-
-        fieldsets += self.get_base_fieldsets()
+        fieldsets += (
+            ('Published From/To', {
+                'classes': ('collapse',),
+                'fields': (
+                    'start',
+                    'end',
+                )
+            }),
+        )
+        fieldsets += self.get_category_fieldsets()
+        fieldsets += self.get_seo_fieldsets()
         return fieldsets
 
 
 @admin.register(EventsRegistration)
 class EventsRegistrationAdmin(admin.ModelAdmin):
     list_display = ('__str__', 'email', 'created', 'event', 'message',)
-    list_filter = ('event', )
+    list_filter = ('event',)

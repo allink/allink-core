@@ -1,0 +1,6 @@
+{% load allink_image_tags %}
+{% if teaser_image %}
+    <div class="teaser__image">
+        {% render_image image=teaser_image alt_text=teaser_title %}
+    </div>
+{% endif %}

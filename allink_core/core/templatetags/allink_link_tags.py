@@ -14,23 +14,34 @@ def link_attribute_string(instance, request=None):
     attributes += ' data-trigger-form-modal' if instance.form_modal_enabled else ''
     attributes += ' data-trigger-image-modal' if instance.image_modal_enabled else ''
     attributes += ' data-trigger-default-modal' if instance.default_modal_enabled else ''
-    attributes += ' data-default-modal-variation=video-modal data-default-modal-content-container-id=video-modal-{}'.format(instance.id) if (hasattr(instance, 'template') and getattr(instance, 'template') == 'video_embedded_link') or (hasattr(instance, 'template') and getattr(instance, 'template') == 'video_file_link') else ''
+    attributes += ' data-default-modal-variation=video-modal data-default-modal-content-container-id=video-modal-{}'\
+        .format(instance.id) if (hasattr(instance, 'template')
+                                 and getattr(instance, 'template') == 'video_embedded_link') \
+        or (hasattr(instance, 'template') and getattr(instance, 'template')
+            == 'video_file_link') else ''
 
     if instance.image_modal_enabled or instance.default_modal_enabled or instance.form_modal_enabled:
-        attributes += ' data-modal-escape-close-method-enabled=true' if hasattr(instance, 'data_modal_escape_close_enabled') and instance.data_modal_escape_close_enabled else ''
-        attributes += ' data-modal-overlay-close-method-enabled=true' if hasattr(instance, 'data_modal_overlay_close_enabled') and instance.data_modal_overlay_close_enabled else ''
-        attributes += ' data-modal-button-close-method-enabled=true' if hasattr(instance, 'data_modal_button_close_enabled') and instance.data_modal_button_close_enabled else ''
+        attributes += ' data-modal-escape-close-method-enabled=true' \
+            if hasattr(instance, 'data_modal_escape_close_enabled') \
+            and instance.data_modal_escape_close_enabled else ''
+        attributes += ' data-modal-overlay-close-method-enabled=true' \
+            if hasattr(instance, 'data_modal_overlay_close_enabled') \
+            and instance.data_modal_overlay_close_enabled else ''
+        attributes += ' data-modal-button-close-method-enabled=true' \
+            if hasattr(instance, 'data_modal_button_close_enabled') \
+            and instance.data_modal_button_close_enabled else ''
 
-    attributes += ' data-trigger-softpage' if (instance.softpage_large_enabled or instance.softpage_small_enabled) and instance.link_special != 'account_logout' else ''
+    attributes += ' data-trigger-softpage' if (instance.softpage_large_enabled
+                                               or instance.softpage_small_enabled) else ''
     attributes += ' data-softpage-variation=large' if instance.softpage_large_enabled else ''
     attributes += ' data-smooth-scroll' if instance.link_anchor else ''
     attributes += ' data-softpage-variation=small' if instance.softpage_small_enabled else ''
-    attributes += ' data-softpage-disabled' if instance.link_special == 'account_login' and request.user.is_authenticated else ''
-    attributes += ' data-cms-page' if instance.link_page and (instance.softpage_large_enabled or instance.softpage_small_enabled) else ''
-    attributes += ' data-submit-form' if instance.link_special == 'account_logout' and request.user.is_authenticated else ''
+    attributes += ' data-cms-page' if instance.link_page and (instance.softpage_large_enabled
+                                                              or instance.softpage_small_enabled) else ''
     attributes += ' data-form-modal-variation=newsletter-form' if instance.link_special == 'newsletter:signup' else ''
     attributes += ' role=button' if hasattr(instance, "type") and instance.type == 'btn' else ''
-    attributes += ' '.join([' {}={}'.format(k, v) if v else ' {}'.format(k) for k, v in instance.link_attributes.items()]) if instance.link_attributes else ''
+    attributes += ' '.join([' {}={}'.format(k, v) if v else ' {}'.format(k) for k, v in
+                            instance.link_attributes.items()]) if instance.link_attributes else ''
     return attributes
 
 
@@ -66,4 +77,3 @@ def get_absolute_url(obj, application_namespace=None):
     {% get_absolute_url object instance.apphook_page.application_namespace %}
     """
     return obj.get_absolute_url(application_namespace=application_namespace)
-

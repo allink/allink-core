@@ -18,10 +18,10 @@ def check_response_status(response):
         return response.json()
     except requests.exceptions.HTTPError as err:
         client.captureException()
-        raise requests.exceptions.HTTPError(_(u'Error: {} {}').format(str(response.status_code), err))
+        raise requests.exceptions.HTTPError(_('Error: {} {}').format(str(response.status_code), err))
     except ValueError as err:
         client.captureException()
-        raise ValueError(_(u'Cannot decode json, got {}').format(response.text), err)
+        raise ValueError(_('Cannot decode json, got {}').format(response.text), err)
 
 
 def get_hash_md5(email):
@@ -86,3 +86,4 @@ def list_members_delete(data, list_id=config.default_list_id, member_hash_email=
         config.api_root + 'lists/{}/members/{}'.format(list_id, member_hash),
         auth=('apikey', config.apikey),
     )
+    check_response_status(response)

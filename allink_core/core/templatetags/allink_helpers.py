@@ -10,7 +10,7 @@ def settings_value(name):
     return getattr(settings, name, "")
 
 
-@register.assignment_tag
+@register.simple_tag
 def var(val=None):
     return val
 
@@ -32,7 +32,7 @@ def add_params(value, arg):
     return value + first + str(arg)
 
 
-@register.assignment_tag
+@register.simple_tag
 def build_param(value, arg):
     """ Used in connection with Django's add_preserved_filters
 

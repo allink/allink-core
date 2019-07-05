@@ -1,17 +1,19 @@
 {% load static %}
 
-{% if selects.name == 'btn_context' %}
-    <div class="btn-container" data-context="{{ selects.name }}">
-        {% for item in selects %}
-            <div class="btn-item btn-{{item.choice_value}}-container {% if selects.value == item.choice_value %}active{% endif %}" data-toggle-active-state>
-                <div class="btn btn-{{item.choice_value}}">
-                    {{ item }}
+{% if widget.name == 'btn_context' %}
+    <div class="btn-container" data-context="{{ widget.name }}">
+        {% for group, options, index in widget.optgroups %}
+            {% for option in options %}
+                <div class="btn-item btn-{{option.value}}-container {% if option.value in widget.value %}active{% endif %}" data-toggle-active-state>
+                    <div class="btn btn-{{option.value}}">
+                        {% include option.template_name with widget=option %}
+                    </div>
                 </div>
-            </div>
+            {% endfor %}
         {% endfor %}
     </div>
 {% endif %}
 
 {# Available Variables #}
-{# {{ item.choice_value }}: {{ item.choice_label }} #}
-{# selected: {{ selects.value }}  #}
+{# {{ option.value }}: {{ option.label }} #}
+{# selected: {{ option.value }}  #}

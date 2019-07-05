@@ -3,18 +3,16 @@
 from django.db import models
 from django.contrib.auth.models import Group
 from django.utils.translation import ugettext_lazy as _
-from django.utils.encoding import python_2_unicode_compatible
 from cms.models.pluginmodel import CMSPlugin
 
 
-@python_2_unicode_compatible
 class AllinkGroupContainerPlugin(CMSPlugin):
     """
     A Container-Plugin for Group of Content
     """
 
     title = models.CharField(
-        _(u'Title'),
+        _('Title'),
         max_length=255
     )
 
@@ -27,13 +25,13 @@ class AllinkGroupContainerPlugin(CMSPlugin):
         return self.title
 
     def copy_relations(self, oldinstance):
-        self.groups = oldinstance.groups.all()
+        for i in oldinstance.groups.all():
+            self.groups.add(i)
 
 
-@python_2_unicode_compatible
 class AllinkGroupPlugin(CMSPlugin):
     title = models.CharField(
-        _(u'Title'),
+        _('Title'),
         max_length=255
     )
 

@@ -13,4 +13,5 @@ class WorkToolbar(AllinkBaseModifierMixin, CMSToolbar):
     model = Work
     app_label = Work._meta.app_label
 
+
 toolbar_pool.register(WorkToolbar)

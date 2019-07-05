@@ -1,5 +1,5 @@
 # # -*- coding: utf-8 -*-
-from django.conf.urls import url
+from django.urls import path
 
 from allink_core.core.loading import get_class
 
@@ -9,7 +9,7 @@ export_pdf = get_class('locations.views', 'export_pdf')
 
 
 urlpatterns = [
-    url(r'^(?P<page>[0-9]*)/$', LocationsPluginLoadMore.as_view(), name='more'),
-    url(r'^(?P<slug>[\w-]+)/$', LocationsDetail.as_view(), name='detail'),
-    url(r'^export-pdf/(?P<id>[0-9]+)/$', export_pdf, name='export-pdf'),
+    path('<int:page>/', LocationsPluginLoadMore.as_view(), name='more'),
+    path('<slug:slug>/', LocationsDetail.as_view(), name='detail'),
+    path('export-pdf/<int:id>/', export_pdf, name='export-pdf'),
 ]

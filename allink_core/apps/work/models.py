@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from allink_core.apps.work.abstract_models import BaseWork, BaseWorkTranslation, BaseWorkAppContentPlugin, BaseWorkSearchPlugin
+from allink_core.apps.work.abstract_models import BaseWork, BaseWorkTranslation, \
+    BaseWorkAppContentPlugin, BaseWorkSearchPlugin
 from allink_core.core.loading import get_model
 from allink_core.core.loading import is_model_registered
 

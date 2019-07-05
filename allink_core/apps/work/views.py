@@ -21,7 +21,7 @@ class WorkPluginLoadMore(AllinkBasePluginLoadMoreView):
 
 class WorkDetail(AllinkBaseDetailView):
     model = Work
-    template_name ='work/work_detail.html'
+    template_name = 'work/work_detail.html'
 
 
 class WorkSearchAjaxView(AllinkBaseAjaxFormView):

@@ -2,42 +2,6 @@
 
 {% for object in object_list %}
     <div class="grid-item {% if appended %}appended{% endif %}">
-        <div class="manage-spacings">
-            {% if object.preview_image %}
-                <div class="image-container">
-                    {% if instance.detail_link_enabled and object.show_detail_link %}
-                        <a href="{% get_absolute_url object instance.apphook_page.application_namespace %}">
-                    {% endif %}
-                        {% render_image image=object.preview_image %}
-                    {% if instance.detail_link_enabled  %}
-                        </a>
-                    {% endif %}
-                </div>
-            {% endif %}
-            {% if object.created %}
-                <div class="date-container">
-                    {# Date format: https://docs.djangoproject.com/es/1.10/ref/templates/builtins/#std:templatefilter-date #}
-                    {{ object.created|date:"j.n.Y" }}
-                </div>
-            {% endif %}
-            {% if object.title %}
-                <div class="heading-container">
-                    <h3 class="heading">
-                        {% render_model_ajax object "title" %}
-                    </h3>
-                </div>
-            {% endif %}
-            {% if instance.detail_link_enabled and object.show_detail_link %}
-                <div class="link-container">
-                    <a href="{% get_absolute_url object instance.apphook_page.application_namespace %}" class="app-list__detail-link">
-                        {% if instance.detail_link_text %}
-                            {{ instance.detail_link_text }}
-                        {% else %}
-                            {% trans "More" %}
-                        {% endif %}
-                    </a>
-                </div>
-            {% endif %}
-        </div>
+        {% include 'allink_teaser/tile/item.html' with teaser_title=object.teaser_dict.teaser_title teaser_image=object.teaser_dict.teaser_image teaser_technical_title=object.teaser_dict.teaser_technical_title teaser_description=object.teaser_dict.teaser_description teaser_link=object.teaser_dict.teaser_link teaser_link_text=object.teaser_dict.teaser_link_text %}
     </div>
 {% endfor %}

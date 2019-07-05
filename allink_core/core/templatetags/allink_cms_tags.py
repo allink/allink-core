@@ -11,7 +11,7 @@ def page_from_slug(slug):
     return Page.objects.get(slug=slug)
 
 
-@register.assignment_tag
+@register.simple_tag
 def placeholder_has_content(placeholder):
     """
     Renders boolean to variable if placeholder has plugins or not

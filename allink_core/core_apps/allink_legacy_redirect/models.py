@@ -10,47 +10,50 @@ from django.utils.timezone import now
 from django.utils.translation import activate, deactivate, ugettext_lazy as _
 from allink_core.core.utils import base_url
 from allink_core.core_apps.allink_legacy_redirect.utils import strip_anchor_part
-from allink_core.core.models.models import AllinkInternalLinkFieldsModel
+from allink_core.core.models import AllinkInternalLinkFieldsModel
 
 
 class AllinkLegacyLink(AllinkInternalLinkFieldsModel):
-    old = models.CharField(_(u'Old Link'), max_length=255, unique=True, help_text=u'We strip away the anchor part of the URL as this part is not passed to the server.')
+    old = models.CharField(_('Old Link'), max_length=255, unique=True,
+                           help_text=u'We strip away the anchor part of the URL as '
+                                     u'this part is not passed to the server.')
 
     #  External Redirect
     overwrite = models.CharField(
-        _(u'Overwrite Link'),
+        _('Overwrite Link'),
         max_length=255,
         null=True,
         blank=True,
-        help_text=_(u'Overwrites \'New Page\', use for special urls that are not listed there')
+        help_text=_('Overwrites \'New Page\', use for special urls that are not listed there')
     )
 
     active = models.BooleanField(
-        _(u'Active'),
+        _('Active'),
         default=True,
     )
     match_subpages = models.BooleanField(
-        _(u'Match subpages'),
+        _('Match subpages'),
         default=False,
-        help_text=_(u'If True, matches all subpages and redirects them to this link.')
+        help_text=_('If True, matches all subpages and redirects them to this link.')
     )
     last_test_result = models.NullBooleanField(
-        _(u'Result of last test'),
+        _('Result of last test'),
         default=None,
-        help_text=_(u'Was the last automatic test successfull? (True = Yes, False = No, None = Not yet tested)')
+        help_text=_('Was the last automatic test successfull? (True = Yes, False = No, None = Not yet tested)')
     )
     last_test_date = models.DateTimeField(
-        _(u'Date of last test'),
+        _('Date of last test'),
         null=True,
         blank=True
     )
     redirect_when_logged_out = models.BooleanField(
-        _(u'Redirect when logged out'),
+        _('Redirect when logged out'),
         default=False,
-        help_text=_(u'If True, current site will not redirect when user is logged in. If False, the page will be redirected.')
+        help_text=_('If True, current site will not redirect when user is logged in. '
+                    u'If False, the page will be redirected.')
     )
     language = models.CharField(
-        _(u'Language'),
+        _('Language'),
         max_length=200,
         choices=settings.LANGUAGES,
         default=settings.LANGUAGES[0],

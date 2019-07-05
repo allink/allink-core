@@ -5,29 +5,34 @@ from django.db import models
 from cms.models.fields import PageField
 from cms.models.fields import PlaceholderField
 from adminsortable.models import SortableMixin
-from parler.models import TranslatableModel, TranslatedField
+from parler.models import TranslatedField
 from djangocms_text_ckeditor.fields import HTMLField
 from filer.fields.image import FilerImageField
 
-from aldryn_translation_tools.models import TranslationHelperMixin
 from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
-from allink_core.core.models.models import AllinkBaseAppContentPlugin, AllinkBaseSearchPlugin, AllinkBaseModel, AllinkBaseTranslatedFieldsModel
-from allink_core.core.models.mixins import AllinkTranslatedAutoSlugifyMixin
-from allink_core.core.models.managers import AllinkBaseModelManager
+from allink_core.core.loading import get_class
+from allink_core.core.models import (
+    AllinkCategoryFieldsModel,
+    AllinkBaseTranslatableModel,
+    AllinkBaseAppContentPlugin,
+    AllinkBaseSearchPlugin,
+    AllinkBaseTranslatedFieldsModel,
+)
+
+AllinkWorkManager = get_class('work.managers', 'AllinkWorkManager')
 
 
-class BaseWork(SortableMixin, TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, TranslatableModel, AllinkBaseModel):
+class BaseWork(SortableMixin, AllinkCategoryFieldsModel, AllinkBaseTranslatableModel):
     slug_source_field_name = 'title'
 
     title = TranslatedField(any_language=True)
     slug = TranslatedField(any_language=True)
     lead = TranslatedField()
-
     preview_image = FilerImageField(
-        verbose_name=_(u'Preview Image'),
+        verbose_name=_('Preview Image'),
         blank=True,
         null=True,
-        on_delete=models.SET_NULL,
+        on_delete=models.PROTECT,
         related_name='%(app_label)s_%(class)s_preview_image',
     )
     sort_order = models.PositiveIntegerField(
@@ -35,12 +40,16 @@ class BaseWork(SortableMixin, TranslationHelperMixin, AllinkTranslatedAutoSlugif
         editable=False,
         db_index=True
     )
+    header_placeholder = PlaceholderField(
+        u'work_header',
+        related_name='%(app_label)s_%(class)s_header_placeholder'
+    )
+    content_placeholder = PlaceholderField(
+        u'work_content',
+        related_name='%(app_label)s_%(class)s_content_placeholder'
+    )
 
-    header_placeholder = PlaceholderField(u'work_header', related_name='%(app_label)s_%(class)s_header_placeholder')
-    content_placeholder = PlaceholderField(u'work_content', related_name='%(app_label)s_%(class)s_content_placeholder')
-    content_additional_placeholder = PlaceholderField(u'work_content_additional', related_name='%(app_label)s_%(class)s_content_additional_placeholder')
-
-    objects = AllinkBaseModelManager()
+    objects = AllinkWorkManager()
 
     class Meta:
         abstract = True
@@ -49,26 +58,34 @@ class BaseWork(SortableMixin, TranslationHelperMixin, AllinkTranslatedAutoSlugif
         verbose_name = _('Project / Reference')
         verbose_name_plural = _('Projects / References')
 
+    def __str__(self):
+        return u'%s - %s' % (self.title, self.created.strftime('%d.%m.%Y'))
+
 
 class BaseWorkTranslation(AllinkBaseTranslatedFieldsModel):
-    master = models.ForeignKey('work.Work', related_name='translations', null=True)
-
+    master = models.ForeignKey(
+        'work.Work',
+        on_delete=models.CASCADE,
+        related_name='translations',
+        null=True
+    )
     title = models.CharField(
         max_length=255
     )
     slug = models.SlugField(
-        _(u'Slug'),
+        _('Slug'),
         max_length=255,
         default='',
         blank=True,
-        help_text=_(u'Leave blank to auto-generate a unique slug.')
+        help_text=_('Leave blank to auto-generate a unique slug.')
     )
     lead = HTMLField(
-        _(u'Lead Text'),
-        help_text=_(u'Teaser text that in some cases is used in the list view and/or in the detail view.'),
+        _('Lead Text'),
+        help_text=_('Teaser text that in some cases is used in the list view and/or in the detail view.'),
         blank=True,
         null=True,
     )
+
     class Meta:
         abstract = True
         app_label = 'work'
@@ -83,11 +100,11 @@ class BaseWorkAppContentPlugin(AllinkBaseAppContentPlugin):
                     'manual entries are selected the category filtering will be ignored.)')
     )
     apphook_page = PageField(
-        verbose_name=_(u'Apphook Page'),
+        verbose_name=_('Apphook Page'),
         null=True,
         blank=True,
-        on_delete=models.SET_NULL,
-        help_text=_(u'If provided, this Apphook-Page will be used to generate the detail link.'),
+        on_delete=models.PROTECT,
+        help_text=_('If provided, this Apphook-Page will be used to generate the detail link.'),
     )
 
     def save(self, *args, **kwargs):
@@ -103,4 +120,3 @@ class BaseWorkSearchPlugin(AllinkBaseSearchPlugin):
     class Meta:
         abstract = True
         app_label = 'work'
-

@@ -1,10 +1,60 @@
 # -*- coding: utf-8 -*-
 from django.conf import settings
 from django.contrib.sites.models import Site
-
+from django.urls import NoReverseMatch
+from django.utils.translation import ugettext_lazy as _, override
 from menus.menu_pool import menu_pool
+from cms.utils.i18n import get_current_language, get_default_language
 from cms.plugin_pool import plugin_pool
 from aldryn_translation_tools.models import TranslatedAutoSlugifyMixin
+from allink_core.core.loading import get_model
+
+
+__all__ = [
+    'AllinkDetailMixin',
+    'AllinkTranslatedAutoSlugifyMixin',
+    'AllinkInvalidatePlaceholderCacheMixin',
+    'AllinkMetaTagMixin',
+]
+
+
+class AllinkDetailMixin:
+    """
+    Mixin for models with detail view
+
+    - always used in combination with aldryn_translation_tools.models.TranslationHelperMixin
+    """
+    def get_detail_view(self, application_namespace=None):
+        """
+        :param application_namespace:
+        an application_namespace, e.g 'news'
+        - this is usually supplied, when calling from a app_content plugin with a specific apphook
+        :return:
+        fully qualified detail view identifier, e.g 'news:detail'
+        """
+        if application_namespace:
+            return '{}:detail'.format(application_namespace)
+        else:
+            return '{}:detail'.format(self._meta.model_name)
+
+    def get_absolute_url(self, language=None, application_namespace=None):
+        """
+        :param language:
+        :param application_namespace:
+        :return:
+
+        """
+        from django.urls import reverse
+        if not language:
+            language = get_current_language() or get_default_language()
+
+        slug, language = self.known_translation_getter('slug', None, language_code=language)
+        try:
+            with override(language):
+                return reverse(self.get_detail_view(application_namespace), kwargs={'slug': slug})
+        except NoReverseMatch:
+            # so we can spot this common problem also when not in DEBUG mode.
+            return '/no_apphook_configured'
 
 
 class AllinkTranslatedAutoSlugifyMixin(TranslatedAutoSlugifyMixin):
@@ -45,7 +95,7 @@ class AllinkTranslatedAutoSlugifyMixin(TranslatedAutoSlugifyMixin):
         return super(TranslatedAutoSlugifyMixin, self).save(**kwargs)
 
 
-class AllinkInvalidatePlaceholderCacheMixin(object):
+class AllinkInvalidatePlaceholderCacheMixin:
     """
     This Mixin is used in combination with a CMS-Plugin. It makes sure that the placeholder cache keys get deleted,
     when the involved model instance is saved.
@@ -81,3 +131,148 @@ class AllinkInvalidatePlaceholderCacheMixin(object):
         # invalidate the menu for all sites
         for site in Site.objects.all():
             menu_pool.clear(site_id=site.id)
+
+
+class AllinkMetaTagMixin:
+    """
+    Mixin for all relevant meta fields. Defines the fallback hierarchy.
+
+    Used in combination with:
+
+    AllinkTeaserFieldsModel,
+    AllinkTeaserTranslatedFieldsModel,
+    AllinkSEOFieldsModel,
+    AllinkSEOTranslatedFieldsModel,
+
+    """
+
+    META_FIELD_FALLBACK_CONF = {
+        'meta_image': [
+            {'model': 'self', 'field': 'og_image', },
+            {'model': 'self', 'field': 'teaser_image', },
+            {'model': 'self', 'field': 'preview_image', },
+            {'model': 'config.Config', 'field': 'default_og_image', },
+        ],
+        'meta_title': [
+            {'model': 'self', 'field': 'og_title', },
+            {'model': 'self', 'field': 'teaser_title', },
+            {'model': 'self', 'field': 'title', },
+        ],
+        'meta_description': [
+            {'model': 'self', 'field': 'og_description', },
+            {'model': 'self', 'field': 'teaser_description', },
+            {'model': 'self', 'field': 'lead', },
+        ]
+    }
+
+    @property
+    def field_fallback_conf(self):
+        """
+        the get_fallback function is interested in both META_FIELD_FALLBACK_CONF and TEASER_FIELD_FALLBACK_CONF
+        but it is not guaranteed, that AllinkMetaTagMixin and AllinkTeaserMixin are used together.
+        """
+        try:
+            return {**self.META_FIELD_FALLBACK_CONF, **self.TEASER_FIELD_FALLBACK_CONF}
+        except AttributeError:
+            return self.TEASER_FIELD_FALLBACK_CONF
+
+    @property
+    def meta_page_title(self):
+        from allink_core.apps.config.utils import get_fallback
+        Config = get_model('config', 'Config')
+        allink_config = Config.get_solo()
+
+        base_title = ' | ' + getattr(allink_config, 'default_base_title', '')
+        page_title = get_fallback(self, 'meta_title')
+
+        return page_title + base_title
+
+    @property
+    def meta_dict(self):
+        """
+        :return:
+        dict with all relevant meta fields
+        e.g. used for seo template snippet: templatetags/allink_meta_og.html
+        """
+        from allink_core.apps.config.utils import get_fallback
+
+        Config = get_model('config', 'Config')
+        allink_config = Config.get_solo()
+
+        meta_context = {
+            'meta_page_title': self.meta_page_title,
+            'meta_og_title': get_fallback(self, 'meta_title'),
+            'meta_description': get_fallback(self, 'meta_description'),
+            'meta_image_url': getattr(get_fallback(self, 'meta_image'), 'url') or '',
+            'google_site_verification': allink_config.google_site_verification,
+        }
+        return meta_context
+
+
+class AllinkTeaserMixin:
+    """
+    Mixin for all relevant teaser fields. Defines the fallback hierarchy.
+
+    Used in combination with:
+
+    AllinkTeaserFieldsModel,
+    AllinkTeaserTranslatedFieldsModel
+
+
+    override TEASER_FIELD_FALLBACK_CONF on per app basis:
+    ...
+    """
+
+    TEASER_LINK_TEXT = _('Read more')
+
+    TEASER_FIELD_FALLBACK_CONF = {
+        'teaser_image': [
+            {'model': 'self', 'field': 'teaser_image', },
+            {'model': 'self', 'field': 'preview_image', },
+        ],
+        'teaser_title': [
+            {'model': 'self', 'field': 'teaser_title', },
+            {'model': 'self', 'field': 'title', },
+        ],
+        'teaser_technical_title': [
+            {'model': 'self', 'field': 'teaser_technical_title', },
+        ],
+        'teaser_description': [
+            {'model': 'self', 'field': 'teaser_description', },
+            {'model': 'self', 'field': 'lead', },
+        ],
+        'teaser_link_text': [
+            {'model': 'self', 'field': 'teaser_link_text', },
+            {'model': 'self', 'field': 'TEASER_LINK_TEXT', },
+        ],
+    }
+
+    @property
+    def field_fallback_conf(self):
+        """
+        the get_fallback function is interested in both META_FIELD_FALLBACK_CONF and TEASER_FIELD_FALLBACK_CONF
+        but it is not guaranteed, that AllinkMetaTagMixin and AllinkTeaserMixin are used together.
+        """
+        try:
+            return {**self.META_FIELD_FALLBACK_CONF, **self.TEASER_FIELD_FALLBACK_CONF}
+        except AttributeError:
+            return self.TEASER_FIELD_FALLBACK_CONF
+
+    @property
+    def teaser_dict(self):
+        """
+        :return:
+        dict with all relevant teaser fields
+        e.g. used for teaser templates e.g: allink_teaser/<<template_name>>/item.html
+        """
+        from allink_core.apps.config.utils import get_fallback
+
+        teaser_context = {
+            'teaser_title': get_fallback(self, 'teaser_title'),
+            'teaser_technical_title': get_fallback(self, 'teaser_technical_title'),
+            'teaser_description': get_fallback(self, 'teaser_description'),
+            'teaser_image': get_fallback(self, 'teaser_image'),
+            'teaser_link_text': get_fallback(self, 'teaser_link_text'),
+            'teaser_link': self.get_absolute_url(),
+        }
+        return teaser_context

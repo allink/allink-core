@@ -21,7 +21,8 @@ def send_registration_email(form, event):
                 data.append((form.fields.get(field).label, event.title))
             else:
                 if hasattr(form.fields.get(field), 'choices'):
-                    data.append((form.fields.get(field).label, get_display(form.data.get(field), form.fields.get(field).choices)))
+                    data.append((form.fields.get(field).label, get_display(form.data.get(field),
+                                                                           form.fields.get(field).choices)))
                 else:
                     data.append((form.fields.get(field).label, form.data.get(field)))
 
@@ -53,7 +54,8 @@ def send_registration_email(form, event):
         'track_clicks': True,
         'track_opens': True
     }
-    send_transactional_email(message=message, template_name='hrcampus_registration_internal_de', template_content=template_content)
+    send_transactional_email(message=message, template_name='hrcampus_registration_internal_de',
+                             template_content=template_content)
 
 
 def send_registration_confirmation_email(form, event):
@@ -90,4 +92,5 @@ def send_registration_confirmation_email(form, event):
         'track_clicks': True,
         'track_opens': True
     }
-    send_transactional_email(message=message, template_name='hrcampus_event_confirmation', translated=True, template_content=template_content)
+    send_transactional_email(message=message, template_name='hrcampus_event_confirmation',
+                             translated=True, template_content=template_content)

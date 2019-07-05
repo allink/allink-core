@@ -4,7 +4,7 @@ from django import forms
 from django.conf import settings
 from django.utils import translation
 from django.utils.translation import ugettext as _
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.utils.dateformat import DateFormat
 from raven import Client
 
@@ -56,7 +56,7 @@ class AllinkMandrillEmailBase:
         self.config = MandrillConfig()
         self.logging = logging
         if self.translated:
-            assert (language, 'You have to provide a language, if you send a translated email.')
+            assert(language, 'You have to provide a language, if you send a translated email.')
             self.language = language
         self.async = async
         self.send_with_celery = send_with_celery
@@ -97,16 +97,16 @@ class AllinkMandrillEmailBase:
         return content.replace('\r\n', r).replace('\n\r', r).replace('\r', r).replace('\n', r)
 
     def build_subject(self):
-        raise NotImplemented
+        raise NotImplementedError
 
     def build_body(self):
-        raise NotImplemented
+        raise NotImplementedError
 
     def get_from_mail_address(self):
-        raise NotImplemented
+        raise NotImplementedError
 
     def fetch_to_email_addresses(self):
-        raise NotImplemented
+        raise NotImplementedError
 
     def log(self, **kwargs):
         # this is only needed if self.logging==True
@@ -194,7 +194,8 @@ class AllinkMandrillEmailBase:
                 }
 
                 self.send_transactional_email(message=message, template_content=template_content)
-                if self.logging:  # if logging is enabled the function log will be called. You will have to implement it
+                # if logging is enabled the function log will be called. You will have to implement it
+                if self.logging:
                     self.log(to=message['to'],
                              subject=message['subject'],
                              form=message['from_email'],
@@ -256,9 +257,12 @@ class AllinkMandrillFormEmail(AllinkMandrillEmailBase):
         form_fields_merge_vars = self.get_merge_vars_from_form(self.form)
 
         body = form_fields_merge_vars
-        body.append(self.create_global_merge_var('submitted_form_str', self.get_submitted_form_str(self.form, form_fields_merge_vars)))
+        body.append(self.create_global_merge_var('submitted_form_str',
+                                                 self.get_submitted_form_str(
+                                                     self.form, form_fields_merge_vars)))
         body.append(self.create_global_merge_var('submitted_form_url', self.get_submitted_form_url(self.form)))
-        body.append((self.create_global_merge_var('list_of_available_merge_vars', self.get_list_of_available_merge_vars(self.form))))
+        body.append((self.create_global_merge_var('list_of_available_merge_vars',
+                                                  self.get_list_of_available_merge_vars(self.form))))
         return body
 
     def get_merge_vars_from_form(self, form):
@@ -292,7 +296,7 @@ class AllinkMandrillFormEmail(AllinkMandrillEmailBase):
                 elif type(form.fields.get(field)) == forms.BooleanField:
                     # checkbox
                     form_fields_merge_vars.append(
-                        self.create_global_merge_var(field, _(u'Yes') if True else _(u'No')))
+                        self.create_global_merge_var(field, _('Yes') if True else _('No')))
                 # TODO form.data.get(field) is empty
                 # elif type(form.fields.get(field)) == forms.FileField:
                 #     # file field
@@ -307,14 +311,15 @@ class AllinkMandrillFormEmail(AllinkMandrillEmailBase):
                     form_fields_merge_vars.append(self.create_global_merge_var(field, '—'))
         return form_fields_merge_vars
 
-
     def get_submitted_form_str(self, form, form_fields_merge_vars):
         """
-        for convenience we add a merge var 'submitted_form' (can be used to display all the form fields at once, including labels and linebreaks)
+        for convenience we add a merge var 'submitted_form'
+        (can be used to display all the form fields at once, including labels and linebreaks)
             [('name': 'submitted_form', 'content': '<<string with all form fields and labels separated with <br>'), ..]
         """
         submitted_form_str = '<br>'.join(
-            ['{}:<br>{}<br>'.format(form.fields.get(merge_var.get('name')).label, merge_var.get('content')) for merge_var in form_fields_merge_vars])
+            ['{}:<br>{}<br>'.format(form.fields.get(merge_var.get('name')).label,
+                                    merge_var.get('content')) for merge_var in form_fields_merge_vars])
         return submitted_form_str
 
     def get_submitted_form_url(self, form):
@@ -323,14 +328,16 @@ class AllinkMandrillFormEmail(AllinkMandrillEmailBase):
             [('name': 'submitted_form_url', 'content': '<<absolute url to django admin>>'), ..]
         """
         submitted_form_url = '{}{}'.format(base_url(),
-                      reverse('admin:%s_%s_change' % (form.instance._meta.app_label, form.instance._meta.model_name),
-                              args=[form.instance.id]))
+                                           reverse('admin:%s_%s_change' % (form.instance._meta.app_label,
+                                                                           form.instance._meta.model_name),
+                                                   args=[form.instance.id]))
         return submitted_form_url
 
     def get_list_of_available_merge_vars(self, form):
         """
         we add a merge var 'list_of_available_merge_vars' (can be used as a reference in mailchimp templates)
-            [('name': 'form_fields', 'content': '<<string with all form fields separated with <br> and formatted in the merge_language>>'), ..]
+            [('name': 'form_fields', 'content': '<<string with all form fields separated with
+            <br> and formatted in the merge_language>>'), ..]
         """
         form_fields_combined = '<br>'.join(
             [self.MERGE_FORMAT[self.merge_language].format(field) for field in form.fields]

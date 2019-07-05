@@ -1,5 +1,5 @@
 # # -*- coding: utf-8 -*-
-from django.conf.urls import url
+from django.urls import path
 
 from allink_core.core.loading import get_class
 
@@ -8,6 +8,6 @@ PeopleDetail = get_class('people.views', 'PeopleDetail')
 
 
 urlpatterns = [
-    url(r'^(?P<page>[0-9]*)/$', PeoplePluginLoadMore.as_view(), name='more'),
-    url(r'^(?P<slug>[\w-]+)/$', PeopleDetail.as_view(), name='detail'),
+    path('<int:page>/', PeoplePluginLoadMore.as_view(), name='more'),
+    path('<slug:slug>/', PeopleDetail.as_view(), name='detail'),
 ]

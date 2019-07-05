@@ -3,6 +3,7 @@ from django import forms
 from django.utils.translation import ugettext_lazy as _
 from django.utils.html import strip_tags
 
+from django.conf import settings
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
 from webpack_loader.utils import get_files
@@ -22,20 +23,20 @@ class AllinkGalleryPluginForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(AllinkGalleryPluginForm, self).__init__(*args, **kwargs)
         self.fields['ratio'] = forms.CharField(
-            label=_(u'Ratio'),
-            help_text=_(u'This option overrides the default settings for the gallery plugin.'),
+            label=_('Ratio'),
+            help_text=_('This option overrides the default settings for the gallery plugin.'),
             widget=forms.Select(choices=get_ratio_choices()),
             required=False,
         )
         self.fields['template'] = forms.CharField(
-            label=_(u'Template'),
+            label=_('Template'),
             widget=forms.Select(choices=self.instance.get_templates()),
             required=True,
         )
         if get_additional_choices('GALLERY_CSS_CLASSES'):
             self.fields['project_css_classes'] = forms.MultipleChoiceField(
                 widget=forms.CheckboxSelectMultiple(),
-                label=_(u'Predifined variations'),
+                label=_('Predifined variations'),
                 choices=get_additional_choices('GALLERY_CSS_CLASSES'),
                 required=False,
             )
@@ -51,10 +52,12 @@ class AllinkGalleryImagePluginForm(forms.ModelForm):
         cleaned_data = super(AllinkGalleryImagePluginForm, self).clean()
         form_data = self.cleaned_data
         text_length = len(strip_tags(form_data['text']))
-        gallery_plugin_caption_text_max_length = getattr(Config.get_solo(), 'gallery_plugin_caption_text_max_length')
+        max_length = settings.ALLINK_GALLERY_PLUGIN_CAPTION_TEXT_MAX_LENGTH
 
-        if gallery_plugin_caption_text_max_length and text_length > gallery_plugin_caption_text_max_length:
-            self.add_error('text', _(u'There are only {} characters allowed in text field. Currently there are {} characters.').format(gallery_plugin_caption_text_max_length, text_length))
+        if max_length and text_length > max_length:
+            self.add_error(
+                'text', _('There are only {} characters allowed in text field. Currently there are {} characters.')
+                    .format(max_length, text_length))
 
         return cleaned_data
 
@@ -69,9 +72,9 @@ class CMSAllinkGalleryPlugin(CMSPluginBase):
     form = AllinkGalleryPluginForm
 
     class Media:
-        js = (get_files('djangocms_custom_admin')[0]['publicPath'], )
+        js = (get_files('djangocms_custom_admin')[1]['publicPath'], )
         css = {
-            'all': (get_files('djangocms_custom_admin')[1]['publicPath'], )
+            'all': (get_files('djangocms_custom_admin')[0]['publicPath'], )
         }
 
     def get_fieldsets(self, request, obj=None):
@@ -108,15 +111,15 @@ class CMSAllinkGalleryPlugin(CMSPluginBase):
 @plugin_pool.register_plugin
 class CMSAllinkGalleryImagePlugin(CMSPluginBase):
     model = AllinkGalleryImagePlugin
-    name = _('Image')
+    name = _('Gallery Image')
     module = _('Generic')
     allow_children = False
     form = AllinkGalleryImagePluginForm
 
     class Media:
-        js = (get_files('djangocms_custom_admin')[0]['publicPath'], )
+        js = (get_files('djangocms_custom_admin')[1]['publicPath'], )
         css = {
-            'all': (get_files('djangocms_custom_admin')[1]['publicPath'], )
+            'all': (get_files('djangocms_custom_admin')[0]['publicPath'], )
         }
 
     def get_fieldsets(self, request, obj=None):

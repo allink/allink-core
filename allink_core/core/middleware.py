@@ -27,8 +27,8 @@ class AllinkUrlRedirectMiddleware:
     You keep a tuple of url regex pattern/url redirect tuples on your site
     settings, example:
     URL_REDIRECTS = (
-        (r'www\.example\.com/hello/$', 'http://hello.example.com/'),
-        (r'www\.example2\.com/$', 'http://www.example.com/example2/'),
+        (r'www\.example\.com/hello/$', 'http://hello.example.com/'),  # noqa
+        (r'www\.example2\.com/$', 'http://www.example.com/example2/'),  # noqa
     )
     """
     def process_request(self, request):

@@ -21,13 +21,13 @@ class AllinkVideoEmbedPluginForm(forms.ModelForm):
         if get_additional_choices('VID_EMBED_CSS_CLASSES'):
             self.fields['project_css_classes'] = forms.MultipleChoiceField(
                 widget=forms.CheckboxSelectMultiple(),
-                label=_(u'Predifined variations for Video Plugin'),
+                label=_('Predifined variations for Video Plugin'),
                 choices=get_additional_choices('VID_EMBED_CSS_CLASSES'),
                 required=False,
             )
         self.fields['ratio'] = forms.CharField(
-            label=_(u'Ratio'),
-            help_text=_(u'This option overrides the default ratio setting for embeded videos.'),
+            label=_('Ratio'),
+            help_text=_('This option overrides the default ratio setting for embeded videos.'),
             widget=forms.Select(choices=get_ratio_choices()),
             required=False,
         )
@@ -44,7 +44,7 @@ class AllinkVideoFilePluginForm(forms.ModelForm):
         if get_additional_choices('VID_FILE_CSS_CLASSES').__len__() != 0:
             self.fields['project_css_classes'] = forms.MultipleChoiceField(
                 widget=forms.CheckboxSelectMultiple(),
-                label=_(u'Predifined variations for Video Plugin'),
+                label=_('Predifined variations for Video Plugin'),
                 choices=get_additional_choices('VID_FILE_CSS_CLASSES'),
                 required=False,
             )
@@ -59,11 +59,11 @@ class CMSAllinkVideoEmbedPlugin(CMSPluginBase):
 
     class Media:
         js = (
-            get_files('djangocms_custom_admin')[0]['publicPath'],
+            get_files('djangocms_custom_admin')[1]['publicPath'],
         )
         css = {
             'all': (
-                get_files('djangocms_custom_admin')[1]['publicPath'],
+                get_files('djangocms_custom_admin')[0]['publicPath'],
 
             )
         }
@@ -98,6 +98,7 @@ class CMSAllinkVideoEmbedPlugin(CMSPluginBase):
         template = 'allink_video/embed/content.html'
         return template
 
+
 @plugin_pool.register_plugin
 class CMSAllinkVideoFilePlugin(CMSPluginBase):
     model = AllinkVideoFilePlugin
@@ -106,9 +107,9 @@ class CMSAllinkVideoFilePlugin(CMSPluginBase):
     form = AllinkVideoFilePluginForm
 
     class Media:
-        js = (get_files('djangocms_custom_admin')[0]['publicPath'], )
+        js = (get_files('djangocms_custom_admin')[1]['publicPath'], )
         css = {
-            'all': (get_files('djangocms_custom_admin')[1]['publicPath'], )
+            'all': (get_files('djangocms_custom_admin')[0]['publicPath'], )
         }
 
     def get_fieldsets(self, request, obj=None):

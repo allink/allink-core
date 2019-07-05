@@ -20,6 +20,7 @@ class LocationsPluginLoadMore(AllinkBasePluginLoadMoreView):
 class LocationsDetail(AllinkBaseDetailView):
     model = Locations
 
+
 def export_pdf(request, id):
     date = (datetime.date.today().strftime('%d_%m_%Y'))
 

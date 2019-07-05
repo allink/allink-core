@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from django.template.loader import render_to_string
-from django.conf import settings
 
 from allink_core.core.utils import get_display
 from allink_core.core_apps.allink_mandrill.config import MandrillConfig
@@ -19,7 +18,8 @@ def send_request_email(form, plugin):
         if field != 'terms' and field != 'terms_accepted':
             if form.data.get(field):
                 if hasattr(form.fields.get(field), 'choices'):
-                    data.append((form.fields.get(field).label, get_display(form.data.get(field), form.fields.get(field).choices)))
+                    data.append((form.fields.get(field).label, get_display(form.data.get(field),
+                                                                           form.fields.get(field).choices)))
                 else:
                     data.append((form.fields.get(field).label, form.data.get(field)))
 
@@ -52,7 +52,8 @@ def send_request_email(form, plugin):
         'track_clicks': True,
         'track_opens': True
     }
-    send_transactional_email(message=message, template_name='hrcampus_request_internal_de', template_content=template_content)
+    send_transactional_email(message=message, template_name='hrcampus_request_internal_de',
+                             template_content=template_content)
 
 
 def send_request_confirmation_email(form, plugin):
@@ -106,4 +107,5 @@ def send_request_confirmation_email(form, plugin):
         'track_clicks': True,
         'track_opens': True
     }
-    send_transactional_email(message=message, template_name='hrcampus_request_confirmation_de', translated=False, template_content=template_content)
+    send_transactional_email(message=message, template_name='hrcampus_request_confirmation_de', translated=False,
+                             template_content=template_content)

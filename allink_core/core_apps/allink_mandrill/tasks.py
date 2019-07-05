@@ -1,7 +1,6 @@
 try:
     from celery import shared_task
 
-
     @shared_task
     def send_transactional_mail_celery(template_name, message, template_content):
         """

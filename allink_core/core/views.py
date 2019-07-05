@@ -6,11 +6,10 @@ import re
 
 from django.views.generic import ListView, DetailView, CreateView, FormView
 from django.db.models import Q
-from django.shortcuts import render_to_response
-from django.template import RequestContext
+from django.shortcuts import render
 from django.template.loader import get_template
 from django.utils.translation import ugettext_lazy as _
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.core.exceptions import ImproperlyConfigured
 from django.conf import settings
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponsePermanentRedirect, Http404, JsonResponse
@@ -18,7 +17,7 @@ from django.template.loader import render_to_string
 from django.template import TemplateDoesNotExist
 from parler.views import TranslatableSlugMixin
 
-from allink_core.core.models.models import AllinkBaseAppContentPlugin
+from allink_core.core.models import AllinkBaseAppContentPlugin
 from allink_core.core_apps.allink_categories.models import AllinkCategory
 from allink_core.core.utils import get_query, update_context_google_tag_manager
 
@@ -120,8 +119,8 @@ class AllinkBasePluginLoadMoreView(ListView):
         json_context = {}
         json_context['rendered_content'] = render_to_string(self.get_template_names(context)[0], context=context,
                                                             request=self.request)
-        if self.plugin.paginated_by > 0 and context[
-            'page_obj'].has_next():  # no need to create next_page_url when no pagination should be displayed
+        # no need to create next_page_url when no pagination should be displayed
+        if self.plugin.paginated_by > 0 and context['page_obj'].has_next():
             get_params = '&'.join(['%s=%s' % (k, v) for k, v in self.request.GET.items()])
             json_context['next_page_url'] = reverse('{}:more'.format(self.model._meta.model_name), kwargs={
                 'page': context['page_obj'].next_page_number()}) + '?api_request=1&plugin_id={}&{}'.format(
@@ -158,9 +157,9 @@ class AllinkBaseDetailView(TranslatableSlugMixin, DetailView):
         return self.render_to_response(context)
 
     def render_to_response(self, context, **response_kwargs):
-        if self.request.is_ajax():
+        if self.request.GET.get('softpage', None):
             context.update({'base_template': 'app_content/ajax_base.html'})
-        return render_to_response(self.get_template_names(), context, context_instance=RequestContext(self.request))
+        return render(self.request, self.get_template_names(), context)
 
 
 class AllinkBaseCreateView(CreateView):
@@ -197,7 +196,7 @@ class AllinkBaseCreateView(CreateView):
                 # sentry is not configured on localhost
                 if not settings.RAVEN_CONFIG.get('dsn'):
                     raise
-                form.add_error(None, _(u'Something went wrong with your subscription. Please try again later.'))
+                form.add_error(None, _('Something went wrong with your subscription. Please try again later.'))
                 return self.render_to_response(self.get_context_data(form=form), status=206)
         else:
             return HttpResponseRedirect(self.get_success_url())
@@ -290,7 +289,7 @@ class AllinkBasePluginAjaxFormView(FormView):
         viewname = 'product:tracking'
 
     example urls.py:
-    url(r'^tracking/(?P<plugin_id>[0-9]+)/$', ProductTrackingView.as_view(), name='tracking'),
+    path('tracking/(<int:plugin_id>/', ProductTrackingView.as_view(), name='tracking'),
 
     to ensure that search engines do not index the view when called with GET (unstyled),
     we only allow POST (the GET is with the cmsplugin render)
@@ -396,6 +395,7 @@ class AllinkBasePluginAjaxFormView(FormView):
             })
         return JsonResponse(data, status=status)
 
+
 # TODO
 # class AllinkBaseAjaxPluginSearchFormView(AllinkBasePluginAjaxFormView):
 #     """
@@ -457,6 +457,6 @@ class AllinkBasePluginAjaxFormView(FormView):
 #         return super().form_valid(form)
 
 
-# used to redirect page to external url
+# used to redirect CMSPage to external url
 def external_view(request, target):
     return HttpResponsePermanentRedirect('http://' + target)

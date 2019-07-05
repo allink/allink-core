@@ -8,18 +8,48 @@ from django.utils.functional import cached_property
 from cms.models.fields import PageField
 from cms.models.fields import PlaceholderField
 from adminsortable.models import SortableMixin
-from parler.models import TranslatableModel, TranslatedField
+from parler.models import TranslatedField
 from djangocms_text_ckeditor.fields import HTMLField
 from filer.fields.image import FilerImageField
 
-from aldryn_translation_tools.models import TranslationHelperMixin
 from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
-from allink_core.core.models.models import AllinkBaseAppContentPlugin, AllinkBaseModel, AllinkContactFieldsModel, AllinkAddressFieldsModel, AllinkBaseTranslatedFieldsModel
-from allink_core.core.models.mixins import AllinkTranslatedAutoSlugifyMixin
-from allink_core.core.models.managers import AllinkBaseModelManager
+from allink_core.core.loading import get_class
+from allink_core.core.models import (
+    AllinkCategoryFieldsModel,
+    AllinkBaseTranslatableModel,
+    AllinkBaseAppContentPlugin,
+    AllinkContactFieldsModel,
+    AllinkAddressFieldsModel,
+    AllinkBaseTranslatedFieldsModel,
+)
+
+AllinkLocationsManager = get_class('locations.managers', 'AllinkLocationsManager')
 
 
-class BaseLocations(SortableMixin, TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, TranslatableModel, AllinkContactFieldsModel, AllinkAddressFieldsModel, AllinkBaseModel):
+class BaseLocations(SortableMixin, AllinkContactFieldsModel, AllinkAddressFieldsModel,
+                    AllinkCategoryFieldsModel, AllinkBaseTranslatableModel):
+    TEASER_FIELD_FALLBACK_CONF = {
+        'teaser_image': [
+            {'model': 'self', 'field': 'teaser_image', },
+            {'model': 'self', 'field': 'preview_image', },
+        ],
+        'teaser_title': [
+            {'model': 'self', 'field': 'teaser_title', },
+            {'model': 'self', 'field': 'title', },
+        ],
+        'teaser_technical_title': [
+            {'model': 'self', 'field': 'teaser_technical_title', },
+            {'model': 'self', 'field': 'opening_hours_display', },
+        ],
+        'teaser_description': [
+            {'model': 'self', 'field': 'teaser_description', },
+            {'model': 'self', 'field': 'lead', },
+        ],
+        'teaser_link_text': [
+            {'model': 'self', 'field': 'teaser_link_text', },
+            {'model': 'self', 'field': 'TEASER_LINK_TEXT', },
+        ],
+    }
     slug_source_field_name = 'title'
 
     title = TranslatedField(any_language=True)
@@ -27,58 +57,100 @@ class BaseLocations(SortableMixin, TranslationHelperMixin, AllinkTranslatedAutoS
     subtitle = TranslatedField()
     lead = TranslatedField()
     opening_hours_display = TranslatedField()
-
     preview_image = FilerImageField(
-        verbose_name=_(u'Preview Image'),
+        verbose_name=_('Preview Image'),
         blank=True,
         null=True,
-        on_delete=models.SET_NULL,
+        on_delete=models.PROTECT,
         related_name='%(app_label)s_%(class)s_preview_image',
     )
-
     lat = models.FloatField(
-        _(u'Latitude'),
+        _('Latitude'),
         blank=True,
         null=True
     )
     lng = models.FloatField(
-        _(u'Longitude'),
+        _('Longitude'),
         blank=True,
         null=True
     )
-
     map_link = models.URLField(
-        _(u'Map Link'),
-        help_text=_(u'This could be a <strong>Google Places</strong> or <strong>Directions</strong> link.'),
+        _('Map Link'),
+        help_text=_('This could be a <strong>Google Places</strong> or <strong>Directions</strong> link.'),
         blank=True,
         null=True
     )
-
-    mon = models.CharField(_(u'Monday morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
-    tue = models.CharField(_(u'Tuesday morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
-    wed = models.CharField(_(u'Wednesday morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
-    thu = models.CharField(_(u'Thursday morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
-    fri = models.CharField(_(u'Friday morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
-    sat = models.CharField(_(u'Saturday morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
-    sun = models.CharField(_(u'Sunday morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
-    mon_afternoon = models.CharField(_(u'Monday afternoon'), help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break', blank=True, max_length=100)
-    tue_afternoon = models.CharField(_(u'Tuesday afternoon'), help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break', blank=True, max_length=100)
-    wed_afternoon = models.CharField(_(u'Wednesday afternoon'), help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break', blank=True, max_length=100)
-    thu_afternoon = models.CharField(_(u'Thursday afternoon'), help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break', blank=True, max_length=100)
-    fri_afternoon = models.CharField(_(u'Friday afternoon'), help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break', blank=True, max_length=100)
-    sat_afternoon = models.CharField(_(u'Saturday afternoon'), help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break', blank=True, max_length=100)
-    sun_afternoon = models.CharField(_(u'Sunday afternoon'), help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break', blank=True, max_length=100)
-
+    mon = models.CharField(
+        _('Monday morning or whole day'),
+        help_text=u'Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
+    tue = models.CharField(
+        _('Tuesday morning or whole day'),
+        help_text=u'Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
+    wed = models.CharField(
+        _('Wednesday morning or whole day'),
+        help_text=u'Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
+    thu = models.CharField(
+        _('Thursday morning or whole day'),
+        help_text=u'Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
+    fri = models.CharField(
+        _('Friday morning or whole day'),
+        help_text=u'Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
+    sat = models.CharField(
+        _('Saturday morning or whole day'),
+        help_text=u'Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
+    sun = models.CharField(
+        _('Sunday morning or whole day'),
+        help_text=u'Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
+    mon_afternoon = models.CharField(
+        _('Monday afternoon'),
+        help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break',
+        blank=True, max_length=100
+    )
+    tue_afternoon = models.CharField(
+        _('Tuesday afternoon'),
+        help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break',
+        blank=True, max_length=100
+    )
+    wed_afternoon = models.CharField(
+        _('Wednesday afternoon'),
+        help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break',
+        blank=True, max_length=100
+    )
+    thu_afternoon = models.CharField(
+        _('Thursday afternoon'),
+        help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break',
+        blank=True, max_length=100
+    )
+    fri_afternoon = models.CharField(
+        _('Friday afternoon'),
+        help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break',
+        blank=True, max_length=100
+    )
+    sat_afternoon = models.CharField(
+        _('Saturday afternoon'),
+        help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break',
+        blank=True, max_length=100
+    )
+    sun_afternoon = models.CharField(
+        _('Sunday afternoon'),
+        help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break',
+        blank=True, max_length=100
+    )
     sort_order = models.PositiveIntegerField(
         default=0,
         editable=False,
         db_index=True
     )
+    header_placeholder = PlaceholderField(
+        u'locations_header',
+        related_name='%(app_label)s_%(class)s_header_placeholder'
+    )
+    content_placeholder = PlaceholderField(
+        u'locations_content',
+        related_name='%(app_label)s_%(class)s_content_placeholder'
+    )
 
-    header_placeholder = PlaceholderField(u'locations_header', related_name='%(app_label)s_%(class)s_header_placeholder')
-    content_placeholder = PlaceholderField(u'locations_content', related_name='%(app_label)s_%(class)s_content_placeholder')
-
-    objects = AllinkBaseModelManager()
+    objects = AllinkLocationsManager()
 
     class Meta:
         abstract = True
@@ -86,6 +158,9 @@ class BaseLocations(SortableMixin, TranslationHelperMixin, AllinkTranslatedAutoS
         ordering = ('sort_order',)
         verbose_name = _('Location')
         verbose_name_plural = _('Locations')
+
+    def __str__(self):
+        return u'%s - %s' % (self.title, self.created.strftime('%d.%m.%Y'))
 
     def value_has_changed_for_fields(instance, fields):
         """
@@ -126,8 +201,9 @@ class BaseLocations(SortableMixin, TranslationHelperMixin, AllinkTranslatedAutoS
             (self.sun, self.sun_afternoon)
         ]
         return self.opening_info(opening_times[datetime.date.today().weekday()])
+
     is_currently_open.boolean = True
-    is_currently_open.short_description = _(u'Now open')
+    is_currently_open.short_description = _('Now open')
 
     def opening_info(self, times):
         """
@@ -165,7 +241,7 @@ class BaseLocations(SortableMixin, TranslationHelperMixin, AllinkTranslatedAutoS
                     return False
             else:
                 return False
-        except:
+        except (KeyError, IndexError):
             return False
 
     def has_opening_info(self):
@@ -199,7 +275,7 @@ class BaseLocations(SortableMixin, TranslationHelperMixin, AllinkTranslatedAutoS
         """
         Returns google maps link with query of current store
         """
-        return (u"https://www.google.ch/maps?q=%(name)s+%(street)s+%(zip_code)s+%(place)s" % {
+        return ("https://www.google.ch/maps?q=%(name)s+%(street)s+%(zip_code)s+%(place)s" % {
             'name': self.title,
             'street': u'{} {} {}'.format(self.street, self.street_nr, self.street_additional),
             'zip_code': self.zip_code,
@@ -208,34 +284,39 @@ class BaseLocations(SortableMixin, TranslationHelperMixin, AllinkTranslatedAutoS
 
 
 class BaseLocationsTranslation(AllinkBaseTranslatedFieldsModel):
-    master = models.ForeignKey('locations.Locations', related_name='translations', null=True)
-
+    master = models.ForeignKey(
+        'locations.Locations',
+        on_delete=models.CASCADE,
+        related_name='translations',
+        null=True
+    )
     title = models.CharField(
         max_length=255
     )
     slug = models.SlugField(
-        _(u'Slug'),
+        _('Slug'),
         max_length=255,
         default='',
         blank=True,
-        help_text=_(u'Leave blank to auto-generate a unique slug.')
+        help_text=_('Leave blank to auto-generate a unique slug.')
     )
     subtitle = models.CharField(
-        _(u'Subtitle'),
+        _('Subtitle'),
         max_length=255,
         blank=True,
         null=True,
     )
     lead = HTMLField(
-        _(u'Lead Text'),
-        help_text=_(u'Teaser text that in some cases is used in the list view and/or in the detail view.'),
+        _('Lead Text'),
+        help_text=_('Teaser text that in some cases is used in the list view and/or in the detail view.'),
         blank=True,
         null=True,
     )
     opening_hours_display = HTMLField(
-        _(u'Opening hours'),
+        _('Opening hours'),
         help_text=_(
-            u'This Text will be used to show the Opening hours on the location detail page. If provided, the detailed opening hours will be overriden.'),
+            u'This Text will be used to show the Opening hours on the location detail page. '
+            u'If provided, the detailed opening hours will be overriden.'),
         blank=True,
         null=True,
     )
@@ -246,7 +327,6 @@ class BaseLocationsTranslation(AllinkBaseTranslatedFieldsModel):
 
 
 class BaseLocationsAppContentPlugin(AllinkBaseAppContentPlugin):
-
     ZOOM_LEVEL_CHOICES = (
         (0, 0),
         (1, 1),
@@ -276,16 +356,15 @@ class BaseLocationsAppContentPlugin(AllinkBaseAppContentPlugin):
                     'manual entries are selected the category filtering will be ignored.)')
     )
     apphook_page = PageField(
-        verbose_name=_(u'Apphook Page'),
+        verbose_name=_('Apphook Page'),
         null=True,
         blank=True,
-        on_delete=models.SET_NULL,
-        help_text=_(u'If provided, this Apphook-Page will be used to generate the detail link.'),
+        on_delete=models.PROTECT,
+        help_text=_('If provided, this Apphook-Page will be used to generate the detail link.'),
     )
-
     zoom_level = models.IntegerField(
-        _(u'Zoom Level'),
-        help_text=_(u'The higher the number, the more we zoom in.'),
+        _('Zoom Level'),
+        help_text=_('The higher the number, the more we zoom in.'),
         choices=ZOOM_LEVEL_CHOICES,
         default=14
     )

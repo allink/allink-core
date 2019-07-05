@@ -1,13 +1,11 @@
-# # -*- coding: utf-8 -*-
-from django.conf.urls import url
-
+# -*- coding: utf-8 -*-
+from django.urls import path
 from allink_core.core.loading import get_class
 
 NewsPluginLoadMore = get_class('news.views', 'NewsPluginLoadMore')
 NewsDetail = get_class('news.views', 'NewsDetail')
 
-
 urlpatterns = [
-    url(r'^(?P<page>[0-9]*)/$', NewsPluginLoadMore.as_view(), name='more'),
-    url(r'^(?P<slug>[\w-]+)/$', NewsDetail.as_view(), name='detail'),
+    path('<int:page>/', NewsPluginLoadMore.as_view(), name='more'),
+    path('<slug:slug>/', NewsDetail.as_view(), name='detail'),
 ]

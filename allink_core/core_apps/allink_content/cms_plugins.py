@@ -13,7 +13,6 @@ from allink_core.core_apps.allink_content.models import AllinkContentPlugin, All
 
 
 class AllinkContentPluginForm(forms.ModelForm):
-
     class Meta:
         model = AllinkContentPlugin
         exclude = ('page', 'position', 'placeholder', 'language', 'plugin_type')
@@ -21,13 +20,13 @@ class AllinkContentPluginForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(AllinkContentPluginForm, self).__init__(*args, **kwargs)
         self.fields['template'] = forms.CharField(
-            label=_(u'Template'),
+            label=_('Template'),
             widget=forms.Select(choices=self.instance.get_template_choices()),
             required=True,
         )
         if get_additional_choices('CONTENT_TITLE_CHOICES'):
             self.fields['title_size'] = forms.CharField(
-                label=_(u'Section Title Size'),
+                label=_('Section Title Size'),
                 widget=forms.Select(
                     choices=get_additional_choices('CONTENT_TITLE_CHOICES'),
                 ),
@@ -38,39 +37,39 @@ class AllinkContentPluginForm(forms.ModelForm):
             self.fields['title_size'] = forms.CharField(widget=forms.HiddenInput(), required=False)
 
         self.fields['bg_color'] = ColorField(
-            label=_(u'Background color'),
+            label=_('Background color'),
             required=False,
         )
 
         if get_additional_choices('CONTENT_CSS_CLASSES'):
             self.fields['project_css_classes'] = forms.MultipleChoiceField(
                 widget=forms.CheckboxSelectMultiple(),
-                label=_(u'Predifined variations'),
+                label=_('Predifined variations'),
                 choices=get_additional_choices('CONTENT_CSS_CLASSES'),
                 required=False,
             )
         if get_additional_choices('CONTENT_ON_SCREEN_EFFECT_CHOICES'):
             self.fields['project_on_screen_effect'] = forms.ChoiceField(
-                label=_(u'Predifined on screen Effect'),
+                label=_('Predifined on screen Effect'),
                 choices=get_additional_choices('CONTENT_ON_SCREEN_EFFECT_CHOICES', blank=True),
                 initial='default',
                 required=False,
             )
         if get_additional_choices('CONTENT_SPACINGS'):
             self.fields['project_css_spacings_top_bottom'] = forms.ChoiceField(
-                label=_(u'Spacings top & bottom'),
+                label=_('Spacings top & bottom'),
                 choices=get_additional_choices('CONTENT_SPACINGS', blank=True),
                 required=False,
             )
         if get_additional_choices('CONTENT_SPACINGS'):
             self.fields['project_css_spacings_top'] = forms.ChoiceField(
-                label=_(u'Spacings top'),
+                label=_('Spacings top'),
                 choices=get_additional_choices('CONTENT_SPACINGS', blank=True),
                 required=False,
             )
         if get_additional_choices('CONTENT_SPACINGS'):
             self.fields['project_css_spacings_bottom'] = forms.ChoiceField(
-                label=_(u'Spacings bottom'),
+                label=_('Spacings bottom'),
                 choices=get_additional_choices('CONTENT_SPACINGS', blank=True),
                 required=False,
             )
@@ -79,13 +78,13 @@ class AllinkContentPluginForm(forms.ModelForm):
         cleaned_data = super(AllinkContentPluginForm, self).clean()
         if self.instance.pk:
             # if column count is not the same, dont allow template to change
-            if self.instance.get_template_column_count(self.instance.template) != self.instance.get_template_column_count(cleaned_data['template']):
-                self.add_error('template', _(u'You can only change the template if it has the same amount of columns as the previous template.'))
+            if self.instance.get_template_column_count(self.instance.template) != self.instance.get_template_column_count(cleaned_data['template']):  # noqa
+                self.add_error('template', _('You can only change the template if it'
+                                             ' has the same amount of columns as the previous template.'))
         return cleaned_data
 
 
 class AllinkContentColumnPluginForm(forms.ModelForm):
-
     class Meta:
         model = AllinkContentColumnPlugin
         exclude = ('title', 'page', 'position', 'placeholder', 'language', 'plugin_type')
@@ -107,9 +106,9 @@ class CMSAllinkContentPlugin(CMSPluginBase):
     form = AllinkContentPluginForm
 
     class Media:
-        js = (get_files('djangocms_custom_admin')[0]['publicPath'], )
+        js = (get_files('djangocms_custom_admin')[1]['publicPath'],)
         css = {
-            'all': (get_files('djangocms_custom_admin')[1]['publicPath'], )
+            'all': (get_files('djangocms_custom_admin')[0]['publicPath'],)
         }
 
     fieldsets = (
@@ -124,7 +123,6 @@ class CMSAllinkContentPlugin(CMSPluginBase):
             'classes': ('collapse',),
             'fields': [
                 'container_enabled',
-                'full_height_enabled',
                 'inverted_colors_enabled',
                 'overlay_enabled',
                 'bg_color',
@@ -142,14 +140,7 @@ class CMSAllinkContentPlugin(CMSPluginBase):
             'classes': ('collapse',),
             'fields': (
                 'bg_image_outer_container',
-                'parallax_enabled',
                 'dynamic_height_enabled',
-            )
-        }),
-        (_('Background Image (container)'), {
-            'classes': ('collapse',),
-            'fields': (
-                'bg_image_inner_container',
             )
         }),
         (_('Background Video (Important: Only works if all fields are set)'), {
@@ -191,6 +182,12 @@ class CMSAllinkContentPlugin(CMSPluginBase):
                 col.save()
         return response
 
+    def render(self, context, instance, placeholder):
+        # disable onscreen effect when edit mode is active
+        if context['request'].toolbar and context['request'].toolbar.edit_mode_active:
+            instance.project_on_screen_effect = False
+        return super().render(context, instance, placeholder)
+
 
 @plugin_pool.register_plugin
 class CMSAllinkContentColumnPlugin(CMSPluginBase):
@@ -200,7 +197,7 @@ class CMSAllinkContentColumnPlugin(CMSPluginBase):
     render_template = "allink_content/default/column.html"
     parent_classes = ["AllinkContentPlugin"]
     allow_children = True
-    child_classes = settings.CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES
+    child_classes = settings.ALLINK_CONTENT_PLUGIN_CHILD_CLASSES
     form = AllinkContentColumnPluginForm
     require_parent = True
 
@@ -209,9 +206,9 @@ class CMSAllinkContentColumnPlugin(CMSPluginBase):
     disable_deletable_menu = True
 
     class Media:
-        js = (get_files('djangocms_custom_admin')[0]['publicPath'], )
+        js = (get_files('djangocms_custom_admin')[1]['publicPath'],)
         css = {
-            'all': (get_files('djangocms_custom_admin')[1]['publicPath'], )
+            'all': (get_files('djangocms_custom_admin')[0]['publicPath'],)
         }
 
     def has_delete_permission(self, request, obj=None):

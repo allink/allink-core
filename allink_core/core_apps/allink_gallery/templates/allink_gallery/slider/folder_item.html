@@ -1,7 +1,13 @@
 {% load cms_tags sekizai_tags i18n thumbnail cache allink_image_tags %}
-
 <div class="cms-plugin-start">
-    <div class="gallery-slide__image-container">
+    <div class="gallery-slide__image-container gallery-slide__image-container--default">
         {% render_image image=image ratio=instance.ratio lazyload_enabled=False %}
     </div>
+    {% comment %}
+        {% if instance.fullscreen_enabled %}
+            <div class="gallery-slide__image-container gallery-slide__image-container--fullscreen">
+                {% render_image image=image ratio=instance.ratio width_alias="fullscreen" %}
+            </div>
+        {% endif %}
+    {% endcomment %}
 </div>

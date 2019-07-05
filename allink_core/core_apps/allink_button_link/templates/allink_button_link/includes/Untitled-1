@@ -1,0 +1,1 @@
+(Einzelne Plugins, machen meiner Meinung nach so wie sie eingesetzt wurden nicht wirklich Sinn. So könnte man den Musterkorb, Compare, ProduktIndex, Suche etc. wahrscheinlich auch als klassische Django View, ohne CMS-Plugins implementieren, dies würde wahrscheinlich einiges vereinfachen.)

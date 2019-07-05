@@ -1,5 +1,5 @@
 # # -*- coding: utf-8 -*-
-from django.conf.urls import url
+from django.urls import path
 
 from allink_core.core.loading import get_class
 
@@ -8,6 +8,6 @@ TestimonialsDetail = get_class('testimonials.views', 'TestimonialsDetail')
 
 
 urlpatterns = [
-    url(r'^(?P<page>[0-9]*)/$', TestimonialsPluginLoadMore.as_view(), name='more'),
-    url(r'^(?P<slug>[\w-]+)/$', TestimonialsDetail.as_view(), name='detail'),
+    path('<int:page>/', TestimonialsPluginLoadMore.as_view(), name='more'),
+    path('<slug:slug>/', TestimonialsDetail.as_view(), name='detail'),
 ]

@@ -23,7 +23,7 @@ class AllinkSignupFormPluginForm(forms.ModelForm):
 @plugin_pool.register_plugin
 class CMSAllinkSignupFormPlugin(CMSPluginBase):
     model = AllinkSignupFormPlugin
-    name = _(u'Signup Form')
+    name = _('Signup Form')
     module = _('allink forms')
     render_template = "allink_mailchimp/plugins/signup_form.html"
     allow_children = False
@@ -32,9 +32,9 @@ class CMSAllinkSignupFormPlugin(CMSPluginBase):
     success_url = '/success/'
 
     class Media:
-        js = (get_files('djangocms_custom_admin')[0]['publicPath'], )
+        js = (get_files('djangocms_custom_admin')[1]['publicPath'], )
         css = {
-            'all': (get_files('djangocms_custom_admin')[1]['publicPath'], )
+            'all': (get_files('djangocms_custom_admin')[0]['publicPath'], )
         }
 
     def get_fieldsets(self, request, obj=None):

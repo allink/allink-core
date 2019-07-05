@@ -17,21 +17,22 @@ class ContactRequestFormPluginForm(forms.ModelForm):
     internal_email_addresses = SplitArrayField(forms.EmailField(required=False), size=3)
 
     class Media:
-        js = (get_files('djangocms_custom_admin')[0]['publicPath'], )
+        js = (get_files('djangocms_custom_admin')[1]['publicPath'], )
         css = {
-            'all': (get_files('djangocms_custom_admin')[1]['publicPath'], )
+            'all': (get_files('djangocms_custom_admin')[0]['publicPath'], )
         }
 
     class Meta:
         model = ContactRequestPlugin
-        fields = ('send_internal_mail', 'internal_email_addresses', 'from_email_address', 'send_external_mail', 'thank_you_text', 'label_layout', 'project_css_classes')
+        fields = ('send_internal_mail', 'internal_email_addresses', 'from_email_address', 'send_external_mail',
+                  'thank_you_text', 'label_layout', 'project_css_classes')
 
     def __init__(self, *args, **kwargs):
         super(ContactRequestFormPluginForm, self).__init__(*args, **kwargs)
         if get_additional_choices('FORM_CSS_CLASSES'):
             self.fields['project_css_classes'] = forms.MultipleChoiceField(
                 widget=forms.CheckboxSelectMultiple(),
-                label=_(u'Predifined variations'),
+                label=_('Predefined variations'),
                 choices=get_additional_choices('FORM_CSS_CLASSES'),
                 required=False,
             )

@@ -2,7 +2,7 @@
 from django.contrib import admin
 from django.contrib.admin.utils import unquote
 from django.shortcuts import redirect
-from django.conf.urls import url
+from django.urls import path
 
 from parler.admin import TranslatableAdmin
 
@@ -47,12 +47,7 @@ class AllinkTermsAdmin(TranslatableAdmin, admin.ModelAdmin):
 
     def get_urls(self):
         urls = super(AllinkTermsAdmin, self).get_urls()
-        info = self.model._meta.app_label, self.model._meta.model_name
         my_urls = [
-            url(
-                r'^(.+)/publish/$',
-                self.admin_site.admin_view(self.publish),
-                name='%s_%s_publish' % info
-            )
+            path('publish/', self.admin_site.admin_view(self.publish))
         ]
         return my_urls + urls

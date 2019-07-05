@@ -19,7 +19,7 @@ class CMSLocationsAppContentPlugin(CMSAllinkBaseAppContentPlugin):
     - name of the plugin
     """
     model = LocationsAppContentPlugin
-    name = model.data_model.get_verbose_name_plural()
+    name = model.data_model._meta.verbose_name_plural
 
     def get_fieldsets(self, request, obj=None):
         fieldsets = super(CMSLocationsAppContentPlugin, self).get_fieldsets(request, obj=None)

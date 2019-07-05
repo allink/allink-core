@@ -14,7 +14,7 @@ class ContactRequestAdmin(admin.ModelAdmin):
     def nicer_contact_type(self, obj):
         return u'{} ({})'.format(obj.get_contact_type_display(), obj.contact_details)
 
-    nicer_contact_type.short_description = _(u'Contact via')
+    nicer_contact_type.short_description = _('Contact via')
 
 
 admin.site.register(ContactRequest, ContactRequestAdmin)

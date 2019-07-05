@@ -16,8 +16,8 @@ MR = 1
 MRS = 2
 
 SALUTATION_CHOICES = (
-    (MR, _(u'Mr.')),
-    (MRS, _(u'Mrs.')),
+    (MR, _('Mr.')),
+    (MRS, _('Mrs.')),
 )
 
 ####################################################################################
@@ -29,9 +29,9 @@ CENTER = 'center'
 RIGHT = 'right'
 
 HORIZONTAL_ALIGNMENT_CHOICES = (
-    (LEFT, _(u'Left')),
-    (CENTER, _(u'Center')),
-    (RIGHT, _(u'Right')),
+    (LEFT, _('Left')),
+    (CENTER, _('Center')),
+    (RIGHT, _('Right')),
 )
 
 TOP = 'top'
@@ -39,9 +39,9 @@ MIDDLE = 'middle'
 BOTTOM = 'bottom'
 
 VERTICAL_ALIGNMENT_CHOICES = (
-    (TOP, _(u'Top')),
-    (MIDDLE, _(u'Middle')),
-    (BOTTOM, _(u'Bottom')),
+    (TOP, _('Top')),
+    (MIDDLE, _('Middle')),
+    (BOTTOM, _('Bottom')),
 )
 
 
@@ -56,9 +56,9 @@ VERTICAL_ALIGNMENT_CHOICES = (
 # H3 = 'h3'
 #
 # TITLE_CHOICES = (
-#     (H1, _(u'Title Large')),
-#     (H2, _(u'Title Medium')),
-#     (H3, _(u'Title Small')),
+#     (H1, _('Title Large')),
+#     (H2, _('Title Medium')),
+#     (H3, _('Title Small')),
 # )
 
 
@@ -120,12 +120,12 @@ IMAGE_MODAL = 5
 DEFAULT_MODAL = 6
 
 TARGET_CHOICES = (
-    (NEW_WINDOW, _(u'New window')),
-    (SOFTPAGE_LARGE, _(u'Softpage (large)')),
-    (SOFTPAGE_SMALL, _(u'Softpage (small)')),
-    (FORM_MODAL, _(u'Lightbox (Forms)')),
-    (IMAGE_MODAL, _(u'Lightbox (Image)')),
-    (DEFAULT_MODAL, _(u'Lightbox (Default)')),
+    (NEW_WINDOW, _('New window')),
+    (SOFTPAGE_LARGE, _('Softpage (large)')),
+    (SOFTPAGE_SMALL, _('Softpage (small)')),
+    (FORM_MODAL, _('Lightbox (Forms)')),
+    (IMAGE_MODAL, _('Lightbox (Image)')),
+    (DEFAULT_MODAL, _('Lightbox (Default)')),
 )
 
 ####################################################################################

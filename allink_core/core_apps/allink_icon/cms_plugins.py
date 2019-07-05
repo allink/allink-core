@@ -15,18 +15,18 @@ class AllinkIconPluginForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(AllinkIconPluginForm, self).__init__(*args, **kwargs)
-        
+
         if get_additional_choices('ICON_CHOICES'):
             self.fields['icon'] = forms.ChoiceField(
                 widget=forms.Select(),
-                label=_(u'Icon choices for Social Icon Plugin'),
+                label=_('Icon choices for Social Icon Plugin'),
                 choices=get_additional_choices('ICON_CHOICES'),
                 required=True,
             )
         if get_additional_choices('ICON_CSS_CLASSES'):
             self.fields['project_css_classes'] = forms.MultipleChoiceField(
                 widget=forms.CheckboxSelectMultiple(),
-                label=_(u'Predifined variations for Icon Plugin'),
+                label=_('Predifined variations for Icon Plugin'),
                 choices=get_additional_choices('ICON_CSS_CLASSES'),
                 required=False,
             )
@@ -51,7 +51,7 @@ class CMSAllinkIconPlugin(CMSPluginBase):
         )
 
         if get_additional_choices('ICON_CSS_CLASSES'):
-            fieldsets +=  (
+            fieldsets += (
                 (None, {
                     'fields': (
                         'project_css_classes',

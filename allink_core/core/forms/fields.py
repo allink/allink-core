@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import json
-from importlib import import_module
 
 from django import forms
 from django.core.cache import cache
@@ -92,7 +91,8 @@ class SelectLinkField(forms.fields.ChoiceField):
         for apphook, url_names in link_apphooks.items():
             if apphook == 'Page':
                 subchoices = []
-                subchoices += [(json.dumps({'page_id': p.id}), '%s %s' % ((p.depth - 1) * '---', p)) for p in Page.objects.filter(publisher_is_draft=False)]
+                subchoices += [(json.dumps({'page_id': p.id}), '%s %s' % ((p.node.depth - 1) * '---', p))
+                               for p in Page.objects.filter(publisher_is_draft=False)]
                 choices.append((('%s' % _('pages').upper(), subchoices)))
 
             else:
@@ -102,7 +102,11 @@ class SelectLinkField(forms.fields.ChoiceField):
                         for url_name, info in url_names.items():
                             get_model(info[0].split('.')[-3], info[0].split('.')[-1])
                             obj_model = get_model(info[0].split('.')[-3], info[0].split('.')[-1])
-                            subchoices += [(json.dumps({'link_apphook_page_id': p.id, 'link_url_name': url_name, 'link_object_id': obj.id, 'link_url_kwargs': info[1], 'link_model': info[0]}), '%s (%s)' % (obj, p.application_namespace)) for obj in obj_model.objects.all()]
+                            subchoices += [(json.dumps({'link_apphook_page_id': p.id, 'link_url_name': url_name,
+                                                        'link_object_id': obj.id, 'link_url_kwargs': info[1],
+                                                        'link_model': info[0]}), '%s (%s)'
+                                            % (obj, p.application_namespace))
+                                           for obj in obj_model.objects.all()]
                     choices.append((('%s' % apphook_pool.apps[apphook].app_name.upper()), subchoices))
                 # on app load time
                 except KeyError:

@@ -12,7 +12,7 @@ class Command(BaseCommand):
         "Create a new app with all the basic functionality a allink app has.")
 
     def add_arguments(self, parser):
-        parser.add_argument('app_label', help='The application to fork')
+        parser.add_argument('app_label', help='The application name')
         parser.add_argument('target_path', help='The path to copy the files to')
 
     def handle(self, *args, **options):

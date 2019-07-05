@@ -10,7 +10,7 @@
         {% if thumbnail_xxl %}
             <source
                 {% if lazyload_enabled %}data-{% endif %}srcset="{{thumbnail_xxl.url}}, {{thumbnail_xxl.high_resolution.url}} 2x"
-                media="(min-width:1600px)"
+                media="(min-width:1520px)"
                 >
         {% endif %}
 
@@ -18,23 +18,23 @@
         {% if thumbnail_xl %}
             <source
                 {% if lazyload_enabled %}data-{% endif %}srcset="{{thumbnail_xl.url}}, {{thumbnail_xl.high_resolution.url}} 2x"
-                media="(min-width:1200px)"
+                media="(min-width:1280px)"
                 >
         {% endif %}
 
         {# LG #}
         {% if thumbnail_lg %}
         <source
-            {% if lazyload_enabled %}data-{% endif %}srcset="{{thumbnail_xl.url}}, {{thumbnail_lg.high_resolution.url}} 2x"
-            media="(min-width:992px)"
+            {% if lazyload_enabled %}data-{% endif %}srcset="{{thumbnail_lg.url}}, {{thumbnail_lg.high_resolution.url}} 2x"
+            media="(min-width:1040px)"
             >
         {% endif %}
 
         {# MD #}
         {% if thumbnail_md %}
         <source
-            {% if lazyload_enabled %}data-{% endif %}srcset="{{thumbnail_xl.url}}, {{thumbnail_md.high_resolution.url}} 2x"
-            media="(min-width:768px)"
+            {% if lazyload_enabled %}data-{% endif %}srcset="{{thumbnail_md.url}}, {{thumbnail_md.high_resolution.url}} 2x"
+            media="(min-width:800px)"
             >
         {% endif %}
 
@@ -42,7 +42,7 @@
         {% if thumbnail_sm %}
         <source
             {% if lazyload_enabled %}data-{% endif %}srcset="{{thumbnail_sm.url}}, {{thumbnail_sm.high_resolution.url}} 2x"
-            media="(min-width:576px)"
+            media="(min-width:580px)"
             >
         {% endif %}
 
@@ -52,7 +52,8 @@
         <img
             class="{% if lazyload_enabled %}lazyload{% endif %}"
             {% if lazyload_enabled %}data-{% endif %}srcset="{{thumbnail_xs.url}}, {{thumbnail_xs.high_resolution.url}} 2x"
-            {% if instance.picture.default_alt_text and not instance.attributes.alt %} alt="{{ instance.picture.default_alt_text }}"{% endif %}
+            {% if instance.picture.label and not instance.attributes.alt %} alt="{{ instance.picture.label }}"
+            {% elif alt_text and not instance.picture.label and not instance.attributes.alt %}alt="{{ alt_text }}"{% endif %}
             {{ instance.attributes_str }}
         >
 
@@ -64,41 +65,41 @@
 
             {% if ratio_percent_xs %}
                 #{{ picture_id }} {
-                    padding-bottom: {{ ratio_percent_xs }};
+                    padding-bottom: {% if vh_enabled %}{{ ratio_vh_xs }}{% else %}{{ ratio_percent_xs }}{% endif %};
                 }
             {% endif %}
             {% if ratio_percent_sm %}
-                @media (min-width:576px) {
+                @media (min-width:580px) {
                     #{{ picture_id }} {
-                        padding-bottom: {{ ratio_percent_sm }};
+                        padding-bottom: {% if vh_enabled %}{{ ratio_vh_sm }}{% else %}{{ ratio_percent_sm }}{% endif %};
                     }
                 }
             {% endif %}
             {% if ratio_percent_md %}
-                @media (min-width:768px) {
+                @media (min-width:800px) {
                     #{{ picture_id }} {
-                        padding-bottom: {{ ratio_percent_md }};
+                        padding-bottom: {% if vh_enabled %}{{ ratio_vh_md }}{% else %}{{ ratio_percent_md }}{% endif %};
                     }
                 }
             {% endif %}
             {% if ratio_percent_lg %}
-                @media (min-width:992px) {
+                @media (min-width:1040px) {
                     #{{ picture_id }} {
-                        padding-bottom: {{ ratio_percent_lg }};
+                        padding-bottom: {% if vh_enabled %}{{ ratio_vh_lg }}{% else %}{{ ratio_percent_lg }}{% endif %};
                     }
                 }
             {% endif %}
             {% if ratio_percent_xl %}
-                @media (min-width:1200px) {
+                @media (min-width:1280px) {
                     #{{ picture_id }} {
-                        padding-bottom: {{ ratio_percent_xl }};
+                        padding-bottom: {% if vh_enabled %}{{ ratio_vh_xl }}{% else %}{{ ratio_percent_xl }}{% endif %};
                     }
                 }
             {% endif %}
             {% if ratio_percent_xxl %}
-                @media (min-width:1600px) {
+                @media (min-width:1520px) {
                     #{{ picture_id }} {
-                        padding-bottom: {{ ratio_percent_xxl }};
+                        padding-bottom: {% if vh_enabled %}{{ ratio_vh_xxl }}{% else %}{{ ratio_percent_xxl }}{% endif %};
                     }
                 }
             {% endif %}

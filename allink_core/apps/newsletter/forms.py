@@ -11,29 +11,29 @@ config = MailChimpConfig()
 
 class SignupForm(forms.Form):
     salutation = forms.IntegerField(
-        label=_(u'Salutation'),
+        label=_('Salutation'),
         widget=forms.RadioSelect(choices=SALUTATION_CHOICES),
         initial=MR
     )
     first_name = forms.CharField(
-        label=_(u'First Name')
+        label=_('First Name')
     )
     last_name = forms.CharField(
-        label=_(u'Last Name')
+        label=_('Last Name')
     )
     email = forms.EmailField(
-        label=_(u'Email')
+        label=_('Email')
     )
     language = forms.CharField(
         max_length=3, required=False
     )
     # gdpr permission options
     permission_direct_mail = forms.BooleanField(
-        label=_(u'Email'),
+        label=_('Email'),
         required=False
     )
     permission_personalised_online_advertising = forms.BooleanField(
-        label=_(u'Personalised online advertising'),
+        label=_('Personalised online advertising'),
         required=False
     )
 

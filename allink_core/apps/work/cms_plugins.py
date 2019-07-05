@@ -22,7 +22,7 @@ class CMSWorkAppContentPlugin(CMSAllinkBaseAppContentPlugin):
     - name of the plugin
     """
     model = WorkAppContentPlugin
-    name = model.data_model.get_verbose_name_plural()
+    name = model.data_model._meta.verbose_name_plural
 
 
 @plugin_pool.register_plugin
@@ -39,4 +39,4 @@ class CMSWorkSearchPlugin(CMSAllinkBaseSearchPlugin):
     """
     model = WorkSearchPlugin
     search_form = WorkSearchForm
-    name = _(u'{} Search'.format(model.data_model.get_verbose_name_plural()))
+    name = _('{} Search'.format(model.data_model._meta.verbose_name_plural))

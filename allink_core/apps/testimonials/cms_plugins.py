@@ -18,4 +18,4 @@ class CMSTestimonialsAppContentPlugin(CMSAllinkBaseAppContentPlugin):
     - name of the plugin
     """
     model = TestimonialsAppContentPlugin
-    name = model.data_model.get_verbose_name_plural()
+    name = model.data_model._meta.verbose_name_plural

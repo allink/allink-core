@@ -14,7 +14,9 @@
         >
     {% endif %}
 
-    {% render_image image=instance.picture width_alias=instance.width_alias ratio=instance.ratio icon_enabled=instance.icon_enabled bg_enabled=instance.bg_enabled %}
+    {% block render_image_container %}
+        {% render_image image=instance.picture width_alias=instance.width_alias ratio=instance.ratio icon_enabled=instance.icon_enabled bg_enabled=instance.bg_enabled %}
+    {% endblock render_image_container %}
 
     {% if instance.image_modal_enabled and instance.link_file %}
         <div class="image-modal-content" style="display: none;">

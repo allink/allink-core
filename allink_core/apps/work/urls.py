@@ -1,5 +1,5 @@
 # # -*- coding: utf-8 -*-
-from django.conf.urls import url
+from django.urls import path
 
 from allink_core.core.loading import get_class
 
@@ -11,9 +11,8 @@ export_pdf = get_class('work.views', 'export_pdf')
 
 
 urlpatterns = [
-    url(r'^(?P<page>[0-9]*)/$', WorkPluginLoadMore.as_view(), name='more'),
-    url(r'^(?P<slug>[\w-]+)/$', WorkDetail.as_view(), name='detail'),
-    url(r'^search/(?P<plugin_id>[0-9]+)/$', WorkSearchAjaxView.as_view(), name='search'),
-    url(r'^export-pdf/(?P<id>[0-9]+)/$', export_pdf, name='export-pdf'),
+    path('<int:page>/', WorkPluginLoadMore.as_view(), name='more'),
+    path('<slug:slug>/', WorkDetail.as_view(), name='detail'),
+    path('search/<int:plugin_id>/', WorkSearchAjaxView.as_view(), name='search'),
+    path('export-pdf/<int:id>/', export_pdf, name='export-pdf'),
 ]
-

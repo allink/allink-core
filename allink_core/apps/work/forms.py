@@ -8,4 +8,4 @@ Work = get_model('work', 'Work')
 
 
 class WorkSearchForm(forms.Form):
-    q = forms.CharField(label=_(u'Product Search'), required=False)
+    q = forms.CharField(label=_('Product Search'), required=False)

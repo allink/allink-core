@@ -4,15 +4,11 @@ from django.utils.translation import ugettext_lazy as _
 from cms.models.pluginmodel import CMSPlugin
 from cms.models.fields import PageField
 from adminsortable.fields import SortableForeignKey
+from allink_core.core.models.fields import CMSPluginField
 
 
-# Page Chooser Plugin
 class AllinkPageChooserPlugin(CMSPlugin):
-    cmsplugin_ptr = models.OneToOneField(
-        CMSPlugin,
-        related_name='%(app_label)s_%(class)s',
-        parent_link=True,
-    )
+    cmsplugin_ptr = CMSPluginField()
 
     def copy_relations(self, oldinstance):
         self.allinkpage_set.all().delete()
@@ -26,17 +22,17 @@ class AllinkPageChooserPlugin(CMSPlugin):
         app_label = 'allink_cms'
 
 
-# Page for Page Chooser
 class AllinkPage(models.Model):
     pagechooser = SortableForeignKey(
         AllinkPageChooserPlugin,
-        verbose_name=_(u'Images'),
-        help_text=_(u'Add pages and order them.'),
+        verbose_name=_('Images'),
+        on_delete=models.SET_NULL,
+        help_text=_('Add pages and order them.'),
         blank=True,
         null=True
     )
     just_descendants = models.BooleanField(
-        _(u'Select just descendants'),
+        _('Select just descendants'),
         help_text=_(
             u'If checked and pages selected manually, only the descendants of the selected pages will be listed.'),
         default=False
@@ -45,19 +41,15 @@ class AllinkPage(models.Model):
 
     class Meta:
         app_label = 'allink_cms'
-        verbose_name = _(u'Page')
-        verbose_name_plural = _(u'Pages')
+        verbose_name = _('Page')
+        verbose_name_plural = _('Pages')
 
     def __str__(self):
         return str(self.page.get_menu_title())
 
-# Language Chooser Plugin
+
 class AllinkLanguageChooserPlugin(CMSPlugin):
-    cmsplugin_ptr = models.OneToOneField(
-        CMSPlugin,
-        related_name='%(app_label)s_%(class)s',
-        parent_link=True,
-    )
+    cmsplugin_ptr = CMSPluginField()
 
     class Meta:
         app_label = 'allink_cms'

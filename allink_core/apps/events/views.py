@@ -3,7 +3,6 @@ from django.views.generic import CreateView
 from allink_core.core.loading import get_model, get_class
 from allink_core.core.views import AllinkBasePluginLoadMoreView, AllinkBaseDetailView, AllinkBaseCreateView
 from allink_core.core_apps.allink_mandrill.config import MandrillConfig
-from allink_core.core_apps.allink_terms.models import AllinkTerms
 
 
 Events = get_model('events', 'Events')

@@ -132,6 +132,13 @@
                                 {% trans "Load More" %}
                             {% endif %}
                         </span>
+                        <span class="btn__text--mask"><span class="btn__text--mask__inner">
+                            {% if instance.load_more_button_text %}
+                                {{ instance.load_more_button_text }}
+                            {% else %}
+                                {% trans "Load More" %}
+                            {% endif %}
+                        </span></span>
                     </a>
                 </div>
             {% endif %}

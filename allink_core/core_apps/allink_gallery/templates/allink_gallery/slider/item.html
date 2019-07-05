@@ -1,34 +1,13 @@
 {% load cms_tags sekizai_tags i18n thumbnail cache allink_image_tags %}
-
 <div class="cms-plugin-start">
-    {% if instance.title or instance.text %}
-        <div class="gallery-slide__overlay"></div>
-    {% endif %}
-
-    <div class="gallery-slide__image-container">
+    <div class="gallery-slide__image-container gallery-slide__image-container--default">
         {% render_image image=instance.image ratio=instance.ratio lazyload_enabled=False %}
     </div>
-
-    {% if instance.title or instance.text %}
-        <div class="gallery-slide__content-container">
-            <div class="manage-spacings">
-                {% if instance.title %}
-                    <div class="gallery-slide__heading-container">
-                        <h2 class="gallery-slide__heading">
-                            {{ instance.title }}
-                        </h2>
-                    </div>
-                {% endif %}
-                {% if instance.text %}
-                    <div class="gallery-slide__text-container text-container">
-                        {% if caption_text_styling_disabled %}
-                            {{ instance.text|striptags }}
-                        {% else %}
-                            {{ instance.text }}
-                        {% endif %}
-                    </div>
-                {% endif %}
+    {% comment %}
+        {% if instance.fullscreen_enabled %}
+            <div class="gallery-slide__image-container gallery-slide__image-container--fullscreen">
+                {% render_image image=instance.image ratio=instance.ratio width_alias="fullscreen" %}
             </div>
-        </div>
-    {% endif %}
+            {% endif %}
+    {% endcomment %}
 </div>

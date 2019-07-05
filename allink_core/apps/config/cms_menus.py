@@ -15,7 +15,8 @@ class AllinkPageMenuModifier(Modifier):
             # and put them in a dict for efficient access
             page_nodes = {n.id: n for n in nodes if n.attr["is_page"]}
             # retrieve the attributes of interest from the relevant pages
-            pages = Page.objects.filter(id__in=page_nodes.keys(), allinkpageextension__isnull=False).values('id', 'allinkpageextension')
+            pages = Page.objects.filter(id__in=page_nodes.keys(),
+                                        allinkpageextension__isnull=False).values('id', 'allinkpageextension')
             # loop over all relevant pages
             for page in pages:
                 # take the node referring to the page
@@ -23,6 +24,7 @@ class AllinkPageMenuModifier(Modifier):
                 # put the changed_by attribute on the node
                 node.attr["special_nav"] = page['allinkpageextension']
         return nodes
+
 
 if getattr(settings, 'ALLINK_PAGE_TOOLBAR_ENABLED', False):
     menu_pool.register_modifier(get_class('config.cms_menus', 'AllinkPageMenuModifier'))

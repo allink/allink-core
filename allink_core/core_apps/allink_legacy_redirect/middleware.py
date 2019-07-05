@@ -6,7 +6,7 @@ from itertools import combinations, permutations
 from allink_core.core_apps.allink_legacy_redirect.models import AllinkLegacyLink
 
 
-class AllinkLegacyRedirectMiddleware(object):
+class AllinkLegacyRedirectMiddleware:
     """
     Perma-redirect old links to their new site (except google click id)
     """
@@ -19,7 +19,7 @@ class AllinkLegacyRedirectMiddleware(object):
                 old=request.path + '/') | Q(old=request.path[:-1]) | Q(old=request.get_full_path()), active=True)
 
             # if user is logged in, skip redirect
-            if link.redirect_when_logged_out and request.user.is_authenticated():
+            if link.redirect_when_logged_out and request.user.is_authenticated:
                 return
 
         except AllinkLegacyLink.DoesNotExist:
@@ -38,8 +38,10 @@ class AllinkLegacyRedirectMiddleware(object):
                 perms = [permutations(combi) for combi in combis]
                 for perm in perms:
                     for get_parameters in perm:
-                        possible_olds.append(request.path + '?' + '&'.join(['%s=%s' % (param, value) for param, value in get_parameters]))
-                        possible_olds.append(request.path + '/?' + '&'.join(['%s=%s' % (param, value) for param, value in get_parameters]))
+                        possible_olds.append(request.path + '?' + '&'.join(['%s=%s' % (param, value)
+                                                                            for param, value in get_parameters]))
+                        possible_olds.append(request.path + '/?' + '&'.join(['%s=%s' % (param, value)
+                                                                             for param, value in get_parameters]))
                     try:
                         link = AllinkLegacyLink.objects.get(old__in=possible_olds, active=True)
                         has_get_parameters = True
@@ -67,10 +69,14 @@ class AllinkLegacyRedirectMiddleware(object):
             # if we got multiple links with match_subpages
             # enabled (e.g. /en/ and /en/agency/), return
             # the longer one
-            link = AllinkLegacyLink.objects.filter(old__in=olds, match_subpages=True, active=True).order_by('old').last()
+            link = AllinkLegacyLink.objects.filter(
+                old__in=olds,
+                match_subpages=True,
+                active=True
+            ).order_by('old').last()
 
         # if user is logged in skip, redirect
-        if link and link.redirect_when_logged_out and request.user.is_authenticated():
+        if link and link.redirect_when_logged_out and request.user.is_authenticated:
             return
 
         if not link:

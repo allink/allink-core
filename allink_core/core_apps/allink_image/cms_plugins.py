@@ -6,7 +6,8 @@ from webpack_loader.utils import get_files
 
 from cms.plugin_pool import plugin_pool
 
-from allink_core.core.utils import get_ratio_choices_orig, get_additional_choices, get_project_color_choices, get_image_width_alias_choices
+from allink_core.core.utils import get_ratio_choices_orig, get_additional_choices, \
+    get_project_color_choices, get_image_width_alias_choices
 from allink_core.core_apps.allink_image.models import AllinkImagePlugin
 from allink_core.core.forms.fields import ColorField
 from allink_core.core.forms.fields import SelectLinkField
@@ -27,34 +28,38 @@ class AllinkImagePluginForm(AllinkInternalLinkFieldMixin, forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(AllinkImagePluginForm, self).__init__(*args, **kwargs)
         self.fields['link_special'] = forms.CharField(
-            label=_(u'Special Links'),
+            label=_('Special Links'),
             widget=forms.Select(choices=self.instance.get_link_special_choices()),
             required=False,
-            help_text=_(u'Important: In case the selected option is a <strong>form</strong>, make sure to select <strong>Lightbox (Forms)</strong> from the <strong>link target</strong> options for best user experience.'),
+            help_text=_('Important: In case the selected option is a <strong>form</strong>, make sure to '
+                        u'select <strong>Lightbox (Forms)</strong> from the <strong>link target</strong> options '
+                        u'for best user experience.'),
         )
         self.fields['ratio'] = forms.CharField(
-            label=_(u'Ratio'),
-            help_text=_(u'This option overrides the default image ratio set for images in a colum of a content section.'),
+            label=_('Ratio'),
+            help_text=_('This option overrides the default image ratio set for images in a colum of a '
+                        u'content section.'),
             widget=forms.Select(choices=get_ratio_choices_orig()),
             required=False,
         )
         if get_image_width_alias_choices():
             self.fields['width_alias'] = forms.CharField(
-                label=_(u'Width Alias'),
-                help_text=_(u'This option overrides the default image width_alias set for images in a column of a content section.'),
+                label=_('Width Alias'),
+                help_text=_('This option overrides the default image width_alias set for images in a column of a '
+                            u'content section.'),
                 widget=forms.Select(choices=get_image_width_alias_choices()),
                 required=False,
             )
         if get_project_color_choices():
             self.fields['bg_color'] = ColorField(
-                label=_(u'Set a predefined background color'),
+                label=_('Set a predefined background color'),
                 required=False,
             )
 
         if get_additional_choices('IMAGE_CSS_CLASSES'):
             self.fields['project_css_classes'] = forms.MultipleChoiceField(
                 widget=forms.CheckboxSelectMultiple(),
-                label=_(u'Predifined variations'),
+                label=_('Predifined variations'),
                 choices=get_additional_choices('IMAGE_CSS_CLASSES'),
                 required=False,
             )
@@ -69,11 +74,11 @@ class CMSAllinkImagePlugin(CMSPluginBase):
 
     class Media:
         js = (
-            get_files('djangocms_custom_admin')[0]['publicPath'],
+            get_files('djangocms_custom_admin')[1]['publicPath'],
         )
         css = {
             'all': (
-                get_files('djangocms_custom_admin')[1]['publicPath'],
+                get_files('djangocms_custom_admin')[0]['publicPath'],
 
             )
         }

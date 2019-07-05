@@ -7,7 +7,6 @@ from django.template.loader import render_to_string
 from django.utils.module_loading import import_string
 from django.views.generic import FormView
 
-from allink_core.core.loading import get_model
 from allink_core.apps.newsletter.forms import SignupForm
 from allink_core.core_apps.allink_mailchimp.config import MailChimpConfig
 
@@ -35,13 +34,14 @@ class SignupViewBase(FormView):
         try:
             form.save()
             json_context = {}
-            json_context['rendered_content'] = render_to_string('newsletter/confirmation.html', context=context, request=self.request)
+            json_context['rendered_content'] = render_to_string('newsletter/confirmation.html', context=context,
+                                                                request=self.request)
             return HttpResponse(content=json.dumps(json_context), content_type='application/json', status=200)
         except:
             # sentry is not configured on localhost
             if not settings.RAVEN_CONFIG.get('dsn'):
                 raise
-            form.add_error(None, _(u'Something went wrong with your subscription. Please try again later.'))
+            form.add_error(None, _('Something went wrong with your subscription. Please try again later.'))
             return self.render_to_response(self.get_context_data(form=form), status=206)
 
     def get_context_data(self, **kwargs):

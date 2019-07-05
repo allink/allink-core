@@ -17,7 +17,7 @@ def get_class(module_label, classname, module_prefix='allink_core.apps'):
     single class.
     Args:
         module_label (str): Module label comprising the app label and the
-            module name, separated by a dot.  For example, 'catalogue.forms'.
+            module name, separated by a dot.  For example, 'news.forms'.
         classname (str): Name of the class to be imported.
     Returns:
         The requested class object or `None` if it can't be found
@@ -37,19 +37,19 @@ def get_classes(module_label, classnames, module_prefix='allink_core.apps'):
     load any class from the matching app, not just a model.
     Args:
         module_label (str): Module label comprising the app label and the
-            module name, separated by a dot.  For example, 'catalogue.forms'.
+            module name, separated by a dot.  For example, 'news.forms'.
         classname (str): Name of the class to be imported.
     Returns:
         The requested class object or ``None`` if it can't be found
     Examples:
         Load a single class:
-        >>> get_class('dashboard.catalogue.forms', 'ProductForm')
-        oscar.apps.dashboard.catalogue.forms.ProductForm
+        >>> get_class('apps.news.forms', 'ProductForm')
+        allink.apps.apps.news.forms.ProductForm
         Load a list of classes:
-        >>> get_classes('dashboard.catalogue.forms',
+        >>> get_classes('apps.news.forms',
         ...             ['ProductForm', 'StockRecordForm'])
-        [oscar.apps.dashboard.catalogue.forms.ProductForm,
-         oscar.apps.dashboard.catalogue.forms.StockRecordForm]
+        [allink.apps.apps.news.forms.ProductForm,
+         allink.apps.apps.news.forms.StockRecordForm]
     Raises:
         AppNotFoundError: If no app is found in ``INSTALLED_APPS`` that matches
             the passed module label.
@@ -64,28 +64,28 @@ def get_classes(module_label, classnames, module_prefix='allink_core.apps'):
         raise ValueError(
             "Importing from top-level modules is not supported")
 
-    # import from Oscar package (should succeed in most cases)
-    # e.g. 'oscar.apps.dashboard.catalogue.forms'
-    oscar_module_label = "%s.%s" % (module_prefix, module_label)
-    oscar_module = _import_module(oscar_module_label, classnames)
+    # import from allink package (should succeed in most cases)
+    # e.g. 'allink.apps.apps.news.forms'
+    allink_module_label = "%s.%s" % (module_prefix, module_label)
+    allink_module = _import_module(allink_module_label, classnames)
 
-    # returns e.g. 'oscar.apps.dashboard.catalogue',
-    # 'yourproject.apps.dashboard.catalogue' or 'dashboard.catalogue',
+    # returns e.g. 'allink.apps.apps.news',
+    # 'yourproject.apps.apps.news' or 'apps.news',
     # depending on what is set in INSTALLED_APPS
     installed_apps_entry, app_name = _find_installed_apps_entry(module_label)
     if installed_apps_entry.startswith('%s.' % module_prefix):
-        # The entry is obviously an Oscar one, we don't import again
+        # The entry is obviously an allink one, we don't import again
         local_module = None
     else:
         # Attempt to import the classes from the local module
-        # e.g. 'yourproject.dashboard.catalogue.forms'
+        # e.g. 'yourproject.apps.news.forms'
         sub_module = module_label.replace(app_name, '', 1)
         local_module_label = installed_apps_entry + sub_module
         local_module = _import_module(local_module_label, classnames)
 
-    oscar_move_module = None
+    allink_move_module = None
 
-    if oscar_module is oscar_move_module is local_module is None:
+    if allink_module is allink_move_module is local_module is None:
         # This intentionally doesn't raise an ImportError, because ImportError
         # can get masked in complex circular import scenarios.
         raise ModuleNotFoundError(
@@ -95,7 +95,7 @@ def get_classes(module_label, classnames, module_prefix='allink_core.apps'):
         )
 
     # return imported classes, giving preference to ones from the local package
-    return _pluck_classes([local_module, oscar_module, oscar_move_module], classnames)
+    return _pluck_classes([local_module, allink_module, allink_move_module], classnames)
 
 
 def _import_module(module_label, classnames):
@@ -147,14 +147,14 @@ def _pluck_classes(modules, classnames):
 
 def _get_installed_apps_entry(app_name):
     """
-    Given an app name (e.g. 'catalogue'), walk through INSTALLED_APPS
+    Given an app name (e.g. 'news'), walk through INSTALLED_APPS
     and return the first match, or None.
     This does depend on the order of INSTALLED_APPS and will break if
-    e.g. 'dashboard.catalogue' comes before 'catalogue' in INSTALLED_APPS.
+    e.g. 'apps.news' comes before 'news' in INSTALLED_APPS.
     """
     for installed_app in settings.INSTALLED_APPS:
-        # match root-level apps ('catalogue') or apps with same name at end
-        # ('shop.catalogue'), but don't match 'fancy_catalogue'
+        # match root-level apps ('news') or apps with same name at end
+        # ('shop.news'), but don't match 'fancy_news'
         if installed_app == app_name or installed_app.endswith('.' + app_name):
             return installed_app
     return None
@@ -166,12 +166,12 @@ def _find_installed_apps_entry(module_label):
     This is made trickier by the fact that we don't know what part of the
     module_label is part of the INSTALLED_APPS entry. So we try all possible
     combinations, trying the longer versions first. E.g. for
-    'dashboard.catalogue.forms', 'dashboard.catalogue' is attempted before
+    'apps.news.forms', 'apps.news' is attempted before
     'dashboard'
     """
     modules = module_label.split('.')
-    # if module_label is 'dashboard.catalogue.forms.widgets', combinations
-    # will be ['dashboard.catalogue.forms', 'dashboard.catalogue', 'dashboard']
+    # if module_label is 'apps.news.forms.widgets', combinations
+    # will be ['apps.news.forms', 'apps.news', 'dashboard']
     combinations = [
         '.'.join(modules[:-count]) for count in range(1, len(modules))]
     for app_name in combinations:
@@ -217,7 +217,7 @@ def get_model(app_label, model_name):
 def is_model_registered(app_label, model_name):
     """
     Checks whether a given model is registered. This is used to only
-    register Oscar models if they aren't overridden by a forked app.
+    register allink models if they aren't overridden by a forked app.
     """
     try:
         apps.get_registered_model(app_label, model_name)

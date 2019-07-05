@@ -33,7 +33,6 @@ recursive-include allink_core/core_apps/allink_instagram/locale *
 recursive-include allink_core/core_apps/allink_video/locale *
 recursive-include allink_core/core_apps/allink_pdf/locale *
 recursive-include allink_core/core_apps/allink_legacy_redirect/locale *
-recursive-include allink_core/core_apps/allink_seo/locale *
 recursive-include allink_core/core_apps/allink_cms/locale *
 recursive-include allink_core/core_apps/allink_icon/locale *
 recursive-include allink_core/core_apps/allink_info_box/locale *
@@ -53,7 +52,6 @@ recursive-include allink_core/core_apps/allink_instagram/migrations *
 recursive-include allink_core/core_apps/allink_video/migrations *
 recursive-include allink_core/core_apps/allink_pdf/migrations *
 recursive-include allink_core/core_apps/allink_legacy_redirect/migrations *
-recursive-include allink_core/core_apps/allink_seo/migrations *
 recursive-include allink_core/core_apps/allink_terms/migrations *
 recursive-include allink_core/core_apps/allink_cms/migrations *
 recursive-include allink_core/core_apps/allink_icon/migrations *

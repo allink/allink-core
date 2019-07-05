@@ -4,32 +4,12 @@ from __future__ import unicode_literals, absolute_import
 from django import forms
 
 
-class ContextRenderer(forms.widgets.RadioFieldRenderer):
-    def render(self):
-        from django.template.loader import render_to_string
-        rendered = render_to_string(
-            'admin/allink_button_link/widgets/context.html',
-            {'selects': self},
-        )
-        return rendered
-
-
 class Context(forms.widgets.RadioSelect):
-    renderer = ContextRenderer
-
-
-class SizeRenderer(forms.widgets.RadioFieldRenderer):
-    def render(self):
-        from django.template.loader import render_to_string
-        rendered = render_to_string(
-            'admin/allink_button_link/widgets/size.html',
-            {'selects': self},
-        )
-        return rendered
+    template_name = 'admin/allink_button_link/widgets/context.html'
 
 
 class Size(forms.widgets.RadioSelect):
-    renderer = SizeRenderer
+    template_name = 'admin/allink_button_link/widgets/size.html'
 
 
 class MiniTextarea(forms.widgets.Textarea):
@@ -41,7 +21,7 @@ class MiniTextarea(forms.widgets.Textarea):
         super(MiniTextarea, self).__init__(attrs)
 
 
-class LinkOrButtonRenderer(forms.widgets.RadioFieldRenderer):
+class LinkOrButtonRenderer(forms.widgets.RadioSelect):
     def render(self):
         from django.template.loader import render_to_string
         rendered = render_to_string(

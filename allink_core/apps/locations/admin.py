@@ -1,17 +1,20 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin, messages
 from django.utils.translation import ugettext_lazy as _
-
+from adminsortable.admin import SortableAdmin
 from allink_core.core.loading import get_model
-from allink_core.core.admin import AllinkBaseAdminSortable
+from parler.admin import TranslatableAdmin
+from allink_core.core.admin import AllinkMediaAdminMixin, AllinkSEOAdminMixin, \
+    AllinkCategoryAdminMixin, AllinkTeaserAdminMixin
 
 Locations = get_model('locations', 'Locations')
 
 
 @admin.register(Locations)
-class LocationsAdmin(AllinkBaseAdminSortable):
-    exclude = ('lead', )
-    readonly_fields = ('is_currently_open', )
+class LocationsAdmin(AllinkMediaAdminMixin, AllinkSEOAdminMixin, AllinkCategoryAdminMixin, AllinkTeaserAdminMixin,
+                     TranslatableAdmin, SortableAdmin):
+    exclude = ('lead',)
+    readonly_fields = ('is_currently_open',)
 
     def get_fieldsets(self, request, obj=None):
         fieldsets = (
@@ -32,9 +35,9 @@ class LocationsAdmin(AllinkBaseAdminSortable):
                     'map_link',
                     'preview_image',
                     'opening_hours_display',
-                ),
+                )
             }),
-            (_(u'Opening hours (Detailed)'), {
+            (_('Opening hours (Detailed)'), {
                 'classes': ('collapse',),
                 'fields': (
                     'is_currently_open',
@@ -51,20 +54,20 @@ class LocationsAdmin(AllinkBaseAdminSortable):
                     'sat',
                     'sat_afternoon',
                     'sun',
-                    'sun_afternoon'),
-                    'description': _(u'Format: "9:00-12:00  13:00-20:00"'
-                )
+                    'sun_afternoon'
+                ),
+                'description': _('Format: "9:00-12:00  13:00-20:00"')
             }),
         )
-
-        fieldsets += self.get_base_fieldsets()
-
+        fieldsets += self.get_category_fieldsets()
+        fieldsets += self.get_teaser_fieldsets()
+        fieldsets += self.get_seo_fieldsets()
         return fieldsets
 
     def save_model(self, request, obj, form, change):
-        if obj.value_has_changed_for_fields(["place", "zip_code", "street", "street_additional"]) and obj.place and obj.zip_code and obj.street:
+        if obj.value_has_changed_for_fields(["place", "zip_code", "street", "street_additional"]) \
+                and obj.place and obj.zip_code and obj.street:
             msg = obj.geocode_location()
             if not msg:
                 messages.warning(request, msg)
         obj.save()
-

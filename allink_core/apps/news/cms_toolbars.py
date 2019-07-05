@@ -12,4 +12,5 @@ class NewsToolbar(AllinkBaseModifierMixin, CMSToolbar):
     model = News
     app_label = News._meta.app_label
 
+
 toolbar_pool.register(NewsToolbar)

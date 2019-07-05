@@ -6,11 +6,11 @@
         <div class="col col-1">
             {% if object.preview_image %}
                 <div class="image-container">
-                    {% if instance.detail_link_enabled and object.show_detail_link %}
+                    {% if  instance.detail_link_enabled %}
                         <a href="{% get_absolute_url object instance.apphook_page.application_namespace %}">
                     {% endif %}
                         {% render_image image=object.preview_image %}
-                    {% if instance.detail_link_enabled  %}
+                    {% if  instance.detail_link_enabled %}
                         </a>
                     {% endif %}
                 </div>
@@ -33,7 +33,7 @@
                         </p>
                     </div>
                 {% endif %}
-                {% if instance.detail_link_enabled and object.show_detail_link %}
+                {% if  instance.detail_link_enabled %}
                     <div class="link-container">
                         <a href="{% get_absolute_url object instance.apphook_page.application_namespace %}" class="app-list__detail-link">
                             {% if instance.detail_link_text %}

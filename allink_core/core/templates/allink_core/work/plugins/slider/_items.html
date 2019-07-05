@@ -25,7 +25,7 @@
                         {{object.lead}}
                     </div>
                 {% endif %}
-                {% if instance.detail_link_enabled and object.show_detail_link %}
+                {% if  instance.detail_link_enabled %}
                     <div class="link-container">
                         <a class="app-list-slide__detail-link app-list__detail-link" href="{% get_absolute_url object instance.apphook_page.application_namespace %}">
                             {% if instance.detail_link_text %}

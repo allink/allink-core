@@ -1,5 +1,5 @@
-<!doctype html>{% load i18n staticfiles cms_tags sekizai_tags google_tag_manager_tags allink_helpers allink_image_tags allink_seo_tags %}
-{% load render_bundle from webpack_loader %}
+<!doctype html>{% load i18n staticfiles cms_tags sekizai_tags google_tag_manager_tags allink_helpers allink_image_tags allink_meta_tags inline_static_tags %}
+{% load render_bundle get_files from webpack_loader %}
 
 <html lang="{{ LANGUAGE_CODE }}" class="base-root no-js {% block html_additional_css_classes %}{% endblock html_additional_css_classes %}" {% block html_additional_attributes %}{% endblock html_additional_attributes %}>
 <head>
@@ -17,17 +17,14 @@
         allink.ch
 
     -->
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="format-detection" content="telephone=no" />{% comment %} Removing ugly phone number links on Internet Explorer: https://msdn.microsoft.com/en-us/library/dn265018(v=vs.85).aspx {% endcomment %}
 
-    {# Google Tag Manager #}
-    {% google_tag_manager %}
-
     {# META / OpenGraph #}
     {% block meta_tags %}
-        {% render_meta_og object %}
+        {% render_meta_og %}
     {% endblock meta_tags %}
 
     {# Favicons #}
@@ -37,13 +34,28 @@
 
     {# css #}
     {% block webpack_css %}
-        {% render_bundle 'app' 'css' %}
+        {% if not debug %}
+            {# critical css #}
+            <style type="text/css">
+                {% inline_style 'build/critical.css' %}
+                .on-screen-default {
+                    opacity: 1;
+                }
+            </style>
+        {% endif %}
+        {% comment %}
+            all other css
+            Experimental, not supported by all browsers. Load it normally for unsupported browsers and to call onload https://developer.mozilla.org/en-US/docs/Web/HTML/Preloading_content
+        {% endcomment %}
+        {% get_files 'app' 'css' as app_css_chunks %}
+        <link href="{{ app_css_chunks.0.publicPath }}" rel="preload" as="style">
+        <link rel="stylesheet" href="{{ app_css_chunks.0.publicPath }}">
     {% endblock webpack_css %}
     {% render_block "css" %}
 
     {# Load external JavaScript#}
     {# Included from: https://cdnjs.com/#}
-    <script src="//cdnjs.cloudflare.com/ajax/libs/picturefill/3.0.3/picturefill.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/picturefill/3.0.3/picturefill.min.js" async></script>
     <!--[if lt IE 9]>
         <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -57,7 +69,10 @@
 </head>
 
 <body id="page-top" class="noscript lang-{{ LANGUAGE_CODE }} {% block body_class %}tpl-root{% endblock %}" {% block body_additional_attributes %}{% endblock body_additional_attributes %}>
-    {% block h1_tag %}{% render_h1 %}{% endblock h1_tag %}
+    {# Google Tag Manager (hide when in edit mode #}
+    {% if not request.toolbar.show_toolbar %}
+        {% google_tag_manager %}
+    {% endif %}
 
     {% block skip_links %}
         {# Accessibility: Make sure the anchor IDs are up-to-date #}

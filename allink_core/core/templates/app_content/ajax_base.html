@@ -1,10 +1,12 @@
-{% load allink_seo_tags %}
 {% block header %}
 {% endblock %}
 
 {# Page Title - Required for Softpage (Google Tag Manager) #}
 {% block softpage_title %}
-    {% render_softpage_title %}
+    {# Page Title - Required for Softpage (Google Tag Manager) #}
+    <div id="softpage-page-title" style="display:none;">
+        {{ object.meta_page_title }}
+    </div>
 {% endblock softpage_title %}
 
 {% block content %}

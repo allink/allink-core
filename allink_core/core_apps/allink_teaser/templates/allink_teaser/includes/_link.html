@@ -1,0 +1,22 @@
+{% load i18n %}
+
+{% if teaser_link %}
+    <div class="teaser__link">
+        <a href="{{ teaser_link }}" {% if instance.softpage_enabled %}data-softpage-variation{% endif %}>
+            <span class="btn__text">
+                {% if teaser_link_text %}
+                    {{ teaser_link_text }}
+                {% else %}
+                    {% trans "More" %}
+                {% endif %}
+            </span>
+            <span class="btn__text--mask"><span class="btn__text--mask__inner">
+                {% if teaser_link_text %}
+                    {{ teaser_link_text }}
+                {% else %}
+                    {% trans "More" %}
+                {% endif %}
+            </span></span>
+        </a>
+    </div>
+{% endif %}

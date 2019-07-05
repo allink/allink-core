@@ -5,7 +5,6 @@ from django.conf import settings
 
 from filer.models import Folder
 from easy_thumbnails.files import get_thumbnailer
-from easy_thumbnails.exceptions import InvalidImageFormatError
 
 from allink_core.core.loading import get_model
 from allink_core.core.utils import get_height_from_ratio, get_ratio_w_h, get_key_from_dict
@@ -57,10 +56,6 @@ def get_width_alias_from_plugin(context):
                 return '1-of-3'
             elif column_plugin.template == 'col-4':
                 return '1-of-4'
-            elif column_plugin.template == 'col-5':
-                return '1-of-5'
-            elif column_plugin.template == 'col-6':
-                return '1-of-6'
             else:
                 return '1-of-1'
         except AttributeError:
@@ -76,31 +71,6 @@ def get_width_alias_from_plugin(context):
         return '2-of-3'
 
 
-def get_thumbnail(thumbnailer, thumbnail_options):
-    """
-    if no image was found, return a fallback image_not_found.jpg (if one was uploaded to Media Library)
-    """
-    try:
-        return thumbnailer.get_thumbnail(thumbnail_options)
-    # TODO load image from static instead
-    # the image "image-not-found" is not present in many projects, so f** it. this is hitting the db.
-    # except InvalidImageFormatError:
-    #     from filer.models import Folder
-    #     try:
-    #         files = Folder.objects.get(name='Wireframe').files
-    #     except Folder.DoesNotExist:
-    #         return None
-    #     for file in files:
-    #         if file.original_filename.startswith('image-not-found'):
-    #             try:
-    #                 return get_thumbnailer(file).get_thumbnail(thumbnail_options)
-    #             except InvalidImageFormatError:
-    #                 return None
-    #         return None
-    except:
-        return None
-
-
 def get_unique_key(context):
     if context.get('instance'):
         return context.get('instance').id
@@ -109,7 +79,9 @@ def get_unique_key(context):
 
 
 @register.inclusion_tag('templatetags/allink_image.html', takes_context=True)
-def render_image(context, image, ratio=None, width_alias=None, crop='smart', upscale=True, bw=False, high_resolution=True, icon_enabled=True, bg_enabled=True, bg_color=None, lazyload_enabled=True):
+def render_image(context, image, alt_text='', ratio=None, width_alias=None, crop='smart', upscale=True, bw=False,
+                 high_resolution=True, icon_enabled=True, bg_enabled=True, bg_color=None, lazyload_enabled=True,
+                 zoom=None, subject_location=False, vh_enabled=False):
     """
     -> parameters:
     image: FilerImageField
@@ -117,13 +89,18 @@ def render_image(context, image, ratio=None, width_alias=None, crop='smart', ups
     ratio: '3-2'
 
     -> optional parameters:
+    alt_text: alternative image alt text
     crop: used for thumbnail gen
     bw: used for thumbnail gen
     icon_disabled: used in template
     bg_disabled: used in template
     bg_color: used in template
+    zoom: used in template
+    subject_location: used in template
+    vh_enabled: used in template (using vh instead of percent)
 
-    if you render a image from outside the content or app plugin content, it is important to supply a thumbnail width_alias
+    if you render a image from outside the content or app plugin content,
+    it is important to supply a thumbnail width_alias
     otherwise the thumbnail will be rendered with the default width_alias '1-of-1' which might be to big.
 
     -> makes following context variable available in the template
@@ -143,12 +120,9 @@ def render_image(context, image, ratio=None, width_alias=None, crop='smart', ups
             # get with alias from context
             width_alias = get_width_alias_from_plugin(context)
 
-        # # respect the focal point set in the filer media gallery
-        # if image.subject_location:
-        #     focal_x, focal_y = image.subject_location.split(",")
-        #     crop_x = get_percent(image.width, int(focal_x))
-        #     crop_y = get_percent(image.height, int(focal_y))
-        #     crop = '{},{}'.format(crop_x, crop_y)
+        # use focal point. works best in combination with zoom > 0
+        if subject_location:
+            subject_location = image.subject_location
 
         # update context
         context.update({'image': image})
@@ -156,9 +130,12 @@ def render_image(context, image, ratio=None, width_alias=None, crop='smart', ups
         context.update({'bg_enabled': bg_enabled})
         context.update({'bg_color': bg_color})
         context.update({'lazyload_enabled': lazyload_enabled})
+        context.update({'alt_text': alt_text})
+        context.update({'vh_enabled': vh_enabled})
 
         sizes = get_sizes_from_width_alias(width_alias)
-        thumbnail_options = {'crop': crop, 'bw': bw, 'upscale': upscale, 'HIGH_RESOLUTION': high_resolution}
+        thumbnail_options = {'crop': crop, 'bw': bw, 'upscale': upscale, 'HIGH_RESOLUTION': high_resolution,
+                             'zoom': zoom, 'subject_location': subject_location}
 
         # create a thumbnail for each size
         for size in sizes:
@@ -178,10 +155,12 @@ def render_image(context, image, ratio=None, width_alias=None, crop='smart', ups
 
             thumbnail_options.update({'size': (w, h)})
             context.update({'ratio_percent_{}'.format(size[0]): '{}%'.format(h / w * 100)})
-            context.update({'thumbnail_{}'.format(size[0]): get_thumbnail(thumbnailer, thumbnail_options)})
+            context.update({'ratio_vh_{}'.format(size[0]): '{}vh'.format(h / w * 100)})
+            context.update({'thumbnail_{}'.format(size[0]): thumbnailer.get_thumbnail(thumbnail_options)})
         # for css padding hack, a image in each ratio has to be unique
         # (break point doesnt matter, because is never shown at the same time)
-        context.update({'picture_id': 'picture-{}'.format('-'.join((str(get_unique_key(context)), str(round(w)), str(round(h)))))})
+        context.update({'picture_id': 'picture-{}'.format('-'.join((str(image.id), str(get_unique_key(context)),
+                                                                    str(round(w)), str(round(h)))))})
 
     return context
 
@@ -207,7 +186,8 @@ def render_favicons_set(context):
         try:
             files = Folder.objects.get(name='favicons').files
         except Folder.DoesNotExist:
-            # messages.warning(context.request, _(u'Please create a folder "favicons" and upload the complete favicon set.'))
+            # messages.warning(context.request, _('Please create a folder
+            # "favicons" and upload the complete favicon set.'))
             return context
 
         for file in files:
@@ -226,9 +206,12 @@ def render_favicons_set(context):
 
         config = Config.get_solo()
 
-        theme_color = get_key_from_dict(settings.PROJECT_COLORS, config.theme_color) if config.theme_color else '#ffffff'
-        mask_icon_color = get_key_from_dict(settings.PROJECT_COLORS, config.mask_icon_color) if config.mask_icon_color else '#282828'
-        msapplication_tilecolor = get_key_from_dict(settings.PROJECT_COLORS, config.msapplication_tilecolor) if config.msapplication_tilecolor else '#282828'
+        theme_color = get_key_from_dict(settings.PROJECT_COLORS, config.theme_color) \
+            if config.theme_color else '#ffffff'
+        mask_icon_color = get_key_from_dict(settings.PROJECT_COLORS, config.mask_icon_color) \
+            if config.mask_icon_color else '#282828'
+        msapplication_tilecolor = get_key_from_dict(settings.PROJECT_COLORS, config.msapplication_tilecolor) \
+            if config.msapplication_tilecolor else '#282828'
 
         extra_context.update({
             'apple_favs': apple_favs,

@@ -2,14 +2,10 @@
 
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from django.utils.encoding import python_2_unicode_compatible
 from cms.models.pluginmodel import CMSPlugin
 from django.contrib.postgres.fields import ArrayField
 
-from django.conf import settings
 
-
-@python_2_unicode_compatible
 class AllinkSocialIconContainerPlugin(CMSPlugin):
     """
     A Container-Plugin for Social Icons
@@ -25,7 +21,7 @@ class AllinkSocialIconContainerPlugin(CMSPlugin):
     )
 
     def __str__(self):
-        return _(u'{}').format(str(self.pk))
+        return _('{}').format(str(self.pk))
 
     @property
     def css_classes(self):
@@ -36,21 +32,20 @@ class AllinkSocialIconContainerPlugin(CMSPlugin):
         return ' '.join(css_classes)
 
 
-@python_2_unicode_compatible
 class AllinkSocialIconPlugin(CMSPlugin):
     title = models.CharField(
-        _(u'Title'),
-        help_text=_(u'SEO text (not visible) e.g. Follow allink on Instagram'),
+        _('Title'),
+        help_text=_('SEO text (not visible) e.g. Follow allink on Instagram'),
         max_length=255,
         blank=True,
         null=True
     )
     icon = models.CharField(
-        _(u'Icon'),
+        _('Icon'),
         max_length=50
     )
     link = models.URLField(
-        _(u'Link')
+        _('Link')
     )
 
     def __str__(self):

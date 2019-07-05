@@ -11,7 +11,7 @@ from django.test import RequestFactory
 from django.contrib.auth.models import User
 
 
-class CategoryTestCaseMixin(object):
+class CategoryTestCaseMixin:
     """Mixin class for testing Categories"""
 
     @staticmethod

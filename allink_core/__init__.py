@@ -8,9 +8,10 @@ def get_short_version():
     return '%s.%s' % (VERSION[0], VERSION[1])
 
 # Cheeky setting that allows each template to be accessible by two paths.
-# Eg: the template 'oscar/templates/oscar/base.html' can be accessed via both
-# 'base.html' and 'oscar/base.html'.  This allows Oscar's templates to be
+# Eg: the template 'allink/templates/allink/base.html' can be accessed via both
+# 'base.html' and 'allink/base.html'.  This allows allink's templates to be
 # extended by templates with the same filename
+
 
 ALLINK_CORE_MAIN_TEMPLATE_DIRS = [
     os.path.join(os.path.dirname(os.path.abspath(__file__)), 'core/templates/allink_core'),
@@ -22,12 +23,12 @@ ALLINK_CORE_ALLINK_APPS = [
     'allink_core.apps.events',
     'allink_core.apps.locations',
     'allink_core.apps.news',
-    'allink_core.apps.members',
     'allink_core.apps.people',
     'allink_core.apps.testimonials',
     'allink_core.apps.work',
     'allink_core.apps.newsletter',
 ]
+
 
 def get_core_apps(overrides=None, installed=None):
     """

@@ -1,24 +1,23 @@
 # -*- coding: utf-8 -*-
-from allink_core.core.models.managers import AllinkBaseModelQuerySet, AllinkBaseModelManager
+from allink_core.core.models.managers import AllinkCategoryModelQuerySet
 
 
-class AllinkTestimonialQuerySet(AllinkBaseModelQuerySet):
+class AllinkTestimonialsQuerySet(AllinkCategoryModelQuerySet):
 
     def title_asc(self):
-        return self.active_entries()\
+        return self.active()\
             .order_by('first_name', 'id')\
             .distinct('first_name', 'id')
 
     def title_desc(self):
-        return self.active_entries()\
+        return self.active()\
             .order_by('-first_name', 'id')\
             .distinct('first_name', 'id')
 
     def category(self):
-        return self.active_entries()\
+        return self.active()\
             .order_by('categories__tree_id', 'categories__lft', 'first_name')\
             .distinct()
 
 
-class AllinkTestimonialManager(AllinkBaseModelManager):
-    queryset_class = AllinkTestimonialQuerySet
+AllinkTestimonialsManager = AllinkTestimonialsQuerySet.as_manager

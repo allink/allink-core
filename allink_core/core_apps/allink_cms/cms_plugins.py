@@ -18,8 +18,8 @@ class AllinkPageChooserPluginForm(forms.ModelForm):
 class AllinkPageInline(admin.StackedInline):
     model = AllinkPage
     extra = 0
-    verbose_name = _(u'Page')
-    verbose_name_plural = _(u'Pages')
+    verbose_name = _('Page')
+    verbose_name_plural = _('Pages')
 
 
 @plugin_pool.register_plugin
@@ -57,7 +57,7 @@ class CMSAllinkLanguageChooserPlugin(CMSPluginBase):
     module = _('Generic')
 
     def get_render_template(self, context, instance, placeholder):
-        if context['request'].is_ajax() or context['request'].toolbar.edit_mode:
+        if context['request'].is_ajax() or context['request'].toolbar.edit_mode_active:
             return 'allink_cms/plugins/languagechooser/content.html'
         else:
             return 'allink_cms/plugins/languagechooser/content_skeleton.html'

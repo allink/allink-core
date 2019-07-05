@@ -4,25 +4,26 @@ from django.utils.translation import ugettext_lazy as _
 from django.db import models
 
 from cms.models.fields import PageField
-from model_utils.models import TimeFramedModel
-from parler.models import TranslatableModel, TranslatedField
+from parler.models import TranslatedField
 from filer.fields.image import FilerImageField
 from djangocms_text_ckeditor.fields import HTMLField
 from cms.models.fields import PlaceholderField
 
-from aldryn_translation_tools.models import TranslationHelperMixin
 from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
-from allink_core.core.models.models import AllinkBaseAppContentPlugin, AllinkBaseModel, AllinkSimpleRegistrationFieldsModel, AllinkBaseTranslatedFieldsModel
-from allink_core.core.models.mixins import AllinkTranslatedAutoSlugifyMixin
-from allink_core.core.loading import get_model, get_class
-
+from allink_core.core.models import (
+    AllinkCategoryFieldsModel,
+    AllinkBaseTranslatableModel,
+    AllinkBaseTranslatedFieldsModel,
+    AllinkBaseAppContentPlugin,
+    AllinkSimpleRegistrationFieldsModel,
+    AllinkTimeFramedModel,
+)
+from allink_core.core.loading import get_class
 
 AllinkEventsManager = get_class('events.managers', 'AllinkEventsManager')
 
 
-
-# Events
-class BaseEvents(TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, TranslatableModel, TimeFramedModel, AllinkBaseModel):
+class BaseEvents(AllinkTimeFramedModel, AllinkCategoryFieldsModel, AllinkBaseTranslatableModel):
     slug_source_field_name = 'title'
 
     title = TranslatedField(any_language=True)
@@ -30,44 +31,40 @@ class BaseEvents(TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, Trans
     lead = TranslatedField()
 
     preview_image = FilerImageField(
-        verbose_name=_(u'Preview Image'),
+        verbose_name=_('Preview Image'),
         blank=True,
         null=True,
-        on_delete=models.SET_NULL,
+        on_delete=models.PROTECT,
         related_name='%(app_label)s_%(class)s_preview_image',
     )
     template = models.CharField(
-        _(u'Template'),
-        help_text=_(u'Choose a template.'),
+        _('Template'),
+        help_text=_('Choose a template.'),
         max_length=50,
         blank=True,
         null=True,
     )
-    sort_order = models.PositiveIntegerField(
-        default=0,
-        editable=False,
-        db_index=True
+    header_placeholder = PlaceholderField(
+        u'events_header',
+        related_name='%(app_label)s_%(class)s_header_placeholder'
     )
-
-    header_placeholder = PlaceholderField(u'events_header', related_name='%(app_label)s_%(class)s_header_placeholder')
-    content_placeholder = PlaceholderField(u'events_content', related_name='%(app_label)s_%(class)s_content_placeholder')
-    content_additional_placeholder = PlaceholderField(u'events_content_additional', related_name='%(app_label)s_%(class)s_content_additional_placeholder')
+    content_placeholder = PlaceholderField(
+        u'events_content',
+        related_name='%(app_label)s_%(class)s_content_placeholder'
+    )
 
     costs = TranslatedField()
 
     form_enabled = models.BooleanField(
-        _(u'Event Form enabled'),
+        _('Event Form enabled'),
         default=True
     )
-
-    event_date_time = models.DateTimeField(
-        _(u'Event Date/ Time'),
-        blank=True,
-        null=True,
+    entry_date = models.DateTimeField(
+        _('Entry Date'),
     )
-
     location = models.ForeignKey(
         'locations.Locations',
+        on_delete=models.PROTECT,
         blank=True,
         null=True,
         related_name='events'
@@ -82,11 +79,11 @@ class BaseEvents(TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, Trans
         verbose_name_plural = _('Events')
 
     def __str__(self):
-        return u'%s %s' % (self.title, self.event_date_time)
+        return u'%s %s' % (self.title, self.entry_date.strftime('%d.%m.%Y %H:%M:%S'))
 
     def show_registration_form(self):
-        if getattr(self, 'event_date_time'):
-            if self.event_date_time < datetime.now().date():
+        if getattr(self, 'entry_date'):
+            if self.entry_date < datetime.now().date():
                 return False
         if self.form_enabled:
             return True
@@ -95,27 +92,32 @@ class BaseEvents(TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, Trans
 
 
 class BaseEventsTranslation(AllinkBaseTranslatedFieldsModel):
-    master = models.ForeignKey('events.Events', related_name='translations', null=True)
+    master = models.ForeignKey(
+        'events.Events',
+        on_delete=models.CASCADE,
+        related_name='translations',
+        null=True
+    )
 
     title = models.CharField(
         max_length=255
     )
     slug = models.SlugField(
-        _(u'Slug'),
+        _('Slug'),
         max_length=255,
         default='',
         blank=True,
-        help_text=_(u'Leave blank to auto-generate a unique slug.')
+        help_text=_('Leave blank to auto-generate a unique slug.')
     )
     lead = HTMLField(
-        _(u'Lead Text'),
-        help_text=_(u'Teaser text that in some cases is used in the list view and/or in the detail view.'),
+        _('Lead Text'),
+        help_text=_('Teaser text that in some cases is used in the list view and/or in the detail view.'),
         blank=True,
         null=True,
     )
     costs = models.CharField(
         max_length=255,
-        help_text=_(u'Costs'),
+        help_text=_('Costs'),
         blank=True,
         null=True,
     )
@@ -126,20 +128,6 @@ class BaseEventsTranslation(AllinkBaseTranslatedFieldsModel):
 
 
 class BaseEventsAppContentPlugin(AllinkBaseAppContentPlugin):
-    manual_entries = SortedM2MModelField(
-        'events.Events',
-        blank=True,
-        help_text=_('Select and arrange specific entries, or, leave blank to select all. (If '
-                    'manual entries are selected the category filtering will be ignored.)')
-    )
-    apphook_page = PageField(
-        verbose_name=_(u'Apphook Page'),
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        help_text=_(u'If provided, this Apphook-Page will be used to generate the detail link.'),
-    )
-
     # FILTERING
     DEFAULT = 'default'
     UPCOMING = 'upcoming'
@@ -150,6 +138,24 @@ class BaseEventsAppContentPlugin(AllinkBaseAppContentPlugin):
         (UPCOMING, 'upcoming'),
         (PAST, 'past'),
     )
+
+    manual_entries = SortedM2MModelField(
+        'events.Events',
+        blank=True,
+        help_text=_('Select and arrange specific entries, or, leave blank to select all. (If '
+                    'manual entries are selected the category filtering will be ignored.)')
+    )
+    apphook_page = PageField(
+        verbose_name=_('Apphook Page'),
+        null=True,
+        blank=True,
+        on_delete=models.PROTECT,
+        help_text=_('If provided, this Apphook-Page will be used to generate the detail link.'),
+    )
+
+    class Meta:
+        abstract = True
+        app_label = 'events'
 
     def _apply_filtering_to_queryset_for_display(self, queryset):
         # upcoming
@@ -163,18 +169,17 @@ class BaseEventsAppContentPlugin(AllinkBaseAppContentPlugin):
     def save(self, *args, **kwargs):
         super(BaseEventsAppContentPlugin, self).save(*args, **kwargs)
 
-    class Meta:
-        abstract = True
-        app_label = 'events'
-
 
 class BaseEventsRegistration(AllinkSimpleRegistrationFieldsModel):
-
-    event = models.ForeignKey('events.Events', null=True)
+    event = models.ForeignKey(
+        'events.Events',
+        on_delete=models.CASCADE,
+        null=True
+    )
 
     # terms = models.ForeignKey(
     #     'allink_terms.AllinkTerms',
-    #     verbose_name=_(u'I have read and accept the terms and conditions.'),
+    #     verbose_name=_('I have read and accept the terms and conditions.'),
     #     blank=True,
     #     null=True
     # )
@@ -185,21 +190,3 @@ class BaseEventsRegistration(AllinkSimpleRegistrationFieldsModel):
 
     def __str__(self):
         return u'%s %s' % (self.first_name, self.last_name)
-
-    @classmethod
-    def get_verbose_name(cls):
-        Config = get_model('config', 'Config')
-        try:
-            field_name = cls._meta.model_name + '_verbose'
-            return getattr(Config.get_solo(), field_name)
-        except:
-            return cls._meta.verbose_name
-
-    @classmethod
-    def get_verbose_name_plural(cls):
-        Config = get_model('config', 'Config')
-        try:
-            field_name = cls._meta.model_name + '_verbose_plural'
-            return getattr(Config.get_solo(), field_name)
-        except:
-            return cls._meta.verbose_name_plural

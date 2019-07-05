@@ -3,6 +3,9 @@
 
 {% block extrahead %}{{ block.super }}
 <script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
+{#  https://github.com/divio/django-filer/issues/1133#issuecomment-464360740  #}
+<script type="text/javascript" src="/static/admin/js/vendor/jquery/jquery.js"></script>
+<script type="text/javascript" src="/static/admin/js/jquery.init.js"></script>
 {{ media }}
 {% endblock %}
 
