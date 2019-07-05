@@ -25,7 +25,6 @@ At the moment not every app is documented in this guide. For reference please se
 ###### allink_mailchimp
 ###### allink_mandrill
 ###### allink_pdf
-###### allink_seo
 ###### allink_seo_accordion
 ###### allink_social_icon
 ###### allink_styleguide
