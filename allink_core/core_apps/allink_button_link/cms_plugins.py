@@ -190,7 +190,8 @@ class AllinkButtonLinkPluginForm(AllinkInternalLinkFieldMixin, forms.ModelForm):
         # }
 
         link_target_mapper = {
-            AllinkButtonLinkPlugin.DEFAULT_LINK: cleaned_data.get('link_target_reduced', None),
+            # double check for empty string
+            AllinkButtonLinkPlugin.DEFAULT_LINK: cleaned_data.get('link_target_reduced', None) or None,
             AllinkButtonLinkPlugin.FORM_LINK: FORM_MODAL,
             AllinkButtonLinkPlugin.FILE_LINK: NEW_WINDOW,
             AllinkButtonLinkPlugin.IMAGE_LINK: IMAGE_MODAL,
