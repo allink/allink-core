@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
+from cms.models import CMSPlugin
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
+from djangocms_text_ckeditor.cms_plugins import TextPlugin, Text
 
 from allink_core.core_apps.allink_seo_accordion.models import AllinkSEOAccordionContainerPlugin, AllinkSEOAccordion
 
