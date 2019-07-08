@@ -31,9 +31,10 @@ def render_meta_og(context, obj=None, overwrite_dict=None):
     the updated context with all meta_ fields
     """
 
+    meta_context = dict()
     if obj:
         meta_context = obj.meta_dict
-    elif hasattr(context.request, 'current_page'):
+    elif getattr(context.request, 'current_page'):
         meta_context = get_page_meta_dict(getattr(context.request, 'current_page'))
 
     if overwrite_dict:
