@@ -41,6 +41,7 @@ ALLINK_INSTALLED_APPS = [
     'allink_core.core_apps.allink_cms',
     'allink_core.core_apps.allink_icon',
     'allink_core.core_apps.allink_info_box',
+    'allink_core.core_apps.allink_seo_accordion',
 ]
 
 ####################################################################################
@@ -101,6 +102,7 @@ CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [
     'CMSAllinkPageChooserPlugin',
     'CMSAllinkLanguageChooserPlugin',
     'CMSAllinkIconPlugin',
+    'CMSAllinkSEOAccordionContainerPlugin',
 ]
 ####################################################################################
 
@@ -160,6 +162,7 @@ ALLINK_LOCALE_PATHS = [
     '/app/allink_core/core_apps/allink_pdf/locale',
     '/app/allink_core/core_apps/allink_cms/locale',
     '/app/allink_core/core_apps/allink_icon/locale',
+    '/app/allink_core/core_apps/allink_seo_accordion/locale',
 ]
 
 

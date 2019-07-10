@@ -1,0 +1,13 @@
+{% load cms_tags %}
+
+<div class="seo-accordion__item">
+    <a href="#" class="seo-accordion__title" role="presentation">
+        <h3>{{ instance.title }}</h3>
+    </a>
+
+    <div class="seo-accordion__content">
+        {% for plugin in instance.child_plugin_instances %}
+            {% render_plugin plugin %}
+        {% endfor %}
+    </div>
+</div>
