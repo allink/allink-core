@@ -67,6 +67,7 @@ url(r'^cms-api/', include('allink_core.core_apps.allink_cms.urls', namespace='cm
 ###### DATA MIGRATIONS
 
 ### NEW
+- added AllinkSEOAccordion plugin     
 - we now save the data of the content-plugin to these plugins directly 'AllinkImagePlugin', 'AllinkGalleryPlugin', 'AllinkGalleryImagePlugin'
 - (allink-core-static dependent!) all forms with class "ajax-form" now get sent with the appropriate csrftoken which will be fetched from the cookie. you don't need a {% csrf_token %} in the template (this is why we can now cache CMSAllinkSignupFormPlugin and any other CMSPlugin displaying a form) -> if you decide to change cache=False to cache=True you must remove {% csrf_token %} from the template and clear cache! otherwise you will end up with a 403!
 - we added a basic way to load plugins async. just add a template:
