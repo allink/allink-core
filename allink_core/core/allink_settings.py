@@ -5,7 +5,6 @@ __all__ = [
     'ALLINK_INSTALLED_APPS',
     'ALLINK_PROJECT_APP_MODEL_WITH_CATEGORY_CHOICES',
     'ALLINK_CMS_PLACEHOLDER_CONF_PLUGINS',
-    'ALLINK_MIDDLEWARE',
     'ALLINK_LOCALE_PATHS',
     'ALLINK_PAGE_TOOLBAR_ENABLED',
     'ALLINK_MANDRILL_DEV_MODE',
@@ -122,15 +121,6 @@ ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [
     'CMSAllinkLanguageChooserPlugin',
     # 'CMSAllinkIconPlugin',
     'CMSAllinkSEOAccordionContainerPlugin',
-]
-####################################################################################
-
-# Middlewareclassss
-
-ALLINK_MIDDLEWARE = [
-    'lockdown.middleware.LockdownMiddleware',
-    'allink_core.core.middleware.AllinkUrlRedirectMiddleware',
-    'allink_core.core_apps.allink_legacy_redirect.middleware.AllinkLegacyRedirectMiddleware',
 ]
 
 ####################################################################################

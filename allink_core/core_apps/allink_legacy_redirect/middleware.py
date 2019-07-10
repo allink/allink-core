@@ -1,17 +1,28 @@
 from django.http import HttpResponsePermanentRedirect
 from django.db.models import Q
-
 from itertools import combinations, permutations
 
 from allink_core.core_apps.allink_legacy_redirect.models import AllinkLegacyLink
 
 
-class AllinkLegacyRedirectMiddleware:
+class AllinkLegacyRedirectMiddleware(object):
     """
-    Perma-redirect old links to their new site (except google click id)
+    If the request matches one of the urls configured in AllinkLegacyLink a HttpResponsePermanentRedirect returned to
+    the appropriate url.
+
+    Google Click ids will be preserved.
     """
 
-    def process_request(self, request):
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+
+    def __call__(self, request):  # noqa TODO this needs to be refactored anyway, so we do not hit de db each time.
+        # Code to be executed for each request before
+        # the view (and later middleware) are called.
+
+        response = self.get_response(request)
+
         has_get_parameters = False
         link = None
         try:
@@ -20,7 +31,7 @@ class AllinkLegacyRedirectMiddleware:
 
             # if user is logged in, skip redirect
             if link.redirect_when_logged_out and request.user.is_authenticated:
-                return
+                return response
 
         except AllinkLegacyLink.DoesNotExist:
             # Here we handle the case that the old url
@@ -77,15 +88,15 @@ class AllinkLegacyRedirectMiddleware:
 
         # if user is logged in skip, redirect
         if link and link.redirect_when_logged_out and request.user.is_authenticated:
-            return
+            return response
 
         if not link:
-            return
+            return response
 
         # 'overwrite' takes priority over 'new'
         new_link = link.link
         if not new_link:
-            return
+            return response
 
         # preserve Google Click Identifier
         if 'gclid' in request.GET:
@@ -93,4 +104,5 @@ class AllinkLegacyRedirectMiddleware:
                 new_link += '&gclid=%s' % request.GET['gclid']
             else:
                 new_link += '?gclid=%s' % request.GET['gclid']
+
         return HttpResponsePermanentRedirect(new_link)

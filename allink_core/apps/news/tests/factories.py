@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import factory
+import datetime
 from factory import fuzzy
 from allink_core.core.test.factories import FilerImageFactory
 from ..models import News
