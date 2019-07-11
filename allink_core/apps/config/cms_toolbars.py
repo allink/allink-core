@@ -41,8 +41,8 @@ class AllinkPageExtensionToolbar(ExtensionToolbar):
         if current_page_menu and self.toolbar.edit_mode_active:
             position = 5
             sub_menu = self._get_sub_menu(current_page_menu, 'submenu_label', 'Meta settings', position)
-            urls = self.get_title_extension_admin()
-            for title_extension, url in urls:
+            page_extension, url = self.get_page_extension_admin()
+            if url:
                 sub_menu.add_modal_item('Images', url=url,
                                         disabled=not self.toolbar.edit_mode_active)
 
