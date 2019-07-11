@@ -34,7 +34,7 @@ def render_meta_og(context, obj=None, overwrite_dict=None):
     meta_context = dict()
     if obj:
         meta_context = obj.meta_dict
-    elif getattr(context.request, 'current_page'):
+    elif getattr(context.request, 'current_page', None):
         meta_context = get_page_meta_dict(getattr(context.request, 'current_page'))
 
     if overwrite_dict:
