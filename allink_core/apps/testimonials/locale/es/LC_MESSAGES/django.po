@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-26 07:29+0200\n"
+"POT-Creation-Date: 2019-07-15 16:26+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: allink_core/apps/testimonials/abstract_models.py:26
+#: allink_core/apps/testimonials/abstract_models.py:28
 msgid "First Name"
 msgstr ""
 
-#: allink_core/apps/testimonials/abstract_models.py:31
+#: allink_core/apps/testimonials/abstract_models.py:33
 msgid "Last Name"
 msgstr ""
 
@@ -30,36 +30,53 @@ msgstr ""
 msgid "Preview Image"
 msgstr ""
 
-#: allink_core/apps/testimonials/abstract_models.py:61
+#: allink_core/apps/testimonials/abstract_models.py:60
+msgid "Company Name"
+msgstr ""
+
+#: allink_core/apps/testimonials/abstract_models.py:72
 msgid "Testimonial"
 msgstr ""
 
-#: allink_core/apps/testimonials/abstract_models.py:62
+#: allink_core/apps/testimonials/abstract_models.py:73
 msgid "Testimonials"
 msgstr ""
 
-#: allink_core/apps/testimonials/abstract_models.py:77
+#: allink_core/apps/testimonials/abstract_models.py:96
 msgid "Slug"
 msgstr ""
 
-#: allink_core/apps/testimonials/abstract_models.py:81
+#: allink_core/apps/testimonials/abstract_models.py:100
 msgid "Leave blank to auto-generate a unique slug."
 msgstr ""
 
-#: allink_core/apps/testimonials/abstract_models.py:84
+#: allink_core/apps/testimonials/abstract_models.py:103
 msgid "Lead Text"
 msgstr ""
 
-#: allink_core/apps/testimonials/abstract_models.py:85
+#: allink_core/apps/testimonials/abstract_models.py:104
 msgid ""
 "Teaser text that in some cases is used in the list view and/or in the detail "
 "view."
 msgstr ""
 
-#: allink_core/apps/testimonials/abstract_models.py:99
+#: allink_core/apps/testimonials/abstract_models.py:109
+msgid "Function"
+msgstr ""
+
+#: allink_core/apps/testimonials/abstract_models.py:124
 msgid ""
 "Select and arrange specific entries, or, leave blank to select all. (If "
 "manual entries are selected the category filtering will be ignored.)"
+msgstr ""
+
+#: allink_core/apps/testimonials/abstract_models.py:128
+msgid "Apphook Page"
+msgstr ""
+
+#: allink_core/apps/testimonials/abstract_models.py:132
+msgid ""
+"If provided, this Apphook-Page will be used to generate the detail link."
 msgstr ""
 
 #: allink_core/apps/testimonials/cms_apps.py:8

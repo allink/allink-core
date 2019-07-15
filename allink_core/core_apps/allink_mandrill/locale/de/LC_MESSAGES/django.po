@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-01 17:02+0100\n"
+"POT-Creation-Date: 2019-07-15 16:23+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: allink_core/core_apps/allink_mandrill/base.py:295
+#: allink_core/core_apps/allink_mandrill/base.py:299
 msgid "Yes"
 msgstr ""
 
-#: allink_core/core_apps/allink_mandrill/base.py:295
+#: allink_core/core_apps/allink_mandrill/base.py:299
 msgid "No"
 msgstr ""
 

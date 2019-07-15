@@ -92,7 +92,7 @@ class SelectLinkField(forms.fields.ChoiceField):
             if apphook == 'Page':
                 subchoices = []
                 subchoices += [(json.dumps({'page_id': p.id}), '%s %s' % ((p.node.depth - 1) * '---', p))
-                               for p in Page.objects.filter(publisher_is_draft=False)]
+                               for p in Page.objects.filter(publisher_is_draft=False).order_by('node__path')]
                 choices.append((('%s' % _('pages').upper(), subchoices)))
 
             else:

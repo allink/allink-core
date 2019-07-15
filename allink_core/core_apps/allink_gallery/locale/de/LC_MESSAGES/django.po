@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-01 17:02+0100\n"
+"POT-Creation-Date: 2019-07-15 16:23+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,99 +18,104 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: allink_core/core_apps/allink_gallery/cms_plugins.py:25
-#: allink_core/core_apps/allink_gallery/models.py:26
-#: allink_core/core_apps/allink_gallery/models.py:115
+#: allink_core/core_apps/allink_gallery/cms_plugins.py:26
+#: allink_core/core_apps/allink_gallery/models.py:23
+#: allink_core/core_apps/allink_gallery/models.py:113
 msgid "Ratio"
 msgstr "Seitenverhältnis"
 
-#: allink_core/core_apps/allink_gallery/cms_plugins.py:26
+#: allink_core/core_apps/allink_gallery/cms_plugins.py:27
 msgid "This option overrides the default settings for the gallery plugin."
 msgstr ""
 "Diese Einstellung überschreibt die Standardeinstellungen für den Galerie-"
 "Inhalt."
 
-#: allink_core/core_apps/allink_gallery/cms_plugins.py:31
-#: allink_core/core_apps/allink_gallery/models.py:21
-#: allink_core/core_apps/allink_gallery/models.py:110
+#: allink_core/core_apps/allink_gallery/cms_plugins.py:32
+#: allink_core/core_apps/allink_gallery/models.py:18
+#: allink_core/core_apps/allink_gallery/models.py:108
 msgid "Template"
 msgstr ""
 
-#: allink_core/core_apps/allink_gallery/cms_plugins.py:38
+#: allink_core/core_apps/allink_gallery/cms_plugins.py:39
 msgid "Predifined variations"
 msgstr ""
 
-#: allink_core/core_apps/allink_gallery/cms_plugins.py:57
+#: allink_core/core_apps/allink_gallery/cms_plugins.py:59
 msgid ""
 "There are only {} characters allowed in text field. Currently there are {} "
 "characters."
 msgstr ""
 "Es sind nur {} Zeichen im Textfeld erlaubt. Momentan sind es {} Zeichen."
 
-#: allink_core/core_apps/allink_gallery/cms_plugins.py:65
+#: allink_core/core_apps/allink_gallery/cms_plugins.py:68
 msgid "Gallery"
 msgstr "Galerie"
 
-#: allink_core/core_apps/allink_gallery/cms_plugins.py:66
-#: allink_core/core_apps/allink_gallery/cms_plugins.py:112
+#: allink_core/core_apps/allink_gallery/cms_plugins.py:69
+#: allink_core/core_apps/allink_gallery/cms_plugins.py:115
 msgid "Generic"
 msgstr ""
 
-#: allink_core/core_apps/allink_gallery/cms_plugins.py:85
+#: allink_core/core_apps/allink_gallery/cms_plugins.py:88
 msgid "Slider Options"
 msgstr "Slider-Optionen"
 
-#: allink_core/core_apps/allink_gallery/cms_plugins.py:93
+#: allink_core/core_apps/allink_gallery/cms_plugins.py:96
 msgid "Advanced Options"
 msgstr "Erweiterte Optionen"
 
-#: allink_core/core_apps/allink_gallery/cms_plugins.py:111
-#: allink_core/core_apps/allink_gallery/models.py:120
-msgid "Image"
-msgstr "Bild"
+#: allink_core/core_apps/allink_gallery/cms_plugins.py:114
+#, fuzzy
+#| msgid "Gallery"
+msgid "Gallery Image"
+msgstr "Galerie"
 
-#: allink_core/core_apps/allink_gallery/models.py:22
-#: allink_core/core_apps/allink_gallery/models.py:111
+#: allink_core/core_apps/allink_gallery/models.py:19
+#: allink_core/core_apps/allink_gallery/models.py:109
 msgid "Choose a template."
 msgstr "Template wählen"
 
-#: allink_core/core_apps/allink_gallery/models.py:32
+#: allink_core/core_apps/allink_gallery/models.py:29
 msgid "Fullscreen option visible"
 msgstr "Vollbildoption sichtbar"
 
-#: allink_core/core_apps/allink_gallery/models.py:34
+#: allink_core/core_apps/allink_gallery/models.py:31
 msgid "This option enables a fullscreen button for this gallery."
 msgstr "Diese Einstellung blendet einen Vollbild-Button für diese Galerie ein."
 
-#: allink_core/core_apps/allink_gallery/models.py:37
+#: allink_core/core_apps/allink_gallery/models.py:34
 msgid "Gallery counter visible"
 msgstr "Bildnummern anzeigen"
 
-#: allink_core/core_apps/allink_gallery/models.py:39
+#: allink_core/core_apps/allink_gallery/models.py:36
 msgid "This option enables a gallery counter."
 msgstr "Diese Einstellung ermöglicht es, die Bildnummern anzuzeigen."
 
-#: allink_core/core_apps/allink_gallery/models.py:42
+#: allink_core/core_apps/allink_gallery/models.py:39
 msgid "Autostart"
 msgstr ""
 
-#: allink_core/core_apps/allink_gallery/models.py:44
+#: allink_core/core_apps/allink_gallery/models.py:41
 msgid "This option enables autoplay for this gallery."
 msgstr "Diese Einstellung aktiviert Autoplay für diese Galerie."
 
-#: allink_core/core_apps/allink_gallery/models.py:58
+#: allink_core/core_apps/allink_gallery/models.py:56
 msgid ""
 "All Images (.png, .gif, .jpg, .jpeg) will be used in gallery. If a folder is "
 "specified, the child plugin won't be rendered."
 msgstr ""
 
-#: allink_core/core_apps/allink_gallery/models.py:99
+#: allink_core/core_apps/allink_gallery/models.py:97
 msgid "Title"
 msgstr "Titel"
 
-#: allink_core/core_apps/allink_gallery/models.py:105
+#: allink_core/core_apps/allink_gallery/models.py:103
 msgid "Text"
 msgstr ""
+
+#: allink_core/core_apps/allink_gallery/models.py:119
+msgid "Image"
+msgstr "Bild"
 
 #: allink_core/core_apps/allink_gallery/templates/allink_gallery/slider/content.html:27
 msgid "Previous Slide"
@@ -120,10 +125,9 @@ msgstr "Vorheriges Slide"
 msgid "Next Slide"
 msgstr "Nächstes Slide"
 
-#: allink_core/core_apps/allink_gallery/templates/allink_gallery/slider/content.html:47
+#: allink_core/core_apps/allink_gallery/templates/allink_gallery/slider/content.html:43
 msgid "of"
 msgstr ""
 
-#: allink_core/core_apps/allink_gallery/templates/allink_gallery/slider/content.html:54
-msgid "Fullscreen Gallery"
-msgstr "Vollbild-Galerie"
+#~ msgid "Fullscreen Gallery"
+#~ msgstr "Vollbild-Galerie"

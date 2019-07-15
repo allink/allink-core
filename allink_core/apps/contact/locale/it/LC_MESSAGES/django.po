@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-25 18:07+0200\n"
+"POT-Creation-Date: 2019-07-15 16:26+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,40 +18,40 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: allink_core/apps/contact/abstract_models.py:11
+#: allink_core/apps/contact/abstract_models.py:10
 msgid "-- between --"
 msgstr ""
 
-#: allink_core/apps/contact/abstract_models.py:20
+#: allink_core/apps/contact/abstract_models.py:19
 msgid "-- please choose --"
 msgstr ""
 
-#: allink_core/apps/contact/abstract_models.py:21
+#: allink_core/apps/contact/abstract_models.py:20
 msgid "Phone"
 msgstr ""
 
-#: allink_core/apps/contact/abstract_models.py:22
+#: allink_core/apps/contact/abstract_models.py:21
 msgid "Email"
 msgstr ""
 
-#: allink_core/apps/contact/abstract_models.py:26
+#: allink_core/apps/contact/abstract_models.py:25
 msgid "Please contact me via"
 msgstr ""
 
-#: allink_core/apps/contact/abstract_models.py:31
+#: allink_core/apps/contact/abstract_models.py:30
 #: allink_core/apps/contact/forms.py:20
 msgid "Date"
 msgstr ""
 
-#: allink_core/apps/contact/abstract_models.py:37
+#: allink_core/apps/contact/abstract_models.py:36
 msgid "Time"
 msgstr ""
 
-#: allink_core/apps/contact/abstract_models.py:71
+#: allink_core/apps/contact/abstract_models.py:45
 msgid "Contact Request"
 msgstr ""
 
-#: allink_core/apps/contact/abstract_models.py:72
+#: allink_core/apps/contact/abstract_models.py:46
 msgid "Contact Requests"
 msgstr ""
 
@@ -63,15 +63,15 @@ msgstr ""
 msgid "Contact Apphook"
 msgstr ""
 
-#: allink_core/apps/contact/cms_plugins.py:34
-msgid "Predifined variations"
-msgstr ""
-
-#: allink_core/apps/contact/cms_plugins.py:45
-msgid "Contact Form"
+#: allink_core/apps/contact/cms_plugins.py:35
+msgid "Predefined variations"
 msgstr ""
 
 #: allink_core/apps/contact/cms_plugins.py:46
+msgid "Contact Form"
+msgstr ""
+
+#: allink_core/apps/contact/cms_plugins.py:47
 msgid "allink forms"
 msgstr ""
 

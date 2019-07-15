@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-25 17:19+0200\n"
+"POT-Creation-Date: 2019-07-15 16:27+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,18 +23,18 @@ msgid "Project app"
 msgstr ""
 
 #: allink_core/core_apps/allink_categories/admin.py:22
-#: allink_core/core_apps/allink_categories/models.py:52
+#: allink_core/core_apps/allink_categories/models.py:50
 msgid ""
 "Please specify the app which uses this categories. All apps specified in "
 "parent category are automatically added."
 msgstr ""
 
-#: allink_core/core_apps/allink_categories/admin.py:40
-#: allink_core/core_apps/allink_categories/models.py:72
+#: allink_core/core_apps/allink_categories/admin.py:41
+#: allink_core/core_apps/allink_categories/models.py:71
 msgid "Identifier"
 msgstr ""
 
-#: allink_core/core_apps/allink_categories/admin.py:41
+#: allink_core/core_apps/allink_categories/admin.py:42
 msgid ""
 "Identifier used for backward reference on a app model. (e.g display category "
 "name on People app, e.g Marketing)"
@@ -45,15 +45,15 @@ msgid "allink"
 msgstr ""
 
 #: allink_core/core_apps/allink_categories/cms_toolbars.py:27
-#: allink_core/core_apps/allink_categories/models.py:99
+#: allink_core/core_apps/allink_categories/models.py:102
 msgid "Categories"
 msgstr ""
 
-#: allink_core/core_apps/allink_categories/models.py:62
+#: allink_core/core_apps/allink_categories/models.py:61
 msgid "Tag"
 msgstr ""
 
-#: allink_core/core_apps/allink_categories/models.py:64
+#: allink_core/core_apps/allink_categories/models.py:63
 msgid ""
 "auto-generated categories use this tag, to identify which app generated the "
 "category."
@@ -71,6 +71,6 @@ msgstr ""
 msgid "Provide a “slug” or leave blank for an automatically generated one."
 msgstr ""
 
-#: allink_core/core_apps/allink_categories/models.py:98
+#: allink_core/core_apps/allink_categories/models.py:101
 msgid "Category"
 msgstr ""

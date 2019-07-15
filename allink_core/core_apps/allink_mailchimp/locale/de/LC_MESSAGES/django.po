@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-01 17:02+0100\n"
+"POT-Creation-Date: 2019-07-15 16:23+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -49,11 +49,11 @@ msgstr ""
 msgid "Cannot decode json, got {}"
 msgstr ""
 
-#: allink_core/core_apps/allink_mailchimp/models.py:18
+#: allink_core/core_apps/allink_mailchimp/models.py:16
 msgid "Template"
 msgstr ""
 
-#: allink_core/core_apps/allink_mailchimp/models.py:19
+#: allink_core/core_apps/allink_mailchimp/models.py:17
 msgid "Choose a form."
 msgstr "Formular wählen"
 
@@ -75,7 +75,7 @@ msgstr "Ihre E-Mail-Adresse"
 msgid "Send"
 msgstr "Senden"
 
-#: allink_core/core_apps/allink_mailchimp/views.py:43
+#: allink_core/core_apps/allink_mailchimp/views.py:44
 msgid "Something went wrong with your subscription. Please try again later."
 msgstr ""
 "Bei Ihrer Anmeldung ist etwas schiefgelaufen. Bitte versuchen Sie es später "

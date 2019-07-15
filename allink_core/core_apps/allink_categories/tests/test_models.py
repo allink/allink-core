@@ -10,9 +10,6 @@ from parler.utils.context import switch_language
 from allink_core.core_apps.allink_categories.models import AllinkCategory as Category
 from allink_core.core_apps.allink_categories.tests import CategoryTestCaseMixin
 
-from allink_core.core.loading import get_model
-Work = get_model('work', 'Work')
-
 
 class TestCategories(CategoryTestCaseMixin, TransactionTestCase):
     """Implementation-specific tests"""

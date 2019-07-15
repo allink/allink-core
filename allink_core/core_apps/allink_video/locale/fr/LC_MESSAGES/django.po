@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-25 17:14+0200\n"
+"POT-Creation-Date: 2019-07-15 16:26+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,7 +24,7 @@ msgid "Predifined variations for Video Plugin"
 msgstr ""
 
 #: allink_core/core_apps/allink_video/cms_plugins.py:29
-#: allink_core/core_apps/allink_video/models.py:72
+#: allink_core/core_apps/allink_video/models.py:66
 msgid "Ratio"
 msgstr ""
 
@@ -37,38 +37,34 @@ msgid "Video Embed"
 msgstr ""
 
 #: allink_core/core_apps/allink_video/cms_plugins.py:57
-#: allink_core/core_apps/allink_video/cms_plugins.py:105
+#: allink_core/core_apps/allink_video/cms_plugins.py:106
 msgid "Generic"
 msgstr ""
 
 #: allink_core/core_apps/allink_video/cms_plugins.py:79
-#: allink_core/core_apps/allink_video/cms_plugins.py:122
+#: allink_core/core_apps/allink_video/cms_plugins.py:123
 msgid "Video settings"
 msgstr ""
 
 #: allink_core/core_apps/allink_video/cms_plugins.py:87
-#: allink_core/core_apps/allink_video/cms_plugins.py:131
+#: allink_core/core_apps/allink_video/cms_plugins.py:132
 msgid "Advanced settings"
 msgstr ""
 
-#: allink_core/core_apps/allink_video/cms_plugins.py:104
-#: allink_core/core_apps/allink_video/models.py:102
+#: allink_core/core_apps/allink_video/cms_plugins.py:105
+#: allink_core/core_apps/allink_video/models.py:94
 msgid "Video File"
 msgstr ""
 
-#: allink_core/core_apps/allink_video/models.py:24
+#: allink_core/core_apps/allink_video/models.py:16
 msgid "Attributes"
 msgstr ""
 
-#: allink_core/core_apps/allink_video/models.py:59
-msgid "Allink Video Embed"
-msgstr ""
-
-#: allink_core/core_apps/allink_video/models.py:62
+#: allink_core/core_apps/allink_video/models.py:53
 msgid "Video ID"
 msgstr ""
 
-#: allink_core/core_apps/allink_video/models.py:64
+#: allink_core/core_apps/allink_video/models.py:55
 msgid ""
 "Only provide the ID. The correct URL will automatically be generated."
 "<br><br>YouTube: https://www.youtube.com/watch?v=<strong>12345678</strong> "
@@ -76,31 +72,31 @@ msgid ""
 "<strong>12345678</strong> (the ID is <strong>12345678</strong>)"
 msgstr ""
 
-#: allink_core/core_apps/allink_video/models.py:67
+#: allink_core/core_apps/allink_video/models.py:61
 msgid "Video Service"
 msgstr ""
 
-#: allink_core/core_apps/allink_video/models.py:78
+#: allink_core/core_apps/allink_video/models.py:72
 #: allink_core/core_apps/allink_video/models.py:136
 msgid "Autostart"
 msgstr ""
 
-#: allink_core/core_apps/allink_video/models.py:80
+#: allink_core/core_apps/allink_video/models.py:74
 msgid ""
 "<strong>Important:</strong> Autoplaying videos with audio is not "
 "recommended. Use wisely. "
 msgstr ""
 
-#: allink_core/core_apps/allink_video/models.py:83
+#: allink_core/core_apps/allink_video/models.py:77
 #: allink_core/core_apps/allink_video/models.py:140
 msgid "Allow fullscreen"
 msgstr ""
 
-#: allink_core/core_apps/allink_video/models.py:99
-msgid "Allink Video File"
+#: allink_core/core_apps/allink_video/models.py:82
+msgid "Allink Video Embed"
 msgstr ""
 
-#: allink_core/core_apps/allink_video/models.py:103
+#: allink_core/core_apps/allink_video/models.py:96
 msgid ""
 "Recommended video settings:<br><br>Format: mp4<br>Codec: H.264<br>Target "
 "Bitrate: 2 (video loads quick and runs smooth)<br>Audio: Not recommended (no "
@@ -108,11 +104,11 @@ msgid ""
 "of video length. Generally speaking: Less is more."
 msgstr ""
 
-#: allink_core/core_apps/allink_video/models.py:109
+#: allink_core/core_apps/allink_video/models.py:104
 msgid "Video Start Image"
 msgstr ""
 
-#: allink_core/core_apps/allink_video/models.py:112
+#: allink_core/core_apps/allink_video/models.py:108
 msgid ""
 "Image that is being displayed while the video is loading. Ideally the very "
 "first frame of the video is used, in order to make the transition as smooth "
@@ -145,4 +141,8 @@ msgstr ""
 msgid ""
 "Disable video on mobile devices and only show the start image without video "
 "control."
+msgstr ""
+
+#: allink_core/core_apps/allink_video/models.py:145
+msgid "Allink Video File"
 msgstr ""

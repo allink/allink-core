@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-01 17:01+0100\n"
+"POT-Creation-Date: 2019-07-15 16:23+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,40 +18,40 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: allink_core/apps/contact/abstract_models.py:11
+#: allink_core/apps/contact/abstract_models.py:10
 msgid "-- between --"
 msgstr "-- zwischen --"
 
-#: allink_core/apps/contact/abstract_models.py:20
+#: allink_core/apps/contact/abstract_models.py:19
 msgid "-- please choose --"
 msgstr "-- bitte auswählen --"
 
-#: allink_core/apps/contact/abstract_models.py:21
+#: allink_core/apps/contact/abstract_models.py:20
 msgid "Phone"
 msgstr "Telefon"
 
-#: allink_core/apps/contact/abstract_models.py:22
+#: allink_core/apps/contact/abstract_models.py:21
 msgid "Email"
 msgstr "E-Mail"
 
-#: allink_core/apps/contact/abstract_models.py:26
+#: allink_core/apps/contact/abstract_models.py:25
 msgid "Please contact me via"
 msgstr "Kontakt erwünscht per"
 
-#: allink_core/apps/contact/abstract_models.py:31
+#: allink_core/apps/contact/abstract_models.py:30
 #: allink_core/apps/contact/forms.py:20
 msgid "Date"
 msgstr "Datum"
 
-#: allink_core/apps/contact/abstract_models.py:37
+#: allink_core/apps/contact/abstract_models.py:36
 msgid "Time"
 msgstr "Zeit"
 
-#: allink_core/apps/contact/abstract_models.py:71
+#: allink_core/apps/contact/abstract_models.py:45
 msgid "Contact Request"
 msgstr "Kontaktanfrage"
 
-#: allink_core/apps/contact/abstract_models.py:72
+#: allink_core/apps/contact/abstract_models.py:46
 msgid "Contact Requests"
 msgstr "Kontaktanfragen"
 
@@ -63,17 +63,19 @@ msgstr "Kontaktieren per"
 msgid "Contact Apphook"
 msgstr "Kontakt Apphook"
 
-#: allink_core/apps/contact/cms_plugins.py:34
-msgid "Predifined variations"
+#: allink_core/apps/contact/cms_plugins.py:35
+#, fuzzy
+#| msgid "Predifined variations"
+msgid "Predefined variations"
 msgstr "Vordefinierte css-Klassen"
 
-#: allink_core/apps/contact/cms_plugins.py:45
+#: allink_core/apps/contact/cms_plugins.py:46
 #, fuzzy
 #| msgid "Contact via"
 msgid "Contact Form"
 msgstr "Kontaktieren per"
 
-#: allink_core/apps/contact/cms_plugins.py:46
+#: allink_core/apps/contact/cms_plugins.py:47
 msgid "allink forms"
 msgstr ""
 

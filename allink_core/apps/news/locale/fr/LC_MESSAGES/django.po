@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-25 17:14+0200\n"
+"POT-Creation-Date: 2019-07-15 16:26+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,57 +18,58 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: allink_core/apps/news/abstract_models.py:33
+#: allink_core/apps/news/abstract_models.py:56
 msgid "Preview Image"
 msgstr ""
 
-#: allink_core/apps/news/abstract_models.py:40
-#: allink_core/apps/news/admin.py:24
+#: allink_core/apps/news/abstract_models.py:63
+#: allink_core/apps/news/admin.py:22
 msgid "Template"
 msgstr ""
 
-#: allink_core/apps/news/abstract_models.py:41
+#: allink_core/apps/news/abstract_models.py:64
 msgid "Choose a template."
 msgstr ""
 
-#: allink_core/apps/news/abstract_models.py:62
+#: allink_core/apps/news/abstract_models.py:79
 msgid "News entry"
 msgstr ""
 
-#: allink_core/apps/news/abstract_models.py:63
+#: allink_core/apps/news/abstract_models.py:80
 msgid "News"
 msgstr ""
 
-#: allink_core/apps/news/abstract_models.py:73
+#: allink_core/apps/news/abstract_models.py:98
 msgid "Slug"
 msgstr ""
 
-#: allink_core/apps/news/abstract_models.py:77
+#: allink_core/apps/news/abstract_models.py:102
 msgid "Leave blank to auto-generate a unique slug."
 msgstr ""
 
-#: allink_core/apps/news/abstract_models.py:80
+#: allink_core/apps/news/abstract_models.py:105
 msgid "Lead Text"
 msgstr ""
 
-#: allink_core/apps/news/abstract_models.py:81
+#: allink_core/apps/news/abstract_models.py:106
 msgid ""
 "Teaser text that in some cases is used in the list view and/or in the detail "
 "view."
 msgstr ""
 
-#: allink_core/apps/news/abstract_models.py:95
+#: allink_core/apps/news/abstract_models.py:120
 msgid ""
 "Select and arrange specific entries, or, leave blank to select all. (If "
 "manual entries are selected the category filtering will be ignored.)"
 msgstr ""
 
-#: allink_core/apps/news/admin.py:40
-msgid "Max. 400 characters."
+#: allink_core/apps/news/abstract_models.py:124
+msgid "Apphook Page"
 msgstr ""
 
-#: allink_core/apps/news/admin.py:58
-msgid "Published From/To"
+#: allink_core/apps/news/abstract_models.py:128
+msgid ""
+"If provided, this Apphook-Page will be used to generate the detail link."
 msgstr ""
 
 #: allink_core/apps/news/cms_apps.py:8

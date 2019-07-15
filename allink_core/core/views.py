@@ -11,7 +11,6 @@ from django.template.loader import get_template
 from django.utils.translation import ugettext_lazy as _
 from django.urls import reverse
 from django.core.exceptions import ImproperlyConfigured
-from django.conf import settings
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponsePermanentRedirect, Http404, JsonResponse
 from django.template.loader import render_to_string
 from django.template import TemplateDoesNotExist
@@ -19,7 +18,7 @@ from parler.views import TranslatableSlugMixin
 
 from allink_core.core.models import AllinkBaseAppContentPlugin
 from allink_core.core_apps.allink_categories.models import AllinkCategory
-from allink_core.core.utils import get_query, update_context_google_tag_manager
+from allink_core.core.utils import update_context_google_tag_manager
 
 
 class AllinkBasePluginLoadMoreView(ListView):
@@ -190,14 +189,7 @@ class AllinkBaseCreateView(CreateView):
         self.object = form.save()
         if self.request.is_ajax():
             context = self.get_context_data()
-            try:
-                return self.json_response(context, self.get_confirmation_template(), 200)
-            except:
-                # sentry is not configured on localhost
-                if not settings.RAVEN_CONFIG.get('dsn'):
-                    raise
-                form.add_error(None, _('Something went wrong with your subscription. Please try again later.'))
-                return self.render_to_response(self.get_context_data(form=form), status=206)
+            return self.json_response(context, self.get_confirmation_template(), 200)
         else:
             return HttpResponseRedirect(self.get_success_url())
 
@@ -226,54 +218,6 @@ class AllinkBaseCreateView(CreateView):
         return template
 
 
-# deprecated (only really used by WorkSearchAjaxView) will be renamed in AllinkBaseAjaxSearchFormView
-class AllinkBaseAjaxFormView(FormView):
-    """
-    form_class =
-    plugin_class =
-    """
-    search_fields = ['translations__title', 'translations__lead']
-
-    def dispatch(self, *args, **kwargs):
-        plugin_id = self.kwargs.pop('plugin_id', None)
-        self.plugin = self.plugin_class.objects.get(id=plugin_id)
-        return super(AllinkBaseAjaxFormView, self).dispatch(*args, **kwargs)
-
-    def get_context_data(self, *args, **kwargs):
-        context = super(AllinkBaseAjaxFormView, self).get_context_data(*args, **kwargs)
-        context.update({'instance': self.plugin})
-        return context
-
-    def get_object_list(self, query_string):
-        if query_string:
-            entry_query = get_query(query_string, self.search_fields)
-            object_list = self.plugin.data_model.objects.active().filter(entry_query).distinct()
-        else:
-            object_list = self.plugin.data_model.objects.active()
-        return object_list
-
-    def form_valid(self, form):
-        context = self.get_context_data()
-
-        context.update({'object_list': self.get_object_list(form.cleaned_data.get('q'))})
-        context.update({'csrf_token_value': self.request.COOKIES['csrftoken']})
-
-        return self.json_response(context)
-
-    def form_invalid(self, form):
-        return self.render_to_response(self.get_context_data(form=form), status=206)
-
-    def json_response(self, context):
-        context.update({'request': self.request})
-        context.update({'instance': self.plugin})
-
-        json_context = {}
-        json_context['rendered_content'] = render_to_string(self.get_template_names()[0], context=context,
-                                                            request=self.request)
-        json_context['no_results'] = False if context['object_list'] else True
-        return HttpResponse(content=json.dumps(json_context), content_type='application/json', status=200)
-
-
 class AllinkBasePluginAjaxFormView(FormView):
     """
     Use this class whenever you create a plugin which displays a form.
@@ -295,7 +239,7 @@ class AllinkBasePluginAjaxFormView(FormView):
     we only allow POST (the GET is with the cmsplugin render)
     http_method_names = ['post']
 
-    therefore views inherit from this clas are not suitable for direct links
+    therefore views inherit from this class are not suitable for direct links
     e.g all viewnames listed in BUTTON_LINK_SPECIAL_LINKS_CHOICES.
     these views will be called by a GET request and not with ajax
     """
@@ -397,18 +341,38 @@ class AllinkBasePluginAjaxFormView(FormView):
 
 
 # TODO
-# class AllinkBaseAjaxPluginSearchFormView(AllinkBasePluginAjaxFormView):
+# class AllinkBasePluginAjaxCreateView(AllinkBasePluginAjaxFormView):
+#     """
+#     # example implementation:
+#     # class OrderRequestView
+#     #     model = OrderRequest
+#     #     form_class = OrderRequestForm
+#     #     template_name = 'order/plugins/request/content.html'
+#     #
+#     #     success_template_name = 'order/plugins/request/success.html'
+#     #     plugin_class = OrderRequestPlugin
+#     #     viewname = 'order:request'
+#     """
+#     plugin = None
+#
+#     def form_valid(self, form):
+#         self.object = form.save()
+#         return super().form_valid(form)
+
+
+# TODO
+# class AllinkBasePluginAjaxSearchFormView(AllinkBasePluginAjaxFormView):
 #     """
 #     example implementation:
 #     class WorkSearchView
-#     form_class = WorkSearchForm
-#     template_name = 'work/plugins/search/content.html'
+#         form_class = WorkSearchForm
+#         template_name = 'work/plugins/search/content.html'
 #
-#     success_template_name = 'work/plugins/search/success.html' ?!
-#     plugin_class = WorkSearchPlugin
-#     viewname = 'work:search'
+#         success_template_name = 'work/plugins/search/success.html' ?!
+#         plugin_class = WorkSearchPlugin
+#         viewname = 'work:search'
 #
-#     search_fields = ['translations__title', 'translations__lead']
+#         search_fields = ['translations__title', 'translations__lead']
 #     """
 #
 #     search_fields = ['translations__title', 'translations__lead']
@@ -436,25 +400,6 @@ class AllinkBasePluginAjaxFormView(FormView):
 #             template_name=self.get_template_names()[0],
 #             data=data
 #         )
-
-# TODO
-# class AllinkBaseAjaxPluginCreateView(AllinkBasePluginAjaxFormView):
-#     """
-#     # example implementation:
-#     # class OrderRequestView
-#     #     model = OrderRequest
-#     #     form_class = OrderRequestForm
-#     #     template_name = 'order/plugins/request/content.html'
-#     #
-#     #     success_template_name = 'order/plugins/request/success.html'
-#     #     plugin_class = OrderRequestPlugin
-#     #     viewname = 'order:request'
-#     """
-#     plugin = None
-#
-#     def form_valid(self, form):
-#         self.object = form.save()
-#         return super().form_valid(form)
 
 
 # used to redirect CMSPage to external url
