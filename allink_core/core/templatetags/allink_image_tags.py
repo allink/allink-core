@@ -109,7 +109,9 @@ def get_unique_key(context):
 
 
 @register.inclusion_tag('templatetags/allink_image.html', takes_context=True)
-def render_image(context, image, ratio=None, width_alias=None, crop='smart', upscale=True, bw=False, high_resolution=True, icon_enabled=True, bg_enabled=True, bg_color=None, lazyload_enabled=True):
+def render_image(context, image, ratio=None, width_alias=None, crop='smart', upscale=True, bw=False,
+                 high_resolution=True, icon_enabled=True, bg_enabled=True, bg_color=None, lazyload_enabled=True,
+                 zoom=None, subject_location=False):
     """
     -> parameters:
     image: FilerImageField
@@ -122,6 +124,8 @@ def render_image(context, image, ratio=None, width_alias=None, crop='smart', ups
     icon_disabled: used in template
     bg_disabled: used in template
     bg_color: used in template
+    zoom: used in template
+    subject_location: used in template
 
     if you render a image from outside the content or app plugin content, it is important to supply a thumbnail width_alias
     otherwise the thumbnail will be rendered with the default width_alias '1-of-1' which might be to big.
@@ -143,12 +147,9 @@ def render_image(context, image, ratio=None, width_alias=None, crop='smart', ups
             # get with alias from context
             width_alias = get_width_alias_from_plugin(context)
 
-        # # respect the focal point set in the filer media gallery
-        # if image.subject_location:
-        #     focal_x, focal_y = image.subject_location.split(",")
-        #     crop_x = get_percent(image.width, int(focal_x))
-        #     crop_y = get_percent(image.height, int(focal_y))
-        #     crop = '{},{}'.format(crop_x, crop_y)
+        # use focal point. works best in combination with zoom > 0
+        if subject_location:
+            subject_location = image.subject_location
 
         # update context
         context.update({'image': image})
@@ -158,7 +159,8 @@ def render_image(context, image, ratio=None, width_alias=None, crop='smart', ups
         context.update({'lazyload_enabled': lazyload_enabled})
 
         sizes = get_sizes_from_width_alias(width_alias)
-        thumbnail_options = {'crop': crop, 'bw': bw, 'upscale': upscale, 'HIGH_RESOLUTION': high_resolution}
+        thumbnail_options = {'crop': crop, 'bw': bw, 'upscale': upscale, 'HIGH_RESOLUTION': high_resolution,
+                             'zoom': zoom, 'subject_location': subject_location}
 
         # create a thumbnail for each size
         for size in sizes:
