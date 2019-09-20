@@ -1,0 +1,55 @@
+{% load cms_tags allink_cms_tags sekizai_tags i18n thumbnail allink_image_tags %}
+
+{% for object in object_list %}
+
+    <div class="locations-plugin footer-container {{ instance.css_classes }}">
+
+        <div class="text-container">
+            {% if object.title %}
+                <p class="text-container__heading">{% render_model_ajax object "title" %}</p>
+            {% endif %}
+            <p>
+                {% if object.subtitle %}
+                    {{object.subtitle}}<br>
+                {% endif %}
+                {% if object.street and object.zip_code or object.place %}
+                    <a class="site-footer__link" href="{{object.map_link}}" target="_blank">
+                {% endif %}
+                    {% if object.street %}
+                        {{object.street}} {{object.street_nr}}<br>
+                    {% endif %}
+                    {% if object.zip_code or object.place %}
+                        {{object.zip_code}} {{object.place}}
+                    {% endif %}
+                {% if object.street and object.zip_code or object.place %}
+                    </a>
+                {% endif %}
+            </p>
+
+            <p>
+                {% if object.email %}
+                    <a class="site-footer__link" href="mailto:{{object.email}}">{{object.email}}</a><br>
+                {% endif %}
+                {% if object.phone %}
+                    <a class="site-footer__link" href="tel:{{object.phone}}">{{object.phone_formatted}}</a><br>
+                {% endif %}
+                {% if object.mobile %}
+                    <a class="site-footer__link" href="tel:{{object.mobile}}">{{object.mobile_formatted}}</a><br>
+                {% endif %}
+                {% if object.fax %}
+                    <a class="site-footer__link" href="tel:{{object.fax}}">{{object.fax_formatted}}</a><br>
+                {% endif %}
+            </p>
+
+
+            {% page_attribute "page_title" "contact-location" as page_title %}
+            <a href="{% page_url "contact-location" %}" class="button-link-plugin__link btn btn-sm btn-ghost footer-details-container__link" data-cms-page data-trigger-softpage>
+                <span class="btn__text">{{ page_title }}</span>
+            </a>
+            {% include "modals/modal-header-markup.html" with title=page_title modal_type="softpage" %}
+
+        </div>
+
+    </div>
+
+{% endfor %}

@@ -33,6 +33,7 @@ class LocationsAdmin(AllinkMediaAdminMixin, AllinkSEOAdminMixin, AllinkCategoryA
                     ('email', 'fax',),
                     'website',
                     'map_link',
+                    'commercial_register_entry',
                     'preview_image',
                     'opening_hours_display',
                 )

@@ -1,0 +1,57 @@
+{% load cms_tags allink_cms_tags sekizai_tags i18n thumbnail allink_image_tags %}
+
+{% for object in object_list %}
+
+    <div class="locations-plugin imprint-container {{ instance.css_classes }}">
+
+        <h4 class="heading">{% trans "Betreiber der Webseite" %}</h4>
+
+        <div class="text-container">
+            {% if object.title %}
+                <p class="footer-container__heading">{% render_model_ajax object "title" %}</p>
+            {% endif %}
+            <p>
+                {% if object.subtitle %}
+                    {{object.subtitle}}<br>
+                {% endif %}
+                {% if object.street %}
+                    {{object.street}} {{object.street_nr}}<br>
+                {% endif %}
+                {% if object.zip_code or object.place %}
+                    {{object.zip_code}} {{object.place}}<br>
+                {% endif %}
+                {% if object.map_link %}
+                    <a class="button-link-plugin__link text" href="{{object.map_link}}" target="_blank" rel="noopener">
+                        <span class="button-link-plugin__text">
+                            {% trans "Directions" %}
+                        </span>
+                    </a>
+                {% endif %}
+            </p>
+
+            <p>
+                {% if object.email %}
+                    <a class="text" href="mailto:{{object.email}}">{{object.email}}</a><br>
+                {% endif %}
+                {% if object.phone %}
+                    <a class="text" href="tel:{{object.phone}}">{{object.phone_formatted}}</a><br>
+                {% endif %}
+                {% if object.mobile %}
+                    <a class="text" href="tel:{{object.mobile}}">{{object.mobile_formatted}}</a><br>
+                {% endif %}
+                {% if object.fax %}
+                    <a class="text" href="tel:{{object.fax}}">{{object.fax_formatted}}</a><br>
+                {% endif %}
+            </p>
+
+            {% if object.commercial_register_entry %}
+            <p>
+                {% trans 'Commercial register entry' %}: {{ object.commercial_register_entry }}
+            </p>
+            {% endif %}
+
+        </div>
+
+    </div>
+
+{% endfor %}

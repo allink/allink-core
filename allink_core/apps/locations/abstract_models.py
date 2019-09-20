@@ -79,6 +79,12 @@ class BaseLocations(SortableMixin, AllinkContactFieldsModel, AllinkAddressFields
         blank=True,
         null=True
     )
+    commercial_register_entry = models.CharField(
+        _('Commercial register entry'),
+        blank=True,
+        null=True,
+        max_length=50,
+    )
     mon = models.CharField(
         _('Monday morning or whole day'),
         help_text='Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
@@ -268,6 +274,44 @@ class BaseLocations(SortableMixin, AllinkContactFieldsModel, AllinkAddressFields
             ],
             False
         )
+
+    @cached_property
+    def opening_hours(self):
+        """
+        Return the opening hours for whole days in a summarized format
+
+        Monday – Friday	09:00-19:00
+        Saturday	09:00-17:00
+        """
+
+        opening_times = [
+            (_('Monday'), self.mon),
+            (_('Tuesday'), self.tue),
+            (_('Wednesday'), self.wed),
+            (_('Thursday'), self.thu),
+            (_('Friday'), self.fri),
+            (_('Saturday'), self.sat),
+            (_('Sunday'), self.sun)
+        ]
+
+        opening_hours = []
+        for opening_time in opening_times:
+            day, morning = opening_time
+            morning = morning.replace(':', '.').replace('-', ' – ')
+
+            if not morning:
+                continue
+            elif len(opening_hours) and morning in list(map(lambda x: x.get('time'), opening_hours))[-1]:
+                opening_hours[-1]['end_day'] = day
+            else:
+                day = {
+                    'start_day': day,
+                    'end_day': day,
+                    'time': morning,
+                }
+                opening_hours.append(day)
+
+        return opening_hours
 
     @cached_property
     def gmaps_link(self):
