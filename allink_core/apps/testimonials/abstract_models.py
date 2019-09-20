@@ -34,7 +34,6 @@ class BaseTestimonials(SortableMixin, AllinkCategoryFieldsModel, AllinkBaseTrans
         max_length=255,
         default=''
     )
-    slug = TranslatedField(any_language=True)
     lead = TranslatedField()
     preview_image = FilerImageField(
         verbose_name=_('Preview Image'),
@@ -90,14 +89,6 @@ class BaseTestimonialsTranslation(AllinkBaseTranslatedFieldsModel):
         on_delete=models.CASCADE,
         related_name='translations',
         null=True
-    )
-
-    slug = models.SlugField(
-        _('Slug'),
-        max_length=255,
-        default='',
-        blank=True,
-        help_text=_('Leave blank to auto-generate a unique slug.')
     )
     lead = HTMLField(
         _('Lead Text'),

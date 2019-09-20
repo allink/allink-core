@@ -48,7 +48,6 @@ class BaseNews(AllinkTimeFramedModel, AllinkCategoryFieldsModel, AllinkBaseTrans
     slug_source_field_name = 'title'
 
     title = TranslatedField(any_language=True)
-    slug = TranslatedField(any_language=True)
     entry_date = AutoCreatedField('Entry Date', editable=True)
     lead = TranslatedField()
 
@@ -90,16 +89,8 @@ class BaseNewsTranslation(AllinkBaseTranslatedFieldsModel):
         related_name='translations',
         null=True
     )
-
     title = models.CharField(
         max_length=255
-    )
-    slug = models.SlugField(
-        _('Slug'),
-        max_length=255,
-        default='',
-        blank=True,
-        help_text=_('Leave blank to auto-generate a unique slug.')
     )
     lead = HTMLField(
         _('Lead Text'),

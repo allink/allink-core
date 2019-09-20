@@ -578,7 +578,6 @@ class {model_name}(SortableMixin, AllinkCategoryFieldsModel, AllinkBaseTranslata
     slug_source_field_name = 'title'
 
     title = TranslatedField(any_language=True)
-    slug = TranslatedField(any_language=True)
     lead = TranslatedField()
 
     preview_image = FilerImageField(
@@ -622,13 +621,6 @@ class {model_name}Translation(AllinkBaseTranslatedFieldsModel):
 
     title = models.CharField(
         max_length=255
-    )
-    slug = models.SlugField(
-        _('Slug'),
-        max_length=255,
-        default='',
-        blank=True,
-        help_text=_('Leave blank to auto-generate a unique slug.')
     )
     lead = HTMLField(
         _('Lead Text'),

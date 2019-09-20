@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
+from django.db import models
+from django.utils.translation import ugettext_lazy as _
 from aldryn_translation_tools.models import TranslationHelperMixin
 from parler.models import TranslatableModel, TranslatedFieldsModel
+from parler.models import TranslatedField
 from model_utils.models import TimeStampedModel
 
 from allink_core.core.models.managers import AllinkBaseModelManager
@@ -32,17 +35,15 @@ class AllinkBaseTranslatableModel(TranslationHelperMixin, AllinkTranslatedAutoSl
     """
     Base model class for apps with detail view
 
-    - every concrete implementation expects at least the following fields:
+    - every concrete implementation expects the following attribute:
         slug_source_field_name = 'title'  # does not have to be 'title'
-
-        title = TranslatedField(any_language=True)  # does not have to be 'title'
-        slug = TranslatedField(any_language=True)
 
     - get_absolute_url expects a slug field defined
 
     """
 
     objects = AllinkBaseModelManager()
+    slug = TranslatedField(any_language=True)
 
     class Meta:
         abstract = True
@@ -53,5 +54,14 @@ class AllinkBaseTranslatedFieldsModel(AllinkSEOTranslatedFieldsModel, AllinkTeas
     """
     Base model class for apps with detail view
     """
+
+    slug = models.SlugField(
+        _('Slug'),
+        max_length=255,
+        default='',
+        blank=True,
+        help_text=_('Leave blank to auto-generate a unique slug.')
+    )
+
     class Meta:
         abstract = True

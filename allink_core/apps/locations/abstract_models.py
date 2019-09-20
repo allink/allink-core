@@ -53,7 +53,6 @@ class BaseLocations(SortableMixin, AllinkContactFieldsModel, AllinkAddressFields
     slug_source_field_name = 'title'
 
     title = TranslatedField(any_language=True)
-    slug = TranslatedField(any_language=True)
     subtitle = TranslatedField()
     lead = TranslatedField()
     opening_hours_display = TranslatedField()
@@ -292,13 +291,6 @@ class BaseLocationsTranslation(AllinkBaseTranslatedFieldsModel):
     )
     title = models.CharField(
         max_length=255
-    )
-    slug = models.SlugField(
-        _('Slug'),
-        max_length=255,
-        default='',
-        blank=True,
-        help_text=_('Leave blank to auto-generate a unique slug.')
     )
     subtitle = models.CharField(
         _('Subtitle'),

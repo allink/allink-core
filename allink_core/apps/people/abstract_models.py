@@ -43,7 +43,6 @@ class BasePeople(SortableMixin, AllinkContactFieldsModel, AllinkAddressFieldsMod
         _('Last Name'),
         max_length=255
     )
-    slug = TranslatedField(any_language=True)
     lead = TranslatedField()
     company_name = models.CharField(
         _('Company Name'),
@@ -106,13 +105,6 @@ class BasePeopleTranslation(AllinkBaseTranslatedFieldsModel):
         on_delete=models.CASCADE,
         related_name='translations',
         null=True
-    )
-    slug = models.SlugField(
-        _('Slug'),
-        max_length=255,
-        default='',
-        blank=True,
-        help_text=_('Leave blank to auto-generate a unique slug.')
     )
     job_function = models.CharField(
         _('Function'),
