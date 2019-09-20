@@ -20,8 +20,7 @@ from djangocms_attributes_field.fields import AttributesField
 from cms.models.fields import PageField
 from allink_core.core.loading import get_model
 from allink_core.core.models.choices import (
-    SALUTATION_CHOICES, TARGET_CHOICES, NEW_WINDOW, SOFTPAGE_LARGE,
-    SOFTPAGE_SMALL, FORM_MODAL, IMAGE_MODAL, DEFAULT_MODAL, BLANK_CHOICE, )
+    SALUTATION_CHOICES, TARGET_CHOICES, NEW_WINDOW, SOFTPAGE, FORM_MODAL, IMAGE_MODAL, DEFAULT_MODAL, BLANK_CHOICE, )
 from allink_core.core_apps.allink_categories.models import AllinkCategory
 from allink_core.core.models.managers import AllinkCategoryModelManager
 from allink_core.core.models.fields import ZipCodeField
@@ -494,15 +493,11 @@ class AllinkLinkFieldsModel(AllinkInternalLinkFieldsModel):
     @cached_property
     def new_window_enabled(self):
         return True if self.link_target == NEW_WINDOW and not self.form_modal_enabled \
-                       and not self.softpage_large_enabled and not self.softpage_small_enabled else False
+                       and not self.softpage_enabled else False
 
     @cached_property
-    def softpage_large_enabled(self):
-        return True if self.link_target == SOFTPAGE_LARGE else False
-
-    @cached_property
-    def softpage_small_enabled(self):
-        return True if self.link_target == SOFTPAGE_SMALL else False
+    def softpage_enabled(self):
+        return True if self.link_target == SOFTPAGE else False
 
     @cached_property
     def form_modal_enabled(self):

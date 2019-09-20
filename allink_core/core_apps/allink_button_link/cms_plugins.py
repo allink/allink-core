@@ -9,11 +9,10 @@ from django.core.exceptions import ValidationError
 from djangocms_attributes_field.widgets import AttributesWidget
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
-from webpack_loader.utils import get_files
 
 from allink_core.core_apps.allink_button_link.models import AllinkButtonLinkContainerPlugin, AllinkButtonLinkPlugin
 from allink_core.core.utils import get_additional_choices, update_context_google_tag_manager, get_ratio_choices
-from allink_core.core.models.choices import BLANK_CHOICE, NEW_WINDOW, SOFTPAGE_LARGE, SOFTPAGE_SMALL, \
+from allink_core.core.models.choices import BLANK_CHOICE, NEW_WINDOW, SOFTPAGE, \
     FORM_MODAL, IMAGE_MODAL, DEFAULT_MODAL
 from allink_core.core.forms.fields import SelectLinkField
 from allink_core.core.forms.mixins import AllinkInternalLinkFieldMixin
@@ -39,8 +38,7 @@ class AllinkButtonLinkContainerPluginForm(forms.ModelForm):
 class AllinkButtonLinkPluginForm(AllinkInternalLinkFieldMixin, forms.ModelForm):
     LINK_TARGET_REDUCED = (
         (NEW_WINDOW, _('New window')),
-        (SOFTPAGE_LARGE, _('Softpage large')),
-        (SOFTPAGE_SMALL, _('Softpage small')),
+        (SOFTPAGE, _('Softpage')),
     )
 
     link_target_reduced = forms.ChoiceField(label=_('Link Target'), required=False,
