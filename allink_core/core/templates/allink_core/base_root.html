@@ -53,13 +53,7 @@
     {% endblock webpack_css %}
     {% render_block "css" %}
 
-    {# Load external JavaScript#}
-    {# Included from: https://cdnjs.com/#}
-    <script src="//cdnjs.cloudflare.com/ajax/libs/picturefill/3.0.3/picturefill.min.js" async></script>
-    <!--[if lt IE 9]>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    {# Load external JavaScript #}
 
     {# Optional: Extra Header Block#}
     {% block extrahead %}{% endblock extrahead %}
@@ -92,14 +86,15 @@
 
     {# Load our JavaScript#}
     {% block google_map_api_key %}
-        <script type="text/javascript">
+        <script>
             var GOOGLE_MAP_API_KEY = '{% settings_value "GOOGLE_MAP_API_KEY" %}';
         </script>
     {% endblock google_map_api_key %}
 
     {% render_block "js" %}
     {% block webpack_js %}
-        {% render_bundle 'app' 'js' %}
+        {% get_files 'app' 'js' as app_js_chunks %}
+        <script src="{{ app_js_chunks.0.publicPath }}"></script>
     {% endblock webpack_js %}
 
     {# Optional: Additional Scripts#}

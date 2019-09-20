@@ -2,7 +2,7 @@
 
 {% if teaser_link %}
     <div class="teaser__link">
-        <a href="{{ teaser_link }}" {% if instance.softpage_enabled %}data-softpage{% endif %}>
+        <button {% if instance.softpage_enabled %}data-softpage{% endif %} {% if "shop" in teaser_link %}target="_blank"{% endif %}>
             <span class="btn__text">
                 {% if teaser_link_text %}
                     {{ teaser_link_text }}
@@ -17,6 +17,6 @@
                     {% trans "More" %}
                 {% endif %}
             </span></span>
-        </a>
+        </button>
     </div>
 {% endif %}

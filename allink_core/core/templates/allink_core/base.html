@@ -26,15 +26,15 @@
     {# start: content #}
     <hr class="sr-only" id="page-content" />
     {% block content_container %}
-        <section class="site-content">
+        <main class="site-content" {% if not request.toolbar.edit_mode_active %}data-scroll-spy="default"{% endif %}>
             {% block content %}{% endblock %}
-        </section>
+        </main>
     {% endblock content_container %}
     <hr class="sr-only" />
     {# end: content #}
 
     {% block footer %}
-        <footer class="site-footer inverted-colors" role="contentinfo">
+        <footer class="site-footer inverted-colors">
 
             {% static_placeholder "footer" %}
 
