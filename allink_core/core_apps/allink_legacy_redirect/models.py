@@ -15,8 +15,8 @@ from allink_core.core.models import AllinkInternalLinkFieldsModel
 
 class AllinkLegacyLink(AllinkInternalLinkFieldsModel):
     old = models.CharField(_('Old Link'), max_length=255, unique=True,
-                           help_text=u'We strip away the anchor part of the URL as '
-                                     u'this part is not passed to the server.')
+                           help_text='We strip away the anchor part of the URL as '
+                                    'this part is not passed to the server.')
 
     #  External Redirect
     overwrite = models.CharField(
@@ -50,7 +50,7 @@ class AllinkLegacyLink(AllinkInternalLinkFieldsModel):
         _('Redirect when logged out'),
         default=False,
         help_text=_('If True, current site will not redirect when user is logged in. '
-                    u'If False, the page will be redirected.')
+                   'If False, the page will be redirected.')
     )
     language = models.CharField(
         _('Language'),
@@ -93,7 +93,7 @@ class AllinkLegacyLink(AllinkInternalLinkFieldsModel):
             messages.add_message(
                 request,
                 messages.ERROR,
-                u'Can\'t connect to url: {}'.format(old_url)
+               'Can\'t connect to url: {}'.format(old_url)
             )
             result = None
         except RequestException as e:
@@ -106,7 +106,7 @@ class AllinkLegacyLink(AllinkInternalLinkFieldsModel):
                     # first history entry should be the redirect
                     redir = resp.history[0]
                     if redir.status_code == 302:
-                        location = redir.headers.get(u'Location')
+                        location = redir.headers.get('Location')
                         # location of redirect has to match
                         # Django 1.9 will send back relative urls
                         # if run via dev server

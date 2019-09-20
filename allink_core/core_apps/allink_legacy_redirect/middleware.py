@@ -66,14 +66,14 @@ class AllinkLegacyRedirectMiddleware(object):
             # cause subpages are less specific.
 
             # build up array with path parts
-            # e.g. [u'en', u'agency', u'contact']
+            # e.g. ['en','agency','contact']
             path_bits = request.path.split('/')[1:-1]
             length = len(path_bits)
             olds = []
 
             # omit final bit because we already
             # tested for it in our first try
-            # e.g. [u'/en/', u'/en/agency/']
+            # e.g. ['/en/','/en/agency/']
             for i in range(1, length):
                 olds.append('/%s/' % ('/').join(path_bits[:i]))
 

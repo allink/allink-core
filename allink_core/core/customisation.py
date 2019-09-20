@@ -595,11 +595,11 @@ class {model_name}(SortableMixin, AllinkCategoryFieldsModel, AllinkBaseTranslata
     )
 
     header_placeholder = PlaceholderField(
-        u'{label}_header',
+       '{label}_header',
         related_name='%(app_label)s_%(class)s_header_placeholder'
     )
     content_placeholder = PlaceholderField(
-        u'{label}_content',
+       '{label}_content',
         related_name='%(app_label)s_%(class)s_content_placeholder'
     )
 

@@ -15,14 +15,14 @@ class AdminPdfThumnailWidget(AdminFileWidget):
         output = []
 
         if value:
-            output.append(u'<img alt="%s" src="%s" height="200"/>' % (value.url, value.url,))
+            output.append('<img alt="%s" src="%s" height="200"/>' % (value.url, value.url,))
         else:
             output.append(_('Thumbnail is created when publication is saved. And a PDF document is assigned.'))
 
         # This is commented out b/c maybe you want to be able to override the thumbnail?
         # output.append(super(AdminFileWidget, self).render(name, value, attrs))
 
-        return mark_safe(u''.join(output))
+        return mark_safe(''.join(output))
 
 
 class Icon(forms.widgets.TextInput):

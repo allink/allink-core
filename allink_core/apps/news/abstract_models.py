@@ -67,8 +67,8 @@ class BaseNews(AllinkTimeFramedModel, AllinkCategoryFieldsModel, AllinkBaseTrans
         null=True,
     )
 
-    header_placeholder = PlaceholderField(u'news_header', related_name='%(app_label)s_%(class)s_header_placeholder')
-    content_placeholder = PlaceholderField(u'news_content', related_name='%(app_label)s_%(class)s_content_placeholder')
+    header_placeholder = PlaceholderField('news_header', related_name='%(app_label)s_%(class)s_header_placeholder')
+    content_placeholder = PlaceholderField('news_content', related_name='%(app_label)s_%(class)s_content_placeholder')
 
     objects = AllinkNewsManager()
 
@@ -80,7 +80,7 @@ class BaseNews(AllinkTimeFramedModel, AllinkCategoryFieldsModel, AllinkBaseTrans
         verbose_name_plural = _('News')
 
     def __str__(self):
-        return u'%s - %s' % (self.title, self.entry_date.strftime('%d.%m.%Y %H:%M:%S'))
+        return '%s - %s' % (self.title, self.entry_date.strftime('%d.%m.%Y %H:%M:%S'))
 
 
 class BaseNewsTranslation(AllinkBaseTranslatedFieldsModel):

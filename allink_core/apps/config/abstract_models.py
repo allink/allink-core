@@ -73,7 +73,7 @@ class BaseConfig(SingletonModel, TranslatableModel):
         verbose_name = _('Configuration')
 
     def __str__(self):
-        return u'Configuration'
+        return 'Configuration'
 
     def save(self, *args, **kwargs):
 
@@ -172,8 +172,8 @@ class BaseConfigTranslation(TranslatedFieldsModel):
         verbose_name=_('Base title'),
         max_length=50,
         help_text=_(
-            u'Default base title, Is also used for default base og:title when page/post is shared on Facebook. <br>'
-            u'If not supplied the name form Django Sites will be used instead.'),
+            'Default base title, Is also used for default base og:title when page/post is shared on Facebook. <br>'
+            'If not supplied the name form Django Sites will be used instead.'),
         blank=True,
         null=True
     )

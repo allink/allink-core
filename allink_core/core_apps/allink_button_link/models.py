@@ -197,10 +197,10 @@ class AllinkButtonLinkPlugin(CMSPlugin, AllinkLinkFieldsModel):
         verbose_name=_('Video ID'),
         max_length=255,
         help_text=_(
-            u'Only provide the ID. The correct URL will automatically be generated.<br><br>'
-            u'YouTube: https://www.youtube.com/watch?v=<strong>12345678</strong> '
-            u'(the ID is <strong>12345678</strong>)<br>Vimeo: https://vimeo.com/<strong>12345678</strong> '
-            u'(the ID is <strong>12345678</strong>)'),
+           'Only provide the ID. The correct URL will automatically be generated.<br><br>'
+           'YouTube: https://www.youtube.com/watch?v=<strong>12345678</strong> '
+           '(the ID is <strong>12345678</strong>)<br>Vimeo: https://vimeo.com/<strong>12345678</strong> '
+           '(the ID is <strong>12345678</strong>)'),
         blank=True,
         null=True,
     )
@@ -223,9 +223,9 @@ class AllinkButtonLinkPlugin(CMSPlugin, AllinkLinkFieldsModel):
         verbose_name=_('Video File'),
         on_delete=models.PROTECT,
         help_text=_(
-            u'Recommended video settings:<br><br>Format: mp4<br>Codec: H.264<br>Target Bitrate: 2 '
-            u'(video loads quick and runs smooth)<br>Audio: Not recommended (no audio = smaller file size and less '
-            u'annoyed visitors)<br>File size: Dependent of video length. Generally speaking: Less is more.'),
+           'Recommended video settings:<br><br>Format: mp4<br>Codec: H.264<br>Target Bitrate: 2 '
+           '(video loads quick and runs smooth)<br>Audio: Not recommended (no audio = smaller file size and less '
+           'annoyed visitors)<br>File size: Dependent of video length. Generally speaking: Less is more.'),
         blank=True,
         null=True,
         related_name='%(app_label)s_%(class)s_video_file',
@@ -235,10 +235,10 @@ class AllinkButtonLinkPlugin(CMSPlugin, AllinkLinkFieldsModel):
         on_delete=models.PROTECT,
         related_name='%(app_label)s_%(class)s_video_poster_image',
         help_text=_(
-            u'Image that is being displayed while the video is loading. Ideally the very first frame of the video '
-            u'is used, in order to make the transition as smooth as possible.<br><br><strong>Imoprtant:</strong> '
-            u'Make sure the aspect ratio of the image is <strong>exactly the same</strong> as the video, '
-            u'otherwise the video height will shrink or grow when the playback starts.'),
+           'Image that is being displayed while the video is loading. Ideally the very first frame of the video '
+           'is used, in order to make the transition as smooth as possible.<br><br><strong>Imoprtant:</strong> '
+           'Make sure the aspect ratio of the image is <strong>exactly the same</strong> as the video, '
+           'otherwise the video height will shrink or grow when the playback starts.'),
         blank=True,
         null=True,
     )
@@ -274,7 +274,7 @@ class AllinkButtonLinkPlugin(CMSPlugin, AllinkLinkFieldsModel):
     cmsplugin_ptr = CMSPluginField()
 
     def __str__(self):
-        return u'{}'.format(self.label)
+        return'{}'.format(self.label)
 
     @cached_property
     def link_url_typed(self):

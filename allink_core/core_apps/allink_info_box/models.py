@@ -34,7 +34,7 @@ class AllinkInfoBoxPlugin(CMSPlugin):
 
     def __str__(self):
         if self.template:
-            return u'({})'.format(self.template)
+            return '({})'.format(self.template)
         return str(self.pk)
 
     def get_templates(self):

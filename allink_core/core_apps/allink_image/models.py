@@ -33,15 +33,15 @@ class AllinkImagePlugin(AllinkLinkFieldsModel, CMSPlugin):
         blank=True,
         default=True,
         help_text=_('Show default image placeholder background color.<br><strong>Important:</strong> '
-                    u'Disabling this option results in a transparent background even if a specific color is set '
-                    u'(this makes sense when a transparent PNG image is used)'),
+                    'Disabling this option results in a transparent background even if a specific color is set '
+                    '(this makes sense when a transparent PNG image is used)'),
     )
     icon_enabled = models.BooleanField(
         verbose_name=_('Loader Icon'),
         blank=True,
         default=True,
         help_text=_('Show the icon that is used as long as the image is loading.<br>'
-                    u'<strong>Important:</strong> Disable this option if a transparent PNG image is used.'),
+                    '<strong>Important:</strong> Disable this option if a transparent PNG image is used.'),
     )
     bg_color = models.CharField(
         _('Set a predefined background color'),

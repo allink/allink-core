@@ -32,13 +32,13 @@ class AllinkImagePluginForm(AllinkInternalLinkFieldMixin, forms.ModelForm):
             widget=forms.Select(choices=self.instance.get_link_special_choices()),
             required=False,
             help_text=_('Important: In case the selected option is a <strong>form</strong>, make sure to '
-                        u'select <strong>Lightbox (Forms)</strong> from the <strong>link target</strong> options '
-                        u'for best user experience.'),
+                        'select <strong>Lightbox (Forms)</strong> from the <strong>link target</strong> options '
+                        'for best user experience.'),
         )
         self.fields['ratio'] = forms.CharField(
             label=_('Ratio'),
             help_text=_('This option overrides the default image ratio set for images in a colum of a '
-                        u'content section.'),
+                        'content section.'),
             widget=forms.Select(choices=get_ratio_choices_orig()),
             required=False,
         )
@@ -46,7 +46,7 @@ class AllinkImagePluginForm(AllinkInternalLinkFieldMixin, forms.ModelForm):
             self.fields['width_alias'] = forms.CharField(
                 label=_('Width Alias'),
                 help_text=_('This option overrides the default image width_alias set for images in a column of a '
-                            u'content section.'),
+                            'content section.'),
                 widget=forms.Select(choices=get_image_width_alias_choices()),
                 required=False,
             )

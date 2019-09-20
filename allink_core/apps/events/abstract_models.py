@@ -45,11 +45,11 @@ class BaseEvents(AllinkTimeFramedModel, AllinkCategoryFieldsModel, AllinkBaseTra
         null=True,
     )
     header_placeholder = PlaceholderField(
-        u'events_header',
+        'events_header',
         related_name='%(app_label)s_%(class)s_header_placeholder'
     )
     content_placeholder = PlaceholderField(
-        u'events_content',
+        'events_content',
         related_name='%(app_label)s_%(class)s_content_placeholder'
     )
 
@@ -79,7 +79,7 @@ class BaseEvents(AllinkTimeFramedModel, AllinkCategoryFieldsModel, AllinkBaseTra
         verbose_name_plural = _('Events')
 
     def __str__(self):
-        return u'%s %s' % (self.title, self.entry_date.strftime('%d.%m.%Y %H:%M:%S'))
+        return '%s %s' % (self.title, self.entry_date.strftime('%d.%m.%Y %H:%M:%S'))
 
     def show_registration_form(self):
         if getattr(self, 'entry_date'):
@@ -189,4 +189,4 @@ class BaseEventsRegistration(AllinkSimpleRegistrationFieldsModel):
         app_label = 'events'
 
     def __str__(self):
-        return u'%s %s' % (self.first_name, self.last_name)
+        return '%s %s' % (self.first_name, self.last_name)

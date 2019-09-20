@@ -69,8 +69,8 @@ YOUTUBE = 'youtube'
 VIMEO = 'vimeo'
 
 VIDEO_SERVICE_CHOICES = (
-    (YOUTUBE, u'Youtube'),
-    (VIMEO, u'Vimeo'),
+    (YOUTUBE, 'Youtube'),
+    (VIMEO, 'Vimeo'),
 )
 
 

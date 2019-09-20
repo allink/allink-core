@@ -21,7 +21,7 @@ class AllinkTeaserPlugin(AllinkInternalLinkFieldsModel, AllinkTeaserFieldsModel,
     cmsplugin_ptr = CMSPluginField()
 
     def __str__(self):
-        return u'{}'.format(self.link_object)
+        return '{}'.format(self.link_object)
 
     @classmethod
     def get_templates(cls):

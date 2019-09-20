@@ -17,6 +17,6 @@ class AllinkLegacyLinkResource(resources.ModelResource):
     def skip_row(self, instance, original):
         out = super(AllinkLegacyLinkResource, self).skip_row(instance, original)
         # skip urls which we never want to be redirected
-        if not out and instance.old in [u'(not set)', u'/']:
+        if not out and instance.old in ['(not set)','/']:
             return True
         return out

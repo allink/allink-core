@@ -35,7 +35,7 @@ def send_registration_email(form, event):
         'from_email': config.default_from_email,
         'from_name': config.get_default_from_name(),
         'global_merge_vars': [
-            {'name': 'detail_link', 'content': u'{}{}'.format(base_url(), event.get_absolute_url())},
+            {'name': 'detail_link', 'content': '{}{}'.format(base_url(), event.get_absolute_url())},
             {'name': 'subscriber', 'content': subscriber}
         ],
         'headers': {'Reply-To': config.default_from_email},
@@ -86,7 +86,7 @@ def send_registration_confirmation_email(form, event):
         'subject': subject,
         'to': [{
             'email': form.data.get('email'),
-            'name': u'{} {}'.format(form.data.get('first_name'), form.data.get('last_name')),
+            'name': '{} {}'.format(form.data.get('first_name'), form.data.get('last_name')),
             'type': 'to'
         }],
         'track_clicks': True,

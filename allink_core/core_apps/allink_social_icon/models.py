@@ -49,4 +49,4 @@ class AllinkSocialIconPlugin(CMSPlugin):
     )
 
     def __str__(self):
-        return u'{}'.format(self.icon)
+        return '{}'.format(self.icon)

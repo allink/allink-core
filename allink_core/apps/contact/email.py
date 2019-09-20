@@ -33,7 +33,7 @@ def send_request_email(form, plugin):
         'from_email': plugin.from_email_address,
         'from_name': config.get_default_from_name(),
         'global_merge_vars': [
-            {'name': 'detail_link', 'content': u'hello'},
+            {'name': 'detail_link', 'content': 'hello'},
             {'name': 'subscriber', 'content': subscriber}
         ],
         'headers': {'Reply-To': plugin.from_email_address},
@@ -101,7 +101,7 @@ def send_request_confirmation_email(form, plugin):
         'subject': subject,
         'to': [{
             'email': form.data.get('email'),
-            'name': u'{} {}'.format(form.data.get('first_name'), form.data.get('last_name')),
+            'name': '{} {}'.format(form.data.get('first_name'), form.data.get('last_name')),
             'type': 'to'
         }],
         'track_clicks': True,

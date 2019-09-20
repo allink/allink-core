@@ -8,9 +8,9 @@ from allink_core.core.models import AllinkSimpleRegistrationFieldsModel, AllinkB
 class BaseContactRequest(AllinkSimpleRegistrationFieldsModel):
     TIME_CHOICES = (
         (None, _('-- between --')),
-        (1, u'09:00-11:00'),
-        (2, u'13:00-15:00'),
-        (3, u'15:00-17:00'),
+        (1, '09:00-11:00'),
+        (2, '13:00-15:00'),
+        (3, '15:00-17:00'),
     )
     CONTACT_PHONE = 10
     CONTACT_EMAIL = 20
@@ -46,7 +46,7 @@ class BaseContactRequest(AllinkSimpleRegistrationFieldsModel):
         verbose_name_plural = _('Contact Requests')
 
     def __str__(self):
-        return u'%s %s' % (self.first_name, self.last_name)
+        return '%s %s' % (self.first_name, self.last_name)
 
     @property
     def contact_details(self):

@@ -64,11 +64,11 @@ class BasePeople(SortableMixin, AllinkContactFieldsModel, AllinkAddressFieldsMod
         db_index=True
     )
     header_placeholder = PlaceholderField(
-        u'people_header',
+        'people_header',
         related_name='%(app_label)s_%(class)s_header_placeholder'
     )
     content_placeholder = PlaceholderField(
-        u'people_content',
+        'people_content',
         related_name='%(app_label)s_%(class)s_content_placeholder'
     )
 
@@ -82,15 +82,15 @@ class BasePeople(SortableMixin, AllinkContactFieldsModel, AllinkAddressFieldsMod
         verbose_name_plural = _('People')
 
     def __str__(self):
-        return u'%s - %s' % (self.full_name, self.created.strftime('%d.%m.%Y'))
+        return '%s - %s' % (self.full_name, self.created.strftime('%d.%m.%Y'))
 
     @cached_property
     def full_name(self):
-        return u'{} {}'.format(self.first_name, self.last_name)
+        return '{} {}'.format(self.first_name, self.last_name)
 
     @cached_property
     def title(self):
-        return u'{} {}'.format(self.first_name, self.last_name)
+        return '{} {}'.format(self.first_name, self.last_name)
 
     @cached_property
     def units(self):
@@ -123,7 +123,7 @@ class BasePeopleTranslation(AllinkBaseTranslatedFieldsModel):
     lead = HTMLField(
         _('Lead Text'),
         help_text=_('Teaser text that in some cases is used in the list view '
-                    u'and/or in the detail view.'),
+                    'and/or in the detail view.'),
         blank=True,
         null=True,
     )

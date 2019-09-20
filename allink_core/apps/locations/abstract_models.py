@@ -82,58 +82,58 @@ class BaseLocations(SortableMixin, AllinkContactFieldsModel, AllinkAddressFields
     )
     mon = models.CharField(
         _('Monday morning or whole day'),
-        help_text=u'Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
+        help_text='Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
     tue = models.CharField(
         _('Tuesday morning or whole day'),
-        help_text=u'Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
+        help_text='Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
     wed = models.CharField(
         _('Wednesday morning or whole day'),
-        help_text=u'Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
+        help_text='Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
     thu = models.CharField(
         _('Thursday morning or whole day'),
-        help_text=u'Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
+        help_text='Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
     fri = models.CharField(
         _('Friday morning or whole day'),
-        help_text=u'Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
+        help_text='Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
     sat = models.CharField(
         _('Saturday morning or whole day'),
-        help_text=u'Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
+        help_text='Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
     sun = models.CharField(
         _('Sunday morning or whole day'),
-        help_text=u'Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
+        help_text='Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
     mon_afternoon = models.CharField(
         _('Monday afternoon'),
-        help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break',
+        help_text='Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break',
         blank=True, max_length=100
     )
     tue_afternoon = models.CharField(
         _('Tuesday afternoon'),
-        help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break',
+        help_text='Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break',
         blank=True, max_length=100
     )
     wed_afternoon = models.CharField(
         _('Wednesday afternoon'),
-        help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break',
+        help_text='Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break',
         blank=True, max_length=100
     )
     thu_afternoon = models.CharField(
         _('Thursday afternoon'),
-        help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break',
+        help_text='Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break',
         blank=True, max_length=100
     )
     fri_afternoon = models.CharField(
         _('Friday afternoon'),
-        help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break',
+        help_text='Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break',
         blank=True, max_length=100
     )
     sat_afternoon = models.CharField(
         _('Saturday afternoon'),
-        help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break',
+        help_text='Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break',
         blank=True, max_length=100
     )
     sun_afternoon = models.CharField(
         _('Sunday afternoon'),
-        help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break',
+        help_text='Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break',
         blank=True, max_length=100
     )
     sort_order = models.PositiveIntegerField(
@@ -142,11 +142,11 @@ class BaseLocations(SortableMixin, AllinkContactFieldsModel, AllinkAddressFields
         db_index=True
     )
     header_placeholder = PlaceholderField(
-        u'locations_header',
+        'locations_header',
         related_name='%(app_label)s_%(class)s_header_placeholder'
     )
     content_placeholder = PlaceholderField(
-        u'locations_content',
+        'locations_content',
         related_name='%(app_label)s_%(class)s_content_placeholder'
     )
 
@@ -160,7 +160,7 @@ class BaseLocations(SortableMixin, AllinkContactFieldsModel, AllinkAddressFields
         verbose_name_plural = _('Locations')
 
     def __str__(self):
-        return u'%s - %s' % (self.title, self.created.strftime('%d.%m.%Y'))
+        return '%s - %s' % (self.title, self.created.strftime('%d.%m.%Y'))
 
     def value_has_changed_for_fields(instance, fields):
         """
@@ -181,8 +181,8 @@ class BaseLocations(SortableMixin, AllinkContactFieldsModel, AllinkAddressFields
         from geopy import geocoders
         g = geocoders.GoogleV3()
         try:
-            street_full = u'{} {}'.format(self.street, self.street_nr) + self.street_additional
-            place, (lat, lng) = g.geocode(u'%s, %s %s, %s' % (street_full, self.zip_code, self.place, self.country))
+            street_full = '{} {}'.format(self.street, self.street_nr) + self.street_additional
+            place, (lat, lng) = g.geocode('%s, %s %s, %s' % (street_full, self.zip_code, self.place, self.country))
         except Exception as e:
             return "%s: %s" % (self, e)
         else:
@@ -277,7 +277,7 @@ class BaseLocations(SortableMixin, AllinkContactFieldsModel, AllinkAddressFields
         """
         return ("https://www.google.ch/maps?q=%(name)s+%(street)s+%(zip_code)s+%(place)s" % {
             'name': self.title,
-            'street': u'{} {} {}'.format(self.street, self.street_nr, self.street_additional),
+            'street': '{} {} {}'.format(self.street, self.street_nr, self.street_additional),
             'zip_code': self.zip_code,
             'place': self.place
         }).replace(' ', '+')
@@ -315,8 +315,8 @@ class BaseLocationsTranslation(AllinkBaseTranslatedFieldsModel):
     opening_hours_display = HTMLField(
         _('Opening hours'),
         help_text=_(
-            u'This Text will be used to show the Opening hours on the location detail page. '
-            u'If provided, the detailed opening hours will be overriden.'),
+            'This Text will be used to show the Opening hours on the location detail page. '
+            'If provided, the detailed opening hours will be overriden.'),
         blank=True,
         null=True,
     )

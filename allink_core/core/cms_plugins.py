@@ -39,9 +39,9 @@ class AllinkBaseAppContentPluginForm(forms.ModelForm):
                     is_stacked=True
                 ),
                 help_text=_(
-                    u'Use this field if you want to further restrict your result set. This option allows you to create'
-                    u' a conjunction between the first set of categories in field "Categories" and the ones '
-                    u'specified here.'),
+                    'Use this field if you want to further restrict your result set. This option allows you to create'
+                    ' a conjunction between the first set of categories in field "Categories" and the ones '
+                    'specified here.'),
                 required=False,
                 queryset=self.instance.data_model.get_relevant_categories()
             )
@@ -52,9 +52,9 @@ class AllinkBaseAppContentPluginForm(forms.ModelForm):
                     is_stacked=True
                 ),
                 help_text=_(
-                    u'You can explicitly define the categories for the category navigation here. '
-                    u'This will override the'
-                    u' automatically set of categories. (From "Filter & Ordering" but not from the "Manual entries")'),
+                    'You can explicitly define the categories for the category navigation here. '
+                    'This will override the'
+                    ' automatically set of categories. (From "Filter & Ordering" but not from the "Manual entries")'),
                 required=False,
                 queryset=self.instance.data_model.get_relevant_categories()
             )

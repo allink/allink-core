@@ -12,7 +12,7 @@ class ContactRequestAdmin(admin.ModelAdmin):
     list_filter = ('contact_type', 'modified', )
 
     def nicer_contact_type(self, obj):
-        return u'{} ({})'.format(obj.get_contact_type_display(), obj.contact_details)
+        return '{} ({})'.format(obj.get_contact_type_display(), obj.contact_details)
 
     nicer_contact_type.short_description = _('Contact via')
 
