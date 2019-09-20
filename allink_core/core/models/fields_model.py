@@ -214,7 +214,8 @@ class AllinkTeaserTranslatedFieldsModel(models.Model):
     teaser_description = models.TextField(
         'Teaser description',
         help_text='Page: no fallback.<br>'
-                  'App: fallback is field "lead".',
+                  'App: fallback is field "lead".'
+                  'Please only use 80 to 120 characters. Best results will be achieved with around 100 characters.',
         blank=True,
         default=''
     )
