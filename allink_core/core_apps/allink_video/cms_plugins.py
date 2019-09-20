@@ -8,6 +8,7 @@ from cms.plugin_pool import plugin_pool
 
 from allink_core.core.utils import get_additional_choices, get_ratio_choices
 from allink_core.core_apps.allink_video.models import AllinkVideoFilePlugin, AllinkVideoEmbedPlugin
+from allink_core.core.admin.mixins import AllinkMediaAdminMixin
 
 
 class AllinkVideoEmbedPluginForm(forms.ModelForm):
@@ -51,22 +52,11 @@ class AllinkVideoFilePluginForm(forms.ModelForm):
 
 
 @plugin_pool.register_plugin
-class CMSAllinkVideoEmbedPlugin(CMSPluginBase):
+class CMSAllinkVideoEmbedPlugin(AllinkMediaAdminMixin, CMSPluginBase):
     model = AllinkVideoEmbedPlugin
     name = _('Video Embed')
     module = _('Generic')
     form = AllinkVideoEmbedPluginForm
-
-    class Media:
-        js = (
-            get_files('djangocms_custom_admin')[1]['publicPath'],
-        )
-        css = {
-            'all': (
-                get_files('djangocms_custom_admin')[0]['publicPath'],
-
-            )
-        }
 
     def get_fieldsets(self, request, obj=None):
         fieldsets = [
@@ -100,17 +90,11 @@ class CMSAllinkVideoEmbedPlugin(CMSPluginBase):
 
 
 @plugin_pool.register_plugin
-class CMSAllinkVideoFilePlugin(CMSPluginBase):
+class CMSAllinkVideoFilePlugin(AllinkMediaAdminMixin, CMSPluginBase):
     model = AllinkVideoFilePlugin
     name = _('Video File')
     module = _('Generic')
     form = AllinkVideoFilePluginForm
-
-    class Media:
-        js = (get_files('djangocms_custom_admin')[1]['publicPath'], )
-        css = {
-            'all': (get_files('djangocms_custom_admin')[0]['publicPath'], )
-        }
 
     def get_fieldsets(self, request, obj=None):
         fieldsets = [

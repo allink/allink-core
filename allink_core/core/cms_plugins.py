@@ -12,6 +12,7 @@ from webpack_loader.utils import get_files
 
 from allink_core.core.models import AllinkBaseAppContentPlugin, AllinkBaseSearchPlugin
 from allink_core.core.utils import get_project_css_classes
+from allink_core.core.admin.mixins import AllinkMediaAdminMixin
 
 
 class AllinkBaseAppContentPluginForm(forms.ModelForm):
@@ -90,7 +91,7 @@ class AllinkBaseAppContentPluginForm(forms.ModelForm):
         )
 
 
-class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
+class CMSAllinkBaseAppContentPlugin(AllinkMediaAdminMixin, CMSPluginBase):
     """
     is not registered itself
     only used to inherit from (for specific App Content Plugins)
@@ -101,12 +102,6 @@ class CMSAllinkBaseAppContentPlugin(CMSPluginBase):
     module = _('allink modules')
     allow_children = False
     form = AllinkBaseAppContentPluginForm
-
-    class Media:
-        js = (get_files('djangocms_custom_admin')[1]['publicPath'],)
-        css = {
-            'all': (get_files('djangocms_custom_admin')[0]['publicPath'],)
-        }
 
     def get_fieldsets(self, request, obj=None):
         fieldsets = (
@@ -306,7 +301,7 @@ class AllinkBaseSearchPluginForm(forms.ModelForm):
         )
 
 
-class CMSAllinkBaseSearchPlugin(CMSPluginBase):
+class CMSAllinkBaseSearchPlugin(AllinkMediaAdminMixin, CMSPluginBase):
     """
     is not registered itself
     only used to inherit from (for specific Search Plugins)
@@ -315,12 +310,6 @@ class CMSAllinkBaseSearchPlugin(CMSPluginBase):
     module = _('allink search')
     form = AllinkBaseSearchPluginForm
     search_form = None
-
-    class Media:
-        js = (get_files('djangocms_custom_admin')[1]['publicPath'],)
-        css = {
-            'all': (get_files('djangocms_custom_admin')[0]['publicPath'],)
-        }
 
     def get_render_template(self, context, instance, placeholder):
         return '{}/plugins/{}/content.html'.format(self.model.data_model._meta.app_label, instance.template)

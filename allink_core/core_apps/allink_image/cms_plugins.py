@@ -12,6 +12,7 @@ from allink_core.core_apps.allink_image.models import AllinkImagePlugin
 from allink_core.core.forms.fields import ColorField
 from allink_core.core.forms.fields import SelectLinkField
 from allink_core.core.forms.mixins import AllinkInternalLinkFieldMixin
+from allink_core.core.admin.mixins import AllinkMediaAdminMixin
 
 
 class AllinkImagePluginForm(AllinkInternalLinkFieldMixin, forms.ModelForm):
@@ -66,22 +67,11 @@ class AllinkImagePluginForm(AllinkInternalLinkFieldMixin, forms.ModelForm):
 
 
 @plugin_pool.register_plugin
-class CMSAllinkImagePlugin(CMSPluginBase):
+class CMSAllinkImagePlugin(AllinkMediaAdminMixin, CMSPluginBase):
     model = AllinkImagePlugin
     name = _('Image')
     module = _('Generic')
     form = AllinkImagePluginForm
-
-    class Media:
-        js = (
-            get_files('djangocms_custom_admin')[1]['publicPath'],
-        )
-        css = {
-            'all': (
-                get_files('djangocms_custom_admin')[0]['publicPath'],
-
-            )
-        }
 
     def get_fieldsets(self, request, obj=None):
         fieldsets = [

@@ -9,18 +9,13 @@ from webpack_loader.utils import get_files
 
 from allink_core.core.utils import get_additional_choices
 from allink_core.core.loading import get_model
+from allink_core.core.admin.mixins import AllinkMediaAdminMixin
 
 ContactRequestPlugin = get_model('contact', 'ContactRequestPlugin')
 
 
-class ContactRequestFormPluginForm(forms.ModelForm):
+class ContactRequestFormPluginForm(AllinkMediaAdminMixin, forms.ModelForm):
     internal_email_addresses = SplitArrayField(forms.EmailField(required=False), size=3)
-
-    class Media:
-        js = (get_files('djangocms_custom_admin')[1]['publicPath'], )
-        css = {
-            'all': (get_files('djangocms_custom_admin')[0]['publicPath'], )
-        }
 
     class Meta:
         model = ContactRequestPlugin

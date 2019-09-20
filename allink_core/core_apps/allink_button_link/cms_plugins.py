@@ -17,6 +17,7 @@ from allink_core.core.models.choices import BLANK_CHOICE, NEW_WINDOW, SOFTPAGE_L
     FORM_MODAL, IMAGE_MODAL, DEFAULT_MODAL
 from allink_core.core.forms.fields import SelectLinkField
 from allink_core.core.forms.mixins import AllinkInternalLinkFieldMixin
+from allink_core.core.admin.mixins import AllinkMediaAdminMixin
 
 
 class AllinkButtonLinkContainerPluginForm(forms.ModelForm):
@@ -218,24 +219,13 @@ class AllinkButtonLinkPluginForm(AllinkInternalLinkFieldMixin, forms.ModelForm):
 
 
 @plugin_pool.register_plugin
-class CMSAllinkButtonLinkContainerPlugin(CMSPluginBase):
+class CMSAllinkButtonLinkContainerPlugin(AllinkMediaAdminMixin, CMSPluginBase):
     model = AllinkButtonLinkContainerPlugin
     name = _('Button/ Link Container')
     module = _('Generic')
     allow_children = True
     child_classes = ['CMSAllinkButtonLinkPlugin']
     form = AllinkButtonLinkContainerPluginForm
-
-    class Media:
-        js = (
-            get_files('djangocms_custom_admin')[1]['publicPath'],
-        )
-        css = {
-            'all': (
-                get_files('djangocms_custom_admin')[0]['publicPath'],
-
-            )
-        }
 
     fieldsets = (
         (None, {
@@ -258,7 +248,7 @@ class CMSAllinkButtonLinkContainerPlugin(CMSPluginBase):
 
 
 @plugin_pool.register_plugin
-class CMSAllinkButtonLinkPlugin(CMSPluginBase):
+class CMSAllinkButtonLinkPlugin(AllinkMediaAdminMixin, CMSPluginBase):
     model = AllinkButtonLinkPlugin
     name = _('Button/ Link')
     module = _('Generic')
@@ -267,12 +257,6 @@ class CMSAllinkButtonLinkPlugin(CMSPluginBase):
     change_form_template = 'admin/allink_button_link/change_form.html'
     render_template = 'allink_button_link/item.html'
     text_enabled = True
-
-    class Media:
-        js = (get_files('djangocms_custom_admin')[1]['publicPath'], )
-        css = {
-            'all': (get_files('djangocms_custom_admin')[0]['publicPath'], )
-        }
 
     fieldsets = (
         (None, {

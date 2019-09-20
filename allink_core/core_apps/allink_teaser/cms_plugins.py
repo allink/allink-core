@@ -11,6 +11,7 @@ from allink_core.apps.config.utils import get_page_teaser_dict
 from allink_core.core.forms.fields import SelectLinkField
 from allink_core.core.forms.mixins import AllinkInternalLinkFieldMixin
 from allink_core.core_apps.allink_teaser.models import AllinkTeaserPlugin
+from allink_core.core.admin.mixins import AllinkMediaAdminMixin
 
 
 class AllinkTeaserPluginForm(AllinkInternalLinkFieldMixin, forms.ModelForm):
@@ -31,22 +32,11 @@ class AllinkTeaserPluginForm(AllinkInternalLinkFieldMixin, forms.ModelForm):
 
 
 @plugin_pool.register_plugin
-class CMSAllinkTeaserPlugin(CMSPluginBase):
+class CMSAllinkTeaserPlugin(AllinkMediaAdminMixin, CMSPluginBase):
     model = AllinkTeaserPlugin
     name = _('Teaser')
     module = _('Generic')
     form = AllinkTeaserPluginForm
-
-    class Media:
-        js = (
-            get_files('djangocms_custom_admin')[1]['publicPath'],
-        )
-        css = {
-            'all': (
-                get_files('djangocms_custom_admin')[0]['publicPath'],
-
-            )
-        }
 
     fieldsets = (
         (None, {

@@ -10,6 +10,7 @@ from webpack_loader.utils import get_files
 from allink_core.core.utils import get_additional_choices
 from allink_core.core.forms.fields import ColorField
 from allink_core.core_apps.allink_content.models import AllinkContentPlugin, AllinkContentColumnPlugin
+from allink_core.core.admin.mixins import AllinkMediaAdminMixin
 
 
 class AllinkContentPluginForm(forms.ModelForm):
@@ -96,7 +97,7 @@ class AllinkContentColumnPluginForm(forms.ModelForm):
 
 
 @plugin_pool.register_plugin
-class CMSAllinkContentPlugin(CMSPluginBase):
+class CMSAllinkContentPlugin(AllinkMediaAdminMixin, CMSPluginBase):
     model = AllinkContentPlugin
     name = _('Content')
     module = _('Generic')
@@ -104,12 +105,6 @@ class CMSAllinkContentPlugin(CMSPluginBase):
     allow_children = True
     child_classes = ['ContentColumnPlugin']
     form = AllinkContentPluginForm
-
-    class Media:
-        js = (get_files('djangocms_custom_admin')[1]['publicPath'],)
-        css = {
-            'all': (get_files('djangocms_custom_admin')[0]['publicPath'],)
-        }
 
     fieldsets = (
         (None, {
@@ -190,7 +185,7 @@ class CMSAllinkContentPlugin(CMSPluginBase):
 
 
 @plugin_pool.register_plugin
-class CMSAllinkContentColumnPlugin(CMSPluginBase):
+class CMSAllinkContentColumnPlugin(AllinkMediaAdminMixin, CMSPluginBase):
     model = AllinkContentColumnPlugin
     name = _("Column")
     module = _('Generic')
@@ -204,12 +199,6 @@ class CMSAllinkContentColumnPlugin(CMSPluginBase):
     disable_copyable_menu = True
     disable_cutable_menu = True
     disable_deletable_menu = True
-
-    class Media:
-        js = (get_files('djangocms_custom_admin')[1]['publicPath'],)
-        css = {
-            'all': (get_files('djangocms_custom_admin')[0]['publicPath'],)
-        }
 
     def has_delete_permission(self, request, obj=None):
         return False
