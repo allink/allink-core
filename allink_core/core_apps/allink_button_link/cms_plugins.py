@@ -9,14 +9,14 @@ from django.core.exceptions import ValidationError
 from djangocms_attributes_field.widgets import AttributesWidget
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
-from webpack_loader.utils import get_files
 
 from allink_core.core_apps.allink_button_link.models import AllinkButtonLinkContainerPlugin, AllinkButtonLinkPlugin
 from allink_core.core.utils import get_additional_choices, update_context_google_tag_manager, get_ratio_choices
-from allink_core.core.models.choices import BLANK_CHOICE, NEW_WINDOW, SOFTPAGE_LARGE, SOFTPAGE_SMALL, \
+from allink_core.core.models.choices import BLANK_CHOICE, NEW_WINDOW, SOFTPAGE, \
     FORM_MODAL, IMAGE_MODAL, DEFAULT_MODAL
 from allink_core.core.forms.fields import SelectLinkField
 from allink_core.core.forms.mixins import AllinkInternalLinkFieldMixin
+from allink_core.core.admin.mixins import AllinkMediaAdminMixin
 
 
 class AllinkButtonLinkContainerPluginForm(forms.ModelForm):
@@ -38,8 +38,7 @@ class AllinkButtonLinkContainerPluginForm(forms.ModelForm):
 class AllinkButtonLinkPluginForm(AllinkInternalLinkFieldMixin, forms.ModelForm):
     LINK_TARGET_REDUCED = (
         (NEW_WINDOW, _('New window')),
-        (SOFTPAGE_LARGE, _('Softpage large')),
-        (SOFTPAGE_SMALL, _('Softpage small')),
+        (SOFTPAGE, _('Softpage')),
     )
 
     link_target_reduced = forms.ChoiceField(label=_('Link Target'), required=False,
@@ -218,24 +217,13 @@ class AllinkButtonLinkPluginForm(AllinkInternalLinkFieldMixin, forms.ModelForm):
 
 
 @plugin_pool.register_plugin
-class CMSAllinkButtonLinkContainerPlugin(CMSPluginBase):
+class CMSAllinkButtonLinkContainerPlugin(AllinkMediaAdminMixin, CMSPluginBase):
     model = AllinkButtonLinkContainerPlugin
     name = _('Button/ Link Container')
     module = _('Generic')
     allow_children = True
     child_classes = ['CMSAllinkButtonLinkPlugin']
     form = AllinkButtonLinkContainerPluginForm
-
-    class Media:
-        js = (
-            get_files('djangocms_custom_admin')[1]['publicPath'],
-        )
-        css = {
-            'all': (
-                get_files('djangocms_custom_admin')[0]['publicPath'],
-
-            )
-        }
 
     fieldsets = (
         (None, {
@@ -258,7 +246,7 @@ class CMSAllinkButtonLinkContainerPlugin(CMSPluginBase):
 
 
 @plugin_pool.register_plugin
-class CMSAllinkButtonLinkPlugin(CMSPluginBase):
+class CMSAllinkButtonLinkPlugin(AllinkMediaAdminMixin, CMSPluginBase):
     model = AllinkButtonLinkPlugin
     name = _('Button/ Link')
     module = _('Generic')
@@ -267,12 +255,6 @@ class CMSAllinkButtonLinkPlugin(CMSPluginBase):
     change_form_template = 'admin/allink_button_link/change_form.html'
     render_template = 'allink_button_link/item.html'
     text_enabled = True
-
-    class Media:
-        js = (get_files('djangocms_custom_admin')[1]['publicPath'], )
-        css = {
-            'all': (get_files('djangocms_custom_admin')[0]['publicPath'], )
-        }
 
     fieldsets = (
         (None, {

@@ -19,6 +19,7 @@ from parler.forms import TranslatableModelForm
 from allink_core.core.loading import get_model
 from allink_core.core.forms.fields import ColorField
 from allink_core.core.utils import get_project_color_choices
+from allink_core.core.admin.mixins import AllinkMediaAdminMixin
 
 Config = get_model('config', 'Config')
 AllinkPageExtension = get_model('config', 'AllinkPageExtension')
@@ -38,20 +39,9 @@ class ConfigAdminForm(TranslatableModelForm):
 
 
 @admin.register(Config)
-class ConfigAdmin(TranslatableAdmin, SingletonModelAdmin):
+class ConfigAdmin(AllinkMediaAdminMixin, TranslatableAdmin, SingletonModelAdmin):
     form = ConfigAdminForm
     change_form_template = 'config/admin/change_form.html'
-
-    class Media:
-        js = (
-            get_files('djangocms_custom_admin')[1]['publicPath'],
-        )
-        css = {
-            'all': (
-                get_files('djangocms_custom_admin')[0]['publicPath'],
-
-            )
-        }
 
     def get_fieldsets(self, request, obj=None):
 

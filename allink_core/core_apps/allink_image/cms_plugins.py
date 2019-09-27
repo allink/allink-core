@@ -12,6 +12,7 @@ from allink_core.core_apps.allink_image.models import AllinkImagePlugin
 from allink_core.core.forms.fields import ColorField
 from allink_core.core.forms.fields import SelectLinkField
 from allink_core.core.forms.mixins import AllinkInternalLinkFieldMixin
+from allink_core.core.admin.mixins import AllinkMediaAdminMixin
 
 
 class AllinkImagePluginForm(AllinkInternalLinkFieldMixin, forms.ModelForm):
@@ -32,13 +33,13 @@ class AllinkImagePluginForm(AllinkInternalLinkFieldMixin, forms.ModelForm):
             widget=forms.Select(choices=self.instance.get_link_special_choices()),
             required=False,
             help_text=_('Important: In case the selected option is a <strong>form</strong>, make sure to '
-                        u'select <strong>Lightbox (Forms)</strong> from the <strong>link target</strong> options '
-                        u'for best user experience.'),
+                        'select <strong>Lightbox (Forms)</strong> from the <strong>link target</strong> options '
+                        'for best user experience.'),
         )
         self.fields['ratio'] = forms.CharField(
             label=_('Ratio'),
             help_text=_('This option overrides the default image ratio set for images in a colum of a '
-                        u'content section.'),
+                        'content section.'),
             widget=forms.Select(choices=get_ratio_choices_orig()),
             required=False,
         )
@@ -46,7 +47,7 @@ class AllinkImagePluginForm(AllinkInternalLinkFieldMixin, forms.ModelForm):
             self.fields['width_alias'] = forms.CharField(
                 label=_('Width Alias'),
                 help_text=_('This option overrides the default image width_alias set for images in a column of a '
-                            u'content section.'),
+                            'content section.'),
                 widget=forms.Select(choices=get_image_width_alias_choices()),
                 required=False,
             )
@@ -66,22 +67,11 @@ class AllinkImagePluginForm(AllinkInternalLinkFieldMixin, forms.ModelForm):
 
 
 @plugin_pool.register_plugin
-class CMSAllinkImagePlugin(CMSPluginBase):
+class CMSAllinkImagePlugin(AllinkMediaAdminMixin, CMSPluginBase):
     model = AllinkImagePlugin
     name = _('Image')
     module = _('Generic')
     form = AllinkImagePluginForm
-
-    class Media:
-        js = (
-            get_files('djangocms_custom_admin')[1]['publicPath'],
-        )
-        css = {
-            'all': (
-                get_files('djangocms_custom_admin')[0]['publicPath'],
-
-            )
-        }
 
     def get_fieldsets(self, request, obj=None):
         fieldsets = [

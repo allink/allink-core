@@ -24,4 +24,4 @@ class AllinkSEOAccordion(CMSPlugin):
     )
 
     def __str__(self):
-        return u'{}'.format(self.title)
+        return '{}'.format(self.title)

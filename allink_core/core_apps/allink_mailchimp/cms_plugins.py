@@ -7,6 +7,7 @@ from webpack_loader.utils import get_files
 
 from .config import MailChimpConfig
 from .models import AllinkSignupFormPlugin
+from allink_core.core.admin.mixins import AllinkMediaAdminMixin
 
 config = MailChimpConfig()
 
@@ -21,7 +22,7 @@ class AllinkSignupFormPluginForm(forms.ModelForm):
 
 
 @plugin_pool.register_plugin
-class CMSAllinkSignupFormPlugin(CMSPluginBase):
+class CMSAllinkSignupFormPlugin(AllinkMediaAdminMixin, CMSPluginBase):
     model = AllinkSignupFormPlugin
     name = _('Signup Form')
     module = _('allink forms')
@@ -30,12 +31,6 @@ class CMSAllinkSignupFormPlugin(CMSPluginBase):
 
     form_class = AllinkSignupFormPluginForm
     success_url = '/success/'
-
-    class Media:
-        js = (get_files('djangocms_custom_admin')[1]['publicPath'], )
-        css = {
-            'all': (get_files('djangocms_custom_admin')[0]['publicPath'], )
-        }
 
     def get_fieldsets(self, request, obj=None):
         fieldsets = super(CMSAllinkSignupFormPlugin, self).get_fieldsets(request, obj)

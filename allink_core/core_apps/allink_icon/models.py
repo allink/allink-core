@@ -21,7 +21,7 @@ class AllinkIconPlugin(CMSPlugin):
     )
 
     def __str__(self):
-        return u'{}'.format(self.icon)
+        return '{}'.format(self.icon)
 
     @property
     def css_classes(self):

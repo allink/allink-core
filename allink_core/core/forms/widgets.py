@@ -8,6 +8,7 @@ from django import forms
 from webpack_loader.utils import get_files
 
 from allink_core.core.utils import get_project_color_choices
+from allink_core.core.admin.mixins import AllinkMediaAdminMixin
 
 
 class AdminPdfThumnailWidget(AdminFileWidget):
@@ -15,14 +16,14 @@ class AdminPdfThumnailWidget(AdminFileWidget):
         output = []
 
         if value:
-            output.append(u'<img alt="%s" src="%s" height="200"/>' % (value.url, value.url,))
+            output.append('<img alt="%s" src="%s" height="200"/>' % (value.url, value.url,))
         else:
             output.append(_('Thumbnail is created when publication is saved. And a PDF document is assigned.'))
 
         # This is commented out b/c maybe you want to be able to override the thumbnail?
         # output.append(super(AdminFileWidget, self).render(name, value, attrs))
 
-        return mark_safe(u''.join(output))
+        return mark_safe(''.join(output))
 
 
 class Icon(forms.widgets.TextInput):
@@ -51,17 +52,12 @@ class Icon(forms.widgets.TextInput):
         return rendered
 
 
-class SpectrumColorPicker(forms.widgets.TextInput):
+class SpectrumColorPicker(AllinkMediaAdminMixin, forms.widgets.TextInput):
     """
     Based on Brian Grinstead's Spectrum - http://bgrins.github.com/spectrum/
     This widget is used to select a Project Color. With some few options
     in the pushed colorFields, it could be used more flexible if needed.
     """
-    class Media:
-        js = (get_files('djangocms_custom_admin')[1]['publicPath'], )
-        css = {
-            'all': (get_files('djangocms_custom_admin')[0]['publicPath'], )
-        }
 
     def __init__(self, *args, **kwargs):
         self.default = kwargs.pop('default', None)
@@ -106,13 +102,7 @@ class SpectrumColorPicker(forms.widgets.TextInput):
         return mark_safe(rendered + self._render_js(attrs['id'], value))
 
 
-class SearchSelectWidget(forms.widgets.Select):
-
-    class Media:
-        js = (get_files('djangocms_custom_admin')[1]['publicPath'], )
-        css = {
-            'all': (get_files('djangocms_custom_admin')[0]['publicPath'], )
-        }
+class SearchSelectWidget(AllinkMediaAdminMixin, forms.widgets.Select):
 
     def __init__(self, attrs=None, choices=()):
         class_attrs = {"data-live-search": "true", 'class': 'selectpicker'}

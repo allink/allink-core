@@ -32,7 +32,7 @@
             {% endif %}
             {% if  instance.detail_link_enabled %}
                 <div class="link-container">
-                    <a href="{% get_absolute_url object instance.apphook_page.application_namespace %}" class="app-list__detail-link" {% if instance.softpage_enabled %}data-softpage-variation{% endif %}>
+                    <a href="{% get_absolute_url object instance.apphook_page.application_namespace %}" class="app-list__detail-link" {% if instance.softpage_enabled %}data-softpage{% endif %}>
                         <span class="btn__text">
                             {% if instance.detail_link_text %}
                                 {{ instance.detail_link_text }}

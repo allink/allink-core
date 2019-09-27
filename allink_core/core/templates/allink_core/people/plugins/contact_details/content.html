@@ -1,0 +1,45 @@
+
+
+{% load cms_tags allink_cms_tags sekizai_tags i18n allink_image_tags cache %}
+
+{% for object in object_list %}
+    <div class="people-plugin people-contact-details">
+
+        <div class="people-contact-details__col-container">
+            {% if object.preview_image %}
+                <div class="people-contact-details__col people-contact-details__col-1">
+                    <div class="image-container">
+                        {% render_image image=object.preview_image subject_location=object.preview_image.subject_location ratio="1-1" bg_enabled=False %}
+                    </div>
+                </div>
+            {% endif %}
+            <div class="people-contact-details__col people-contact-details__col-2">
+                {% if object.title %}
+                    <div class="heading-container">
+                        <h3 class="heading">
+                            {% render_model_ajax object "title" %}
+                        </h3>
+                        <p>
+                            {% if object.job_function %}
+                                {{ object.job_function }}<br>
+                            {% endif %}
+                        </p>
+
+                    </div>
+                {% endif %}
+                <div class="text-container">
+                    <p>
+                        {% if object.email %}
+                            <a class="text link-text" href="mailto:{{object.email}}" data-softpage-disabled data-text="{% trans "E-Mail" %}"><span>{{object.email}}</span></a><br>
+                        {% endif %}
+                        {% if object.phone %}
+                            <a class="text link-text" href="tel:{{object.phone}}" data-softpage-disabled data-text="{% trans "Phone" %}"><span>{{object.phone_formatted}}</span></a><br>
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endfor %}

@@ -4,54 +4,37 @@
 
         {# end render figure/figcaption #}
 
-        <!--[if IE 9]><video style="display: none;"><![endif]-->
-
         {# XXL #}
         {% if thumbnail_xxl %}
-            <source
-                {% if lazyload_enabled %}data-{% endif %}srcset="{{thumbnail_xxl.url}}, {{thumbnail_xxl.high_resolution.url}} 2x"
-                media="(min-width:1520px)"
-                >
+            <source {% if lazyload_enabled %}data-{% endif %}srcset="{{thumbnail_xxl.url}}, {{thumbnail_xxl.high_resolution.url}} 2x" {% if lazyload_enabled %}srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="{% endif %} media="(min-width:1520px)">
         {% endif %}
 
         {# XL #}
         {% if thumbnail_xl %}
-            <source
-                {% if lazyload_enabled %}data-{% endif %}srcset="{{thumbnail_xl.url}}, {{thumbnail_xl.high_resolution.url}} 2x"
-                media="(min-width:1280px)"
-                >
+            <source {% if lazyload_enabled %}data-{% endif %}srcset="{{thumbnail_xl.url}}, {{thumbnail_xl.high_resolution.url}} 2x" {% if lazyload_enabled %}srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="{% endif %} media="(min-width:1280px)">
         {% endif %}
 
         {# LG #}
         {% if thumbnail_lg %}
-        <source
-            {% if lazyload_enabled %}data-{% endif %}srcset="{{thumbnail_lg.url}}, {{thumbnail_lg.high_resolution.url}} 2x"
-            media="(min-width:1040px)"
-            >
+            <source {% if lazyload_enabled %}data-{% endif %}srcset="{{thumbnail_lg.url}}, {{thumbnail_lg.high_resolution.url}} 2x" {% if lazyload_enabled %}srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="{% endif %} media="(min-width:1040px)">
         {% endif %}
 
         {# MD #}
         {% if thumbnail_md %}
-        <source
-            {% if lazyload_enabled %}data-{% endif %}srcset="{{thumbnail_md.url}}, {{thumbnail_md.high_resolution.url}} 2x"
-            media="(min-width:800px)"
-            >
+            <source {% if lazyload_enabled %}data-{% endif %}srcset="{{thumbnail_md.url}}, {{thumbnail_md.high_resolution.url}} 2x" {% if lazyload_enabled %}srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="{% endif %} media="(min-width:800px)">
         {% endif %}
 
         {# SM #}
         {% if thumbnail_sm %}
-        <source
-            {% if lazyload_enabled %}data-{% endif %}srcset="{{thumbnail_sm.url}}, {{thumbnail_sm.high_resolution.url}} 2x"
-            media="(min-width:580px)"
-            >
+            <source {% if lazyload_enabled %}data-{% endif %}srcset="{{thumbnail_sm.url}}, {{thumbnail_sm.high_resolution.url}} 2x" {% if lazyload_enabled %}srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="{% endif %} media="(min-width:580px)">
         {% endif %}
-
-        <!--[if IE 9]></video><![endif]-->
 
         {# XS #}
         <img
             class="{% if lazyload_enabled %}lazyload{% endif %}"
             {% if lazyload_enabled %}data-{% endif %}srcset="{{thumbnail_xs.url}}, {{thumbnail_xs.high_resolution.url}} 2x"
+            {% if lazyload_enabled %}srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="{% endif %}
+            src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
             {% if instance.picture.label and not instance.attributes.alt %} alt="{{ instance.picture.label }}"
             {% elif alt_text and not instance.picture.label and not instance.attributes.alt %}alt="{{ alt_text }}"{% endif %}
             {{ instance.attributes_str }}

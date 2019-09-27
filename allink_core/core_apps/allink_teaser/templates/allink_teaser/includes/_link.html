@@ -2,7 +2,7 @@
 
 {% if teaser_link %}
     <div class="teaser__link">
-        <a href="{{ teaser_link }}" {% if instance.softpage_enabled %}data-softpage-variation{% endif %}>
+        <a href="{{ teaser_link }}" {% if instance.softpage_enabled %}data-softpage{% endif %}>
             <span class="btn__text">
                 {% if teaser_link_text %}
                     {{ teaser_link_text }}

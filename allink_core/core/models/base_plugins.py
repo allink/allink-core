@@ -130,8 +130,8 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
     category_navigation_enabled = models.BooleanField(
         _('Show category navigation'),
         help_text=_(
-            u'If checked, a filter navigation with all selected categories is displayed.'
-            u'<br>Please note: A category is only displayed if it contains items.'),
+           'If checked, a filter navigation with all selected categories is displayed.'
+           '<br>Please note: A category is only displayed if it contains items.'),
         default=False
     )
     category_navigation_all = models.BooleanField(
@@ -144,16 +144,16 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
         related_name='%(app_label)s_%(class)s_category_navigation',
         verbose_name=_('Categories for Navigation'),
         help_text=_(
-            u'You can explicitly define the categories for the category navigation here.'
-            u' This will override the automatically set of categories'
-            u' (either the one generated from "Filter & Ordering" or "Manual entries")'),
+           'You can explicitly define the categories for the category navigation here.'
+           ' This will override the automatically set of categories'
+           ' (either the one generated from "Filter & Ordering" or "Manual entries")'),
         blank=True,
     )
     softpage_enabled = models.BooleanField(
         _('Show detailed information in Softpage'),
         help_text=_(
-            u'If checked, the detail view of an entry will be displayed in a "softpage".'
-            u' Otherwise the page will be reloaded.'),
+           'If checked, the detail view of an entry will be displayed in a "softpage".'
+           ' Otherwise the page will be reloaded.'),
         default=True
     )
     detail_link_enabled = models.BooleanField(
@@ -171,8 +171,8 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
         _('Max. entries per page'),
         default=0,
         help_text=_(
-            u'Limit the number of entries (in case of the "load more" pagination type: entries per page).'
-            u' Default is "0" (show all entries)')
+           'Limit the number of entries (in case of the "load more" pagination type: entries per page).'
+           ' Default is "0" (show all entries)')
     )
     pagination_type = models.CharField(
         _('Pagination Type'),
@@ -183,8 +183,8 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
     load_more_button_text = models.CharField(
         _('Text for "Load .."-Button'),
         help_text=_(
-            u'If left blank, a default text will be used. <br>Note: Should the default text be adjusted site-wide,'
-            u' please contact the project manager (such changes can be made on a code level)'),
+           'If left blank, a default text will be used. <br>Note: Should the default text be adjusted site-wide,'
+           ' please contact the project manager (such changes can be made on a code level)'),
         max_length=255,
         null=True,
         blank=True
@@ -192,8 +192,8 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
     detail_link_text = models.CharField(
         _('Text for "Detail"-Link'),
         help_text=_(
-            u'If left blank, a default text will be used.<br>Note: Should the default text be adjusted site-wide,'
-            u' please contact the project manager (such changes can be made on a code level)'),
+           'If left blank, a default text will be used.<br>Note: Should the default text be adjusted site-wide,'
+           ' please contact the project manager (such changes can be made on a code level)'),
         max_length=255,
         null=True,
         blank=True
@@ -295,7 +295,7 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
         the query_filter defined in FILTER_FIELD_CHOICES gets applied here
         """
         try:
-            query_filter = {u'%s__%s' % (fieldname, k): v for k, v in
+            query_filter = {'%s__%s' % (fieldname, k): v for k, v in
                             dict(self.FILTER_FIELD_CHOICES)[fieldname]['query_filter'].items()}
         except KeyError:
             query_filter = {}

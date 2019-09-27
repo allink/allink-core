@@ -63,14 +63,14 @@ class AllinkContentPlugin(CMSPlugin):
     inverted_colors_enabled = models.BooleanField(
         _('Activate "inverted text colors"'),
         help_text=_('If checked, the predefined inverted text colors are applied '
-                    u'(suitable when using a background image/video)'),
+                   '(suitable when using a background image/video)'),
         default=False
     )
     overlay_enabled = models.BooleanField(
         _('Activate "overlay"'),
         help_text=_('If checked, a predefined overlay background gradient/color is applied.<br>'
-                    u'<strong>Important:</strong> Only applied when used in combination with a background '
-                    u'image/video/color'),
+                   '<strong>Important:</strong> Only applied when used in combination with a background '
+                   'image/video/color'),
         default=False
     )
     bg_color = models.CharField(
@@ -82,7 +82,7 @@ class AllinkContentPlugin(CMSPlugin):
     dynamic_height_enabled = models.BooleanField(
         _('Activate dynamic height'),
         help_text=_('If checked, the section\'s height will grow depending on the height of its children.<br>Note: '
-                    u'This option is being ignored when "full height" or "parallax" are enabled.'),
+                   'This option is being ignored when "full height" or "parallax" are enabled.'),
         default=False
     )
     bg_image_outer_container = FilerImageField(
@@ -98,9 +98,9 @@ class AllinkContentPlugin(CMSPlugin):
         verbose_name=_('Source'),
         on_delete=models.PROTECT,
         help_text=_('Recommended video settings:<br><br>Format: '
-                    u'mp4<br>Codec: H.264<br>Target Bitrate: 2 (video loads quick and runs smooth)<br>Audio: '
-                    u'Not recommended (no audio = smaller file size and less annoyed visitors)<br>File size: '
-                    u'Dependent of video length. Generally speaking: Less is more.'),
+                   'mp4<br>Codec: H.264<br>Target Bitrate: 2 (video loads quick and runs smooth)<br>Audio: '
+                   'Not recommended (no audio = smaller file size and less annoyed visitors)<br>File size: '
+                   'Dependent of video length. Generally speaking: Less is more.'),
         blank=True,
         null=True,
         related_name='content_video_file'
@@ -110,8 +110,8 @@ class AllinkContentPlugin(CMSPlugin):
         on_delete=models.PROTECT,
         related_name="content_video_poster_image",
         help_text=_('This image is displayed while the video is loading. Ideally, use an '
-                    u'<strong>exact screen capture image</strong> of the very first frame of the video for best '
-                    u'results.'),
+                   '<strong>exact screen capture image</strong> of the very first frame of the video for best '
+                   'results.'),
         blank=True,
         null=True
     )
@@ -128,7 +128,7 @@ class AllinkContentPlugin(CMSPlugin):
         max_length=255,
         blank=True,
         help_text=_('ID of this content section which can be used for anchor reference from links.<br>'
-                    u'Note: Only letters, numbers and hyphen. No spaces or special chars.'),
+                   'Note: Only letters, numbers and hyphen. No spaces or special chars.'),
     )
     ignore_in_pdf = models.BooleanField(
         _('Ignore for pdf export'),
@@ -225,24 +225,24 @@ class AllinkContentPlugin(CMSPlugin):
          If the first child has no title and there is a Text Plugin, display the first character of the TextPlugin.
         """
         if self.title:
-            return u'{} ({})'.format(self.title, self.template)
+            return'{} ({})'.format(self.title, self.template)
         else:
             if self.child_plugin_instances:
                 for column in self.child_plugin_instances:
                     if column.child_plugin_instances:
                         for plugin in column.child_plugin_instances:
                             if hasattr(plugin, 'title') and plugin.title:
-                                return u'... {} ({})'.format(plugin.title, self.template)
+                                return'... {} ({})'.format(plugin.title, self.template)
                             elif plugin.plugin_type == 'TextPlugin':
-                                return u'... {} ({}) ...'.format(strip_tags(plugin.body)[0:50], self.template)
+                                return'... {} ({}) ...'.format(strip_tags(plugin.body)[0:50], self.template)
                             elif plugin.plugin_type == 'CMSAllinkImagePlugin':
-                                return u'... {} ({}) ...'.format(plugin.picture, self.template)
+                                return'... {} ({}) ...'.format(plugin.picture, self.template)
                             else:
-                                return u'({})'.format(self.template)
+                                return'({})'.format(self.template)
                     else:
-                        return u'({})'.format(self.template)
+                        return'({})'.format(self.template)
             else:
-                return u'({})'.format(self.template)
+                return'({})'.format(self.template)
 
     def clean(self):
         if (self.video_file and self.video_file.extension not in settings.ALLOWED_VIDEO_EXTENSIONS):
@@ -303,8 +303,8 @@ class AllinkContentColumnPlugin(CMSPlugin):
     order_mobile = models.IntegerField(
         _('Order Mobile'),
         help_text=_('Some columns should be ordered differently on mobile devices when columns are '
-                    u'stacked vertically. This option allows you to define the position of the this column.<br><br>'
-                    u'Note: Columns ordering is ascending (lowest number displayed first)'),
+                   'stacked vertically. This option allows you to define the position of the this column.<br><br>'
+                   'Note: Columns ordering is ascending (lowest number displayed first)'),
         blank=True,
         null=True
     )
@@ -335,9 +335,9 @@ class AllinkContentColumnPlugin(CMSPlugin):
 
     def __str__(self):
         if self.title and self.template:
-            return u'{} ({})'.format(self.title, self.template)
+            return'{} ({})'.format(self.title, self.template)
         else:
-            return u'({})'.format(self.template)
+            return'({})'.format(self.template)
 
     def save(self):
         if not self.pk:

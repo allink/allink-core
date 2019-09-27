@@ -34,7 +34,7 @@ class AllinkPage(models.Model):
     just_descendants = models.BooleanField(
         _('Select just descendants'),
         help_text=_(
-            u'If checked and pages selected manually, only the descendants of the selected pages will be listed.'),
+            'If checked and pages selected manually, only the descendants of the selected pages will be listed.'),
         default=False
     )
     page = PageField()

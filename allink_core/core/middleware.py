@@ -15,11 +15,15 @@ class AllinkUrlRedirectMiddleware:
         (r'www\.example2\.com/$', 'http://www.example.com/example2/'),  # noqa
     )
     """
+    def __init__(self, get_response):
+        self.get_response = get_response
 
-    def process_request(self, request):
+    def __call__(self, request):
         host = request.META['HTTP_HOST'] + request.META['PATH_INFO']
         if hasattr(settings, 'URL_REDIRECTS'):
             for url_pattern, redirect_url in settings.URL_REDIRECTS:
                 regex = re.compile(url_pattern)
                 if regex.match(host):
                     return HttpResponsePermanentRedirect(redirect_url)
+        else:
+            return self.get_response(request)

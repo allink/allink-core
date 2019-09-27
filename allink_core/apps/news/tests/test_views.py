@@ -2,18 +2,18 @@
 PARLER_LANGUAGES_HIDE = {
     1: [
         {
-            'code': u'en',
-            'fallbacks': [u'de'],
+            'code': 'en',
+            'fallbacks': ['de'],
             'hide_untranslated': True
         },
         {
-            'code': u'de',
-            'fallbacks': [u'en'],
+            'code': 'de',
+            'fallbacks': ['en'],
             'hide_untranslated': True
         },
         {
-            'code': u'fr',
-            'fallbacks': [u'en'],
+            'code': 'fr',
+            'fallbacks': ['en'],
             'hide_untranslated': True
         },
     ],
@@ -26,18 +26,18 @@ PARLER_LANGUAGES_HIDE = {
 PARLER_LANGUAGES_SHOW = {
     1: [
         {
-            'code': u'en',
-            'fallbacks': [u'de'],
+            'code': 'en',
+            'fallbacks': ['de'],
             'hide_untranslated': False
         },
         {
-            'code': u'de',
-            'fallbacks': [u'en'],
+            'code': 'de',
+            'fallbacks': ['en'],
             'hide_untranslated': False
         },
         {
-            'code': u'fr',
-            'fallbacks': [u'en'],
+            'code': 'fr',
+            'fallbacks': ['en'],
             'hide_untranslated': False
         },
     ],

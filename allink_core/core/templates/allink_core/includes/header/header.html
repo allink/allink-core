@@ -1,15 +1,17 @@
-{% load i18n staticfiles cms_tags %}
+{% load i18n staticfiles cms_tags inline_static_tags %}
 
 <header class="site-header compact-mode-enabled {% block header_class %}{% endblock header_class %}">
-    <div class="site-header__container">
-        <div class="brand-logo">
-            <a class="brand-logo__link" href="{% url "pages-root" %}">
-                {% comment %} IMPORTANT: You must use class '.brand-logo__image' to change fill color from scss {% endcomment %}
-                <svg class="brand-logo__image" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 48"><path d="M19.7 19.7v4.2c-1.1 1.8-3.1 2.8-6 3-3.5-.3-5.2-1.7-4.9-4.4 0-2.7 1.6-4.1 4.9-4.2 2.9.1 4.8.5 6 1.4M15 0c-2.6 0-4.8.3-6.7.8-1.9.6-3.8 1.4-5.7 2.6l3.3 6c1.5-.8 2.9-1.4 4.3-1.7 1.3-.3 3-.4 4.8-.4 3.1.2 4.7 1.5 4.7 4V13c-1.3-.8-3.4-1.2-6.3-1.4-3.9 0-7.1.9-9.6 2.7C1.3 16.2 0 19-.1 22.6c.1 4 1.4 7 3.9 8.9 2.4 2 5.3 2.9 8.5 2.9 3.2-.1 5.7-1.1 7.4-2.9v2.2h8.8V11.4c0-3.6-1.3-6.4-3.7-8.4-2.5-2-5.7-3-9.8-3M.8 47.9h27.9V40H.8v7.9z"/></svg>
-            </a>
-        </div>
+    <div class="site-header__animated">
+        <div class="site-header__container">
+            <div class="brand-logo">
+                <a class="brand-logo__link" href="{% url "pages-root" %}">
+                    {% comment %} IMPORTANT: You must use class '.brand-logo__image' to change fill color from scss {% endcomment %}
+                    {% inline_style 'images/branding/allink-logo-compact.svg' %}
+                </a>
+            </div>
 
-        <div class="site-header__border"></div>
+            <div class="site-header__border"></div>
+        </div>
     </div>
 
     <div class="nav-toggle__container">
@@ -24,27 +26,5 @@
             </div>
         </a>
     </div>
-
-
-    {% comment %} Example collapse nav {% endcomment %}
-    {% comment %} <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#primary-nav" aria-expanded="false" aria-controls="primary-nav">
-        <span class="sr-only">{% trans "Toggle navigation" %}</span>
-        <span class="icon-bar"></span>
-    </button>
-
-    <div id="primary-nav" class="primary-nav" role="navigation">
-        {% block navbar %}
-            <nav class="nav">
-                <h2 class="sr-only">{% trans "Navigation" %}</h2>
-                {% render_model_block request.current_page "changelist" %}
-                    {% with dropdown="true" %}
-                        <ul class="nav navbar-nav">
-                            {% show_menu 0 1 100 100 "includes/menu/navigation.html" %}
-                        </ul>
-                    {% endwith %}
-                {% endrender_model_block %}
-            </nav>
-        {% endblock navbar %}
-    </div> {% endcomment %}
 
 </header>

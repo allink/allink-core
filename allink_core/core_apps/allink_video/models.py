@@ -53,9 +53,9 @@ class AllinkVideoEmbedPlugin(AllinkVideoBasePlugin):
         verbose_name=_('Video ID'),
         max_length=255,
         help_text=_('Only provide the ID. The correct URL will automatically be generated.<br><br>'
-                    u'YouTube: https://www.youtube.com/watch?v=<strong>12345678</strong> '
-                    u'(the ID is <strong>12345678</strong>)<br>Vimeo: https://vimeo.com/<strong>12345678</strong> '
-                    u'(the ID is <strong>12345678</strong>)'),
+                    'YouTube: https://www.youtube.com/watch?v=<strong>12345678</strong> '
+                    '(the ID is <strong>12345678</strong>)<br>Vimeo: https://vimeo.com/<strong>12345678</strong> '
+                    '(the ID is <strong>12345678</strong>)'),
     )
     video_service = models.CharField(
         _('Video Service'),
@@ -94,9 +94,9 @@ class AllinkVideoFilePlugin(AllinkVideoBasePlugin):
         verbose_name=_('Video File'),
         on_delete=models.PROTECT,
         help_text=_('Recommended video settings:<br><br>Format: mp4<br>Codec: H.264<br>Target Bitrate: 2 '
-                    u'(video loads quick and runs smooth)<br>Audio: Not recommended '
-                    u'(no audio = smaller file size and less annoyed visitors)<br>File size: '
-                    u'Dependent of video length. Generally speaking: Less is more.'),
+                    '(video loads quick and runs smooth)<br>Audio: Not recommended '
+                    '(no audio = smaller file size and less annoyed visitors)<br>File size: '
+                    'Dependent of video length. Generally speaking: Less is more.'),
         null=True,
         related_name='%(app_label)s_%(class)s_video_file',
     )
@@ -105,11 +105,11 @@ class AllinkVideoFilePlugin(AllinkVideoBasePlugin):
         on_delete=models.PROTECT,
         related_name='%(app_label)s_%(class)s_video_poster_image',
         help_text=_(
-            u'Image that is being displayed while the video is loading. '
-            u'Ideally the very first frame of the video is used, in order to make the transition as smooth as '
-            u'possible.<br><br><strong>Imoprtant:</strong> Make sure the aspect ratio of the image is '
-            u'<strong>exactly the same</strong> as the video, otherwise the video height will shrink or grow when the '
-            u'playback starts.'),
+            'Image that is being displayed while the video is loading. '
+            'Ideally the very first frame of the video is used, in order to make the transition as smooth as '
+            'possible.<br><br><strong>Imoprtant:</strong> Make sure the aspect ratio of the image is '
+            '<strong>exactly the same</strong> as the video, otherwise the video height will shrink or grow when the '
+            'playback starts.'),
         null=True
     )
     video_file_width = models.IntegerField(

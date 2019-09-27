@@ -10,7 +10,7 @@
 {# utility block #}
 {% block content_section_before %}{% endblock content_section_before %}
 
-<div {% if instance.anchor %}id="{{ instance.anchor }}"{% endif %} class="content-section content-section--tpl-{{instance.template}} {{ instance.css_classes }} {{ instance.css_section_classes }} {% block content_section_additional_css_classes %}{% endblock content_section_additional_css_classes %}" {{instance.attributes|safe}} {% block content_section_additional_attributes %}{% endblock content_section_additional_attributes %}>
+<section {% if instance.anchor %}id="{{ instance.anchor }}"{% endif %} class="content-section content-section--tpl-{{instance.template}} {{ instance.css_classes }} {{ instance.css_section_classes }} {% block content_section_additional_css_classes %}{% endblock content_section_additional_css_classes %}" {{instance.attributes|safe}} {% block content_section_additional_attributes %}{% endblock content_section_additional_attributes %}>
 
     {# utility block #}
     {% block content_section_inner_before %}{% endblock content_section_inner_before %}
@@ -159,7 +159,7 @@
     {# utility block #}
     {% block content_section_inner_after %}{% endblock content_section_inner_after %}
 
-</div>{# .content-section #}
+</section>{# .content-section #}
 
 {# utility block #}
 {% block content_section_after %}{% endblock content_section_after %}

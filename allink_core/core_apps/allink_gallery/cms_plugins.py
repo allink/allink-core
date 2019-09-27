@@ -10,6 +10,7 @@ from webpack_loader.utils import get_files
 from allink_core.core.utils import get_ratio_choices, get_additional_choices
 from allink_core.core_apps.allink_gallery.models import AllinkGalleryPlugin, AllinkGalleryImagePlugin
 from allink_core.core.loading import get_model
+from allink_core.core.admin.mixins import AllinkMediaAdminMixin
 
 Config = get_model('config', 'Config')
 
@@ -63,19 +64,13 @@ class AllinkGalleryImagePluginForm(forms.ModelForm):
 
 
 @plugin_pool.register_plugin
-class CMSAllinkGalleryPlugin(CMSPluginBase):
+class CMSAllinkGalleryPlugin(AllinkMediaAdminMixin, CMSPluginBase):
     model = AllinkGalleryPlugin
     name = _('Gallery')
     module = _('Generic')
     allow_children = True
     child_classes = ['CMSAllinkGalleryImagePlugin']
     form = AllinkGalleryPluginForm
-
-    class Media:
-        js = (get_files('djangocms_custom_admin')[1]['publicPath'], )
-        css = {
-            'all': (get_files('djangocms_custom_admin')[0]['publicPath'], )
-        }
 
     def get_fieldsets(self, request, obj=None):
         fieldsets = (
@@ -109,18 +104,12 @@ class CMSAllinkGalleryPlugin(CMSPluginBase):
 
 
 @plugin_pool.register_plugin
-class CMSAllinkGalleryImagePlugin(CMSPluginBase):
+class CMSAllinkGalleryImagePlugin(AllinkMediaAdminMixin, CMSPluginBase):
     model = AllinkGalleryImagePlugin
     name = _('Gallery Image')
     module = _('Generic')
     allow_children = False
     form = AllinkGalleryImagePluginForm
-
-    class Media:
-        js = (get_files('djangocms_custom_admin')[1]['publicPath'], )
-        css = {
-            'all': (get_files('djangocms_custom_admin')[0]['publicPath'], )
-        }
 
     def get_fieldsets(self, request, obj=None):
         fieldsets = (

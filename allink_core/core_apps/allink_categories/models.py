@@ -48,7 +48,7 @@ class AllinkCategory(AllinkTranslatedAutoSlugifyMixin, TranslationHelperMixin,
     model_names = ArrayField(models.CharField(
         max_length=50),
         help_text=_('Please specify the app which uses this categories. '
-                    u'All apps specified in parent category are automatically added.'),
+                    'All apps specified in parent category are automatically added.'),
         blank=True,
         null=True
     )
@@ -70,8 +70,8 @@ class AllinkCategory(AllinkTranslatedAutoSlugifyMixin, TranslationHelperMixin,
     identifier = models.CharField(
         _('Identifier'),
         max_length=50,
-        help_text=u'Identifier used for backward reference on a app model. '
-                  u'(e.g display category name on People app, e.g Marketing)',
+        help_text='Identifier used for backward reference on a app model. '
+                  '(e.g display category name on People app, e.g Marketing)',
         blank=True,
         null=True
     )

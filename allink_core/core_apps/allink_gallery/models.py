@@ -121,7 +121,7 @@ class AllinkGalleryImagePlugin(CMSPlugin):
     )
 
     def __str__(self):
-        return u'{}'.format(self.image)
+        return'{}'.format(self.image)
 
     def save(self, *args, **kwargs):
         self.template = self.parent.allink_gallery_allinkgalleryplugin.template

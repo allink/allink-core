@@ -34,7 +34,6 @@ class BaseTestimonials(SortableMixin, AllinkCategoryFieldsModel, AllinkBaseTrans
         max_length=255,
         default=''
     )
-    slug = TranslatedField(any_language=True)
     lead = TranslatedField()
     preview_image = FilerImageField(
         verbose_name=_('Preview Image'),
@@ -49,11 +48,11 @@ class BaseTestimonials(SortableMixin, AllinkCategoryFieldsModel, AllinkBaseTrans
         db_index=True
     )
     header_placeholder = PlaceholderField(
-        u'testimonials_header',
+        'testimonials_header',
         related_name='%(app_label)s_%(class)s_header_placeholder'
     )
     content_placeholder = PlaceholderField(
-        u'testimonials_content',
+        'testimonials_content',
         related_name='%(app_label)s_%(class)s_content_placeholder'
     )
     company_name = models.CharField(
@@ -73,15 +72,15 @@ class BaseTestimonials(SortableMixin, AllinkCategoryFieldsModel, AllinkBaseTrans
         verbose_name_plural = _('Testimonials')
 
     def __str__(self):
-        return u'%s - %s' % (self.full_name, self.created.strftime('%d.%m.%Y'))
+        return '%s - %s' % (self.full_name, self.created.strftime('%d.%m.%Y'))
 
     @property
     def full_name(self):
-        return u'{} {}'.format(self.first_name, self.last_name)
+        return '{} {}'.format(self.first_name, self.last_name)
 
     @property
     def title(self):
-        return u'{} {}'.format(self.first_name, self.last_name)
+        return '{} {}'.format(self.first_name, self.last_name)
 
 
 class BaseTestimonialsTranslation(AllinkBaseTranslatedFieldsModel):
@@ -90,14 +89,6 @@ class BaseTestimonialsTranslation(AllinkBaseTranslatedFieldsModel):
         on_delete=models.CASCADE,
         related_name='translations',
         null=True
-    )
-
-    slug = models.SlugField(
-        _('Slug'),
-        max_length=255,
-        default='',
-        blank=True,
-        help_text=_('Leave blank to auto-generate a unique slug.')
     )
     lead = HTMLField(
         _('Lead Text'),

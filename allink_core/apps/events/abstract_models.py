@@ -27,7 +27,6 @@ class BaseEvents(AllinkTimeFramedModel, AllinkCategoryFieldsModel, AllinkBaseTra
     slug_source_field_name = 'title'
 
     title = TranslatedField(any_language=True)
-    slug = TranslatedField(any_language=True)
     lead = TranslatedField()
 
     preview_image = FilerImageField(
@@ -45,11 +44,11 @@ class BaseEvents(AllinkTimeFramedModel, AllinkCategoryFieldsModel, AllinkBaseTra
         null=True,
     )
     header_placeholder = PlaceholderField(
-        u'events_header',
+        'events_header',
         related_name='%(app_label)s_%(class)s_header_placeholder'
     )
     content_placeholder = PlaceholderField(
-        u'events_content',
+        'events_content',
         related_name='%(app_label)s_%(class)s_content_placeholder'
     )
 
@@ -79,7 +78,7 @@ class BaseEvents(AllinkTimeFramedModel, AllinkCategoryFieldsModel, AllinkBaseTra
         verbose_name_plural = _('Events')
 
     def __str__(self):
-        return u'%s %s' % (self.title, self.entry_date.strftime('%d.%m.%Y %H:%M:%S'))
+        return '%s %s' % (self.title, self.entry_date.strftime('%d.%m.%Y %H:%M:%S'))
 
     def show_registration_form(self):
         if getattr(self, 'entry_date'):
@@ -101,13 +100,6 @@ class BaseEventsTranslation(AllinkBaseTranslatedFieldsModel):
 
     title = models.CharField(
         max_length=255
-    )
-    slug = models.SlugField(
-        _('Slug'),
-        max_length=255,
-        default='',
-        blank=True,
-        help_text=_('Leave blank to auto-generate a unique slug.')
     )
     lead = HTMLField(
         _('Lead Text'),
@@ -189,4 +181,4 @@ class BaseEventsRegistration(AllinkSimpleRegistrationFieldsModel):
         app_label = 'events'
 
     def __str__(self):
-        return u'%s %s' % (self.first_name, self.last_name)
+        return '%s %s' % (self.first_name, self.last_name)

@@ -1,12 +1,10 @@
 {% load allink_image_tags %}
 
-<div class="teaser teaser--fullwidth teaser--parallax inverted-colors">
+<div class="teaser teaser--parallax inverted-colors">
 
     <div class="teaser__image">
-        {% render_image width_alias="parallax" image=teaser_image alt_text=teaser_title vh_enabled=False %}
+        {% render_image width_alias="parallax" image=teaser_image alt_text=teaser_title vh_enabled=False subject_location=True %}
     </div>
-
-    <div class="teaser__overlay"></div>
 
     <div class="teaser__content">
         {% include 'allink_teaser/includes/_technical-title.html' with teaser_technical_title=teaser_technical_title %}

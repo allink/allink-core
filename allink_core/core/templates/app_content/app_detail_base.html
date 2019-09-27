@@ -18,7 +18,7 @@
         {% comment %}
             Header
         {% endcomment %}
-        <div class="content-section app-detail__header container-enabled {% if not header_placeholder_has_content and not object.preview_image %}app-detail__header--empty{% endif %}">
+        <header class="content-section app-detail__header container-enabled {% if not header_placeholder_has_content and not object.preview_image %}app-detail__header--empty{% endif %}">
             <div class="content-section__container">
                 <div class="app-detail__col-container">
 
@@ -38,19 +38,19 @@
 
                 </div>
             </div>
-        </div>
+        </header>
 
         {% comment %}
             Content
         {% endcomment %}
-        <div class="content-section app-detail__content container-enabled">
+        <article class="content-section app-detail__content container-enabled">
             <div class="content-section__container">
 
                 <header class="app-detail__heading-container">
                     {% if object.created %}
-                        <div class="app-detail__created">
+                        <time class="app-detail__created" datetime="{{ object.created|date:"c" }}">
                             {{object.created|date:"j.n.Y"}}
-                        </div>
+                        </time>
                     {% endif %}
                     <h2 class="app-detail__heading">
                         {% render_model_ajax object "title" %}
@@ -80,7 +80,7 @@
                 </div>{# end .app-detail__col-container #}
 
             </div>{# end .content-section__container #}
-        </div>{# end .content-section #}
+        </article>{# end .content-section #}
 
     </article>
 

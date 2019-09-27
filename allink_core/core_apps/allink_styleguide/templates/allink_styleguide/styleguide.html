@@ -2,7 +2,7 @@
 {% load i18n cms_tags allink_meta_tags %}
 
 {% block meta_tags %}
-    {% render_meta_og overwrite_dict="{page_title: 'Styleguide'}" %}
+    {% render_meta_og overwrite_dict="{'meta_page_title': 'Styleguide'}" %}
 {% endblock meta_tags %}
 
 {% block body_class %}tpl-styleguide{% endblock %}
@@ -12,29 +12,34 @@
 
 {% block content %}
     {% comment %}
-        Display
-    {% endcomment %}
-    <div class="content-section styleguide-section inverted-colors has-bg-color" style="background:#999;">
-        <div class="content-section__container">
-            <div class="text-container">
-                <h1 class="display-1">Display 1</h1>
-            </div>
-        </div>
-    </div>
-
-    {% comment %}
         Headings
     {% endcomment %}
     <div class="content-section styleguide-section">
         <div class="content-section__container">
 
+            <header class="content-section__section-heading-container">
+                <h1 class="content-section__section-heading">Headings</h1>
+            </header>
+
             <div class="text-container">
-                <h2>Titel Gross</h2>
-                <p>Accumsan interdum aenean ut natoque placerat vestibulum quisque habitasse dapibus cum adipiscing tortor tincidunt suspendisse platea proin fermentum vehicula ultricies nec.</p>
-                <h3>Titel Mittel</h3>
-                <p>Interdum aenean <a href="#" class="text">Beispiel Link innerhalb von Text</a> ut natoque placerat vestibulum quisque habitasse dapibus cum adipiscing tortor tincidunt suspendisse.</p>
-                <h4>Titel Klein</h4>
-                <p>Eleifend lectus orci molestie. Parturient sed at ac duis semper dapibus dictumst class curabitur felis etiam eu inceptos praesent a himenaeos nec at quis enim tincidunt a volutpat hendrerit a suspendisse tempus aliquam.</p>
+                <div class="border-container">
+                    <h1>Heading 1</h1>
+                </div>
+                <div class="border-container">
+                    <h2>Heading 2</h2>
+                </div>
+                <div class="border-container">
+                    <h3>Heading 3</h3>
+                </div>
+                <div class="border-container">
+                    <h4>Heading 4</h4>
+                </div>
+                <div class="border-container">
+                    <h5>Heading 5</h5>
+                </div>
+                <div class="border-container">
+                    <h6>Heading 6</h6>
+                </div>
             </div>
         </div>
     </div>
@@ -50,13 +55,68 @@
             </header>
 
             <div class="text-container">
-                <p class="lead">Text Large - Parturient sed at ac duis semper dapibus dictumst class curabitur felis etiam eu inceptos praesent a himenaeos nec at quis enim tincidunt a volutpat hendrerit a suspendisse tempus aliquam.</p>
-                <p>Text Normal = Default ParaLead Paragraph - Parturient sed at ac duis semper dapibus dictumst class curabitur felis etiam eu inceptos praesent a himenaeos nec at quis enim tincidunt a volutpat hendrerit a suspendisse tempus aliquam.</p>
-                <p class="small">Text Small = Default ParaLead Paragraph - Parturient sed at ac duis semper dapibus dictumst class curabitur felis etiam eu inceptos praesent a himenaeos nec at quis enim tincidunt a volutpat hendrerit a suspendisse tempus aliquam.</p>
+                <div class="border-container">
+                    <p>Text Normal = Default Paragraph - Parturient sed at ac duis semper dapibus dictumst class curabitur felis etiam eu inceptos praesent a himenaeos nec at quis enim tincidunt a volutpat hendrerit a suspendisse tempus aliquam.</p>
+                </div>
+                <div class="border-container">
+                    <p class="small">Text Small = Default Paragraph - Parturient sed at ac duis semper dapibus dictumst class curabitur felis etiam eu inceptos praesent a himenaeos nec at quis enim tincidunt a volutpat hendrerit a suspendisse tempus aliquam.</p>
+                </div>
+                <div class="border-container">
+                    <p class="lead">Text Large = Lead Text - Parturient sed at ac duis semper dapibus dictumst class curabitur felis etiam eu inceptos praesent a himenaeos nec at quis enim tincidunt a volutpat hendrerit a suspendisse tempus aliquam.</p>
+                </div>
+                <div class="border-container text-container">
+                    <p>Text Normal = Default Paragraph - Parturient sed at ac duis semper dapibus dictumst class curabitur felis etiam eu inceptos praesent a himenaeos nec at quis enim tincidunt a volutpat hendrerit a suspendisse tempus aliquam.</p>
+                    <p>
+                        {% comment %} <a href="#" class="btn btn-default">Default</a> {% endcomment %}
+                        <a href="/de/kontakt-standort/" class="button-link-plugin__link  btn btn-default btn-md" data-trigger-softpage="" data-cms-page="" role="button" id="Bodenlager25_plugin6282_Kontakt" data-trigger-initialized=""><span class="button-link-plugin__text">Kontakt</span><span class="btn__text--mask"><span class="btn__text--mask__inner">Kontakt</span></span></a>
+                    </p>
+                </div>
+                <div class="content-plugin text-plugin text-container">
+                    <h2>Anfahrt mit dem Auto</h2>
+
+                    <p>Nehmen Sie die Ausfahrt Wallisellen. Beim Möbel Pfister rechts einbiegen (Hochbord Nord) und dann beim 1. Kreisel links. Sie finden uns direkt hinter dem Interio.</p>
+
+                    <p>
+                    <a href="/de/kontakt-standort/" class="button-link-plugin__link  btn btn-default btn-md" data-trigger-softpage="" data-cms-page="" role="button" id="Bodenlager25_plugin6282_Kontakt" data-trigger-initialized=""><span class="button-link-plugin__text">Kontakt</span><span class="btn__text--mask"><span class="btn__text--mask__inner">Kontakt</span></span></a><span class="modal-header-markup" style="display: none;"><span class="tingle-modal-header__container"><span class="tingle-modal-header__inner"><span class="tingle-modal-header__heading">
+                                    Kontakt &amp; Standort
+                                </span><a class="tingle-modal-header__link-close" href="#" data-close-softpage=""><span class="sr-only">
+                                        Schließen
+                                    </span></a></span></span></span>
+                    </p>
+                </div>
             </div>
         </div>
     </div>
 
+    {% comment %}
+        Text-Container Text Styles
+    {% endcomment %}
+    <div class="content-section styleguide-section">
+        <div class="content-section__container">
+
+            <header class="content-section__section-heading-container">
+                <h1 class="content-section__section-heading">Text-Container Text Styles</h1>
+            </header>
+
+            <div class="text-container">
+                <h1>Heading 1</h1>
+                <p>Nehmen Sie die Ausfahrt Wallisellen. Beim Möbel Pfister rechts einbiegen (Hochbord Nord) und dann beim 1. Kreisel links. Sie finden uns direkt hinter dem Interio.</p>
+                <h2>Heading 2</h2>
+                <p>Nehmen Sie die Ausfahrt Wallisellen. Beim Möbel Pfister rechts einbiegen (Hochbord Nord) und dann beim 1. Kreisel links. Sie finden uns direkt hinter dem Interio.</p>
+                <h3>Heading 3</h3>
+                <p>Nehmen Sie die Ausfahrt Wallisellen. Beim Möbel Pfister rechts einbiegen (Hochbord Nord) und dann beim 1. Kreisel links. Sie finden uns direkt hinter dem Interio.</p>
+                <h4>Heading 4</h4>
+                <p>Nehmen Sie die Ausfahrt Wallisellen. Beim Möbel Pfister rechts einbiegen (Hochbord Nord) und dann beim 1. Kreisel links. Sie finden uns direkt hinter dem Interio.</p>
+                <h5>Heading 5</h5>
+                <p>Nehmen Sie die Ausfahrt Wallisellen. Beim Möbel Pfister rechts einbiegen (Hochbord Nord) und dann beim 1. Kreisel links. Sie finden uns direkt hinter dem Interio.</p>
+                <h6>Heading 6</h6>
+                <p>Nehmen Sie die Ausfahrt Wallisellen. Beim Möbel Pfister rechts einbiegen (Hochbord Nord) und dann beim 1. Kreisel links. Sie finden uns direkt hinter dem Interio.</p>
+
+                <h1>Heading 1</h1>
+                <h2>Heading 2</h2>
+            </div>
+        </div>
+    </div>
 
     {% comment %}
         Lists

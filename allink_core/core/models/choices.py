@@ -69,8 +69,8 @@ YOUTUBE = 'youtube'
 VIMEO = 'vimeo'
 
 VIDEO_SERVICE_CHOICES = (
-    (YOUTUBE, u'Youtube'),
-    (VIMEO, u'Vimeo'),
+    (YOUTUBE, 'Youtube'),
+    (VIMEO, 'Vimeo'),
 )
 
 
@@ -113,16 +113,14 @@ TEXT_LINK_CONTEXT_CHOICES = (
 TEXT_LINK_CONTEXT_DEFAULT = ''
 
 NEW_WINDOW = 1
-SOFTPAGE_LARGE = 2
-SOFTPAGE_SMALL = 3
+SOFTPAGE = 2
 FORM_MODAL = 4
 IMAGE_MODAL = 5
 DEFAULT_MODAL = 6
 
 TARGET_CHOICES = (
     (NEW_WINDOW, _('New window')),
-    (SOFTPAGE_LARGE, _('Softpage (large)')),
-    (SOFTPAGE_SMALL, _('Softpage (small)')),
+    (SOFTPAGE, _('Softpage')),
     (FORM_MODAL, _('Lightbox (Forms)')),
     (IMAGE_MODAL, _('Lightbox (Image)')),
     (DEFAULT_MODAL, _('Lightbox (Default)')),

@@ -21,4 +21,4 @@ class AllinkSignupFormPlugin(CMSPlugin):
     )
 
     def __str__(self):
-        return u''
+        return ''
