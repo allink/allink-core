@@ -53,7 +53,9 @@
     {% endblock webpack_css %}
     {% render_block "css" %}
 
-    {# Load external JavaScript #}
+    {# Load external JavaScript#}
+    {# Included from: https://cdnjs.com/#}
+    <script src="//cdnjs.cloudflare.com/ajax/libs/picturefill/3.0.3/picturefill.min.js" async></script>
 
     {# Optional: Extra Header Block#}
     {% block extrahead %}{% endblock extrahead %}
