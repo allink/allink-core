@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import datetime
-from django.utils.translation import ugettext_lazy as _
 from django.db import models
 
 from cms.models.fields import PageField
@@ -30,15 +29,15 @@ class BaseEvents(AllinkTimeFramedModel, AllinkCategoryFieldsModel, AllinkBaseTra
     lead = TranslatedField()
 
     preview_image = FilerImageField(
-        verbose_name=_('Preview Image'),
+        verbose_name='Preview Image',
         blank=True,
         null=True,
         on_delete=models.PROTECT,
         related_name='%(app_label)s_%(class)s_preview_image',
     )
     template = models.CharField(
-        _('Template'),
-        help_text=_('Choose a template.'),
+        'Template',
+        help_text='Choose a template.',
         max_length=50,
         blank=True,
         null=True,
@@ -55,11 +54,11 @@ class BaseEvents(AllinkTimeFramedModel, AllinkCategoryFieldsModel, AllinkBaseTra
     costs = TranslatedField()
 
     form_enabled = models.BooleanField(
-        _('Event Form enabled'),
+        'Event Form enabled',
         default=True
     )
     entry_date = models.DateTimeField(
-        _('Entry Date'),
+        'Entry Date',
     )
     location = models.ForeignKey(
         'locations.Locations',
@@ -74,8 +73,8 @@ class BaseEvents(AllinkTimeFramedModel, AllinkCategoryFieldsModel, AllinkBaseTra
     class Meta:
         abstract = True
         app_label = 'events'
-        verbose_name = _('Event')
-        verbose_name_plural = _('Events')
+        verbose_name = 'Event'
+        verbose_name_plural = 'Events'
 
     def __str__(self):
         return '%s %s' % (self.title, self.entry_date.strftime('%d.%m.%Y %H:%M:%S'))
@@ -102,14 +101,14 @@ class BaseEventsTranslation(AllinkBaseTranslatedFieldsModel):
         max_length=255
     )
     lead = HTMLField(
-        _('Lead Text'),
-        help_text=_('Teaser text that in some cases is used in the list view and/or in the detail view.'),
+        'Lead Text',
+        help_text='Teaser text that in some cases is used in the list view and/or in the detail view.',
         blank=True,
         null=True,
     )
     costs = models.CharField(
         max_length=255,
-        help_text=_('Costs'),
+        help_text='Costs',
         blank=True,
         null=True,
     )
@@ -134,15 +133,15 @@ class BaseEventsAppContentPlugin(AllinkBaseAppContentPlugin):
     manual_entries = SortedM2MModelField(
         'events.Events',
         blank=True,
-        help_text=_('Select and arrange specific entries, or, leave blank to select all. (If '
-                    'manual entries are selected the category filtering will be ignored.)')
+        help_text=('Select and arrange specific entries, or, leave blank to select all. (If '
+                   'manual entries are selected the category filtering will be ignored.)')
     )
     apphook_page = PageField(
-        verbose_name=_('Apphook Page'),
+        verbose_name='Apphook Page',
         null=True,
         blank=True,
         on_delete=models.PROTECT,
-        help_text=_('If provided, this Apphook-Page will be used to generate the detail link.'),
+        help_text='If provided, this Apphook-Page will be used to generate the detail link.',
     )
 
     class Meta:
@@ -171,7 +170,7 @@ class BaseEventsRegistration(AllinkSimpleRegistrationFieldsModel):
 
     # terms = models.ForeignKey(
     #     'allink_terms.AllinkTerms',
-    #     verbose_name=_('I have read and accept the terms and conditions.'),
+    #     verbose_name=('I have read and accept the terms and conditions.'),
     #     blank=True,
     #     null=True
     # )

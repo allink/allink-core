@@ -29,7 +29,7 @@ class Icon(models.CharField):
 
     def __init__(self, *args, **kwargs):
         if 'verbose_name' not in kwargs:
-            kwargs['verbose_name'] = _('Icon')
+            kwargs['verbose_name'] = 'Icon'
         if 'max_length' not in kwargs:
             kwargs['max_length'] = 255
         if 'blank' not in kwargs:
@@ -49,7 +49,7 @@ class Icon(models.CharField):
 class ZipCodeField(PositiveIntegerField):
     default_validators = [MaxValueValidator(9999)]
     default_field_class = fields.ZipCode
-    description = _('Zip Code Field')
+    description = 'Zip Code Field'
 
     def formfield(self, **kwargs):
         defaults = {

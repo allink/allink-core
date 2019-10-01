@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-15 16:23+0200\n"
+"POT-Creation-Date: 2019-09-24 10:07+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,14 +17,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#: allink_core/core_apps/allink_mailchimp/cms_plugins.py:26
-msgid "Signup Form"
-msgstr "Anmelde-Formular"
-
-#: allink_core/core_apps/allink_mailchimp/cms_plugins.py:27
-msgid "allink forms"
-msgstr ""
 
 #: allink_core/core_apps/allink_mailchimp/forms.py:12
 #: allink_core/core_apps/allink_mailchimp/forms.py:35
@@ -40,22 +32,6 @@ msgstr "Vorname"
 #: allink_core/core_apps/allink_mailchimp/templates/allink_mailchimp/signup_form_advanced_base.html:42
 msgid "Last Name"
 msgstr "Nachname"
-
-#: allink_core/core_apps/allink_mailchimp/helpers.py:21
-msgid "Error: {} {}"
-msgstr ""
-
-#: allink_core/core_apps/allink_mailchimp/helpers.py:24
-msgid "Cannot decode json, got {}"
-msgstr ""
-
-#: allink_core/core_apps/allink_mailchimp/models.py:16
-msgid "Template"
-msgstr ""
-
-#: allink_core/core_apps/allink_mailchimp/models.py:17
-msgid "Choose a form."
-msgstr "Formular wählen"
 
 #: allink_core/core_apps/allink_mailchimp/templates/allink_mailchimp/confirmation.html:4
 msgid "Thanks for your registration."
@@ -80,3 +56,9 @@ msgid "Something went wrong with your subscription. Please try again later."
 msgstr ""
 "Bei Ihrer Anmeldung ist etwas schiefgelaufen. Bitte versuchen Sie es später "
 "erneut."
+
+#~ msgid "Signup Form"
+#~ msgstr "Anmelde-Formular"
+
+#~ msgid "Choose a form."
+#~ msgstr "Formular wählen"

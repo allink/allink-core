@@ -2,7 +2,6 @@
 
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
-from django.utils.translation import ugettext_lazy as _
 
 from aldryn_translation_tools.models import TranslationHelperMixin
 
@@ -47,8 +46,8 @@ class AllinkCategory(AllinkTranslatedAutoSlugifyMixin, TranslationHelperMixin,
 
     model_names = ArrayField(models.CharField(
         max_length=50),
-        help_text=_('Please specify the app which uses this categories. '
-                    'All apps specified in parent category are automatically added.'),
+        help_text=('Please specify the app which uses this categories. '
+                   'All apps specified in parent category are automatically added.'),
         blank=True,
         null=True
     )
@@ -58,9 +57,9 @@ class AllinkCategory(AllinkTranslatedAutoSlugifyMixin, TranslationHelperMixin,
     # all categories with the same tag can be used
     # in the same filter.
     tag = models.CharField(
-        _('Tag'),
+        'Tag',
         max_length=80,
-        help_text=_('auto-generated categories use this tag, to identify which app generated the category.'),
+        help_text='auto-generated categories use this tag, to identify which app generated the category.',
         null=True,
         blank=True
     )
@@ -68,7 +67,7 @@ class AllinkCategory(AllinkTranslatedAutoSlugifyMixin, TranslationHelperMixin,
     # the verbose counterpart to field 'tag' (iidentifier can and has to be set manually)
     # as a addition to make queries on categories (for example to create filter slect dropdown in app plugins)
     identifier = models.CharField(
-        _('Identifier'),
+        'Identifier',
         max_length=50,
         help_text='Identifier used for backward reference on a app model. '
                   '(e.g display category name on People app, e.g Marketing)',
@@ -78,16 +77,16 @@ class AllinkCategory(AllinkTranslatedAutoSlugifyMixin, TranslationHelperMixin,
 
     translations = TranslatedFields(
         name=models.CharField(
-            _('name'),
+            'name',
             blank=False,
             default='',
             max_length=255,
         ),
         slug=models.SlugField(
-            _('slug'),
+            'slug',
             blank=True,
             default='',
-            help_text=_('Provide a “slug” or leave blank for an automatically '
+            help_text=('Provide a “slug” or leave blank for an automatically '
                         'generated one.'),
             max_length=255,
         ),
@@ -98,8 +97,8 @@ class AllinkCategory(AllinkTranslatedAutoSlugifyMixin, TranslationHelperMixin,
 
     class Meta:
         app_label = 'allink_categories'
-        verbose_name = _('Category')
-        verbose_name_plural = _('Categories')
+        verbose_name = 'Category'
+        verbose_name_plural = 'Categories'
 
     def __str__(self):
         return self.safe_translation_getter('name', any_language=True)

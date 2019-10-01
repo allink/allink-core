@@ -2,7 +2,6 @@
 import re
 
 from django import forms
-from django.utils.translation import ugettext_lazy as _
 from django.core.paginator import Paginator
 from django.urls import reverse
 from django.contrib.admin.widgets import FilteredSelectMultiple
@@ -25,21 +24,21 @@ class AllinkBaseAppContentPluginForm(forms.ModelForm):
         # if app uses categories, populate 'categories' field
         if self.instance.get_app_can_have_categories():
             self.fields['categories'] = forms.ModelMultipleChoiceField(
-                label=_('Categories'),
+                label='Categories',
                 widget=FilteredSelectMultiple(
-                    verbose_name=_('Categories'),
+                    verbose_name='Categories',
                     is_stacked=True
                 ),
                 required=False,
                 queryset=self.instance.data_model.get_relevant_categories()
             )
             self.fields['categories_and'] = forms.ModelMultipleChoiceField(
-                label=_('Categories (AND operator)'),
+                label='Categories (AND operator)',
                 widget=FilteredSelectMultiple(
-                    verbose_name=_('Categories'),
+                    verbose_name='Categories',
                     is_stacked=True
                 ),
-                help_text=_(
+                help_text=(
                     'Use this field if you want to further restrict your result set. This option allows you to create'
                     ' a conjunction between the first set of categories in field "Categories" and the ones '
                     'specified here.'),
@@ -47,12 +46,12 @@ class AllinkBaseAppContentPluginForm(forms.ModelForm):
                 queryset=self.instance.data_model.get_relevant_categories()
             )
             self.fields['category_navigation'] = forms.ModelMultipleChoiceField(
-                label=_('Categories for Navigation'),
+                label='Categories for Navigation',
                 widget=FilteredSelectMultiple(
-                    verbose_name=_('Categories for Navigation'),
+                    verbose_name='Categories for Navigation',
                     is_stacked=True
                 ),
-                help_text=_(
+                help_text=(
                     'You can explicitly define the categories for the category navigation here. '
                     'This will override the'
                     ' automatically set of categories. (From "Filter & Ordering" but not from the "Manual entries")'),
@@ -60,32 +59,32 @@ class AllinkBaseAppContentPluginForm(forms.ModelForm):
                 queryset=self.instance.data_model.get_relevant_categories()
             )
         self.fields['filter_fields'] = forms.TypedMultipleChoiceField(
-            label=_('Filter Fields'),
-            help_text=_('A Select Dropdown will be displayed for this Fields.'),
+            label='Filter Fields',
+            help_text='A Select Dropdown will be displayed for this Fields.',
             choices=((field[0], field[1]['verbose']) for field in self.instance.FILTER_FIELD_CHOICES),
             widget=forms.CheckboxSelectMultiple,
             required=False,
         )
         self.fields['template'] = forms.CharField(
-            label=_('Template'),
+            label='Template',
             widget=forms.Select(choices=self.instance.get_templates()),
             required=True,
         )
         if get_project_css_classes(self._meta.model.data_model._meta.model_name):
             self.fields['project_css_classes'] = forms.MultipleChoiceField(
                 widget=forms.CheckboxSelectMultiple(),
-                label=_('Predifined variations'),
+                label='Predifined variations',
                 choices=get_project_css_classes(self._meta.model.data_model._meta.model_name),
                 required=False,
             )
         self.fields['manual_filtering'] = forms.CharField(
-            label=_('Filtering'),
+            label='Filtering',
             required=False,
             widget=forms.Select(choices=self.instance.get_filtering_choices() if hasattr(
                 self.instance, 'get_filtering_choices') else [])
         )
         self.fields['manual_ordering'] = forms.CharField(
-            label=_('Ordering'),
+            label='Ordering',
             required=False,
             widget=forms.Select(choices=self.instance.get_ordering_choices())
         )
@@ -98,8 +97,8 @@ class CMSAllinkBaseAppContentPlugin(AllinkMediaAdminMixin, CMSPluginBase):
     """
     model = AllinkBaseAppContentPlugin
 
-    name = _('App Content')
-    module = _('allink modules')
+    name = 'App Content'
+    module = 'allink modules'
     allow_children = False
     form = AllinkBaseAppContentPluginForm
 
@@ -112,7 +111,7 @@ class CMSAllinkBaseAppContentPlugin(AllinkMediaAdminMixin, CMSPluginBase):
             }),
         )
 
-        fieldsets += (_('Display Options'), {
+        fieldsets += ('Display Options', {
             'classes': ('collapse',),
             'fields': (
                 'detail_link_enabled',
@@ -121,7 +120,7 @@ class CMSAllinkBaseAppContentPlugin(AllinkMediaAdminMixin, CMSPluginBase):
         }),
 
         if self.model.data_model.get_can_have_categories():
-            fieldsets += (_('Categories'), {
+            fieldsets += ('Categories', {
                 'classes': ('collapse',),
                 'fields': (
                     'categories',
@@ -129,7 +128,7 @@ class CMSAllinkBaseAppContentPlugin(AllinkMediaAdminMixin, CMSPluginBase):
                 )
             }),
 
-        fieldsets += (_('Filter & Ordering'), {
+        fieldsets += ('Filter & Ordering', {
             'classes': ('collapse',),
             'fields': (
                 'manual_filtering',
@@ -138,7 +137,7 @@ class CMSAllinkBaseAppContentPlugin(AllinkMediaAdminMixin, CMSPluginBase):
             )
         }),
 
-        fieldsets += (_('Select entries manually'), {
+        fieldsets += ('Select entries manually', {
             'classes': ('collapse',),
             'fields': (
                 'manual_entries',
@@ -146,7 +145,7 @@ class CMSAllinkBaseAppContentPlugin(AllinkMediaAdminMixin, CMSPluginBase):
         }),
 
         if self.model.data_model.get_can_have_categories():
-            fieldsets += (_('Category Navigation Options'), {
+            fieldsets += ('Category Navigation Options', {
                 'classes': (
                     'collapse',
                     'disable_when_slider',
@@ -159,7 +158,7 @@ class CMSAllinkBaseAppContentPlugin(AllinkMediaAdminMixin, CMSPluginBase):
                 )
             }),
 
-        fieldsets += (_('Number of entries'), {
+        fieldsets += ('Number of entries', {
             'classes': (
                 'collapse',
                 'disable_when_map',
@@ -169,7 +168,7 @@ class CMSAllinkBaseAppContentPlugin(AllinkMediaAdminMixin, CMSPluginBase):
             )
         }),
 
-        fieldsets += (_('Pagination Options'), {
+        fieldsets += ('Pagination Options', {
             'classes': (
                 'collapse',
                 'disable_when_slider',
@@ -180,7 +179,7 @@ class CMSAllinkBaseAppContentPlugin(AllinkMediaAdminMixin, CMSPluginBase):
             )
         }),
 
-        fieldsets += (_('Additional Options'), {
+        fieldsets += ('Additional Options', {
             'classes': ('collapse',),
             'fields': (
                 'apphook_page',
@@ -189,7 +188,7 @@ class CMSAllinkBaseAppContentPlugin(AllinkMediaAdminMixin, CMSPluginBase):
             )
         }),
 
-        fieldsets += (_('Grid Options'), {
+        fieldsets += ('Grid Options', {
             'classes': (
                 'collapse',
                 'only_when_grid_static',
@@ -289,13 +288,13 @@ class AllinkBaseSearchPluginForm(forms.ModelForm):
         if get_project_css_classes(self._meta.model.data_model._meta.model_name):
             self.fields['project_css_classes'] = forms.MultipleChoiceField(
                 widget=forms.CheckboxSelectMultiple(),
-                label=_('Predifined variations'),
+                label='Predifined variations',
                 choices=get_project_css_classes(self._meta.model.data_model._meta.model_name),
                 required=False,
             )
 
         self.fields['template'] = forms.CharField(
-            label=_('Template'),
+            label='Template',
             widget=forms.Select(choices=self.instance.get_templates()),
             required=True,
         )
@@ -307,7 +306,7 @@ class CMSAllinkBaseSearchPlugin(AllinkMediaAdminMixin, CMSPluginBase):
     only used to inherit from (for specific Search Plugins)
     """
     model = AllinkBaseSearchPlugin
-    module = _('allink search')
+    module = 'allink search'
     form = AllinkBaseSearchPluginForm
     search_form = None
 

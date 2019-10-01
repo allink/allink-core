@@ -29,9 +29,9 @@ CENTER = 'center'
 RIGHT = 'right'
 
 HORIZONTAL_ALIGNMENT_CHOICES = (
-    (LEFT, _('Left')),
-    (CENTER, _('Center')),
-    (RIGHT, _('Right')),
+    (LEFT, 'Left'),
+    (CENTER, 'Center'),
+    (RIGHT, 'Right'),
 )
 
 TOP = 'top'
@@ -39,9 +39,9 @@ MIDDLE = 'middle'
 BOTTOM = 'bottom'
 
 VERTICAL_ALIGNMENT_CHOICES = (
-    (TOP, _('Top')),
-    (MIDDLE, _('Middle')),
-    (BOTTOM, _('Bottom')),
+    (TOP, 'Top'),
+    (MIDDLE, 'Middle'),
+    (BOTTOM, 'Bottom'),
 )
 
 
@@ -81,9 +81,9 @@ VIDEO_SERVICE_CHOICES = (
 # Used in the 'Button / Link' plugin
 
 SIZE_CHOICES = (
-    ('sm', _('Small'),),
-    ('md', _('Medium'),),
-    ('lg', _('Large'),),
+    ('sm', 'Small'),
+    ('md', 'Medium'),
+    ('lg', 'Large'),
 )
 
 CONTEXT_CHOICES = (
@@ -119,11 +119,11 @@ IMAGE_MODAL = 5
 DEFAULT_MODAL = 6
 
 TARGET_CHOICES = (
-    (NEW_WINDOW, _('New window')),
-    (SOFTPAGE, _('Softpage')),
-    (FORM_MODAL, _('Lightbox (Forms)')),
-    (IMAGE_MODAL, _('Lightbox (Image)')),
-    (DEFAULT_MODAL, _('Lightbox (Default)')),
+    (NEW_WINDOW, 'New window'),
+    (SOFTPAGE, 'Softpage'),
+    (FORM_MODAL, 'Lightbox (Forms)'),
+    (IMAGE_MODAL, 'Lightbox (Image)'),
+    (DEFAULT_MODAL, 'Lightbox (Default)'),
 )
 
 ####################################################################################

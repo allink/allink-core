@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin, messages
-from django.utils.translation import ugettext_lazy as _
 from adminsortable.admin import SortableAdmin
 from allink_core.core.loading import get_model
 from parler.admin import TranslatableAdmin
@@ -38,7 +37,7 @@ class LocationsAdmin(AllinkMediaAdminMixin, AllinkSEOAdminMixin, AllinkCategoryA
                     'opening_hours_display',
                 )
             }),
-            (_('Opening hours (Detailed)'), {
+            ('Opening hours (Detailed)', {
                 'classes': ('collapse',),
                 'fields': (
                     'is_currently_open',
@@ -57,7 +56,7 @@ class LocationsAdmin(AllinkMediaAdminMixin, AllinkSEOAdminMixin, AllinkCategoryA
                     'sun',
                     'sun_afternoon'
                 ),
-                'description': _('Format: "9:00-12:00  13:00-20:00"')
+                'description': 'Format: "9:00-12:00  13:00-20:00"'
             }),
         )
         fieldsets += self.get_category_fieldsets()

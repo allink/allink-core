@@ -5,7 +5,6 @@ from django.db import models
 from django.db.models import Q, QuerySet
 from django.core.exceptions import FieldDoesNotExist, FieldError
 from django.contrib.postgres.fields import ArrayField
-from django.utils.translation import ugettext_lazy as _
 from django.utils.functional import cached_property
 from cms.utils.i18n import get_current_language
 from cms.models.pluginmodel import CMSPlugin
@@ -82,7 +81,7 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
     # FILTER FIELDS
     FILTER_FIELD_CHOICES = (
         # ('categories', {
-        #     'verbose': _('Categories'),
+        #     'verbose': 'Categories',
         #     'query_filter': {},
         #     # example
         #     # 'query_filter': {'translations__name': 'Bern'},
@@ -123,77 +122,77 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
     # apphook_page -> defined in subclasses (no elegant way found to define this here.)
 
     template = models.CharField(
-        _('Template'),
-        help_text=_('Choose a template.'),
+        'Template',
+        help_text='Choose a template.',
         max_length=50
     )
     category_navigation_enabled = models.BooleanField(
-        _('Show category navigation'),
-        help_text=_(
+        'Show category navigation',
+        help_text=
            'If checked, a filter navigation with all selected categories is displayed.'
-           '<br>Please note: A category is only displayed if it contains items.'),
+           '<br>Please note: A category is only displayed if it contains items.',
         default=False
     )
     category_navigation_all = models.BooleanField(
-        _('Show category "all"'),
-        help_text=_('If checked, a category "all" in filter navigation is displayed.'),
+        'Show category "all"',
+        help_text='If checked, a category "all" in filter navigation is displayed.',
         default=False
     )
     category_navigation = models.ManyToManyField(
         AllinkCategory,
         related_name='%(app_label)s_%(class)s_category_navigation',
-        verbose_name=_('Categories for Navigation'),
-        help_text=_(
+        verbose_name='Categories for Navigation',
+        help_text=
            'You can explicitly define the categories for the category navigation here.'
            ' This will override the automatically set of categories'
-           ' (either the one generated from "Filter & Ordering" or "Manual entries")'),
+           ' (either the one generated from "Filter & Ordering" or "Manual entries")',
         blank=True,
     )
     softpage_enabled = models.BooleanField(
-        _('Show detailed information in Softpage'),
-        help_text=_(
+        'Show detailed information in Softpage',
+        help_text=
            'If checked, the detail view of an entry will be displayed in a "softpage".'
-           ' Otherwise the page will be reloaded.'),
+           ' Otherwise the page will be reloaded.',
         default=True
     )
     detail_link_enabled = models.BooleanField(
-        _('Show detail link'),
-        help_text=_('If checked, a link/button to the detail view will be displayed.'),
+        'Show detail link',
+        help_text='If checked, a link/button to the detail view will be displayed.',
         default=True
     )
     items_per_row = models.IntegerField(
-        _('Grid items per row'),
-        help_text=_('Only applied if a "Grid" template has been selected.'),
+        'Grid items per row',
+        help_text='Only applied if a "Grid" template has been selected.',
         choices=COLUMN_AMOUNT,
         default=3
     )
     paginated_by = models.IntegerField(
-        _('Max. entries per page'),
+        'Max. entries per page',
         default=0,
-        help_text=_(
+        help_text=
            'Limit the number of entries (in case of the "load more" pagination type: entries per page).'
-           ' Default is "0" (show all entries)')
+           ' Default is "0" (show all entries)'
     )
     pagination_type = models.CharField(
-        _('Pagination Type'),
+        'Pagination Type',
         max_length=50,
         choices=PAGINATION_TYPE,
         default=PAGINATION_TYPE[0]
     )
     load_more_button_text = models.CharField(
-        _('Text for "Load .."-Button'),
-        help_text=_(
+        'Text for "Load .."-Button',
+        help_text=
            'If left blank, a default text will be used. <br>Note: Should the default text be adjusted site-wide,'
-           ' please contact the project manager (such changes can be made on a code level)'),
+           ' please contact the project manager (such changes can be made on a code level)',
         max_length=255,
         null=True,
         blank=True
     )
     detail_link_text = models.CharField(
-        _('Text for "Detail"-Link'),
-        help_text=_(
+        'Text for "Detail"-Link',
+        help_text=
            'If left blank, a default text will be used.<br>Note: Should the default text be adjusted site-wide,'
-           ' please contact the project manager (such changes can be made on a code level)'),
+           ' please contact the project manager (such changes can be made on a code level)',
         max_length=255,
         null=True,
         blank=True
@@ -321,7 +320,7 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
         options = {}
         for fieldname in self.filter_fields:
             # field is foreignkey or m2m, so we have to get the verbose name form the model itself
-            filters = [((None, _('All'),))]
+            filters = [((None, 'All',))]
             fk_model, is_translated = self.get_field_info(fieldname)
             if fk_model:
                 filters.extend((entry.id, entry.__str__(),) for entry in
@@ -461,8 +460,8 @@ class AllinkBaseSearchPlugin(CMSPlugin):
     data_model = None
 
     template = models.CharField(
-        _('Template'),
-        help_text=_('Choose a template.'),
+        'Template',
+        help_text='Choose a template.',
         max_length=50,
         default='search_grid_static'
     )
@@ -508,9 +507,9 @@ class AllinkBaseFormPlugin(CMSPlugin):
     form_class = None
 
     send_internal_mail = models.BooleanField(
-        _('Send internal e-mail'),
+        'Send internal e-mail',
         default=True,
-        help_text=_('Send confirmation mail to defined internal e-mail addresses.')
+        help_text='Send confirmation mail to defined internal e-mail addresses.'
     )
     internal_email_addresses = ArrayField(
         models.EmailField(
@@ -519,26 +518,26 @@ class AllinkBaseFormPlugin(CMSPlugin):
         ),
         blank=True,
         null=True,
-        verbose_name=_('Internal e-mail addresses'),
+        verbose_name='Internal e-mail addresses',
     )
     from_email_address = models.EmailField(
-        _('Sender e-mail address'),
+        'Sender e-mail address',
         blank=True,
         null=True
     )
     send_external_mail = models.BooleanField(
-        _('Send external e-mail'),
+        'Send external e-mail',
         default=True,
-        help_text=_('Send confirmation mail to customer.')
+        help_text='Send confirmation mail to customer.'
     )
     thank_you_text = models.TextField(
-        _('Thank you text'),
+        'Thank you text',
         blank=True,
         null=True,
-        help_text=_('This text will be shown, after form completion.')
+        help_text='This text will be shown, after form completion.'
     )
     label_layout = models.CharField(
-        _('Display labels'),
+        'Display labels',
         max_length=15,
         choices=(
             ('stacked', 'Stacked with fields'),

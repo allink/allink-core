@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from django.utils.translation import ugettext_lazy as _
 from django.urls import reverse
 
 from cms.toolbar.items import Break
@@ -19,9 +18,9 @@ class AllinkCategoryToolbar(CMSToolbar):
         position = admin_menu.find_first(Break, identifier=ADMIN_SITES_BREAK)
         allink_menu = admin_menu.get_or_create_menu(
             'allink-menu',
-            _('allink'),
+            'allink',
             position=position
         )
 
         url = reverse('admin:{}_{}_changelist'.format(self.model._meta.app_label, self.model._meta.model_name))
-        allink_menu.add_sideframe_item(_('Categories'), url=url)
+        allink_menu.add_sideframe_item('Categories', url=url)

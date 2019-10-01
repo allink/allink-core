@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import datetime
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
 
 from cms.models.pluginmodel import CMSPlugin
 from cms.models.fields import PageField
@@ -19,35 +18,35 @@ class AllinkTerms(AllinkTimeFramedModel, TranslatableModel):
     STATUS_ARCHIVED = 30
 
     STATUS_CHOICES = (
-        (STATUS_DRAFT, _('Draft')),
-        (STATUS_PUBLISHED, _('Published')),
-        (STATUS_ARCHIVED, _('Archived')),
+        (STATUS_DRAFT, 'Draft'),
+        (STATUS_PUBLISHED, 'Published'),
+        (STATUS_ARCHIVED, 'Archived'),
     )
 
     translations = TranslatedFields(
         text=HTMLField(
-            _('Terms Text')
+            'Terms Text'
         ),
     )
 
     terms_cms_page = PageField(
-        verbose_name=_('Terms cms Page'),
+        verbose_name='Terms cms Page',
         null=True,
         on_delete=models.PROTECT,
-        help_text=_('CMS Page which shows Terms and Conditions'),
+        help_text='CMS Page which shows Terms and Conditions',
     )
 
-    status = models.IntegerField(_('Status'), choices=STATUS_CHOICES, default=STATUS_DRAFT)
+    status = models.IntegerField('Status', choices=STATUS_CHOICES, default=STATUS_DRAFT)
 
     objects = AllinkTermsManager()
 
     class Meta:
-        verbose_name = _('Terms of Service')
-        verbose_name_plural = _('Terms of Service')
+        verbose_name = 'Terms of Service'
+        verbose_name_plural = 'Terms of Service'
         app_label = 'allink_terms'
 
     def __str__(self):
-        return _('Terms - %s') % self.get_status_display()
+        return 'Terms - %s' % self.get_status_display()
 
     def text_rendered(self):
         return self.text

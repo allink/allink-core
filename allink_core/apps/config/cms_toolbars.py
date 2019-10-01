@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from django.utils.translation import ugettext_lazy as _
 from django.urls import reverse
 
 from cms.toolbar.items import Break
@@ -30,7 +29,7 @@ class ConfigToolbar(CMSToolbar):
             position=position
         )
         url = reverse('admin:{}_{}_changelist'.format(self.model._meta.app_label, self.model._meta.model_name))
-        allink_menu.add_sideframe_item(_('Config'), url=url)
+        allink_menu.add_sideframe_item('Config', url=url)
 
 
 class AllinkPageExtensionToolbar(ExtensionToolbar):

@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.contrib.admin.widgets import AdminFileWidget
-from django.utils.translation import ugettext as _
 from django.utils.safestring import mark_safe
 from django.conf import settings
 from django import forms
@@ -18,7 +17,7 @@ class AdminPdfThumnailWidget(AdminFileWidget):
         if value:
             output.append('<img alt="%s" src="%s" height="200"/>' % (value.url, value.url,))
         else:
-            output.append(_('Thumbnail is created when publication is saved. And a PDF document is assigned.'))
+            output.append('Thumbnail is created when publication is saved. And a PDF document is assigned.')
 
         # This is commented out b/c maybe you want to be able to override the thumbnail?
         # output.append(super(AdminFileWidget, self).render(name, value, attrs))

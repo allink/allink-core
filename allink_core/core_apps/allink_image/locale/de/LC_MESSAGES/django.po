@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-15 16:23+0200\n"
+"POT-Creation-Date: 2019-09-24 10:07+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,120 +18,82 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: allink_core/core_apps/allink_image/cms_plugins.py:19
-msgid "Link Internal"
-msgstr "Interner Link"
-
-#: allink_core/core_apps/allink_image/cms_plugins.py:31
-msgid "Special Links"
-msgstr ""
-
-#: allink_core/core_apps/allink_image/cms_plugins.py:34
-msgid ""
-"Important: In case the selected option is a <strong>form</strong>, make sure "
-"to select <strong>Lightbox (Forms)</strong> from the <strong>link target</"
-"strong> options for best user experience."
-msgstr ""
-
-#: allink_core/core_apps/allink_image/cms_plugins.py:39
-#: allink_core/core_apps/allink_image/models.py:26
-msgid "Ratio"
-msgstr "Seitenverhältnis"
-
-#: allink_core/core_apps/allink_image/cms_plugins.py:40
-msgid ""
-"This option overrides the default image ratio set for images in a colum of a "
-"content section."
-msgstr ""
-"Diese Option überschreibt die Standardeinstellung für "
-"Bildseitenverhältnisse, die für Bilder in einer Spalte gesetzt ist."
-
-#: allink_core/core_apps/allink_image/cms_plugins.py:47
-#: allink_core/core_apps/allink_image/models.py:72
-msgid "Width Alias"
-msgstr ""
-
-#: allink_core/core_apps/allink_image/cms_plugins.py:48
-#, fuzzy
-#| msgid ""
-#| "This option overrides the default image ratio set for images in a colum "
-#| "of a content section."
-msgid ""
-"This option overrides the default image width_alias set for images in a "
-"column of a content section."
-msgstr ""
-"Diese Option überschreibt die Standardeinstellung für "
-"Bildseitenverhältnisse, die für Bilder in einer Spalte gesetzt ist."
-
-#: allink_core/core_apps/allink_image/cms_plugins.py:55
-#: allink_core/core_apps/allink_image/models.py:47
-msgid "Set a predefined background color"
-msgstr "Vordefinierte Hintergrundfarbe wählen"
-
-#: allink_core/core_apps/allink_image/cms_plugins.py:62
-msgid "Predifined variations"
-msgstr "Vordefiniert Variationen"
-
-#: allink_core/core_apps/allink_image/cms_plugins.py:71
-#: allink_core/core_apps/allink_image/models.py:20
-msgid "Image"
-msgstr "Bild"
-
-#: allink_core/core_apps/allink_image/cms_plugins.py:72
-msgid "Generic"
-msgstr ""
-
-#: allink_core/core_apps/allink_image/cms_plugins.py:98
-msgid "Additional settings"
-msgstr "Erweiterte Einstellungen"
-
-#: allink_core/core_apps/allink_image/cms_plugins.py:105
-msgid "Link settings"
-msgstr "Link-Einstellungen"
-
-#: allink_core/core_apps/allink_image/models.py:32
-msgid "Placeholder Background Color"
-msgstr "Platzhalter Hintergrundfarbe"
-
-#: allink_core/core_apps/allink_image/models.py:35
-msgid ""
-"Show default image placeholder background color.<br><strong>Important:</"
-"strong> Disabling this option results in a transparent background even if a "
-"specific color is set (this makes sense when a transparent PNG image is used)"
-msgstr ""
-"Standard-Hintergrundfarbe für Platzhalterbilder anzeigen.<br><strong>Wichtig:"
-"</strong> Wenn diese Option deaktiviert ist, wird ein transparenter "
-"Hintergrund angezeigt, auch wenn eine Farbe gewählt wurde (Sinnvoll für "
-"transparente PNGs)."
-
-#: allink_core/core_apps/allink_image/models.py:40
-msgid "Loader Icon"
-msgstr "Lade-Icon"
-
-#: allink_core/core_apps/allink_image/models.py:43
-msgid ""
-"Show the icon that is used as long as the image is loading."
-"<br><strong>Important:</strong> Disable this option if a transparent PNG "
-"image is used."
-msgstr ""
-"Icon anzeigen, während das Bild lädt.<br><strong>Wichtig:</strong> Für "
-"transparente PNGs sollte diese Option deaktiviert werden."
-
-#: allink_core/core_apps/allink_image/models.py:53
-msgid "Caption text"
-msgstr "Bildunterschrift"
-
-#: allink_core/core_apps/allink_image/models.py:55
-msgid "Provide a description, attribution, copyright or other information."
-msgstr "Für Beschreibung, Zuordnung, Copyright oder andere Informationen."
-
-#: allink_core/core_apps/allink_image/models.py:58
-msgid "Attributes"
-msgstr "Attribute"
-
 #: allink_core/core_apps/allink_image/models.py:101
 msgid "<file is missing>"
 msgstr "<Datei fehlt>"
+
+#~ msgid "Link Internal"
+#~ msgstr "Interner Link"
+
+#~ msgid "Ratio"
+#~ msgstr "Seitenverhältnis"
+
+#~ msgid ""
+#~ "This option overrides the default image ratio set for images in a colum "
+#~ "of a content section."
+#~ msgstr ""
+#~ "Diese Option überschreibt die Standardeinstellung für "
+#~ "Bildseitenverhältnisse, die für Bilder in einer Spalte gesetzt ist."
+
+#, fuzzy
+#~| msgid ""
+#~| "This option overrides the default image ratio set for images in a colum "
+#~| "of a content section."
+#~ msgid ""
+#~ "This option overrides the default image width_alias set for images in a "
+#~ "column of a content section."
+#~ msgstr ""
+#~ "Diese Option überschreibt die Standardeinstellung für "
+#~ "Bildseitenverhältnisse, die für Bilder in einer Spalte gesetzt ist."
+
+#~ msgid "Set a predefined background color"
+#~ msgstr "Vordefinierte Hintergrundfarbe wählen"
+
+#~ msgid "Predifined variations"
+#~ msgstr "Vordefiniert Variationen"
+
+#~ msgid "Image"
+#~ msgstr "Bild"
+
+#~ msgid "Additional settings"
+#~ msgstr "Erweiterte Einstellungen"
+
+#~ msgid "Link settings"
+#~ msgstr "Link-Einstellungen"
+
+#~ msgid "Placeholder Background Color"
+#~ msgstr "Platzhalter Hintergrundfarbe"
+
+#~ msgid ""
+#~ "Show default image placeholder background color.<br><strong>Important:</"
+#~ "strong> Disabling this option results in a transparent background even if "
+#~ "a specific color is set (this makes sense when a transparent PNG image is "
+#~ "used)"
+#~ msgstr ""
+#~ "Standard-Hintergrundfarbe für Platzhalterbilder anzeigen."
+#~ "<br><strong>Wichtig:</strong> Wenn diese Option deaktiviert ist, wird ein "
+#~ "transparenter Hintergrund angezeigt, auch wenn eine Farbe gewählt wurde "
+#~ "(Sinnvoll für transparente PNGs)."
+
+#~ msgid "Loader Icon"
+#~ msgstr "Lade-Icon"
+
+#~ msgid ""
+#~ "Show the icon that is used as long as the image is loading."
+#~ "<br><strong>Important:</strong> Disable this option if a transparent PNG "
+#~ "image is used."
+#~ msgstr ""
+#~ "Icon anzeigen, während das Bild lädt.<br><strong>Wichtig:</strong> Für "
+#~ "transparente PNGs sollte diese Option deaktiviert werden."
+
+#~ msgid "Caption text"
+#~ msgstr "Bildunterschrift"
+
+#~ msgid "Provide a description, attribution, copyright or other information."
+#~ msgstr "Für Beschreibung, Zuordnung, Copyright oder andere Informationen."
+
+#~ msgid "Attributes"
+#~ msgstr "Attribute"
 
 #~ msgid ""
 #~ "Instructions: Single selection is made by clicking on an option. Multiple "

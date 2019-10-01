@@ -29,7 +29,7 @@ class AllinkButtonLinkContainerPluginForm(forms.ModelForm):
         if get_additional_choices('BUTTON_LINK_CSS_CLASSES'):
             self.fields['project_css_classes'] = forms.MultipleChoiceField(
                 widget=forms.CheckboxSelectMultiple(),
-                label=_('Predifined variations'),
+                label='Predifined variations',
                 choices=get_additional_choices('BUTTON_LINK_CSS_CLASSES'),
                 required=False,
             )
@@ -37,14 +37,14 @@ class AllinkButtonLinkContainerPluginForm(forms.ModelForm):
 
 class AllinkButtonLinkPluginForm(AllinkInternalLinkFieldMixin, forms.ModelForm):
     LINK_TARGET_REDUCED = (
-        (NEW_WINDOW, _('New window')),
-        (SOFTPAGE, _('Softpage')),
+        (NEW_WINDOW, 'New window'),
+        (SOFTPAGE, 'Softpage'),
     )
 
-    link_target_reduced = forms.ChoiceField(label=_('Link Target'), required=False,
+    link_target_reduced = forms.ChoiceField(label='Link Target', required=False,
                                             choices=BLANK_CHOICE + LINK_TARGET_REDUCED)
 
-    internal_link = SelectLinkField(label=_('Link Internal'), required=False)
+    internal_link = SelectLinkField(label='Link Internal', required=False)
     internal_email_addresses = SplitArrayField(forms.EmailField(required=False), size=3, required=False)
 
     class Meta:
@@ -62,16 +62,16 @@ class AllinkButtonLinkPluginForm(AllinkInternalLinkFieldMixin, forms.ModelForm):
         super(AllinkButtonLinkPluginForm, self).__init__(*args, **kwargs)
         self.fields['link_attributes'].widget = AttributesWidget()
         self.fields['link_special'] = forms.CharField(
-            label=_('Special Links'),
+            label='Special Links',
             widget=forms.Select(choices=self.instance.get_link_special_choices()),
             required=False,
-            help_text=_('Important: In case the selected option is a <strong>form</strong>, '
-                        'make sure to select <strong>Lightbox (Forms)</strong> '
-                        'from the <strong>link target</strong> options for best user experience.'),
+            help_text=('Important: In case the selected option is a <strong>form</strong>, '
+                       'make sure to select <strong>Lightbox (Forms)</strong> '
+                       'from the <strong>link target</strong> options for best user experience.'),
         )
         self.fields['ratio'] = forms.CharField(
-            label=_('Ratio'),
-            help_text=_('This option overrides the default ratio setting for embeded videos.'),
+            label='Ratio',
+            help_text='This option overrides the default ratio setting for embeded videos.',
             widget=forms.Select(choices=get_ratio_choices()),
             required=False,
         )
@@ -219,8 +219,8 @@ class AllinkButtonLinkPluginForm(AllinkInternalLinkFieldMixin, forms.ModelForm):
 @plugin_pool.register_plugin
 class CMSAllinkButtonLinkContainerPlugin(AllinkMediaAdminMixin, CMSPluginBase):
     model = AllinkButtonLinkContainerPlugin
-    name = _('Button/ Link Container')
-    module = _('Generic')
+    name = 'Button/ Link Container'
+    module = 'Generic'
     allow_children = True
     child_classes = ['CMSAllinkButtonLinkPlugin']
     form = AllinkButtonLinkContainerPluginForm
@@ -232,7 +232,7 @@ class CMSAllinkButtonLinkContainerPlugin(AllinkMediaAdminMixin, CMSPluginBase):
                 'alignment_horizontal_mobile',
             ),
         }),
-        (_('Advanced settings'), {
+        ('Advanced settings', {
             'classes': ('collapse',),
             'fields': (
                 'project_css_classes',
@@ -248,8 +248,8 @@ class CMSAllinkButtonLinkContainerPlugin(AllinkMediaAdminMixin, CMSPluginBase):
 @plugin_pool.register_plugin
 class CMSAllinkButtonLinkPlugin(AllinkMediaAdminMixin, CMSPluginBase):
     model = AllinkButtonLinkPlugin
-    name = _('Button/ Link')
-    module = _('Generic')
+    name = 'Button/ Link'
+    module = 'Generic'
     allow_children = False
     form = AllinkButtonLinkPluginForm
     change_form_template = 'admin/allink_button_link/change_form.html'
@@ -263,7 +263,7 @@ class CMSAllinkButtonLinkPlugin(AllinkMediaAdminMixin, CMSPluginBase):
                 'label',
             ),
         }),
-        (_('Link style'), {
+        ('Link style', {
             'classes': (
                 'collapse',
             ),
@@ -273,7 +273,7 @@ class CMSAllinkButtonLinkPlugin(AllinkMediaAdminMixin, CMSPluginBase):
                 'btn_size',
             )
         }),
-        (_('Internal/External link settings'), {
+        ('Internal/External link settings', {
             'classes': (
                 'only_when_default_link',
             ),
@@ -284,7 +284,7 @@ class CMSAllinkButtonLinkPlugin(AllinkMediaAdminMixin, CMSPluginBase):
                 'link_target_reduced',
             )
         }),
-        (_('File link settings'), {
+        ('File link settings', {
             'classes': (
                 'only_when_file_link',
                 'only_when_image_link',
@@ -293,7 +293,7 @@ class CMSAllinkButtonLinkPlugin(AllinkMediaAdminMixin, CMSPluginBase):
                 'link_file',
             )
         }),
-        (_('Phone link settings'), {
+        ('Phone link settings', {
             'classes': (
                 'only_when_phone_link',
             ),
@@ -301,7 +301,7 @@ class CMSAllinkButtonLinkPlugin(AllinkMediaAdminMixin, CMSPluginBase):
                 'link_phone',
             )
         }),
-        (_('Email link settings'), {
+        ('Email link settings', {
             'classes': (
                 'only_when_email_link',
             ),
@@ -311,7 +311,7 @@ class CMSAllinkButtonLinkPlugin(AllinkMediaAdminMixin, CMSPluginBase):
                 'email_body_text',
             )
         }),
-        (_('Form link settings'), {
+        ('Form link settings', {
             'classes': (
                 'only_when_form_link',
             ),
@@ -325,7 +325,7 @@ class CMSAllinkButtonLinkPlugin(AllinkMediaAdminMixin, CMSPluginBase):
                 'label_layout',
             )
         }),
-        (_('Video (Embedded) link settings'), {
+        ('Video (Embedded) link settings', {
             'classes': (
                 'only_when_video_embedded_link',
             ),
@@ -337,7 +337,7 @@ class CMSAllinkButtonLinkPlugin(AllinkMediaAdminMixin, CMSPluginBase):
                 'allow_fullscreen_enabled',
             )
         }),
-        (_('Video (File) link settings'), {
+        ('Video (File) link settings', {
             'classes': (
                 'only_when_video_file_link',
             ),
@@ -348,7 +348,7 @@ class CMSAllinkButtonLinkPlugin(AllinkMediaAdminMixin, CMSPluginBase):
                 'video_muted_enabled',
             )
         }),
-        (_('Modal Closing options'), {
+        ('Modal Closing options', {
             'classes': (
                 'collapse',
                 'only_when_image_link',
@@ -362,13 +362,13 @@ class CMSAllinkButtonLinkPlugin(AllinkMediaAdminMixin, CMSPluginBase):
                 'data_modal_button_close_enabled',
             )
         }),
-        (_('Advanced settings'), {
+        ('Advanced settings', {
             'classes': ('collapse',),
             'fields': (
                 'link_attributes',
             )
         }),
-        (_('Hidden settings'), {
+        ('Hidden settings', {
             'classes': ('hidden',),
             'fields': (
                 'link_target',

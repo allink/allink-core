@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from django import forms
-from django.utils.translation import ugettext_lazy as _
 
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
@@ -18,8 +17,8 @@ class AllinkPdfPageBreakPluginForm(forms.ModelForm):
 @plugin_pool.register_plugin
 class CMSAllinkPageBreakPlugin(CMSPluginBase):
     model = AllinkPdfPageBreakPlugin
-    name = _('PDF Page Break')
-    module = _('Generic')
+    name = 'PDF Page Break'
+    module = 'Generic'
     form = AllinkPdfPageBreakPluginForm
 
     def get_render_template(self, context, instance, placeholder):

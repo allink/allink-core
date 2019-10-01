@@ -1,12 +1,10 @@
 from import_export import resources, fields
 
-from django.utils.translation import ugettext_lazy as _
-
 from allink_core.core_apps.allink_legacy_redirect.models import AllinkLegacyLink
 
 
 class AllinkLegacyLinkResource(resources.ModelResource):
-    old = fields.Field(column_name=_('Zielseite'), attribute='old')
+    old = fields.Field(column_name='target', attribute='old')
 
     class Meta:
         model = AllinkLegacyLink

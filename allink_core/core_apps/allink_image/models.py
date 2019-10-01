@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
-from django.utils.translation import ugettext_lazy as _, ugettext
+from django.utils.translation import ugettext
 from django.contrib.postgres.fields import ArrayField
 
 from djangocms_attributes_field.fields import AttributesField
@@ -17,45 +17,45 @@ class AllinkImagePlugin(AllinkLinkFieldsModel, CMSPlugin):
     """
 
     picture = FilerImageField(
-        verbose_name=_('Image'),
+        verbose_name='Image',
         null=True,
         on_delete=models.PROTECT,
         related_name='%(app_label)s_%(class)s_picture',
     )
     ratio = models.CharField(
-        _('Ratio'),
+        'Ratio',
         max_length=50,
         blank=True,
         null=True
     )
     bg_enabled = models.BooleanField(
-        verbose_name=_('Placeholder Background Color'),
+        verbose_name='Placeholder Background Color',
         blank=True,
         default=True,
-        help_text=_('Show default image placeholder background color.<br><strong>Important:</strong> '
-                    'Disabling this option results in a transparent background even if a specific color is set '
-                    '(this makes sense when a transparent PNG image is used)'),
+        help_text=('Show default image placeholder background color.<br><strong>Important:</strong> '
+                   'Disabling this option results in a transparent background even if a specific color is set '
+                   '(this makes sense when a transparent PNG image is used)'),
     )
     icon_enabled = models.BooleanField(
-        verbose_name=_('Loader Icon'),
+        verbose_name='Loader Icon',
         blank=True,
         default=True,
-        help_text=_('Show the icon that is used as long as the image is loading.<br>'
-                    '<strong>Important:</strong> Disable this option if a transparent PNG image is used.'),
+        help_text=('Show the icon that is used as long as the image is loading.<br>'
+                   '<strong>Important:</strong> Disable this option if a transparent PNG image is used.'),
     )
     bg_color = models.CharField(
-        _('Set a predefined background color'),
+        'Set a predefined background color',
         max_length=50,
         blank=True,
         null=True
     )
     caption_text = models.TextField(
-        verbose_name=_('Caption text'),
+        verbose_name='Caption text',
         blank=True,
-        help_text=_('Provide a description, attribution, copyright or other information.')
+        help_text='Provide a description, attribution, copyright or other information.'
     )
     attributes = AttributesField(
-        verbose_name=_('Attributes'),
+        verbose_name='Attributes',
         blank=True,
         excluded_keys=['src', 'width', 'height'],
     )
@@ -69,7 +69,7 @@ class AllinkImagePlugin(AllinkLinkFieldsModel, CMSPlugin):
         null=True
     )
     width_alias = models.CharField(
-        _('Width Alias'),
+        'Width Alias',
         max_length=50,
         blank=True,
         null=True

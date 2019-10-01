@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
-from django.utils.translation import ugettext_lazy as _
 from djangocms_attributes_field.fields import AttributesField
 from cms.models.pluginmodel import CMSPlugin
 from filer.fields.image import FilerImageField
@@ -13,7 +12,7 @@ from allink_core.core.models.fields import CMSPluginField
 
 class AllinkVideoBasePlugin(CMSPlugin):
     attributes = AttributesField(
-        verbose_name=_('Attributes'),
+        verbose_name='Attributes',
         blank=True,
     )
 
@@ -50,36 +49,36 @@ class AllinkVideoEmbedPlugin(AllinkVideoBasePlugin):
     """
 
     video_id = models.CharField(
-        verbose_name=_('Video ID'),
+        verbose_name='Video ID',
         max_length=255,
-        help_text=_('Only provide the ID. The correct URL will automatically be generated.<br><br>'
-                    'YouTube: https://www.youtube.com/watch?v=<strong>12345678</strong> '
-                    '(the ID is <strong>12345678</strong>)<br>Vimeo: https://vimeo.com/<strong>12345678</strong> '
-                    '(the ID is <strong>12345678</strong>)'),
+        help_text=('Only provide the ID. The correct URL will automatically be generated.<br><br>'
+                   'YouTube: https://www.youtube.com/watch?v=<strong>12345678</strong> '
+                   '(the ID is <strong>12345678</strong>)<br>Vimeo: https://vimeo.com/<strong>12345678</strong> '
+                   '(the ID is <strong>12345678</strong>)'),
     )
     video_service = models.CharField(
-        _('Video Service'),
+        'Video Service',
         max_length=50,
         choices=VIDEO_SERVICE_CHOICES,
     )
     ratio = models.CharField(
-        _('Ratio'),
+        'Ratio',
         max_length=50,
         blank=True,
         null=True
     )
     auto_start_enabled = models.BooleanField(
-        _('Autostart'),
+        'Autostart',
         default=False,
-        help_text=_('<strong>Important:</strong> Autoplaying videos with audio is not recommended. Use wisely. '),
+        help_text='<strong>Important:</strong> Autoplaying videos with audio is not recommended. Use wisely. ',
     )
     allow_fullscreen_enabled = models.BooleanField(
-        _('Allow fullscreen'),
+        'Allow fullscreen',
         default=True
     )
 
     class Meta:
-        verbose_name = _('Allink Video Embed')
+        verbose_name = 'Allink Video Embed'
 
     def __str__(self):
         return self.video_id or self.video_service
@@ -91,20 +90,20 @@ class AllinkVideoFilePlugin(AllinkVideoBasePlugin):
     """
 
     video_file = FilerFileField(
-        verbose_name=_('Video File'),
+        verbose_name='Video File',
         on_delete=models.PROTECT,
-        help_text=_('Recommended video settings:<br><br>Format: mp4<br>Codec: H.264<br>Target Bitrate: 2 '
-                    '(video loads quick and runs smooth)<br>Audio: Not recommended '
-                    '(no audio = smaller file size and less annoyed visitors)<br>File size: '
-                    'Dependent of video length. Generally speaking: Less is more.'),
+        help_text=('Recommended video settings:<br><br>Format: mp4<br>Codec: H.264<br>Target Bitrate: 2 '
+                   '(video loads quick and runs smooth)<br>Audio: Not recommended '
+                   '(no audio = smaller file size and less annoyed visitors)<br>File size: '
+                   'Dependent of video length. Generally speaking: Less is more.'),
         null=True,
         related_name='%(app_label)s_%(class)s_video_file',
     )
     video_poster_image = FilerImageField(
-        verbose_name=_('Video Start Image'),
+        verbose_name='Video Start Image',
         on_delete=models.PROTECT,
         related_name='%(app_label)s_%(class)s_video_poster_image',
-        help_text=_(
+        help_text=(
             'Image that is being displayed while the video is loading. '
             'Ideally the very first frame of the video is used, in order to make the transition as smooth as '
             'possible.<br><br><strong>Imoprtant:</strong> Make sure the aspect ratio of the image is '
@@ -113,36 +112,36 @@ class AllinkVideoFilePlugin(AllinkVideoBasePlugin):
         null=True
     )
     video_file_width = models.IntegerField(
-        _('Video width'),
+        'Video width',
         blank=True,
         null=True,
     )
     video_file_height = models.IntegerField(
-        _('Video height'),
+        'Video height',
         blank=True,
         null=True,
     )
     video_muted_enabled = models.BooleanField(
-        _('Muted'),
-        help_text=_('Caution: Autoplaying videos with audio is not recommended. Use wisely.'),
+        'Muted',
+        help_text='Caution: Autoplaying videos with audio is not recommended. Use wisely.',
         default=True
     )
     poster_only_on_mobile = models.BooleanField(
-        _('Image Only (Mobile)'),
-        help_text=_('Disable video on mobile devices and only show the start image without video control.'),
+        'Image Only (Mobile)',
+        help_text='Disable video on mobile devices and only show the start image without video control.',
         default=True
     )
     auto_start_enabled = models.BooleanField(
-        _('Autostart'),
+        'Autostart',
         default=True
     )
     allow_fullscreen_enabled = models.BooleanField(
-        _('Allow fullscreen'),
+        'Allow fullscreen',
         default=False
     )
 
     class Meta:
-        verbose_name = _('Allink Video File')
+        verbose_name = 'Allink Video File'
 
     def __str__(self):
         return self.video_file.name

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-15 16:23+0200\n"
+"POT-Creation-Date: 2019-09-24 10:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,366 +18,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:32
-msgid "Predifined variations"
-msgstr "Vordefinierte CSS-Klassen"
-
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:40
-msgid "New window"
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:41
-msgid "Softpage large"
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:42
-msgid "Softpage small"
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:45
-msgid "Link Target"
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:48
-msgid "Link Internal"
-msgstr "Interner Link"
-
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:66
-msgid "Special Links"
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:69
-msgid ""
-"Important: In case the selected option is a <strong>form</strong>, make sure "
-"to select <strong>Lightbox (Forms)</strong> from the <strong>link target</"
-"strong> options for best user experience."
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:74
-#: allink_core/core_apps/allink_button_link/models.py:215
-msgid "Ratio"
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:75
-#, fuzzy
-#| msgid ""
-#| "This option overrides the projects default alignment for mobile. (Usually "
-#| "\"left\")"
-msgid "This option overrides the default ratio setting for embeded videos."
-msgstr ""
-"Diese Einstellung überschreibt die Standardeinstellung des Projekts für "
-"Mobile. (Normalerweise \"links\")"
-
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:165
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:164
 msgid "Please supply at least one E-Mail Address."
 msgstr ""
 
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:170
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:169
 msgid "Please supply an E-Mail Address."
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:223
-msgid "Button/ Link Container"
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:224
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:264
-msgid "Generic"
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:247
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:383
-msgid "Advanced settings"
-msgstr "Erweiterte Einstellungen"
-
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:263
-msgid "Button/ Link"
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:284
-#, fuzzy
-#| msgid "Link settings"
-msgid "Link style"
-msgstr "Link Einstellungen"
-
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:294
-msgid "Internal/External link settings"
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:305
-#, fuzzy
-#| msgid "Link settings"
-msgid "File link settings"
-msgstr "Link Einstellungen"
-
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:314
-#, fuzzy
-#| msgid "Link settings"
-msgid "Phone link settings"
-msgstr "Link Einstellungen"
-
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:322
-#, fuzzy
-#| msgid "Link settings"
-msgid "Email link settings"
-msgstr "Link Einstellungen"
-
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:332
-#, fuzzy
-#| msgid "Link settings"
-msgid "Form link settings"
-msgstr "Link Einstellungen"
-
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:346
-msgid "Video (Embedded) link settings"
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:358
-#, fuzzy
-#| msgid "Link settings"
-msgid "Video (File) link settings"
-msgstr "Link Einstellungen"
-
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:369
-msgid "Modal Closing options"
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:389
-#, fuzzy
-#| msgid "Link settings"
-msgid "Hidden settings"
-msgstr "Link Einstellungen"
-
-#: allink_core/core_apps/allink_button_link/model_fields.py:16
-msgid "Type"
-msgstr "Typ"
-
-#: allink_core/core_apps/allink_button_link/model_fields.py:47
-#: allink_core/core_apps/allink_button_link/models.py:120
-msgid "Context"
-msgstr "Kontext"
-
-#: allink_core/core_apps/allink_button_link/models.py:25
-msgid "Alignment horizontal desktop"
-msgstr "Horizontale Ausrichtung (Desktop)"
-
-#: allink_core/core_apps/allink_button_link/models.py:28
-msgid ""
-"This option overrides the projects default alignment for desktop. (Usually "
-"\"left\")"
-msgstr ""
-"Diese Einstellung überschreibt die Standardeinstellung des Projekts für "
-"Desktop. (Normalerweise \"links\")"
-
-#: allink_core/core_apps/allink_button_link/models.py:33
-msgid "Alignment horizontal mobile"
-msgstr "Horizontale Ausrichtung (Mobile)"
-
-#: allink_core/core_apps/allink_button_link/models.py:36
-msgid ""
-"This option overrides the projects default alignment for mobile. (Usually "
-"\"left\")"
-msgstr ""
-"Diese Einstellung überschreibt die Standardeinstellung des Projekts für "
-"Mobile. (Normalerweise \"links\")"
-
-#: allink_core/core_apps/allink_button_link/models.py:51
-msgid "{}"
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/models.py:78
-msgid "Internal/External"
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/models.py:79
-msgid "File (Download)"
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/models.py:80
-msgid "Image"
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/models.py:81
-msgid "Phone"
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/models.py:82
-msgid "Email"
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/models.py:83
-msgid "Form"
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/models.py:84
-msgid "Video (Embedded)"
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/models.py:85
-msgid "Video (File)"
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/models.py:90
-#, fuzzy
-#| msgid "Link Internal"
-msgid "Link type"
-msgstr "Interner Link"
-
-#: allink_core/core_apps/allink_button_link/models.py:91
-msgid "Choose a link type in order to display its options below."
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/models.py:97
-#, fuzzy
-#| msgid "Link Internal"
-msgid "Link text"
-msgstr "Interner Link"
-
-#: allink_core/core_apps/allink_button_link/models.py:103
-#, fuzzy
-#| msgid "Display name"
-msgid "Display type"
-msgstr "Anzeigename"
-
-#: allink_core/core_apps/allink_button_link/models.py:107
-msgid "Variation"
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/models.py:112
-msgid "Size"
-msgstr "Grösse"
-
-#: allink_core/core_apps/allink_button_link/models.py:115
-msgid "Block"
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/models.py:127
-msgid "Icon left"
-msgstr "Icon links"
-
-#: allink_core/core_apps/allink_button_link/models.py:130
-msgid "Icon right"
-msgstr "Icon rechts"
-
-#: allink_core/core_apps/allink_button_link/models.py:135
-msgid "Subject"
-msgstr "Betreff"
-
-#: allink_core/core_apps/allink_button_link/models.py:141
-msgid "Body Text"
-msgstr "E-Mail Text"
-
-#: allink_core/core_apps/allink_button_link/models.py:147
-msgid "Send internal e-mail"
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/models.py:149
-msgid "Send confirmation mail to defined internal e-mail addresses."
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/models.py:158
-msgid "Internal e-mail addresses"
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/models.py:161
-msgid "Sender e-mail address"
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/models.py:166
-msgid "Send external e-mail"
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/models.py:168
-msgid "Send confirmation mail to customer."
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/models.py:171
-msgid "Thank you text"
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/models.py:174
-msgid "This text will be shown, after form completion."
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/models.py:177
-#, fuzzy
-#| msgid "Display name"
-msgid "Display labels"
-msgstr "Anzeigename"
-
-#: allink_core/core_apps/allink_button_link/models.py:197
-msgid "Video ID"
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/models.py:200
-msgid ""
-"Only provide the ID. The correct URL will automatically be generated."
-"<br><br>YouTube: https://www.youtube.com/watch?v=<strong>12345678</strong> "
-"(the ID is <strong>12345678</strong>)<br>Vimeo: https://vimeo.com/"
-"<strong>12345678</strong> (the ID is <strong>12345678</strong>)"
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/models.py:208
-msgid "Video Service"
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/models.py:223
-msgid "Video File"
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/models.py:226
-msgid ""
-"Recommended video settings:<br><br>Format: mp4<br>Codec: H.264<br>Target "
-"Bitrate: 2 (video loads quick and runs smooth)<br>Audio: Not recommended (no "
-"audio = smaller file size and less annoyed visitors)<br>File size: Dependent "
-"of video length. Generally speaking: Less is more."
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/models.py:234
-msgid "Video Start Image"
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/models.py:238
-msgid ""
-"Image that is being displayed while the video is loading. Ideally the very "
-"first frame of the video is used, in order to make the transition as smooth "
-"as possible.<br><br><strong>Imoprtant:</strong> Make sure the aspect ratio "
-"of the image is <strong>exactly the same</strong> as the video, otherwise "
-"the video height will shrink or grow when the playback starts."
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/models.py:246
-msgid "Muted"
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/models.py:247
-msgid "Caution: Autoplaying videos with audio is not recommended. Use wisely."
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/models.py:252
-msgid "Autostart"
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/models.py:254
-msgid ""
-"<strong>Important:</strong> Autoplaying videos with audio is not "
-"recommended. Use wisely. "
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/models.py:257
-msgid "Allow fullscreen"
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/models.py:262
-msgid "Escape key closes modal"
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/models.py:266
-msgid "Click on overlay closes modal"
-msgstr ""
-
-#: allink_core/core_apps/allink_button_link/models.py:270
-msgid "Display close button"
 msgstr ""
 
 #: allink_core/core_apps/allink_button_link/templates/admin/allink_button_link/widgets/icon.html:8
@@ -392,6 +38,120 @@ msgstr ""
 #: allink_core/core_apps/allink_button_link/templates/allink_button_link/item.html:70
 msgid "Member Area"
 msgstr "Mitgliederbereich"
+
+#~ msgid "Predifined variations"
+#~ msgstr "Vordefinierte CSS-Klassen"
+
+#~ msgid "Link Internal"
+#~ msgstr "Interner Link"
+
+#, fuzzy
+#~| msgid ""
+#~| "This option overrides the projects default alignment for mobile. "
+#~| "(Usually \"left\")"
+#~ msgid "This option overrides the default ratio setting for embeded videos."
+#~ msgstr ""
+#~ "Diese Einstellung überschreibt die Standardeinstellung des Projekts für "
+#~ "Mobile. (Normalerweise \"links\")"
+
+#~ msgid "Advanced settings"
+#~ msgstr "Erweiterte Einstellungen"
+
+#, fuzzy
+#~| msgid "Link settings"
+#~ msgid "Link style"
+#~ msgstr "Link Einstellungen"
+
+#, fuzzy
+#~| msgid "Link settings"
+#~ msgid "File link settings"
+#~ msgstr "Link Einstellungen"
+
+#, fuzzy
+#~| msgid "Link settings"
+#~ msgid "Phone link settings"
+#~ msgstr "Link Einstellungen"
+
+#, fuzzy
+#~| msgid "Link settings"
+#~ msgid "Email link settings"
+#~ msgstr "Link Einstellungen"
+
+#, fuzzy
+#~| msgid "Link settings"
+#~ msgid "Form link settings"
+#~ msgstr "Link Einstellungen"
+
+#, fuzzy
+#~| msgid "Link settings"
+#~ msgid "Video (File) link settings"
+#~ msgstr "Link Einstellungen"
+
+#, fuzzy
+#~| msgid "Link settings"
+#~ msgid "Hidden settings"
+#~ msgstr "Link Einstellungen"
+
+#~ msgid "Type"
+#~ msgstr "Typ"
+
+#~ msgid "Context"
+#~ msgstr "Kontext"
+
+#~ msgid "Alignment horizontal desktop"
+#~ msgstr "Horizontale Ausrichtung (Desktop)"
+
+#~ msgid ""
+#~ "This option overrides the projects default alignment for desktop. "
+#~ "(Usually \"left\")"
+#~ msgstr ""
+#~ "Diese Einstellung überschreibt die Standardeinstellung des Projekts für "
+#~ "Desktop. (Normalerweise \"links\")"
+
+#~ msgid "Alignment horizontal mobile"
+#~ msgstr "Horizontale Ausrichtung (Mobile)"
+
+#~ msgid ""
+#~ "This option overrides the projects default alignment for mobile. (Usually "
+#~ "\"left\")"
+#~ msgstr ""
+#~ "Diese Einstellung überschreibt die Standardeinstellung des Projekts für "
+#~ "Mobile. (Normalerweise \"links\")"
+
+#, fuzzy
+#~| msgid "Link Internal"
+#~ msgid "Link type"
+#~ msgstr "Interner Link"
+
+#, fuzzy
+#~| msgid "Link Internal"
+#~ msgid "Link text"
+#~ msgstr "Interner Link"
+
+#, fuzzy
+#~| msgid "Display name"
+#~ msgid "Display type"
+#~ msgstr "Anzeigename"
+
+#~ msgid "Size"
+#~ msgstr "Grösse"
+
+#~ msgid "Icon left"
+#~ msgstr "Icon links"
+
+#~ msgid "Icon right"
+#~ msgstr "Icon rechts"
+
+#~ msgid "Subject"
+#~ msgstr "Betreff"
+
+#~ msgid "Body Text"
+#~ msgstr "E-Mail Text"
+
+#, fuzzy
+#~| msgid "Display name"
+#~ msgid "Display labels"
+#~ msgstr "Anzeigename"
 
 #~ msgid "Additional email settings"
 #~ msgstr "Erweiterte E-Mail Einstellungen"

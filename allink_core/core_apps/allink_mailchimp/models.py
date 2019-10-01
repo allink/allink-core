@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
 from cms.models.pluginmodel import CMSPlugin
 
 
@@ -13,8 +12,8 @@ class AllinkSignupFormPlugin(CMSPlugin):
     )
 
     signup_form = models.CharField(
-        _('Template'),
-        help_text=_('Choose a form.'),
+        'Template',
+        help_text='Choose a form.',
         max_length=50,
         choices=SIGNUP_FORMS,
         default=SIGNUP_FORMS[0]

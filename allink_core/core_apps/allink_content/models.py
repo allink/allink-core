@@ -40,64 +40,64 @@ class AllinkContentPlugin(CMSPlugin):
 
     # General Fields
     title = models.CharField(
-        _('Title'),
-        help_text=_('The section title'),
+        'Title',
+        help_text='The section title',
         max_length=255,
         blank=True,
         null=True
     )
     title_size = models.CharField(
-        _('Section Title Size'),
+        'Section Title Size',
         max_length=50,
     )
     template = models.CharField(
-        _('Template'),
-        help_text=_('Choose a template.'),
+        'Template',
+        help_text='Choose a template.',
         max_length=50
     )
     container_enabled = models.BooleanField(
-        _('Activate "container"'),
-        help_text=_('If checked, an inner container with a maximum width is added'),
+        'Activate "container"',
+        help_text='If checked, an inner container with a maximum width is added',
         default=True
     )
     inverted_colors_enabled = models.BooleanField(
-        _('Activate "inverted text colors"'),
-        help_text=_('If checked, the predefined inverted text colors are applied '
+        'Activate "inverted text colors"',
+        help_text=('If checked, the predefined inverted text colors are applied '
                    '(suitable when using a background image/video)'),
         default=False
     )
     overlay_enabled = models.BooleanField(
-        _('Activate "overlay"'),
-        help_text=_('If checked, a predefined overlay background gradient/color is applied.<br>'
+        'Activate "overlay"',
+        help_text=('If checked, a predefined overlay background gradient/color is applied.<br>'
                    '<strong>Important:</strong> Only applied when used in combination with a background '
                    'image/video/color'),
         default=False
     )
     bg_color = models.CharField(
-        _('Set a predefined background color'),
+        'Set a predefined background color',
         max_length=50,
         blank=True,
         null=True
     )
     dynamic_height_enabled = models.BooleanField(
-        _('Activate dynamic height'),
-        help_text=_('If checked, the section\'s height will grow depending on the height of its children.<br>Note: '
+        'Activate dynamic height',
+        help_text=('If checked, the section\'s height will grow depending on the height of its children.<br>Note: '
                    'This option is being ignored when "full height" or "parallax" are enabled.'),
         default=False
     )
     bg_image_outer_container = FilerImageField(
-        verbose_name=_('Background-Image'),
+        verbose_name='Background-Image',
         on_delete=models.PROTECT,
-        help_text=_('Optional: Set a background image for the content section.'),
+        help_text='Optional: Set a background image for the content section.',
         related_name='%(app_label)s_%(class)s_bg_image',
         blank=True,
         null=True
     )
     # Video related fields
     video_file = FilerFileField(
-        verbose_name=_('Source'),
+        verbose_name='Source',
         on_delete=models.PROTECT,
-        help_text=_('Recommended video settings:<br><br>Format: '
+        help_text=('Recommended video settings:<br><br>Format: '
                    'mp4<br>Codec: H.264<br>Target Bitrate: 2 (video loads quick and runs smooth)<br>Audio: '
                    'Not recommended (no audio = smaller file size and less annoyed visitors)<br>File size: '
                    'Dependent of video length. Generally speaking: Less is more.'),
@@ -106,33 +106,33 @@ class AllinkContentPlugin(CMSPlugin):
         related_name='content_video_file'
     )
     video_poster_image = FilerImageField(
-        verbose_name=_('Video Start Image'),
+        verbose_name='Video Start Image',
         on_delete=models.PROTECT,
         related_name="content_video_poster_image",
-        help_text=_('This image is displayed while the video is loading. Ideally, use an '
+        help_text=('This image is displayed while the video is loading. Ideally, use an '
                    '<strong>exact screen capture image</strong> of the very first frame of the video for best '
                    'results.'),
         blank=True,
         null=True
     )
     video_mobile_image = FilerImageField(
-        verbose_name=_('Mobile Image'),
+        verbose_name='Mobile Image',
         on_delete=models.PROTECT,
         related_name="content_video_mobile_image",
-        help_text=_('The image that is being displayed on mobile devices instead of the video.'),
+        help_text='The image that is being displayed on mobile devices instead of the video.',
         blank=True,
         null=True
     )
     anchor = models.CharField(
-        verbose_name=_('ID'),
+        verbose_name='ID',
         max_length=255,
         blank=True,
-        help_text=_('ID of this content section which can be used for anchor reference from links.<br>'
+        help_text=('ID of this content section which can be used for anchor reference from links.<br>'
                    'Note: Only letters, numbers and hyphen. No spaces or special chars.'),
     )
     ignore_in_pdf = models.BooleanField(
-        _('Ignore for pdf export'),
-        help_text=_('If checked, this content section will be ignored when generting a pdf.'),
+        'Ignore for pdf export',
+        help_text='If checked, this content section will be ignored when generting a pdf.',
         default=False
     )
     project_css_classes = ArrayField(
@@ -154,22 +154,22 @@ class AllinkContentPlugin(CMSPlugin):
     cmsplugin_ptr = CMSPluginField()
 
     project_css_spacings_top_bottom = models.CharField(
-        _('Spacings'),
-        help_text=_('Choose a spacing (top and bottom).'),
+        'Spacings',
+        help_text='Choose a spacing (top and bottom).',
         max_length=50,
         blank=True,
         null=True
     )
     project_css_spacings_top = models.CharField(
-        _('Spacings top'),
-        help_text=_('Choose a top spacing.'),
+        'Spacings top',
+        help_text='Choose a top spacing.',
         max_length=50,
         blank=True,
         null=True
     )
     project_css_spacings_bottom = models.CharField(
-        _('Spacings bottom'),
-        help_text=_('Choose a bottom spacing.'),
+        'Spacings bottom',
+        help_text='Choose a bottom spacing.',
         max_length=50,
         blank=True,
         null=True
@@ -205,8 +205,8 @@ class AllinkContentPlugin(CMSPlugin):
             project += ((template[0], template[1]),)
 
         if project:
-            choices += ((_('Standard'), standard,),)
-            choices += ((_('Project'), project,),)
+            choices += (('Standard', standard,),)
+            choices += (('Project', project,),)
         else:
             choices = standard
 
@@ -245,9 +245,9 @@ class AllinkContentPlugin(CMSPlugin):
                 return'({})'.format(self.template)
 
     def clean(self):
-        if (self.video_file and self.video_file.extension not in settings.ALLOWED_VIDEO_EXTENSIONS):
+        if self.video_file and self.video_file.extension not in settings.ALLOWED_VIDEO_EXTENSIONS:
             raise ValidationError(
-                _('Incorrect file type: %(value)s'),
+                'Incorrect file type: %(value)s',
                 params={'value': self.video_file.extension},
             )
 
@@ -295,40 +295,40 @@ class AllinkContentPlugin(CMSPlugin):
 
 class AllinkContentColumnPlugin(CMSPlugin):
     title = models.CharField(
-        _('Title'),
+        'Title',
         max_length=255,
         blank=True,
         null=True
     )
     order_mobile = models.IntegerField(
-        _('Order Mobile'),
-        help_text=_('Some columns should be ordered differently on mobile devices when columns are '
+        'Order Mobile',
+        help_text=('Some columns should be ordered differently on mobile devices when columns are '
                    'stacked vertically. This option allows you to define the position of the this column.<br><br>'
                    'Note: Columns ordering is ascending (lowest number displayed first)'),
         blank=True,
         null=True
     )
     alignment_horizontal_mobile = models.CharField(
-        _('Alignment horizontal mobile'),
+        'Alignment horizontal mobile',
         max_length=50,
         choices=HORIZONTAL_ALIGNMENT_CHOICES,
-        help_text=_('This option overrides the projects default alignment for mobile. (Usually "left")'),
+        help_text='This option overrides the projects default alignment for mobile. (Usually "left")',
         blank=True,
         null=True
     )
     alignment_horizontal_desktop = models.CharField(
-        _('Alignment horizontal desktop'),
+        'Alignment horizontal desktop',
         max_length=50,
         choices=HORIZONTAL_ALIGNMENT_CHOICES,
-        help_text=_('This option overrides the projects default alignment for desktop. (Usually "left")'),
+        help_text='This option overrides the projects default alignment for desktop. (Usually "left")',
         blank=True,
         null=True
     )
     alignment_vertical_desktop = models.CharField(
-        _('Alignment vertical desktop'),
+        'Alignment vertical desktop',
         max_length=50,
         choices=VERTICAL_ALIGNMENT_CHOICES,
-        help_text=_('This option overrides the projects default alignment for desktop. (Usually "top")'),
+        help_text='This option overrides the projects default alignment for desktop. (Usually "top")',
         blank=True,
         null=True
     )

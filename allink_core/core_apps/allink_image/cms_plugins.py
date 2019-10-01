@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from django import forms
-from django.utils.translation import ugettext_lazy as _
 from cms.plugin_base import CMSPluginBase
 from webpack_loader.utils import get_files
 
@@ -17,7 +16,7 @@ from allink_core.core.admin.mixins import AllinkMediaAdminMixin
 
 class AllinkImagePluginForm(AllinkInternalLinkFieldMixin, forms.ModelForm):
 
-    internal_link = SelectLinkField(label=_('Link Internal'), required=False)
+    internal_link = SelectLinkField(label='Link Internal', required=False)
 
     class Meta:
         model = AllinkImagePlugin
@@ -29,38 +28,38 @@ class AllinkImagePluginForm(AllinkInternalLinkFieldMixin, forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(AllinkImagePluginForm, self).__init__(*args, **kwargs)
         self.fields['link_special'] = forms.CharField(
-            label=_('Special Links'),
+            label='Special Links',
             widget=forms.Select(choices=self.instance.get_link_special_choices()),
             required=False,
-            help_text=_('Important: In case the selected option is a <strong>form</strong>, make sure to '
-                        'select <strong>Lightbox (Forms)</strong> from the <strong>link target</strong> options '
-                        'for best user experience.'),
+            help_text=('Important: In case the selected option is a <strong>form</strong>, make sure to '
+                       'select <strong>Lightbox (Forms)</strong> from the <strong>link target</strong> options '
+                       'for best user experience.'),
         )
         self.fields['ratio'] = forms.CharField(
-            label=_('Ratio'),
-            help_text=_('This option overrides the default image ratio set for images in a colum of a '
-                        'content section.'),
+            label='Ratio',
+            help_text=('This option overrides the default image ratio set for images in a colum of a '
+                       'content section.'),
             widget=forms.Select(choices=get_ratio_choices_orig()),
             required=False,
         )
         if get_image_width_alias_choices():
             self.fields['width_alias'] = forms.CharField(
-                label=_('Width Alias'),
-                help_text=_('This option overrides the default image width_alias set for images in a column of a '
-                            'content section.'),
+                label='Width Alias',
+                help_text=('This option overrides the default image width_alias set for images in a column of a '
+                           'content section.'),
                 widget=forms.Select(choices=get_image_width_alias_choices()),
                 required=False,
             )
         if get_project_color_choices():
             self.fields['bg_color'] = ColorField(
-                label=_('Set a predefined background color'),
+                label='Set a predefined background color',
                 required=False,
             )
 
         if get_additional_choices('IMAGE_CSS_CLASSES'):
             self.fields['project_css_classes'] = forms.MultipleChoiceField(
                 widget=forms.CheckboxSelectMultiple(),
-                label=_('Predifined variations'),
+                label='Predifined variations',
                 choices=get_additional_choices('IMAGE_CSS_CLASSES'),
                 required=False,
             )
@@ -69,8 +68,8 @@ class AllinkImagePluginForm(AllinkInternalLinkFieldMixin, forms.ModelForm):
 @plugin_pool.register_plugin
 class CMSAllinkImagePlugin(AllinkMediaAdminMixin, CMSPluginBase):
     model = AllinkImagePlugin
-    name = _('Image')
-    module = _('Generic')
+    name = 'Image'
+    module = 'Generic'
     form = AllinkImagePluginForm
 
     def get_fieldsets(self, request, obj=None):
@@ -85,14 +84,14 @@ class CMSAllinkImagePlugin(AllinkMediaAdminMixin, CMSPluginBase):
 
                 ]
             }),
-            (_('Additional settings'), {
+            ('Additional settings', {
                 'classes': ('collapse',),
                 'fields': [
                     'caption_text',
                     'attributes',
                 ]
             }),
-            (_('Link settings'), {
+            ('Link settings', {
                 'classes': ('collapse',),
                 'fields': (
                     'internal_link',

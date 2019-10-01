@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import datetime
 from functools import reduce
-from django.utils.translation import ugettext_lazy as _
 from django.db import models
 from django.utils.functional import cached_property
 
@@ -57,87 +56,87 @@ class BaseLocations(SortableMixin, AllinkContactFieldsModel, AllinkAddressFields
     lead = TranslatedField()
     opening_hours_display = TranslatedField()
     preview_image = FilerImageField(
-        verbose_name=_('Preview Image'),
+        verbose_name='Preview Image',
         blank=True,
         null=True,
         on_delete=models.PROTECT,
         related_name='%(app_label)s_%(class)s_preview_image',
     )
     lat = models.FloatField(
-        _('Latitude'),
+        'Latitude',
         blank=True,
         null=True
     )
     lng = models.FloatField(
-        _('Longitude'),
+        'Longitude',
         blank=True,
         null=True
     )
     map_link = models.URLField(
-        _('Map Link'),
-        help_text=_('This could be a <strong>Google Places</strong> or <strong>Directions</strong> link.'),
+        'Map Link',
+        help_text='This could be a <strong>Google Places</strong> or <strong>Directions</strong> link.',
         blank=True,
         null=True
     )
     commercial_register_entry = models.CharField(
-        _('Commercial register entry'),
+        'Commercial register entry',
         blank=True,
         null=True,
         max_length=50,
     )
     mon = models.CharField(
-        _('Monday morning or whole day'),
+        'Monday morning or whole day',
         help_text='Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
     tue = models.CharField(
-        _('Tuesday morning or whole day'),
+        'Tuesday morning or whole day',
         help_text='Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
     wed = models.CharField(
-        _('Wednesday morning or whole day'),
+        'Wednesday morning or whole day',
         help_text='Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
     thu = models.CharField(
-        _('Thursday morning or whole day'),
+        'Thursday morning or whole day',
         help_text='Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
     fri = models.CharField(
-        _('Friday morning or whole day'),
+        'Friday morning or whole day',
         help_text='Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
     sat = models.CharField(
-        _('Saturday morning or whole day'),
+        'Saturday morning or whole day',
         help_text='Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
     sun = models.CharField(
-        _('Sunday morning or whole day'),
+        'Sunday morning or whole day',
         help_text='Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
     mon_afternoon = models.CharField(
-        _('Monday afternoon'),
+        'Monday afternoon',
         help_text='Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break',
         blank=True, max_length=100
     )
     tue_afternoon = models.CharField(
-        _('Tuesday afternoon'),
+        'Tuesday afternoon',
         help_text='Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break',
         blank=True, max_length=100
     )
     wed_afternoon = models.CharField(
-        _('Wednesday afternoon'),
+        'Wednesday afternoon',
         help_text='Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break',
         blank=True, max_length=100
     )
     thu_afternoon = models.CharField(
-        _('Thursday afternoon'),
+        'Thursday afternoon',
         help_text='Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break',
         blank=True, max_length=100
     )
     fri_afternoon = models.CharField(
-        _('Friday afternoon'),
+        'Friday afternoon',
         help_text='Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break',
         blank=True, max_length=100
     )
     sat_afternoon = models.CharField(
-        _('Saturday afternoon'),
+        'Saturday afternoon',
         help_text='Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break',
         blank=True, max_length=100
     )
     sun_afternoon = models.CharField(
-        _('Sunday afternoon'),
+        'Sunday afternoon',
         help_text='Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break',
         blank=True, max_length=100
     )
@@ -160,9 +159,9 @@ class BaseLocations(SortableMixin, AllinkContactFieldsModel, AllinkAddressFields
     class Meta:
         abstract = True
         app_label = 'locations'
-        ordering = ('sort_order',)
-        verbose_name = _('Location')
-        verbose_name_plural = _('Locations')
+        ordering = 'sort_order',
+        verbose_name = 'Location'
+        verbose_name_plural = 'Locations'
 
     def __str__(self):
         return '%s - %s' % (self.title, self.created.strftime('%d.%m.%Y'))
@@ -208,7 +207,7 @@ class BaseLocations(SortableMixin, AllinkContactFieldsModel, AllinkAddressFields
         return self.opening_info(opening_times[datetime.date.today().weekday()])
 
     is_currently_open.boolean = True
-    is_currently_open.short_description = _('Now open')
+    is_currently_open.short_description = 'Now open'
 
     def opening_info(self, times):
         """
@@ -285,13 +284,13 @@ class BaseLocations(SortableMixin, AllinkContactFieldsModel, AllinkAddressFields
         """
 
         opening_times = [
-            (_('Monday'), self.mon),
-            (_('Tuesday'), self.tue),
-            (_('Wednesday'), self.wed),
-            (_('Thursday'), self.thu),
-            (_('Friday'), self.fri),
-            (_('Saturday'), self.sat),
-            (_('Sunday'), self.sun)
+            ('Monday', self.mon),
+            ('Tuesday', self.tue),
+            ('Wednesday', self.wed),
+            ('Thursday', self.thu),
+            ('Friday', self.fri),
+            ('Saturday', self.sat),
+            ('Sunday', self.sun)
         ]
 
         opening_hours = []
@@ -337,22 +336,22 @@ class BaseLocationsTranslation(AllinkBaseTranslatedFieldsModel):
         max_length=255
     )
     subtitle = models.CharField(
-        _('Subtitle'),
+        'Subtitle',
         max_length=255,
         blank=True,
         null=True,
     )
     lead = HTMLField(
-        _('Lead Text'),
-        help_text=_('Teaser text that in some cases is used in the list view and/or in the detail view.'),
+        'Lead Text',
+        help_text='Teaser text that in some cases is used in the list view and/or in the detail view.',
         blank=True,
         null=True,
     )
     opening_hours_display = HTMLField(
-        _('Opening hours'),
-        help_text=_(
+        'Opening hours',
+        help_text=
             'This Text will be used to show the Opening hours on the location detail page. '
-            'If provided, the detailed opening hours will be overriden.'),
+            'If provided, the detailed opening hours will be overriden.',
         blank=True,
         null=True,
     )
@@ -388,19 +387,19 @@ class BaseLocationsAppContentPlugin(AllinkBaseAppContentPlugin):
     manual_entries = SortedM2MModelField(
         'locations.Locations',
         blank=True,
-        help_text=_('Select and arrange specific entries, or, leave blank to select all. (If '
-                    'manual entries are selected the category filtering will be ignored.)')
+        help_text='Select and arrange specific entries, or, leave blank to select all. (If '
+                  'manual entries are selected the category filtering will be ignored.)'
     )
     apphook_page = PageField(
-        verbose_name=_('Apphook Page'),
+        verbose_name='Apphook Page',
         null=True,
         blank=True,
         on_delete=models.PROTECT,
-        help_text=_('If provided, this Apphook-Page will be used to generate the detail link.'),
+        help_text='If provided, this Apphook-Page will be used to generate the detail link.',
     )
     zoom_level = models.IntegerField(
-        _('Zoom Level'),
-        help_text=_('The higher the number, the more we zoom in.'),
+        'Zoom Level',
+        help_text='The higher the number, the more we zoom in.',
         choices=ZOOM_LEVEL_CHOICES,
         default=14
     )

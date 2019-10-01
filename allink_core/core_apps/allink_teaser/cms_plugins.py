@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from django import forms
-from django.utils.translation import ugettext_lazy as _
 from cms.models.pagemodel import Page
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
@@ -16,7 +15,7 @@ from allink_core.core.admin.mixins import AllinkMediaAdminMixin
 
 class AllinkTeaserPluginForm(AllinkInternalLinkFieldMixin, forms.ModelForm):
 
-    internal_link = SelectLinkField(label=_('Link Internal'))
+    internal_link = SelectLinkField(label='Link Internal')
 
     class Meta:
         model = AllinkTeaserPlugin
@@ -25,7 +24,7 @@ class AllinkTeaserPluginForm(AllinkInternalLinkFieldMixin, forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(AllinkTeaserPluginForm, self).__init__(*args, **kwargs)
         self.fields['template'] = forms.CharField(
-            label=_('Template'),
+            label='Template',
             widget=forms.Select(choices=self.instance.get_templates()),
             required=True,
         )
@@ -34,8 +33,8 @@ class AllinkTeaserPluginForm(AllinkInternalLinkFieldMixin, forms.ModelForm):
 @plugin_pool.register_plugin
 class CMSAllinkTeaserPlugin(AllinkMediaAdminMixin, CMSPluginBase):
     model = AllinkTeaserPlugin
-    name = _('Teaser')
-    module = _('Generic')
+    name = 'Teaser'
+    module = 'Generic'
     form = AllinkTeaserPluginForm
 
     fieldsets = (

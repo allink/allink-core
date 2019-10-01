@@ -7,10 +7,10 @@ from django.conf import settings
 from django.db import models
 from django.urls import NoReverseMatch
 from django.urls import reverse
+from django.utils.translation import ugettext_lazy as _
 from django.core.exceptions import ValidationError
 from django.contrib.postgres.fields import ArrayField
 from django.utils.encoding import force_text
-from django.utils.translation import ugettext_lazy as _
 from django.utils.functional import cached_property
 from filer.fields.image import FilerImageField
 from filer.fields.file import FilerFileField
@@ -54,10 +54,10 @@ class AllinkStatusFieldsModel(models.Model):
     STATUS_DEFAULT = ACTIVE
 
     STATUS_CHOICES = [
-        (ACTIVE, _('active')),
-        (INACTIVE, _('inactive'))
+        (ACTIVE, 'active'),
+        (INACTIVE, 'inactive')
     ]
-    status = models.IntegerField(_('status'), choices=STATUS_CHOICES, default=STATUS_DEFAULT)
+    status = models.IntegerField('status', choices=STATUS_CHOICES, default=STATUS_DEFAULT)
 
     class Meta:
         abstract = True
@@ -70,8 +70,8 @@ class AllinkTimeFramedModel(models.Model):
     And this is not compatible with parler's TranslatableQuerySet.
 
     """
-    start = models.DateTimeField(_('start'), null=True, blank=True)
-    end = models.DateTimeField(_('end'), null=True, blank=True)
+    start = models.DateTimeField('start', null=True, blank=True)
+    end = models.DateTimeField('end', null=True, blank=True)
 
     class Meta:
         abstract = True
@@ -115,13 +115,13 @@ class AllinkSEOFieldsModel(models.Model):
     Base class for all non translated SEO fields
     """
     og_image = FilerImageField(
-        verbose_name=_('og:Image'),
+        verbose_name='og:Image',
         on_delete=models.PROTECT,
-        help_text=_(
+        help_text=
             'og: image is used when shared on Facebook/ Twitter etc. (Min. 1200 x 630 px)<br>'
             'Page: 1. fallback is teaser_image, 2. fallback is field allink_config.default_og_image.<br>'
             'App: 1. fallback = preview_image 2. fallback is teaser_image, 3. '
-            'fallback is defined in allink_config.default_og_image.<br>'),
+            'fallback is defined in allink_config.default_og_image.<br>',
         related_name='%(app_label)s_%(class)s_og_image',
         blank=True,
         null=True
@@ -139,7 +139,7 @@ class AllinkSEOTranslatedFieldsModel(models.Model):
     e.g.: ...(AllinkSEOTranslatedFieldsModel, TranslatedFieldsModel)
     """
     og_title = models.CharField(
-        verbose_name=_('og:title | <title> Tag'),
+        verbose_name='og:title | <title> Tag',
         max_length=255,
         help_text='title-tag is used when shared on Facebook/ Twitter etc.<br>'
                   'Also used to overwrite "meta property="og:image.."" and title-tag<br>'
@@ -149,7 +149,7 @@ class AllinkSEOTranslatedFieldsModel(models.Model):
         default=''
     )
     og_description = models.TextField(
-        verbose_name=_('og:description | meta description'),
+        verbose_name='og:description | meta description',
         max_length=255,
         help_text='Description is used when shared on Facebook/ Twitter etc.<br>'
                   'Also used to overwrite  "meta" property="og:description" .. and "meta name="description"<br>'
@@ -170,14 +170,14 @@ class AllinkTeaserFieldsModel(models.Model):
     use this together with: AllinkTeaserMixin
     """
     teaser_image = FilerImageField(
-        verbose_name=_('Teaser image'),
+        verbose_name='Teaser image',
         on_delete=models.PROTECT,
-        help_text=_(
+        help_text=
             'Optional field for teaser image. og: properties are used when shared on Facebook/ Twitter etc. '
             '(Min. 1200 x 630 px)<br>'
             'Also used as "meta" property="og:image"<br>'
             'Page: 1. fallback is allink_config.default_og_image.<br>'
-            'App: 1. fallback = preview_image 2. fallback is defined in allink_config.default_og_image.<br>'),
+            'App: 1. fallback = preview_image 2. fallback is defined in allink_config.default_og_image.<br>',
         related_name='%(app_label)s_%(class)s_teaser_image',
         blank=True,
         null=True
@@ -324,19 +324,19 @@ class AllinkContactFieldsModel(models.Model):
     def phone_formatted(self):
         if self.phone:
             x = phonenumbers.parse(str(self.phone), None)
-            return (str(phonenumbers.format_number(x, phonenumbers.PhoneNumberFormat.INTERNATIONAL)))
+            return str(phonenumbers.format_number(x, phonenumbers.PhoneNumberFormat.INTERNATIONAL))
 
     @cached_property
     def mobile_formatted(self):
         if self.mobile:
             x = phonenumbers.parse(str(self.mobile), None)
-            return (str(phonenumbers.format_number(x, phonenumbers.PhoneNumberFormat.INTERNATIONAL)))
+            return str(phonenumbers.format_number(x, phonenumbers.PhoneNumberFormat.INTERNATIONAL))
 
     @cached_property
     def fax_formatted(self):
         if self.fax:
             x = phonenumbers.parse(str(self.fax), None)
-            return (str(phonenumbers.format_number(x, phonenumbers.PhoneNumberFormat.INTERNATIONAL)))
+            return str(phonenumbers.format_number(x, phonenumbers.PhoneNumberFormat.INTERNATIONAL))
 
     @cached_property
     def website_clean(self):
@@ -352,32 +352,32 @@ class AllinkInternalLinkFieldsModel(models.Model):
     """
     #  Page redirect
     link_page = PageField(
-        verbose_name=_('New Page'),
+        verbose_name='New Page',
         null=True,
         on_delete=models.PROTECT,
-        help_text=_('If provided, overrides the external link and New Apphook-Page.'),
+        help_text='If provided, overrides the external link and New Apphook-Page.',
     )
     #  Fields for app redirect
     link_apphook_page = PageField(
-        verbose_name=_('New Apphook-Page'),
+        verbose_name='New Apphook-Page',
         null=True,
         on_delete=models.PROTECT,
-        help_text=_('If provided, overrides the external link.'),
+        help_text='If provided, overrides the external link.',
         related_name='%(app_label)s_%(class)s_app_legacy_redirects'
     )
     link_object_id = models.IntegerField(
         null=True,
-        help_text=_('To which object directs the url.')
+        help_text='To which object directs the url.'
     )
     link_model = models.CharField(
         null=True,
         max_length=300,
-        help_text=_('Dotted Path to referenced Model')
+        help_text='Dotted Path to referenced Model'
     )
     link_url_name = models.CharField(
         null=True,
         max_length=64,
-        help_text=_('Name of the App-URL to use.')
+        help_text='Name of the App-URL to use.'
     )
     link_url_kwargs = ArrayField(
         models.CharField(
@@ -387,7 +387,7 @@ class AllinkInternalLinkFieldsModel(models.Model):
         ),
         blank=True,
         null=True,
-        help_text=_('Keyword arguments used to reverse url.')
+        help_text='Keyword arguments used to reverse url.'
     )
 
     class Meta:
@@ -438,51 +438,51 @@ class AllinkLinkFieldsModel(AllinkInternalLinkFieldsModel):
     Base class for all the link related fields (including internal link fields)
     """
     link_url = models.URLField(
-        verbose_name=('External link'),
+        verbose_name='External link',
         blank=True,
         default='',
-        help_text=_('Provide a valid URL to an external website.'),
+        help_text='Provide a valid URL to an external website.',
         max_length=500,
     )
     link_mailto = models.EmailField(
-        verbose_name=_('Email address'),
+        verbose_name='Email address',
         blank=True,
         null=True,
         max_length=255,
     )
     link_phone = models.CharField(
-        verbose_name=_('Phone'),
+        verbose_name='Phone',
         blank=True,
         null=True,
         max_length=255,
     )
     link_anchor = models.CharField(
-        verbose_name=_('Anchor'),
+        verbose_name='Anchor',
         max_length=255,
         blank=True,
-        help_text=_('Appends the value only after the internal or external link.<br>'
-                    'Do <strong>not</strong> include a preceding "#" symbol.'),
+        help_text='Appends the value only after the internal or external link.<br>'
+                    'Do <strong>not</strong> include a preceding "#" symbol.',
     )
     link_target = models.IntegerField(
-        _('Link Target'),
+        'Link Target',
         choices=TARGET_CHOICES,
         null=True,
         blank=True
     )
     link_file = FilerFileField(
-        verbose_name=_('file'),
+        verbose_name='file',
         on_delete=models.PROTECT,
         null=True,
         blank=True
     )
     link_special = models.CharField(
-        verbose_name=_('Special Links'),
+        verbose_name='Special Links',
         max_length=255,
         blank=True,
         null=True
     )
     link_attributes = AttributesField(
-        verbose_name=_('Attributes'),
+        verbose_name='Attributes',
         blank=True,
         excluded_keys=['class', 'href', 'target'],
     )
@@ -582,7 +582,7 @@ class AllinkLinkFieldsModel(AllinkInternalLinkFieldsModel):
         if anchor_field_value:
             for field_name in provided_link_fields.keys():
                 if field_name not in field_names_allowed_with_anchor:
-                    error_msg = _('%(anchor_field_verbose_name)s is not allowed together with %(field_name)s') % {
+                    error_msg = '%(anchor_field_verbose_name)s is not allowed together with %(field_name)s' % {
                         'anchor_field_verbose_name': anchor_field_verbose_name,
                         'field_name': link_field_verbose_names.get(field_name)
                     }

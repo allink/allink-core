@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
 from django.contrib.postgres.fields import ArrayField
 from django.utils.functional import cached_property
 from django.utils.http import urlquote
@@ -22,18 +21,18 @@ class AllinkButtonLinkContainerPlugin(CMSPlugin):
     A Container-Plugin for Links, Buttons
     """
     alignment_horizontal_desktop = models.CharField(
-        _('Alignment horizontal desktop'),
+        'Alignment horizontal desktop',
         max_length=50,
         choices=choices.HORIZONTAL_ALIGNMENT_CHOICES,
-        help_text=_('This option overrides the projects default alignment for desktop. (Usually "left")'),
+        help_text='This option overrides the projects default alignment for desktop. (Usually "left")',
         blank=True,
         null=True
     )
     alignment_horizontal_mobile = models.CharField(
-        _('Alignment horizontal mobile'),
+        'Alignment horizontal mobile',
         max_length=50,
         choices=choices.HORIZONTAL_ALIGNMENT_CHOICES,
-        help_text=_('This option overrides the projects default alignment for mobile. (Usually "left")'),
+        help_text='This option overrides the projects default alignment for mobile. (Usually "left")',
         blank=True,
         null=True
     )
@@ -48,7 +47,7 @@ class AllinkButtonLinkContainerPlugin(CMSPlugin):
     )
 
     def __str__(self):
-        return _('{}').format(str(self.pk))
+        return '{}'.format(str(self.pk))
 
     @property
     def css_classes(self):
@@ -75,78 +74,78 @@ class AllinkButtonLinkPlugin(CMSPlugin, AllinkLinkFieldsModel):
     VIDEO_FILE_LINK = 'video_file_link'
 
     TEMPLATE_CHOICES = (
-        (DEFAULT_LINK, _('Internal/External')),
-        (FILE_LINK, _('File (Download)')),
-        (IMAGE_LINK, _('Image')),
-        (PHONE_LINK, _('Phone')),
-        (EMAIL_LINK, _('Email')),
-        (FORM_LINK, _('Form')),
-        (VIDEO_EMBEDDED_LINK, _('Video (Embedded)')),
-        (VIDEO_FILE_LINK, _('Video (File)')),
+        (DEFAULT_LINK, 'Internal/External'),
+        (FILE_LINK, 'File (Download)'),
+        (IMAGE_LINK, 'Image'),
+        (PHONE_LINK, 'Phone'),
+        (EMAIL_LINK, 'Email'),
+        (FORM_LINK, 'Form'),
+        (VIDEO_EMBEDDED_LINK, 'Video (Embedded)'),
+        (VIDEO_FILE_LINK, 'Video (File)'),
     )
 
     # we re-use the template option to toggle fieldset visibility depending on the link types
     template = models.CharField(
-        _('Link type'),
-        help_text=_('Choose a link type in order to display its options below.'),
+        'Link type',
+        help_text='Choose a link type in order to display its options below.',
         max_length=50,
         choices=TEMPLATE_CHOICES,
         default=DEFAULT_LINK
     )
     label = models.CharField(
-        verbose_name=_('Link text'),
+        verbose_name='Link text',
         blank=True,
         default='',
         max_length=255,
     )
     type = model_fields.LinkOrButton(
-        verbose_name=_('Display type'),
+        verbose_name='Display type',
     )
     # button specific fields
     btn_context = model_fields.Context(
-        verbose_name=_('Variation'),
+        verbose_name='Variation',
         choices=choices.BUTTON_CONTEXT_CHOICES,
         default=choices.BUTTON_CONTEXT_DEFAULT,
     )
     btn_size = model_fields.Size(
-        verbose_name=_('Size'),
+        verbose_name='Size',
     )
     btn_block = models.BooleanField(
-        verbose_name=_('Block'),
+        verbose_name='Block',
         default=False,
     )
     # text link specific fields
     txt_context = model_fields.Context(
-        verbose_name=_('Context'),
+        verbose_name='Context',
         choices=choices.TEXT_LINK_CONTEXT_CHOICES,
         default=choices.TEXT_LINK_CONTEXT_DEFAULT,
         blank=True,
     )
     # common fields
     icon_left = Icon(
-        verbose_name=_('Icon left'),
+        verbose_name='Icon left',
     )
     icon_right = Icon(
-        verbose_name=_('Icon right'),
+        verbose_name='Icon right',
     )
 
     # email specific fields
     email_subject = models.CharField(
-        verbose_name=_('Subject'),
+        verbose_name='Subject',
         max_length=255,
         default='',
         blank=True,
     )
     email_body_text = models.TextField(
-        verbose_name=_('Body Text'),
+        verbose_name='Body Text',
         default='',
         blank=True,
     )
     # form specific fields
     send_internal_mail = models.BooleanField(
-        _('Send internal e-mail'),
+        'Send internal e-mail',
         default=False,
-        help_text=_('Send confirmation mail to defined internal e-mail addresses.')
+        help_text='Send confirmation mail to defined internal e-mail addresses.'
     )
     internal_email_addresses = ArrayField(
         models.EmailField(
@@ -155,26 +154,26 @@ class AllinkButtonLinkPlugin(CMSPlugin, AllinkLinkFieldsModel):
         ),
         blank=True,
         null=True,
-        verbose_name=_('Internal e-mail addresses'),
+        verbose_name='Internal e-mail addresses',
     )
     from_email_address = models.EmailField(
-        _('Sender e-mail address'),
+        'Sender e-mail address',
         blank=True,
         null=True
     )
     send_external_mail = models.BooleanField(
-        _('Send external e-mail'),
+        'Send external e-mail',
         default=False,
-        help_text=_('Send confirmation mail to customer.')
+        help_text='Send confirmation mail to customer.'
     )
     thank_you_text = models.TextField(
-        _('Thank you text'),
+        'Thank you text',
         blank=True,
         null=True,
-        help_text=_('This text will be shown, after form completion.')
+        help_text='This text will be shown, after form completion.'
     )
     label_layout = models.CharField(
-        _('Display labels'),
+        'Display labels',
         max_length=15,
         choices=(
             ('stacked', 'Stacked with fields'),
@@ -194,9 +193,9 @@ class AllinkButtonLinkPlugin(CMSPlugin, AllinkLinkFieldsModel):
     )
     # video (embed) specific fields
     video_id = models.CharField(
-        verbose_name=_('Video ID'),
+        verbose_name='Video ID',
         max_length=255,
-        help_text=_(
+        help_text=(
            'Only provide the ID. The correct URL will automatically be generated.<br><br>'
            'YouTube: https://www.youtube.com/watch?v=<strong>12345678</strong> '
            '(the ID is <strong>12345678</strong>)<br>Vimeo: https://vimeo.com/<strong>12345678</strong> '
@@ -205,14 +204,14 @@ class AllinkButtonLinkPlugin(CMSPlugin, AllinkLinkFieldsModel):
         null=True,
     )
     video_service = models.CharField(
-        _('Video Service'),
+        'Video Service',
         max_length=50,
         choices=choices.VIDEO_SERVICE_CHOICES,
         blank=True,
         null=True,
     )
     ratio = models.CharField(
-        _('Ratio'),
+        'Ratio',
         max_length=50,
         blank=True,
         null=True
@@ -220,9 +219,9 @@ class AllinkButtonLinkPlugin(CMSPlugin, AllinkLinkFieldsModel):
 
     # video (file) specific fields
     video_file = FilerFileField(
-        verbose_name=_('Video File'),
+        verbose_name='Video File',
         on_delete=models.PROTECT,
-        help_text=_(
+        help_text=(
            'Recommended video settings:<br><br>Format: mp4<br>Codec: H.264<br>Target Bitrate: 2 '
            '(video loads quick and runs smooth)<br>Audio: Not recommended (no audio = smaller file size and less '
            'annoyed visitors)<br>File size: Dependent of video length. Generally speaking: Less is more.'),
@@ -231,10 +230,10 @@ class AllinkButtonLinkPlugin(CMSPlugin, AllinkLinkFieldsModel):
         related_name='%(app_label)s_%(class)s_video_file',
     )
     video_poster_image = FilerImageField(
-        verbose_name=_('Video Start Image'),
+        verbose_name='Video Start Image',
         on_delete=models.PROTECT,
         related_name='%(app_label)s_%(class)s_video_poster_image',
-        help_text=_(
+        help_text=(
            'Image that is being displayed while the video is loading. Ideally the very first frame of the video '
            'is used, in order to make the transition as smooth as possible.<br><br><strong>Imoprtant:</strong> '
            'Make sure the aspect ratio of the image is <strong>exactly the same</strong> as the video, '
@@ -243,31 +242,31 @@ class AllinkButtonLinkPlugin(CMSPlugin, AllinkLinkFieldsModel):
         null=True,
     )
     video_muted_enabled = models.BooleanField(
-        _('Muted'),
-        help_text=_('Caution: Autoplaying videos with audio is not recommended. Use wisely.'),
+        'Muted',
+        help_text='Caution: Autoplaying videos with audio is not recommended. Use wisely.',
         default=True
     )
     # video (embed and file) specific fields
     auto_start_enabled = models.BooleanField(
-        _('Autostart'),
+        'Autostart',
         default=False,
-        help_text=_('<strong>Important:</strong> Autoplaying videos with audio is not recommended. Use wisely. '),
+        help_text='<strong>Important:</strong> Autoplaying videos with audio is not recommended. Use wisely. ',
     )
     allow_fullscreen_enabled = models.BooleanField(
-        _('Allow fullscreen'),
+        'Allow fullscreen',
         default=True
     )
     # modal closing options
     data_modal_escape_close_enabled = models.BooleanField(
-        _('Escape key closes modal'),
+        'Escape key closes modal',
         default=True,
     )
     data_modal_overlay_close_enabled = models.BooleanField(
-        _('Click on overlay closes modal'),
+        'Click on overlay closes modal',
         default=True,
     )
     data_modal_button_close_enabled = models.BooleanField(
-        _('Display close button'),
+        'Display close button',
         default=True,
     )
 

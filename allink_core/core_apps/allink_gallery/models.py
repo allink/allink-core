@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
 from django.contrib.postgres.fields import ArrayField
 from django.utils.functional import cached_property
 
@@ -15,30 +14,30 @@ from allink_core.core.utils import get_additional_templates
 class AllinkGalleryPlugin(CMSPlugin):
 
     template = models.CharField(
-        _('Template'),
-        help_text=_('Choose a template.'),
+        'Template',
+        help_text='Choose a template.',
         max_length=50
     )
     ratio = models.CharField(
-        _('Ratio'),
+        'Ratio',
         max_length=50,
         blank=True,
         null=True
     )
     fullscreen_enabled = models.BooleanField(
-        _('Fullscreen option visible'),
+        'Fullscreen option visible',
         default=True,
-        help_text=_('This option enables a fullscreen button for this gallery.'),
+        help_text='This option enables a fullscreen button for this gallery.',
     )
     counter_enabled = models.BooleanField(
-        _('Gallery counter visible'),
+        'Gallery counter visible',
         default=False,
-        help_text=_('This option enables a gallery counter.'),
+        help_text='This option enables a gallery counter.',
     )
     auto_start_enabled = models.BooleanField(
-        _('Autostart'),
+        'Autostart',
         default=True,
-        help_text=_('This option enables autoplay for this gallery.'),
+        help_text='This option enables autoplay for this gallery.',
     )
     project_css_classes = ArrayField(
         models.CharField(
@@ -53,8 +52,8 @@ class AllinkGalleryPlugin(CMSPlugin):
         on_delete=models.PROTECT,
         null=True,
         blank=True,
-        help_text=_("All Images (.png, .gif, .jpg, .jpeg) will be used in gallery. "
-                    "If a folder is specified, the child plugin won't be rendered."),
+        help_text=("All Images (.png, .gif, .jpg, .jpeg) will be used in gallery. "
+                   "If a folder is specified, the child plugin won't be rendered."),
     )
 
     def __str__(self):
@@ -94,29 +93,29 @@ class AllinkGalleryPlugin(CMSPlugin):
 
 class AllinkGalleryImagePlugin(CMSPlugin):
     title = models.CharField(
-        _('Title'),
+        'Title',
         max_length=255,
         blank=True,
         null=True
     )
     text = HTMLField(
-        _('Text'),
+        'Text',
         blank=True,
         null=True
     )
     template = models.CharField(
-        _('Template'),
-        help_text=_('Choose a template.'),
+        'Template',
+        help_text='Choose a template.',
         max_length=50,
     )
     ratio = models.CharField(
-        _('Ratio'),
+        'Ratio',
         max_length=50,
         blank=True,
         null=True
     )
     image = FilerImageField(
-        verbose_name=_('Image'),
+        verbose_name='Image',
         on_delete=models.PROTECT,
     )
 

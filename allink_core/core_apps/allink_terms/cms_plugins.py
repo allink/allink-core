@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from django import forms
-from django.utils.translation import ugettext_lazy as _
 
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
@@ -19,8 +18,8 @@ class AllinkTermsPluginForm(forms.ModelForm):
 @plugin_pool.register_plugin
 class CMSAllinkTermsPlugin(CMSPluginBase):
     model = AllinkTermsPlugin
-    name = _('Terms of Service')
-    module = _('allink modules')
+    name = 'Terms of Service'
+    module = 'allink modules'
     form = AllinkTermsPluginForm
     render_template = 'allink_terms/plugins/terms.html'
 

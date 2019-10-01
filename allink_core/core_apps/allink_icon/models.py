@@ -7,7 +7,7 @@ from django.contrib.postgres.fields import ArrayField
 
 class AllinkIconPlugin(CMSPlugin):
     icon = models.CharField(
-        _('Icon'),
+        'Icon',
         max_length=50
     )
     project_css_classes = ArrayField(

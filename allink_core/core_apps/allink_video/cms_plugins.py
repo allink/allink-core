@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from django import forms
-from django.utils.translation import ugettext_lazy as _
 from cms.plugin_base import CMSPluginBase
 from webpack_loader.utils import get_files
 
@@ -22,13 +21,13 @@ class AllinkVideoEmbedPluginForm(forms.ModelForm):
         if get_additional_choices('VID_EMBED_CSS_CLASSES'):
             self.fields['project_css_classes'] = forms.MultipleChoiceField(
                 widget=forms.CheckboxSelectMultiple(),
-                label=_('Predifined variations for Video Plugin'),
+                label='Predifined variations for Video Plugin',
                 choices=get_additional_choices('VID_EMBED_CSS_CLASSES'),
                 required=False,
             )
         self.fields['ratio'] = forms.CharField(
-            label=_('Ratio'),
-            help_text=_('This option overrides the default ratio setting for embeded videos.'),
+            label='Ratio',
+            help_text='This option overrides the default ratio setting for embeded videos.',
             widget=forms.Select(choices=get_ratio_choices()),
             required=False,
         )
@@ -45,7 +44,7 @@ class AllinkVideoFilePluginForm(forms.ModelForm):
         if get_additional_choices('VID_FILE_CSS_CLASSES').__len__() != 0:
             self.fields['project_css_classes'] = forms.MultipleChoiceField(
                 widget=forms.CheckboxSelectMultiple(),
-                label=_('Predifined variations for Video Plugin'),
+                label='Predifined variations for Video Plugin',
                 choices=get_additional_choices('VID_FILE_CSS_CLASSES'),
                 required=False,
             )
@@ -54,8 +53,8 @@ class AllinkVideoFilePluginForm(forms.ModelForm):
 @plugin_pool.register_plugin
 class CMSAllinkVideoEmbedPlugin(AllinkMediaAdminMixin, CMSPluginBase):
     model = AllinkVideoEmbedPlugin
-    name = _('Video Embed')
-    module = _('Generic')
+    name = 'Video Embed'
+    module = 'Generic'
     form = AllinkVideoEmbedPluginForm
 
     def get_fieldsets(self, request, obj=None):
@@ -66,7 +65,7 @@ class CMSAllinkVideoEmbedPlugin(AllinkMediaAdminMixin, CMSPluginBase):
                     'video_service',
                 )
             }),
-            (_('Video settings'), {
+            ('Video settings', {
                 # 'classes': ('collapse',),
                 'fields': (
                     'ratio',
@@ -74,7 +73,7 @@ class CMSAllinkVideoEmbedPlugin(AllinkMediaAdminMixin, CMSPluginBase):
                     'allow_fullscreen_enabled',
                 )
             }),
-            (_('Advanced settings'), {
+            ('Advanced settings', {
                 'classes': ('collapse',),
                 'fields': (
                     'attributes',
@@ -92,8 +91,8 @@ class CMSAllinkVideoEmbedPlugin(AllinkMediaAdminMixin, CMSPluginBase):
 @plugin_pool.register_plugin
 class CMSAllinkVideoFilePlugin(AllinkMediaAdminMixin, CMSPluginBase):
     model = AllinkVideoFilePlugin
-    name = _('Video File')
-    module = _('Generic')
+    name = 'Video File'
+    module = 'Generic'
     form = AllinkVideoFilePluginForm
 
     def get_fieldsets(self, request, obj=None):
@@ -104,7 +103,7 @@ class CMSAllinkVideoFilePlugin(AllinkMediaAdminMixin, CMSPluginBase):
                     'video_poster_image'
                 )
             }),
-            (_('Video settings'), {
+            ('Video settings', {
                 # 'classes': ('collapse',),
                 'fields': (
                     'auto_start_enabled',
@@ -113,7 +112,7 @@ class CMSAllinkVideoFilePlugin(AllinkMediaAdminMixin, CMSPluginBase):
                     # 'allow_fullscreen_enabled',
                 )
             }),
-            (_('Advanced settings'), {
+            ('Advanced settings', {
                 'classes': ('collapse',),
                 'fields': (
                     'attributes',

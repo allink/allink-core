@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from django import forms
-from django.utils.translation import ugettext_lazy as _
 from django.contrib.postgres.forms import SplitArrayField
 from cms.plugin_base import CMSPluginBase
 
@@ -27,7 +26,7 @@ class ContactRequestFormPluginForm(AllinkMediaAdminMixin, forms.ModelForm):
         if get_additional_choices('FORM_CSS_CLASSES'):
             self.fields['project_css_classes'] = forms.MultipleChoiceField(
                 widget=forms.CheckboxSelectMultiple(),
-                label=_('Predefined variations'),
+                label='Predefined variations',
                 choices=get_additional_choices('FORM_CSS_CLASSES'),
                 required=False,
             )
@@ -38,8 +37,8 @@ class ContactRequestFormPluginForm(AllinkMediaAdminMixin, forms.ModelForm):
 @plugin_pool.register_plugin
 class CMSAllinkContactRequestPlugin(CMSPluginBase):
     model = ContactRequestPlugin
-    name = _('Contact Form')
-    module = _('allink forms')
+    name = 'Contact Form'
+    module = 'allink forms'
     form = ContactRequestFormPluginForm
 
     def get_render_template(self, context, instance, placeholder):

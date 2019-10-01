@@ -3,14 +3,13 @@ import mandrill
 from raven import Client
 from django.conf import settings
 from django.utils.translation import get_language
-from django.utils.translation import ugettext_lazy as _
 from .config import MandrillConfig
 
 
 def check_result_status(result):
     if result[0].get('status') != 'sent' and result[0].get('status') != 'queued':
         raise mandrill.Error(
-            _("Mandrill hasn't raised an error but email could not been sent. (status: '{}', reason: '{}')").format(
+            "Mandrill hasn't raised an error but email could not been sent. (status: '{}', reason: '{}')".format(
                 result[0].get('status'),
                 result[0].get('reject_reason')
             ))

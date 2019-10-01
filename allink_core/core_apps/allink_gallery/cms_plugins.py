@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from django import forms
-from django.utils.translation import ugettext_lazy as _
 from django.utils.html import strip_tags
 
 from django.conf import settings
@@ -24,20 +23,20 @@ class AllinkGalleryPluginForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(AllinkGalleryPluginForm, self).__init__(*args, **kwargs)
         self.fields['ratio'] = forms.CharField(
-            label=_('Ratio'),
-            help_text=_('This option overrides the default settings for the gallery plugin.'),
+            label='Ratio',
+            help_text='This option overrides the default settings for the gallery plugin.',
             widget=forms.Select(choices=get_ratio_choices()),
             required=False,
         )
         self.fields['template'] = forms.CharField(
-            label=_('Template'),
+            label='Template',
             widget=forms.Select(choices=self.instance.get_templates()),
             required=True,
         )
         if get_additional_choices('GALLERY_CSS_CLASSES'):
             self.fields['project_css_classes'] = forms.MultipleChoiceField(
                 widget=forms.CheckboxSelectMultiple(),
-                label=_('Predifined variations'),
+                label='Predifined variations',
                 choices=get_additional_choices('GALLERY_CSS_CLASSES'),
                 required=False,
             )
@@ -57,8 +56,8 @@ class AllinkGalleryImagePluginForm(forms.ModelForm):
 
         if max_length and text_length > max_length:
             self.add_error(
-                'text', _('There are only {} characters allowed in text field. Currently there are {} characters.')
-                    .format(max_length, text_length))
+                'text', 'There are only {} characters allowed in text field. Currently there are {} characters.'
+                .format(max_length, text_length))
 
         return cleaned_data
 
@@ -66,8 +65,8 @@ class AllinkGalleryImagePluginForm(forms.ModelForm):
 @plugin_pool.register_plugin
 class CMSAllinkGalleryPlugin(AllinkMediaAdminMixin, CMSPluginBase):
     model = AllinkGalleryPlugin
-    name = _('Gallery')
-    module = _('Generic')
+    name = 'Gallery'
+    module = 'Generic'
     allow_children = True
     child_classes = ['CMSAllinkGalleryImagePlugin']
     form = AllinkGalleryPluginForm
@@ -80,7 +79,7 @@ class CMSAllinkGalleryPlugin(AllinkMediaAdminMixin, CMSPluginBase):
                     'folder',
                 ),
             }),
-            (_('Slider Options'), {
+            ('Slider Options', {
                 'fields': [
                     'ratio',
                     'fullscreen_enabled',
@@ -88,7 +87,7 @@ class CMSAllinkGalleryPlugin(AllinkMediaAdminMixin, CMSPluginBase):
                     'auto_start_enabled',
                 ]
             }),
-            (_('Advanced Options'), {
+            ('Advanced Options', {
                 'classes': ('collapse',),
                 'fields': (
                     'project_css_classes',
@@ -106,8 +105,8 @@ class CMSAllinkGalleryPlugin(AllinkMediaAdminMixin, CMSPluginBase):
 @plugin_pool.register_plugin
 class CMSAllinkGalleryImagePlugin(AllinkMediaAdminMixin, CMSPluginBase):
     model = AllinkGalleryImagePlugin
-    name = _('Gallery Image')
-    module = _('Generic')
+    name = 'Gallery Image'
+    module = 'Generic'
     allow_children = False
     form = AllinkGalleryImagePluginForm
 

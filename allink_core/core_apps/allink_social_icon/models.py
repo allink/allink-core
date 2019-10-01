@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
 from cms.models.pluginmodel import CMSPlugin
 from django.contrib.postgres.fields import ArrayField
 
@@ -21,7 +20,7 @@ class AllinkSocialIconContainerPlugin(CMSPlugin):
     )
 
     def __str__(self):
-        return _('{}').format(str(self.pk))
+        return '{}'.format(str(self.pk))
 
     @property
     def css_classes(self):
@@ -34,18 +33,18 @@ class AllinkSocialIconContainerPlugin(CMSPlugin):
 
 class AllinkSocialIconPlugin(CMSPlugin):
     title = models.CharField(
-        _('Title'),
-        help_text=_('SEO text (not visible) e.g. Follow allink on Instagram'),
+        'Title',
+        help_text='SEO text (not visible) e.g. Follow allink on Instagram',
         max_length=255,
         blank=True,
         null=True
     )
     icon = models.CharField(
-        _('Icon'),
+        'Icon',
         max_length=50
     )
     link = models.URLField(
-        _('Link')
+        'Link'
     )
 
     def __str__(self):

@@ -581,7 +581,7 @@ class {model_name}(SortableMixin, AllinkCategoryFieldsModel, AllinkBaseTranslata
     lead = TranslatedField()
 
     preview_image = FilerImageField(
-        verbose_name=_('Preview Image'),
+        verbose_name='Preview Image',
         blank=True,
         null=True,
         on_delete=models.PROTECT,
@@ -607,8 +607,8 @@ class {model_name}(SortableMixin, AllinkCategoryFieldsModel, AllinkBaseTranslata
     class Meta:
         app_label = '{label}'
         ordering = ('sort_order',)
-        verbose_name = _('{model_name}')
-        verbose_name_plural = _('{model_name}')
+        verbose_name = '{model_name}'
+        verbose_name_plural = '{model_name}'
 
 
 class {model_name}Translation(AllinkBaseTranslatedFieldsModel):
@@ -624,7 +624,7 @@ class {model_name}Translation(AllinkBaseTranslatedFieldsModel):
     )
     lead = HTMLField(
         _('Lead Text'),
-        help_text=_('Teaser text that in some cases is used in the list view and/or in the detail view.'),
+        help_text='Teaser text that in some cases is used in the list view and/or in the detail view.',
         blank=True,
         null=True,
     )
@@ -638,15 +638,15 @@ class {model_name}AppContentPlugin(AllinkBaseAppContentPlugin):
     manual_entries = SortedM2MModelField(
         '{label}.{model_name}',
         blank=True,
-        help_text=_('Select and arrange specific entries, or, leave blank to select all. (If '
-                    'manual entries are selected the category filtering will be ignored.)')
+        help_text=('Select and arrange specific entries, or, leave blank to select all. (If '
+                    'manual entries are selected the category filtering will be ignored.)'
     )
     apphook_page = PageField(
-        verbose_name=_('Apphook Page'),
+        verbose_name='Apphook Page',
         null=True,
         blank=True,
         on_delete=models.PROTECT,
-        help_text=_('If provided, this Apphook-Page will be used to generate the detail link.'),
+        help_text='If provided, this Apphook-Page will be used to generate the detail link.',
     )
 
     class Meta:

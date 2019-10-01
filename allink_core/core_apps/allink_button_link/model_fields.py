@@ -2,7 +2,6 @@
 from __future__ import unicode_literals, absolute_import
 
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
 
 from allink_core.core_apps.allink_button_link import fields
 
@@ -13,7 +12,7 @@ class LinkOrButton(models.CharField):
 
     def __init__(self, *args, **kwargs):
         if 'verbose_name' not in kwargs:
-            kwargs['verbose_name'] = _('Type')
+            kwargs['verbose_name'] = 'Type'
         if 'max_length' not in kwargs:
             kwargs['max_length'] = 255
         if 'blank' not in kwargs:
@@ -44,7 +43,7 @@ class Context(models.CharField):
 
     def __init__(self, *args, **kwargs):
         if 'verbose_name' not in kwargs:
-            kwargs['verbose_name'] = _('Context')
+            kwargs['verbose_name'] = 'Context'
         if 'max_length' not in kwargs:
             kwargs['max_length'] = 255
         if 'blank' not in kwargs:

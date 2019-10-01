@@ -12,7 +12,7 @@ class AllinkGroupContainerPlugin(CMSPlugin):
     """
 
     title = models.CharField(
-        _('Title'),
+        'Title',
         max_length=255
     )
 
@@ -31,7 +31,7 @@ class AllinkGroupContainerPlugin(CMSPlugin):
 
 class AllinkGroupPlugin(CMSPlugin):
     title = models.CharField(
-        _('Title'),
+        'Title',
         max_length=255
     )
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-15 16:27+0200\n"
+"POT-Creation-Date: 2019-09-24 10:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,63 +26,6 @@ msgstr ""
 msgid "Last Name"
 msgstr ""
 
-#: allink_core/apps/testimonials/abstract_models.py:40
-msgid "Preview Image"
-msgstr ""
-
-#: allink_core/apps/testimonials/abstract_models.py:60
+#: allink_core/apps/testimonials/abstract_models.py:59
 msgid "Company Name"
-msgstr ""
-
-#: allink_core/apps/testimonials/abstract_models.py:72
-msgid "Testimonial"
-msgstr ""
-
-#: allink_core/apps/testimonials/abstract_models.py:73
-msgid "Testimonials"
-msgstr ""
-
-#: allink_core/apps/testimonials/abstract_models.py:96
-msgid "Slug"
-msgstr ""
-
-#: allink_core/apps/testimonials/abstract_models.py:100
-msgid "Leave blank to auto-generate a unique slug."
-msgstr ""
-
-#: allink_core/apps/testimonials/abstract_models.py:103
-msgid "Lead Text"
-msgstr ""
-
-#: allink_core/apps/testimonials/abstract_models.py:104
-msgid ""
-"Teaser text that in some cases is used in the list view and/or in the detail "
-"view."
-msgstr ""
-
-#: allink_core/apps/testimonials/abstract_models.py:109
-msgid "Function"
-msgstr ""
-
-#: allink_core/apps/testimonials/abstract_models.py:124
-msgid ""
-"Select and arrange specific entries, or, leave blank to select all. (If "
-"manual entries are selected the category filtering will be ignored.)"
-msgstr ""
-
-#: allink_core/apps/testimonials/abstract_models.py:128
-msgid "Apphook Page"
-msgstr ""
-
-#: allink_core/apps/testimonials/abstract_models.py:132
-msgid ""
-"If provided, this Apphook-Page will be used to generate the detail link."
-msgstr ""
-
-#: allink_core/apps/testimonials/cms_apps.py:8
-msgid "Testimonials Apphook"
-msgstr ""
-
-#: allink_core/apps/testimonials/cms_menus.py:15
-msgid "Testimonials menu"
 msgstr ""

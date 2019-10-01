@@ -25,14 +25,14 @@ class AllinkPageChooserPlugin(CMSPlugin):
 class AllinkPage(models.Model):
     pagechooser = SortableForeignKey(
         AllinkPageChooserPlugin,
-        verbose_name=_('Images'),
+        verbose_name='Images',
         on_delete=models.SET_NULL,
-        help_text=_('Add pages and order them.'),
+        help_text='Add pages and order them.',
         blank=True,
         null=True
     )
     just_descendants = models.BooleanField(
-        _('Select just descendants'),
+        'Select just descendants',
         help_text=_(
             'If checked and pages selected manually, only the descendants of the selected pages will be listed.'),
         default=False
@@ -41,8 +41,8 @@ class AllinkPage(models.Model):
 
     class Meta:
         app_label = 'allink_cms'
-        verbose_name = _('Page')
-        verbose_name_plural = _('Pages')
+        verbose_name = 'Page'
+        verbose_name_plural = 'Pages'
 
     def __str__(self):
         return str(self.page.get_menu_title())

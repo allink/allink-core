@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import python_2_unicode_compatible
 from cms.models.pluginmodel import CMSPlugin
 
@@ -13,13 +12,13 @@ class AllinkSEOAccordionContainerPlugin(CMSPlugin):
     """
 
     def __str__(self):
-        return _('{}').format(str(self.pk))
+        return '{}'.format(str(self.pk))
 
 
 @python_2_unicode_compatible
 class AllinkSEOAccordion(CMSPlugin):
     title = models.CharField(
-        _('Title'),
+        'Title',
         max_length=255
     )
 

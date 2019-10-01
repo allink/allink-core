@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from django import forms
 from django.contrib import admin
-from django.utils.translation import ugettext_lazy as _
 from django.shortcuts import redirect
 from django.urls import path
 from django.core.cache import cache
@@ -27,11 +26,11 @@ AllinkTitleExtension = get_model('config', 'AllinkTitleExtension')
 
 
 class ConfigAdminForm(TranslatableModelForm):
-    theme_color = ColorField(label=_('Theme Color'), help_text=_('Theme color for Android Chrome'), required=False)
-    mask_icon_color = ColorField(label=_('Mask Icon Color'),
-                                 help_text=_('Mask icon color for safari-pinned-tab.svg'), required=False)
-    msapplication_tilecolor = ColorField(label=_('MS Application Title Color'),
-                                         help_text=_('MS application TitleColor Field'), required=False)
+    theme_color = ColorField(label='Theme Color', help_text='Theme color for Android Chrome', required=False)
+    mask_icon_color = ColorField(label='Mask Icon Color',
+                                 help_text='Mask icon color for safari-pinned-tab.svg', required=False)
+    msapplication_tilecolor = ColorField(label='MS Application Title Color',
+                                         help_text='MS application TitleColor Field', required=False)
 
     class Meta(forms.ModelForm):
         model = Config
@@ -46,7 +45,7 @@ class ConfigAdmin(AllinkMediaAdminMixin, TranslatableAdmin, SingletonModelAdmin)
     def get_fieldsets(self, request, obj=None):
 
         if get_project_color_choices():
-            fieldsets = (_('Site Meta'), {
+            fieldsets = ('Site Meta', {
                 'classes': (
                     'collapse',
                 ),
@@ -60,7 +59,7 @@ class ConfigAdmin(AllinkMediaAdminMixin, TranslatableAdmin, SingletonModelAdmin)
                 )
             }),
         else:
-            fieldsets = (_('Site Meta'), {
+            fieldsets = ('Site Meta', {
                 'classes': (
                     'collapse',
                 ),
@@ -71,7 +70,7 @@ class ConfigAdmin(AllinkMediaAdminMixin, TranslatableAdmin, SingletonModelAdmin)
                 )
             }),
 
-        fieldsets += (_('Email'), {
+        fieldsets += ('Email', {
             'classes': (
                 'collapse',
             ),
@@ -81,7 +80,7 @@ class ConfigAdmin(AllinkMediaAdminMixin, TranslatableAdmin, SingletonModelAdmin)
             )
         }),
 
-        fieldsets += (_('Newsletter Signup'), {
+        fieldsets += ('Newsletter Signup', {
             'classes': (
                 'collapse',
             ),

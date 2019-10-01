@@ -18,10 +18,10 @@ def check_response_status(response):
         return response.json()
     except requests.exceptions.HTTPError as err:
         client.captureException()
-        raise requests.exceptions.HTTPError(_('Error: {} {}').format(str(response.status_code), err))
+        raise requests.exceptions.HTTPError('Error: {} {}'.format(str(response.status_code), err))
     except ValueError as err:
         client.captureException()
-        raise ValueError(_('Cannot decode json, got {}').format(response.text), err)
+        raise ValueError('Cannot decode json, got {}'.format(response.text), err)
 
 
 def get_hash_md5(email):

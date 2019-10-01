@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-15 16:26+0200\n"
+"POT-Creation-Date: 2019-09-24 10:07+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,53 +17,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-
-#: allink_core/core_apps/allink_terms/cms_plugins.py:22
-#: allink_core/core_apps/allink_terms/models.py:45
-#: allink_core/core_apps/allink_terms/models.py:46
-msgid "Terms of Service"
-msgstr ""
-
-#: allink_core/core_apps/allink_terms/cms_plugins.py:23
-msgid "allink modules"
-msgstr ""
-
-#: allink_core/core_apps/allink_terms/cms_toolbars.py:20
-msgid "{}"
-msgstr ""
-
-#: allink_core/core_apps/allink_terms/models.py:22
-msgid "Draft"
-msgstr ""
-
-#: allink_core/core_apps/allink_terms/models.py:23
-msgid "Published"
-msgstr ""
-
-#: allink_core/core_apps/allink_terms/models.py:24
-msgid "Archived"
-msgstr ""
-
-#: allink_core/core_apps/allink_terms/models.py:29
-msgid "Terms Text"
-msgstr ""
-
-#: allink_core/core_apps/allink_terms/models.py:34
-msgid "Terms cms Page"
-msgstr ""
-
-#: allink_core/core_apps/allink_terms/models.py:37
-msgid "CMS Page which shows Terms and Conditions"
-msgstr ""
-
-#: allink_core/core_apps/allink_terms/models.py:40
-msgid "Status"
-msgstr ""
-
-#: allink_core/core_apps/allink_terms/models.py:50
-#, python-format
-msgid "Terms - %s"
-msgstr ""
 
 #: allink_core/core_apps/allink_terms/templates/allink_terms/admin/change_form.html:7
 msgid "Publish"

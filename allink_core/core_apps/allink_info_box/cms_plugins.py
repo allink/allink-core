@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from django import forms
-from django.utils.translation import ugettext_lazy as _
 from cms.plugin_pool import plugin_pool
 from cms.plugin_base import CMSPluginBase
 
@@ -20,7 +19,7 @@ class AllinkInfoBoxPluginForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(AllinkInfoBoxPluginForm, self).__init__(*args, **kwargs)
         self.fields['template'] = forms.CharField(
-            label=_('Template'),
+            label='Template',
             widget=forms.Select(choices=self.instance.get_templates()),
             required=True,
         )
@@ -29,8 +28,8 @@ class AllinkInfoBoxPluginForm(forms.ModelForm):
 @plugin_pool.register_plugin
 class CMSAllinkInfoBoxPlugin(CMSPluginBase):
     model = AllinkInfoBoxPlugin
-    name = _('Info Box')
-    module = _('Generic')
+    name = 'Info Box'
+    module = 'Generic'
     cache = False
     allow_children = True
     child_classes = ['CMSAllinkContentPlugin']

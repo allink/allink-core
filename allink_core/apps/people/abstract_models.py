@@ -51,7 +51,7 @@ class BasePeople(SortableMixin, AllinkContactFieldsModel, AllinkAddressFieldsMod
         null=True
     )
     preview_image = FilerImageField(
-        verbose_name=_('Preview Image'),
+        verbose_name='Preview Image',
         blank=True,
         null=True,
         on_delete=models.PROTECT,
@@ -76,9 +76,9 @@ class BasePeople(SortableMixin, AllinkContactFieldsModel, AllinkAddressFieldsMod
     class Meta:
         abstract = True
         app_label = 'people'
-        ordering = ('sort_order',)
-        verbose_name = _('Person')
-        verbose_name_plural = _('People')
+        ordering = 'sort_order',
+        verbose_name = 'Person'
+        verbose_name_plural = 'People'
 
     def __str__(self):
         return '%s - %s' % (self.full_name, self.created.strftime('%d.%m.%Y'))
@@ -107,15 +107,15 @@ class BasePeopleTranslation(AllinkBaseTranslatedFieldsModel):
         null=True
     )
     job_function = models.CharField(
-        _('Function'),
+        'Function',
         max_length=255,
         blank=True,
         null=True,
     )
     lead = HTMLField(
-        _('Lead Text'),
-        help_text=_('Teaser text that in some cases is used in the list view '
-                    'and/or in the detail view.'),
+        'Lead Text',
+        help_text=('Teaser text that in some cases is used in the list view '
+                   'and/or in the detail view.'),
         blank=True,
         null=True,
     )
@@ -129,15 +129,15 @@ class BasePeopleAppContentPlugin(AllinkBaseAppContentPlugin):
     manual_entries = SortedM2MModelField(
         'people.People',
         blank=True,
-        help_text=_('Select and arrange specific entries, or, leave blank to select all. (If '
-                    'manual entries are selected the category filtering will be ignored.)')
+        help_text=('Select and arrange specific entries, or, leave blank to select all. (If '
+                   'manual entries are selected the category filtering will be ignored.)')
     )
     apphook_page = PageField(
-        verbose_name=_('Apphook Page'),
+        verbose_name='Apphook Page',
         null=True,
         blank=True,
         on_delete=models.PROTECT,
-        help_text=_('If provided, this Apphook-Page will be used to generate the detail link.'),
+        help_text='If provided, this Apphook-Page will be used to generate the detail link.',
     )
 
     class Meta:

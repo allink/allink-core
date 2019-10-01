@@ -19,7 +19,7 @@ class NewsContentAdminForm(AllinkCategoryAdminForm):
 
         if get_additional_choices('ADDITIONAL_NEWS_DETAIL_TEMPLATES'):
             self.fields['template'] = forms.CharField(
-                label=_('Template'),
+                label='Template',
                 widget=forms.Select(choices=get_additional_choices('ADDITIONAL_NEWS_DETAIL_TEMPLATES', blank=True)),
                 required=False,
             )

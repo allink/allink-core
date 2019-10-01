@@ -29,7 +29,7 @@
 
     {# Favicons #}
     {% block favicons %}
-        {% render_favicons_set %}
+        {% include 'includes/favicons.html' %}
     {% endblock favicons %}
 
     {# css #}
@@ -53,14 +53,7 @@
     {% endblock webpack_css %}
     {% render_block "css" %}
 
-    {# Load external JavaScript#}
-    {# Included from: https://cdnjs.com/#}
-    <script defer src="//cdnjs.cloudflare.com/ajax/libs/picturefill/3.0.3/picturefill.min.js"></script>
-
-    {% block webpack_js %}
-        {% get_files 'app' 'js' as app_js_chunks %}
-        <script defer src="{{ app_js_chunks.0.publicPath }}"></script>
-    {% endblock webpack_js %}
+    {# Load external JavaScript #}
 
     {# Optional: Extra Header Block#}
     {% block extrahead %}{% endblock extrahead %}
@@ -99,6 +92,10 @@
     {% endblock google_map_api_key %}
 
     {% render_block "js" %}
+    {% block webpack_js %}
+        {% get_files 'app' 'js' as app_js_chunks %}
+        <script src="{{ app_js_chunks.0.publicPath }}"></script>
+    {% endblock webpack_js %}
 
     {# Optional: Additional Scripts#}
     {% render_block "extrafoot" %}
@@ -127,11 +124,6 @@
             <div class="swiper-fullscreen"></div>
         </div>
     {% endblock fullscreen_gallery_markup %}
-
-    {# Browser Check Overlay #}
-    {% block browser_check %}
-        {% include "includes/browser-check.html" %}
-    {% endblock browser_check %}
 
 </body>
 </html>

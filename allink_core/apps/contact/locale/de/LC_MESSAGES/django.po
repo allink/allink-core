@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-15 16:23+0200\n"
+"POT-Creation-Date: 2019-09-24 10:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -47,41 +47,9 @@ msgstr "Datum"
 msgid "Time"
 msgstr "Zeit"
 
-#: allink_core/apps/contact/abstract_models.py:45
-msgid "Contact Request"
-msgstr "Kontaktanfrage"
-
-#: allink_core/apps/contact/abstract_models.py:46
-msgid "Contact Requests"
-msgstr "Kontaktanfragen"
-
 #: allink_core/apps/contact/admin.py:17
 msgid "Contact via"
 msgstr "Kontaktieren per"
-
-#: allink_core/apps/contact/cms_apps.py:8
-msgid "Contact Apphook"
-msgstr "Kontakt Apphook"
-
-#: allink_core/apps/contact/cms_plugins.py:35
-#, fuzzy
-#| msgid "Predifined variations"
-msgid "Predefined variations"
-msgstr "Vordefinierte css-Klassen"
-
-#: allink_core/apps/contact/cms_plugins.py:46
-#, fuzzy
-#| msgid "Contact via"
-msgid "Contact Form"
-msgstr "Kontaktieren per"
-
-#: allink_core/apps/contact/cms_plugins.py:47
-msgid "allink forms"
-msgstr ""
-
-#: allink_core/apps/contact/cms_toolbars.py:23
-msgid "Forms"
-msgstr "Formulare"
 
 #: allink_core/apps/contact/forms.py:16
 msgid "E-Mail"
@@ -99,6 +67,28 @@ msgstr "Das Datum muss in der Zukunft liegen."
 #: allink_core/apps/contact/forms.py:50 allink_core/apps/contact/forms.py:57
 msgid "This field is required."
 msgstr "Dieses Feld wird benötigt."
+
+#~ msgid "Contact Request"
+#~ msgstr "Kontaktanfrage"
+
+#~ msgid "Contact Requests"
+#~ msgstr "Kontaktanfragen"
+
+#~ msgid "Contact Apphook"
+#~ msgstr "Kontakt Apphook"
+
+#, fuzzy
+#~| msgid "Predifined variations"
+#~ msgid "Predefined variations"
+#~ msgstr "Vordefinierte css-Klassen"
+
+#, fuzzy
+#~| msgid "Contact via"
+#~ msgid "Contact Form"
+#~ msgstr "Kontaktieren per"
+
+#~ msgid "Forms"
+#~ msgstr "Formulare"
 
 #~ msgid ""
 #~ "Instructions: Single selection is made by clicking on an option. Multiple "

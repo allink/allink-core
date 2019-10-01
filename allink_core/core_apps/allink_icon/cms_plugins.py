@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from django import forms
-from django.utils.translation import ugettext_lazy as _
 
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
@@ -19,14 +18,14 @@ class AllinkIconPluginForm(forms.ModelForm):
         if get_additional_choices('ICON_CHOICES'):
             self.fields['icon'] = forms.ChoiceField(
                 widget=forms.Select(),
-                label=_('Icon choices for Social Icon Plugin'),
+                label='Icon choices for Social Icon Plugin',
                 choices=get_additional_choices('ICON_CHOICES'),
                 required=True,
             )
         if get_additional_choices('ICON_CSS_CLASSES'):
             self.fields['project_css_classes'] = forms.MultipleChoiceField(
                 widget=forms.CheckboxSelectMultiple(),
-                label=_('Predifined variations for Icon Plugin'),
+                label='Predifined variations for Icon Plugin',
                 choices=get_additional_choices('ICON_CSS_CLASSES'),
                 required=False,
             )
@@ -35,8 +34,8 @@ class AllinkIconPluginForm(forms.ModelForm):
 @plugin_pool.register_plugin
 class CMSAllinkIconPlugin(CMSPluginBase):
     model = AllinkIconPlugin
-    name = _('Icon')
-    module = _('Generic')
+    name = 'Icon'
+    module = 'Generic'
     allow_children = False
     form = AllinkIconPluginForm
     text_enabled = False

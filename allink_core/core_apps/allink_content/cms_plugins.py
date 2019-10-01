@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from django import forms
-from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 from cms.models import CMSPlugin
 from cms.plugin_base import CMSPluginBase
@@ -21,13 +20,13 @@ class AllinkContentPluginForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(AllinkContentPluginForm, self).__init__(*args, **kwargs)
         self.fields['template'] = forms.CharField(
-            label=_('Template'),
+            label='Template',
             widget=forms.Select(choices=self.instance.get_template_choices()),
             required=True,
         )
         if get_additional_choices('CONTENT_TITLE_CHOICES'):
             self.fields['title_size'] = forms.CharField(
-                label=_('Section Title Size'),
+                label='Section Title Size',
                 widget=forms.Select(
                     choices=get_additional_choices('CONTENT_TITLE_CHOICES'),
                 ),
@@ -38,39 +37,39 @@ class AllinkContentPluginForm(forms.ModelForm):
             self.fields['title_size'] = forms.CharField(widget=forms.HiddenInput(), required=False)
 
         self.fields['bg_color'] = ColorField(
-            label=_('Background color'),
+            label='Background color',
             required=False,
         )
 
         if get_additional_choices('CONTENT_CSS_CLASSES'):
             self.fields['project_css_classes'] = forms.MultipleChoiceField(
                 widget=forms.CheckboxSelectMultiple(),
-                label=_('Predifined variations'),
+                label='Predifined variations',
                 choices=get_additional_choices('CONTENT_CSS_CLASSES'),
                 required=False,
             )
         if get_additional_choices('CONTENT_ON_SCREEN_EFFECT_CHOICES'):
             self.fields['project_on_screen_effect'] = forms.ChoiceField(
-                label=_('Predifined on screen Effect'),
+                label='Predifined on screen Effect',
                 choices=get_additional_choices('CONTENT_ON_SCREEN_EFFECT_CHOICES', blank=True),
                 initial='default',
                 required=False,
             )
         if get_additional_choices('CONTENT_SPACINGS'):
             self.fields['project_css_spacings_top_bottom'] = forms.ChoiceField(
-                label=_('Spacings top & bottom'),
+                label='Spacings top & bottom',
                 choices=get_additional_choices('CONTENT_SPACINGS', blank=True),
                 required=False,
             )
         if get_additional_choices('CONTENT_SPACINGS'):
             self.fields['project_css_spacings_top'] = forms.ChoiceField(
-                label=_('Spacings top'),
+                label='Spacings top',
                 choices=get_additional_choices('CONTENT_SPACINGS', blank=True),
                 required=False,
             )
         if get_additional_choices('CONTENT_SPACINGS'):
             self.fields['project_css_spacings_bottom'] = forms.ChoiceField(
-                label=_('Spacings bottom'),
+                label='Spacings bottom',
                 choices=get_additional_choices('CONTENT_SPACINGS', blank=True),
                 required=False,
             )
@@ -80,8 +79,8 @@ class AllinkContentPluginForm(forms.ModelForm):
         if self.instance.pk:
             # if column count is not the same, dont allow template to change
             if self.instance.get_template_column_count(self.instance.template) != self.instance.get_template_column_count(cleaned_data['template']):  # noqa
-                self.add_error('template', _('You can only change the template if it'
-                                             ' has the same amount of columns as the previous template.'))
+                self.add_error('template', 'You can only change the template if it'
+                                           ' has the same amount of columns as the previous template.')
         return cleaned_data
 
 
@@ -99,8 +98,8 @@ class AllinkContentColumnPluginForm(forms.ModelForm):
 @plugin_pool.register_plugin
 class CMSAllinkContentPlugin(AllinkMediaAdminMixin, CMSPluginBase):
     model = AllinkContentPlugin
-    name = _('Content')
-    module = _('Generic')
+    name = 'Content'
+    module = 'Generic'
     render_template = "allink_content/default/content.html"
     allow_children = True
     child_classes = ['ContentColumnPlugin']
@@ -114,7 +113,7 @@ class CMSAllinkContentPlugin(AllinkMediaAdminMixin, CMSPluginBase):
                 'template',
             ),
         }),
-        (_('Section Options'), {
+        ('Section Options', {
             'classes': ('collapse',),
             'fields': [
                 'container_enabled',
@@ -123,7 +122,7 @@ class CMSAllinkContentPlugin(AllinkMediaAdminMixin, CMSPluginBase):
                 'bg_color',
             ]
         }),
-        (_('Spacings'), {
+        ('Spacings', {
             'classes': ('collapse',),
             'fields': [
                 'project_css_spacings_top_bottom',
@@ -131,14 +130,14 @@ class CMSAllinkContentPlugin(AllinkMediaAdminMixin, CMSPluginBase):
                 'project_css_spacings_bottom',
             ]
         }),
-        (_('Background Image (full width)'), {
+        ('Background Image (full width)', {
             'classes': ('collapse',),
             'fields': (
                 'bg_image_outer_container',
                 'dynamic_height_enabled',
             )
         }),
-        (_('Background Video (Important: Only works if all fields are set)'), {
+        ('Background Video (Important: Only works if all fields are set)', {
             'classes': ('collapse',),
             'fields': (
                 'video_file',
@@ -146,7 +145,7 @@ class CMSAllinkContentPlugin(AllinkMediaAdminMixin, CMSPluginBase):
                 'video_mobile_image',
             )
         }),
-        (_('Advanced Options'), {
+        ('Advanced Options', {
             'classes': ('collapse',),
             'fields': (
                 'project_css_classes',
@@ -187,8 +186,8 @@ class CMSAllinkContentPlugin(AllinkMediaAdminMixin, CMSPluginBase):
 @plugin_pool.register_plugin
 class CMSAllinkContentColumnPlugin(AllinkMediaAdminMixin, CMSPluginBase):
     model = AllinkContentColumnPlugin
-    name = _("Column")
-    module = _('Generic')
+    name = "Column"
+    module = 'Generic'
     render_template = "allink_content/default/column.html"
     parent_classes = ["AllinkContentPlugin"]
     allow_children = True

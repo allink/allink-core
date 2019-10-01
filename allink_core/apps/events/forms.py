@@ -20,7 +20,7 @@ class EventsRegistrationForm(AllinkBaseModelForm):
 # for reference
 # class EventsRegistrationTermsForm(AllinkBaseModelForm):
 #
-#     terms_accepted = forms.BooleanField(label=_('Terms of Service'), required=True)
+#     terms_accepted = forms.BooleanField(label='Terms of Service', required=True)
 #
 #     class Meta:
 #         model = EventsRegistration

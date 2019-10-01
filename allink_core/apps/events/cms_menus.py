@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from menus.base import NavigationNode
 from menus.menu_pool import menu_pool
-from django.utils.translation import ugettext_lazy as _
 from cms.menu_bases import CMSAttachMenu
 
 from allink_core.core.loading import get_model, get_class
@@ -12,7 +11,7 @@ Events = get_model('events', 'Events')
 
 class EventsMenu(CMSAttachMenu):
 
-    name = _("Events menu")
+    name = "Events menu"
 
     def get_nodes(self, request):
 

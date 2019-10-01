@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
 from django import forms
-from django.utils.translation import ugettext_lazy as _
 from cms.admin.placeholderadmin import PlaceholderAdminMixin
 from parler.admin import TranslatableAdmin
 from allink_core.core.admin import AllinkMediaAdminMixin, AllinkSEOAdminMixin, AllinkCategoryAdminMixin, \
@@ -20,7 +19,7 @@ class EventsContentAdminForm(AllinkCategoryAdminForm):
 
         if get_additional_choices('ADDITIONAL_EVENTS_DETAIL_TEMPLATES'):
             self.fields['template'] = forms.CharField(
-                label=_('Template'),
+                label='Template',
                 widget=forms.Select(choices=get_additional_choices('ADDITIONAL_EVENTS_DETAIL_TEMPLATES', blank=True)),
                 required=False,
             )
@@ -36,7 +35,7 @@ class EventsAdmin(AllinkMediaAdminMixin, AllinkSEOAdminMixin, AllinkCategoryAdmi
     list_display = ('title', 'status', 'all_categories_column', 'entry_date',)
 
     # entry_date = forms.DateTimeField(
-    #     label=_('Date and Time'),
+    #     label=('Date and Time'),
     #     widget=forms.widgets.DateTimeInput(
     #         attrs={
     #             'placeholder': _('Please choose date and time'),

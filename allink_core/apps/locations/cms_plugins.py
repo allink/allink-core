@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from django.utils.translation import ugettext_lazy as _
 from cms.plugin_pool import plugin_pool
 from allink_core.core.cms_plugins import CMSAllinkBaseAppContentPlugin
 
@@ -23,7 +22,7 @@ class CMSLocationsAppContentPlugin(CMSAllinkBaseAppContentPlugin):
 
     def get_fieldsets(self, request, obj=None):
         fieldsets = super(CMSLocationsAppContentPlugin, self).get_fieldsets(request, obj=None)
-        fieldsets += (_('Map Options'), {
+        fieldsets += ('Map Options', {
             'classes': (
                 'collapse',
                 'only_when_map',

@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
 from aldryn_translation_tools.models import TranslationHelperMixin
 from parler.models import TranslatableModel, TranslatedFieldsModel
 from parler.models import TranslatedField
@@ -56,11 +55,11 @@ class AllinkBaseTranslatedFieldsModel(AllinkSEOTranslatedFieldsModel, AllinkTeas
     """
 
     slug = models.SlugField(
-        _('Slug'),
+        'Slug',
         max_length=255,
         default='',
         blank=True,
-        help_text=_('Leave blank to auto-generate a unique slug.')
+        help_text='Leave blank to auto-generate a unique slug.'
     )
 
     class Meta:

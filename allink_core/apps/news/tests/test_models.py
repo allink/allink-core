@@ -84,13 +84,10 @@ class NewsTestCase(DefaultApphookTestCase):
                 self.entry_1.save()
 
         # known_translation_getter returns 'de'
-        from django.core.cache import cache
-        self.reload_urls()
-        cache.clear()
         with override('de'):
             self.assertEqual(
                 self.entry_1.get_absolute_url(),
-                '{}{}/'.format(self.page.get_absolute_url(language='de'), self.entry_1.safe_translation_getter('slug', language_code='de'))
+                '{}{}/'.format(self.page.get_absolute_url(), self.entry_1.safe_translation_getter('slug', language_code='de'))
             )
             self.assertIn('/de/', self.entry_1.get_absolute_url())
 

@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from django import forms
-from django.utils.translation import ugettext_lazy as _
 
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
@@ -19,7 +18,7 @@ class AllinkSocialIconContainerPluginForm(forms.ModelForm):
         if get_additional_choices('SOCIAL_ICON_CSS_CLASSES'):
             self.fields['project_css_classes'] = forms.MultipleChoiceField(
                 widget=forms.CheckboxSelectMultiple(),
-                label=_('Predifined variations for Social Icon Plugin'),
+                label='Predifined variations for Social Icon Plugin',
                 choices=get_additional_choices('SOCIAL_ICON_CSS_CLASSES'),
                 required=False,
             )
@@ -36,7 +35,7 @@ class AllinkSocialIconPluginForm(forms.ModelForm):
         if get_additional_choices('SOCIAL_ICONS_CHOICES'):
             self.fields['icon'] = forms.ChoiceField(
                 widget=forms.Select(),
-                label=_('Icon choices for Social Icon Plugin'),
+                label='Icon choices for Social Icon Plugin',
                 choices=get_additional_choices('SOCIAL_ICONS_CHOICES'),
                 required=True,
             )
@@ -45,8 +44,8 @@ class AllinkSocialIconPluginForm(forms.ModelForm):
 @plugin_pool.register_plugin
 class CMSAllinkSocialIconContainerPlugin(CMSPluginBase):
     model = AllinkSocialIconContainerPlugin
-    name = _('Social Icon Container')
-    module = _('Generic')
+    name = 'Social Icon Container'
+    module = 'Generic'
     allow_children = True
     child_classes = ['CMSAllinkSocialIconPlugin']
     form = AllinkSocialIconContainerPluginForm
@@ -72,8 +71,8 @@ class CMSAllinkSocialIconContainerPlugin(CMSPluginBase):
 @plugin_pool.register_plugin
 class CMSAllinkSocialIconPlugin(CMSPluginBase):
     model = AllinkSocialIconPlugin
-    name = _('Social Icon')
-    module = _('Generic')
+    name = 'Social Icon'
+    module = 'Generic'
     allow_children = False
     form = AllinkSocialIconPluginForm
     text_enabled = False

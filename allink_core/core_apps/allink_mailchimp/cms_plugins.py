@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from django import forms
-from django.utils.translation import ugettext_lazy as _
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
 from webpack_loader.utils import get_files
@@ -24,8 +23,8 @@ class AllinkSignupFormPluginForm(forms.ModelForm):
 @plugin_pool.register_plugin
 class CMSAllinkSignupFormPlugin(AllinkMediaAdminMixin, CMSPluginBase):
     model = AllinkSignupFormPlugin
-    name = _('Signup Form')
-    module = _('allink forms')
+    name = 'Signup Form'
+    module = 'allink forms'
     render_template = "allink_mailchimp/plugins/signup_form.html"
     allow_children = False
 

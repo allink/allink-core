@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from django.utils.translation import ugettext_lazy as _
 from django import forms
 from django.conf import settings
 
@@ -25,8 +24,8 @@ class AllinkGroupPluginForm(forms.ModelForm):
 @plugin_pool.register_plugin
 class CMSAllinkGroupContainerPlugin(CMSPluginBase):
     model = AllinkGroupContainerPlugin
-    name = _('Group Container')
-    module = _('Generic')
+    name = 'Group Container'
+    module = 'Generic'
     allow_children = True
     child_classes = ['CMSAllinkGroupPlugin', 'CMSAllinkButtonLinkContainerPlugin']
     form = AllinkGroupContainerPluginForm
@@ -52,8 +51,8 @@ class CMSAllinkGroupContainerPlugin(CMSPluginBase):
 @plugin_pool.register_plugin
 class CMSAllinkGroupPlugin(CMSPluginBase):
     model = AllinkGroupPlugin
-    name = _('Group')
-    module = _('Generic')
+    name = 'Group'
+    module = 'Generic'
     allow_children = True
     child_classes = settings.CMS_ALLINK_GROUP_PLUGIN_CHILD_CLASSES
     form = AllinkGroupPluginForm

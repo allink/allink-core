@@ -36,7 +36,7 @@ class BaseTestimonials(SortableMixin, AllinkCategoryFieldsModel, AllinkBaseTrans
     )
     lead = TranslatedField()
     preview_image = FilerImageField(
-        verbose_name=_('Preview Image'),
+        verbose_name='Preview Image',
         blank=True,
         null=True,
         on_delete=models.PROTECT,
@@ -68,8 +68,8 @@ class BaseTestimonials(SortableMixin, AllinkCategoryFieldsModel, AllinkBaseTrans
         abstract = True
         app_label = 'testimonials'
         ordering = ('sort_order',)
-        verbose_name = _('Testimonial')
-        verbose_name_plural = _('Testimonials')
+        verbose_name = 'Testimonial'
+        verbose_name_plural = 'Testimonials'
 
     def __str__(self):
         return '%s - %s' % (self.full_name, self.created.strftime('%d.%m.%Y'))
@@ -91,13 +91,13 @@ class BaseTestimonialsTranslation(AllinkBaseTranslatedFieldsModel):
         null=True
     )
     lead = HTMLField(
-        _('Lead Text'),
-        help_text=_('Teaser text that in some cases is used in the list view and/or in the detail view.'),
+        'Lead Text',
+        help_text='Teaser text that in some cases is used in the list view and/or in the detail view.',
         blank=True,
         null=True,
     )
     job_function = models.CharField(
-        _('Function'),
+        'Function',
         max_length=255,
         blank=True,
         null=True,
@@ -112,15 +112,15 @@ class BaseTestimonialsAppContentPlugin(AllinkBaseAppContentPlugin):
     manual_entries = SortedM2MModelField(
         'testimonials.Testimonials',
         blank=True,
-        help_text=_('Select and arrange specific entries, or, leave blank to select all. (If '
-                    'manual entries are selected the category filtering will be ignored.)')
+        help_text=('Select and arrange specific entries, or, leave blank to select all. (If '
+                   'manual entries are selected the category filtering will be ignored.)')
     )
     apphook_page = PageField(
-        verbose_name=_('Apphook Page'),
+        verbose_name='Apphook Page',
         null=True,
         blank=True,
         on_delete=models.PROTECT,
-        help_text=_('If provided, this Apphook-Page will be used to generate the detail link.'),
+        help_text='If provided, this Apphook-Page will be used to generate the detail link.',
     )
 
     class Meta:

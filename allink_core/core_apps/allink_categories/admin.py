@@ -3,7 +3,6 @@
 from django.contrib import admin
 from django import forms
 from django.conf import settings
-from django.utils.translation import ugettext_lazy as _
 from parler.admin import TranslatableAdmin
 from django.http import HttpResponseRedirect
 
@@ -18,9 +17,9 @@ from allink_core.core_apps.allink_categories.models import AllinkCategory
 
 class AllinkCategoryForm(TranslatableModelForm, MoveNodeForm):
     model_names = forms.MultipleChoiceField(
-        label=_('Project app'),
-        help_text=_('Please specify the app which uses this categories. All apps specified in parent category '
-                    'are automatically added.'),
+        label='Project app',
+        help_text=('Please specify the app which uses this categories. All apps specified in parent category '
+                   'are automatically added.'),
         choices=settings.PROJECT_APP_MODEL_WITH_CATEGORY_CHOICES,
         widget=forms.CheckboxSelectMultiple,
         required=False
@@ -38,9 +37,9 @@ class AllinkCategoryForm(TranslatableModelForm, MoveNodeForm):
 
         if get_additional_choices('PROJECT_CATEGORY_IDENTIFIERS'):
             self.fields['identifier'] = forms.ChoiceField(
-                label=_('Identifier'),
-                help_text=_('Identifier used for backward reference on a app model. (e.g display category name '
-                            'on People app, e.g Marketing)'),
+                label='Identifier',
+                help_text='Identifier used for backward reference on a app model. (e.g display category name '
+                            'on People app, e.g Marketing)',
                 choices=get_additional_choices('PROJECT_CATEGORY_IDENTIFIERS', blank=True),
                 required=False,
             )

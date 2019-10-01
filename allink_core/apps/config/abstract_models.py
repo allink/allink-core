@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 from django.core.cache import cache
-from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 from cms.plugin_pool import plugin_pool
 from cms.extensions import PageExtension, TitleExtension
@@ -22,47 +21,47 @@ from allink_core.core.models import (
 
 class BaseConfig(SingletonModel, TranslatableModel):
     default_og_image = FilerImageField(
-        verbose_name=_('og:image'),
+        verbose_name='og:image',
         on_delete=models.PROTECT,
-        help_text=_(
+        help_text=(
             'Default preview image when page/post is shared on Facebook. <br>Min. 1200 x 630 for best results.'),
         blank=True,
         null=True
     )
     theme_color = models.CharField(
-        _('Theme Color'),
-        help_text=_('Theme color for Android Chrome'),
+        'Theme Color',
+        help_text='Theme color for Android Chrome',
         max_length=50,
         blank=True,
         null=True
     )
     mask_icon_color = models.CharField(
-        _('Mask icon color'),
-        help_text=_('Mask icon color for safari-pinned-tab.svg'),
+        'Mask icon color',
+        help_text='Mask icon color for safari-pinned-tab.svg',
         max_length=50,
         blank=True,
         null=True,
     )
     msapplication_tilecolor = models.CharField(
-        _('msapplication TileColor'),
-        help_text=_('MS application TitleColor Field'),
+        'msapplication TileColor',
+        help_text='MS application TitleColor Field',
         max_length=50,
         blank=True,
         null=True
     )
     google_site_verification = models.CharField(
-        _('Google Site Verification Code'),
+        'Google Site Verification Code',
         blank=True,
         null=True,
         max_length=64
     )
     default_to_email = models.EmailField(
-        _('Default to email'),
+        'Default to email',
         default='itcrowd@allink.ch',
         max_length=255
     )
     default_from_email = models.EmailField(
-        _('Default from email'),
+        'Default from email',
         default='itcrowd@allink.ch',
         max_length=255
     )
@@ -70,7 +69,7 @@ class BaseConfig(SingletonModel, TranslatableModel):
     class Meta:
         abstract = True
         app_label = 'config'
-        verbose_name = _('Configuration')
+        verbose_name = 'Configuration'
 
     def __str__(self):
         return 'Configuration'
@@ -169,23 +168,23 @@ class BaseConfigTranslation(TranslatedFieldsModel):
         null=True)
 
     default_base_title = models.CharField(
-        verbose_name=_('Base title'),
+        verbose_name='Base title',
         max_length=50,
-        help_text=_(
+        help_text=(
             'Default base title, Is also used for default base og:title when page/post is shared on Facebook. <br>'
             'If not supplied the name form Django Sites will be used instead.'),
         blank=True,
         null=True
     )
     newsletter_lead = HTMLField(
-        _('Newsletter Signup Text'),
-        help_text=_('Teaser text in the newsletter signup view (data usage explainer).'),
+        'Newsletter Signup Text',
+        help_text='Teaser text in the newsletter signup view (data usage explainer).',
         blank=True,
         null=True,
     )
     newsletter_declaration_of_consent = HTMLField(
-        _('Declaration of consent'),
-        help_text=_('Detailed declaration of consent.'),
+        'Declaration of consent',
+        help_text='Detailed declaration of consent.',
         blank=True,
         null=True,
     )

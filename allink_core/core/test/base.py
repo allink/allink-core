@@ -163,3 +163,4 @@ class DefaultApphookTestCase(CleanUpMixin, TransactionCMSTestCase):
             for language, _ in settings.LANGUAGES[1:]:
                 api.create_title(language, '{}: {}'.format(page.get_slug(), language), page)
                 page.publish(language)
+                page.set_translations_cache()

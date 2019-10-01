@@ -20,7 +20,7 @@ class ContactToolbar(CMSToolbar):
         opts = self.model._meta
 
         if self.request.user.has_perm('%s.%s' % (opts.app_label, get_permission_codename('change', opts))):
-            menu = self.toolbar.get_or_create_menu('form-menu', _('Forms'))
+            menu = self.toolbar.get_or_create_menu('form-menu', 'Forms')
             url = reverse('admin:{}_{}_changelist'.format(self.model._meta.app_label, self.model._meta.model_name))
             menu.add_sideframe_item(self.model._meta.verbose_name_plural, url=url)
 
