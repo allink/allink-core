@@ -7,4 +7,4 @@ This repository contains core functionality for components used at allink AG.
 
 We maintain documentation for several versions of the project. Key versions is:
 
-[v1.0.x](http://allink-core.readthedocs.io/en/v1.0.x/)
+[v2.0.x](http://allink-core.readthedocs.io/en/v2.0.x/)
