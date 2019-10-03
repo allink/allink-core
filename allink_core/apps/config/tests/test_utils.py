@@ -1,10 +1,10 @@
-from django.test.testcases import TransactionTestCase
+from django.test.testcases import TestCase
 from cms import api
 from .factories import ConfigFactory, AllinkPageExtensionFactory, AllinkTitleExtensionFactory
 from ..utils import get_meta_page_title, get_page_meta_dict, get_page_teaser_dict, get_fallback
 
 
-class AllinkExtensionMetaTestCase(TransactionTestCase):
+class AllinkExtensionMetaTestCase(TestCase):
 
     def setUp(self):
         self.page_de = api.create_page(
@@ -88,7 +88,7 @@ class AllinkExtensionMetaTestCase(TransactionTestCase):
         self.assertDictEqual(expected_meta_context, get_page_meta_dict(self.page_de))
 
 
-class AllinkExtensionTeaserTestCase(TransactionTestCase):
+class AllinkExtensionTeaserTestCase(TestCase):
 
     def setUp(self):
         self.page_de = api.create_page(
@@ -163,7 +163,7 @@ class AllinkExtensionTeaserTestCase(TransactionTestCase):
         }
         self.assertDictEqual(expected_meta_context, get_page_teaser_dict(self.page_de))
 
-# class AllinkUtilsTestCase(TransactionTestCase):
+# class AllinkUtilsTestCase(TestCase):
 #
 #     def setUp(self):
 #         self.page_de = api.create_page(

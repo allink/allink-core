@@ -7,7 +7,6 @@ from django.urls import reverse
 from django.contrib.admin.widgets import FilteredSelectMultiple
 
 from cms.plugin_base import CMSPluginBase
-from webpack_loader.utils import get_files
 
 from allink_core.core.models import AllinkBaseAppContentPlugin, AllinkBaseSearchPlugin
 from allink_core.core.utils import get_project_css_classes
@@ -58,13 +57,7 @@ class AllinkBaseAppContentPluginForm(forms.ModelForm):
                 required=False,
                 queryset=self.instance.data_model.get_relevant_categories()
             )
-        self.fields['filter_fields'] = forms.TypedMultipleChoiceField(
-            label='Filter Fields',
-            help_text='A Select Dropdown will be displayed for this Fields.',
-            choices=((field[0], field[1]['verbose']) for field in self.instance.FILTER_FIELD_CHOICES),
-            widget=forms.CheckboxSelectMultiple,
-            required=False,
-        )
+
         self.fields['template'] = forms.CharField(
             label='Template',
             widget=forms.Select(choices=self.instance.get_templates()),
@@ -133,7 +126,6 @@ class CMSAllinkBaseAppContentPlugin(AllinkMediaAdminMixin, CMSPluginBase):
             'fields': (
                 'manual_filtering',
                 'manual_ordering',
-                'filter_fields',
             )
         }),
 
@@ -211,35 +203,17 @@ class CMSAllinkBaseAppContentPlugin(AllinkMediaAdminMixin, CMSPluginBase):
         file = 'no_results' if not context['object_list'] else 'content'
         return instance.get_correct_template(file)
 
-    def get_queryset_by_category(self, instance, filters, request):
-        # manual entries
-        if instance.fetch_manual_entries:  # TODO unnecessary query? split up into two different Plugins?
-            object_list = instance.get_selected_entries(filters=filters)
+    def get_queryset_by_category(self, instance):
         # category navigation and no category "all" (only first category is relevant)
-        elif instance.category_navigation_enabled and not instance.category_navigation_all:
-            object_list = instance.get_render_queryset_for_display(
-                category=instance.fetch_first_category, filters=filters, request=request)
+        if instance.category_navigation_enabled and not instance.category_navigation_all:
+            object_list = instance.get_render_queryset_for_display(category=instance.fetch_first_category)
         else:
-            object_list = instance.get_render_queryset_for_display(filters=filters, request=request)
+            object_list = instance.get_render_queryset_for_display()
         return object_list
 
     def render(self, context, instance, placeholder):
-        # getting filter parameters and attributes
-        filters = {re.sub('filter-%s-' % instance.data_model._meta.model_name, '', k):
-                   v for k, v in context['request'].GET.items()
-                   if (k.startswith('filter-%s-' % instance.data_model._meta.model_name) and v != 'None')}
 
-        # random ordering needs sessioncaching for object_list
-        if instance.manual_ordering == AllinkBaseAppContentPlugin.RANDOM:
-            object_list, path = context['request'].session.get("random_plugin_queryset_%s" % instance.id, ([], None))
-            if (object_list and path == context['request'].path) or not object_list:
-                object_list = self.get_queryset_by_category(instance, filters, context['request'])
-                context['request'].session["random_plugin_queryset_%s" % instance.id] = (object_list,
-                                                                                         context['request'].path)
-
-        # not random ordering
-        else:
-            object_list = self.get_queryset_by_category(instance, filters, context['request'])
+        object_list = self.get_queryset_by_category(instance)
 
         # Paginate Objects
         if instance.paginated_by > 0:
@@ -248,25 +222,23 @@ class CMSAllinkBaseAppContentPlugin(AllinkMediaAdminMixin, CMSPluginBase):
             object_list = firstpage.object_list
 
             # Load More
-            if (
-                instance.pagination_type == AllinkBaseAppContentPlugin.LOAD
+            if (instance.pagination_type == AllinkBaseAppContentPlugin.LOAD
                     or instance.pagination_type == AllinkBaseAppContentPlugin.LOAD_REST) and firstpage.has_next():
                 context['page_obj'] = firstpage
                 context.update(
-                    {'next_page_url': reverse('{}:more'.format(self.get_application_namespace(instance)),
-                                              kwargs={
-                                                  'page': context['page_obj'].next_page_number()}) + '?api_request=1'
-                        + '&plugin_id={}'.format(instance.id)})
+                    {'next_page_url': reverse('{}:more'.format(
+                        self.get_application_namespace(instance)), kwargs={
+                        'page': context['page_obj'].next_page_number()}) + '?plugin_id={}'.format(instance.id)})
 
                 if instance.category_navigation_enabled and not instance.category_navigation_all:
-                    context['next_page_url'] = context['next_page_url'] + '&category={}'.format(
-                        instance.fetch_first_category.id)
+                    context['next_page_url'] = \
+                        context['next_page_url'] + '&category={}'.format(instance.fetch_category_navigation[0].id)
 
         # category navigation
-        if instance.category_navigation_enabled or instance.filter_fields:
+        if instance.category_navigation_enabled:
             context.update(
                 {'by_category': reverse('{}:more'.format(self.get_application_namespace(instance)),
-                                        kwargs={'page': 1}) + '?api_request=1' + '&plugin_id={}'.format(instance.id)})
+                                        kwargs={'page': 1}) + '?plugin_id={}'.format(instance.id)})
 
         context['instance'] = instance
         context['placeholder'] = placeholder

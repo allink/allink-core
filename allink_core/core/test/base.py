@@ -1,35 +1,94 @@
 import sys
+import random
+import string
+from django.utils.translation import override
 from django.conf import settings
 from django.core.cache import cache
 from django.urls import clear_url_caches
+from django.test.client import RequestFactory
+from parler.utils.context import switch_language
 from cms.apphook_pool import apphook_pool
 from cms.appresolver import clear_app_resolvers
-
 from cms import api
 from cms.exceptions import AppAlreadyRegistered
-from cms.test_utils.testcases import TransactionCMSTestCase
+from allink_core.core_apps.allink_categories.models import AllinkCategory
 
 
 __all__ = [
-    'CleanUpMixin',
-    'DefaultApphookTestCase'
+    'PageApphookMixin',
+    'CategoriesMixin',
+    'DataModelMixin',
+    'PluginModelMixin',
 ]
 
 
-class CleanUpMixin:
+class PageApphookMixin:
     """
-    Creates the default app hook page.
+    Creates the following objects:
 
-    e.g
+    root_page
+    page
+    plugin_page
+    placeholder
+
+    Cleans up cache and a bunch of cms related stuff.
+
+    usage example attributes:
+
     apphook_object = NewsApphook
-    """
+    apphook = 'NewsApphook'
+    namespace = 'news'
+    page_template = 'default.html'
 
+    """
     apphook_object = None
+    apphook = None
+    namespace = None
+    page_template = None
 
     def setUp(self):
         super().setUp()
+        self.language = settings.LANGUAGES[0][0]
         apphook_object = self.get_apphook_object()
         self.reload_urls(apphook_object)
+
+        self.root_page = api.create_page(
+            title='root_page',
+            template=self.page_template,
+            language=self.language,
+            published=True,
+        )
+        try:
+            # Django-cms 3.5 doesn't set is_home when create_page is called
+            self.root_page.set_as_homepage()
+        except AttributeError:
+            pass
+
+        self.page = api.create_page(
+            title='page',
+            template=self.page_template,
+            language=self.language,
+            published=True,
+            parent=self.root_page,
+            apphook=self.apphook,
+            apphook_namespace=self.namespace
+        )
+        self.plugin_page = api.create_page(
+            title="plugin_page",
+            template=self.page_template,
+            language=self.language,
+            parent=self.root_page,
+            published=True
+        )
+
+        self.placeholder = self.page.placeholders.all()[0]
+
+        # translated and publish all created pages
+        for page in self.root_page, self.page, self.plugin_page:
+            for language, _ in settings.LANGUAGES[1:]:
+                api.create_title(language, '{}: {}'.format(page.get_slug(), language), page)
+                page.publish(language)
+                page.set_translations_cache()
 
     def tearDown(self):
         """
@@ -39,7 +98,7 @@ class CleanUpMixin:
         """
         self.reset_all()
         cache.clear()
-        super(CleanUpMixin, self).tearDown()
+        super(PageApphookMixin, self).tearDown()
 
     def get_apphook_object(self):
         return self.apphook_object
@@ -108,59 +167,124 @@ class CleanUpMixin:
                 del sys.modules[module]
 
 
-class DefaultApphookTestCase(CleanUpMixin, TransactionCMSTestCase):
+class CategoriesMixin:
     """
-    Creates the default app hook page.
+    Creates the following objects and its translation:
 
-    e.g
-    apphook = 'NewsApphook'
-    namespace = 'news'
-    template = 'default.html'
+    category_root
+    category_1
+    category_2
+
     """
+    def setUp(self):
+        super().setUp()
+        self.setup_categories()
 
-    apphook = None
-    namespace = None
-    template = None
+    @staticmethod
+    def reload(node):
+        """NOTE: django-treebeard requires nodes to be reloaded via the Django
+        ORM once its sub-tree is modified for the API to work properly.
+        See:: https://tabo.pe/projects/django-treebeard/docs/2.0/caveats.html
+        This is a simple helper-method to do that."""
+        return node.__class__.objects.get(id=node.id)
+
+    @classmethod
+    def rand_str(cls, prefix=u'', length=23, chars=string.ascii_letters):
+        return prefix + u''.join(random.choice(chars) for _ in range(length))
+
+    def setup_categories(self):
+        """
+        Sets-up i18n categories (self.category_root, self.category_1 and
+        self.category_2) for use in tests
+        """
+        self.language = settings.LANGUAGES[0][0]
+
+        categories = []
+        # Set the default language, create the objects
+        with override(self.language):
+            code = "{0}-".format(self.language)
+            self.category_root = AllinkCategory.add_root(
+                name=self.rand_str(prefix=code, length=8))
+            categories.append(self.category_root)
+            self.category_1 = self.category_root.add_child(
+                name=self.rand_str(prefix=code, length=8))
+            categories.append(self.category_1)
+            self.category_2 = self.category_root.add_child(
+                name=self.rand_str(prefix=code, length=8))
+            categories.append(self.category_2)
+
+        # We should reload category_root, since we modified its children.
+        self.category_root = self.reload(self.category_root)
+
+        # Setup the other language(s) translations for the categories
+        for language, _ in settings.LANGUAGES[1:]:
+            for category in categories:
+                with switch_language(category, language):
+                    code = "{0}-".format(language)
+                    category.name = self.rand_str(prefix=code, length=8)
+                    category.save()
+
+
+class DataModelMixin:
+    """
+    Creates the following objects:
+
+    allink_config
+    entry_1
+    entry_2
+    entry_3
+    entry_4
+    entry_5
+
+    usage example attributes:
+
+    data_model_factory = NewsFactory
+
+    """
+    data_model_factory = None
+
+    def setUp(self):
+        from allink_core.apps.config.tests.factories import ConfigFactory
+        super().setUp()
+        self.allink_config = ConfigFactory()
+        self.entry_1 = self.data_model_factory()
+        self.entry_2 = self.data_model_factory()
+        self.entry_3 = self.data_model_factory()
+        self.entry_4 = self.data_model_factory()
+        self.entry_5 = self.data_model_factory()
+
+
+class PluginModelMixin(PageApphookMixin):
+    """
+    Creates the following objects:
+
+    placeholder
+    plugin_model_instance
+
+    usage example attributes:
+
+    plugin_class = CMSNewsAppContentPlugin
+    load_more_view = NewsPluginLoadMore
+
+    """
+    plugin_class = None
+    load_more_view = None
 
     def setUp(self):
         super().setUp()
-        self.language = settings.LANGUAGES[0][0]
-
-        self.root_page = api.create_page(
-            title='root_page',
-            template=self.template,
-            language=self.language,
-            published=True,
-        )
-        try:
-            # Django-cms 3.5 doesn't set is_home when create_page is called
-            self.root_page.set_as_homepage()
-        except AttributeError:
-            pass
-
-        self.page = api.create_page(
-            title='page',
-            template=self.template,
-            language=self.language,
-            published=True,
-            parent=self.root_page,
-            apphook=self.apphook,
-            apphook_namespace=self.namespace
-        )
-        self.plugin_page = api.create_page(
-            title="plugin_page",
-            template=self.template,
-            language=self.language,
-            parent=self.root_page,
-            published=True
+        self.placeholder = self.plugin_page.placeholders.all()[0]
+        self.plugin_model_instance = api.add_plugin(
+            self.placeholder,
+            self.plugin_class,
+            self.language,
+            # allink default values
+            template='grid_static',
         )
 
-        # self.placeholder = self.page.placeholders.all()[0]
-        # self.setup_categories()
-
-        # translated and publish all created pages
-        for page in self.root_page, self.page, self.plugin_page:
-            for language, _ in settings.LANGUAGES[1:]:
-                api.create_title(language, '{}: {}'.format(page.get_slug(), language), page)
-                page.publish(language)
-                page.set_translations_cache()
+    def get_load_more_view(self):
+        """ returns a pseudo instantiated load_more_view """
+        load_more_view = self.load_more_view()
+        load_more_view.plugin = self.plugin_model_instance
+        load_more_view.request = RequestFactory()
+        load_more_view.request.GET = {}
+        return load_more_view

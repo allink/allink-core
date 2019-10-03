@@ -130,7 +130,7 @@ class BasePeopleAppContentPlugin(AllinkBaseAppContentPlugin):
         'people.People',
         blank=True,
         help_text=('Select and arrange specific entries, or, leave blank to select all. (If '
-                   'manual entries are selected the category filtering will be ignored.)')
+                   'manual entries are selected the category filtering will be applied as well.)')
     )
     apphook_page = PageField(
         verbose_name='Apphook Page',

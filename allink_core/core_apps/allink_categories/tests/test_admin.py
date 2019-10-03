@@ -2,13 +2,13 @@
 
 from __future__ import unicode_literals
 
-from django.test import TransactionTestCase
+from django.test import TestCase
 
 from allink_core.core_apps.allink_categories.tests import CategoryTestCaseMixin
 from allink_core.core_apps.allink_categories.models import AllinkCategory as Category
 
 
-class AdminTest(CategoryTestCaseMixin, TransactionTestCase):
+class AdminTest(CategoryTestCaseMixin, TestCase):
 
     def test_admin_owner_default(self):
         """

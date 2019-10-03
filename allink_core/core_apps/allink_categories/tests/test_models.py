@@ -2,7 +2,7 @@
 
 from __future__ import unicode_literals
 
-from django.test import TestCase, TransactionTestCase
+from django.test import TestCase
 from django.utils import translation
 
 from parler.utils.context import switch_language
@@ -11,7 +11,7 @@ from allink_core.core_apps.allink_categories.models import AllinkCategory as Cat
 from allink_core.core_apps.allink_categories.tests import CategoryTestCaseMixin
 
 
-class TestCategories(CategoryTestCaseMixin, TransactionTestCase):
+class TestCategories(CategoryTestCaseMixin, TestCase):
     """Implementation-specific tests"""
 
     def test_category_slug_creation(self):

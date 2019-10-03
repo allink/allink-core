@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*allink_core/core/models/base_plugins.py-
 from allink_core.apps.news.abstract_models import (
     BaseNews,
     BaseNewsTranslation,

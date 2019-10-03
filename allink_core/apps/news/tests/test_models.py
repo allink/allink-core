@@ -1,31 +1,29 @@
 # -*- coding: utf-8 -*-
 from django.utils.text import slugify
 from django.utils.translation import override
-from django.test.testcases import TransactionTestCase
+from django.test.testcases import TestCase
 from django.conf import settings
 from django.test.client import RequestFactory
 from django.template import Template, RequestContext
 from cms import api
 from parler.utils.context import switch_language
-from allink_core.core.test import DefaultApphookTestCase
+from allink_core.core.test import PageApphookMixin, CategoriesMixin, DataModelMixin, PluginModelMixin
 from allink_core.apps.news.cms_apps import NewsApphook
 from allink_core.apps.config.utils import get_fallback
 from allink_core.apps.config.tests.factories import ConfigFactory
 from ..models import News
+from ..cms_plugins import CMSNewsAppContentPlugin
 from .factories import NewsFactory, NewsWithMetaFactory
 
 
-class NewsTestCase(DefaultApphookTestCase):
+class NewsTestCase(PageApphookMixin, DataModelMixin, TestCase):
 
     apphook = 'NewsApphook'
     namespace = 'news'
-    template = 'default.html'
+    page_template = 'default.html'
 
     apphook_object = NewsApphook
-
-    def setUp(self):
-        super().setUp()
-        self.entry_1 = NewsFactory()
+    data_model_factory = NewsFactory
 
     def test_create_instance(self):
         self.assertEqual(self.entry_1.status, News.ACTIVE)
@@ -58,7 +56,7 @@ class NewsTestCase(DefaultApphookTestCase):
 
     def test_get_absolute_url_specifc_application_namespace(self):
         other_page = api.create_page(
-            'page', self.template,
+            'page', self.page_template,
             self.language,
             published=True,
             parent=self.root_page,
@@ -92,7 +90,7 @@ class NewsTestCase(DefaultApphookTestCase):
             self.assertIn('/de/', self.entry_1.get_absolute_url())
 
 
-class NewsMetaTestCase(TransactionTestCase):
+class NewsMetaTestCase(TestCase):
 
     def setUp(self):
         self.entry_1 = NewsWithMetaFactory()
@@ -180,7 +178,7 @@ class NewsMetaTestCase(TransactionTestCase):
         self.assertIn(self.allink_config.google_site_verification, rendered_template)
 
 
-class NewsTeaserTestCase(TransactionTestCase):
+class NewsTeaserTestCase(TestCase):
 
     def setUp(self):
         self.entry_1 = NewsWithMetaFactory()
@@ -227,3 +225,111 @@ class NewsTeaserTestCase(TransactionTestCase):
             'teaser_link': self.entry_1.get_absolute_url(),
         }
         self.assertDictEqual(expected_meta_context, self.entry_1.teaser_dict)
+
+
+class NewsPluginTestCase(CategoriesMixin, DataModelMixin, PluginModelMixin, TestCase):
+    apphook = 'NewsApphook'
+    namespace = 'news'
+    page_template = 'default.html'
+    apphook_object = NewsApphook
+    data_model_factory = NewsFactory
+    plugin_class = CMSNewsAppContentPlugin
+
+    def test_no_filter_no_manual_select(self):
+        self.assertEqual(self.plugin_model_instance.get_render_queryset_for_display().count(), 5)
+
+    def test_no_filter_manual_select(self):
+        self.plugin_model_instance.manual_entries.set([self.entry_1, self.entry_2])
+        self.assertEqual(self.plugin_model_instance.get_render_queryset_for_display().count(), 2)
+
+    def test_no_filter_manual_select_filter_category(self):
+        self.plugin_model_instance.manual_entries.set([self.entry_1, self.entry_2, self.entry_3])
+
+        self.entry_1.categories.set([self.category_1, self.category_2])
+        self.entry_2.categories.set([self.category_1, self.category_2])
+
+        self.assertEqual(self.plugin_model_instance.get_render_queryset_for_display().count(), 3)
+        self.assertEqual(self.plugin_model_instance.get_render_queryset_for_display(category=self.category_1).count(), 2)
+
+    def test_filter_category(self):
+        self.plugin_model_instance.categories.set([self.category_1])
+
+        self.entry_1.categories.set([self.category_1, self.category_2])
+        self.entry_2.categories.set([self.category_1, self.category_2])
+
+        self.assertEqual(self.plugin_model_instance.get_render_queryset_for_display().count(), 2)
+        self.assertEqual(self.plugin_model_instance.get_render_queryset_for_display(category=self.category_1).count(), 2)
+
+    def test_filter_category_multiple_categories_set(self):
+        self.plugin_model_instance.categories.set([self.category_1, self.category_2])
+
+        self.entry_1.categories.set([self.category_1, self.category_2])
+        self.entry_2.categories.set([self.category_1, self.category_2])
+        self.entry_3.categories.set([self.category_2])
+
+        self.assertEqual(self.plugin_model_instance.get_render_queryset_for_display().count(), 3)
+        self.assertEqual(self.plugin_model_instance.get_render_queryset_for_display(category=self.category_1).count(), 2)
+        self.assertEqual(self.plugin_model_instance.get_render_queryset_for_display(category=self.category_2).count(), 3)
+
+    def test_filter_filters_categories__in(self):
+        """
+        TODO
+        we want to get rid of the category param. We want to use a more generic filter param instead.
+        This will fail as long as we do not have implemented this.
+        """
+        self.plugin_model_instance.categories.set([self.category_1])
+
+        self.entry_1.categories.set([self.category_1, self.category_2])
+        self.entry_2.categories.set([self.category_1, self.category_2])
+
+        filters = {
+            'categories__in': [self.category_1, ]
+        }
+        self.assertEqual(self.plugin_model_instance.get_render_queryset_for_display(filters=filters).count(), 2)
+        self.assertEqual(self.plugin_model_instance.get_render_queryset_for_display().count(), 2)
+
+    def test_filter_filters_categories__in_distinct(self):
+        """
+        TODO
+        we want to get rid of the category param. We want to use a more generic filter param instead.
+        This will fail as long as we do not have implemented this.
+        """
+        self.plugin_model_instance.categories.set([self.category_1, self.category_2])
+
+        self.entry_1.categories.set([self.category_1, self.category_2])
+        self.entry_2.categories.set([self.category_1, self.category_2])
+        filters = {
+            'categories__in': [self.category_1, self.category_2]
+        }
+        self.assertEqual(self.plugin_model_instance.get_render_queryset_for_display(filters=filters).count(), 2)
+        self.assertEqual(self.plugin_model_instance.get_render_queryset_for_display().count(), 2)
+
+    def test_filter_filters_categories_and__in_no_result(self):
+        """
+        TODO
+        we want to get rid of the category param. We want to use a more generic filter param instead.
+        This will fail as long as we do not have implemented this.
+        """
+        self.plugin_model_instance.categories.set([self.category_1])
+        self.plugin_model_instance.categories_and.set([self.category_2])
+
+        self.entry_1.categories.set([self.category_1])
+        self.entry_2.categories.set([self.category_2])
+        self.assertEqual(self.plugin_model_instance.get_render_queryset_for_display().count(), 0)
+
+    def test_filter_filters_categories_and__in_result(self):
+        """
+        TODO
+        we want to get rid of the category param. We want to use a more generic filter param instead.
+        This will fail as long as we do not have implemented this.
+        """
+        self.plugin_model_instance.categories.set([self.category_1])
+        self.plugin_model_instance.categories_and.set([self.category_2])
+
+        self.entry_1.categories.set([self.category_1])
+        self.entry_2.categories.set([self.category_2])
+        self.entry_3.categories.set([self.category_1, self.category_2])
+        self.assertEqual(self.plugin_model_instance.get_render_queryset_for_display().count(), 1)
+        self.assertEqual(self.plugin_model_instance.get_render_queryset_for_display().first().id, self.entry_3.id)
+
+

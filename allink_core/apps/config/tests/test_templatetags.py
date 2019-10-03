@@ -1,4 +1,4 @@
-from django.test.testcases import TransactionTestCase
+from django.test.testcases import TestCase
 from django.test.client import RequestFactory
 from django.template import Template, RequestContext
 from cms import api
@@ -7,7 +7,7 @@ from .factories import ConfigFactory
 from ..utils import get_meta_page_title, get_fallback
 
 
-class AllinkSEOMetaTestCase(TransactionTestCase):
+class AllinkSEOMetaTestCase(TestCase):
 
     def setUp(self):
         self.page_de = api.create_page(

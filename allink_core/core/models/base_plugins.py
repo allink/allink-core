@@ -3,10 +3,8 @@ import urllib.parse
 from django.conf import settings
 from django.db import models
 from django.db.models import Q, QuerySet
-from django.core.exceptions import FieldDoesNotExist, FieldError
 from django.contrib.postgres.fields import ArrayField
 from django.utils.functional import cached_property
-from cms.utils.i18n import get_current_language
 from cms.models.pluginmodel import CMSPlugin
 
 from allink_core.core.utils import get_additional_templates
@@ -61,7 +59,6 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
     TITLE_DESC = 'title_desc'
     LATEST = 'latest'
     EARLIEST = 'earliest'
-    RANDOM = 'random'
     CATEGORY = 'category'
 
     ORDERING = (
@@ -70,22 +67,11 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
         (TITLE_DESC, 'Z-A (title'),
         (LATEST, 'latest first'),
         (EARLIEST, 'earliest first'),
-        (RANDOM, 'random'),
         (CATEGORY, 'category ordering'),
     )
 
     FILTERING = (
         (DEFAULT, '---------'),
-    )
-
-    # FILTER FIELDS
-    FILTER_FIELD_CHOICES = (
-        # ('categories', {
-        #     'verbose': 'Categories',
-        #     'query_filter': {},
-        #     # example
-        #     # 'query_filter': {'translations__name': 'Bern'},
-        # }),
     )
 
     # FIELDS
@@ -111,13 +97,6 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
         blank=True
     )
 
-    filter_fields = ArrayField(models.CharField(
-        max_length=50),
-        blank=True,
-        null=True,
-        default=None
-    )
-
     # manual_entries  -> defined in subclasses (no elegant way found to define this here.)
     # apphook_page -> defined in subclasses (no elegant way found to define this here.)
 
@@ -129,8 +108,8 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
     category_navigation_enabled = models.BooleanField(
         'Show category navigation',
         help_text=
-           'If checked, a filter navigation with all selected categories is displayed.'
-           '<br>Please note: A category is only displayed if it contains items.',
+            'If checked, a filter navigation with all selected categories is displayed.'
+            '<br>Please note: A category is only displayed if it contains items.',
         default=False
     )
     category_navigation_all = models.BooleanField(
@@ -151,8 +130,8 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
     softpage_enabled = models.BooleanField(
         'Show detailed information in Softpage',
         help_text=
-           'If checked, the detail view of an entry will be displayed in a "softpage".'
-           ' Otherwise the page will be reloaded.',
+            'If checked, the detail view of an entry will be displayed in a "softpage".'
+            ' Otherwise the page will be reloaded.',
         default=True
     )
     detail_link_enabled = models.BooleanField(
@@ -249,10 +228,6 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
         for i in oldinstance.manual_entries.all():
             self.manual_entries.add(i)
 
-    def get_selected_entries(self, filters={}):
-        queryset = self.fetch_manual_entries.filter(**filters)
-        return self._get_queryset_with_prefetch_related(self._apply_ordering_to_queryset_for_display(queryset))
-
     def get_model_name(self):
         return self.data_model._meta.model_name
 
@@ -270,72 +245,6 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
             template = '{}/plugins/{}.html'.format(self.data_model._meta.app_label, file)
         return template
 
-    def get_field_info(self, fieldname):
-        """
-        returns None if not foreignkey, otherswise the relevant model
-        """
-        from django.db.models import ForeignKey
-        is_translated = False
-        try:
-            field_object, model, direct, m2m = self.data_model._meta.get_field(fieldname)
-        # in case that the field is translated, it can't be found on the model itself
-        # so we get the translationmodel and get all data from there.
-        except FieldDoesNotExist:
-            is_translated = True
-            field_object, model, direct, m2m = self.data_model.translations.related.related_model. \
-                _meta.get_field(fieldname)
-        if (direct and isinstance(field_object, ForeignKey)) or (direct and m2m):
-            return field_object.rel.to, is_translated
-        return None, is_translated
-
-    def get_distinct_values_of_field(self, fieldname):
-        """
-        returns distinct values_list for fieldname
-        the query_filter defined in FILTER_FIELD_CHOICES gets applied here
-        """
-        try:
-            query_filter = {'%s__%s' % (fieldname, k): v for k, v in
-                            dict(self.FILTER_FIELD_CHOICES)[fieldname]['query_filter'].items()}
-        except KeyError:
-            query_filter = {}
-        try:
-            # order alphabetically if not 'categories' (they are ordered by 'lft')
-            order_by = fieldname if fieldname != 'categories' else 'lft'
-            return self.get_render_queryset_for_display().filter(**query_filter).order_by(order_by).values_list(
-                fieldname).distinct()
-        # handle translated fields
-        except FieldError:
-            translation_model = self.data_model.translations.related.related_model
-            model_query = self.get_render_queryset_for_display().filter(**query_filter)
-            return translation_model.objects.filter(language_code=get_current_language(),
-                                                    master__in=model_query).order_by(order_by).values_list(
-                fieldname).distinct()
-
-    def get_filter_fields_with_options(self):
-        """
-        returns dict with all filter fields and there distinct values of the particular model field
-        (e.g. list of {categories: [(10, 'News')..], place: [2, 'Zürich']}
-        TODO: at the moment only one value for "filter_fields" is supported. (makes "load more" logic simpler)
-        """
-        options = {}
-        for fieldname in self.filter_fields:
-            # field is foreignkey or m2m, so we have to get the verbose name form the model itself
-            filters = [((None, 'All',))]
-            fk_model, is_translated = self.get_field_info(fieldname)
-            if fk_model:
-                filters.extend((entry.id, entry.__str__(),) for entry in
-                               fk_model.objects.filter(
-                                   id__in=self.get_distinct_values_of_field(fieldname)))
-            # field is no foreignkey and no m2m
-            else:
-                filters.extend((urllib.parse.quote_plus(value[0]), value[0]) for value in
-                               self.get_distinct_values_of_field(fieldname))
-            filter_key = "%s-translations__%s" % (
-                self.data_model._meta.model_name, fieldname) if is_translated else "%s-%s" % (
-                self.data_model._meta.model_name, fieldname)
-            options.update({filter_key: (dict(self.FILTER_FIELD_CHOICES)[fieldname]['verbose'], filters)})
-        return options
-
     @cached_property
     def fetch_categories(self):
         return self.categories.all()
@@ -350,7 +259,7 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
 
     @cached_property
     def fetch_manual_entries(self):
-        return self.manual_entries.all().active()
+        return self.manual_entries.active()
 
     @cached_property
     def fetch_category_navigation(self):
@@ -367,7 +276,7 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
             if self.category_navigation.exists():
                 for category in self.category_navigation.all():
                     if isinstance(self.get_render_queryset_for_display(category), QuerySet):
-                        if self.get_render_queryset_for_display(category).exists():
+                        if self.get_render_queryset_for_display(category):
                             category_navigation.append(category)
                     else:
                         if len(self.get_render_queryset_for_display(category)):
@@ -376,8 +285,8 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
             else:
                 if self.fetch_categories:
                     for category in self.fetch_categories:
-                        if len(self.get_render_queryset_for_display(category)) or self.get_render_queryset_for_display(
-                           category).exists():
+                        if len(self.get_render_queryset_for_display(category)) or \
+                                self.get_render_queryset_for_display(category):
                             category_navigation.append(category)
                 # auto category nav, if no categories are specified
                 else:
@@ -408,33 +317,35 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
         # Z-A
         elif self.manual_ordering == AllinkBaseAppContentPlugin.TITLE_DESC:
             return queryset.title_desc()
-        # random
-        elif self.manual_ordering == AllinkBaseAppContentPlugin.RANDOM:
-            return queryset.random()
         # category
         elif self.manual_ordering == AllinkBaseAppContentPlugin.CATEGORY:
             # return queryset.category()
             # https://code.djangoproject.com/ticket/24218
-            distinct_people = []
-            for person in queryset.category():
-                if person not in distinct_people:
-                    distinct_people.append(person)
-            return distinct_people
+            distinct_entries = []
+            for entry in queryset.category():
+                if entry not in distinct_entries:
+                    distinct_entries.append(entry)
+            return distinct_entries
         else:
             return queryset.distinct()
 
-    def get_render_queryset_for_display(self, category=None, filters={}, request=None):
+    def get_render_queryset_for_display(self, category=None):
         """
          returns all data_model objects distinct to id which are in the selected categories
           - category: category instance
-          - filters: dict model fields and value
             -> adds additional query
+
+        after refactoring:
+        - category will be supplied via filters, request will be removed
         """
+        # manual entries
+        if self.fetch_manual_entries:
+            apply_ordering = False
+            queryset = self.fetch_manual_entries
+        else:
+            queryset = self.data_model.objects.active()
 
-        # apply filters from request
-        queryset = self._apply_filtering_to_queryset_for_display(self.data_model.objects.active().filter(**filters))
-
-        if self.categories.exists() or category:
+        if self.fetch_categories or category:
             if category:
                 queryset = queryset.filter_by_category(category)
             else:
@@ -443,12 +354,17 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
             if self.fetch_categories_and:
                 queryset = queryset.filter_by_categories(categories=self.fetch_categories_and)
 
-        ordered_qs = self._apply_ordering_to_queryset_for_display(queryset)
+        # apply filtering
+        queryset = self._apply_filtering_to_queryset_for_display(queryset)
+
+        # apply ordering
+        # if apply_ordering:
+        queryset = self._apply_ordering_to_queryset_for_display(queryset)
 
         # hook for prefetching related
-        ordered_qs = self._get_queryset_with_prefetch_related(ordered_qs)
+        queryset = self._get_queryset_with_prefetch_related(queryset)
 
-        return ordered_qs
+        return queryset
 
     def _get_queryset_with_prefetch_related(self, ordered_qs):
         if type(ordered_qs) is list:

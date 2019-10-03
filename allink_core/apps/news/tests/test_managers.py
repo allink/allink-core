@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import datetime
-from django.test.testcases import TransactionTestCase
+from django.test.testcases import TestCase
 from ..models import News
 from .factories import NewsFactory
 from freezegun import freeze_time
@@ -8,7 +8,7 @@ from freezegun import freeze_time
 today = datetime.date(2019, 3, 23)
 
 @freeze_time(today)
-class NewsManagerTestCase(TransactionTestCase):
+class NewsManagerTestCase(TestCase):
 
     def setUp(self):
         # published

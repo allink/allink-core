@@ -1,6 +1,5 @@
 import io
 from django.test import TestCase
-from django.test import TransactionTestCase
 from django.core.files import File as DjangoFile
 from filer.models import Folder
 

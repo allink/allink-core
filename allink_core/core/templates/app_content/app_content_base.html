@@ -52,30 +52,6 @@
                         {% block app_content_category_container_after %}{% endblock app_content_category_container_after %}
                     {% endif %}
                 {% endblock app_content_category_container %}
-                {% comment %}
-                    Optional: Filter Fields
-                {% endcomment %}
-                {% block app_content_filter_container %}
-                    {% if instance.filter_fields %}
-                        <div class="filter-container" data-ajax-filter-base-url="{{by_category}}">
-                            <div class="filter-container-inner">
-                                {% spaceless %}
-                                    {# utility block #}
-                                    {% block app_content_filter_container_before %}{% endblock app_content_filter_container_before %}
-                                        {% for filter, options in instance.get_filter_fields_with_options.items %}
-                                            <select class="form-control selectpicker app-content-filter" title="{% trans options.0 %}" id="filter-{{filter}}" name="filter-{{filter}}" required>
-                                                {% for value, option in options.1 %}
-                                                    <option value="{{ value }}">{{ option }}</option>
-                                                {% endfor %}
-                                            </select>
-                                        {% endfor %}
-                                    {# utility block #}
-                                    {% block app_content_filter_container_after %}{% endblock app_content_filter_container_after %}
-                                {% endspaceless %}
-                            </div>
-                        </div>
-                    {% endif %}
-                {% endblock app_content_filter_container %}
 
             {% endblock app_content_heading_container %}
 

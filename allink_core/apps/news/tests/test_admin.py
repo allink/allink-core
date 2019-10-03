@@ -1,29 +1,17 @@
-from django.test import TransactionTestCase, Client
 from django.contrib import admin
-
 from cms.utils.urlutils import admin_reverse
-
-from ..models import News
+from cms.test_utils.testcases import CMSTestCase
+from allink_core.core.test import PageApphookMixin
 from ..cms_apps import NewsApphook
 from ..admin import NewsAdmin
 from .factories import NewsFactory
 
-from allink_core.core.test.factories import (
-    UserFactory
-)
 
-from allink_core.core.test import DefaultApphookTestCase
-
-from cms.api import create_page, create_title
-from cms.utils.i18n import force_language
-
-
-
-class NewsAdminTestCase(DefaultApphookTestCase):
+class NewsAdminTestCase(PageApphookMixin, CMSTestCase):
 
     apphook = 'NewsApphook'
     namespace = 'news'
-    template = 'default.html'
+    page_template = 'default.html'
 
     apphook_object = NewsApphook
 

@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 import factory
-import datetime
 from factory import fuzzy
 from allink_core.core.test.factories import FilerImageFactory
-from ..models import News
+from ..models import News, NewsAppContentPlugin
 
 
 class NewsFactory(factory.DjangoModelFactory):
@@ -30,4 +29,3 @@ class NewsWithMetaFactory(NewsFactory):
     teaser_technical_title = 'teaser technical title'
     teaser_description = 'teaser description'
     teaser_link_text = 'teaser link text'
-
