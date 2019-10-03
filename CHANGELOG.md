@@ -12,6 +12,19 @@ Each release is divided into the following main categories:
 - NEW: New features or plugins
 - FIXES: General bugfixes
 
+## v2.0.2
+### IMPORTANT
+###### SETTINGS
+###### TEMPLATES
+###### URLS
+###### REQUIREMENTS
+###### DATA MIGRATIONS
+### NEW
+- removed TransactionTestCase and CMSTransactionTestCase where not needed
+- removed filter_fields from appcontent plugin
+- removed filters param from get_render_queryset_for_display
+- moved select manual entries to get_render_queryset_for_display
+### FIXES
 
 ## v2.0.1
 ### IMPORTANT
