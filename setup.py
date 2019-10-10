@@ -7,7 +7,7 @@ from setuptools import setup, find_packages
 
 
 def get_version(*file_paths):
-    """Retrieves the version from test_core/__init__.py"""
+    """Retrieves the version from allink_core/__init__.py"""
     filename = os.path.join(os.path.dirname(__file__), *file_paths)
     version_file = open(filename).read()
     version_match = re.search(r"^__version__ = ['\"]([^'\"]*)['\"]",
