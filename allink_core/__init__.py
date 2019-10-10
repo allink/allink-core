@@ -1,11 +1,6 @@
 import os
 
-VERSION = (1, 0, 0)
-__version__ = '.'.join(map(str, VERSION))
-
-
-def get_short_version():
-    return '%s.%s' % (VERSION[0], VERSION[1])
+__version__ = '2.0.2'
 
 # Cheeky setting that allows each template to be accessible by two paths.
 # Eg: the template 'allink/templates/allink/base.html' can be accessed via both

@@ -13,16 +13,10 @@ Thumbs.db
 *.pyc
 *.pyo
 
-# Aldryn
-/.env
-/.env-local
-.aldryn
-/data
-/data.tar.gz
-/static_collected
-/node_modules
-# </DEFAULT>
+# env
+env
+
+# IDE
 *.sublime-project
 *.sublime-workspace
-npm-debug.log
 .idea
