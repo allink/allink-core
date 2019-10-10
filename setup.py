@@ -37,8 +37,7 @@ if sys.argv[-1] == 'tag':
     os.system("git push --tags")
     sys.exit()
 
-readme = open('README.rst').read()
-history = open('HISTORY.rst').read().replace('.. :changelog:', '')
+readme = open('README.md').read()
 
 # https://pypi.python.org/pypi?%3Aaction=list_classifiers
 CLASSIFIERS = [
@@ -70,7 +69,7 @@ setup(
     name='allink-core',
     version=allink_core.__version__,
     description='A collection of apps used in allink cms-projects.',
-    long_description=open(os.path.join(os.path.dirname(__file__), 'README.rst')).read(),
+    long_description=readme,
     author='allink AG and contributors',
     author_email='itcrowd@allink.ch',
     url='http://github.com/allink/allink-core/',
