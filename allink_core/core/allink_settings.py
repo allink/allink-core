@@ -58,7 +58,6 @@ ALLINK_INSTALLED_APPS = [
     # 'allink_core.core_apps.allink_icon',
     # 'allink_core.core_apps.allink_info_box',
     'allink_core.core_apps.allink_seo_accordion',
-    'allink_core.core_apps.allink_quote',
 ]
 
 ####################################################################################
@@ -118,7 +117,6 @@ ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [
     'CMSAllinkLanguageChooserPlugin',
     # 'CMSAllinkIconPlugin',
     'CMSAllinkSEOAccordionContainerPlugin',
-    'CMSQuotePlugin',
 ]
 
 ####################################################################################
