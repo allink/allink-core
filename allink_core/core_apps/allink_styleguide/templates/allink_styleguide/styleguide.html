@@ -11,6 +11,13 @@
 {% endblock logo_addition_container %}
 
 {% block content %}
+    <div class="content-section styleguide-section">
+        <div class="content-section__container">
+            {% static_placeholder "styleguide" %}
+        </div>
+    </div>
+
+
     {% comment %}
         Headings
     {% endcomment %}
@@ -67,8 +74,7 @@
                 <div class="border-container text-container">
                     <p>Text Normal = Default Paragraph - Parturient sed at ac duis semper dapibus dictumst class curabitur felis etiam eu inceptos praesent a himenaeos nec at quis enim tincidunt a volutpat hendrerit a suspendisse tempus aliquam.</p>
                     <p>
-                        {% comment %} <a href="#" class="btn btn-default">Default</a> {% endcomment %}
-                        <a href="/de/kontakt-standort/" class="button-link-plugin__link  btn btn-default btn-md" data-trigger-softpage="" data-cms-page="" role="button" id="Bodenlager25_plugin6282_Kontakt" data-trigger-initialized=""><span class="button-link-plugin__text">Kontakt</span><span class="btn__text--mask"><span class="btn__text--mask__inner">Kontakt</span></span></a>
+                        {% include "partials/buttons/link.html" with link_url="https://allink.ch" link_label="Kontakt" link_classes="btn btn-default" link_attributes='target="_blank"' %}
                     </p>
                 </div>
                 <div class="content-plugin text-plugin text-container">
@@ -77,11 +83,7 @@
                     <p>Nehmen Sie die Ausfahrt Wallisellen. Beim Möbel Pfister rechts einbiegen (Hochbord Nord) und dann beim 1. Kreisel links. Sie finden uns direkt hinter dem Interio.</p>
 
                     <p>
-                    <a href="/de/kontakt-standort/" class="button-link-plugin__link  btn btn-default btn-md" data-trigger-softpage="" data-cms-page="" role="button" id="Bodenlager25_plugin6282_Kontakt" data-trigger-initialized=""><span class="button-link-plugin__text">Kontakt</span><span class="btn__text--mask"><span class="btn__text--mask__inner">Kontakt</span></span></a><span class="modal-header-markup" style="display: none;"><span class="tingle-modal-header__container"><span class="tingle-modal-header__inner"><span class="tingle-modal-header__heading">
-                                    Kontakt &amp; Standort
-                                </span><a class="tingle-modal-header__link-close" href="#" data-close-softpage=""><span class="sr-only">
-                                        Schließen
-                                    </span></a></span></span></span>
+                        {% include "partials/buttons/link.html" with link_url="https://allink.ch" link_label="Kontakt" link_classes="btn btn-default" link_attributes='target="_blank"' %}
                     </p>
                 </div>
             </div>
@@ -160,6 +162,31 @@
             </header>
 
             <div class="manage-spacings">
+                <div class="text-container">
+
+                        <div class="content-section">
+
+                        <p>
+                            This is some text with a {% include "partials/buttons/link.html" with link_url="https://allink.ch" link_label="allink" link_classes="text" %} in it.
+                        </p>
+                        <p>
+                            This is some text with a {% include "partials/buttons/link.html" with link_url="https://allink.ch" link_label="allink" link_classes="text" link_attributes='data-softpage' icon='softpage' %} in it.
+                        </p>
+                        <p>
+                            This is some text with a {% include "partials/buttons/link.html" with link_url="https://allink.ch" link_label="allink" link_classes="text" link_attributes='target="_blank"' icon='arrow-external' %} in it.
+                        </p>
+                        <p>
+                            This is a {% include "partials/buttons/link.html" with link_url="https://allink.ch" link_label="Button" link_classes="btn btn-default" link_attributes='target="_blank"' %} in it.
+                        </p>
+                        <p>
+                            This is a {% include "partials/buttons/link.html" with link_url="/en/news/" link_label="Button" link_classes="btn btn-default" link_attributes='data-softpage data-trigger-softpage' icon='softpage' modal_header_title="News" %} in it.
+                        </p>
+                        <p>
+                            This is a {% include "partials/buttons/link.html" with link_url="https://allink.ch" link_label="Button" link_classes="btn btn-default" link_attributes='target="_blank"' icon='arrow-external' %} in it.
+                        </p>
+
+                    </div>
+                </div>
                 <div class="text-container">
                     <h3>btn (small)</h3>
                 </div>
