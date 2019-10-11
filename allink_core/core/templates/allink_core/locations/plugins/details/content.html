@@ -24,11 +24,8 @@
                             {{object.zip_code}} {{object.place}}<br>
                         {% endif %}
                         {% if object.map_link %}
-                            <a class="button-link-plugin__link text" href="{{object.map_link}}" target="_blank" rel="noopener">
-                                <span class="button-link-plugin__text">
-                                    {% trans "Directions" %}
-                                </span>
-                            </a>
+                            {% trans "Directions" as link_label %}
+                            {% include "partials/buttons/link.html" with link_url=object.map_link link_label=link_label link_classes="btn btn-default" link_attributes='target="_blank" rel="noopener' %}
                         {% endif %}
                     </p>
 

@@ -2,21 +2,10 @@
 
 {% if teaser_link %}
     <div class="teaser__link">
-        <a href="{{ teaser_link }}" {% if instance.softpage_enabled %}data-softpage{% endif %}>
-            <span class="btn__text">
-                {% if teaser_link_text %}
-                    {{ teaser_link_text }}
-                {% else %}
-                    {% trans "More" %}
-                {% endif %}
-            </span>
-            <span class="btn__text--mask"><span class="btn__text--mask__inner">
-                {% if teaser_link_text %}
-                    {{ teaser_link_text }}
-                {% else %}
-                    {% trans "More" %}
-                {% endif %}
-            </span></span>
-        </a>
+        {% if instance.softpage_enabled %}
+            {% include "partials/buttons/link.html" with link_url=teaser_link link_label=teaser_link_text icon="softpage" %}
+        {% else %}
+            {% include "partials/buttons/link.html" with link_url=teaser_link link_label=teaser_link_text %}
+        {% endif %}
     </div>
 {% endif %}

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.utils.translation import ugettext_lazy as _
+from allink_core.core.utils import get_additional_choices
 
 ####################################################################################
 
@@ -86,21 +87,13 @@ SIZE_CHOICES = (
     ('lg', 'Large'),
 )
 
-CONTEXT_CHOICES = (
-    ('primary', 'Primary',),
-    ('success', 'Success',),
-    ('info', 'Info',),
-    ('warning', 'Warning',),
-    ('danger', 'Danger',),
-)
+CONTEXT_CHOICES = get_additional_choices('BUTTON_CONTEXT_CHOICES')
 
 CONTEXT_DEFAULT = 'default'
 
 BUTTON_CONTEXT_CHOICES = (
     ('default', 'Default',),
-) + CONTEXT_CHOICES + (
-    ('link', 'Link',),
-)
+) + CONTEXT_CHOICES
 
 BUTTON_CONTEXT_DEFAULT = 'default'
 

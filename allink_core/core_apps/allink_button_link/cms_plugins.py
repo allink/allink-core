@@ -390,6 +390,13 @@ class CMSAllinkButtonLinkPlugin(AllinkMediaAdminMixin, CMSPluginBase):
 
     def render(self, context, instance, placeholder):
         context = super(CMSAllinkButtonLinkPlugin, self).render(context, instance, placeholder)
+
+        # set svg icons
+        if instance.softpage_enabled:
+            context.update({'icon': 'softpage'})
+        if instance.new_window_enabled:
+            context.update({'icon': 'arrow-external'})
+
         if instance.page:
             context = update_context_google_tag_manager(
                 page_name=instance.page.__str__(),

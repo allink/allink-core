@@ -5,7 +5,11 @@
         {% include 'allink_teaser/includes/_technical-title.html' with teaser_technical_title=teaser_technical_title %}
         {% include 'allink_teaser/includes/_title.html' with teaser_title=teaser_title %}
         {% include 'allink_teaser/includes/_description.html' with teaser_description=teaser_description %}
-        {% include 'allink_teaser/tile/_link.html' with teaser_link=teaser_link teaser_link_text=teaser_link_text %}
+        {% if instance.softpage_enabled %}
+            {% include 'allink_teaser/tile/_link.html' with teaser_link=teaser_link teaser_link_text=teaser_link_text icon="softpage" %}
+        {% else %}
+            {% include 'allink_teaser/tile/_link.html' with teaser_link=teaser_link teaser_link_text=teaser_link_text %}
+        {% endif %}
     </a>
 
 </div>
