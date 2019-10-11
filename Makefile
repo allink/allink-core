@@ -1,5 +1,5 @@
 # These targets are not files
-.PHONY: help clean docs release 
+.PHONY: help clean docs tag publish publish-test
 .DEFAULT_GOAL := help
 
 help:
@@ -20,6 +20,7 @@ clean-pyc: ## remove Python file artifacts
 docs: ## mkdocs served on localhost
 	mkdocs serve
 
+
 tag: clean ## create a new tag and push on git
 	python setup.py tag
 
@@ -27,6 +28,12 @@ publish: clean ## package and upload a release
 	python setup.py publish
 	twine upload dist/*
 
-test-publish: clean ## package and upload a release
+
+publish-test: clean ## package and upload a release
 	python setup.py publish
 	twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+
+publish-patch: clean ## create a new patch version, a new tag and push it on git and release it on pypi
+	bumpversion patch
+	tag
+	publish-test
