@@ -30,11 +30,6 @@ if sys.argv[-1] == 'publish':
     os.system('python setup.py sdist bdist_wheel')
     sys.exit()
 
-if sys.argv[-1] == 'tag':
-    print("Tagging the version on git:")
-    os.system("git push --tags")
-    sys.exit()
-
 readme = open('README.md').read()
 
 # https://pypi.python.org/pypi?%3Aaction=list_classifiers
@@ -68,6 +63,7 @@ setup(
     version=version,
     description='A collection of apps used in allink cms-projects.',
     long_description=readme,
+    long_description_content_type='text/markdown',
     author='allink AG and contributors',
     author_email='itcrowd@allink.ch',
     url='http://github.com/allink/allink-core/',

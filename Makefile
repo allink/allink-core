@@ -20,20 +20,18 @@ clean-pyc: ## remove Python file artifacts
 docs: ## mkdocs served on localhost
 	mkdocs serve
 
+patch: clean ## create a new patch version and push the new tag to git
+	bumpversion path
+	git push --tags
 
-tag: clean ## create a new tag and push on git
-	python setup.py tag
+minor: clean ## create a new minor version and push the new tag to git
+	bumpversion minor
+	git push --tags
 
 publish: clean ## package and upload a release
 	python setup.py publish
 	twine upload dist/*
 
-
 publish-test: clean ## package and upload a release
 	python setup.py publish
 	twine upload --repository-url https://test.pypi.org/legacy/ dist/*
-
-publish-patch: clean ## create a new patch version, a new tag and push it on git and release it on pypi
-	bumpversion patch
-	tag
-	publish-test
