@@ -25,3 +25,8 @@ tag: clean ## create a new tag and push on git
 
 publish: clean ## package and upload a release
 	python setup.py publish
+	twine upload dist/*
+
+test-publish: clean ## package and upload a release
+	python setup.py publish
+	twine upload --repository-url https://test.pypi.org/legacy/ dist/*
