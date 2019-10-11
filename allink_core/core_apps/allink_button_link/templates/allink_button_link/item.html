@@ -5,69 +5,10 @@
     IMPORTANT NOTE: Some editors automatically add a NEW LINE at the end of the document. This causes undesired extra space after the <a> tag. So every time you adjust this file, make sure to open/save it in an editor that does NOT add a new line before committing.
 
 {% endcomment %}
-<a href="{{ instance.link_url_typed }}"
-    class="button-link-plugin__link {{instance|link_classes}}"
-    {{ instance|link_attribute_string:request }}
-    id="{{ form_name }}"
-    >
 
-    {# content for image modal #}
-    {% if instance.image_modal_enabled and instance.link_file %}
-        <span class="image-modal-content" style="display: none;">
-            {% render_image width_alias="1-of-1" ratio="x-y" image=instance.link_file %}
-        </span>
-    {% endif %}
+{# include the actual link #}
+{% include "partials/buttons/link.html" with link_url=instance.link_url_typed link_label=instance.label link_classes=instance|link_classes|add:" button-link-plugin__link" link_attributes=instance|link_attribute_string:request link_id=form_name %}
 
-    {# video modal #}
-    {% if instance.template == "video_embedded_link" or instance.template == "video_file_link" %}
-        <span id="video-modal-{{instance.id}}" style="display: none;">
-
-            {# display video from video service #}
-            {% if instance.template == "video_embedded_link" %}
-                <span class="embed-container ratio-{% if instance.ratio %}{{instance.ratio}}{% else %}16-9{% endif %}" style="display: block;">
-                    {# YouTube #}
-                    {% if instance.video_service == "youtube" %}
-                        <iframe class="lazyload" width="560" height="315" data-src="//www.youtube.com/embed/{{instance.video_id}}?rel=0&showinfo=0{% if instance.auto_start_enabled %}&autoplay=1{% endif %}" frameborder="0" {% if instance.allow_fullscreen_enabled %}webkitAllowFullScreen mozallowfullscreen allowfullscreen{% endif %}></iframe>
-                    {# Vimeo #}
-                    {% elif instance.video_service == "vimeo" %}
-                        <iframe class="lazyload" data-src="//player.vimeo.com/video/{{instance.video_id}}?color=ffc000&title=0&byline=0&portrait=0{% if instance.auto_start_enabled %}&autoplay=1{% endif %}" width="640" height="360" frameborder="0" {% if instance.allow_fullscreen_enabled %}webkitAllowFullScreen mozallowfullscreen allowfullscreen{% endif %}></iframe>
-                    {% endif %}
-                </span>
-            {% endif %}
-
-            {# display video file #}
-            {% if instance.template == "video_file_link" %}
-                {# create thumbnail #}
-                {% thumbnail instance.video_poster_image 1500x9999 upscale=False as placeholder_image %}
-
-                <div class="content-plugin video-file-plugin video-{{ instance.id }} on-pause {% if instance.auto_start_enabled %}autoplay-enabled{% endif %} {% if instance.poster_only_on_mobile %}poster-only-on-mobile{% endif %}">
-
-                    <video
-                        id="video-{{ instance.id }}"
-                        class="the-video"
-                        playsinline
-                        preload="none"
-                        {% if instance.video_muted_enabled %}muted{% endif %}
-                        {% if instance.auto_start_enabled %}autoplay{% endif %}
-                        loop
-                        poster="{{ placeholder_image.url }}">
-                        <source src="{{ instance.video_file.url }}" type="video/mp4">
-                    </video>
-
-                    <div class="video-controls">
-                        <span></span>
-                    </div>
-
-                </div>
-            {% endif %}
-
-        </span>
-    {% endif %}
-
-    {# the actual link text #}
-    {# quick and dirty fix that created an empty space at the link text. But since changes here are made very seldom this is bearable ;) #}
-    <span class="button-link-plugin__text">{# if button is login-button to member area, check if logged in and in group 'members' #}{% if instance.link_special == 'account_login' and user.is_authenticated %}{% trans 'Member Area' %}{% else %}{{ instance.label }}{% endif %}{# display the file's name' and 'description' attribute when linked to a file #}{% if instance.link_file.name %}{{ instance.link_file.name }}{% endif %}{% if instance.link_file.description %}{{ instance.link_file.description }}{% endif %}</span>{% comment %} button-link-plugin mask {% endcomment %}{% block mask %}<span class="btn__text--mask"><span class="btn__text--mask__inner">{# if button is login-button to member area, check if logged in and in group 'members' #}{% if instance.link_special == 'account_login' and user.is_authenticated %}{% trans 'Member Area' %}{% else %}{{ instance.label }}{% endif %}{# display the file's name' and 'description' attribute when linked to a file #}{% if instance.link_file.name %}{{ instance.link_file.name }}{% endif %}{% if instance.link_file.description %}{{ instance.link_file.description }}{% endif %}</span></span>{% endblock mask %}
-</a>
 {% if instance.form_modal_enabled %}
     {% include "modals/modal-header-markup.html" with title=instance.label modal_type="form-modal" %}
 {% endif %}
