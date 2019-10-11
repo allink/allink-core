@@ -1,5 +1,5 @@
 # These targets are not files
-.PHONY: help clean docs tag publish publish-test
+.PHONY: help clean docs patch minor publish publish-test
 .DEFAULT_GOAL := help
 
 help:

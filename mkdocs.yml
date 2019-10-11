@@ -5,15 +5,12 @@ pages:
     - core: 'core/core.md'
     - core_apps: 'core/core_apps.md'
     - apps: 'core/apps.md'
-  - Working on client project:
+  - Working on a client project:
     - 'Installation': 'client/install.md'
     - 'Fork app': 'client/fork_app.md'
     - 'Create new app': 'client/new_app.md'
     - 'Translations': 'client/translations.md'
     - 'Conventions': 'client/conventions.md'
-  - Working on allink-core:
-    - 'Contribute': 'contribute/contribute.md'
-    - 'General help': 'contribute/help.md'
 
 extra_css:
     - custom.css
