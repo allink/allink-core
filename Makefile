@@ -20,10 +20,8 @@ clean-pyc: ## remove Python file artifacts
 docs: ## mkdocs served on localhost
 	mkdocs serve
 
-release: clean ## package and upload a release
-	python setup.py sdist upload
-	python setup.py bdist_wheel upload
+tag: clean ## create a new tag and push on git
+	python setup.py tag
 
-sdist: clean ## package
-	python setup.py sdist
-	ls -l dist
+publish: clean ## package and upload a release
+	python setup.py publish

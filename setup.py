@@ -67,7 +67,7 @@ INSTALL_REQUIREMENTS = [
 
 setup(
     name='allink-core',
-    version=allink_core.__version__,
+    version=version,
     description='A collection of apps used in allink cms-projects.',
     long_description=readme,
     author='allink AG and contributors',
@@ -75,9 +75,9 @@ setup(
     url='http://github.com/allink/allink-core/',
     license='BSD License',
     platforms=['OS Independent'],
-    packages=find_packages(exclude=['tests', 'tests.*']),
+    packages=find_packages(exclude=['tests', 'tests.*', ]),
     classifiers=CLASSIFIERS,
-    requires=INSTALL_REQUIREMENTS,
+    install_requires=INSTALL_REQUIREMENTS,
     include_package_data=True,
     zip_safe=False,
 )
