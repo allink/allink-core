@@ -23,6 +23,7 @@ general bugfixes
 - refactored buttons: introduced link partial templates, updated other templates accordingly
 - added new project setting `BUTTON_CONTEXT_CHOICES`
 - removed a lot of template logic from button-link-plugin link template
+- removed allink_quote plugin
 
 ## v2.0.2
 ### NEW
