@@ -18,6 +18,10 @@ new features or plugins
 ### FIXES
 general bugfixes
 
+## v2.0.6
+### FIX
+- removed allink_quote plugin
+
 ## v2.0.2
 ### NEW
 - removed TransactionTestCase and CMSTransactionTestCase where not needed
