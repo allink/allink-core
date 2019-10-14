@@ -1,6 +1,10 @@
 {% extends base_template|default:"base.html" %}
 
-{% load cms_tags allink_cms_tags sekizai_tags i18n allink_image_tags thumbnail %}
+{% load cms_tags allink_cms_tags sekizai_tags i18n allink_image_tags allink_meta_tags thumbnail %}
+
+{% block meta_tags %}
+    {% render_meta_og object %}
+{% endblock meta_tags %}
 
 {% block body_class %}tpl-app-detail{% endblock %}
 
