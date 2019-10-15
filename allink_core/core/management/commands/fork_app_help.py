@@ -4,7 +4,7 @@ import logging
 from django.core.management.base import BaseCommand, CommandError
 from django.utils import six
 
-from allink_core.core import customisation
+from allink_core.core.customisation.fork_app import fork_app
 
 
 class Command(BaseCommand):
@@ -25,6 +25,6 @@ class Command(BaseCommand):
 
         app_label, folder_path = options['app_label'], options['target_path']
         try:
-            customisation.fork_app(app_label, folder_path, logger, help=True)
+            fork_app(app_label, folder_path, logger, help=True)
         except Exception as e:
             raise CommandError(six.text_type(e))

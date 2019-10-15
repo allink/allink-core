@@ -4,13 +4,11 @@ import logging
 from django.core.management.base import BaseCommand, CommandError
 from django.utils import six
 
-from allink_core.core import customisation
+from allink_core.core.customisation.fork_app import fork_app
 
 
 class Command(BaseCommand):
-    help = (
-        "Create a local version of one of allink's app so it can "
-        "be customised")
+    help = ("Create a local version of one of allink's app so it can be customised")
 
     def add_arguments(self, parser):
         parser.add_argument('app_label', help='The application to fork')
@@ -25,6 +23,6 @@ class Command(BaseCommand):
 
         app_label, folder_path = options['app_label'], options['target_path']
         try:
-            customisation.fork_app(app_label, folder_path, logger)
+            fork_app(app_label, folder_path, logger)
         except Exception as e:
             raise CommandError(six.text_type(e))

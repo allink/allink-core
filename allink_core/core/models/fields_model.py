@@ -45,7 +45,7 @@ __all__ = [
 
 class AllinkStatusFieldsModel(models.Model):
     """
-    Base class for status fiel
+    Base class for status field
 
     hint: Just override STATUS_CHOICES or STATUS_DEFAULT in you model, if needed.
     """
