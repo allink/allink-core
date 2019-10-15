@@ -27,6 +27,9 @@ develop-eggs
 .installed.cfg
 lib
 lib64
+
+# test
+test/media
 env
 
 # IDE

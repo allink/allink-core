@@ -40,7 +40,7 @@ class NewsDetailViewTestCase(DataModelMixin, PageApphookMixin, CMSTestCase):
         self.assertEqual(response.status_code, 200)
 
     # def test_detail_get_template_names(self):
-        # TODO 'get_template_names' method is already pretty woodoo. We should make this more explicit.
+        # TODO 'get_template_names' method is already pretty voodoo. We should make this more explicit.
         # template_names = NewsDetail().get_template_names()
 
     # def test_detail_when_ajax_call(self):

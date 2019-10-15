@@ -271,45 +271,7 @@ class NewsPluginTestCase(CategoriesMixin, DataModelMixin, PluginModelMixin, Test
         self.assertEqual(self.plugin_model_instance.get_render_queryset_for_display(category=self.category_1).count(), 2)
         self.assertEqual(self.plugin_model_instance.get_render_queryset_for_display(category=self.category_2).count(), 3)
 
-    def test_filter_filters_categories__in(self):
-        """
-        TODO
-        we want to get rid of the category param. We want to use a more generic filter param instead.
-        This will fail as long as we do not have implemented this.
-        """
-        self.plugin_model_instance.categories.set([self.category_1])
-
-        self.entry_1.categories.set([self.category_1, self.category_2])
-        self.entry_2.categories.set([self.category_1, self.category_2])
-
-        filters = {
-            'categories__in': [self.category_1, ]
-        }
-        self.assertEqual(self.plugin_model_instance.get_render_queryset_for_display(filters=filters).count(), 2)
-        self.assertEqual(self.plugin_model_instance.get_render_queryset_for_display().count(), 2)
-
-    def test_filter_filters_categories__in_distinct(self):
-        """
-        TODO
-        we want to get rid of the category param. We want to use a more generic filter param instead.
-        This will fail as long as we do not have implemented this.
-        """
-        self.plugin_model_instance.categories.set([self.category_1, self.category_2])
-
-        self.entry_1.categories.set([self.category_1, self.category_2])
-        self.entry_2.categories.set([self.category_1, self.category_2])
-        filters = {
-            'categories__in': [self.category_1, self.category_2]
-        }
-        self.assertEqual(self.plugin_model_instance.get_render_queryset_for_display(filters=filters).count(), 2)
-        self.assertEqual(self.plugin_model_instance.get_render_queryset_for_display().count(), 2)
-
     def test_filter_filters_categories_and__in_no_result(self):
-        """
-        TODO
-        we want to get rid of the category param. We want to use a more generic filter param instead.
-        This will fail as long as we do not have implemented this.
-        """
         self.plugin_model_instance.categories.set([self.category_1])
         self.plugin_model_instance.categories_and.set([self.category_2])
 
@@ -318,11 +280,6 @@ class NewsPluginTestCase(CategoriesMixin, DataModelMixin, PluginModelMixin, Test
         self.assertEqual(self.plugin_model_instance.get_render_queryset_for_display().count(), 0)
 
     def test_filter_filters_categories_and__in_result(self):
-        """
-        TODO
-        we want to get rid of the category param. We want to use a more generic filter param instead.
-        This will fail as long as we do not have implemented this.
-        """
         self.plugin_model_instance.categories.set([self.category_1])
         self.plugin_model_instance.categories_and.set([self.category_2])
 
