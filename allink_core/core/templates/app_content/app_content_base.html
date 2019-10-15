@@ -100,22 +100,12 @@
         {% block app_content_load_more_container %}
             {% if instance.pagination_type == "load" or instance.pagination_type == "load_rest" %}
                 <div class="load-more-container" {% if not next_page_url %}style="display:none;"{% endif %}>
-                    <a href="{{ next_page_url }}" class="app-list__load-more-link btn-load-more ajax-load-items append {% block app_content_more_link_additional_css_classes %}{% endblock app_content_more_link_additional_css_classes %}" {% block app_content_load_more_attr %}{% endblock app_content_load_more_attr %} data-btn-ajax-loader>
-                        <span class="btn-text">
-                            {% if instance.load_more_button_text %}
-                                {{ instance.load_more_button_text }}
-                            {% else %}
-                                {% trans "Load More" %}
-                            {% endif %}
-                        </span>
-                        <span class="btn__text--mask"><span class="btn__text--mask__inner">
-                            {% if instance.load_more_button_text %}
-                                {{ instance.load_more_button_text }}
-                            {% else %}
-                                {% trans "Load More" %}
-                            {% endif %}
-                        </span></span>
-                    </a>
+                    {% if instance.load_more_button_text %}
+                        {% include "partials/buttons/link.html" with link_url=next_page_url link_label=instance.load_more_button_text link_classes="app-list__load-more-link btn-load-more ajax-load-items append" link_attributes="data-btn-ajax-loader" %}
+                    {% else %}
+                        {% trans "Load More" as link_label %}
+                        {% include "partials/buttons/link.html" with link_url=next_page_url link_label=link_label link_classes="app-list__load-more-link btn-load-more ajax-load-items append" link_attributes="data-btn-ajax-loader" %}
+                    {% endif %}
                 </div>
             {% endif %}
         {% endblock app_content_load_more_container %}
