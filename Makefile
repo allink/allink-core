@@ -35,3 +35,6 @@ publish: clean ## package and upload a release
 publish-test: clean ## package and upload a release
 	python setup.py publish
 	twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+
+test: ## run tests quickly with the default Python
+	python runtests.py tests

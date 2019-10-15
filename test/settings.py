@@ -125,7 +125,7 @@ DATABASES = {
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['/app/templates', '/app/allink_core/core/templates/allink_core'].extend(ALLINK_CORE_MAIN_TEMPLATE_DIRS),
+        'DIRS': ['/app/templates', '/app/allink_core/core/templates/allink_core'],
         'OPTIONS':
             {'debug': True,
              'context_processors': [
@@ -153,6 +153,9 @@ TEMPLATES = [
              }
     }
 ]
+# add allink-core templates
+dirs = TEMPLATES[0].get('DIRS', {})
+dirs.extend(ALLINK_CORE_MAIN_TEMPLATE_DIRS)
 
 MIDDLEWARE = [
     'django.middleware.cache.UpdateCacheMiddleware',
@@ -220,13 +223,6 @@ INSTALLED_APPS = [
     'aldryn_google_tag_manager',
 ] + ALLINK_INSTALLED_APPS
 
-# project specific apps
-PROJECT_APPS = [
-
-]
-
-INSTALLED_APPS.extend(PROJECT_APPS)
-
 # allink apps which are installed in this project
 INSTALLED_ALLINK_CORE_APPS = [
     'allink_core.apps.config',
@@ -259,12 +255,11 @@ LOCALE_PATHS = ALLINK_LOCALE_PATHS
 CMS_PERMISSION = True
 CMS_TEMPLATES = (
     ('default.html', 'Default'),
-    ('404.html', '404 - Page not found'),
 )
 
 ####################################################################################
 
-#  allink categories
+# allink categories
 # all models which use categories have to be listed here.
 # the value has to be equal to "_meta.model_name"
 # -> Overeride if project specific setup requires
@@ -273,41 +268,6 @@ PROJECT_APP_MODEL_WITH_CATEGORY_CHOICES = ALLINK_PROJECT_APP_MODEL_WITH_CATEGORY
 PROJECT_APP_MODEL_WITH_CATEGORY_CHOICES.extend([
     # ('locations', 'Locations'),
 ])
-
-# auto generate categories, when an item form this app is saved.
-# all models which can be used as tag for categories.
-# all categories with the same tag can be used
-# in a filter on a plugin.
-# the value has to be equal to "_meta.model_name"
-
-PROJECT_APP_MODEL_CATEGORY_TAG_CHOICES = [
-    # ('locations', 'Locations'),
-]
-
-# used to display category names on app models
-# (e.g. units on People App)
-# ATTENTION!! Changing the keys requires data migrations!
-PROJECT_CATEGORY_IDENTIFIERS = (
-    ('units', 'Unit'),
-)
-
-PROJECT_LINK_APPHOOKS = OrderedDict([
-    ('Page', []),  # Not Apphook but linkable
-    # ('NewsApphook', {'detail': ('allink_core.apps.news.models.News', ['slug'])}),
-    # ('EventsApphook', {'detail': ('allink_core.apps.events.models.Events', ['slug'])}),
-    # ('LocationsApphook', {'detail': ('allink_core.apps.locations.models.Locations', ['slug'])}),
-    # ('PeopleApphook', {'detail': ('allink_core.apps.people.models.People', ['slug'])}),
-    # ('TestimonialsApphook', {'detail': ('allink_core.apps.testimonials.models.Testimonials', ['slug'])}),
-])
-
-####################################################################################
-#  =project colors
-
-# use Hex values with 6 letters/ define in lowercase
-# ATTENTION!! Changing the keys requires data migrations!
-PROJECT_COLORS = {
-    # '#000000': 'project-color-1',  # black
-}
 
 ####################################################################################
 
@@ -325,161 +285,10 @@ NEWS_PLUGIN_TEMPLATES = (
     ('grid_static', 'Grid (Static)'),
 )
 
-EVENTS_PLUGIN_TEMPLATES = (
-    ('grid_static', 'Grid (Static)'),
-)
-
-LOCATIONS_PLUGIN_TEMPLATES = (
-    ('map', 'Map'),
-    ('details', 'Details'),
-    ('details-and-map', 'Details and Map'),
-)
-
-PEOPLE_PLUGIN_TEMPLATES = (
-    ('grid_static', 'Grid (Static)'),
-)
-
-TESTIMONIALS_PLUGIN_TEMPLATES = (
-    ('slider', 'Slider'),
-)
-
 ####################################################################################
-#  =other templates which are defined in settings
+#  Teaser
 
-
-TEASER_PLUGIN_TEMPLATES = (
-    ('default', 'Default'),
-)
 TEASER_PAGE_LINK_TEXT = _('Read more')
-
-GALLERY_PLUGIN_TEMPLATES = (
-    ('slider', 'Slider'),
-)
-
-INSTAGRAM_PLUGIN_TEMPLATES = (
-    ('grid_static', 'Grid (Static)'),
-)
-
-ADDITIONAL_CONTENT_PLUGIN_TEMPLATES = (
-    # ('col-3-variation', '3 Columns (footer)', 3, 'col-1-of-3'),
-)
-
-ADDITIONAL_NEWS_DETAIL_TEMPLATES = (
-    # ('with_header', 'With lead section'),
-)
-ADDITIONAL_EVENTS_DETAIL_TEMPLATES = (
-    # ('with_header', 'With lead section'),
-)
-
-####################################################################################
-# css classes
-# each plugin has its own set (except all form plugins share FORM_CSS_CLASSES)
-# ATTENTION!! Changing the keys requires data migrations!
-
-# CONTENT_CSS_CLASSES = ()
-# FORM_CSS_CLASSES = ()
-# BUTTON_LINK_CSS_CLASSES = ()
-# ICON_CSS_CLASSES = ()
-# IMAGE_CSS_CLASSES = ()
-# LOCATIONS_CSS_CLASSES = ()
-# GALLERY_CSS_CLASSES = ()
-# VID_EMBED_CSS_CLASSES = ()
-# VID_FILE_CSS_CLASSES = ()
-SOCIAL_ICON_CSS_CLASSES = (
-    # ('footer-icons', 'Icons in page footer.'),
-)
-
-# BLOG_CSS_CLASSES = ()
-# LOCATIONS_CSS_CLASSES = ()
-# PEOPLE_CSS_CLASSES = ()
-# TESTIMONIALS_CSS_CLASSES = ()
-# ...
-
-CONTENT_CSS_CLASSES = (
-    ('hidden-on-desktop', 'Visibility: Hide this content section on DESKTOP devices.'),
-    ('hidden-on-mobile', 'Visibility: Hide this content section on MOBILE devices.'),
-    ('spacings-disabled',
-     'Spacing: Remove any spacing (margin and padding) of this section (still keeps spacings from other sections).'),
-)
-
-BUTTON_LINK_CSS_CLASSES = (
-    # ('secondary-nav', 'Secondary Navigation'),
-)
-
-####################################################################################
-
-# SOCIAL ICONS
-# Used in the 'Social Icon' plugin
-# Important: These keys have to match the map defined in the CSS variables
-# ATTENTION!! Changing the keys requires data migrations!
-
-FACEBOOK = 'facebook'
-INSTAGRAM = 'instagram'
-PINTEREST = 'pinterest'
-TWITTER = 'twitter'
-SNAPCHAT = 'snapchat'
-SPOTIFY = 'spotify'
-LINKEDIN = 'linkedin'
-XING = 'xing'
-YOUTUBE = 'youtube'
-VIMEO = 'vimeo'
-GOOGLEPLUS = 'googleplus'
-TRIPADVISOR = 'tripadvisor'
-KUNUNU = 'kununu'
-
-SOCIAL_ICONS_CHOICES = (
-    (FACEBOOK, 'Facebook'),
-    (INSTAGRAM, 'Instagram'),
-    # (PINTEREST, 'Pinterest'),
-    # (TWITTER, 'Twitter'),
-    # (SNAPCHAT, 'Snapchat'),
-    # (LINKEDIN, 'Linkedin'),
-    # (SPOTIFY, 'Spotify'),
-    # (XING, 'Xing'),
-    # (YOUTUBE, 'Youtube'),
-    # (VIMEO, 'Vimeo'),
-    # (GOOGLEPLUS, _ Plus'),
-    # (TRIPADVISOR, 'TripAdvisor'),
-    # (KUNUNU, 'kununu'),
-)
-
-####################################################################################
-
-# CMSAllinkContentPlugin
-
-ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = \
-    ALLINK_CONTENT_PLUGIN_CHILD_CLASSES + [
-    ]
-
-# ATTENTION!! Changing the keys requires data migrations!
-CONTENT_TITLE_CHOICES = (
-    # ('h1', 'Title Large'),
-    ('h2', 'Title Medium'),
-    ('h3', 'Title Small'),
-)
-CONTENT_TITLE_CHOICES_DEFAULT = 'h2'
-
-# ATTENTION!! Changing the keys requires data migrations! (Never change 'default'!)
-CONTENT_ON_SCREEN_EFFECT_CHOICES = (
-    ('default', 'Default'),
-)
-####################################################################################
-
-# CMSAllinkGroupPlugin
-
-CMS_ALLINK_GROUP_PLUGIN_CHILD_CLASSES = (
-    # 'TextPlugin',
-    # 'CMSAllinkImagePlugin',
-    'CMSAllinkButtonLinkContainerPlugin',
-    'CMSAllinkButtonLinkPlugin',
-)
-####################################################################################
-
-# CMSAllinkButtonLinkPlugin
-
-BUTTON_LINK_SPECIAL_LINKS_CHOICES = (
-    # ('some_view', 'Some View Name'),
-)
 
 ####################################################################################
 

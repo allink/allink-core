@@ -13,10 +13,10 @@ django-classy-tags>=0.7.2
 djangocms-text-ckeditor==3.8.0
 aldryn-common==1.0.5
 django-filer==1.5.0
+django-robots==3.1.0
 https://control.divio.com/api/v1/apps/serve/aldryn-google-tag-manager/0.1.0/aldryn-google-tag-manager-0.1.0.tar.gz#egg=aldryn-google-tag-manager==0.1.0
 # allink-core
 aldryn-translation-tools==0.3.0
-aldryn-sites==0.6.0
 #   aldryn-boilerplates==0.8.0
 #   djangocms-helper==1.2.0
 https://github.com/allink/djangocms-snippet/archive/b875c7af7ed5470b7518c034b141408a6f0b9ee8.zip#egg=djangocms-snippet==2.1.0

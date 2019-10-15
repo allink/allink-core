@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from aldryn_addons.utils import senv
 
 __all__ = [
     'ALLINK_INSTALLED_APPS',
@@ -184,7 +183,7 @@ THUMBNAIL_OPTIMIZE_COMMAND = {
 
 
 def show_toolbar(request):
-    return senv('DEBUG_TOOLBAR_ENABLED', False)
+    return False
 
 
 DEBUG_TOOLBAR_CONFIG = {
@@ -201,7 +200,7 @@ ALLINK_PAGE_TOOLBAR_ENABLED = False
 #
 # # allink E-Mail Mandrill
 # if ALLINK_MANDRILL_DEV_MODE is set to True all emails will be sent to ALLINK_MANDRILL_DEV_MODE_TO_EMAIL_ADDRESSES
-ALLINK_MANDRILL_DEV_MODE = senv('ALLINK_MANDRILL_DEV_MODE', None)
+ALLINK_MANDRILL_DEV_MODE = True
 ALLINK_MANDRILL_DEV_MODE_FROM_EMAIL_ADDRESS = 'test@allink.ch'
 # we cant send to 'test@allink.ch' at the moment because of: https://support.google.com/a/answer/168383?hl=en
 ALLINK_MANDRILL_DEV_MODE_TO_EMAIL_ADDRESSES = ['itcrowd@allink.ch', ]
