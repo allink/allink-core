@@ -1,8 +1,8 @@
 import io
 import factory
-
 from django.core.files import File
 from django.contrib.auth import get_user_model
+from PIL import Image as PILimage
 
 from filer.models import Image
 
@@ -38,18 +38,11 @@ class FilerImageFactory(factory.DjangoModelFactory):
     def file(self):
         """
         Fill file field with generated image on the fly by PIL.
-        Generated image is just a dummy blank image of 100x100 with plain blue
-        color.
+        Generated image is just a dummy blank image of 100x100 with plain blue color.
         Returns:
             django.core.files.File: File object.
         """
         # ImageField (both django's and factory_boy's) require PIL.
-        # Try to import it along one of its known installation paths.
-        try:
-            from PIL import Image as PILimage
-        except ImportError:
-            import Image as PILimage
-
         thumb = PILimage.new("RGB", (100, 100), "blue")
         thumb_io = io.BytesIO()
         thumb.save(thumb_io, format="JPEG")

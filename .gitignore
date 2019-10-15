@@ -29,7 +29,7 @@ lib
 lib64
 
 # test
-test/media
+test/media_test
 env
 
 # IDE

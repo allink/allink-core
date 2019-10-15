@@ -1,37 +1,11 @@
-import os.path  # noqa
-from collections import OrderedDict  # noqa
+import os.path
+import tempfile
 from allink_core.core.allink_settings import *  # noqa
 from allink_core import get_core_apps, ALLINK_CORE_MAIN_TEMPLATE_DIRS
 from django.utils.translation import ugettext_lazy as _
 
-####################################################################################
-
-# Test Settings
-
-print('=========================')  # noqa
-print('In TEST Mode - Disableling Migrations')  # noqa
-print('=========================')  # noqa
-
-
-class DisableMigrations(object):
-    def __contains__(self, item):
-        return True
-
-    def __getitem__(self, item):
-        return None
-
-
-MIGRATION_MODULES = DisableMigrations()
-
-####################################################################################
-
-# addon: aldryn-django
-# PREFIX_DEFAULT_LANGUAGE = True -> sets 'aldryn_django.middleware.LanguagePrefixFallbackMiddleware'
-# MIGRATION_COMMANDS ->
 BASE_DIR = os.path.dirname(os.path.abspath(os.path.abspath(__file__)))
-ALLOWED_HOSTS = ['localhost', '*']
 SITE_ID = 1
-# WSGI_APPLICATION = 'wsgi.application'
 ROOT_URLCONF = 'test.urls'
 
 SECRET_KEY = 'not-very-random'
@@ -39,9 +13,8 @@ SECRET_KEY = 'not-very-random'
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_collected')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-# STATICFILES_STORAGE = 'aldryn_django.storage.GZippedStaticFilesStorage'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = tempfile.TemporaryDirectory(prefix='media_test').name
 TIME_ZONE = 'Europe/Zurich'
 
 USE_L10N = True
@@ -100,10 +73,6 @@ PARLER_LANGUAGES = {
         'hide_untranslated': False
     }
 }
-
-# LOCALE_PATHS = [
-#     os.path.join(BASE_DIR, 'locale'),
-# ]
 
 DATABASES = {
     'default': {
@@ -182,19 +151,11 @@ MIDDLEWARE = [
     'django.middleware.cache.FetchFromCacheMiddleware'
 ]
 
-####################################################################################
-
-# Caching
-
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.dummy.DummyCache'
     }
 }
-
-####################################################################################
-
-# Installed Apps
 
 INSTALLED_APPS = [
     # 'aldryn_addons',
@@ -244,55 +205,20 @@ OVERRIDDEN_ALLINK_CORE_APPS = [
 ]
 INSTALLED_APPS.extend(get_core_apps(OVERRIDDEN_ALLINK_CORE_APPS, INSTALLED_ALLINK_CORE_APPS))
 
-####################################################################################
-
-# Locale paths
 LOCALE_PATHS = ALLINK_LOCALE_PATHS
 
-####################################################################################
-
-# django CMS
 CMS_PERMISSION = True
 CMS_TEMPLATES = (
     ('default.html', 'Default'),
 )
 
-####################################################################################
-
-# allink categories
-# all models which use categories have to be listed here.
-# the value has to be equal to "_meta.model_name"
-# -> Overeride if project specific setup requires
-
 PROJECT_APP_MODEL_WITH_CATEGORY_CHOICES = ALLINK_PROJECT_APP_MODEL_WITH_CATEGORY_CHOICES
-PROJECT_APP_MODEL_WITH_CATEGORY_CHOICES.extend([
-    # ('locations', 'Locations'),
-])
-
-####################################################################################
-
-# allink app_content additional templates for apps
-# ATTENTION!! Changing the keys requires data migrations!
-# the variable name prefix 'PEOPLE' in 'PEOPLE_PLUGIN_TEMPLATES' has to be equal to "_meta.model_name"
-# default templates are (these exist as templates in core dir):
-#     ('grid_static', 'Grid (Static)'),
-#     ('grid_dynamic', 'Grid (Dynamic)'),
-#     ('list', 'List'),
-#     ('slider', 'Slider'),
-#     ('table', 'Table'),
 
 NEWS_PLUGIN_TEMPLATES = (
     ('grid_static', 'Grid (Static)'),
 )
 
-####################################################################################
-#  Teaser
-
 TEASER_PAGE_LINK_TEXT = _('Read more')
-
-####################################################################################
-
-# Thumbnail width aliases
 
 THUMBNAIL_WIDTH_ALIASES = {
     # used for plugins e.g. image, gallery>image
