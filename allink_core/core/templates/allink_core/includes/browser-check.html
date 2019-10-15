@@ -1,0 +1,16 @@
+{% load i18n %}
+
+<div class="content-plugin browser-suggestion hidden">
+    <div class="browser-suggestion__container">
+        <div class="text-container">
+            <h5 class="lead">{% trans 'Browser Info' %}</h5>
+            <h3 class="heading">{% trans 'no optimal representation possible' %}</h3>
+            <p class="text">{% trans 'Your web browser does not provide an optimal representation of our website. This means that some functions may not work or the view may be incorrect. We recommend that you use a current browser.' %}</p>
+        </div>
+
+        {% trans 'Visit Anyways' as link_label %}
+        {% include "partials/buttons/link.html" with link_url="" link_label=link_label link_classes="btn btn-primary btn-md js-use-legacy-browser" link_attributes='rel="noopener" role="button"' %}
+
+        <span class="browser-suggestion__list teaser__link"></span>
+    </div>
+</div>
