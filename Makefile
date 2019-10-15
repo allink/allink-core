@@ -21,7 +21,7 @@ docs: ## mkdocs served on localhost
 	mkdocs serve
 
 patch: clean ## create a new patch version and push the new tag to git
-	bumpversion path
+	bumpversion patch
 	git push --tags
 
 minor: clean ## create a new minor version and push the new tag to git
