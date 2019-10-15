@@ -25,7 +25,6 @@ class TestimonialsAdmin(AllinkMediaAdminMixin, AllinkSEOAdminMixin, AllinkCatego
                     ('first_name', 'last_name'),
                     'lead',
                     'slug',
-                    'created',
                     'preview_image',
                     'job_function',
                     'company_name',

@@ -30,24 +30,16 @@
                     </p>
                 </div>
             {% endif %}
-            {% if  instance.detail_link_enabled %}
+            {% if instance.detail_link_enabled %}
                 <div class="link-container">
-                    <a href="{% get_absolute_url object instance.apphook_page.application_namespace %}" class="app-list__detail-link" {% if instance.softpage_enabled %}data-softpage{% endif %}>
-                        <span class="btn__text">
-                            {% if instance.detail_link_text %}
-                                {{ instance.detail_link_text }}
-                            {% else %}
-                                {% trans "More" %}
-                            {% endif %}
-                        </span>
-                        <span class="btn__text--mask"><span class="btn__text--mask__inner">
-                            {% if instance.detail_link_text %}
-                                {{ instance.detail_link_text }}
-                            {% else %}
-                                {% trans "More" %}
-                            {% endif %}
-                        </span></span>
-                    </a>
+                    {% get_absolute_url object instance.apphook_page.application_namespace as link_url %}
+                    {% trans "More" as link_label %}
+
+                    {% if instance.softpage_enabled %}
+                        {% include "partials/buttons/link.html" with link_url=link_url link_label=link_label link_classes="app-list__detail-link" link_attributes='data-softpage' %}
+                    {% else %}
+                        {% include "partials/buttons/link.html" with link_url=link_url link_label=link_label link_classes="app-list__detail-link" %}
+                    {% endif %}
                 </div>
             {% endif %}
         </div>
