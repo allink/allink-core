@@ -55,8 +55,6 @@ class AllinkLegacyLink(AllinkInternalLinkFieldsModel):
     language = models.CharField(
         'Language',
         max_length=200,
-        choices=settings.LANGUAGES,
-        default=settings.LANGUAGES[0],
         null=True
     )
 

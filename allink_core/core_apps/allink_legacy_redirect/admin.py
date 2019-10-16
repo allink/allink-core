@@ -2,6 +2,7 @@
 from django.contrib import admin
 from django.utils.html import format_html
 from django import forms
+from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 
 from import_export.admin import ImportMixin
@@ -15,6 +16,11 @@ from allink_core.core.forms.mixins import AllinkInternalLinkFieldMixin
 
 
 class AllinkLegacyChangeAdminForm(AllinkInternalLinkFieldMixin, forms.ModelForm):
+    LANGUAGE_CHOICES = settings.LANGUAGES
+
+    language = forms.ChoiceField(label='Link Target', required=False,
+                                 choices=LANGUAGE_CHOICES)
+
     new_link = SelectLinkField(label='New Page', required=False)
 
     class Meta:
