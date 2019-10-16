@@ -17,10 +17,10 @@ from allink_core.core.models import (
     AllinkBaseTranslatedFieldsModel,
 )
 
-from .managers import TestAppManager
+from .managers import DummyAppManager
 
 
-class TestApp(SortableMixin, AllinkCategoryFieldsModel, AllinkBaseTranslatableModel):
+class DummyApp(SortableMixin, AllinkCategoryFieldsModel, AllinkBaseTranslatableModel):
     slug_source_field_name = 'title'
 
     title = TranslatedField(any_language=True)
@@ -38,28 +38,27 @@ class TestApp(SortableMixin, AllinkCategoryFieldsModel, AllinkBaseTranslatableMo
         editable=False,
         db_index=True
     )
-
     header_placeholder = PlaceholderField(
-       'test_app_header',
+       'dummy_app_header',
         related_name='%(app_label)s_%(class)s_header_placeholder'
     )
     content_placeholder = PlaceholderField(
-       'test_app_content',
+       'dummy_app_content',
         related_name='%(app_label)s_%(class)s_content_placeholder'
     )
 
-    objects = TestAppManager()
+    objects = DummyAppManager()
 
     class Meta:
-        app_label = 'test_app'
+        app_label = 'dummy_app'
         ordering = ('sort_order',)
-        verbose_name = 'TestApp'
-        verbose_name_plural = 'TestApp'
+        verbose_name = 'DummyApp'
+        verbose_name_plural = 'DummyApp'
 
 
-class TestAppTranslation(AllinkBaseTranslatedFieldsModel):
+class DummyAppTranslation(AllinkBaseTranslatedFieldsModel):
     master = models.ForeignKey(
-        'test_app.TestApp',
+        'dummy_app.DummyApp',
         on_delete=models.CASCADE,
         related_name='translations',
         null=True
@@ -75,14 +74,14 @@ class TestAppTranslation(AllinkBaseTranslatedFieldsModel):
         null=True,
     )
     class Meta:
-        app_label = 'test_app'
+        app_label = 'dummy_app'
 
 
-class TestAppAppContentPlugin(AllinkBaseAppContentPlugin):
-    data_model = TestApp
+class DummyAppAppContentPlugin(AllinkBaseAppContentPlugin):
+    data_model = DummyApp
 
     manual_entries = SortedM2MModelField(
-        'test_app.TestApp',
+        'dummy_app.DummyApp',
         blank=True,
         help_text=('Select and arrange specific entries, or, leave blank to select all. (If '
                     'manual entries are selected the category filtering will be applied as well.)')
@@ -96,5 +95,5 @@ class TestAppAppContentPlugin(AllinkBaseAppContentPlugin):
     )
 
     class Meta:
-        app_label = 'test_app'
+        app_label = 'dummy_app'
 

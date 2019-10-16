@@ -2,8 +2,8 @@
 from allink_core.core.models.managers import AllinkCategoryModelQuerySet
 
 
-class TestAppQuerySet(AllinkCategoryModelQuerySet):
+class DummyAppQuerySet(AllinkCategoryModelQuerySet):
     pass
 
 
-TestAppManager = TestAppQuerySet.as_manager
+DummyAppManager = DummyAppQuerySet.as_manager

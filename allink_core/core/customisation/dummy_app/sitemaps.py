@@ -1,19 +1,19 @@
 # -*- coding: utf-8 -*-
 from django.contrib.sitemaps import Sitemap
-from .models import TestApp
+from .models import DummyApp
 
 
-class TestAppSitemap(Sitemap):
+class DummyAppSitemap(Sitemap):
     changefreq = "never"
     priority = 0.5
     i18n = True
 
     def __init__(self, *args, **kwargs):
         self.namespace = kwargs.pop('namespace', None)
-        super(TestAppSitemap, self).__init__(*args, **kwargs)
+        super(DummyAppSitemap, self).__init__(*args, **kwargs)
 
     def items(self):
-        return TestApp.objects.active()
+        return DummyApp.objects.active()
 
     def lastmod(self, obj):
         return obj.modified

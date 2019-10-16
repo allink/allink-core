@@ -2,20 +2,20 @@
 import factory
 from factory import fuzzy
 from allink_core.core.test.factories import FilerImageFactory
-from ..models import TestApp
+from ..models import DummyApp
 
 
-class TestAppFactory(factory.DjangoModelFactory):
+class DummyAppFactory(factory.DjangoModelFactory):
 
     class Meta:
-        model = TestApp
+        model = DummyApp
 
-    title = factory.Sequence(lambda n: 'test_app entry %d' % n)
+    title = factory.Sequence(lambda n: 'dummy_app entry %d' % n)
     lead = fuzzy.FuzzyText(length=500)
     preview_image = factory.SubFactory(FilerImageFactory)
 
 
-class TestAppWithMetaFactory(TestAppFactory):
+class DummyAppWithMetaFactory(DummyAppFactory):
 
     og_image = factory.SubFactory(FilerImageFactory)
     og_title = 'og title'

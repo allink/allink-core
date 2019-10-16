@@ -2,6 +2,6 @@
 from django.apps import AppConfig
 
 
-class TestAppConfig(AppConfig):
-    name = 'apps.test_app'
-    verbose_name = "TestApp"
+class DummyAppConfig(AppConfig):
+    name = 'apps.dummy_app'
+    verbose_name = "DummyApp"
