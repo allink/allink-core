@@ -18,6 +18,22 @@ new features or plugins
 ### FIXES
 general bugfixes
 
+## v2.0.8
+### IMPORTANT
+- Required update: [allink-core-static](https://github.com/allink/allink-core-static/commit/1190bda8b5dc38add612be8acb3cb77cfddbc1f6)
+### FIXES
+- Cleanup and new elements in styleguide template
+- Updated buttons markup in testimonial, app content load more and browser-check templates
+
+## v2.0.7
+### FIXES
+- Re-added missing base template markup
+
+## v2.0.6
+### FIXES
+- Re-added missing base template markup
+- Properly render og tags of app-detail views
+
 ## v2.0.5
 ### NEW
 - refactored buttons: introduced link partial templates, updated other templates accordingly
