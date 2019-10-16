@@ -2,11 +2,11 @@
 from cms.plugin_pool import plugin_pool
 from allink_core.core.cms_plugins import CMSAllinkBaseAppContentPlugin
 
-from apps.test_app.models import TestAppAppContentPlugin
+from apps.dummy_app.models import DummyAppAppContentPlugin
 
 
 @plugin_pool.register_plugin
-class CMSTestAppAppContentPlugin(CMSAllinkBaseAppContentPlugin):
+class CMSDummyAppAppContentPlugin(CMSAllinkBaseAppContentPlugin):
     """
     model:
     - where to store plugin instances
@@ -14,5 +14,5 @@ class CMSTestAppAppContentPlugin(CMSAllinkBaseAppContentPlugin):
     name:
     - name of the plugin
     """
-    model = TestAppAppContentPlugin
+    model = DummyAppAppContentPlugin
     name = model.data_model._meta.verbose_name_plural

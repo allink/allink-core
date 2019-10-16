@@ -11,11 +11,11 @@ from allink_core.core.admin import (
     AllinkTeaserAdminMixin,
 )
 
-from apps.test_app.models import TestApp
+from apps.dummy_app.models import DummyApp
 
 
-@admin.register(TestApp)
-class TestAppAdmin(AllinkMediaAdminMixin, AllinkSEOAdminMixin, AllinkCategoryAdminMixin,
+@admin.register(DummyApp)
+class DummyAppAdmin(AllinkMediaAdminMixin, AllinkSEOAdminMixin, AllinkCategoryAdminMixin,
                    AllinkTeaserAdminMixin, PlaceholderAdminMixin, TranslatableAdmin, SortableAdmin):
     list_display = ('title', 'all_categories_column', )
     list_filter = ('status', 'categories',)
@@ -41,4 +41,4 @@ class TestAppAdmin(AllinkMediaAdminMixin, AllinkSEOAdminMixin, AllinkCategoryAdm
     def formfield_for_dbfield(self, db_field, **kwargs):
         if db_field.name == 'lead':
             kwargs['widget'] = forms.Textarea
-        return super(TestAppAdmin, self).formfield_for_dbfield(db_field, **kwargs)
+        return super(DummyAppAdmin, self).formfield_for_dbfield(db_field, **kwargs)

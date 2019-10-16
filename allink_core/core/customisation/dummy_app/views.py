@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 from allink_core.core.views import AllinkBasePluginLoadMoreView, AllinkBaseDetailView
-from .models import TestApp, TestAppAppContentPlugin
+from .models import DummyApp, DummyAppAppContentPlugin
 
 
-class TestAppPluginLoadMore(AllinkBasePluginLoadMoreView):
-    model = TestApp
-    plugin_model = TestAppAppContentPlugin
+class DummyAppPluginLoadMore(AllinkBasePluginLoadMoreView):
+    model = DummyApp
+    plugin_model = DummyAppAppContentPlugin
 
 
-class TestAppDetail(AllinkBaseDetailView):
-    model = TestApp
+class DummyAppDetail(AllinkBaseDetailView):
+    model = DummyApp

@@ -38,7 +38,7 @@ class FilerImageFactory(factory.DjangoModelFactory):
     def file(self):
         """
         Fill file field with generated image on the fly by PIL.
-        Generated image is just a dummy blank image of 100x100 with plain blue color.
+        Generated image is just a blank image of 100x100 with plain blue color.
         Returns:
             django.core.files.File: File object.
         """
