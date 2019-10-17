@@ -58,10 +58,10 @@ def create_file(filepath, content=''):
         f.write(content)
 
 
-def copy_dummy_dir(dummy_path, app_path):
+def copy_dummy_dir(dummy_app_path, app_path):
     """
     copies a dummy directory to another directory
-    :param dummy_path:
+    :param dummy_app_path:
     path to dummy_app e.g 'allink_core/core/customisation/dummy_app'
     :param app_path:
     path where the new app should created in
@@ -71,14 +71,14 @@ def copy_dummy_dir(dummy_path, app_path):
     if os.path.isdir(app_path):
         raise OSError("Can't create destination directory. '{}' directory already exists!".format(app_path))
     try:
-        dst = copy_tree(dummy_path, app_path)
+        dst = copy_tree(dummy_app_path, app_path)
     except OSError as e:
         raise e
 
     return dst
 
 
-def rename_dummy_classes(file_path, replace):
+def replace_strings(file_path, replace):
     """
     replace strings in a file
     :param file_path:
@@ -100,25 +100,41 @@ def rename_dummy_classes(file_path, replace):
         f.write(s)
 
 
-def rename_dummy_file_name(file_path):
+def rename_dir_or_file(path, replace):
     """
-    replaced file names of a given file
-    :param file_path:
-    path to file
+    rename dir or file
+    :param path:
+    path to file or dir
+    :param replace:
+    dict of strings to replace. e.g:
+    replace = {
+        'dummy_app': 'new_app',
+        'dummyapp': 'newapp',
+    }
+    :return:
+    new dir file path
     """
-    pass
+    basename = os.path.basename(path)
+    if any(sub in basename for sub in replace.keys()):
+        for item in filter(lambda i: i[0] in basename, replace.items()):
+            new_base = basename.replace(item[0], item[1])
+            new_path = os.path.join(os.path.dirname(path), new_base)
+            os.replace(path, new_path)
+            path = new_path
 
 
-def create_new_app(dummy_path, app_path, app_label, model_name):
+def create_new_app(dummy_app_path, app_path, app_label, model_name):
     """
-    :param dummy_path:
+    copies a dummy_app directory renames and replaces dummy naming
+
+    :param dummy_app_path:
     path to dummy_app e.g 'allink_core/core/customisation/dummy_app'
     :param app_path:
     path where the new app should created e.g 'apps'
     :param app_name:
     new app directory name e.g 'new_app'
     :return:
-    new directory
+    new directory path
     """
 
     replace = {
@@ -126,20 +142,34 @@ def create_new_app(dummy_path, app_path, app_label, model_name):
         'DummyApp': model_name,  # model name
         'dummy-app': app_label.replace('_', '-'),  # css class
     }
+    replace_file_names = {
+        'dummy_app': app_label,  # app label
+        'dummyapp': model_name.lower(),  # lower model name
+    }
 
     new_app_path = os.path.join(app_path, app_label)
 
     # copy directory
-    new_dir = copy_dummy_dir(dummy_path, new_app_path)
+    copy_dummy_dir(dummy_app_path, new_app_path)
 
     # remove 'README.md'
     readme = os.path.join(new_app_path, 'README.md')
     os.remove(readme)
 
-    for root, dirs, files in os.walk(new_dir):
-        # rename dummy classes and import statements
-        rename_dummy_classes(file_path=files, replace=replace)
-        # rename file names
-        rename_dummy_file_name(file_path=files)
+    for root, dirs, files in os.walk(new_app_path):
+        for dir in dirs:
+            # rename directories
+            dir_path = os.path.join(root, dir)
+            rename_dir_or_file(path=dir_path, replace=replace_file_names)
 
-    return new_dir
+    # file renaming needs to be done in a second iteration as the directory names have changed
+    for root, dirs, files in os.walk(new_app_path):
+        for file in files:
+            # rename file names
+            file_path = os.path.join(root, file)
+            # rename dummy classes and import statements
+            replace_strings(file_path=file_path, replace=replace)
+            # rename file and dir names
+            rename_dir_or_file(path=file_path, replace=replace_file_names)
+
+    return new_app_path
