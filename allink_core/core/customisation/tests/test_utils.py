@@ -1,82 +1,36 @@
 import tempfile
-import hashlib
 import os
 from django.test import TestCase
-from ..utils import copy_dummy_dir, create_new_app, rename_dummy_classes
-
-
-def md5(fname):
-    hash_md5 = hashlib.md5()
-    with open(fname, "rb") as f:
-        for chunk in iter(lambda: f.read(4096), b""):
-            hash_md5.update(chunk)
-    return hash_md5.hexdigest()
+from unittest import mock
+from ..utils import copy_dummy_dir, create_new_app, replace_strings, rename_dir_or_file
 
 
 class CustomisationNewAppTestCase(TestCase):
-    dummy_path = 'allink_core/core/customisation/dummy_app'
+    dummy_app_path = 'allink_core/core/customisation/dummy_app'
     app_label = 'new_app'
     model_name = 'NewApp'
 
-    expected_dirs = [
-        'cms_plugins.py',
-        'managers.py',
-        'urls.py',
-        'sitemaps.py',
-        'templates',
-        'cms_toolbars.py',
-        'README.md',
-        'tests',
-        'views.py',
-        '__init__.py',
-        'models.py',
-        'cms_apps.py',
-        'admin.py',
-        'config.py'
-    ]
-
-    expected_tests = [
-        'test_admin.py',
-        'test_models.py',
-        '__init_.py',
-        'test_views.py',
-        'test_managers.py',
-        'test_plugins.py',
-        'factories.py'
-    ]
-
-    expected_templates = [
-        'dummyapp_detail.html',
-        'plugins'
-    ]
+    expected_file_count = 23
 
     def test_copy_dummy_dir_already_exists(self):
         apps_dir = 'apps'
         with self.assertRaisesRegex(OSError, "'{}' directory already exists!".format(apps_dir)):
-            copy_dummy_dir(dummy_path=self.dummy_path, app_path=apps_dir)
+            copy_dummy_dir(dummy_app_path=self.dummy_app_path, app_path=apps_dir)
 
     def test_copy_dummy_dir_all_files_copied(self):
         with tempfile.TemporaryDirectory(prefix='temp_apps') as temp_apps_dir:
-            full_temp_dir = os.path.join(temp_apps_dir, self.app_label)
-            copy_dummy_dir(dummy_path=self.dummy_path, app_path=full_temp_dir)
-
-            # app root dir
-            self.assertCountEqual(self.expected_dirs, os.listdir(full_temp_dir))
-
-            # app tests dir
-            tests_dir = os.path.join(full_temp_dir, 'tests')
-            self.assertCountEqual(self.expected_tests, os.listdir(tests_dir))
-
-            # app templates dir
-            template_dir = os.path.join(full_temp_dir, 'templates', 'dummy_app')
-            self.assertCountEqual(self.expected_templates, os.listdir(template_dir))
+            full_temp_path = os.path.join(temp_apps_dir, self.app_label)
+            copy_dummy_dir(dummy_app_path=self.dummy_app_path, app_path=full_temp_path)
+            total_file_count = sum([len(files) for r, d, files in os.walk(full_temp_path)])
+            expected_file_count = self.expected_file_count + 1  # including README.md
+            self.assertEqual(total_file_count, expected_file_count)
 
     def test_rename_dummy_classes_in_one_file(self):
         with tempfile.TemporaryDirectory(prefix='temp_apps') as temp_apps_dir:
-            full_temp_dir = os.path.join(temp_apps_dir, self.app_label)
-            copy_dummy_dir(dummy_path=self.dummy_path, app_path=full_temp_dir)
+            full_temp_path = os.path.join(temp_apps_dir, self.app_label)
+            copy_dummy_dir(dummy_app_path=self.dummy_app_path, app_path=full_temp_path)
 
-            new_file = os.path.join(full_temp_dir, 'models.py')
+            new_file = os.path.join(full_temp_path, 'models.py')
 
             replace = {
                 'dummy_app': self.app_label,
@@ -84,8 +38,9 @@ class CustomisationNewAppTestCase(TestCase):
                 'dummy-app': 'new-app',
             }
 
-            rename_dummy_classes(new_file, replace)
+            replace_strings(new_file, replace)
 
+            # test some strings which should be in this file
             with open(new_file) as f:
                 s = f.read()
                 self.assertIn('class NewApp(', s)
@@ -94,12 +49,73 @@ class CustomisationNewAppTestCase(TestCase):
                 self.assertNotIn('dummy_app', s)
                 self.assertNotIn('DummyApp', s)
 
-    def test_create_new_app_all_files_copied_no_readme(self):
+    def test_rename_dir_or_file_one_file(self):
         with tempfile.TemporaryDirectory(prefix='temp_apps') as temp_apps_dir:
-            full_temp_dir = os.path.join(temp_apps_dir, self.app_label)
-            create_new_app(dummy_path=self.dummy_path, app_path=temp_apps_dir, app_label=self.app_label, model_name=self.model_name)
+            full_temp_path = os.path.join(temp_apps_dir, self.app_label)
+            copy_dummy_dir(dummy_app_path=self.dummy_app_path, app_path=full_temp_path)
 
-            # no README.md
-            expected_dirs = self.expected_dirs
-            expected_dirs.remove('README.md')
-            self.assertListEqual(expected_dirs, os.listdir(full_temp_dir))
+            replace = {
+                'dummy_app': self.app_label,
+                'dummyapp': self.model_name.lower(),
+            }
+            # file
+            new_file = os.path.join(full_temp_path, 'templates', 'dummy_app', 'dummyapp_detail.html')
+            rename_dir_or_file(path=new_file, replace=replace)
+            renamed_file = os.path.join(full_temp_path, 'templates', 'dummy_app', 'newapp_detail.html')
+            self.assertTrue(os.path.isfile(renamed_file))
+
+            # dir
+            new_dir = os.path.join(full_temp_path, 'templates', 'dummy_app')
+            rename_dir_or_file(path=new_dir, replace=replace)
+            renamed_dir = os.path.join(full_temp_path, 'templates', 'new_app')
+            self.assertTrue(os.path.isdir(renamed_dir))
+
+    @mock.patch('allink_core.core.customisation.utils.replace_strings')
+    def test_create_new_app_all_files_string_replaced(self, mock_replace_strings):
+        with tempfile.TemporaryDirectory(prefix='temp_apps') as temp_apps_dir:
+            full_temp_path = os.path.join(temp_apps_dir, self.app_label)
+            create_new_app(
+                dummy_app_path=self.dummy_app_path,
+                app_path=full_temp_path,
+                app_label=self.app_label,
+                model_name=self.model_name
+            )
+
+            total_file_count = sum([len(files) for r, d, files in os.walk(full_temp_path)])
+            self.assertEqual(mock_replace_strings.call_count, total_file_count)
+
+    @mock.patch('allink_core.core.customisation.utils.rename_dir_or_file')
+    def test_create_new_app_all_renamed(self, mock_rename_file):
+        with tempfile.TemporaryDirectory(prefix='temp_apps') as temp_apps_dir:
+            full_temp_path = os.path.join(temp_apps_dir, self.app_label)
+            create_new_app(
+                dummy_app_path=self.dummy_app_path,
+                app_path=full_temp_path,
+                app_label=self.app_label,
+                model_name=self.model_name
+            )
+
+            total_file_and_dir_count = sum([len(files) for r, d, files in os.walk(full_temp_path)]) \
+                               + sum([len(dirs) for r, dirs, f in os.walk(full_temp_path)]) - 1
+            self.assertEqual(mock_rename_file.call_count, total_file_and_dir_count)
+
+    def test_create_new_app_no_dummy_app_names(self):
+        with tempfile.TemporaryDirectory(prefix='temp_apps') as temp_apps_dir:
+            full_temp_path = os.path.join(temp_apps_dir, self.app_label)
+
+            create_new_app(
+                dummy_app_path=self.dummy_app_path,
+                app_path=full_temp_path,
+                app_label=self.app_label,
+                model_name=self.model_name
+            )
+
+            not_expected = ['dummy_app', 'dummyapp']
+            all_dirs = list()
+            all_files = list()
+            for root, dirs, files in os.walk(full_temp_path):
+                all_dirs.extend(dirs)
+                all_files.extend(files)
+
+            self.assertFalse([d for d in all_dirs if any(xs in d for xs in not_expected)])
+            self.assertFalse([f for f in all_files if any(xs in f for xs in not_expected)])

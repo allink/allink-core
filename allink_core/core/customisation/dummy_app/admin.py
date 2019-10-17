@@ -11,7 +11,7 @@ from allink_core.core.admin import (
     AllinkTeaserAdminMixin,
 )
 
-from apps.dummy_app.models import DummyApp
+from .models import DummyApp
 
 
 @admin.register(DummyApp)

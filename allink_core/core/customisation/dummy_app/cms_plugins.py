@@ -2,7 +2,7 @@
 from cms.plugin_pool import plugin_pool
 from allink_core.core.cms_plugins import CMSAllinkBaseAppContentPlugin
 
-from apps.dummy_app.models import DummyAppAppContentPlugin
+from .models import DummyAppAppContentPlugin
 
 
 @plugin_pool.register_plugin
