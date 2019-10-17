@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-from django.contrib.sitemaps import Sitemap
 
 from allink_core.core.loading import get_model
+from allink_core.core.sitemap import HrefLangSitemap
 
 
 Testimonials = get_model('testimonials', 'Testimonials')
 
 
-class TestimonialsSitemap(Sitemap):
+class TestimonialsSitemap(HrefLangSitemap):
 
     changefreq = "never"
     priority = 0.5

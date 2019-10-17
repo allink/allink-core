@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-from django.contrib.sitemaps import Sitemap
 
 from allink_core.core.loading import get_model
+from allink_core.core.sitemap import HrefLangSitemap
 
 
 Events = get_model('events', 'Events')
 
 
-class EventsSitemap(Sitemap):
+class EventsSitemap(HrefLangSitemap):
 
     changefreq = "never"
     priority = 0.5
