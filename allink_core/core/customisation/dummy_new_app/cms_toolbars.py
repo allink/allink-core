@@ -12,4 +12,3 @@ class DummyAppToolbar(AllinkBaseModifierMixin, CMSToolbar):
 
 
 toolbar_pool.register(DummyAppToolbar)
-
