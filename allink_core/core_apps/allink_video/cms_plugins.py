@@ -107,6 +107,7 @@ class CMSAllinkVideoFilePlugin(AllinkMediaAdminMixin, CMSPluginBase):
                 # 'classes': ('collapse',),
                 'fields': (
                     'auto_start_enabled',
+                    'auto_start_mobile_enabled',
                     'video_muted_enabled',
                     'poster_only_on_mobile',
                     # 'allow_fullscreen_enabled',

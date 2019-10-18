@@ -135,6 +135,11 @@ class AllinkVideoFilePlugin(AllinkVideoBasePlugin):
         'Autostart',
         default=True
     )
+    auto_start_mobile_enabled = models.BooleanField(
+        'Autostart mobile',
+        default=False,
+        help_text='Caution: Autoplaying videos on mobile is not recommended. Use wisely.',
+    )
     allow_fullscreen_enabled = models.BooleanField(
         'Allow fullscreen',
         default=False
