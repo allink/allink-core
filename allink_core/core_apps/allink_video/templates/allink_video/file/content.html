@@ -5,7 +5,7 @@
     {# create thumbnail #}
     {% thumbnail instance.video_poster_image 1500x9999 upscale=False as placeholder_image %}
 
-    <div class="content-plugin video-file-plugin video-{{ instance.id }} on-pause {% if instance.auto_start_enabled %}autoplay-enabled{% endif %} {{ instance.css_classes }}" style="padding-bottom: calc(({{placeholder_image.height}} / {{placeholder_image.width}}) * 100%);">
+    <div class="content-plugin video-file-plugin video-{{ instance.id }} on-pause {% if instance.auto_start_enabled %}autoplay-enabled{% endif %} {% if instance.auto_start_mobile_enabled %}autoplay-mobile-enabled{% endif %} {{ instance.css_classes }}" style="padding-bottom: calc(({{placeholder_image.height}} / {{placeholder_image.width}}) * 100%);">
 
         <video
             id="video-{{ instance.id }}"
