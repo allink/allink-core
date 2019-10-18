@@ -18,6 +18,10 @@ new features or plugins
 ### FIXES
 general bugfixes
 
+## v2.2.0
+### IMPORTANT
+- UPDATE REQUIRED: allink-core-static v2.2.0
+
 ## v2.0.8
 ### IMPORTANT
 - Required update: [allink-core-static](https://github.com/allink/allink-core-static/commit/1190bda8b5dc38add612be8acb3cb77cfddbc1f6)
