@@ -3,7 +3,6 @@ from django import forms
 from cms.models.pagemodel import Page
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
-from webpack_loader.utils import get_files
 
 from allink_core.core.models.mixins import AllinkTeaserMixin
 from allink_core.apps.config.utils import get_page_teaser_dict

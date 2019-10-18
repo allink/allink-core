@@ -10,17 +10,22 @@ class Command(BaseCommand):
     help = ("Create a new app with some allink boilerplate code.")
 
     def add_arguments(self, parser):
-        parser.add_argument('dummy_app_path', help='The path to copy the files to', nargs='?', default='allink_core/core/customisation/dummy_app')
-        parser.add_argument('app_path', help='The path to copy the files to')
+        parser.add_argument(
+            'dummy_app_path',
+            help='The path to copy the files to',
+            nargs='?',
+            default='allink_core/core/customisation/dummy_new_app'
+        )
         parser.add_argument('app_label', help='The application name')
         parser.add_argument('model_name', help='The model name')
+        parser.add_argument('app_path', help='The path to copy the files to', nargs='?', default='apps')
 
     def handle(self, *args, **options):
 
         dummy_app_path = options['dummy_app_path']
         app_label = options['app_label']
-        app_path = options['app_path']
         model_name = options['model_name']
+        app_path = options['app_path']
 
         try:
             create_new_app(

@@ -16,8 +16,8 @@ from .models import DummyApp
 
 @admin.register(DummyApp)
 class DummyAppAdmin(AllinkMediaAdminMixin, AllinkSEOAdminMixin, AllinkCategoryAdminMixin,
-                   AllinkTeaserAdminMixin, PlaceholderAdminMixin, TranslatableAdmin, SortableAdmin):
-    list_display = ('title', 'all_categories_column', )
+                    AllinkTeaserAdminMixin, PlaceholderAdminMixin, TranslatableAdmin, SortableAdmin):
+    list_display = ('title', 'all_categories_column',)
     list_filter = ('status', 'categories',)
 
     def get_fieldsets(self, request, obj=None):
