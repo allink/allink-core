@@ -30,6 +30,10 @@ For the next steps, we assume you are working on the [boilerplate-2.0](https://g
   
 You are all set. When you now run `docker-compose up` your application will run with your local allink-core repo. However if you run `docker-compose build` you will still be installing the allink-core repo from the requirements file.
 
+If you need to run `docker-compose build` with your new branch. Just commit your changes to your feature branch on the allink-core repo and add it to the boilerplate-2.0 requirementsfile with the corresponding commit hash. e.g: `https://github.com/allink/allink-core/tarball/ccb67deaed7dbc07bd565c717a21c0a07752bd9d`
+
+
+
 #### create a new release of allink-core
 1. create a new pull request (make sure you include your changes to CHANGELOG.md)
 2. merge back to version branch e.g v2.0.x

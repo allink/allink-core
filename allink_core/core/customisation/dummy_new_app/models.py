@@ -9,7 +9,7 @@ from parler.models import TranslatedField
 from djangocms_text_ckeditor.fields import HTMLField
 from filer.fields.image import FilerImageField
 
-from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
+from allink_core.core.models.fields import SortedM2MModelField
 from allink_core.core.models import (
     AllinkCategoryFieldsModel,
     AllinkBaseTranslatableModel,
@@ -39,11 +39,11 @@ class DummyApp(SortableMixin, AllinkCategoryFieldsModel, AllinkBaseTranslatableM
         db_index=True
     )
     header_placeholder = PlaceholderField(
-       'dummy_app_header',
+        'dummy_app_header',
         related_name='%(app_label)s_%(class)s_header_placeholder'
     )
     content_placeholder = PlaceholderField(
-       'dummy_app_content',
+        'dummy_app_content',
         related_name='%(app_label)s_%(class)s_content_placeholder'
     )
 
@@ -62,7 +62,7 @@ class DummyAppTranslation(AllinkBaseTranslatedFieldsModel):
         on_delete=models.CASCADE,
         related_name='translations',
         null=True
-        )
+    )
 
     title = models.CharField(
         max_length=255
@@ -73,6 +73,7 @@ class DummyAppTranslation(AllinkBaseTranslatedFieldsModel):
         blank=True,
         null=True,
     )
+
     class Meta:
         app_label = 'dummy_app'
 
@@ -84,7 +85,7 @@ class DummyAppAppContentPlugin(AllinkBaseAppContentPlugin):
         'dummy_app.DummyApp',
         blank=True,
         help_text=('Select and arrange specific entries, or, leave blank to select all. (If '
-                    'manual entries are selected the category filtering will be applied as well.)')
+                   'manual entries are selected the category filtering will be applied as well.)')
     )
     apphook_page = PageField(
         verbose_name='Apphook Page',
@@ -96,4 +97,3 @@ class DummyAppAppContentPlugin(AllinkBaseAppContentPlugin):
 
     class Meta:
         app_label = 'dummy_app'
-

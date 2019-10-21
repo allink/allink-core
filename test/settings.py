@@ -180,7 +180,6 @@ INSTALLED_APPS = [
     'filer',
     'easy_thumbnails',
     'mptt',
-    'aldryn_common',
     'aldryn_google_tag_manager',
 ] + ALLINK_INSTALLED_APPS
 

@@ -9,6 +9,7 @@ from django.utils.translation import gettext_lazy as _
 
 from cms.apphook_pool import apphook_pool
 from cms.models import Page
+import sortedm2m.fields
 
 from allink_core.core.loading import get_model
 from allink_core.core.forms import widgets
@@ -115,3 +116,18 @@ class SelectLinkField(forms.fields.ChoiceField):
         if set_cache:
             cache.set('page_app_link_choices', choices, 30)
         return choices
+
+
+class SortedM2MFormField(sortedm2m.fields.SortedMultipleChoiceField):
+    """
+    Copied from https://github.com/divio/aldryn-common
+
+    Copied because this package is no longer maintained.
+    https://github.com/divio/aldryn-common/commit/6582754be67390d056d4aaa1f799c183e808c914
+
+    """
+    widget = widgets.SortedM2MWidget
+
+    def __init__(self, *args, **kwargs):
+        kwargs['widget'] = self.widget
+        super(SortedM2MFormField, self).__init__(*args, **kwargs)

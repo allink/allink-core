@@ -11,7 +11,7 @@ from parler.models import TranslatedField
 from djangocms_text_ckeditor.fields import HTMLField
 from filer.fields.image import FilerImageField
 
-from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
+from allink_core.core.models.fields import SortedM2MModelField
 from allink_core.core.loading import get_class
 from allink_core.core.models import (
     AllinkCategoryFieldsModel,
@@ -349,9 +349,8 @@ class BaseLocationsTranslation(AllinkBaseTranslatedFieldsModel):
     )
     opening_hours_display = HTMLField(
         'Opening hours',
-        help_text=
-            'This Text will be used to show the Opening hours on the location detail page. '
-            'If provided, the detailed opening hours will be overriden.',
+        help_text=('This Text will be used to show the Opening hours on the location detail page. '
+                   'If provided, the detailed opening hours will be overriden.'),
         blank=True,
         null=True,
     )
