@@ -18,6 +18,17 @@ new features or plugins
 ### FIXES
 general bugfixes
 
+## v2.2.2
+### IMPORTANT
+We removed aldryn-common as a dependency as this will no longer be maintained. Replace every occurence of 'aldryn_common' in your project (inlcuding migration files).
+Search for:
+'aldryn_common.admin_fields.sortedm2m' -> replace with ''
+## REQUIREMENTS
+- removed aldryn-common (deinstall the divio addon in th control panel)
+- added django-sortedm2m==2.0.0
+### NEW
+- added sortedm2m model fields to core
+
 ## v2.2.1
 ## NEW
 - refactored customisation commands for new_app and fork_app

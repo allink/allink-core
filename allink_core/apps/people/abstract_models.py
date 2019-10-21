@@ -10,7 +10,7 @@ from djangocms_text_ckeditor.fields import HTMLField
 from filer.fields.image import FilerImageField
 from django.utils.functional import cached_property
 
-from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
+from allink_core.core.models.fields import SortedM2MModelField
 from allink_core.core.models import (
     AllinkCategoryFieldsModel,
     AllinkBaseTranslatableModel,

@@ -9,7 +9,7 @@ from parler.models import TranslatedField
 from djangocms_text_ckeditor.fields import HTMLField
 from filer.fields.image import FilerImageField
 
-from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
+from allink_core.core.models.fields import SortedM2MModelField
 from allink_core.core.models import (
     AllinkCategoryFieldsModel,
     AllinkBaseTranslatableModel,

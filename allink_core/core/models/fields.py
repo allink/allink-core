@@ -3,12 +3,10 @@ from functools import partial
 from django.core.validators import MaxValueValidator
 from django.db import models
 from django.db.models.fields import PositiveIntegerField
-from django.utils.translation import ugettext as _
-
 from cms.models.pluginmodel import CMSPlugin
+import sortedm2m.fields
 
 from allink_core.core.forms import fields
-
 
 # Add an app namespace to related_name to avoid field name clashes
 # with any other plugins that have a field with the same name as the
@@ -57,3 +55,14 @@ class ZipCodeField(PositiveIntegerField):
         }
         defaults.update(kwargs)
         return super(ZipCodeField, self).formfield(**defaults)
+
+
+class SortedM2MModelField(sortedm2m.fields.SortedManyToManyField):
+    default_field_class = fields.SortedM2MFormField
+
+    def formfield(self, **kwargs):
+        defaults = {
+            'form_class': self.default_field_class,
+        }
+        defaults.update(kwargs)
+        return super(SortedM2MModelField, self).formfield(**defaults)

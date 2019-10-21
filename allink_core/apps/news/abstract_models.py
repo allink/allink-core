@@ -6,7 +6,7 @@ from model_utils.fields import AutoCreatedField
 from parler.models import TranslatedField
 from filer.fields.image import FilerImageField
 from djangocms_text_ckeditor.fields import HTMLField
-from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
+from allink_core.core.models.fields import SortedM2MModelField
 
 from allink_core.core.models import (
     AllinkCategoryFieldsModel,
