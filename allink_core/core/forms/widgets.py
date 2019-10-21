@@ -126,7 +126,7 @@ class SortedM2MWidget(sortedm2m.forms.SortedCheckboxSelectMultiple):
 
     """
 
-    template = 'admin/allink_core/widgets/sortedm2m_widget.html'
+    template = 'widgets/sortedm2m_widget.html'
 
     def render(self, name, value, attrs=None, choices=()):
         # TODO: make a pull request to sortedm2m to make it easy to override the template
