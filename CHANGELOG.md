@@ -20,11 +20,14 @@ general bugfixes
 
 ## v2.2.0
 ### IMPORTANT
-- UPDATE REQUIRED: allink-core-static v2.2.0
+- UPDATE REQUIRED: [allink-core-static v2.2.0](https://github.com/allink/allink-core-static/blob/v2.2.0/CHANGELOG.md)
+## NEW
+- Video-Plugin:
+    - Added autoplay option for mobile devices
 
 ## v2.1.0
 ### IMPORTANT
-- UPDATE REQUIRED: allink-core v2.1.0
+- UPDATE REQUIRED: [allink-core-static v2.1.0](https://github.com/allink/allink-core-static/blob/v2.1.0/CHANGELOG.md)
 
 ## v2.0.8
 ### IMPORTANT
