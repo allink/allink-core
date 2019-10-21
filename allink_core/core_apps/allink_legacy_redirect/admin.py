@@ -16,10 +16,8 @@ from allink_core.core.forms.mixins import AllinkInternalLinkFieldMixin
 
 
 class AllinkLegacyChangeAdminForm(AllinkInternalLinkFieldMixin, forms.ModelForm):
-    LANGUAGE_CHOICES = settings.LANGUAGES
-
     language = forms.ChoiceField(label='Link Target', required=False,
-                                 choices=LANGUAGE_CHOICES)
+                                 choices=settings.LANGUAGES)
 
     new_link = SelectLinkField(label='New Page', required=False)
 
