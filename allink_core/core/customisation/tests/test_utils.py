@@ -11,9 +11,10 @@ class CustomisationUtilsTestCase(TestCase):
     model_name = 'NewApp'
 
     def test_copy_dummy_dir_already_exists(self):
-        apps_dir = 'apps'
-        with self.assertRaisesRegex(OSError, "'{}' directory already exists!".format(apps_dir)):
-            copy_dir(dummy_app_path=self.dummy_app_path, app_path=apps_dir)
+        with tempfile.TemporaryDirectory(prefix='temp_apps') as temp_apps_dir:
+            apps_dir = temp_apps_dir
+            with self.assertRaisesRegex(OSError, "'{}' directory already exists!".format(apps_dir)):
+                copy_dir(dummy_app_path=self.dummy_app_path, app_path=apps_dir)
 
     def test_copy_dummy_dir_all_files_copied(self):
         with tempfile.TemporaryDirectory(prefix='temp_apps') as temp_apps_dir:
