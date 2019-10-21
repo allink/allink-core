@@ -124,18 +124,6 @@ msgstr "La page recherchée n'existe pas."
 msgid "Continue to homepage"
 msgstr "Retour à la page d'accueil"
 
-#: allink_core/core/templates/allink_core/admin/aldryn_common/widgets/sortedm2m_widget.html:4
-msgid "Type into this box to filter down the list."
-msgstr ""
-
-#: allink_core/core/templates/allink_core/admin/aldryn_common/widgets/sortedm2m_widget.html:5
-msgid "Filter"
-msgstr ""
-
-#: allink_core/core/templates/allink_core/admin/aldryn_common/widgets/sortedm2m_widget.html:20
-msgid "Choose items and order by drag & drop."
-msgstr ""
-
 #: allink_core/core/templates/allink_core/admin/change_form.html:21
 msgid "Home"
 msgstr ""

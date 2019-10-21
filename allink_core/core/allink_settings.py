@@ -135,15 +135,6 @@ ALLINK_LOCALE_PATHS = [
     '/app/allink_core/apps/people/locale',
     '/app/allink_core/apps/testimonials/locale',
     '/app/allink_core/apps/newsletter/locale',
-
-    # '/app/allink_apps/news/locale',
-    # '/app/allink_apps/events/locale',
-    # '/app/allink_apps/config/locale',
-    # '/app/allink_apps/contact/locale',
-    # '/app/allink_apps/locations/locale',
-    # '/app/allink_apps/people/locale',
-    # '/app/allink_apps/testimonials/locale',
-
     # core
     '/app/allink_core/core/locale',
     # core_apps

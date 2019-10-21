@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-15 16:27+0200\n"
+"POT-Creation-Date: 2019-10-21 14:53+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,64 +20,22 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: allink_core/apps/news/abstract_models.py:56
-msgid "Preview Image"
+#: settings.py:531 test_settings.py:515
+msgid "Read more"
 msgstr ""
 
-#: allink_core/apps/news/abstract_models.py:63
-#: allink_core/apps/news/admin.py:22
-msgid "Template"
+#: templates/djangocms_transfer/import_plugins.html:5
+msgid "Import plugins"
 msgstr ""
 
-#: allink_core/apps/news/abstract_models.py:64
-msgid "Choose a template."
-msgstr ""
+#: templates/djangocms_transfer/import_plugins.html:8
+msgid "Please correct the error below."
+msgid_plural "Please correct the errors below."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
-#: allink_core/apps/news/abstract_models.py:79
-msgid "News entry"
-msgstr ""
-
-#: allink_core/apps/news/abstract_models.py:80
-msgid "News"
-msgstr ""
-
-#: allink_core/apps/news/abstract_models.py:98
-msgid "Slug"
-msgstr ""
-
-#: allink_core/apps/news/abstract_models.py:102
-msgid "Leave blank to auto-generate a unique slug."
-msgstr ""
-
-#: allink_core/apps/news/abstract_models.py:105
-msgid "Lead Text"
-msgstr ""
-
-#: allink_core/apps/news/abstract_models.py:106
-msgid ""
-"Teaser text that in some cases is used in the list view and/or in the detail "
-"view."
-msgstr ""
-
-#: allink_core/apps/news/abstract_models.py:120
-msgid ""
-"Select and arrange specific entries, or, leave blank to select all. (If "
-"manual entries are selected the category filtering will be ignored.)"
-msgstr ""
-
-#: allink_core/apps/news/abstract_models.py:124
-msgid "Apphook Page"
-msgstr ""
-
-#: allink_core/apps/news/abstract_models.py:128
-msgid ""
-"If provided, this Apphook-Page will be used to generate the detail link."
-msgstr ""
-
-#: allink_core/apps/news/cms_apps.py:8
-msgid "News Apphook"
-msgstr ""
-
-#: allink_core/apps/news/cms_menus.py:15
-msgid "News menu"
+#: templates/djangocms_transfer/import_plugins.html:31
+msgid "Import"
 msgstr ""
