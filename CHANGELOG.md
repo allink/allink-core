@@ -18,6 +18,10 @@ new features or plugins
 ### FIXES
 general bugfixes
 
+## v2.2.1
+## NEW
+- refactored customisation commands for new_app and fork_app
+
 ## v2.2.0
 ### IMPORTANT
 - UPDATE REQUIRED: [allink-core-static v2.2.0](https://github.com/allink/allink-core-static/blob/v2.2.0/CHANGELOG.md)
