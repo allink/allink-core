@@ -1,6 +1,6 @@
 import os
 
-__version__ = '2.2.1'
+__version__ = '2.2.2'
 
 # Cheeky setting that allows each template to be accessible by two paths.
 # Eg: the template 'allink/templates/allink/base.html' can be accessed via both
