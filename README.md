@@ -12,8 +12,11 @@ The steps we describe here are mostly closely coupled to our setup and environme
 
 ## Release conventions
 
+### Major
+v.0.x.x, v.1.x.x and v.2.x.x are not compatible with each other. We never migrated from one to an other and doing so would be a be a lot of manual work, as there have been a lot of database changes. We try to minimize the need for a new major version. The decision if v3.x.x will be compatible with v.2.x.x has yet to be made.
+
 ### Minor
-When you make changes that affect both the [backend](https://github.com/allink/allink-core) and the [frontend](https://github.com/allink/allink-core-static) the project dependencies need to be updated at the same time. To quickly see which releases belong together we recommend making a `minor` release in both repositories. 
+When you make changes that affect both the [backend](https://github.com/allink/allink-core) and the [frontend](https://github.com/allink/allink-core-static) the project dependencies need to be updated at the same time. To quickly see which releases belong together you should make a `minor` release in both repositories. 
 
 #### Example
 A new CMS plugin together with styles has been added to the core. Release a new `minor` version:
