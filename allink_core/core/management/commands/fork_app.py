@@ -10,10 +10,10 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument(
-            'dummy_app_path',
-            help='The path to copy the files to',
+            'dummy_app',
+            help='The module to copy the files from',
             nargs='?',
-            default='allink_core/core/customisation/dummy_fork_app_minimum'
+            default='allink_core.core.customisation.dummy_fork_app_minimum'
         )
         parser.add_argument('app_label', help="The application name of the app in 'allink_core.apps'")
         parser.add_argument('app_path', help='The path to copy the files to')
@@ -26,17 +26,17 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
 
-        dummy_app_path = options['dummy_app_path']
+        dummy_app = options['dummy_app']
         app_label = options['app_label']
         app_path = options['app_path']
         example = options['example']
 
         if example:
-            dummy_app_path = 'allink_core/core/customisation/dummy_fork_app_example'
+            dummy_app = 'allink_core/core/customisation/dummy_fork_app_example'
 
         try:
             fork_allink_app(
-                dummy_app_path=dummy_app_path,
+                dummy_app=dummy_app,
                 app_label=app_label,
                 app_path=app_path
             )
@@ -47,7 +47,8 @@ class Command(BaseCommand):
             """
                 The final steps:\n
                 1. add '{app_path}.{app_label}', to OVERRIDDEN_ALLINK_CORE_APPS \n
-                2. if you have already overwritten templates in the project templates dir, move them to {app_path}/{app_label}/templates/{app_label} \n
+                2. if you have already overwritten templates in the project templates dir,
+                 move them to {app_path}/{app_label}/templates/{app_label} \n
             """
         ).format(
             app_label=app_label,
@@ -57,9 +58,10 @@ class Command(BaseCommand):
         if example:
             msg += (
                 """
-                3. make sure you remove all files which you don't need! (be generouse here, you can always have peek into version control later.)\n
-                4. make sure you remove all comments which you don't need! (be generouse here, you can always have peek into version control later.)\n
+                3. make sure you remove all files which you don't need! (be generouse here, you can always have peek
+                 into version control later.)\n
+                4. make sure you remove all comments which you don't need! (be generouse here, you can always have
+                 peek into version control later.)\n
                 """
             )
-
         self.stdout.write(self.style.SUCCESS(msg))
