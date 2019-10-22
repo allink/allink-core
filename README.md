@@ -5,7 +5,7 @@ allink-core is ment to be used with our boilerplate project which is hosted on t
 The steps we describe here are mostly closely coupled to our setup and environment. So the described steps might not make sense to you, when you don't know our setup. Also we skip steps which we already included in the boilerplate.
 
 ## Documentation
-[v2.x.x](http://allink-core.readthedocs.io/en/v2.0.x/)
+[v2.x.x](http://allink-core.readthedocs.io/en/v2.x.x/)
 
 ## Working on documentation
 `make docs` will serve you a preview of the local docs on "http://127.0.0.1:8000". More Information on [mkdocs.org](http://www.mkdocs.org/) or [mkdocs rtd](https://mkdocs.readthedocs.io/en/stable/).
