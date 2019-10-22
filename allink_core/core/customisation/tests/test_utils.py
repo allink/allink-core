@@ -101,8 +101,8 @@ class CustomisationNewAppTestCase(TestCase):
             create_new_app(
                 dummy_app=self.dummy_app,
                 app_path=full_temp_path,
-                app_label=self.app_label,
-                model_name=self.model_name
+                model_name=self.model_name,
+                app_label=self.app_label
             )
 
             expected_file_count = 24
@@ -115,8 +115,8 @@ class CustomisationNewAppTestCase(TestCase):
             create_new_app(
                 dummy_app=self.dummy_app,
                 app_path=full_temp_path,
-                app_label=self.app_label,
-                model_name=self.model_name
+                model_name=self.model_name,
+                app_label=self.app_label
             )
 
             expected_file_count = 29
@@ -129,8 +129,8 @@ class CustomisationNewAppTestCase(TestCase):
             create_new_app(
                 dummy_app=self.dummy_app,
                 app_path=full_temp_path,
-                app_label=self.app_label,
-                model_name=self.model_name
+                model_name=self.model_name,
+                app_label=self.app_label
             )
 
             not_expected = ['dummy_app', 'dummyapp']

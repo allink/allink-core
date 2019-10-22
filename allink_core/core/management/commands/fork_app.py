@@ -45,11 +45,10 @@ class Command(BaseCommand):
 
         msg = (
             """
-                The final steps:\n
-                1. add '{app_path}.{app_label}', to OVERRIDDEN_ALLINK_CORE_APPS \n
-                2. if you have already overwritten templates in the project templates dir,
-                 move them to {app_path}/{app_label}/templates/{app_label} \n
-            """
+            The final steps:\n
+            1. add '{app_path}.{app_label}', to OVERRIDDEN_ALLINK_CORE_APPS \n
+            2. if you have already overwritten templates in the project templates dir, move them to {app_path}/{app_label}/templates/{app_label} \n
+            """  # noqa
         ).format(
             app_label=app_label,
             app_path=app_path,
@@ -58,10 +57,8 @@ class Command(BaseCommand):
         if example:
             msg += (
                 """
-                3. make sure you remove all files which you don't need! (be generouse here, you can always have peek
-                 into version control later.)\n
-                4. make sure you remove all comments which you don't need! (be generouse here, you can always have
-                 peek into version control later.)\n
-                """
+                3. make sure you remove all files which you don't need! (be generouse here, you can always have peek into version control later.)\n
+                4. make sure you remove all comments which you don't need! (be generouse here, you can always have peek into version control later.)\n
+                """  # noqa
             )
         self.stdout.write(self.style.SUCCESS(msg))

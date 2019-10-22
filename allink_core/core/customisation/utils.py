@@ -61,12 +61,12 @@ def replace_strings(file_path, replace):
         'dummy-app': 'new-app',
     }
     """
-    with open(file_path, "rt") as f:
+    with open(file_path, 'r') as f:
         s = f.read()
         for item in replace.items():
             s = s.replace(item[0], item[1])
 
-    with open(file_path, "w") as f:
+    with open(file_path, 'w') as f:
         f.write(s)
 
 
@@ -108,19 +108,21 @@ def rename_and_replace(path, replace):
     """
     for root, dirs, files in os.walk(path):
         for dir in dirs:
-            # rename directories
-            dir_path = os.path.join(root, dir)
-            rename(path=dir_path, replace=replace)
+            if not dir == '__pycache__':
+                # rename directories
+                dir_path = os.path.join(root, dir)
+                rename(path=dir_path, replace=replace)
 
     # file renaming needs to be done in a second iteration as the directory names have changed
     for root, dirs, files in os.walk(path):
         for file in files:
-            # rename file names
-            file_path = os.path.join(root, file)
-            # rename dummy classes and import statements
-            replace_strings(file_path=file_path, replace=replace)
-            # rename file and dir names
-            rename(path=file_path, replace=replace)
+            if not file.endswith('.pyc'):
+                # rename file names
+                file_path = os.path.join(root, file)
+                # rename dummy classes and import statements
+                replace_strings(file_path=file_path, replace=replace)
+                # rename file and dir names
+                rename(path=file_path, replace=replace)
 
 
 def create_new_app(dummy_app, app_path, app_label, model_name):
