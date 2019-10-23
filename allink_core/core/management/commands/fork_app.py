@@ -32,7 +32,7 @@ class Command(BaseCommand):
         example = options['example']
 
         if example:
-            dummy_app = 'allink_core/core/customisation/dummy_fork_app_example'
+            dummy_app = 'allink_core.core.customisation.dummy_fork_app_example'
 
         try:
             fork_allink_app(
