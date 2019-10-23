@@ -40,7 +40,7 @@ class CustomisationUtilsTestCase(TestCase):
             full_temp_path = os.path.join(temp_apps_dir, self.app_label)
             copy_dir(dummy_app=self.dummy_app_path, app_path=full_temp_path)
             total_file_count = sum([len(files) for r, d, files in os.walk(full_temp_path)])
-            expected_file_count = 24
+            expected_file_count = 23
             self.assertEqual(total_file_count, expected_file_count)
 
     def test_rename_dummy_classes_in_one_file(self):
@@ -105,7 +105,7 @@ class CustomisationNewAppTestCase(TestCase):
                 app_label=self.app_label
             )
 
-            expected_file_count = 24
+            expected_file_count = 23
             self.assertEqual(mock_replace_strings.call_count, expected_file_count)
 
     @mock.patch('allink_core.core.customisation.utils.rename')
@@ -119,7 +119,7 @@ class CustomisationNewAppTestCase(TestCase):
                 app_label=self.app_label
             )
 
-            expected_file_count = 29
+            expected_file_count = 28
             self.assertEqual(mock_rename_file.call_count, expected_file_count)
 
     def test_create_new_app_no_dummy_app_names(self):

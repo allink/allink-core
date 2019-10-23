@@ -152,9 +152,6 @@ def create_new_app(dummy_app, app_path, app_label, model_name):
     }
     rename_and_replace(new_app_path, replace)
 
-    # remove 'README.md'
-    os.remove(os.path.join(new_app_path, 'README.md'))
-
 
 def fork_allink_app(dummy_app, app_path, app_label):
     """
