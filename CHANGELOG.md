@@ -18,11 +18,17 @@ new features or plugins
 ### FIXES
 general bugfixes
 
+
+## v2.2.3
+### FIXES
+- fixed fork_app and new_app command [#17](https://github.com/allink/allink-core/pull/17)
+- moved language choices from legacylinks models to forms, so no "shadow" migrations will be created on client projects [#12](https://github.com/allink/allink-core/pull/12)
+
 ## v2.2.2
 ### IMPORTANT
 We removed aldryn-common as a dependency as this will no longer be maintained. Replace every occurence of 'aldryn_common' in your project (inlcuding migration files).
 Search for: 'aldryn_common.admin_fields.sortedm2m' and replace with 'allink_core.core.models.fields'
-## REQUIREMENTS
+###### REQUIREMENTS
 - removed aldryn-common (deinstall the divio addon in th control panel)
 - added django-sortedm2m==2.0.0
 ### NEW
@@ -48,7 +54,7 @@ Search for: 'aldryn_common.admin_fields.sortedm2m' and replace with 'allink_core
 - Required update: [allink-core-static](https://github.com/allink/allink-core-static/commit/1190bda8b5dc38add612be8acb3cb77cfddbc1f6)
 ### FIXES
 - Cleanup and new elements in styleguide template
-- Updated buttons markup in testimonial, app content load more and browser-check templates
+- Updated buttons markup in testimonial, app content load more and browser-check templates 
 
 ## v2.0.7
 ### FIXES
