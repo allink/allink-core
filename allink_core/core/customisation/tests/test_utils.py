@@ -2,7 +2,8 @@ import tempfile
 import os
 from django.test import TestCase
 from unittest import mock
-from ..utils import copy_dir, create_new_app, replace_strings, rename, fork_allink_app
+from distutils.errors import DistutilsFileError
+from ..utils import get_path, copy_dir, create_new_app, replace_strings, rename, fork_allink_app
 
 
 class CustomisationUtilsTestCase(TestCase):
@@ -10,24 +11,42 @@ class CustomisationUtilsTestCase(TestCase):
     app_label = 'new_app'
     model_name = 'NewApp'
 
+    def test_get_path_from_module(self):
+        import django
+        django_dirname = os.path.dirname(django.db.models.__file__)
+        path_from_module_string = get_path('django.db.models')
+
+        self.assertEqual(path_from_module_string, django_dirname)
+
+    def test_get_path_from_module_not_found(self):
+        with self.assertRaisesRegex(ModuleNotFoundError, "No module named 'some_model'"):
+            get_path('some_model.something')
+
     def test_copy_dummy_dir_already_exists(self):
         with tempfile.TemporaryDirectory(prefix='temp_apps') as temp_apps_dir:
             apps_dir = temp_apps_dir
             with self.assertRaisesRegex(OSError, "'{}' directory already exists!".format(apps_dir)):
-                copy_dir(dummy_app_path=self.dummy_app_path, app_path=apps_dir)
+                copy_dir(dummy_app=self.dummy_app_path, app_path=apps_dir)
+
+    def test_copy_dummy_dir_wrong_dummy_path(self):
+        wrong_dummy_path = 'hello'
+        with tempfile.TemporaryDirectory(prefix='temp_apps') as temp_apps_dir:
+            apps_dir = os.path.join(temp_apps_dir, self.app_label)
+            with self.assertRaisesRegex(DistutilsFileError, "cannot copy tree '{}': not a directory".format(wrong_dummy_path)):
+                copy_dir(dummy_app=wrong_dummy_path, app_path=apps_dir)
 
     def test_copy_dummy_dir_all_files_copied(self):
         with tempfile.TemporaryDirectory(prefix='temp_apps') as temp_apps_dir:
             full_temp_path = os.path.join(temp_apps_dir, self.app_label)
-            copy_dir(dummy_app_path=self.dummy_app_path, app_path=full_temp_path)
+            copy_dir(dummy_app=self.dummy_app_path, app_path=full_temp_path)
             total_file_count = sum([len(files) for r, d, files in os.walk(full_temp_path)])
-            expected_file_count = 24
+            expected_file_count = 23
             self.assertEqual(total_file_count, expected_file_count)
 
     def test_rename_dummy_classes_in_one_file(self):
         with tempfile.TemporaryDirectory(prefix='temp_apps') as temp_apps_dir:
             full_temp_path = os.path.join(temp_apps_dir, self.app_label)
-            copy_dir(dummy_app_path=self.dummy_app_path, app_path=full_temp_path)
+            copy_dir(dummy_app=self.dummy_app_path, app_path=full_temp_path)
 
             new_file = os.path.join(full_temp_path, 'models.py')
 
@@ -51,7 +70,7 @@ class CustomisationUtilsTestCase(TestCase):
     def test_rename_dir_or_file_one_file(self):
         with tempfile.TemporaryDirectory(prefix='temp_apps') as temp_apps_dir:
             full_temp_path = os.path.join(temp_apps_dir, self.app_label)
-            copy_dir(dummy_app_path=self.dummy_app_path, app_path=full_temp_path)
+            copy_dir(dummy_app=self.dummy_app_path, app_path=full_temp_path)
 
             replace = {
                 'dummy_app': self.app_label,
@@ -71,7 +90,7 @@ class CustomisationUtilsTestCase(TestCase):
 
 
 class CustomisationNewAppTestCase(TestCase):
-    dummy_app_path = 'allink_core/core/customisation/dummy_new_app'
+    dummy_app = 'allink_core.core.customisation.dummy_new_app'
     app_label = 'new_app'
     model_name = 'NewApp'
 
@@ -80,13 +99,13 @@ class CustomisationNewAppTestCase(TestCase):
         with tempfile.TemporaryDirectory(prefix='temp_apps') as temp_apps_dir:
             full_temp_path = os.path.join(temp_apps_dir, self.app_label)
             create_new_app(
-                dummy_app_path=self.dummy_app_path,
+                dummy_app=self.dummy_app,
                 app_path=full_temp_path,
-                app_label=self.app_label,
-                model_name=self.model_name
+                model_name=self.model_name,
+                app_label=self.app_label
             )
 
-            expected_file_count = 24
+            expected_file_count = 23
             self.assertEqual(mock_replace_strings.call_count, expected_file_count)
 
     @mock.patch('allink_core.core.customisation.utils.rename')
@@ -94,13 +113,13 @@ class CustomisationNewAppTestCase(TestCase):
         with tempfile.TemporaryDirectory(prefix='temp_apps') as temp_apps_dir:
             full_temp_path = os.path.join(temp_apps_dir, self.app_label)
             create_new_app(
-                dummy_app_path=self.dummy_app_path,
+                dummy_app=self.dummy_app,
                 app_path=full_temp_path,
-                app_label=self.app_label,
-                model_name=self.model_name
+                model_name=self.model_name,
+                app_label=self.app_label
             )
 
-            expected_file_count = 29
+            expected_file_count = 28
             self.assertEqual(mock_rename_file.call_count, expected_file_count)
 
     def test_create_new_app_no_dummy_app_names(self):
@@ -108,10 +127,10 @@ class CustomisationNewAppTestCase(TestCase):
             full_temp_path = os.path.join(temp_apps_dir, self.app_label)
 
             create_new_app(
-                dummy_app_path=self.dummy_app_path,
+                dummy_app=self.dummy_app,
                 app_path=full_temp_path,
-                app_label=self.app_label,
-                model_name=self.model_name
+                model_name=self.model_name,
+                app_label=self.app_label
             )
 
             not_expected = ['dummy_app', 'dummyapp']
@@ -126,9 +145,8 @@ class CustomisationNewAppTestCase(TestCase):
 
 
 class CustomisationForkAppTestCase(TestCase):
-    dummy_app_path = 'allink_core/core/customisation/dummy_fork_app_minimum'
+    dummy_app = 'allink_core.core.customisation.dummy_fork_app_minimum'
     app_label = 'news'
-    model_name='News'
 
     expected_dirs = ['templates']
     expected_files = [
@@ -149,7 +167,7 @@ class CustomisationForkAppTestCase(TestCase):
 
             with self.assertRaisesRegex(ValueError, 'There is no allink_core app'):
                 fork_allink_app(
-                    dummy_app_path=self.dummy_app_path,
+                    dummy_app=self.dummy_app,
                     app_path=full_temp_path,
                     app_label='wrong_app_label'
                 )
@@ -159,7 +177,7 @@ class CustomisationForkAppTestCase(TestCase):
             full_temp_path = os.path.join(temp_apps_dir, self.app_label)
 
             fork_allink_app(
-                dummy_app_path=self.dummy_app_path,
+                dummy_app=self.dummy_app,
                 app_path=full_temp_path,
                 app_label=self.app_label
             )
@@ -178,7 +196,7 @@ class CustomisationForkAppTestCase(TestCase):
             full_temp_path = os.path.join(temp_apps_dir, self.app_label)
 
             fork_allink_app(
-                dummy_app_path=self.dummy_app_path,
+                dummy_app=self.dummy_app,
                 app_path=full_temp_path,
                 app_label=self.app_label
             )
@@ -197,7 +215,7 @@ class CustomisationForkAppTestCase(TestCase):
             full_temp_path = os.path.join(temp_apps_dir, self.app_label)
 
             fork_allink_app(
-                dummy_app_path=self.dummy_app_path,
+                dummy_app=self.dummy_app,
                 app_path=full_temp_path,
                 app_label=self.app_label
             )
