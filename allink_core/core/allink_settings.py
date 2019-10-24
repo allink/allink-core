@@ -35,6 +35,7 @@ ALLINK_INSTALLED_APPS = [
     'django_countries',
     'django.contrib.postgres',
     'inline_static',
+    'django_cleanup',
 
     # allink core apps
     'allink_core.core',
