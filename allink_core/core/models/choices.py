@@ -92,7 +92,7 @@ CONTEXT_CHOICES = get_additional_choices('BUTTON_CONTEXT_CHOICES')
 CONTEXT_DEFAULT = 'default'
 
 BUTTON_CONTEXT_CHOICES = (
-    ('default', 'Default',),
+    (CONTEXT_DEFAULT, 'Default',),
 ) + CONTEXT_CHOICES
 
 BUTTON_CONTEXT_DEFAULT = 'default'
