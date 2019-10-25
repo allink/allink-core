@@ -104,8 +104,6 @@ class AllinkButtonLinkPlugin(CMSPlugin, AllinkLinkFieldsModel):
     # button specific fields
     btn_context = model_fields.Context(
         verbose_name='Variation',
-        choices=choices.BUTTON_CONTEXT_CHOICES,
-        default=choices.BUTTON_CONTEXT_DEFAULT,
     )
     btn_size = model_fields.Size(
         verbose_name='Size',
@@ -117,8 +115,6 @@ class AllinkButtonLinkPlugin(CMSPlugin, AllinkLinkFieldsModel):
     # text link specific fields
     txt_context = model_fields.Context(
         verbose_name='Context',
-        choices=choices.TEXT_LINK_CONTEXT_CHOICES,
-        default=choices.TEXT_LINK_CONTEXT_DEFAULT,
         blank=True,
     )
     # common fields
