@@ -1,0 +1,9 @@
+repos:
+-   repo: git://github.com/luismayta/pre-commit-isort
+    rev: 1.0.1
+    hooks:
+    -   id: isort
+        args:
+        - -q
+        - --recursive
+        - --diff
