@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-17 10:38+0100\n"
+"POT-Creation-Date: 2019-10-09 08:53+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: allink_core_repo/allink_core/allink_mandrill/helpers.py:15
+#: allink_core/allink_mandrill/base.py:295
+msgid "Yes"
+msgstr ""
+
+#: allink_core/allink_mandrill/base.py:295
+msgid "No"
+msgstr ""
+
+#: allink_core/allink_mandrill/helpers.py:15
 msgid ""
 "Mandrill hasn't raised an error but email could not been sent. (status: "
 "'{}', reason: '{}')"

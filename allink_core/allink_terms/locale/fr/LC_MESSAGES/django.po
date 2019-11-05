@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-17 10:38+0100\n"
+"POT-Creation-Date: 2019-10-09 08:53+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,53 +18,52 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: allink_core_repo/allink_core/allink_terms/cms_plugins.py:13
-#: allink_core_repo/allink_core/allink_terms/models.py:47
-#: allink_core_repo/allink_core/allink_terms/models.py:48
+#: allink_core/allink_terms/cms_plugins.py:13
+#: allink_core/allink_terms/models.py:47 allink_core/allink_terms/models.py:48
 msgid "Terms of Service"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_terms/cms_plugins.py:14
+#: allink_core/allink_terms/cms_plugins.py:14
 msgid "allink Apps"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_terms/cms_toolbars.py:18
+#: allink_core/allink_terms/cms_toolbars.py:18
 msgid "{}"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_terms/models.py:24
+#: allink_core/allink_terms/models.py:24
 msgid "Draft"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_terms/models.py:25
+#: allink_core/allink_terms/models.py:25
 msgid "Published"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_terms/models.py:26
+#: allink_core/allink_terms/models.py:26
 msgid "Archived"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_terms/models.py:31
+#: allink_core/allink_terms/models.py:31
 msgid "Terms Text"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_terms/models.py:36
+#: allink_core/allink_terms/models.py:36
 msgid "Terms cms Page"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_terms/models.py:39
+#: allink_core/allink_terms/models.py:39
 msgid "CMS Page which shows Terms and Conditions"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_terms/models.py:42
+#: allink_core/allink_terms/models.py:42
 msgid "Status"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_terms/models.py:51
+#: allink_core/allink_terms/models.py:51
 #, python-format
 msgid "Terms - %s"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_terms/templates/allink_terms/admin/change_form.html:7
+#: allink_core/allink_terms/templates/allink_terms/admin/change_form.html:7
 msgid "Publish"
 msgstr ""

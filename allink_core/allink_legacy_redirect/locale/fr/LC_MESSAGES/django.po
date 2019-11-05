@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-17 10:38+0100\n"
+"POT-Creation-Date: 2019-10-09 08:53+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,77 +18,77 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: allink_core_repo/allink_core/allink_legacy_redirect/admin.py:38
+#: allink_core/allink_legacy_redirect/admin.py:38
 msgid "Test redirect"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_legacy_redirect/admin.py:43
+#: allink_core/allink_legacy_redirect/admin.py:43
 msgid "Manual testing"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_legacy_redirect/cms_toolbars.py:26
+#: allink_core/allink_legacy_redirect/cms_toolbars.py:26
 msgid "Allink"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_legacy_redirect/cms_toolbars.py:31
+#: allink_core/allink_legacy_redirect/cms_toolbars.py:31
 msgid "Legacy Redirect"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_legacy_redirect/forms.py:12
-#: allink_core_repo/allink_core/allink_legacy_redirect/models.py:18
+#: allink_core/allink_legacy_redirect/forms.py:12
+#: allink_core/allink_legacy_redirect/models.py:18
 msgid "New Page"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_legacy_redirect/models.py:16
+#: allink_core/allink_legacy_redirect/models.py:16
 msgid "Old Link"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_legacy_redirect/models.py:20
+#: allink_core/allink_legacy_redirect/models.py:20
 msgid "If provided, gets overriden by external link."
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_legacy_redirect/models.py:24
+#: allink_core/allink_legacy_redirect/models.py:24
 msgid "Overwrite Link"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_legacy_redirect/models.py:28
+#: allink_core/allink_legacy_redirect/models.py:28
 msgid "Overwrites 'New Page', use for special urls that are not listed there"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_legacy_redirect/models.py:32
+#: allink_core/allink_legacy_redirect/models.py:32
 msgid "Active"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_legacy_redirect/models.py:36
+#: allink_core/allink_legacy_redirect/models.py:36
 msgid "Match subpages"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_legacy_redirect/models.py:38
+#: allink_core/allink_legacy_redirect/models.py:38
 msgid "If True, matches all subpages and redirects them to this link."
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_legacy_redirect/models.py:41
+#: allink_core/allink_legacy_redirect/models.py:41
 msgid "Result of last test"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_legacy_redirect/models.py:43
+#: allink_core/allink_legacy_redirect/models.py:43
 msgid ""
 "Was the last automatic test successfull? (True = Yes, False = No, None = Not "
 "yet tested)"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_legacy_redirect/models.py:46
+#: allink_core/allink_legacy_redirect/models.py:46
 msgid "Date of last test"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_legacy_redirect/models.py:52
+#: allink_core/allink_legacy_redirect/models.py:52
 msgid "Legacy Link"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_legacy_redirect/models.py:53
+#: allink_core/allink_legacy_redirect/models.py:53
 msgid "Legacy Links"
 msgstr ""
 
-#: allink_core_repo/allink_core/allink_legacy_redirect/resources.py:9
+#: allink_core/allink_legacy_redirect/resources.py:9
 msgid "Zielseite"
 msgstr ""

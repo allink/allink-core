@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-17 10:38+0100\n"
+"POT-Creation-Date: 2019-10-09 08:53+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,35 +18,35 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: allink_core_repo/allink_core/djangocms_socialicon/cms_plugins.py:12
+#: allink_core/djangocms_socialicon/cms_plugins.py:12
 msgid "Social Icon Container"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_socialicon/cms_plugins.py:13
-#: allink_core_repo/allink_core/djangocms_socialicon/cms_plugins.py:27
+#: allink_core/djangocms_socialicon/cms_plugins.py:13
+#: allink_core/djangocms_socialicon/cms_plugins.py:27
 msgid "allink"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_socialicon/cms_plugins.py:26
+#: allink_core/djangocms_socialicon/cms_plugins.py:26
 msgid "Social Icon"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_socialicon/models.py:18
+#: allink_core/djangocms_socialicon/models.py:18
 msgid "{}"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_socialicon/models.py:24
+#: allink_core/djangocms_socialicon/models.py:24
 msgid "Title"
 msgstr "Titel"
 
-#: allink_core_repo/allink_core/djangocms_socialicon/models.py:25
+#: allink_core/djangocms_socialicon/models.py:25
 msgid "SEO text (not visible) e.g. Follow allink on Instagram"
 msgstr "SEO-Text (nicht sichtbar), bsp.: Folge allink auf Instagram"
 
-#: allink_core_repo/allink_core/djangocms_socialicon/models.py:31
+#: allink_core/djangocms_socialicon/models.py:31
 msgid "Icon"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_socialicon/models.py:36
+#: allink_core/djangocms_socialicon/models.py:36
 msgid "Link"
 msgstr ""

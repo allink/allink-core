@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-17 10:38+0100\n"
+"POT-Creation-Date: 2019-10-09 08:53+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,71 +18,71 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: allink_core_repo/allink_core/djangocms_instagram/cms_plugins.py:17
+#: allink_core/djangocms_instagram/cms_plugins.py:17
 msgid "Instagram Feed"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_instagram/cms_plugins.py:18
+#: allink_core/djangocms_instagram/cms_plugins.py:18
 msgid "allink"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_instagram/forms.py:21
-#: allink_core_repo/allink_core/djangocms_instagram/models.py:46
+#: allink_core/djangocms_instagram/forms.py:21
+#: allink_core/djangocms_instagram/models.py:46
 msgid "Template"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_instagram/models.py:39
+#: allink_core/djangocms_instagram/models.py:39
 msgid "Title"
 msgstr "Titel"
 
-#: allink_core_repo/allink_core/djangocms_instagram/models.py:40
+#: allink_core/djangocms_instagram/models.py:40
 msgid "The section title"
 msgstr "Abschnittstitel"
 
-#: allink_core_repo/allink_core/djangocms_instagram/models.py:47
+#: allink_core/djangocms_instagram/models.py:47
 msgid "Choose a template."
 msgstr "Template wählen"
 
-#: allink_core_repo/allink_core/djangocms_instagram/models.py:51
+#: allink_core/djangocms_instagram/models.py:51
 msgid "Sort order"
 msgstr "Sortierung"
 
-#: allink_core_repo/allink_core/djangocms_instagram/models.py:52
+#: allink_core/djangocms_instagram/models.py:52
 msgid "Choose a order."
 msgstr "Sortierung wählen"
 
-#: allink_core_repo/allink_core/djangocms_instagram/models.py:58
+#: allink_core/djangocms_instagram/models.py:58
 msgid "Grid items per row"
 msgstr "Anzahl Einträge pro Zeile"
 
-#: allink_core_repo/allink_core/djangocms_instagram/models.py:59
+#: allink_core/djangocms_instagram/models.py:59
 msgid "Only applied if a \"Grid\" template has been selected."
 msgstr "Wird nur angewandt, wenn ein \"Grid\"-Template ausgewählt wurde."
 
-#: allink_core_repo/allink_core/djangocms_instagram/models.py:64
+#: allink_core/djangocms_instagram/models.py:64
 msgid "Max. entries per page"
 msgstr "Max. Einträge pro Seite"
 
-#: allink_core_repo/allink_core/djangocms_instagram/models.py:66
+#: allink_core/djangocms_instagram/models.py:66
 msgid "Set to 0 if all entries should be displayed on first page."
 msgstr "Mit 0 können alle Einträge auf der ersten Seite angezeigt werden."
 
-#: allink_core_repo/allink_core/djangocms_instagram/models.py:69
+#: allink_core/djangocms_instagram/models.py:69
 msgid "Account"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_instagram/models.py:70
+#: allink_core/djangocms_instagram/models.py:70
 msgid "Instagram account name"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_instagram/models.py:74
+#: allink_core/djangocms_instagram/models.py:74
 msgid "Follow Text"
 msgstr "Folgen Text"
 
-#: allink_core_repo/allink_core/djangocms_instagram/models.py:75
+#: allink_core/djangocms_instagram/models.py:75
 msgid "Follow us text i.e.: Tag your images with #awesomehashtag"
 msgstr "Folge-uns-Text, bsp.: Tagge deine Bilder mit #awesomehashtag."
 
-#: allink_core_repo/allink_core/djangocms_instagram/templates/djangocms_instagram/plugins/grid_static/_follow.html:6
+#: allink_core/djangocms_instagram/templates/djangocms_instagram/plugins/grid_static/_follow.html:6
 msgid "Follow us"
 msgstr "Folge uns"

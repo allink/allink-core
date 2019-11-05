@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-17 10:38+0100\n"
+"POT-Creation-Date: 2019-10-09 08:53+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,20 +18,20 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: allink_core_repo/allink_core/djangocms_group/cms_plugins.py:13
+#: allink_core/djangocms_group/cms_plugins.py:13
 msgid "Group Container"
 msgstr "Gruppen-Container"
 
-#: allink_core_repo/allink_core/djangocms_group/cms_plugins.py:14
-#: allink_core_repo/allink_core/djangocms_group/cms_plugins.py:41
+#: allink_core/djangocms_group/cms_plugins.py:14
+#: allink_core/djangocms_group/cms_plugins.py:41
 msgid "allink"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_group/cms_plugins.py:40
+#: allink_core/djangocms_group/cms_plugins.py:40
 msgid "Group"
 msgstr "Gruppe"
 
-#: allink_core_repo/allink_core/djangocms_group/models.py:17
-#: allink_core_repo/allink_core/djangocms_group/models.py:36
+#: allink_core/djangocms_group/models.py:17
+#: allink_core/djangocms_group/models.py:36
 msgid "Title"
 msgstr "Titel"

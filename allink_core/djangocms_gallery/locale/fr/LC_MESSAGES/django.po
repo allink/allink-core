@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-17 10:38+0100\n"
+"POT-Creation-Date: 2019-10-09 08:53+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,47 +18,47 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: allink_core_repo/allink_core/djangocms_gallery/cms_plugins.py:14
+#: allink_core/djangocms_gallery/cms_plugins.py:14
 msgid "Gallery"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_gallery/cms_plugins.py:15
-#: allink_core_repo/allink_core/djangocms_gallery/cms_plugins.py:61
+#: allink_core/djangocms_gallery/cms_plugins.py:15
+#: allink_core/djangocms_gallery/cms_plugins.py:61
 msgid "allink"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_gallery/cms_plugins.py:34
+#: allink_core/djangocms_gallery/cms_plugins.py:34
 msgid "Slider Options"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_gallery/cms_plugins.py:42
+#: allink_core/djangocms_gallery/cms_plugins.py:42
 msgid "Advanced Options"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_gallery/cms_plugins.py:60
-#: allink_core_repo/allink_core/djangocms_gallery/models.py:104
+#: allink_core/djangocms_gallery/cms_plugins.py:60
+#: allink_core/djangocms_gallery/models.py:104
 msgid "Image"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_gallery/forms.py:20
-#: allink_core_repo/allink_core/djangocms_gallery/models.py:26
+#: allink_core/djangocms_gallery/forms.py:20
+#: allink_core/djangocms_gallery/models.py:26
 msgid "Ratio"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_gallery/forms.py:21
+#: allink_core/djangocms_gallery/forms.py:21
 msgid "This option overrides the default settings for the gallery plugin."
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_gallery/forms.py:26
-#: allink_core_repo/allink_core/djangocms_gallery/models.py:21
+#: allink_core/djangocms_gallery/forms.py:26
+#: allink_core/djangocms_gallery/models.py:21
 msgid "Template"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_gallery/forms.py:32
+#: allink_core/djangocms_gallery/forms.py:32
 msgid "Predifined variations"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_gallery/forms.py:33
+#: allink_core/djangocms_gallery/forms.py:33
 msgid ""
 "Instructions: Single selection is made by clicking on an option. Multiple "
 "selections are achieved by pressing and holding down the Command-key (Mac) "
@@ -66,62 +66,62 @@ msgid ""
 "like to apply."
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_gallery/forms.py:52
+#: allink_core/djangocms_gallery/forms.py:52
 msgid ""
 "There are only {} characters allowed in text field. Currently there are {} "
 "characters."
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_gallery/models.py:22
+#: allink_core/djangocms_gallery/models.py:22
 msgid "Choose a template."
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_gallery/models.py:32
+#: allink_core/djangocms_gallery/models.py:32
 msgid "Fullscreen option visible"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_gallery/models.py:34
+#: allink_core/djangocms_gallery/models.py:34
 msgid "This option enables a fullscreen button for this gallery."
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_gallery/models.py:37
+#: allink_core/djangocms_gallery/models.py:37
 msgid "Gallery counter visible"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_gallery/models.py:39
+#: allink_core/djangocms_gallery/models.py:39
 msgid "This option enables a gallery counter."
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_gallery/models.py:42
+#: allink_core/djangocms_gallery/models.py:42
 msgid "Autostart"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_gallery/models.py:44
+#: allink_core/djangocms_gallery/models.py:44
 msgid "This option enables autoplay for this gallery."
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_gallery/models.py:58
+#: allink_core/djangocms_gallery/models.py:58
 msgid ""
 "All Images (.png, .gif, .jpg, .jpeg) will be used in gallery. If a folder is "
 "specified, the child plugin won't be rendered."
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_gallery/models.py:94
+#: allink_core/djangocms_gallery/models.py:94
 msgid "Title"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_gallery/models.py:100
+#: allink_core/djangocms_gallery/models.py:100
 msgid "Text"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_gallery/templates/djangocms_gallery/slider/content.html:26
+#: allink_core/djangocms_gallery/templates/djangocms_gallery/slider/content.html:26
 msgid "Previous Slide"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_gallery/templates/djangocms_gallery/slider/content.html:31
+#: allink_core/djangocms_gallery/templates/djangocms_gallery/slider/content.html:31
 msgid "Next Slide"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_gallery/templates/djangocms_gallery/slider/content.html:45
+#: allink_core/djangocms_gallery/templates/djangocms_gallery/slider/content.html:45
 msgid "Fullscreen Gallery"
 msgstr ""

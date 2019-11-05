@@ -114,6 +114,14 @@ class AllinkBasePluginLoadMoreView(ListView):
 
 
 class AllinkBaseDetailView(TranslatableSlugMixin, DetailView):
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        if not request.user.is_staff and not self.object.is_active:
+            raise Http404(_("The requested content is not published.") % {'class_name': self.__class__.__name__})
+        context = self.get_context_data(object=self.object)
+
+        return self.render_to_response(context)
+
     def render_to_response(self, context, **response_kwargs):
         if self.request.is_ajax():
             context.update({'base_template': 'app_content/ajax_base.html'})

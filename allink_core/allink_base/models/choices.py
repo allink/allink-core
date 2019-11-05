@@ -108,7 +108,7 @@ SOCIAL_ICONS_CHOICES = (
     (XING, _(u'Xing')),
     (YOUTUBE, _(u'Youtube')),
     (VIMEO, _(u'Vimeo')),
-    (GOOGLEPLUS, _(u'Google Plus')),
+    # (GOOGLEPLUS, _(u'Google Plus')),
     (TRIPADVISOR, _(u'TripAdvisor')),
     (KUNUNU, _(u'kununu')),
 )

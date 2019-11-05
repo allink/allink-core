@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-17 10:38+0100\n"
+"POT-Creation-Date: 2019-10-09 08:53+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,57 +18,57 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: allink_core_repo/allink_core/djangocms_button_link/cms_plugins.py:14
+#: allink_core/djangocms_button_link/cms_plugins.py:14
 msgid "Button/ Link Container"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/cms_plugins.py:15
-#: allink_core_repo/allink_core/djangocms_button_link/cms_plugins.py:55
+#: allink_core/djangocms_button_link/cms_plugins.py:15
+#: allink_core/djangocms_button_link/cms_plugins.py:55
 msgid "allink"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/cms_plugins.py:38
-#: allink_core_repo/allink_core/djangocms_button_link/cms_plugins.py:146
+#: allink_core/djangocms_button_link/cms_plugins.py:38
+#: allink_core/djangocms_button_link/cms_plugins.py:146
 msgid "Advanced settings"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/cms_plugins.py:54
+#: allink_core/djangocms_button_link/cms_plugins.py:54
 msgid "Button/ Link"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/cms_plugins.py:80
+#: allink_core/djangocms_button_link/cms_plugins.py:80
 msgid "Internal/External link settings"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/cms_plugins.py:91
+#: allink_core/djangocms_button_link/cms_plugins.py:91
 msgid "File link settings"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/cms_plugins.py:100
+#: allink_core/djangocms_button_link/cms_plugins.py:100
 msgid "Phone link settings"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/cms_plugins.py:108
+#: allink_core/djangocms_button_link/cms_plugins.py:108
 msgid "Email link settings"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/cms_plugins.py:118
+#: allink_core/djangocms_button_link/cms_plugins.py:118
 msgid "Form link settings"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/cms_plugins.py:126
+#: allink_core/djangocms_button_link/cms_plugins.py:126
 msgid "Video (Embedded) link settings"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/cms_plugins.py:153
+#: allink_core/djangocms_button_link/cms_plugins.py:153
 msgid "Hidden settings"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/forms.py:24
+#: allink_core/djangocms_button_link/forms.py:24
 msgid "Predifined variations"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/forms.py:25
+#: allink_core/djangocms_button_link/forms.py:25
 msgid ""
 "Instructions: Single selection is made by clicking on an option. Multiple "
 "selections are achieved by pressing and holding down the Command-key (Mac) "
@@ -76,145 +76,145 @@ msgid ""
 "like to apply."
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/forms.py:30
-#: allink_core_repo/allink_core/djangocms_button_link/forms.py:68
-#: allink_core_repo/allink_core/djangocms_button_link/models.py:170
+#: allink_core/djangocms_button_link/forms.py:30
+#: allink_core/djangocms_button_link/forms.py:68
+#: allink_core/djangocms_button_link/models.py:170
 msgid "Ratio"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/forms.py:31
-#: allink_core_repo/allink_core/djangocms_button_link/forms.py:69
+#: allink_core/djangocms_button_link/forms.py:31
+#: allink_core/djangocms_button_link/forms.py:69
 msgid "This option overrides the default ratio setting for embeded videos."
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/forms.py:40
+#: allink_core/djangocms_button_link/forms.py:40
 msgid "New window"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/forms.py:41
+#: allink_core/djangocms_button_link/forms.py:41
 msgid "Softpage large"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/forms.py:42
+#: allink_core/djangocms_button_link/forms.py:42
 msgid "Softpage small"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/forms.py:45
+#: allink_core/djangocms_button_link/forms.py:45
 msgid "Link Target"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/forms.py:46
+#: allink_core/djangocms_button_link/forms.py:46
 msgid "Link Internal"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/forms.py:63
+#: allink_core/djangocms_button_link/forms.py:63
 msgid "Special Links"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/model_fields.py:16
-#: allink_core_repo/allink_core/djangocms_button_link/models.py:109
+#: allink_core/djangocms_button_link/model_fields.py:16
+#: allink_core/djangocms_button_link/models.py:109
 msgid "Type"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/model_fields.py:47
-#: allink_core_repo/allink_core/djangocms_button_link/models.py:113
-#: allink_core_repo/allink_core/djangocms_button_link/models.py:126
+#: allink_core/djangocms_button_link/model_fields.py:47
+#: allink_core/djangocms_button_link/models.py:113
+#: allink_core/djangocms_button_link/models.py:126
 msgid "Context"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/models.py:23
+#: allink_core/djangocms_button_link/models.py:23
 msgid "Alignment horizontal desktop"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/models.py:26
+#: allink_core/djangocms_button_link/models.py:26
 msgid ""
 "This option overrides the projects default alignment for desktop. (Usually "
 "\"left\")"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/models.py:31
+#: allink_core/djangocms_button_link/models.py:31
 msgid "Alignment horizontal mobile"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/models.py:34
+#: allink_core/djangocms_button_link/models.py:34
 msgid ""
 "This option overrides the projects default alignment for mobile. (Usually "
 "\"left\")"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/models.py:49
+#: allink_core/djangocms_button_link/models.py:49
 msgid "{}"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/models.py:82
+#: allink_core/djangocms_button_link/models.py:82
 msgid "Internal/External"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/models.py:83
+#: allink_core/djangocms_button_link/models.py:83
 msgid "File (Download)"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/models.py:84
+#: allink_core/djangocms_button_link/models.py:84
 msgid "Image"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/models.py:85
+#: allink_core/djangocms_button_link/models.py:85
 msgid "Phone"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/models.py:86
+#: allink_core/djangocms_button_link/models.py:86
 msgid "Email"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/models.py:87
+#: allink_core/djangocms_button_link/models.py:87
 msgid "Form"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/models.py:88
+#: allink_core/djangocms_button_link/models.py:88
 msgid "Video (Embedded)"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/models.py:94
+#: allink_core/djangocms_button_link/models.py:94
 msgid "Link type"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/models.py:95
+#: allink_core/djangocms_button_link/models.py:95
 msgid "Choose a link type in order to display its options below."
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/models.py:103
+#: allink_core/djangocms_button_link/models.py:103
 msgid "Display name"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/models.py:118
+#: allink_core/djangocms_button_link/models.py:118
 msgid "Size"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/models.py:121
+#: allink_core/djangocms_button_link/models.py:121
 msgid "Block"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/models.py:134
+#: allink_core/djangocms_button_link/models.py:134
 msgid "Icon left"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/models.py:137
+#: allink_core/djangocms_button_link/models.py:137
 msgid "Icon right"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/models.py:143
+#: allink_core/djangocms_button_link/models.py:143
 msgid "Subject"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/models.py:149
+#: allink_core/djangocms_button_link/models.py:149
 msgid "Body Text"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/models.py:155
+#: allink_core/djangocms_button_link/models.py:155
 msgid "Video ID"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/models.py:158
+#: allink_core/djangocms_button_link/models.py:158
 msgid ""
 "Only provide the ID. The correct URL will automatically be generated."
 "<br><br>YouTube: https://www.youtube.com/watch?v=<strong>12345678</strong> "
@@ -222,30 +222,30 @@ msgid ""
 "<strong>12345678</strong> (the ID is <strong>12345678</strong>)"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/models.py:163
+#: allink_core/djangocms_button_link/models.py:163
 msgid "Video Service"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/models.py:177
+#: allink_core/djangocms_button_link/models.py:177
 msgid "Autostart"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/models.py:179
+#: allink_core/djangocms_button_link/models.py:179
 msgid ""
 "<strong>Important:</strong> Autoplaying videos with audio is not "
 "recommended. Use wisely. "
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/models.py:182
+#: allink_core/djangocms_button_link/models.py:182
 msgid "Allow fullscreen"
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/templates/admin/djangocms_button_link/widgets/icon.html:8
+#: allink_core/djangocms_button_link/templates/admin/djangocms_button_link/widgets/icon.html:8
 msgid ""
 "No Iconsets configured! Please configure at least one Iconset before using "
 "this widget."
 msgstr ""
 
-#: allink_core_repo/allink_core/djangocms_button_link/templates/djangocms_button_link/item.html:41
+#: allink_core/djangocms_button_link/templates/djangocms_button_link/item.html:41
 msgid "Member Area"
 msgstr ""
