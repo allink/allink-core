@@ -2,7 +2,6 @@
 import os
 import re
 from setuptools import setup, find_packages
-import allink_core
 
 
 def get_version(*file_paths):
