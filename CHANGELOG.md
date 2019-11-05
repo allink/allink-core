@@ -11,8 +11,11 @@ Each release is divided into the following main categories:
 - NEW: New features or plugins
 - FIXES: General bugfixes
 
+## v0.1.1 (next version)
 
-## v0.0.11
+## v0.0.11 - v0.1.0
+The tag v0.1.0 matches the version v0.1.0 in allink-core-static.
+
 
 ### IMPORTANT
 ###### SETTINGS
