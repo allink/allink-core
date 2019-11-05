@@ -12,7 +12,7 @@ Each release is divided into the following main categories:
 - FIXES: General bugfixes
 
 
-## v0.0.11 (under development)
+## v0.0.11
 
 ### IMPORTANT
 ###### SETTINGS
