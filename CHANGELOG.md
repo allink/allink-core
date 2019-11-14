@@ -29,6 +29,7 @@ It does not however delete for example the preview_image on the filesystem if a 
 ### FIXES
 - fixed fork_app and new_app command [#17](https://github.com/allink/allink-core/pull/17)
 - moved language choices from legacylinks models to forms, so no "shadow" migrations will be created on client projects [#12](https://github.com/allink/allink-core/pull/12)
+- readded accidentially removed restrictions for news admin lead field
 
 ## v2.2.2
 ### IMPORTANT

@@ -62,3 +62,10 @@ class NewsAdmin(AllinkMediaAdminMixin, AllinkSEOAdminMixin, AllinkCategoryAdminM
         fieldsets += self.get_teaser_fieldsets()
         fieldsets += self.get_seo_fieldsets()
         return fieldsets
+
+    def formfield_for_dbfield(self, db_field, **kwargs):
+        if db_field.name == 'lead':
+            kwargs['widget'] = forms.Textarea
+            kwargs['max_length'] = 400
+            kwargs['help_text'] = 'Max. 400 characters.'
+        return super(NewsAdmin, self).formfield_for_dbfield(db_field, **kwargs)
