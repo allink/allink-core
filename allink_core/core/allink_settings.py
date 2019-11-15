@@ -118,6 +118,7 @@ ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [
     'CMSAllinkLanguageChooserPlugin',
     # 'CMSAllinkIconPlugin',
     'CMSAllinkSEOAccordionContainerPlugin',
+    'CMSAllinkQuotePlugin',
 ]
 
 ####################################################################################

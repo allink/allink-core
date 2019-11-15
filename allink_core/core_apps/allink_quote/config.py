@@ -1,5 +1,5 @@
-# from django.apps import AppConfig
-#
-#
-# class QuoteConfig(AppConfig):
-#     name = 'quote'
+from django.apps import AppConfig
+
+
+class QuoteConfig(AppConfig):
+    name = 'quote'
