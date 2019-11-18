@@ -1,13 +1,28 @@
 #! /usr/bin/env python
+import os
+import re
 from setuptools import setup, find_packages
-import allink_core
+
+
+def get_version(*file_paths):
+    """Retrieves the version from allink_core/__init__.py"""
+    filename = os.path.join(os.path.dirname(__file__), *file_paths)
+    version_file = open(filename).read()
+    version_match = re.search(r"^__version__ = ['\"]([^'\"]*)['\"]",
+                              version_file, re.M)
+    if version_match:
+        return version_match.group(1)
+    raise RuntimeError('Unable to find version string.')
+
+
+version = get_version("allink_core", "__init__.py")
 
 setup(
     name='allink_core',
-    version=allink_core.__version__,
+    version=version,
     description='collection of code fragments',
     long_description='collection of code fragments',
-    author='Beat Schenkel, Leandra Finger, Marius Küng, Mike Walder, Florian Türler',
+    author='allink AG',
     author_email='itcrowd@allink.ch',
     url='http://github.com/allink/allink-core/',
     license='BSD License',

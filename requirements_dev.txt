@@ -1,0 +1,2 @@
+mkdocs==1.0.4
+bumpversion==0.5.3

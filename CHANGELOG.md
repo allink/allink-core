@@ -12,13 +12,10 @@ Each release is divided into the following main categories:
 - NEW: New features or plugins
 - FIXES: General bugfixes
 
+## v0.1.1 (next version)
 
-
-
-
-
-
-## v1.1.0 (under development)
+## v1.0.2 - v1.1.0
+The tag v1.1.0 matches the version v1.1.0 in allink-core-static.
 
 ### IMPORTANT
 
@@ -85,7 +82,7 @@ and add the following to your Plugin in cms_plugins.py:
         else:
             return '<<path to template>>/content_skeleton.html'
     ...
-``
+```
 
 ### FIXES
 
