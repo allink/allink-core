@@ -45,6 +45,7 @@ ALLINK_INSTALLED_APPS = [
     'allink_core.core_apps.allink_legacy_redirect',
     # 'allink_core.core_apps.allink_terms',
 
+    'allink_core.core_apps.allink_quote',
     'allink_core.core_apps.allink_content',
     'allink_core.core_apps.allink_teaser',
     'allink_core.core_apps.allink_image',
@@ -117,6 +118,7 @@ ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [
     'CMSAllinkLanguageChooserPlugin',
     # 'CMSAllinkIconPlugin',
     'CMSAllinkSEOAccordionContainerPlugin',
+    'CMSAllinkQuotePlugin',
 ]
 
 ####################################################################################
