@@ -1,19 +1,9 @@
 # -*- coding: utf-8 -*-
-from django.utils.text import slugify
-from django.utils.translation import override
 from django.test.testcases import TestCase
-from django.conf import settings
-from django.test.client import RequestFactory
-from django.template import Template, RequestContext
-from cms import api
-from parler.utils.context import switch_language
-from allink_core.core.test import PageApphookMixin, CategoriesMixin, DataModelMixin, PluginModelMixin
+from bs4 import BeautifulSoup
+from allink_core.core.test import PageApphookMixin, DataModelMixin, DataModelTranslationMixin
 from allink_core.apps.news.cms_apps import NewsApphook
-from allink_core.apps.config.utils import get_fallback
-from allink_core.apps.config.tests.factories import ConfigFactory
-from ..models import News
-from ..cms_plugins import CMSNewsAppContentPlugin
-from .factories import NewsFactory, NewsWithMetaFactory
+from .factories import NewsFactory
 
 
 class NewsSitemapsTestCase(PageApphookMixin, DataModelMixin, TestCase):
@@ -25,15 +15,35 @@ class NewsSitemapsTestCase(PageApphookMixin, DataModelMixin, TestCase):
     data_model_factory = NewsFactory
 
     def test_status_code_200(self):
-        response = self.client.get('sitemap.xml')
+        response = self.client.get('/sitemap.xml')
         self.assertEqual(response.status_code, 200)
 
     def test_all_urls_in_every_language(self):
-        response = self.client.get('sitemap.xml')
+        response = self.client.get('/sitemap.xml')
+        xml = BeautifulSoup(response.content, 'xml').prettify()
         contains = [
-            'rel="alternate" hreflang="en"',
-            'rel="alternate" hreflang="de"',
+            '<link href="(.*?)news-entry-4(.*?)\/" hreflang="de" rel="alternate"\/>',
+            '<link href="(.*?)news-entry-4(.*?)\/" hreflang="fr" rel="alternate"\/>',
         ]
         for text in contains:
-            self.assertContains(response.content, text)
+            self.assertNotRegex(xml, text)
 
+
+class NewsSitemapsTranslatedTestCase(PageApphookMixin, DataModelTranslationMixin, DataModelMixin, TestCase):
+    apphook = 'NewsApphook'
+    namespace = 'news'
+    page_template = 'default.html'
+
+    apphook_object = NewsApphook
+    data_model_factory = NewsFactory
+
+    def test_all_urls_with_hreflang_in_every_language(self):
+        response = self.client.get('/sitemap.xml')
+        xml = BeautifulSoup(response.content, 'xml').prettify()
+        contains = [
+            '<link href="(.*?)news-entry-4(.*?)\/" hreflang="en" rel="alternate"\/>',
+            '<link href="(.*?)news-entry-4(.*?)\/" hreflang="de" rel="alternate"\/>',
+            '<link href="(.*?)news-entry-4(.*?)\/" hreflang="fr" rel="alternate"\/>',
+        ]
+        for text in contains:
+            self.assertRegex(xml, text)
