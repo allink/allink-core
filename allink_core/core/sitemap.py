@@ -5,6 +5,12 @@ from cms.models.titlemodels import Title
 
 
 class CMSHrefLangSitemap(CMSSitemap):
+    """
+    Base Sitemap class used for djangocms Page objects to provide a proper hreflang tag for each language
+
+    further information: https://support.google.com/webmasters/answer/189077?hl=de
+
+    """
     def _urls(self, page, protocol, domain):
         urls = super()._urls(page, protocol, domain)
         for url in urls:
@@ -21,6 +27,13 @@ class CMSHrefLangSitemap(CMSSitemap):
 
 
 class HrefLangSitemap(Sitemap):
+    """
+    Base Sitemap class used in allink apps to provide a proper hreflang tag for each language
+
+    further information: https://support.google.com/webmasters/answer/189077?hl=de
+
+    """
+
     def _urls(self, page, protocol, domain):
         urls = super()._urls(page, protocol, domain)
         for url in urls:
