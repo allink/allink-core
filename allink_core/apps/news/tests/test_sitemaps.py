@@ -22,8 +22,8 @@ class NewsSitemapsTestCase(PageApphookMixin, DataModelMixin, TestCase):
         response = self.client.get('/sitemap.xml')
         xml = BeautifulSoup(response.content, 'xml').prettify()
         contains = [
-            '<link href="(.*?)news-entry-4(.*?)\/" hreflang="de" rel="alternate"\/>',
-            '<link href="(.*?)news-entry-4(.*?)\/" hreflang="fr" rel="alternate"\/>',
+            '<link href="(.*?){0}(.*?)\/" hreflang="de" rel="alternate"\/>'.format(self.entry_1.slug),
+            '<link href="(.*?){0}(.*?)\/" hreflang="fr" rel="alternate"\/>'.format(self.entry_1.slug),
         ]
         for text in contains:
             self.assertNotRegex(xml, text)
@@ -41,9 +41,9 @@ class NewsSitemapsTranslatedTestCase(PageApphookMixin, DataModelTranslationMixin
         response = self.client.get('/sitemap.xml')
         xml = BeautifulSoup(response.content, 'xml').prettify()
         contains = [
-            '<link href="(.*?)news-entry-4(.*?)\/" hreflang="en" rel="alternate"\/>',
-            '<link href="(.*?)news-entry-4(.*?)\/" hreflang="de" rel="alternate"\/>',
-            '<link href="(.*?)news-entry-4(.*?)\/" hreflang="fr" rel="alternate"\/>',
+            '<link href="(.*?){0}(.*?)\/" hreflang="en" rel="alternate"\/>'.format(self.entry_1.slug),
+            '<link href="(.*?){0}(.*?)\/" hreflang="de" rel="alternate"\/>'.format(self.entry_1.slug),
+            '<link href="(.*?){0}(.*?)\/" hreflang="fr" rel="alternate"\/>'.format(self.entry_1.slug),
         ]
         for text in contains:
             self.assertRegex(xml, text)

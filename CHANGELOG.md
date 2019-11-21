@@ -26,6 +26,14 @@ This will delete a file on the filesystem, if a file gets deleted in the filer d
 It does not however delete for example the preview_image on the filesystem if a News entry gets deleted (we also do not delete the filer image/file instance in that case.)
 ###### REQUIREMENTS
 - added django-cleanup==2.1.0
+### NEW
+- Added hrefLang to Sitemap
+    - activate feature for CMS Pages
+    import `from allink_core.core.sitemap import CMSHrefLangSitemap` to urls.py
+    register `sitemaps = {'cms': CMSHrefLangSitemap}` in urls.py
+    - activate feature for App Pages
+    import `from allink_core.core.sitemap import HrefLangSitemap` to sitemaps.py in used apps
+    register `class AppName(HrefLangSitemap):` in sitemaps.py in used apps
 ### FIXES
 - fixed fork_app and new_app command [#17](https://github.com/allink/allink-core/pull/17)
 - moved language choices from legacylinks models to forms, so no "shadow" migrations will be created on client projects [#12](https://github.com/allink/allink-core/pull/12)
