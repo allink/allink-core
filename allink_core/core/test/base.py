@@ -13,11 +13,11 @@ from cms import api
 from cms.exceptions import AppAlreadyRegistered
 from allink_core.core_apps.allink_categories.models import AllinkCategory
 
-
 __all__ = [
     'PageApphookMixin',
     'CategoriesMixin',
     'DataModelMixin',
+    'DataModelTranslationMixin',
     'PluginModelMixin',
 ]
 
@@ -176,6 +176,7 @@ class CategoriesMixin:
     category_2
 
     """
+
     def setUp(self):
         super().setUp()
         self.setup_categories()
@@ -252,6 +253,31 @@ class DataModelMixin:
         self.entry_3 = self.data_model_factory()
         self.entry_4 = self.data_model_factory()
         self.entry_5 = self.data_model_factory()
+
+
+class DataModelTranslationMixin(DataModelMixin):
+    """
+    Creates the translations in languages de and fr for the following objects:
+
+    entry_1
+    entry_2
+    entry_3
+    entry_4
+    entry_5
+
+    """
+
+    def setUp(self):
+        super().setUp()
+        entries = [self.entry_1, self.entry_2, self.entry_3, self.entry_4, self.entry_5]
+
+        # Setup the other language(s) translations for the entries
+        for language, _ in settings.LANGUAGES[1:]:
+            for entry in entries:
+                title = '{}-{}'.format(entry.title, language)
+                with switch_language(entry, language):
+                    entry.title = title
+                    entry.save()
 
 
 class PluginModelMixin(PageApphookMixin):
