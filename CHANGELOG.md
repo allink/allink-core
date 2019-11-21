@@ -27,13 +27,9 @@ It does not however delete for example the preview_image on the filesystem if a 
 ###### REQUIREMENTS
 - added django-cleanup==2.1.0
 ### NEW
-- Added hrefLang to Sitemap
-    - activate feature for CMS Pages
-    import `from allink_core.core.sitemap import CMSHrefLangSitemap` to urls.py
-    register `sitemaps = {'cms': CMSHrefLangSitemap}` in urls.py
-    - activate feature for App Pages
-    import `from allink_core.core.sitemap import HrefLangSitemap` to sitemaps.py in used apps
-    register `class AppName(HrefLangSitemap):` in sitemaps.py in used apps
+- Added hrefLang to Sitemap [#11](https://github.com/allink/allink-core/pull/11)
+    - activate feature for CMS Pages: register `sitemaps = {'cms': CMSHrefLangSitemap}` in project urls.py
+    - activate feature for App Detailview: register `class AppName(HrefLangSitemap):` in sitemaps.py in every app
 ### FIXES
 - fixed fork_app and new_app command [#17](https://github.com/allink/allink-core/pull/17)
 - moved language choices from legacylinks models to forms, so no "shadow" migrations will be created on client projects [#12](https://github.com/allink/allink-core/pull/12)
