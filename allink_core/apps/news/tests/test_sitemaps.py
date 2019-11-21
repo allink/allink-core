@@ -29,7 +29,7 @@ class NewsSitemapsTestCase(PageApphookMixin, DataModelMixin, TestCase):
             self.assertNotRegex(xml, text)
 
 
-class NewsSitemapsTranslatedTestCase(PageApphookMixin, DataModelTranslationMixin, DataModelMixin, TestCase):
+class NewsSitemapsTranslatedTestCase(PageApphookMixin, DataModelTranslationMixin, TestCase):
     apphook = 'NewsApphook'
     namespace = 'news'
     page_template = 'default.html'

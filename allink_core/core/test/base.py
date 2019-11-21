@@ -255,11 +255,9 @@ class DataModelMixin:
         self.entry_5 = self.data_model_factory()
 
 
-class DataModelTranslationMixin:
+class DataModelTranslationMixin(DataModelMixin):
     """
     Creates the translations in languages de and fr for the following objects:
-
-    relies on DataModelMixin!
 
     entry_1
     entry_2
