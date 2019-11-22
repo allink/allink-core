@@ -148,7 +148,7 @@ class CustomisationForkAppTestCase(TestCase):
     dummy_app = 'allink_core.core.customisation.dummy_fork_app_minimum'
     app_label = 'news'
 
-    expected_dirs = ['templates']
+    expected_dirs = ['migrations', 'tests']
     expected_files = [
         'admin.py',
         'cms_apps.py',

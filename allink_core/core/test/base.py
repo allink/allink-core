@@ -18,7 +18,8 @@ __all__ = [
     'CategoriesMixin',
     'DataModelMixin',
     'DataModelTranslationMixin',
-    'PluginModelMixin',
+    'GenericPluginMixin',
+    'AllinkAppContenPluginMixin',
 ]
 
 
@@ -33,24 +34,28 @@ class PageApphookMixin:
 
     Cleans up cache and a bunch of cms related stuff.
 
-    usage example attributes:
+    You dont need to specify an apphook, but if you want to, for example to test views of apps which require one.
+    Just override these attributes:
 
     apphook_object = NewsApphook
     apphook = 'NewsApphook'
     namespace = 'news'
+
+    To override the cms page template:
+
     page_template = 'default.html'
 
     """
     apphook_object = None
     apphook = None
     namespace = None
-    page_template = None
+
+    page_template = 'default.html'
 
     def setUp(self):
         super().setUp()
         self.language = settings.LANGUAGES[0][0]
-        apphook_object = self.get_apphook_object()
-        self.reload_urls(apphook_object)
+        self.reload_urls()
 
         self.root_page = api.create_page(
             title='root_page',
@@ -100,29 +105,25 @@ class PageApphookMixin:
         cache.clear()
         super(PageApphookMixin, self).tearDown()
 
-    def get_apphook_object(self):
-        return self.apphook_object
-
     def reset_all(self):
         """
         Reset all that could leak from previous test to current/next test.
         :return: None
         """
-        apphook_object = self.get_apphook_object()
-        self.delete_app_module(apphook_object.__module__)
-        self.reload_urls(apphook_object)
+        self.delete_app_module()
+        self.reload_urls()
         self.apphook_clear()
 
-    def delete_app_module(self, app_module=None):
+    def delete_app_module(self):
         """
         Remove APP_MODULE from sys.modules. Taken from cms.
         :return: None
         """
-        if app_module is None:
-            apphook_object = self.get_apphook_object()
-            app_module = getattr(apphook_object, '__module__')
-        if app_module in sys.modules:
-            del sys.modules[app_module]
+        if self.apphook_object:
+            app_module = getattr(self.apphook_object, '__module__')
+
+            if app_module in sys.modules:
+                del sys.modules[app_module]
 
     def apphook_clear(self):
         """
@@ -144,23 +145,25 @@ class PageApphookMixin:
                 del sys.modules[apphook_pool.apps[name].__class__.__module__]
         apphook_pool.clear()
 
-    def reload_urls(self, apphook_object=None):
+    def reload_urls(self):
         """
         Clean up url related things (caches, app resolvers, modules).
         Taken from cms.
         :return: None
         """
-        if apphook_object is None:
-            apphook_object = self.get_apphook_object()
-        app_module = apphook_object.__module__
-        package = app_module.split('.')[0]
+
         clear_app_resolvers()
         clear_url_caches()
+
         url_modules = [
             'cms.urls',
-            '{0}.urls'.format(package),
             settings.ROOT_URLCONF
         ]
+
+        if self.apphook_object:
+            app_module = self.apphook_object.__module__
+            package = app_module.split('.')[0]
+            url_modules.append('{0}.urls'.format(package))
 
         for module in url_modules:
             if module in sys.modules:
@@ -280,7 +283,7 @@ class DataModelTranslationMixin(DataModelMixin):
                     entry.save()
 
 
-class PluginModelMixin(PageApphookMixin):
+class GenericPluginMixin(PageApphookMixin):
     """
     Creates the following objects:
 
@@ -290,22 +293,41 @@ class PluginModelMixin(PageApphookMixin):
     usage example attributes:
 
     plugin_class = CMSNewsAppContentPlugin
-    load_more_view = NewsPluginLoadMore
+    init_kwargs = {template: 'grid_static'}
 
     """
     plugin_class = None
-    load_more_view = None
+    init_kwargs = {}
 
     def setUp(self):
         super().setUp()
         self.placeholder = self.plugin_page.placeholders.all()[0]
+        self.init_kwargs = self.get_init_kwargs()
+
         self.plugin_model_instance = api.add_plugin(
             self.placeholder,
             self.plugin_class,
             self.language,
-            # allink default values
-            template='grid_static',
+            **self.init_kwargs
         )
+
+    def get_init_kwargs(self):
+        additional_kwargs = {}
+        return {**self.init_kwargs, **additional_kwargs}
+
+
+class AllinkAppContenPluginMixin(GenericPluginMixin):
+    """
+    Used to test AllinkAppContenPlugin plugins.
+
+    usage example attributes:
+
+    load_more_view = NewsPluginLoadMore
+
+    """
+
+    load_more_view = None
+    init_kwargs = {'template': 'grid_static'}
 
     def get_load_more_view(self):
         """ returns a pseudo instantiated load_more_view """

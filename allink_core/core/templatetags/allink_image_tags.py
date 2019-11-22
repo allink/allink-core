@@ -1,13 +1,11 @@
 # -*- coding: utf-8 -*-
 from django import template
-from django.core.cache import cache
 from django.conf import settings
 
-from filer.models import Folder
 from easy_thumbnails.files import get_thumbnailer
 
 from allink_core.core.loading import get_model
-from allink_core.core.utils import get_height_from_ratio, get_ratio_w_h, get_key_from_dict
+from allink_core.core.utils import get_height_from_ratio, get_ratio_w_h
 
 register = template.Library()
 
@@ -29,9 +27,30 @@ def get_sizes_from_width_alias(width_alias):
     return sizes
 
 
-def get_width_alias_from_plugin(context):
-    plugin = context['instance']
+def get_width_alias_from_plugin(plugin):
+    """
+    This function is called from different context:
+
+    TODO This would be a lot more explicit, if we would make width_alias a mandatory parameter on render_image and
+         evaluate the correct width_alias on a property on the plugin itself. (e.g on AllinkImagePlugin,
+         AllinkGalleryPlugin or AllinkBaseAppContentPlugin)
+
+    1. inside a AllinkContentColumnPlugin -> the width_alias corresponding to the parents
+       (always a CMSAllinkContentPlugin) template field is returned
+
+    2. AllinkBaseAppContentPlugin -> the width_alias corresponding to the field items_per_row is returned
+
+    3. some other context or without a plugin instance -> always '2-of-3': this is a fallback, but should not come up
+       if the correct width_alias is supplied in the template
+
+    :param plugin:
+    a model instance of a cms plugin
+
+    :return:
+    a string with the appropriate width alias depending on which context the plugin is embedded.
+    """
     # plugin directly inside a column plugin
+    # if isinstance(plugin, AllinkContentColumnPlugin):
     if not hasattr(plugin, 'items_per_row'):
         # the outer most parent of all plugin with pictures should always be a content/column plugin
         # if not return a fallback of '1-of-1'. (potential_column gets None and will trow a AttributeError)
@@ -62,6 +81,7 @@ def get_width_alias_from_plugin(context):
             return '2-of-3'
 
     # app plugin
+    # if isinstance(plugin, AllinkBaseAppContentPlugin):
     elif hasattr(plugin, 'items_per_row'):
         return '1-of-{}'.format(getattr(plugin, 'items_per_row', '1'))
 
@@ -72,6 +92,13 @@ def get_width_alias_from_plugin(context):
 
 
 def get_unique_key(context):
+    """
+    :param context:
+    context which is expected to have a plugin instance
+    :return:
+    either the plugin id
+    or if no plugin instance is in context, the id from the object itself (e.g a news entry) and the image id
+    """
     if context.get('instance'):
         return context.get('instance').id
     else:
@@ -85,10 +112,11 @@ def render_image(context, image, alt_text='', ratio=None, width_alias=None, crop
     """
     -> parameters:
     image: FilerImageField
-    width_alias: '1-of-1'
-    ratio: '3-2'
+
+    width_alias: '1-of-1'  -> needs to be supplied, when outside of the content or app plugin content.
 
     -> optional parameters:
+    ratio: '3-2' -> to explicitly use the original ratio pass in 'x-y'
     alt_text: alternative image alt text
     crop: used for thumbnail gen
     bw: used for thumbnail gen
@@ -96,7 +124,7 @@ def render_image(context, image, alt_text='', ratio=None, width_alias=None, crop
     bg_disabled: used in template
     bg_color: used in template
     zoom: used in template
-    subject_location: used in template
+    subject_location: used for thumbnail gen
     vh_enabled: used in template (using vh instead of percent)
 
     if you render a image from outside the content or app plugin content,
@@ -106,8 +134,11 @@ def render_image(context, image, alt_text='', ratio=None, width_alias=None, crop
     -> makes following context variable available in the template
     image (original image)
     thumbnail_url_xs
+    thumbnail_url_sm
     thumbnail_url_md
+    thumbnail_url_lg
     thumbnail_url_xl
+    thumbnail_url_xxl
     icon_disabled
     bg_disabled
     bg_color
@@ -118,7 +149,7 @@ def render_image(context, image, alt_text='', ratio=None, width_alias=None, crop
         # most likely not from within an app plugin template or a content template
         if not width_alias:
             # get with alias from context
-            width_alias = get_width_alias_from_plugin(context)
+            width_alias = get_width_alias_from_plugin(context.get('instance', None))
 
         # use focal point. works best in combination with zoom > 0
         if subject_location:
@@ -159,7 +190,9 @@ def render_image(context, image, alt_text='', ratio=None, width_alias=None, crop
             context.update({'thumbnail_{}'.format(size[0]): thumbnailer.get_thumbnail(thumbnail_options)})
         # for css padding hack, a image in each ratio has to be unique
         # (break point doesnt matter, because is never shown at the same time)
-        context.update({'picture_id': 'picture-{}'.format('-'.join((str(image.id), str(get_unique_key(context)),
-                                                                    str(round(w)), str(round(h)))))})
+        context.update({
+            'picture_id': 'picture-{}'.format(
+                '-'.join((str(image.id), str(get_unique_key(context)), str(round(w)), str(round(h))))
+            )})
 
     return context
