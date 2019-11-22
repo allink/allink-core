@@ -101,6 +101,10 @@
     {% render_block "js" %}
 
     {# Optional: Additional Scripts#}
+
+    {# javascript translations #}
+    <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
+
     {% render_block "extrafoot" %}
     {% block extrafoot %}{% endblock extrafoot %}
 
