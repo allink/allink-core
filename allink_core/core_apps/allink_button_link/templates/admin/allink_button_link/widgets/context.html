@@ -14,6 +14,20 @@
     </div>
 {% endif %}
 
+{% if widget.name == 'txt_context' %}
+    <div class="link-container" data-context="{{ widget.name }}">
+        {% for group, options, index in widget.optgroups %}
+            {% for option in options %}
+                <div class="btn-item btn-{{option.value}}-container {% if option.value in widget.value %}active{% endif %}" data-toggle-active-state>
+                    <div class="link link-{{option.value}}">
+                        {% include option.template_name with widget=option %}
+                    </div>
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+{% endif %}
+
 {# Available Variables #}
 {# {{ option.value }}: {{ option.label }} #}
 {# selected: {{ option.value }}  #}

@@ -9,7 +9,8 @@ from allink_core.core_apps.allink_button_link import widgets
 
 class Context(forms.fields.ChoiceField):
     widget = widgets.Context
-    CHOICES = choices.CONTEXT_CHOICES
+    # CHOICES = choices.CONTEXT_CHOICES
+    CHOICES = ()
     DEFAULT = choices.CONTEXT_DEFAULT
 
     def __init__(self, *args, **kwargs):

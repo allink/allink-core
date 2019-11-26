@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.utils.translation import ugettext_lazy as _
 from allink_core.core.utils import get_additional_choices
+from django.conf import settings
 
 ####################################################################################
 
@@ -87,23 +88,15 @@ SIZE_CHOICES = (
     ('lg', 'Large'),
 )
 
-CONTEXT_CHOICES = get_additional_choices('BUTTON_CONTEXT_CHOICES')
-
 CONTEXT_DEFAULT = 'default'
 
-BUTTON_CONTEXT_CHOICES = (
-    (CONTEXT_DEFAULT, 'Default',),
-) + CONTEXT_CHOICES
+BUTTON_CONTEXT_DEFAULT = settings.BUTTON_CONTEXT_DEFAULT if settings.BUTTON_CONTEXT_DEFAULT else 'default'
 
-BUTTON_CONTEXT_DEFAULT = 'default'
+BUTTON_CONTEXT_CHOICES = get_additional_choices('BUTTON_CONTEXT_CHOICES')
 
-TEXT_LINK_CONTEXT_CHOICES = (
-    ('', 'Default',),
-) + CONTEXT_CHOICES + (
-    ('muted ', 'Muted',),
-)
+TEXT_LINK_CONTEXT_DEFAULT = settings.TEXT_LINK_CONTEXT_DEFAULT if settings.TEXT_LINK_CONTEXT_DEFAULT else 'default'
 
-TEXT_LINK_CONTEXT_DEFAULT = ''
+TEXT_LINK_CONTEXT_CHOICES = get_additional_choices('TEXT_LINK_CONTEXT_CHOICES')
 
 NEW_WINDOW = 1
 SOFTPAGE = 2

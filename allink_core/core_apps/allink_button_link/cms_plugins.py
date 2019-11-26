@@ -14,7 +14,7 @@ from allink_core.core_apps.allink_button_link.models import AllinkButtonLinkCont
 from allink_core.core_apps.allink_button_link import widgets
 from allink_core.core.utils import get_additional_choices, update_context_google_tag_manager, get_ratio_choices
 from allink_core.core.models.choices import BLANK_CHOICE, NEW_WINDOW, SOFTPAGE, \
-    FORM_MODAL, IMAGE_MODAL, DEFAULT_MODAL, BUTTON_CONTEXT_CHOICES, CONTEXT_DEFAULT
+    FORM_MODAL, IMAGE_MODAL, DEFAULT_MODAL, BUTTON_CONTEXT_CHOICES, TEXT_LINK_CONTEXT_CHOICES, BUTTON_CONTEXT_DEFAULT, TEXT_LINK_CONTEXT_DEFAULT
 from allink_core.core.forms.fields import SelectLinkField
 from allink_core.core.forms.mixins import AllinkInternalLinkFieldMixin
 from allink_core.core.admin.mixins import AllinkMediaAdminMixin
@@ -47,7 +47,8 @@ class AllinkButtonLinkPluginForm(AllinkInternalLinkFieldMixin, forms.ModelForm):
 
     internal_link = SelectLinkField(label='Link Internal', required=False)
     internal_email_addresses = SplitArrayField(forms.EmailField(required=False), size=3, required=False)
-    btn_context = forms.ChoiceField(label='Variation', choices=BUTTON_CONTEXT_CHOICES, widget=widgets.Context, initial=CONTEXT_DEFAULT)
+    btn_context = forms.ChoiceField(label='Variation', choices=BUTTON_CONTEXT_CHOICES, widget=widgets.Context, initial=BUTTON_CONTEXT_DEFAULT)
+    txt_context = forms.ChoiceField(label='Variation', choices=TEXT_LINK_CONTEXT_CHOICES, widget=widgets.Context, initial=TEXT_LINK_CONTEXT_DEFAULT)
 
     class Meta:
         model = AllinkButtonLinkPlugin
@@ -272,6 +273,7 @@ class CMSAllinkButtonLinkPlugin(AllinkMediaAdminMixin, CMSPluginBase):
             'fields': (
                 'type',
                 'btn_context',
+                'txt_context',
                 'btn_size',
             )
         }),
