@@ -19,10 +19,14 @@ new features or plugins
 general bugfixes
 
 
+## v2.2.4
+### NEW
+- Added quote-plugin
+
 ## v2.2.3
 ### IMPORTANT
 We added the django_cleanup package
-This will delete a file on the filesystem, if a file gets deleted in the filer directly. 
+This will delete a file on the filesystem, when a file gets deleted in the django-filer media library.
 It does not however delete for example the preview_image on the filesystem if a News entry gets deleted (we also do not delete the filer image/file instance in that case.)
 ###### REQUIREMENTS
 - added django-cleanup==2.1.0
@@ -65,7 +69,7 @@ Search for: 'aldryn_common.admin_fields.sortedm2m' and replace with 'allink_core
 - Required update: [allink-core-static](https://github.com/allink/allink-core-static/commit/1190bda8b5dc38add612be8acb3cb77cfddbc1f6)
 ### FIXES
 - Cleanup and new elements in styleguide template
-- Updated buttons markup in testimonial, app content load more and browser-check templates 
+- Updated buttons markup in testimonial, app content load more and browser-check templates
 
 ## v2.0.7
 ### FIXES
