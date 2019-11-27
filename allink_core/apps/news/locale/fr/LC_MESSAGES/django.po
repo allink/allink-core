@@ -35,9 +35,3 @@ msgstr[1] ""
 #: templates/djangocms_transfer/import_plugins.html:31
 msgid "Import"
 msgstr ""
-
-#~ msgid "Company"
-#~ msgstr "Société"
-
-#~ msgid "Phone"
-#~ msgstr "Téléphone"

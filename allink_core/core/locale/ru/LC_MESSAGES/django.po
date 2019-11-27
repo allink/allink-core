@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-27 11:29+0100\n"
+"POT-Creation-Date: 2019-11-27 15:03+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -189,27 +189,23 @@ msgstr ""
 msgid "Save and continue editing"
 msgstr ""
 
-#: allink_core/core/templates/allink_core/base_root.html:4
-msgid "YOLO asdf asdf core!"
-msgstr ""
-
-#: allink_core/core/templates/allink_core/base_root.html:84
+#: allink_core/core/templates/allink_core/base_root.html:82
 msgid "Go to homepage"
 msgstr ""
 
-#: allink_core/core/templates/allink_core/base_root.html:85
+#: allink_core/core/templates/allink_core/base_root.html:83
 msgid "Jump to navigation"
 msgstr ""
 
-#: allink_core/core/templates/allink_core/base_root.html:86
+#: allink_core/core/templates/allink_core/base_root.html:84
 msgid "Jump to content"
 msgstr ""
 
-#: allink_core/core/templates/allink_core/base_root.html:87
+#: allink_core/core/templates/allink_core/base_root.html:85
 msgid "Jump to footer"
 msgstr ""
 
-#: allink_core/core/templates/allink_core/base_root.html:132
+#: allink_core/core/templates/allink_core/base_root.html:130
 #: allink_core/core/templates/allink_core/modals/modal-header-markup.html:19
 #: allink_core/core/templates/partials/forms/form_base.html:48
 msgid "Close"
@@ -572,4 +568,12 @@ msgstr ""
 
 #: allink_core/core_apps/allink_info_box/templates/allink_info_box/plugins/default/content.html:13
 msgid "Show info box"
+msgstr ""
+
+#: allink_core/core_apps/allink_quote/cms_plugins.py:10
+msgid "Quote"
+msgstr ""
+
+#: allink_core/core_apps/allink_quote/cms_plugins.py:11
+msgid "allink modules"
 msgstr ""

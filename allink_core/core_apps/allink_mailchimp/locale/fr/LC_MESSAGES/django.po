@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-27 11:29+0100\n"
+"POT-Creation-Date: 2019-11-27 15:03+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -54,9 +54,3 @@ msgstr "Envoyer"
 #: allink_core/core_apps/allink_mailchimp/views.py:44
 msgid "Something went wrong with your subscription. Please try again later."
 msgstr ""
-
-#~ msgid "Newsletter abonnieren"
-#~ msgstr "Inscription newsletter"
-
-#~ msgid "E-Mail"
-#~ msgstr "E-mail"

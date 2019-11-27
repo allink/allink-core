@@ -70,8 +70,6 @@ msgid "Generic"
 msgstr ""
 
 #: allink_core/core_apps/allink_content/cms_plugins.py:122
-#, fuzzy
-#| msgid "Display Options"
 msgid "Section Options"
 msgstr "Darstellungsoptionen"
 
@@ -81,14 +79,10 @@ msgid "Spacings"
 msgstr ""
 
 #: allink_core/core_apps/allink_content/cms_plugins.py:139
-#, fuzzy
-#| msgid "Background-Image"
 msgid "Background Image (full width)"
 msgstr "Hintergrundbild"
 
 #: allink_core/core_apps/allink_content/cms_plugins.py:146
-#, fuzzy
-#| msgid "Video background (Important: Only works if all fields are set)"
 msgid "Background Video (Important: Only works if all fields are set)"
 msgstr ""
 "Hintergrundvideo (Wichtig: Funktioniert nur, wenn alle Felder ausgefüllt "
@@ -128,10 +122,6 @@ msgid "Activate \"inverted text colors\""
 msgstr ""
 
 #: allink_core/core_apps/allink_content/models.py:65
-#, fuzzy
-#| msgid ""
-#| "If checked, the predefined overlay styles are applied (suitable when text "
-#| "is over an image/video)"
 msgid ""
 "If checked, the predefined inverted text colors are applied (suitable when "
 "using a background image/video)"
@@ -140,8 +130,6 @@ msgstr ""
 "(Nützlich, falls Text über einem Bild oder Video dargestellt wird)."
 
 #: allink_core/core_apps/allink_content/models.py:70
-#, fuzzy
-#| msgid "Activate overlay styles"
 msgid "Activate \"overlay\""
 msgstr "Overlay-Syles aktivieren"
 
@@ -157,8 +145,6 @@ msgid "Set a predefined background color"
 msgstr "Vordefinierte Hintergrundfarbe setzen"
 
 #: allink_core/core_apps/allink_content/models.py:83
-#, fuzzy
-#| msgid "Activate \"full height\" mode"
 msgid "Activate dynamic height"
 msgstr "\"full height\"-Modus aktivieren"
 
@@ -199,11 +185,6 @@ msgid "Video Start Image"
 msgstr "Video-Startbild"
 
 #: allink_core/core_apps/allink_content/models.py:112
-#, fuzzy
-#| msgid ""
-#| "This image is displayed while the video is loading. Ideally the very "
-#| "first frame of the video is used, in order to make the transition as "
-#| "smooth as possible."
 msgid ""
 "This image is displayed while the video is loading. Ideally, use an "
 "<strong>exact screen capture image</strong> of the very first frame of the "
@@ -217,9 +198,6 @@ msgid "Mobile Image"
 msgstr "Bild für Mobile"
 
 #: allink_core/core_apps/allink_content/models.py:122
-#, fuzzy
-#| msgid ""
-#| "The image that is being displayed instead of the video on mobile devices."
 msgid ""
 "The image that is being displayed on mobile devices instead of the video."
 msgstr "Das Bild, das auf Mobile anstelle des Videos angezeigt wird."
@@ -242,8 +220,6 @@ msgid "Ignore for pdf export"
 msgstr "Beim PDF-Export ignorieren"
 
 #: allink_core/core_apps/allink_content/models.py:135
-#, fuzzy
-#| msgid "If checked, the content plugin will be ignored when generting a pdf."
 msgid "If checked, this content section will be ignored when generting a pdf."
 msgstr "Falls angewählt, wird dieser Abschnitt für den PDF-Export ignoriert."
 
@@ -252,14 +228,10 @@ msgid "Choose a spacing (top and bottom)."
 msgstr ""
 
 #: allink_core/core_apps/allink_content/models.py:165
-#, fuzzy
-#| msgid "Choose a template."
 msgid "Choose a top spacing."
 msgstr "Template wählen."
 
 #: allink_core/core_apps/allink_content/models.py:172
-#, fuzzy
-#| msgid "Choose a template."
 msgid "Choose a bottom spacing."
 msgstr "Template wählen."
 
@@ -327,60 +299,3 @@ msgid ""
 msgstr ""
 "Diese Einstellung überschreibt den Standard für die vertikale Ausrichtung "
 "auf Desktop. (Normalerweise \"oben\")"
-
-#, fuzzy
-#~| msgid "Background-Image"
-#~ msgid "Background Image (container)"
-#~ msgstr "Hintergrundbild"
-
-#~ msgid "Activate \"full height\" mode"
-#~ msgstr "\"full height\"-Modus aktivieren"
-
-#~ msgid ""
-#~ "If checked, the section will use the available height of the device's/"
-#~ "browser's screen."
-#~ msgstr ""
-#~ "Falls angewählt, wird der Abschnitt die verfügbare Höhe des Geräts/"
-#~ "Browsers nutzten."
-
-#~ msgid "Activate Parallax effect"
-#~ msgstr "Parallax-Effekt aktivieren"
-
-#~ msgid "If checked, the parallax effect is enabled."
-#~ msgstr "Falls angewählt, ist der Parallax-Effekt aktiv."
-
-#~ msgid ""
-#~ "Adds a background image to the inner container of a content section. "
-#~ "Activating \"overlay styles\" is recommended."
-#~ msgstr ""
-#~ "Fügt ein Hintergrundbild zum inneren Container eines Inhaltsabschnitts "
-#~ "hinzu. \"Overlay-Styles\" aktivieren empfohlen."
-
-#~ msgid "Full width background image"
-#~ msgstr "Hintergrundbild volle Breite"
-
-#~ msgid "Container background image"
-#~ msgstr "Hintergrundbild in Container"
-
-#~ msgid ""
-#~ "Instructions: Single selection is made by clicking on an option. Multiple "
-#~ "selections are achieved by pressing and holding down the Command-key "
-#~ "(Mac) or Control-Key (Windows) <strong>and</strong> clicking the options "
-#~ "you would like to apply."
-#~ msgstr ""
-#~ "Anleitung: Einzelauswahl durch Klicken auf die gewünschte Option. "
-#~ "Mehrfachwahl kann durch Drücken und Halten der Command-Taste (Mac) or "
-#~ "Control-Taste (Windows) <strong>und</strong> Anklicken der gewünschten "
-#~ "Optionen erzielt werden."
-
-#~ msgid "Mobile Image Alignment (horizontal)"
-#~ msgstr "Ausrichtung des Bilds für Mobile (horizontal)"
-
-#~ msgid ""
-#~ "Which part of the image ist the most important one and <strong>must</"
-#~ "strong> be visible? Because we use the available space, there is a chance "
-#~ "that a part (left and/or right) is not visible."
-#~ msgstr ""
-#~ "Welcher Bildteil ist am wichtigsten und <strong>muss</strong> sichtbar "
-#~ "sein? Je nach Bildschirmgrösse kann es sein, dass ein Teil (links und/"
-#~ "oder rechts) nicht sichtbar ist."

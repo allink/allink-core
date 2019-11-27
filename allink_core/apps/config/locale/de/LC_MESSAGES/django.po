@@ -127,15 +127,3 @@ msgstr ""
 #: allink_core/apps/config/cms_toolbars.py:33
 msgid "Config"
 msgstr ""
-
-#~ msgid "Event Registration"
-#~ msgstr "Event Anmeldung"
-
-#~ msgid "Event Registrations"
-#~ msgstr "Event Anmeldungen"
-
-#~ msgid "Contact requests"
-#~ msgstr "Kontaktanfragen"
-
-#~ msgid "Project"
-#~ msgstr "Projekt"

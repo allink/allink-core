@@ -190,18 +190,3 @@ msgstr ""
 #: allink_core/apps/locations/cms_plugins.py:26
 msgid "Map Options"
 msgstr "Karten-Optionen"
-
-#~ msgid "Email Work"
-#~ msgstr "E-Mail Work"
-
-#~ msgid "Email Home"
-#~ msgstr "E-Mail Home"
-
-#~ msgid "Images"
-#~ msgstr "Bilder"
-
-#~ msgid "The first image will be used as preview image."
-#~ msgstr "Das erst Bild wird als Vorschaubild verwendet."
-
-#~ msgid "Directions"
-#~ msgstr "Routenplaner"

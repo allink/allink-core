@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-27 11:29+0100\n"
+"POT-Creation-Date: 2019-11-27 15:03+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,27 +21,3 @@ msgstr ""
 #: allink_core/core_apps/allink_terms/templates/allink_terms/admin/change_form.html:7
 msgid "Publish"
 msgstr "Publizieren"
-
-#~ msgid "Terms of Service"
-#~ msgstr "AGBs"
-
-#~ msgid "Draft"
-#~ msgstr "Entwurf"
-
-#~ msgid "Published"
-#~ msgstr "Publiziert"
-
-#~ msgid "Archived"
-#~ msgstr "Archiviert"
-
-#~ msgid "Terms Text"
-#~ msgstr "AGB-Text"
-
-#~ msgid "Terms cms Page"
-#~ msgstr "AGB CMS-Seite"
-
-#~ msgid "CMS Page which shows Terms and Conditions"
-#~ msgstr "CMS Seite, welche die AGB anzeigt"
-
-#~ msgid "Terms - %s"
-#~ msgstr "AGB - %s"

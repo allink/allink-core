@@ -95,12 +95,3 @@ msgstr ""
 #: allink_core/apps/events/cms_toolbars.py:31
 msgid "Forms"
 msgstr ""
-
-#~ msgid "Salutation"
-#~ msgstr "Salutation"
-
-#~ msgid "Company"
-#~ msgstr "Société"
-
-#~ msgid "Phone"
-#~ msgstr "Téléphone"

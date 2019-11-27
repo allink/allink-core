@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-27 11:29+0100\n"
+"POT-Creation-Date: 2019-11-27 15:03+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,66 +67,3 @@ msgstr "Das Datum muss in der Zukunft liegen."
 #: allink_core/apps/contact/forms.py:50 allink_core/apps/contact/forms.py:57
 msgid "This field is required."
 msgstr "Dieses Feld wird benötigt."
-
-#~ msgid "Contact Request"
-#~ msgstr "Kontaktanfrage"
-
-#~ msgid "Contact Requests"
-#~ msgstr "Kontaktanfragen"
-
-#~ msgid "Contact Apphook"
-#~ msgstr "Kontakt Apphook"
-
-#, fuzzy
-#~| msgid "Predifined variations"
-#~ msgid "Predefined variations"
-#~ msgstr "Vordefinierte css-Klassen"
-
-#, fuzzy
-#~| msgid "Contact via"
-#~ msgid "Contact Form"
-#~ msgstr "Kontaktieren per"
-
-#~ msgid "Forms"
-#~ msgstr "Formulare"
-
-#~ msgid ""
-#~ "Instructions: Single selection is made by clicking on an option. Multiple "
-#~ "selections are achieved by pressing and holding down the Command-key "
-#~ "(Mac) or Control-Key (Windows) <strong>and</strong> clicking the options "
-#~ "you would like to apply."
-#~ msgstr ""
-#~ "Anleitung: Einzelauswahl durch Klicken auf die gewünschte Option. "
-#~ "Mehrfachwahl kann durch Drücken und Halten der Command-Taste (Mac) or "
-#~ "Control-Taste (Windows) <strong>und</strong> Anklicken der gewünschten "
-#~ "Optionen erzielt werden."
-
-#~ msgid "ContactRequest"
-#~ msgstr "Kontaktanfrage"
-
-#~ msgid "Salutation"
-#~ msgstr "Anrede"
-
-#~ msgid "Company"
-#~ msgstr "Firma"
-
-#~ msgid "Thanks for your request."
-#~ msgstr "Danke für Ihre Anfrage."
-
-#~ msgid "Close window"
-#~ msgstr "Fenster schliessen"
-
-#~ msgid "(required)"
-#~ msgstr "(benötigt)"
-
-#~ msgid "Choose date and time"
-#~ msgstr "Wann sollen wir Sie anrufen?"
-
-#~ msgid "Choose a date"
-#~ msgstr "Bitte ein Datum wählen"
-
-#~ msgid "Choose a time"
-#~ msgstr "Bitte Zeit wählen"
-
-#~ msgid "Submit"
-#~ msgstr "Senden"
