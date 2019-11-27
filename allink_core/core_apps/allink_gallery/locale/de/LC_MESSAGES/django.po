@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-24 10:07+0200\n"
+"POT-Creation-Date: 2019-11-27 15:03+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,59 +29,3 @@ msgstr "Nächstes Slide"
 #: allink_core/core_apps/allink_gallery/templates/allink_gallery/slider/content.html:43
 msgid "of"
 msgstr ""
-
-#~ msgid "Ratio"
-#~ msgstr "Seitenverhältnis"
-
-#~ msgid "This option overrides the default settings for the gallery plugin."
-#~ msgstr ""
-#~ "Diese Einstellung überschreibt die Standardeinstellungen für den Galerie-"
-#~ "Inhalt."
-
-#~ msgid ""
-#~ "There are only {} characters allowed in text field. Currently there are "
-#~ "{} characters."
-#~ msgstr ""
-#~ "Es sind nur {} Zeichen im Textfeld erlaubt. Momentan sind es {} Zeichen."
-
-#~ msgid "Gallery"
-#~ msgstr "Galerie"
-
-#~ msgid "Slider Options"
-#~ msgstr "Slider-Optionen"
-
-#~ msgid "Advanced Options"
-#~ msgstr "Erweiterte Optionen"
-
-#, fuzzy
-#~| msgid "Gallery"
-#~ msgid "Gallery Image"
-#~ msgstr "Galerie"
-
-#~ msgid "Choose a template."
-#~ msgstr "Template wählen"
-
-#~ msgid "Fullscreen option visible"
-#~ msgstr "Vollbildoption sichtbar"
-
-#~ msgid "This option enables a fullscreen button for this gallery."
-#~ msgstr ""
-#~ "Diese Einstellung blendet einen Vollbild-Button für diese Galerie ein."
-
-#~ msgid "Gallery counter visible"
-#~ msgstr "Bildnummern anzeigen"
-
-#~ msgid "This option enables a gallery counter."
-#~ msgstr "Diese Einstellung ermöglicht es, die Bildnummern anzuzeigen."
-
-#~ msgid "This option enables autoplay for this gallery."
-#~ msgstr "Diese Einstellung aktiviert Autoplay für diese Galerie."
-
-#~ msgid "Title"
-#~ msgstr "Titel"
-
-#~ msgid "Image"
-#~ msgstr "Bild"
-
-#~ msgid "Fullscreen Gallery"
-#~ msgstr "Vollbild-Galerie"

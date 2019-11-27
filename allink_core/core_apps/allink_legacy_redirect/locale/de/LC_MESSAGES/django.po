@@ -31,8 +31,6 @@ msgid "Manual testing"
 msgstr "Manuell testen"
 
 #: allink_core/core_apps/allink_legacy_redirect/admin.py:57
-#, fuzzy
-#| msgid "New Page"
 msgid "Page"
 msgstr "Neue Seite"
 

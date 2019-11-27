@@ -36,8 +36,6 @@ msgid "Event Form enabled"
 msgstr "Event-Formular aktiviert"
 
 #: allink_core/apps/events/abstract_models.py:63
-#, fuzzy
-#| msgid "Event Date"
 msgid "Entry Date"
 msgstr "Event-Datum"
 
@@ -95,55 +93,9 @@ msgid "Events Apphook"
 msgstr ""
 
 #: allink_core/apps/events/cms_menus.py:15
-#, fuzzy
-#| msgid "Event Time"
 msgid "Events menu"
 msgstr "Event-Zeit"
 
 #: allink_core/apps/events/cms_toolbars.py:31
 msgid "Forms"
 msgstr "Formulare"
-
-#~ msgid "Published From/To"
-#~ msgstr "Publiziert von/bis"
-
-#~ msgid "News entry"
-#~ msgstr "News-Eintrag"
-
-#, fuzzy
-#~| msgid "News entry"
-#~ msgid "News menu"
-#~ msgstr "News-Eintrag"
-
-#~ msgid "Events entries"
-#~ msgstr "Eventseinträge"
-
-#~ msgid "Detailed Text"
-#~ msgstr "Detailtext"
-
-#~ msgid "The full text in detail view."
-#~ msgstr "Der gesamte Text für die Detailansicht."
-
-#~ msgid "Images"
-#~ msgstr "Bilder"
-
-#~ msgid "The first image will be used as preview image."
-#~ msgstr "Das erst Bild wird als Vorschaubild verwendet."
-
-#~ msgid "Salutation"
-#~ msgstr "Anrede"
-
-#~ msgid "Company"
-#~ msgstr "Firma"
-
-#~ msgid "Phone"
-#~ msgstr "Telefon"
-
-#~ msgid "More"
-#~ msgstr "Mehr"
-
-#~ msgid "Thanks for your registration"
-#~ msgstr "Danke für Ihre Anmeldung"
-
-#~ msgid "Register"
-#~ msgstr "Anmelden"

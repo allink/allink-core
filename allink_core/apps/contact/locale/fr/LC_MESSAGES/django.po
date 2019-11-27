@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-24 10:06+0200\n"
+"POT-Creation-Date: 2019-11-27 15:03+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,30 +67,3 @@ msgstr ""
 #: allink_core/apps/contact/forms.py:50 allink_core/apps/contact/forms.py:57
 msgid "This field is required."
 msgstr "Ce champ est obligatoire."
-
-#~ msgid "Salutation"
-#~ msgstr "Salutation"
-
-#~ msgid "Company"
-#~ msgstr "Société"
-
-#~ msgid "Thanks for your request."
-#~ msgstr "Merci beaucoup pour votre allocution."
-
-#~ msgid "Close window"
-#~ msgstr "Fermer la fenêtre"
-
-#~ msgid "Choose date and time"
-#~ msgstr "Choisir une date e une heure"
-
-#~ msgid "Choose a date"
-#~ msgstr "Choisir une date"
-
-#~ msgid "Choose a time"
-#~ msgstr "Choisir une heure"
-
-#~ msgid "Submit"
-#~ msgstr "Inscrire"
-
-#~ msgid "Datum"
-#~ msgstr "Date"

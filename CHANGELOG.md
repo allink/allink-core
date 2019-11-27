@@ -19,9 +19,22 @@ new features or plugins
 general bugfixes
 
 
-## v2.2.4
+## v2.3.0
+### IMPORTANT
+- UPDATE REQUIRED: [allink-core-static v2.3.0](https://github.com/allink/allink-core-static/blob/v2.3.0/CHANGELOG.md)
+- added 'javascript-catalog' so you need to update our urls.py with
+```python
+from django.views.i18n import JavaScriptCatalog
+...
+...i18n_patterns(
+...
+    path('jsi18n/', JavaScriptCatalog.as_view(domain='django'), name='javascript-catalog'),
+...
+```
+
 ### NEW
-- Added quote-plugin
+- Added allink_quote plugin
+- Added browser-check translations
 
 ## v2.2.3
 ### IMPORTANT

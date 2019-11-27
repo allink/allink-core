@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-24 10:06+0200\n"
+"POT-Creation-Date: 2019-11-27 15:03+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,70 +33,3 @@ msgstr "Nachname"
 #: allink_core/apps/people/abstract_models.py:48
 msgid "Company Name"
 msgstr "Firma"
-
-#~ msgid "Preview Image"
-#~ msgstr "Vorschaubild"
-
-#, fuzzy
-#~| msgid "People menu"
-#~ msgid "People"
-#~ msgstr "Personen"
-
-#~ msgid "Leave blank to auto-generate a unique slug."
-#~ msgstr "Leer lassen, um den Slug automatisch zu generieren."
-
-#~ msgid "Function"
-#~ msgstr "Funktion"
-
-#~ msgid ""
-#~ "Select and arrange specific entries, or, leave blank to select all. (If "
-#~ "manual entries are selected the category filtering will be ignored.)"
-#~ msgstr ""
-#~ "Wählen und ordnen Sie spezifische Einträge oder leer lassen, um alle zu "
-#~ "wählen. (Kategorienfilterung wird bei manuellen Einträgen nicht "
-#~ "angewandt.)"
-
-#~ msgid "People menu"
-#~ msgstr "Personen"
-
-#~ msgid "Location"
-#~ msgstr "Funktion"
-
-#~ msgid "Unit"
-#~ msgstr "Abteilung"
-
-#~ msgid "Gender"
-#~ msgstr "Geschlecht"
-
-#~ msgid "Job Function"
-#~ msgstr "Job-Funktion"
-
-#~ msgid "Job Title"
-#~ msgstr "Jobbezeichnung"
-
-#~ msgid "Images"
-#~ msgstr "Bilder"
-
-#~ msgid "The first image will be used as preview image."
-#~ msgstr "Das erst Bild wird als Vorschaubild verwendet."
-
-#~ msgid "Contact"
-#~ msgstr "Kontakt"
-
-#~ msgid "Phone:"
-#~ msgstr "Telefon:"
-
-#~ msgid "Mobile:"
-#~ msgstr "Mobile:"
-
-#~ msgid "More"
-#~ msgstr "Mehr"
-
-#~ msgid "Company/Job"
-#~ msgstr "Firma/Beruf"
-
-#~ msgid "Place"
-#~ msgstr "Ort"
-
-#~ msgid "Job"
-#~ msgstr "Beruf"

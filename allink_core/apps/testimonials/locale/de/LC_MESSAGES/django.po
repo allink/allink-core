@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-24 10:06+0200\n"
+"POT-Creation-Date: 2019-11-27 15:03+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,39 +29,3 @@ msgstr "Nachname"
 #: allink_core/apps/testimonials/abstract_models.py:59
 msgid "Company Name"
 msgstr ""
-
-#~ msgid "Preview Image"
-#~ msgstr "Vorschaubild"
-
-#~ msgid "Leave blank to auto-generate a unique slug."
-#~ msgstr "Leer lassen, um den Slug automatisch zu generieren."
-
-#~ msgid ""
-#~ "Teaser text that in some cases is used in the list view and/or in the "
-#~ "detail view."
-#~ msgstr ""
-#~ "Teaser-Text, welcher in der Listenansicht und/oder in der Detailansicht "
-#~ "verwendet wird."
-
-#~ msgid ""
-#~ "Select and arrange specific entries, or, leave blank to select all. (If "
-#~ "manual entries are selected the category filtering will be ignored.)"
-#~ msgstr ""
-#~ "Wählen und ordnen Sie spezifische Einträge oder leer lassen, um alle zu "
-#~ "wählen. (Kategorienfilterung wird bei manuellen Einträgen nicht "
-#~ "angewandt.)"
-
-#~ msgid "The full text in detail view."
-#~ msgstr "Der gesamte Text für die Detailansicht."
-
-#~ msgid "Images"
-#~ msgstr "Bilder"
-
-#~ msgid "The first image will be used as preview image."
-#~ msgstr "Das erst Bild wird als Vorschaubild verwendet."
-
-#~ msgid "Contact"
-#~ msgstr "Kontakt"
-
-#~ msgid "Phone:"
-#~ msgstr "Telefon:"
