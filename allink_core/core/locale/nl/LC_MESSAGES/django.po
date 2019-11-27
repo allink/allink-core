@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-24 10:06+0200\n"
+"POT-Creation-Date: 2019-11-27 11:29+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,15 +18,28 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: allink_core/core/forms/fields.py:58
+#: allink_core/core/customisation/dummy_new_app/cms_apps.py:8
+msgid "DummyApp Apphook"
+msgstr ""
+
+#: allink_core/core/customisation/dummy_new_app/models.py:71
+msgid "Lead Text"
+msgstr ""
+
+#: allink_core/core/customisation/dummy_new_app/templates/dummy_app/plugins/_no_results.html:4
+#: allink_core/core/templates/allink_core/news/plugins/_no_results.html:4
+msgid "There are no news at the moment."
+msgstr ""
+
+#: allink_core/core/forms/fields.py:59
 msgid "Please choose a predefined color."
 msgstr ""
 
-#: allink_core/core/models/choices.py:19
+#: allink_core/core/models/choices.py:20
 msgid "Mr."
 msgstr ""
 
-#: allink_core/core/models/choices.py:20
+#: allink_core/core/models/choices.py:21
 msgid "Mrs."
 msgstr ""
 
@@ -174,23 +187,27 @@ msgstr ""
 msgid "Save and continue editing"
 msgstr ""
 
-#: allink_core/core/templates/allink_core/base_root.html:75
+#: allink_core/core/templates/allink_core/base_root.html:4
+msgid "YOLO asdf asdf core!"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/base_root.html:84
 msgid "Go to homepage"
 msgstr ""
 
-#: allink_core/core/templates/allink_core/base_root.html:76
+#: allink_core/core/templates/allink_core/base_root.html:85
 msgid "Jump to navigation"
 msgstr ""
 
-#: allink_core/core/templates/allink_core/base_root.html:77
+#: allink_core/core/templates/allink_core/base_root.html:86
 msgid "Jump to content"
 msgstr ""
 
-#: allink_core/core/templates/allink_core/base_root.html:78
+#: allink_core/core/templates/allink_core/base_root.html:87
 msgid "Jump to footer"
 msgstr ""
 
-#: allink_core/core/templates/allink_core/base_root.html:123
+#: allink_core/core/templates/allink_core/base_root.html:132
 #: allink_core/core/templates/allink_core/modals/modal-header-markup.html:19
 #: allink_core/core/templates/partials/forms/form_base.html:48
 msgid "Close"
@@ -349,13 +366,27 @@ msgid "There are no upcoming events at the moment."
 msgstr ""
 
 #: allink_core/core/templates/allink_core/events/plugins/grid_static/_items.html:41
-#: allink_core/core/templates/allink_core/testimonials/plugins/grid_static/_items.html:40
-#: allink_core/core/templates/allink_core/testimonials/plugins/grid_static/_items.html:47
-#: allink_core/core_apps/allink_teaser/templates/allink_teaser/includes/_link.html:10
-#: allink_core/core_apps/allink_teaser/templates/allink_teaser/includes/_link.html:17
-#: allink_core/core_apps/allink_teaser/templates/allink_teaser/tile/_link.html:10
-#: allink_core/core_apps/allink_teaser/templates/allink_teaser/tile/_link.html:17
+#: allink_core/core/templates/allink_core/testimonials/plugins/grid_static/_items.html:36
 msgid "More"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/includes/browser-check.html:6
+msgid "Browser Info"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/includes/browser-check.html:7
+msgid "no optimal representation possible"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/includes/browser-check.html:8
+msgid ""
+"Your web browser does not provide an optimal representation of our website. "
+"This means that some functions may not work or the view may be incorrect. We "
+"recommend that you use a current browser."
+msgstr ""
+
+#: allink_core/core/templates/allink_core/includes/browser-check.html:12
+msgid "Visit Anyways"
 msgstr ""
 
 #: allink_core/core/templates/allink_core/includes/header/header.html:23
@@ -378,7 +409,7 @@ msgstr ""
 msgid "Contact"
 msgstr ""
 
-#: allink_core/core/templates/allink_core/locations/plugins/details/content.html:29
+#: allink_core/core/templates/allink_core/locations/plugins/details/content.html:27
 #: allink_core/core/templates/allink_core/locations/plugins/details_and_map/content.html:57
 #: allink_core/core/templates/allink_core/locations/plugins/details_and_map/content.html:121
 #: allink_core/core/templates/allink_core/locations/plugins/imprint/content.html:26
@@ -386,12 +417,12 @@ msgstr ""
 msgid "Directions"
 msgstr ""
 
-#: allink_core/core/templates/allink_core/locations/plugins/details/content.html:53
+#: allink_core/core/templates/allink_core/locations/plugins/details/content.html:50
 #: allink_core/core/templates/allink_core/locations/plugins/details_and_map/content.html:61
 msgid "Opening hours"
 msgstr ""
 
-#: allink_core/core/templates/allink_core/locations/plugins/details/content.html:59
+#: allink_core/core/templates/allink_core/locations/plugins/details/content.html:56
 msgid "h"
 msgstr ""
 
@@ -427,10 +458,6 @@ msgstr ""
 msgid "Preview"
 msgstr ""
 
-#: allink_core/core/templates/allink_core/news/plugins/_no_results.html:4
-msgid "There are no news at the moment."
-msgstr ""
-
 #: allink_core/core/templates/allink_core/newsletter/confirmation.html:6
 msgid "Thanks for your registration."
 msgstr ""
@@ -460,12 +487,23 @@ msgstr ""
 msgid "No testimonials found with the applied filters."
 msgstr ""
 
+#: allink_core/core/templates/allink_core/widgets/sortedm2m_widget.html:4
+msgid "Type into this box to filter down the list."
+msgstr ""
+
+#: allink_core/core/templates/allink_core/widgets/sortedm2m_widget.html:5
+msgid "Filter"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/widgets/sortedm2m_widget.html:20
+msgid "Choose items and order by drag & drop."
+msgstr ""
+
 #: allink_core/core/templates/app_content/app_content_base.html:39
 msgid "All"
 msgstr ""
 
-#: allink_core/core/templates/app_content/app_content_base.html:144
-#: allink_core/core/templates/app_content/app_content_base.html:151
+#: allink_core/core/templates/app_content/app_content_base.html:117
 msgid "Load More"
 msgstr ""
 
@@ -503,7 +541,7 @@ msgstr ""
 msgid "Add plugin to"
 msgstr ""
 
-#: allink_core/core/views.py:153
+#: allink_core/core/views.py:139
 msgid "The requested content is not published."
 msgstr ""
 

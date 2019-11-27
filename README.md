@@ -1,5 +1,5 @@
 # allink-core
-allink-core is a heavily opinionated collection of django apps, django-cms plugins and other utilities. allink-core was implemented to create a standardized ecosystem for django-cms projects developed at [allink AG](https://www.allink.ch). 
+allink-core is a heavily opinionated collection of django apps, django-cms plugins and other utilities. allink-core was implemented to create a standardized ecosystem for django-cms projects developed at [allink AG](https://www.allink.ch).
 
 allink-core is ment to be used with our boilerplate project which is hosted on the [divio cloud](https://www.divio.com/en/). (feel free to send us a [message](mailto:itcrowd@allink.ch) if you would like to have a look.)
 The steps we describe here are mostly closely coupled to our setup and environment. So the described steps might not make sense to you, when you don't know our setup. Also we skip steps which we already included in the boilerplate.
@@ -16,7 +16,7 @@ The steps we describe here are mostly closely coupled to our setup and environme
 v.0.x.x, v.1.x.x and v.2.x.x are not compatible with each other. We never migrated from one to an other and doing so would be a be a lot of manual work, as there have been a lot of database changes. We try to minimize the need for a new major version. The decision if v3.x.x will be compatible with v.2.x.x has yet to be made.
 
 ### Minor
-When you make changes that affect both the [backend](https://github.com/allink/allink-core) and the [frontend](https://github.com/allink/allink-core-static) the project dependencies need to be updated at the same time. To quickly see which releases belong together you should make a `minor` release in both repositories. 
+When you make changes that affect both the [backend](https://github.com/allink/allink-core) and the [frontend](https://github.com/allink/allink-core-static) the project dependencies need to be updated at the same time. To quickly see which releases belong together you should make a `minor` release in both repositories.
 
 #### Example
 A new CMS plugin together with styles has been added to the core. Release a new `minor` version:
@@ -35,7 +35,7 @@ A bugfix has been made in allink-core. Release a new `patch` version:
 ## Workflow when making updates to allink-core repo while working on a project.
 The idea is that we want to be able to make changes to the allink-core repo with real life data. This can be achieved, when we are able to switch out the installed allink-core form the requirements.in with a local allink-core repo. This way we can also maintain a proper git history.
 
-### Prepare allink-core repository 
+### Prepare allink-core repository
 To work on the allink-core repo you first need to pull the [allink-core](https://github.com/allink/allink-core) repo. The setup expects it to be at "~/projects/allink-core". If it isn't in this location, just create a symlink which points to your allink-core repo.
 
 1. make sure you are up to date with the current version branch e.g "v2.0.x" and you working on your own branch.
@@ -49,7 +49,9 @@ For the next steps, we assume you are working on the [boilerplate-2.0](https://g
 2. To work directly on allink-core in the same directory as the boilerplate-project, we create a symlink. `ln -s ~/projects/allink-core/allink_core allink_core`
 
 > Make sure you do not commit these changes, as your teammates probably do not care about having a local allink-core mapped in their project.
-  
+
+> Make added or updated translations with the following command: `./manage.py makemessages --symlinks`
+
 You are all set. When you now run `docker-compose up` your application will run with your local allink-core repo. However if you run `docker-compose build` you will still be installing the allink-core repo from the requirements file.
 
 If you need to run `docker-compose build` with your new branch. Just commit your changes to your feature branch on the allink-core repo and add it to the boilerplate-2.0 requirementsfile with the corresponding commit hash. e.g: `https://github.com/allink/allink-core/tarball/ccb67deaed7dbc07bd565c717a21c0a07752bd9d`
