@@ -4,7 +4,9 @@ from allink_core.core.allink_settings import *  # noqa
 from allink_core import get_core_apps, ALLINK_CORE_MAIN_TEMPLATE_DIRS
 from django.utils.translation import ugettext_lazy as _
 
-BASE_DIR = os.path.dirname(os.path.abspath(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(os.path.abspath(__file__))))
+TEST_DIR = os.path.dirname(os.path.abspath(os.path.abspath(__file__)))
+
 SITE_ID = 1
 ROOT_URLCONF = 'test.urls'
 
@@ -94,7 +96,8 @@ DATABASES = {
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['/app/templates', '/app/allink_core/core/templates/allink_core'],
+        'DIRS': [os.path.join(BASE_DIR, 'templates'),
+                 os.path.join(BASE_DIR, 'allink_core/core/templates/allink_core/')],
         'OPTIONS':
             {'debug': True,
              'context_processors': [
@@ -122,9 +125,6 @@ TEMPLATES = [
              }
     }
 ]
-# add allink-core templates
-dirs = TEMPLATES[0].get('DIRS', {})
-dirs.extend(ALLINK_CORE_MAIN_TEMPLATE_DIRS)
 
 MIDDLEWARE = [
     'django.middleware.cache.UpdateCacheMiddleware',
@@ -180,8 +180,7 @@ INSTALLED_APPS = [
     'filer',
     'easy_thumbnails',
     'mptt',
-    'aldryn_google_tag_manager',
-] + ALLINK_INSTALLED_APPS
+    'aldryn_google_tag_manager'] + ALLINK_INSTALLED_APPS
 
 # allink apps which are installed in this project
 INSTALLED_ALLINK_CORE_APPS = [
@@ -251,8 +250,8 @@ THUMBNAIL_WIDTH_ALIASES = {
 WEBPACK_LOADER = {
     'DEFAULT': {
         'CACHE': False,
-        'BUNDLE_DIR_NAME': 'webpack_bundles/', # must end with slash
-        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
+        'BUNDLE_DIR_NAME': 'webpack_bundles/',  # must end with slash
+        'STATS_FILE': os.path.join(TEST_DIR, 'webpack-stats.json'),
         'POLL_INTERVAL': 0.1,
         'TIMEOUT': None,
         'IGNORE': [r'.+\.hot-update.js', r'.+\.map']

@@ -2,7 +2,7 @@ import json
 from django.urls import reverse
 from cms.test_utils.testcases import CMSTestCase
 from django.test.testcases import TestCase
-from allink_core.core.test import CategoriesMixin, DataModelMixin, PageApphookMixin, PluginModelMixin
+from allink_core.core.test import CategoriesMixin, DataModelMixin, PageApphookMixin, AllinkAppContenPluginMixin
 from ..cms_apps import NewsApphook
 from ..models import News
 from ..views import NewsPluginLoadMore
@@ -46,7 +46,7 @@ class NewsDetailViewTestCase(DataModelMixin, PageApphookMixin, CMSTestCase):
     # def test_detail_when_ajax_call(self):
 
 
-class NewsPluginLoadMoreViewTestCase(CategoriesMixin, DataModelMixin, PluginModelMixin, TestCase):
+class NewsPluginLoadMoreViewTestCaseApp(CategoriesMixin, DataModelMixin, AllinkAppContenPluginMixin, TestCase):
     apphook = 'NewsApphook'
     namespace = 'news'
     page_template = 'default.html'

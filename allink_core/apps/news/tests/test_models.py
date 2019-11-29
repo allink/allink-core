@@ -7,7 +7,7 @@ from django.test.client import RequestFactory
 from django.template import Template, RequestContext
 from cms import api
 from parler.utils.context import switch_language
-from allink_core.core.test import PageApphookMixin, CategoriesMixin, DataModelMixin, PluginModelMixin
+from allink_core.core.test import PageApphookMixin, CategoriesMixin, DataModelMixin, AllinkAppContenPluginMixin
 from allink_core.apps.news.cms_apps import NewsApphook
 from allink_core.apps.config.utils import get_fallback
 from allink_core.apps.config.tests.factories import ConfigFactory
@@ -227,7 +227,7 @@ class NewsTeaserTestCase(TestCase):
         self.assertDictEqual(expected_meta_context, self.entry_1.teaser_dict)
 
 
-class NewsPluginTestCase(CategoriesMixin, DataModelMixin, PluginModelMixin, TestCase):
+class NewsPluginTestCaseApp(CategoriesMixin, DataModelMixin, AllinkAppContenPluginMixin, TestCase):
     apphook = 'NewsApphook'
     namespace = 'news'
     page_template = 'default.html'

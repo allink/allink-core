@@ -1,12 +1,12 @@
 from django.test.client import RequestFactory
 from django.test.testcases import TestCase
-from allink_core.core.test import CategoriesMixin, DataModelMixin, PluginModelMixin
+from allink_core.core.test import CategoriesMixin, DataModelMixin, AllinkAppContenPluginMixin
 from allink_core.apps.news.cms_apps import NewsApphook
 from .factories import NewsFactory
 from ..cms_plugins import CMSNewsAppContentPlugin
 
 
-class CMSNewsAppContentPluginTestCase(CategoriesMixin, DataModelMixin, PluginModelMixin, TestCase):
+class CMSNewsAppContentPluginTestCaseApp(CategoriesMixin, DataModelMixin, AllinkAppContenPluginMixin, TestCase):
     apphook = 'NewsApphook'
     namespace = 'news'
     page_template = 'default.html'
