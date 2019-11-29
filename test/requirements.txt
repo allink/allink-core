@@ -43,4 +43,3 @@ geopy==1.19.0
 reportlab==3.5.20
 beautifulsoup4==4.7.1
 lxml==4.4.1
-django-cleanup==2.1.0
