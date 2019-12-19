@@ -22,6 +22,7 @@ general bugfixes
 #### IMPORTANT
 ###### REQUIREMENTS
 - removed django-cleanup==2.1.0
+- added possibility to add x-y original ratio to width_alias in settings.py
 
 ## v2.3.0
 #### IMPORTANT
