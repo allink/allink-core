@@ -245,6 +245,11 @@ THUMBNAIL_WIDTH_ALIASES = {
         'sm': {'width': 500, 'ratio': '3-2'},
         'xl': {'width': 500, 'ratio': '3-2'}
     },
+    'test-original': {
+        'xs': {'width': 450, 'ratio': 'x-y'},
+        'sm': {'width': 500, 'ratio': 'x-y'},
+        'xl': {'width': 500, 'ratio': 'x-y'}
+    },
 }
 
 WEBPACK_LOADER = {
