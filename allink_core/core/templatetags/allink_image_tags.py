@@ -15,14 +15,18 @@ Config = get_model('config', 'Config')
 # ####################################################################################
 # Allink image
 
-def get_sizes_from_width_alias(width_alias):
+def get_sizes_from_width_alias(width_alias, image):
     sizes = []
     aliases = settings.THUMBNAIL_WIDTH_ALIASES
     for point in aliases.get(width_alias):
         width = aliases.get(width_alias).get(point).get('width')
         ratio = aliases.get(width_alias).get(point).get('ratio')
-        ratio_w, ratio_h = get_ratio_w_h(ratio)
-        height = get_height_from_ratio(width, ratio_w, ratio_h)
+        # original ratio
+        if ratio == 'x-y':
+            height = get_height_from_ratio(width, image.width, image.height)
+        else:
+            ratio_w, ratio_h = get_ratio_w_h(ratio)
+            height = get_height_from_ratio(width, ratio_w, ratio_h)
         sizes.append((point, (width, height)))
     return sizes
 
@@ -164,7 +168,7 @@ def render_image(context, image, alt_text='', ratio=None, width_alias=None, crop
         context.update({'alt_text': alt_text})
         context.update({'vh_enabled': vh_enabled})
 
-        sizes = get_sizes_from_width_alias(width_alias)
+        sizes = get_sizes_from_width_alias(width_alias, image)
         thumbnail_options = {'crop': crop, 'bw': bw, 'upscale': upscale, 'HIGH_RESOLUTION': high_resolution,
                              'zoom': zoom, 'subject_location': subject_location}
 

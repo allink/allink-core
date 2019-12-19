@@ -43,6 +43,11 @@ THUMBNAIL_WIDTH_ALIASES = {
         'sm': {'width': 500, 'ratio': '3-2'},
         'xl': {'width': 500, 'ratio': '3-2'}
     },
+    'test-original': {
+        'xs': {'width': 450, 'ratio': 'x-y'},
+        'sm': {'width': 500, 'ratio': 'x-y'},
+        'xl': {'width': 500, 'ratio': 'x-y'}
+    },
 }
 
 
@@ -71,7 +76,22 @@ class ImageTagsUtilsTestCase(TestCase):
             ('sm', (1200, 800)),
             ('xl', (1500, 1000)),
         ]
-        result = get_sizes_from_width_alias(alias)
+        result = get_sizes_from_width_alias(alias, image=None)
+        self.assertListEqual(expected_sizes, result)
+
+    def test_get_sizes_from_width_alias_original(self):
+        alias = 'test-original'
+        expected_sizes = [
+            ('xs', (450, 225)),
+            ('sm', (500, 250)),
+            ('xl', (500, 250)),
+        ]
+
+        image = mock.MagicMock()
+        image.width = 1000
+        image.height = 500
+
+        result = get_sizes_from_width_alias(alias, image=image)
         self.assertListEqual(expected_sizes, result)
 
 
@@ -304,9 +324,9 @@ class ImageTagsImagePluginRenderTestCase(TestCase):
         }
         self.image = FilerImageFactory()
         self.sizes = {
-            'xs': "450x{}".format(450/3*2),
-            'sm': "500x{}".format(500/3*2),
-            'xl': "500x{}".format(500/3*2),
+            'xs': "450x{}".format(450 / 3 * 2),
+            'sm': "500x{}".format(500 / 3 * 2),
+            'xl': "500x{}".format(500 / 3 * 2),
         }
 
     def test_context_render_all_image_urls(self):
