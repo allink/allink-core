@@ -13,6 +13,16 @@ class AllinkNewsQuerySet(AllinkBaseModelQuerySet):
         today = datetime.today()
         return self.published(start=today, end=today).filter(status=1)
 
+    def latest(self):
+        return self.active()\
+            .order_by('entry_date', 'id')\
+            .distinct('entry_date', 'id')
+
+    def earliest(self):
+        return self.active()\
+            .order_by('-entry_date', 'id')\
+            .distinct('entry_date', 'id')
+
     def published_fields_empty(self):
         return self.filter(Q(start__isnull=True) & Q(end__isnull=True))
 
