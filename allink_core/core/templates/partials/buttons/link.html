@@ -4,5 +4,5 @@
 
 {% endcomment %}
 
-<a href="{{ link_url }}" class="{{ link_classes }}" {{ link_attributes }} {% if link_id %}id="{{ link_id }}"{% endif %}>{% include "partials/buttons/link_text.html" %}</a>
-{% if 'softpage' in link_attributes %}{% if modal_header_title %}{% include "modals/modal-header-markup.html" with title=modal_header_title %}{% else %}{% include "modals/modal-header-markup.html" with title=link_label %}{% endif %}{% endif %}
+<a href="{{ link_url }}" class="{{ link_classes }}" {{ link_attributes }} {% if link_id %}id="{{ link_id }}"{% endif %} {% if icon %}data-icon-{{ icon }}{% endif %}>{% include "partials/buttons/link_text.html" %}</a>
+{% if 'data-trigger-softpage' in link_attributes and 'data-cms-page' in link_attributes %}{% if modal_header_title %}{% include "modals/modal-header-markup.html" with title=modal_header_title modal_type="softpage" %}{% else %}{% include "modals/modal-header-markup.html" with title=link_label modal_type="softpage" %}{% endif %}{% endif %}

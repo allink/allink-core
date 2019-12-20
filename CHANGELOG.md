@@ -21,7 +21,19 @@ general bugfixes
 ## v2.3.2
 #### FIXES
 - AllinkNewsQuerySet latest and earliest now use entry_date not created
+- Fixed softpage link / header markup errors
 
+#### IMPORTANT
+- Removed `data-softpage` in `link_attributes`. Button Softpage styling now happens via the `icon` parameter.<br>
+    When a link should be opened in a softpage use: `data-trigger-softpage`<br>
+    For styling use: `data-icon-softpage`<br><br>
+    Needs to be changed on project basis. Replace `data-softpage` with `data-icon-softpage`:
+    ```
+        // Button Softpage
+        &[data-icon-softpage] {
+            @include icon-softpage();
+        }
+    ```
 
 ## v2.3.1
 #### IMPORTANT
