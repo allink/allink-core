@@ -18,6 +18,10 @@ new features or plugins
 #### FIXES
 general bugfixes
 
+## v2.3.3
+#### FIXES
+- Bugfix: mobile order issue in column plugin
+
 ## v2.3.2
 #### FIXES
 - AllinkNewsQuerySet latest and earliest now use entry_date not created
