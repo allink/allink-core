@@ -18,14 +18,11 @@ new features or plugins
 #### FIXES
 general bugfixes
 
-## v2.3.3
-#### FIXES
-- Bugfix: mobile order issue in column plugin
-
 ## v2.3.2
 #### FIXES
 - AllinkNewsQuerySet latest and earliest now use entry_date not created
 - Fixed softpage link / header markup errors
+- Fixed mobile order issue in column plugin
 
 #### IMPORTANT
 - Removed `data-softpage` in `link_attributes`. Button Softpage styling now happens via the `icon` parameter.<br>
