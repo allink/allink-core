@@ -1,7 +1,7 @@
 {% load cms_tags sekizai_tags i18n thumbnail %}
 
 <li class="social-icons__list-item">
-    <a class="social-icons__link" href="{{instance.link}}" target="_blank" rel="noopener">
+    <a class="social-icons__link" href="{{instance.link}}" target="_blank" rel="noopener" aria-label="Social Icon">
         <i class="social-icons__icon social-icons__icon--{{instance.icon}}" aria-hidden="true"></i>
         {% if instance.title %}
             <span class="sr-only">
