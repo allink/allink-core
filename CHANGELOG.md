@@ -24,7 +24,7 @@ general bugfixes
  
 #### FIXES
 - AllinkNewsQuerySet latest and earliest now use entry_date not created
-- Fixed softpage link / header markup errors
+- Fixed softpage link / header markup errors [#30](https://github.com/allink/allink-core/pull/30)
 
 #### IMPORTANT
 - Removed `data-softpage` in `link_attributes`. Button Softpage styling now happens via the `icon` parameter.<br>
@@ -42,7 +42,7 @@ general bugfixes
 #### IMPORTANT
 ###### REQUIREMENTS
 - removed django-cleanup==2.1.0
-- added possibility to add x-y original ratio to width_alias in settings.py
+- added possibility to add x-y original ratio to width_alias in settings.py [#29](https://github.com/allink/allink-core/pull/29)
 
 ## v2.3.0
 #### IMPORTANT
