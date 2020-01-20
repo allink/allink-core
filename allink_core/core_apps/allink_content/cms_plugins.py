@@ -171,6 +171,7 @@ class CMSAllinkContentPlugin(AllinkMediaAdminMixin, CMSPluginBase):
                     placeholder=obj.placeholder,
                     language=obj.language,
                     position=CMSPlugin.objects.filter(parent=obj).count(),
+                    order_mobile=CMSPlugin.objects.filter(parent=obj).count(),
                     plugin_type=CMSAllinkContentColumnPlugin.__name__
                 )
                 col.save()

@@ -24,7 +24,8 @@ general bugfixes
  
 #### FIXES
 - AllinkNewsQuerySet latest and earliest now use entry_date not created
-- Fixed softpage link / header markup errors [#30](https://github.com/allink/allink-core/pull/30)
+- Fixed mobile order issue in column plugin [#30](https://github.com/allink/allink-core/pull/30)
+- Fixed softpage link / header markup errors [#31](https://github.com/allink/allink-core/pull/31)
 
 #### IMPORTANT
 - Removed `data-softpage` in `link_attributes`. Button Softpage styling now happens via the `icon` parameter.<br>

@@ -339,11 +339,6 @@ class AllinkContentColumnPlugin(CMSPlugin):
         else:
             return'({})'.format(self.template)
 
-    def save(self):
-        if not self.pk:
-            self.order_mobile = self.position
-        super(AllinkContentColumnPlugin, self).save()
-
     @property
     def css_classes(self):
         css_classes = []
