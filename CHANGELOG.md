@@ -20,7 +20,7 @@ general bugfixes
 
 ## v2.3.2
 #### NEW
-- meta_image is now always a 1200x630px image. (AllinkPageExtension and AllinkSEOFieldsModel)
+- meta_image is now always a 1200x630px image. (AllinkPageExtension and AllinkSEOFieldsModel) [#33](https://github.com/allink/allink-core/pull/33)
  
 #### FIXES
 - AllinkNewsQuerySet latest and earliest now use entry_date not created
