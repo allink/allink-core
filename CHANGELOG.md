@@ -19,10 +19,13 @@ new features or plugins
 general bugfixes
 
 ## v2.3.2
+#### NEW
+- meta_image is now always a 1200x630px image. (AllinkPageExtension and AllinkSEOFieldsModel) [#33](https://github.com/allink/allink-core/pull/33)
+ 
 #### FIXES
 - AllinkNewsQuerySet latest and earliest now use entry_date not created
-- Fixed softpage link / header markup errors
-- Fixed mobile order issue in column plugin
+- Fixed mobile order issue in column plugin [#30](https://github.com/allink/allink-core/pull/30)
+- Fixed softpage link / header markup errors [#31](https://github.com/allink/allink-core/pull/31)
 
 #### IMPORTANT
 - Removed `data-softpage` in `link_attributes`. Button Softpage styling now happens via the `icon` parameter.<br>
@@ -40,7 +43,7 @@ general bugfixes
 #### IMPORTANT
 ###### REQUIREMENTS
 - removed django-cleanup==2.1.0
-- added possibility to add x-y original ratio to width_alias in settings.py
+- added possibility to add x-y original ratio to width_alias in settings.py [#29](https://github.com/allink/allink-core/pull/29)
 
 ## v2.3.0
 #### IMPORTANT

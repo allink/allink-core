@@ -142,7 +142,7 @@ class NewsMetaTestCase(TestCase):
             'meta_page_title': self.entry_1.meta_page_title,
             'meta_og_title': get_fallback(self.entry_1, 'meta_title'),
             'meta_description': get_fallback(self.entry_1, 'meta_description'),
-            'meta_image_url': getattr(get_fallback(self.entry_1, 'meta_image'), 'url', ''),
+            'meta_image_url': getattr(self.entry_1.meta_image_thumb, 'url', ''),
             'google_site_verification': self.allink_config.google_site_verification,
         }
         self.assertDictEqual(expected_meta_context, self.entry_1.meta_dict)
@@ -160,6 +160,7 @@ class NewsMetaTestCase(TestCase):
         self.assertIn(get_fallback(self.entry_1, 'meta_title'), rendered_template)
         self.assertIn(get_fallback(self.entry_1, 'meta_description'), rendered_template)
         self.assertIn(get_fallback(self.entry_1, 'meta_image').url, rendered_template)
+        self.assertIn('1200x630', rendered_template)
         self.assertIn(self.allink_config.google_site_verification, rendered_template)
 
     def test_rendered_template_with_object_contains_correct_overwitten_values(self):
