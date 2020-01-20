@@ -19,6 +19,9 @@ new features or plugins
 general bugfixes
 
 ## v2.3.2
+#### NEW
+- meta_image is now always a 1200x630px image. (AllinkPageExtension and AllinkSEOFieldsModel)
+ 
 #### FIXES
 - AllinkNewsQuerySet latest and earliest now use entry_date not created
 - Fixed softpage link / header markup errors
