@@ -23,6 +23,7 @@ general bugfixes
 - AllinkNewsQuerySet latest and earliest now use entry_date not created
 - Fixed softpage link / header markup errors
 - Fixed mobile order issue in column plugin
+- Fixed new-app dummy to import hreflangsitemap
 
 #### IMPORTANT
 - Removed `data-softpage` in `link_attributes`. Button Softpage styling now happens via the `icon` parameter.<br>
