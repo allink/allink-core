@@ -1,7 +1,7 @@
-from django.conf import settings
 from django.contrib.sitemaps import Sitemap
+from django.utils.translation import override as force_language
 from cms.sitemaps import CMSSitemap
-from cms.models.titlemodels import Title
+from allink_core.core.utils import base_url
 
 
 class CMSHrefLangSitemap(CMSSitemap):
@@ -11,16 +11,17 @@ class CMSHrefLangSitemap(CMSSitemap):
     further information: https://support.google.com/webmasters/answer/189077?hl=de
 
     """
+
     def _urls(self, page, protocol, domain):
         urls = super()._urls(page, protocol, domain)
         for url in urls:
             url['hreflang'] = []
-            for lang in settings.LANGUAGES:
-                title = url.get('item').page.get_title_obj(language=lang[0], fallback=False)
-                if isinstance(title, Title):
+            title = url.get('item')
+            for lang in title.page.languages.split(','):
+                with force_language(lang):
                     url['hreflang'].append({
-                        'lang': lang[0],
-                        'href': "%s://%s/%s/%s/" % (protocol, domain, lang[0], title.slug)
+                        'lang': lang,
+                        'href': '{}{}'.format(base_url(), title.page.get_absolute_url(language=lang, fallback=False))
                     })
 
         return urls
@@ -40,11 +41,9 @@ class HrefLangSitemap(Sitemap):
             url['hreflang'] = []
             item = url.get('item')
             for lang in list(item.get_available_languages()):
-                current_item = item.get_translation(lang)
-                slug = current_item.slug
                 url['hreflang'].append({
                     'lang': lang,
-                    'href': "%s://%s/%s/%s/" % (protocol, domain, lang, slug)
+                    'href': '{}{}'.format(base_url(), item.get_absolute_url(language=lang))
                 })
 
         return urls

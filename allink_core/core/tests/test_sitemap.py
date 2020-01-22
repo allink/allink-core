@@ -26,3 +26,14 @@ class CMSHrefLangSitemapTestCase(PageApphookMixin, TestCase):
         ]
         for text in contains:
             self.assertRegex(xml, text)
+
+    def test_all_urls_with_hreflang_in_every_language_child_page(self):
+        response = self.client.get('/sitemap.xml')
+        xml = BeautifulSoup(response.content, 'xml').prettify()
+        contains = [
+            '<link href="(.*?)page\/child_page\/" hreflang="en" rel="alternate"\/>',
+            '<link href="(.*?)page-de\/child_page-de\/" hreflang="de" rel="alternate"\/>',
+            '<link href="(.*?)page-fr\/child_page-fr\/" hreflang="fr" rel="alternate"\/>',
+        ]
+        for text in contains:
+            self.assertRegex(xml, text)
