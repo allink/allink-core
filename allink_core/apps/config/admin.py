@@ -86,6 +86,8 @@ class ConfigAdmin(AllinkMediaAdminMixin, TranslatableAdmin, SingletonModelAdmin)
             ),
             'fields': (
                 'newsletter_lead',
+                'newsletter_signup_link',
+                'newsletter_teaser_counter',
                 'newsletter_declaration_of_consent',
             )
         }),

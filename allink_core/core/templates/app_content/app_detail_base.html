@@ -1,6 +1,6 @@
 {% extends base_template|default:"base.html" %}
 
-{% load cms_tags allink_cms_tags sekizai_tags i18n allink_image_tags allink_meta_tags thumbnail %}
+{% load cms_tags allink_cms_tags sekizai_tags i18n allink_image_tags allink_meta_tags thumbnail inline_static_tags %}
 
 {% block meta_tags %}
     {% render_meta_og object %}
@@ -79,6 +79,9 @@
                                 </div>
                             {% endif %}
                         </div>
+                        {% block newsletter_teaser %}{% endblock %}
+                        {% block overview_link %}{% endblock %}
+
                     </div>{# end .app-detail__col #}
 
                 </div>{# end .app-detail__col-container #}

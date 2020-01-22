@@ -66,6 +66,14 @@ class BaseConfig(SingletonModel, TranslatableModel):
         max_length=255
     )
 
+    newsletter_teaser_counter = models.IntegerField(
+        'Newsletter Teaser Counter',
+        help_text='Number which defines after how many newsentries the newsletter teaser should appear(on grid with newsletterteaser). Default is 4',
+        default=4,
+        blank=False,
+        null=True,
+    )
+
     class Meta:
         abstract = True
         app_label = 'config'
@@ -178,7 +186,13 @@ class BaseConfigTranslation(TranslatedFieldsModel):
     )
     newsletter_lead = HTMLField(
         'Newsletter Signup Text',
-        help_text='Teaser text in the newsletter signup view (data usage explainer).',
+        help_text='Teaser text in the Newsletter Teaser',
+        blank=True,
+        null=True,
+    )
+    newsletter_signup_link = models.URLField(
+        'Newsletter Signup Link',
+        help_text='Link for Button on Newsletter Teaser',
         blank=True,
         null=True,
     )
