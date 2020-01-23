@@ -21,12 +21,15 @@ general bugfixes
 ## v2.3.2
 #### NEW
 - meta_image is now always a 1200x630px image. (AllinkPageExtension and AllinkSEOFieldsModel) [#33](https://github.com/allink/allink-core/pull/33)
+- added field softpage_enabled on teaser plugin [#37](https://github.com/allink/allink-core/pull/37)
+
  
 #### FIXES
 - AllinkNewsQuerySet latest and earliest now use entry_date not created
 - Fixed new-app dummy to import hreflangsitemap
 - Fixed mobile order issue in column plugin [#30](https://github.com/allink/allink-core/pull/30)
 - Fixed softpage link / header markup errors [#31](https://github.com/allink/allink-core/pull/31)
+- Fixed newapp command hreflangsitemap  [#35](https://github.com/allink/allink-core/pull/35)
 
 #### IMPORTANT
 - Removed `data-softpage` in `link_attributes`. Button Softpage styling now happens via the `icon` parameter.<br>
