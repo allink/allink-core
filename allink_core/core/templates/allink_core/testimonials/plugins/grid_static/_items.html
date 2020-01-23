@@ -36,7 +36,7 @@
                     {% trans "More" as link_label %}
 
                     {% if instance.softpage_enabled %}
-                        {% include "partials/buttons/link.html" with link_url=link_url link_label=link_label link_classes="app-list__detail-link" link_attributes='data-trigger-softpage' %}
+                        {% include "partials/buttons/link.html" with link_url=link_url link_label=link_label link_classes="app-list__detail-link" link_attributes="data-trigger-softpage" icon="softpage" %}
                     {% else %}
                         {% include "partials/buttons/link.html" with link_url=link_url link_label=link_label link_classes="app-list__detail-link" %}
                     {% endif %}
