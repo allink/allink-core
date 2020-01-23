@@ -24,6 +24,7 @@ general bugfixes
  
 #### FIXES
 - AllinkNewsQuerySet latest and earliest now use entry_date not created
+- Fixed new-app dummy to import hreflangsitemap
 - Fixed mobile order issue in column plugin [#30](https://github.com/allink/allink-core/pull/30)
 - Fixed softpage link / header markup errors [#31](https://github.com/allink/allink-core/pull/31)
 
