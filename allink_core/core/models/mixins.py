@@ -177,6 +177,17 @@ class AllinkMetaTagMixin:
             return self.TEASER_FIELD_FALLBACK_CONF
 
     @property
+    def meta_image_thumb(self):
+        """
+        We always want the meta image with a maximum width of 1200px. The ratio should be preserved.
+        :return:
+        image object
+        """
+        from allink_core.apps.config.utils import get_fallback, generate_meta_image_thumb
+        meta_image = get_fallback(self, 'meta_image')
+        return generate_meta_image_thumb(meta_image)
+
+    @property
     def meta_page_title(self):
         from allink_core.apps.config.utils import get_fallback
         Config = get_model('config', 'Config')
@@ -203,7 +214,7 @@ class AllinkMetaTagMixin:
             'meta_page_title': self.meta_page_title,
             'meta_og_title': get_fallback(self, 'meta_title'),
             'meta_description': get_fallback(self, 'meta_description'),
-            'meta_image_url': getattr(get_fallback(self, 'meta_image'), 'url') or '',
+            'meta_image_url': getattr(self.meta_image_thumb, 'url', ''),
             'google_site_verification': allink_config.google_site_verification,
         }
         return meta_context

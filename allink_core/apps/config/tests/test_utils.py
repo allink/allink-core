@@ -1,7 +1,7 @@
 from django.test.testcases import TestCase
 from cms import api
 from .factories import ConfigFactory, AllinkPageExtensionFactory, AllinkTitleExtensionFactory
-from ..utils import get_meta_page_title, get_page_meta_dict, get_page_teaser_dict, get_fallback
+from ..utils import get_meta_page_title, get_page_meta_dict, get_page_teaser_dict, get_fallback, get_meta_page_image_thumb, generate_meta_image_thumb
 
 
 class AllinkExtensionMetaTestCase(TestCase):
@@ -82,10 +82,11 @@ class AllinkExtensionMetaTestCase(TestCase):
             'meta_page_title': get_meta_page_title(self.page_de),
             'meta_title': get_fallback(self.page_de, 'meta_title'),
             'meta_description': get_fallback(self.page_de, 'meta_description'),
-            'meta_image_url': getattr(get_fallback(self.page_de, 'meta_image'), 'url'),
+            'meta_image_url': getattr(get_meta_page_image_thumb(self.page_de), 'url', ''),
             'google_site_verification': self.allink_config.google_site_verification,
         }
         self.assertDictEqual(expected_meta_context, get_page_meta_dict(self.page_de))
+        self.assertIn('1200x630', str(get_page_meta_dict(self.page_de)))
 
 
 class AllinkExtensionTeaserTestCase(TestCase):
@@ -163,16 +164,29 @@ class AllinkExtensionTeaserTestCase(TestCase):
         }
         self.assertDictEqual(expected_meta_context, get_page_teaser_dict(self.page_de))
 
-# class AllinkUtilsTestCase(TestCase):
-#
-#     def setUp(self):
-#         self.page_de = api.create_page(
-#             title='page title',
-#             template='default.html',
-#             language='de',
-#             published=True,
-#         )
-#
-#     def test_get_fallback_invalid_key(self):
-#         get_fallback()
 
+class AllinkUtilsTestCase(TestCase):
+
+    def setUp(self):
+        self.page_de = api.create_page(
+            title='page title',
+            template='default.html',
+            language='de',
+            published=True,
+        )
+        self.allink_config = ConfigFactory()
+
+    # def test_get_fallback_invalid_key(self):
+    #     get_fallback()
+
+    def test_generate_meta_image_thumb_correct_size(self):
+        meta_image = get_fallback(self.page_de, 'meta_image')
+        thumb = generate_meta_image_thumb(meta_image)
+
+        self.assertEqual(thumb.image.width, 1200)
+        self.assertEqual(thumb.image.height, 630)
+
+    def test_generate_meta_image_thumb_none(self):
+        meta_image = None
+        thumb = generate_meta_image_thumb(meta_image)
+        self.assertIsNone(thumb)
