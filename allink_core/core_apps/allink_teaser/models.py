@@ -11,10 +11,16 @@ from allink_core.core.models.fields_model import AllinkTeaserFieldsModel, Allink
 
 class AllinkTeaserPlugin(AllinkInternalLinkFieldsModel, AllinkTeaserFieldsModel, AllinkTeaserTranslatedFieldsModel,
                          CMSPlugin):
-
     template = models.CharField(
         'Template',
         max_length=50
+    )
+
+    softpage_enabled = models.BooleanField(
+        'Show detailed information in Softpage',
+        help_text='If checked, the detail view of an entry will be displayed in a "softpage".'
+                  ' Otherwise the page will be reloaded.',
+        default=True
     )
 
     cmsplugin_ptr = CMSPluginField()

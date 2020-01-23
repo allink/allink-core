@@ -51,6 +51,7 @@ class CMSAllinkTeaserPlugin(AllinkMediaAdminMixin, CMSPluginBase):
                 'teaser_technical_title',
                 'teaser_description',
                 'teaser_link_text',
+                'softpage_enabled',
             )
         })
     )
