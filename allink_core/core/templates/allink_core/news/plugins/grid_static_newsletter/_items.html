@@ -1,0 +1,12 @@
+{% load cms_tags allink_cms_tags sekizai_tags i18n thumbnail allink_image_tags allink_link_tags solo_tags %}
+
+{% get_solo 'config.Config' as allink_config %}
+
+{% for object in object_list %}
+    <div class="grid-item {% if appended %}appended{% endif %}">
+        {% include 'allink_teaser/tile/item.html' with teaser_title=object.teaser_dict.teaser_title teaser_image=object.teaser_dict.teaser_image teaser_technical_title=object.teaser_dict.teaser_technical_title teaser_description=object.teaser_dict.teaser_description teaser_link=object.teaser_dict.teaser_link teaser_link_text=object.teaser_dict.teaser_link_text %}
+    </div>
+    {% if forloop.counter == allink_config.newsletter_teaser_counter %}
+        {% include 'newsletter/teaser.html' %}
+    {% endif %}
+{% endfor %}
