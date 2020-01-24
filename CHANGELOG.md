@@ -22,7 +22,7 @@ general bugfixes
 #### NEW
 - meta_image is now always a 1200x630px image. (AllinkPageExtension and AllinkSEOFieldsModel) [#33](https://github.com/allink/allink-core/pull/33)
 - added field softpage_enabled on teaser plugin [#37](https://github.com/allink/allink-core/pull/37)
-
+- added newsletter/teaser.html template for newsletter-signup-teaser. Data from allink_config wil lbe displayed. (an example for styles can be found in the boilerplate) [#38](https://github.com/allink/allink-core/pull/38)
  
 #### FIXES
 - AllinkNewsQuerySet latest and earliest now use entry_date not created
