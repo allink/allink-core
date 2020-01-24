@@ -18,7 +18,20 @@ new features or plugins
 #### FIXES
 general bugfixes
 
+## v2.3.3 (next version)
+
 ## v2.3.2
+#### IMPORTANT
+- Removed `data-softpage` in `link_attributes`. Button Softpage styling now happens via the `icon` parameter.<br>
+    When a link should be opened in a softpage use: `data-trigger-softpage`<br>
+    For styling use: `data-icon-softpage`<br><br>
+    Needs to be changed on project basis. Replace all occurence `data-softpage` with `data-icon-softpage`:
+    ```
+        // Button Softpage
+        &[data-icon-softpage] {
+            @include icon-softpage();
+        }
+    ```
 #### NEW
 - meta_image is now always a 1200x630px image. (AllinkPageExtension and AllinkSEOFieldsModel) [#33](https://github.com/allink/allink-core/pull/33)
 - added field softpage_enabled on teaser plugin [#37](https://github.com/allink/allink-core/pull/37)
@@ -30,18 +43,6 @@ general bugfixes
 - Fixed mobile order issue in column plugin [#30](https://github.com/allink/allink-core/pull/30)
 - Fixed softpage link / header markup errors [#31](https://github.com/allink/allink-core/pull/31)
 - Fixed newapp command hreflangsitemap  [#35](https://github.com/allink/allink-core/pull/35)
-
-#### IMPORTANT
-- Removed `data-softpage` in `link_attributes`. Button Softpage styling now happens via the `icon` parameter.<br>
-    When a link should be opened in a softpage use: `data-trigger-softpage`<br>
-    For styling use: `data-icon-softpage`<br><br>
-    Needs to be changed on project basis. Replace `data-softpage` with `data-icon-softpage`:
-    ```
-        // Button Softpage
-        &[data-icon-softpage] {
-            @include icon-softpage();
-        }
-    ```
 
 ## v2.3.1
 #### IMPORTANT
