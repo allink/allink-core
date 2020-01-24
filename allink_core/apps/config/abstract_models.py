@@ -68,10 +68,9 @@ class BaseConfig(SingletonModel, TranslatableModel):
 
     newsletter_teaser_counter = models.IntegerField(
         'Newsletter Teaser Counter',
-        help_text='Number which defines after how many newsentries the newsletter teaser should appear(on grid with newsletterteaser). Default is 4',
+        help_text='Number which defines after how many newsentries the newsletter teaser should appear '
+                  '(on grid with newsletterteaser). Default is 4',
         default=4,
-        blank=False,
-        null=True,
     )
 
     class Meta:
