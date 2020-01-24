@@ -60,4 +60,4 @@ If you need to run `docker-compose build` with your new branch. Just commit your
 1. create a new pull request (make sure you include your changes to CHANGELOG.md)
 2. merge back to version branch e.g v2.0.x
 3. `make patch` or `make minor` depending on what version you want to create. (this will create a new commit and push the new tags to github) If you need an other version do it with `bumpversion`.
-4. create a new release on PyPi `make publish` (make sure you have the correct credentials for allink in your [~/.pypirc](https://docs.python.org/3.3/distutils/packageindex.html#the-pypirc-file) also for [test-pypi](https://packaging.python.org/guides/using-testpypi/#setting-up-testpypi-in-pypirc))
+4. create a new release on PyPi `make release` (make sure you have the correct credentials for allink in your [~/.pypirc](https://docs.python.org/3.3/distutils/packageindex.html#the-pypirc-file) also for [test-pypi](https://packaging.python.org/guides/using-testpypi/#setting-up-testpypi-in-pypirc))
