@@ -18,12 +18,13 @@ class CMSHrefLangSitemap(CMSSitemap):
             url['hreflang'] = []
             title = url.get('item')
             for lang in title.page.languages.split(','):
-                with force_language(lang):
-                    url['hreflang'].append({
-                        'lang': lang,
-                        'href': '{}{}'.format(base_url(), title.page.get_absolute_url(language=lang, fallback=False))
-                    })
-
+                if title.page.is_published(lang):
+                    with force_language(lang):
+                        url['hreflang'].append({
+                            'lang': lang,
+                            'href': '{}{}'.format(base_url(),
+                                                  title.page.get_absolute_url(language=lang, fallback=False))
+                        })
         return urls
 
 
@@ -45,5 +46,4 @@ class HrefLangSitemap(Sitemap):
                     'lang': lang,
                     'href': '{}{}'.format(base_url(), item.get_absolute_url(language=lang))
                 })
-
         return urls

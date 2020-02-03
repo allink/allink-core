@@ -47,3 +47,14 @@ class NewsSitemapsTranslatedTestCase(PageApphookMixin, DataModelTranslationMixin
         ]
         for text in contains:
             self.assertRegex(xml, text)
+
+    def test_all_urls_with_hreflang_in_every_language_only_for_published_languages(self):
+        self.entry_1.delete_translation('de')
+        response = self.client.get('/sitemap.xml')
+        xml = BeautifulSoup(response.content, 'xml').prettify()
+        contains = [
+            '<link href="(.*?){0}(.*?)\/" hreflang="en" rel="alternate"\/>'.format(self.entry_1.slug),
+            '<link href="(.*?){0}(.*?)\/" hreflang="fr" rel="alternate"\/>'.format(self.entry_1.slug),
+        ]
+        for text in contains:
+            self.assertRegex(xml, text)

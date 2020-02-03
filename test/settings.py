@@ -9,6 +9,7 @@ TEST_DIR = os.path.dirname(os.path.abspath(os.path.abspath(__file__)))
 
 SITE_ID = 1
 ROOT_URLCONF = 'test.urls'
+STAGE = 'local'
 
 SECRET_KEY = 'not-very-random'
 
