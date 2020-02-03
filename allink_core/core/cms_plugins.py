@@ -184,6 +184,7 @@ class CMSAllinkBaseAppContentPlugin(AllinkMediaAdminMixin, CMSPluginBase):
             'classes': (
                 'collapse',
                 'only_when_grid_static',
+                'only_when_grid_static_newsletter',
                 'only_when_grid_dynamic',
             ),
             'fields': (

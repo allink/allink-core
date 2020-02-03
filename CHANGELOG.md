@@ -22,30 +22,33 @@ general bugfixes
 #### NEW
  
 #### FIXES
-- HrefLangSitemap only returns translated items now
-- AllinkDetailMixin reverse now defaults to app_label not model_name
+- Fixed sitemap hreflang with translated parent pages [#34](https://github.com/allink/allink-core/pull/34)
+- HrefLangSitemap only returns translated items now [#34](https://github.com/allink/allink-core/pull/34)
+- AllinkDetailMixin reverse now defaults to app_label not model_name [#34](https://github.com/allink/allink-core/pull/34)
 
 ## v2.3.2
-#### NEW
-- meta_image is now always a 1200x630px image. (AllinkPageExtension and AllinkSEOFieldsModel) [#33](https://github.com/allink/allink-core/pull/33)
- 
-#### FIXES
-- AllinkNewsQuerySet latest and earliest now use entry_date not created
-- Fixed mobile order issue in column plugin [#30](https://github.com/allink/allink-core/pull/30)
-- Fixed softpage link / header markup errors [#31](https://github.com/allink/allink-core/pull/31)
-- Fixed sitemap hreflang with translated parent pages [#34](https://github.com/allink/allink-core/pull/34)
-
 #### IMPORTANT
 - Removed `data-softpage` in `link_attributes`. Button Softpage styling now happens via the `icon` parameter.<br>
     When a link should be opened in a softpage use: `data-trigger-softpage`<br>
     For styling use: `data-icon-softpage`<br><br>
-    Needs to be changed on project basis. Replace `data-softpage` with `data-icon-softpage`:
+    Needs to be changed on project basis. Replace all occurence `data-softpage` with `data-icon-softpage`:
     ```
         // Button Softpage
         &[data-icon-softpage] {
             @include icon-softpage();
         }
     ```
+#### NEW
+- meta_image is now always a 1200x630px image. (AllinkPageExtension and AllinkSEOFieldsModel) [#33](https://github.com/allink/allink-core/pull/33)
+- added field softpage_enabled on teaser plugin [#37](https://github.com/allink/allink-core/pull/37)
+- added newsletter/teaser.html template for newsletter-signup-teaser. Data from allink_config wil lbe displayed. (an example for styles can be found in the boilerplate) [#38](https://github.com/allink/allink-core/pull/38)
+ 
+#### FIXES
+- AllinkNewsQuerySet latest and earliest now use entry_date not created
+- Fixed new-app dummy to import hreflangsitemap
+- Fixed mobile order issue in column plugin [#30](https://github.com/allink/allink-core/pull/30)
+- Fixed softpage link / header markup errors [#31](https://github.com/allink/allink-core/pull/31)
+- Fixed newapp command hreflangsitemap  [#35](https://github.com/allink/allink-core/pull/35)
 
 ## v2.3.1
 #### IMPORTANT

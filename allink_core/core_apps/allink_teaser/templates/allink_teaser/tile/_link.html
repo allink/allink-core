@@ -2,8 +2,8 @@
 
 {% if teaser_link %}
     <div class="teaser__link">
-        <button class="btn btn-default">
-            {% include "partials/buttons/link_text.html" with link_label=teaser_link_text %}
+        <button class="btn btn-default" {% if icon %}data-icon-{{ icon }}{% endif %}>
+            {% include "partials/buttons/link_text.html" with link_label=teaser_link_text icon=icon %}
         </button>
     </div>
 {% endif %}

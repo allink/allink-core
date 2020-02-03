@@ -1,0 +1,15 @@
+{% load cms_tags allink_cms_tags sekizai_tags i18n thumbnail allink_image_tags allink_link_tags solo_tags %}
+{% get_solo 'config.Config' as allink_config %}
+<div class="newsletter-signup-teaser__col-container">
+    <div class="newsletter-signup-teaser__col-container-inner">
+        <div class="newsletter-signup-teaser__text text-container">
+            {% if allink_config.newsletter_lead %}
+                {{ allink_config.newsletter_lead }}
+            {% endif %}
+        </div>
+        <div class="newsletter-signup-teaser__btn-signup">
+            {% trans 'Sign up' as link_label %}
+            {% include "partials/buttons/link.html" with link_url=allink_config.newsletter_signup_link link_label=link_label link_classes="btn btn-default" link_attributes='target="_blank" rel="noopener" data-softpage-disabled' icon='arrow-external' %}
+        </div>
+    </div>
+</div>

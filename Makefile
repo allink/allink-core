@@ -28,11 +28,11 @@ minor: clean ## create a new minor version and push the new tag to git
 	bumpversion minor
 	git push --tags
 
-publish: clean ## package and upload a release
+release: clean ## package and upload a release
 	python setup.py publish
 	twine upload dist/*
 
-publish-test: clean ## package and upload a release
+release-test: clean ## package and upload a release
 	python setup.py publish
 	twine upload --repository-url https://test.pypi.org/legacy/ dist/*
 

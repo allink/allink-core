@@ -1,0 +1,15 @@
+{% extends "app_content/app_content.html" %}
+
+{% load cms_tags %}
+
+{% block app_content_objects_container %}
+
+    <div class="grid-static-container" >
+        <div class="the-grid ajax-items-container">
+            {% block app_content_objects %}
+                {% include 'news/plugins/grid_static_newsletter/_items.html' %}
+            {% endblock app_content_objects %}
+        </div>
+    </div>
+
+{% endblock app_content_objects_container %}
