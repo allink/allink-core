@@ -18,7 +18,7 @@ class EventsSitemap(HrefLangSitemap):
         super(EventsSitemap, self).__init__(*args, **kwargs)
 
     def items(self):
-        return Events.objects.active()
+        return Events.objects.translated()
 
     def lastmod(self, obj):
         return obj.modified

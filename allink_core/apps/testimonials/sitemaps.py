@@ -18,7 +18,7 @@ class TestimonialsSitemap(HrefLangSitemap):
         super(TestimonialsSitemap, self).__init__(*args, **kwargs)
 
     def items(self):
-        return Testimonials.objects.active()
+        return Testimonials.objects.translated()
 
     def lastmod(self, obj):
         return obj.modified

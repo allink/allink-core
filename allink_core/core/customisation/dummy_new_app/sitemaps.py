@@ -13,7 +13,7 @@ class DummyAppSitemap(HrefLangSitemap):
         super(DummyAppSitemap, self).__init__(*args, **kwargs)
 
     def items(self):
-        return DummyApp.objects.active()
+        return DummyApp.objects.translated()
 
     def lastmod(self, obj):
         return obj.modified

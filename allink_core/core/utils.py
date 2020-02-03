@@ -13,7 +13,8 @@ def base_url():
     from django.contrib.sites.models import Site
     global _base_url
     if not '_base_url' not in locals() or not _base_url:
-        _base_url = 'https://' + Site.objects.get_current().domain
+        scheme = 'http://' if settings.STAGE == 'local' else 'https://'
+        _base_url = scheme + Site.objects.get_current().domain
     return _base_url
 
 
@@ -111,7 +112,7 @@ def get_display(key, list):
     d = dict(list)
     try:
         return d.get(int(key))
-    except:
+    except KeyError:
         return None
 
 
@@ -184,7 +185,7 @@ def get_key_from_dict(dict, value):
     """Takes a dict and a value, returns a list with matching keys."""
     try:
         return list(dict.keys())[list(dict.values()).index(value)]
-    except:
+    except ValueError:
         return None
 
 
@@ -218,7 +219,3 @@ def update_context_google_tag_manager(context, page_name='NOPAGE_NAME', page_id=
     form_name = form_name.replace(' ', '-')
     context.update({'form_name': form_name})
     return context
-
-
-
-

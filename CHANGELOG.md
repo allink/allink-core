@@ -19,6 +19,12 @@ new features or plugins
 general bugfixes
 
 ## v2.3.3 (next version)
+#### NEW
+ 
+#### FIXES
+- Fixed sitemap hreflang with translated parent pages [#34](https://github.com/allink/allink-core/pull/34)
+- HrefLangSitemap only returns translated items now [#34](https://github.com/allink/allink-core/pull/34)
+- AllinkDetailMixin reverse now defaults to app_label not model_name [#34](https://github.com/allink/allink-core/pull/34)
 
 ## v2.3.2
 #### IMPORTANT

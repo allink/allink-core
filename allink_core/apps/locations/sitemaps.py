@@ -18,7 +18,7 @@ class LocationsSitemap(HrefLangSitemap):
         super(LocationsSitemap, self).__init__(*args, **kwargs)
 
     def items(self):
-        return Locations.objects.active()
+        return Locations.objects.translated()
 
     def lastmod(self, obj):
         return obj.modified

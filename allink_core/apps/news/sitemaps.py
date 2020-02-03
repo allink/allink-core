@@ -18,7 +18,7 @@ class NewsSitemap(HrefLangSitemap):
         super(NewsSitemap, self).__init__(*args, **kwargs)
 
     def items(self):
-        return News.objects.active()
+        return News.objects.translated()
 
     def lastmod(self, obj):
         return obj.modified

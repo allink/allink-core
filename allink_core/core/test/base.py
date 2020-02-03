@@ -78,6 +78,13 @@ class PageApphookMixin:
             apphook=self.apphook,
             apphook_namespace=self.namespace
         )
+        self.child_page = api.create_page(
+            title='child_page',
+            template=self.page_template,
+            language=self.language,
+            published=True,
+            parent=self.page,
+        )
         self.plugin_page = api.create_page(
             title="plugin_page",
             template=self.page_template,
@@ -89,9 +96,14 @@ class PageApphookMixin:
         self.placeholder = self.page.placeholders.all()[0]
 
         # translated and publish all created pages
-        for page in self.root_page, self.page, self.plugin_page:
+        for page in self.root_page, self.page, self.child_page, self.plugin_page:
             for language, _ in settings.LANGUAGES[1:]:
                 api.create_title(language, '{}: {}'.format(page.get_slug(), language), page)
+
+                # apparently djangocms does not update the title path when create_title is called
+                page._update_title_path(language)
+                page._update_title_path_recursive(language)
+
                 page.publish(language)
                 page.set_translations_cache()
 
