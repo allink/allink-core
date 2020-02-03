@@ -18,6 +18,12 @@ new features or plugins
 #### FIXES
 general bugfixes
 
+## v2.3.3 (next version)
+#### NEW
+ 
+#### FIXES
+- HrefLangSitemap only returns translated items now
+
 ## v2.3.2
 #### NEW
 - meta_image is now always a 1200x630px image. (AllinkPageExtension and AllinkSEOFieldsModel) [#33](https://github.com/allink/allink-core/pull/33)

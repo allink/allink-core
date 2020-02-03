@@ -17,7 +17,7 @@ class PeopleSitemap(HrefLangSitemap):
         super(PeopleSitemap, self).__init__(*args, **kwargs)
 
     def items(self):
-        return People.objects.active()
+        return People.objects.translated()
 
     def lastmod(self, obj):
         return obj.modified
