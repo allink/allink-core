@@ -23,6 +23,7 @@ general bugfixes
  
 #### FIXES
 - HrefLangSitemap only returns translated items now
+- AllinkDetailMixin reverse now defaults to app_label not model_name
 
 ## v2.3.2
 #### NEW

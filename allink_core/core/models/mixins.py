@@ -35,7 +35,7 @@ class AllinkDetailMixin:
         if application_namespace:
             return '{}:detail'.format(application_namespace)
         else:
-            return '{}:detail'.format(self._meta.model_name)
+            return '{}:detail'.format(self._meta.app_label)
 
     def get_absolute_url(self, language=None, application_namespace=None):
         """
