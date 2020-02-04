@@ -18,9 +18,11 @@ new features or plugins
 #### FIXES
 general bugfixes
 
-## v2.3.3 (next version)
-#### NEW
- 
+## v2.3.4 (next version)
+#### FIXES
+- add proper xmlns:xhtml in sitemap.xml [#40](https://github.com/allink/allink-core/pull/40)
+
+## v2.3.3 
 #### FIXES
 - Fixed sitemap hreflang with translated parent pages [#34](https://github.com/allink/allink-core/pull/34)
 - HrefLangSitemap only returns translated items now [#34](https://github.com/allink/allink-core/pull/34)
