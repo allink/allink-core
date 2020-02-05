@@ -296,7 +296,7 @@ class ImageTagsImagePluginContextTestCase(TestCase):
 
         expected_thumbnail_options = {
             'crop': 'smart', 'bw': False, 'upscale': True, 'HIGH_RESOLUTION': True, 'zoom': None,
-            'subject_location': False, 'size': (w, h),
+            'subject_location': self.image.subject_location, 'size': (w, h),
         }
         with mock.patch.object(MockThumbnailer, 'get_thumbnail') as mock_method:
             render_image(self.context, self.image, width_alias=self.width_alias)
