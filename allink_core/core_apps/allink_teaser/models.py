@@ -20,7 +20,7 @@ class AllinkTeaserPlugin(AllinkInternalLinkFieldsModel, AllinkTeaserFieldsModel,
         'Show detailed information in Softpage',
         help_text='If checked, the detail view of an entry will be displayed in a "softpage".'
                   ' Otherwise the page will be reloaded.',
-        default=True
+        default=False
     )
 
     cmsplugin_ptr = CMSPluginField()

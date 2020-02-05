@@ -19,6 +19,10 @@ new features or plugins
 general bugfixes
 
 ## v2.3.4 (next version)
+#### IMPORTANT
+###### DATA MIGRATIONS
+- teaser softpage_enable is now default False [#41](https://github.com/allink/allink-core/pull/41)
+
 #### FIXES
 - add proper xmlns:xhtml in sitemap.xml [#40](https://github.com/allink/allink-core/pull/40)
 
@@ -102,13 +106,13 @@ Search for: 'aldryn_common.admin_fields.sortedm2m' and replace with 'allink_core
 - added sortedm2m model fields to core
 
 ## v2.2.1
-## NEW
+#### NEW
 - refactored customisation commands for new_app and fork_app
 
 ## v2.2.0
 #### IMPORTANT
 - UPDATE REQUIRED: [allink-core-static v2.2.0](https://github.com/allink/allink-core-static/blob/v2.2.0/CHANGELOG.md)
-## NEW
+#### NEW
 - Video-Plugin:
     - Added autoplay option for mobile devices
 
