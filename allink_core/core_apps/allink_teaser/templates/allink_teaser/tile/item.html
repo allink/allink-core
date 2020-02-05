@@ -1,5 +1,4 @@
 <div class="teaser teaser--tile">
-
     <a href="{{ teaser_link }}" class="teaser__tile-link" {% if instance.softpage_enabled %}data-trigger-softpage{% endif %}>
         {% include 'allink_teaser/includes/_image.html' with teaser_image=teaser_image %}
         {% include 'allink_teaser/includes/_technical-title.html' with teaser_technical_title=teaser_technical_title %}
@@ -11,5 +10,4 @@
             {% include 'allink_teaser/tile/_link.html' with teaser_link=teaser_link teaser_link_text=teaser_link_text %}
         {% endif %}
     </a>
-
 </div>

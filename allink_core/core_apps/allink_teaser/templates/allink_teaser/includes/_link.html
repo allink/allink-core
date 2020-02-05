@@ -3,9 +3,9 @@
 {% if teaser_link %}
     <div class="teaser__link">
         {% if instance.softpage_enabled %}
-            {% include "partials/buttons/link.html" with link_url=teaser_link link_label=teaser_link_text icon="softpage" %}
+            {% include "partials/buttons/link.html" with link_url=teaser_link link_label=teaser_link_text link_classes="btn" link_attributes='data-trigger-softpage' icon="softpage" %}
         {% else %}
-            {% include "partials/buttons/link.html" with link_url=teaser_link link_label=teaser_link_text %}
+            {% include "partials/buttons/link.html" with link_url=teaser_link link_label=teaser_link_text link_classes="btn" %}
         {% endif %}
     </div>
 {% endif %}
