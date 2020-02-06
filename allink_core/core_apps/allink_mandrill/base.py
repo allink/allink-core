@@ -186,7 +186,7 @@ class AllinkMandrillEmailBase:
                     'metadata': {'website': self.get_website_for_metadata()},
                     'preserve_recipients': self.preserve_recipients,
                     'return_path_domain': self.return_path_domain,
-                    'subject': self.build_subject(),
+                    'subject': str(self.build_subject()),
                     'to': self._dev_mode_safe_to_adresses(),
                     'track_clicks': self.track_clicks,
                     'track_opens': self.track_opens,
