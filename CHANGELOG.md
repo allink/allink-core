@@ -27,7 +27,7 @@ general bugfixes
 - add proper xmlns:xhtml in sitemap.xml [#40](https://github.com/allink/allink-core/pull/40)
 
 #### NEW
-- render_image uses now subject_location by default [#41](https://github.com/allink/allink-core/pull/41)
+- render_image uses now subject_location by default [#42](https://github.com/allink/allink-core/pull/42)
 
 ## v2.3.3 
 #### FIXES
