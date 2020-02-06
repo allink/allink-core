@@ -13,8 +13,9 @@ from cms.plugin_pool import plugin_pool
 from allink_core.core_apps.allink_button_link.models import AllinkButtonLinkContainerPlugin, AllinkButtonLinkPlugin
 from allink_core.core_apps.allink_button_link import widgets
 from allink_core.core.utils import get_additional_choices, update_context_google_tag_manager, get_ratio_choices
-from allink_core.core.models.choices import BLANK_CHOICE, NEW_WINDOW, SOFTPAGE, \
-    FORM_MODAL, IMAGE_MODAL, DEFAULT_MODAL, BUTTON_CONTEXT_CHOICES, CONTEXT_DEFAULT
+from allink_core.core.models.choices import (
+    BLANK_CHOICE, NEW_WINDOW, SOFTPAGE,
+    FORM_MODAL, IMAGE_MODAL, DEFAULT_MODAL, BUTTON_CONTEXT_CHOICES, CONTEXT_DEFAULT, )
 from allink_core.core.forms.fields import SelectLinkField
 from allink_core.core.forms.mixins import AllinkInternalLinkFieldMixin
 from allink_core.core.admin.mixins import AllinkMediaAdminMixin
@@ -47,7 +48,8 @@ class AllinkButtonLinkPluginForm(AllinkInternalLinkFieldMixin, forms.ModelForm):
 
     internal_link = SelectLinkField(label='Link Internal', required=False)
     internal_email_addresses = SplitArrayField(forms.EmailField(required=False), size=3, required=False)
-    btn_context = forms.ChoiceField(label='Variation', choices=BUTTON_CONTEXT_CHOICES, widget=widgets.Context, initial=CONTEXT_DEFAULT)
+    btn_context = forms.ChoiceField(label='Variation', choices=BUTTON_CONTEXT_CHOICES, widget=widgets.Context,
+                                    initial=CONTEXT_DEFAULT)
 
     class Meta:
         model = AllinkButtonLinkPlugin
@@ -86,8 +88,7 @@ class AllinkButtonLinkPluginForm(AllinkInternalLinkFieldMixin, forms.ModelForm):
         media = Media()
         for field in self.fields.values():
             media = media + field.widget.media
-        media._js = ['cms/js/libs/jquery.min.js'] + media._js
-        return media
+        return media + Media(js=['cms/js/libs/jquery.min.js'])
 
     media = property(_get_media)
 
