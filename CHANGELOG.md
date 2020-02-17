@@ -26,6 +26,7 @@ general bugfixes
 #### FIXES
 - add proper xmlns:xhtml in sitemap.xml [#40](https://github.com/allink/allink-core/pull/40)
 - fixed button link plugin file links [#43](https://github.com/allink/allink-core/pull/43)
+- overwrite dragitem.html so AllinkContentColumnPlugin can't be copied or deleted anymore [#45](https://github.com/allink/allink-core/pull/45)
 
 #### NEW
 - render_image uses now subject_location by default [#42](https://github.com/allink/allink-core/pull/42)
