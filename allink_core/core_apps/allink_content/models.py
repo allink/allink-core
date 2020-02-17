@@ -2,7 +2,6 @@
 from django.db import models
 from django.conf import settings
 from django.core.exceptions import ValidationError
-from django.utils.translation import ugettext_lazy as _
 from django.utils.html import strip_tags
 from django.contrib.postgres.fields import ArrayField
 from cms.models.pluginmodel import CMSPlugin
@@ -335,9 +334,9 @@ class AllinkContentColumnPlugin(CMSPlugin):
 
     def __str__(self):
         if self.title and self.template:
-            return'{} ({})'.format(self.title, self.template)
+            return '{} ({})'.format(self.title, self.template)
         else:
-            return'({})'.format(self.template)
+            return '({})'.format(self.template)
 
     @property
     def css_classes(self):
@@ -354,4 +353,9 @@ class AllinkContentColumnPlugin(CMSPlugin):
 
     @property
     def template(self):
-        return self.parent.allink_content_allinkcontentplugin.template
+        try:
+            return self.parent.allink_content_allinkcontentplugin.template
+        except AttributeError:
+            # a AllinkContentColumnPlugin should always have a parent and therefore a template.
+            # But when copied, the parent isn't set yet.
+            return 'no template'
