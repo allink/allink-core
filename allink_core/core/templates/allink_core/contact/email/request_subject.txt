@@ -1,2 +1,0 @@
-{% load i18n %}
-{% blocktrans %}Thanks for your request.{% endblocktrans %}
