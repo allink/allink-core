@@ -6,7 +6,7 @@ from django.db.models import Q, QuerySet
 from django.contrib.postgres.fields import ArrayField
 from django.utils.functional import cached_property
 from cms.models.pluginmodel import CMSPlugin
-
+from djangocms_text_ckeditor.fields import HTMLField
 from allink_core.core.utils import get_additional_templates
 from allink_core.core.models.fields import CMSPluginField
 from allink_core.core_apps.allink_categories.models import AllinkCategory
@@ -108,8 +108,8 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
     category_navigation_enabled = models.BooleanField(
         'Show category navigation',
         help_text=
-            'If checked, a filter navigation with all selected categories is displayed.'
-            '<br>Please note: A category is only displayed if it contains items.',
+        'If checked, a filter navigation with all selected categories is displayed.'
+        '<br>Please note: A category is only displayed if it contains items.',
         default=False
     )
     category_navigation_all = models.BooleanField(
@@ -122,16 +122,16 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
         related_name='%(app_label)s_%(class)s_category_navigation',
         verbose_name='Categories for Navigation',
         help_text=
-           'You can explicitly define the categories for the category navigation here.'
-           ' This will override the automatically set of categories'
-           ' (either the one generated from "Filter & Ordering" or "Manual entries")',
+        'You can explicitly define the categories for the category navigation here.'
+        ' This will override the automatically set of categories'
+        ' (either the one generated from "Filter & Ordering" or "Manual entries")',
         blank=True,
     )
     softpage_enabled = models.BooleanField(
         'Show detailed information in Softpage',
         help_text=
-            'If checked, the detail view of an entry will be displayed in a "softpage".'
-            ' Otherwise the page will be reloaded.',
+        'If checked, the detail view of an entry will be displayed in a "softpage".'
+        ' Otherwise the page will be reloaded.',
         default=True
     )
     detail_link_enabled = models.BooleanField(
@@ -149,8 +149,8 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
         'Max. entries per page',
         default=0,
         help_text=
-           'Limit the number of entries (in case of the "load more" pagination type: entries per page).'
-           ' Default is "0" (show all entries)'
+        'Limit the number of entries (in case of the "load more" pagination type: entries per page).'
+        ' Default is "0" (show all entries)'
     )
     pagination_type = models.CharField(
         'Pagination Type',
@@ -161,8 +161,8 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
     load_more_button_text = models.CharField(
         'Text for "Load .."-Button',
         help_text=
-           'If left blank, a default text will be used. <br>Note: Should the default text be adjusted site-wide,'
-           ' please contact the project manager (such changes can be made on a code level)',
+        'If left blank, a default text will be used. <br>Note: Should the default text be adjusted site-wide,'
+        ' please contact the project manager (such changes can be made on a code level)',
         max_length=255,
         null=True,
         blank=True
@@ -170,8 +170,8 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
     detail_link_text = models.CharField(
         'Text for "Detail"-Link',
         help_text=
-           'If left blank, a default text will be used.<br>Note: Should the default text be adjusted site-wide,'
-           ' please contact the project manager (such changes can be made on a code level)',
+        'If left blank, a default text will be used.<br>Note: Should the default text be adjusted site-wide,'
+        ' please contact the project manager (such changes can be made on a code level)',
         max_length=255,
         null=True,
         blank=True
@@ -420,73 +420,38 @@ class AllinkBaseSearchPlugin(CMSPlugin):
 
 
 class AllinkBaseFormPlugin(CMSPlugin):
-    form_class = None
-
-    send_internal_mail = models.BooleanField(
-        'Send internal e-mail',
-        default=True,
-        help_text='Send confirmation mail to defined internal e-mail addresses.'
+    form_text = HTMLField(
+        'Form text',
+        blank=True,
+        help_text='This text will be shown, before the actual form fields and later replaced with the success message.'
     )
-    internal_email_addresses = ArrayField(
+    email_subject = models.CharField(
+        'External email subject',
+        max_length=255,
+        blank=True,
+    )
+
+    from_email_address = models.EmailField(
+        'From e-mail address',
+        default=settings.DEFAULT_FROM_EMAIL,
+    )
+
+    internal_recipients = ArrayField(
         models.EmailField(
             blank=True,
-            null=True,
         ),
         blank=True,
         null=True,
-        verbose_name='Internal e-mail addresses',
-    )
-    from_email_address = models.EmailField(
-        'Sender e-mail address',
-        blank=True,
-        null=True
-    )
-    send_external_mail = models.BooleanField(
-        'Send external e-mail',
-        default=True,
-        help_text='Send confirmation mail to customer.'
-    )
-    thank_you_text = models.TextField(
-        'Thank you text',
-        blank=True,
-        null=True,
-        help_text='This text will be shown, after form completion.'
-    )
-    label_layout = models.CharField(
-        'Display labels',
-        max_length=15,
-        choices=(
-            ('stacked', 'Stacked with fields'),
-            ('side_by_side', 'Side by side with fields'),
-            ('placeholder', 'As placeholders'),
-        ),
-        default='stacked',
-    )
-    project_css_classes = ArrayField(
-        models.CharField(
-            max_length=50,
-            blank=True,
-            null=True
-        ),
-        blank=True,
-        null=True
+        verbose_name='Internal e-mail recipients',
     )
 
-    def __str__(self):
-        return 'Form Plugin'
+    success_message = HTMLField(
+        'Success message',
+        blank=True,
+        help_text='This text will be shown, after form completion.'
+    )
+
+    cmsplugin_ptr = CMSPluginField()
 
     class Meta:
         abstract = True
-
-    def get_form(self):
-        return self.form_class()
-
-    @cached_property
-    def css_classes(self):
-        css_classes = []
-        if getattr(self, 'project_css_classes'):
-            for css_class in getattr(self, 'project_css_classes'):
-                css_classes.append(css_class)
-        css_classes.append('side-by-side') if self.label_layout == 'side_by_side' else None
-        css_classes.append('placeholder-enabled') if self.label_layout == 'placeholder' else None
-        return ' '.join(css_classes)
