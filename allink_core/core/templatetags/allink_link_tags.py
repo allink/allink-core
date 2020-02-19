@@ -34,7 +34,6 @@ def link_attribute_string(instance, request=None):
     attributes += ' data-trigger-softpage' if instance.softpage_enabled else ''
     attributes += ' data-smooth-scroll' if instance.link_anchor else ''
     attributes += ' data-cms-page' if instance.link_page and instance.softpage_enabled else ''
-    attributes += ' data-form-modal-variation=newsletter-form' if instance.link_special == 'newsletter:signup' else ''
     attributes += ' role=button' if hasattr(instance, "type") and instance.type == 'btn' else ''
     attributes += ' '.join([' {}={}'.format(k, v) if v else ' {}'.format(k) for k, v in
                             instance.link_attributes.items()]) if instance.link_attributes else ''
