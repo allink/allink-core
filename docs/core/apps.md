@@ -9,10 +9,6 @@ All modules in <code>apps</code> are considered standard apps which we have impl
 At the moment not every app is documented in this guide. For reference please see [code base](https://github.com/allink/allink-core/tree/v1.0.x/allink_core/apps).
 
 ###### config
-###### contact
-###### events
 ###### locations
 ###### news
-###### newsletter
 ###### people
-###### testimonials

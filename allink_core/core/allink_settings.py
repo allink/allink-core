@@ -67,9 +67,7 @@ ALLINK_INSTALLED_APPS = [
 
 ALLINK_PROJECT_APP_MODEL_WITH_CATEGORY_CHOICES = [
     ('people', 'People'),
-    ('testimonials', 'Testimonials'),
     ('news', 'News'),
-    ('events', 'Events'),
     # ('locations', 'Locations'),
 ]
 
@@ -97,8 +95,6 @@ ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [
     'CMSLocationsAppContentPlugin',
     'CMSPeopleAppContentPlugin',
     'CMSNewsAppContentPlugin',
-    'CMSEventsAppContentPlugin',
-    'CMSTestimonialsAppContentPlugin',
     # core
     # 'CMSAllinkTermsPlugin',
     'CMSAllinkTeaserPlugin',
@@ -127,11 +123,9 @@ ALLINK_LOCALE_PATHS = [
     '/app/locale',
     # apps
     '/app/allink_core/apps/news/locale',
-    '/app/allink_core/apps/events/locale',
     '/app/allink_core/apps/config/locale',
     '/app/allink_core/apps/locations/locale',
     '/app/allink_core/apps/people/locale',
-    '/app/allink_core/apps/testimonials/locale',
     # core
     '/app/allink_core/core/locale',
     # core_apps
