@@ -31,6 +31,8 @@ general bugfixes
 
 #### NEW
 - render_image uses now subject_location by default [#42](https://github.com/allink/allink-core/pull/42)
+- AllinkBaseFormPlugin was changed to fit the requirements on current projects [#47](https://github.com/allink/allink-core/pull/47)
+- added AllinkBasePluginAjaxCreateView [#47](https://github.com/allink/allink-core/pull/47)
 
 ## v2.3.3 
 #### FIXES
