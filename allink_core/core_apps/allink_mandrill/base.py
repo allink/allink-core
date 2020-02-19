@@ -56,7 +56,7 @@ class AllinkMandrillEmailBase:
         self.config = MandrillConfig()
         self.logging = logging
         if self.translated:
-            assert(language, 'You have to provide a language, if you send a translated email.')
+            assert (language, 'You have to provide a language, if you send a translated email.')
             self.language = language
         self.async = async
         self.send_with_celery = send_with_celery
@@ -186,7 +186,7 @@ class AllinkMandrillEmailBase:
                     'metadata': {'website': self.get_website_for_metadata()},
                     'preserve_recipients': self.preserve_recipients,
                     'return_path_domain': self.return_path_domain,
-                    'subject': self.build_subject(),
+                    'subject': str(self.build_subject()),
                     'to': self._dev_mode_safe_to_adresses(),
                     'track_clicks': self.track_clicks,
                     'track_opens': self.track_opens,
@@ -246,6 +246,21 @@ class AllinkMandrillFormEmail(AllinkMandrillEmailBase):
 
     APPEND_OPTIONAL_FIELDS = False
       all empty fields won't be send to mandrill
+
+    example implementation:
+    class SomeEmail(AllinkMandrillFormEmail):
+        template_name = 'entra_living_signup_confirmation'
+        google_analytics_campaign = template_name
+
+        def fetch_to_email_addresses(self):
+            return [
+                self.create_email_to_entry(
+                    self.form.data.get('email'),
+                    ''.format(self.form.fields.get('last_name'), self.form.fields.get('first_name'))
+                ),
+            ]
+
+    SomeEmail(form=form, language=get_language()).send_mail()
     """
     APPEND_OPTIONAL_FIELDS = True
 
@@ -345,13 +360,28 @@ class AllinkMandrillFormEmail(AllinkMandrillEmailBase):
         return form_fields_combined
 
 
-# TODO should be implemented with the same mindset as AllinkMandrillFormEmail
-# class AllinkMandrillPluginEmail(AllinkMandrillEmailBase):
-#     """
-#     use this, if the plugin defines the email addresses and body text
-#     e.g
-#
-#     """
-#     def __init__(self, plugin, *args, **kwargs):
-#         super().__init__(*args, **kwargs)
-#         self.plugin = plugin
+class AllinkMandrillFormPluginEmail(AllinkMandrillFormEmail):
+    """
+    Takes parameters "form" and "plugin". The Plugin needs to define at least the fields in AllinkBaseFormPlugin.
+    The plugin defines the email subject, sender email address and the internal recipients.
+
+    example implementation:
+    class SomeInternalEmail(AllinkMandrillFormPluginEmail):
+        template_name = 'entra_living_signup_confirmation'
+        google_analytics_campaign = template_name
+
+        def fetch_to_email_addresses(self):
+            return [self.create_email_to_entry(email, self.config.get_default_from_name()) for email in self.plugin.internal_recipients]
+
+    SomeInternalEmail(form=form, plugin=plugin, language=get_language()).send_mail()
+    """
+
+    def __init__(self, plugin, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.plugin = plugin
+
+    def build_subject(self):
+        return self.plugin.email_subject
+
+    def get_from_mail_address(self):
+        return self.plugin.from_email_address

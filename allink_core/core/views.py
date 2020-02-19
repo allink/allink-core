@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
-
 import json
-import urllib.parse
-import re
-
 from django.views.generic import ListView, DetailView, CreateView, FormView
 from django.db.models import Q
 from django.shortcuts import render
@@ -326,66 +322,37 @@ class AllinkBasePluginAjaxFormView(FormView):
         return JsonResponse(data, status=status)
 
 
-# TODO
-# class AllinkBasePluginAjaxCreateView(AllinkBasePluginAjaxFormView):
-#     """
-#     # example implementation:
-#     # class OrderRequestView
-#     #     model = OrderRequest
-#     #     form_class = OrderRequestForm
-#     #     template_name = 'order/plugins/request/content.html'
-#     #
-#     #     success_template_name = 'order/plugins/request/success.html'
-#     #     plugin_class = OrderRequestPlugin
-#     #     viewname = 'order:request'
-#     """
-#     plugin = None
-#
-#     def form_valid(self, form):
-#         self.object = form.save()
-#         return super().form_valid(form)
+class AllinkBasePluginAjaxCreateView(AllinkBasePluginAjaxFormView):
+    """
+    Use this class whenever you create a plugin which displays a form.
 
+    example implementation:
 
-# TODO
-# class AllinkBasePluginAjaxSearchFormView(AllinkBasePluginAjaxFormView):
-#     """
-#     example implementation:
-#     class WorkSearchView
-#         form_class = WorkSearchForm
-#         template_name = 'work/plugins/search/content.html'
-#
-#         success_template_name = 'work/plugins/search/success.html' ?!
-#         plugin_class = WorkSearchPlugin
-#         viewname = 'work:search'
-#
-#         search_fields = ['translations__title', 'translations__lead']
-#     """
-#
-#     search_fields = ['translations__title', 'translations__lead']
-#
-#     def get_object_list(self, query_string):
-#         if query_string:
-#             entry_query = get_query(query_string, self.search_fields)
-#             object_list = self.plugin.data_model.objects.active().filter(entry_query).distinct()
-#         else:
-#             object_list = self.plugin.data_model.objects.active()
-#         return object_list
-#
-#     def form_valid(self, form):
-#         """
-#         - adds the serach result queryset to the context
-#         - adds no_results to json response, if empty queryset
-#         """
-#         context = self.get_context_data()
-#         context.update({'object_list': self.get_object_list(form.cleaned_data.get('q'))})
-#         data = {'no_results': False if context['object_list'] else True}
-#
-#         return self.get_json_response(
-#             context=context,
-#             status=200,
-#             template_name=self.get_template_names()[0],
-#             data=data
-#         )
+    class ProductTrackingView(AllinkBasePluginAjaxCreateView):
+        model = ProductTracking
+        form_class = ProductTrackingForm
+        template_name = 'product/plugins/tracking/content.html'
+
+        success_template_name = 'product/plugins/tracking/success.html'
+        plugin_class = ProductTrackingPlugin
+        viewname = 'product:tracking'
+
+    example urls.py:
+    path('tracking/(<int:plugin_id>/', ProductTrackingView.as_view(), name='tracking'),
+
+    to ensure that search engines do not index the view when called with GET (unstyled),
+    we only allow POST (the GET is with the cmsplugin render)
+    http_method_names = ['post']
+
+    therefore views inherit from this class are not suitable for direct links
+    e.g all viewnames listed in BUTTON_LINK_SPECIAL_LINKS_CHOICES.
+    these views will be called by a GET request and not with ajax
+    """
+
+    def form_valid(self, form):
+        """If the form is valid, save the associated model."""
+        self.object = form.save()
+        return super().form_valid(form)
 
 
 # used to redirect CMSPage to external url
