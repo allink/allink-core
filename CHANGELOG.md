@@ -25,6 +25,7 @@ general bugfixes
 - we removed the app newsletter from allink_core/apps. you need to delete all occurrences of `allink_apps.newsletter`, `apps.newsletter`, `path('mailchimp/'...` in urls.py and file `__signup-form.scss` [#49](https://github.com/allink/allink-core/pull/49)
 - we removed the app testimonials from allink_core/apps. you need to delete all occurrences of `allink_apps.testimonials`, `apps.testimonials`, and file `__testimonials.scss` [#50](https://github.com/allink/allink-core/pull/50)
 - we removed the app allink_terms from allink_core/core_apps. [#52](https://github.com/allink/allink-core/pull/52)
+- we removed the app allink_icon from allink_core/core_apps. [#52](https://github.com/allink/allink-core/pull/52) you need to delete `_icon-plugin.scss`.
 
 ###### DATA MIGRATIONS
 - teaser softpage_enable is now default False [#41](https://github.com/allink/allink-core/pull/41)
