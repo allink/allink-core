@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-27 15:03+0100\n"
+"POT-Creation-Date: 2020-02-19 17:08+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:166
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:167
 msgid "Please supply at least one E-Mail Address."
 msgstr ""
 
-#: allink_core/core_apps/allink_button_link/cms_plugins.py:171
+#: allink_core/core_apps/allink_button_link/cms_plugins.py:172
 msgid "Please supply an E-Mail Address."
 msgstr ""
 

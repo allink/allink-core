@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-27 15:03+0100\n"
+"POT-Creation-Date: 2020-02-19 18:00+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -71,7 +71,6 @@ msgstr ""
 
 #: allink_core/core/models/fields_model.py:286
 #: allink_core/core/models/fields_model.py:629
-#: allink_core/core/templates/allink_core/contact/forms/request_base.html:57
 #: allink_core/core/templates/allink_core/people/plugins/contact_details/content.html:36
 msgid "Phone"
 msgstr ""
@@ -94,7 +93,6 @@ msgstr ""
 
 #: allink_core/core/models/fields_model.py:310
 #: allink_core/core/models/fields_model.py:618
-#: allink_core/core/templates/allink_core/contact/forms/request_base.html:92
 msgid "Email"
 msgstr ""
 
@@ -122,7 +120,7 @@ msgstr ""
 msgid "Message"
 msgstr ""
 
-#: allink_core/core/models/mixins.py:226
+#: allink_core/core/models/mixins.py:237
 msgid "Read more"
 msgstr ""
 
@@ -173,7 +171,7 @@ msgid "Save"
 msgstr ""
 
 #: allink_core/core/templates/allink_core/admin/submit_line.html:6
-#: allink_core/core/templates/allink_core/cms/toolbar/dragitem_bak.html:47
+#: allink_core/core/templates/allink_core/cms/toolbar/dragitem.html:39
 msgid "Delete"
 msgstr ""
 
@@ -228,60 +226,48 @@ msgstr ""
 msgid "Standard Plugins"
 msgstr ""
 
-#: allink_core/core/templates/allink_core/cms/toolbar/dragitem_bak.html:13
+#: allink_core/core/templates/allink_core/cms/toolbar/dragitem.html:12
 msgid "Edit"
 msgstr ""
 
-#: allink_core/core/templates/allink_core/cms/toolbar/dragitem_bak.html:18
+#: allink_core/core/templates/allink_core/cms/toolbar/dragitem.html:17
 msgid "You cannot add plugins to this plugin."
 msgstr ""
 
-#: allink_core/core/templates/allink_core/cms/toolbar/dragitem_bak.html:20
+#: allink_core/core/templates/allink_core/cms/toolbar/dragitem.html:19
 msgid "Add plugin"
 msgstr ""
 
-#: allink_core/core/templates/allink_core/cms/toolbar/dragitem_bak.html:26
+#: allink_core/core/templates/allink_core/cms/toolbar/dragitem.html:25
 msgid "This plugin cannot be moved or edited outside of its parent"
 msgstr ""
 
-#: allink_core/core/templates/allink_core/cms/toolbar/dragitem_bak.html:33
+#: allink_core/core/templates/allink_core/cms/toolbar/dragitem.html:31
 msgid "Cut"
 msgstr ""
 
-#: allink_core/core/templates/allink_core/cms/toolbar/dragitem_bak.html:34
-msgid "This plugin cannot be cut."
-msgstr ""
-
-#: allink_core/core/templates/allink_core/cms/toolbar/dragitem_bak.html:37
+#: allink_core/core/templates/allink_core/cms/toolbar/dragitem.html:32
 #: allink_core/core/templates/allink_core/djangocms_modules/render_module.html:7
 msgid "Copy"
 msgstr ""
 
-#: allink_core/core/templates/allink_core/cms/toolbar/dragitem_bak.html:38
-msgid "This plugin cannot be copied."
-msgstr ""
-
-#: allink_core/core/templates/allink_core/cms/toolbar/dragitem_bak.html:41
+#: allink_core/core/templates/allink_core/cms/toolbar/dragitem.html:34
 msgid "Paste"
 msgstr ""
 
-#: allink_core/core/templates/allink_core/cms/toolbar/dragitem_bak.html:42
+#: allink_core/core/templates/allink_core/cms/toolbar/dragitem.html:35
 msgid "Clipboard is empty."
 msgstr ""
 
-#: allink_core/core/templates/allink_core/cms/toolbar/dragitem_bak.html:43
+#: allink_core/core/templates/allink_core/cms/toolbar/dragitem.html:36
 msgid "This plugin does not allow plugins of this type as nested plugins."
 msgstr ""
 
-#: allink_core/core/templates/allink_core/cms/toolbar/dragitem_bak.html:44
+#: allink_core/core/templates/allink_core/cms/toolbar/dragitem.html:37
 msgid "This plugin cannot have nested plugins."
 msgstr ""
 
-#: allink_core/core/templates/allink_core/cms/toolbar/dragitem_bak.html:48
-msgid "This plugin cannot be deleted."
-msgstr ""
-
-#: allink_core/core/templates/allink_core/cms/toolbar/dragitem_bak.html:55
+#: allink_core/core/templates/allink_core/cms/toolbar/dragitem.html:45
 msgid "Filter plugins..."
 msgstr ""
 
@@ -297,75 +283,8 @@ msgstr ""
 msgid "clear cache"
 msgstr ""
 
-#: allink_core/core/templates/allink_core/contact/email/request_subject.txt:2
-#: allink_core/core/templates/allink_core/contact/forms/confirmation.html:8
-#: allink_core/core/templates/allink_core/contact/forms/confirmation.html:14
-msgid "Thanks for your request."
-msgstr ""
-
-#: allink_core/core/templates/allink_core/contact/email/request_subject_internal.txt:2
-msgid "Contact Request"
-msgstr ""
-
-#: allink_core/core/templates/allink_core/contact/forms/confirmation.html:18
-msgid "Close window"
-msgstr ""
-
-#: allink_core/core/templates/allink_core/contact/forms/request_base.html:25
-msgid "Contact us"
-msgstr ""
-
-#: allink_core/core/templates/allink_core/contact/forms/request_base.html:47
-msgid "Please contact me via"
-msgstr ""
-
-#: allink_core/core/templates/allink_core/contact/forms/request_base.html:48
-#: allink_core/core/templates/allink_core/contact/forms/request_base.html:58
-#: allink_core/core/templates/allink_core/contact/forms/request_base.html:67
-#: allink_core/core/templates/allink_core/contact/forms/request_base.html:93
-msgid "(required)"
-msgstr ""
-
-#: allink_core/core/templates/allink_core/contact/forms/request_base.html:66
-msgid "Choose date and time"
-msgstr ""
-
-#: allink_core/core/templates/allink_core/contact/forms/request_base.html:72
-msgid "Choose a date"
-msgstr ""
-
-#: allink_core/core/templates/allink_core/contact/forms/request_base.html:82
-msgid "Choose a time"
-msgstr ""
-
-#: allink_core/core/templates/allink_core/contact/forms/request_base.html:110
-msgid "Submit"
-msgstr ""
-
 #: allink_core/core/templates/allink_core/djangocms_file/default/folder.html:14
 msgid "No files were found in the specified folder."
-msgstr ""
-
-#: allink_core/core/templates/allink_core/events/email/registration_subject.txt:2
-#: allink_core/core/templates/allink_core/events/forms/confirmation.html:4
-msgid "Thanks for your registration"
-msgstr ""
-
-#: allink_core/core/templates/allink_core/events/email/registration_subject_internal.txt:2
-msgid "Event Registration"
-msgstr ""
-
-#: allink_core/core/templates/allink_core/events/forms/registration.html:5
-msgid "Register"
-msgstr ""
-
-#: allink_core/core/templates/allink_core/events/plugins/_no_results.html:4
-msgid "There are no upcoming events at the moment."
-msgstr ""
-
-#: allink_core/core/templates/allink_core/events/plugins/grid_static/_items.html:41
-#: allink_core/core/templates/allink_core/testimonials/plugins/grid_static/_items.html:36
-msgid "More"
 msgstr ""
 
 #: allink_core/core/templates/allink_core/includes/browser-check.html:6
@@ -456,20 +375,8 @@ msgstr ""
 msgid "Preview"
 msgstr ""
 
-#: allink_core/core/templates/allink_core/newsletter/confirmation.html:6
-msgid "Thanks for your registration."
-msgstr ""
-
-#: allink_core/core/templates/allink_core/newsletter/signup_form_base.html:15
-msgid "Subscribe to Newsletter"
-msgstr ""
-
-#: allink_core/core/templates/allink_core/newsletter/signup_form_base.html:63
-msgid "Declaration of consent"
-msgstr ""
-
-#: allink_core/core/templates/allink_core/newsletter/signup_form_base.html:78
-msgid "Signup"
+#: allink_core/core/templates/allink_core/newsletter/teaser.html:11
+msgid "Sign up"
 msgstr ""
 
 #: allink_core/core/templates/allink_core/people/plugins/_no_results.html:4
@@ -479,10 +386,6 @@ msgstr ""
 #: allink_core/core/templates/allink_core/people/plugins/contact_details/content.html:33
 #: allink_core/core/templates/allink_core/people/plugins/grid_static/_items.html:31
 msgid "E-Mail"
-msgstr ""
-
-#: allink_core/core/templates/allink_core/testimonials/plugins/_no_results.html:4
-msgid "No testimonials found with the applied filters."
 msgstr ""
 
 #: allink_core/core/templates/allink_core/widgets/sortedm2m_widget.html:4
@@ -539,7 +442,7 @@ msgstr ""
 msgid "Add plugin to"
 msgstr ""
 
-#: allink_core/core/views.py:139
+#: allink_core/core/views.py:135
 msgid "The requested content is not published."
 msgstr ""
 
