@@ -17,7 +17,6 @@ At the moment not every app is documented in this guide. For reference please se
 ###### allink_content
 ###### allink_filer
 ###### allink_gallery
-###### allink_group
 ###### allink_icon
 ###### allink_image
 ###### allink_info_box

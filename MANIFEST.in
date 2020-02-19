@@ -6,7 +6,6 @@ recursive-include allink_core/core_apps/allink_image/templates *
 recursive-include allink_core/core_apps/allink_gallery/templates *
 recursive-include allink_core/core_apps/allink_social_icon/templates *
 recursive-include allink_core/core_apps/allink_button_link/templates *
-recursive-include allink_core/core_apps/allink_group/templates *
 recursive-include allink_core/core_apps/allink_instagram/templates *
 recursive-include allink_core/core_apps/allink_video/templates *
 recursive-include allink_core/core_apps/allink_cms/templates *
@@ -25,7 +24,6 @@ recursive-include allink_core/core_apps/allink_image/locale *
 recursive-include allink_core/core_apps/allink_gallery/locale *
 recursive-include allink_core/core_apps/allink_social_icon/locale *
 recursive-include allink_core/core_apps/allink_button_link/locale *
-recursive-include allink_core/core_apps/allink_group/locale *
 recursive-include allink_core/core_apps/allink_instagram/locale *
 recursive-include allink_core/core_apps/allink_video/locale *
 recursive-include allink_core/core_apps/allink_legacy_redirect/locale *
@@ -44,7 +42,6 @@ recursive-include allink_core/core_apps/allink_image/migrations *
 recursive-include allink_core/core_apps/allink_gallery/migrations *
 recursive-include allink_core/core_apps/allink_social_icon/migrations *
 recursive-include allink_core/core_apps/allink_button_link/migrations *
-recursive-include allink_core/core_apps/allink_group/migrations *
 recursive-include allink_core/core_apps/allink_instagram/migrations *
 recursive-include allink_core/core_apps/allink_video/migrations *
 recursive-include allink_core/core_apps/allink_legacy_redirect/migrations *
