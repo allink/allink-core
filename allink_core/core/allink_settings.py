@@ -41,7 +41,6 @@ ALLINK_INSTALLED_APPS = [
     'allink_core.core_apps.allink_categories',
     'allink_core.core_apps.allink_styleguide',
     'allink_core.core_apps.allink_legacy_redirect',
-    # 'allink_core.core_apps.allink_terms',
 
     'allink_core.core_apps.allink_quote',
     'allink_core.core_apps.allink_content',

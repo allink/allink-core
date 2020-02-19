@@ -28,7 +28,6 @@ At the moment not every app is documented in this guide. For reference please se
 ###### allink_social_icon
 ###### allink_styleguide
 ###### allink_teaser
-###### allink_terms
 ###### allink_video
 ###### allink_quote
 ###### allink_teaser

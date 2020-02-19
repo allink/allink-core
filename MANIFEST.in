@@ -1,7 +1,6 @@
 include LICENSE
 recursive-include allink_core/core/templates *
 recursive-include allink_core/core_apps/allink_styleguide/templates *
-recursive-include allink_core/core_apps/allink_terms/templates *
 recursive-include allink_core/core_apps/allink_content/templates *
 recursive-include allink_core/core_apps/allink_image/templates *
 recursive-include allink_core/core_apps/allink_gallery/templates *
@@ -11,7 +10,6 @@ recursive-include allink_core/core_apps/allink_group/templates *
 recursive-include allink_core/core_apps/allink_instagram/templates *
 recursive-include allink_core/core_apps/allink_video/templates *
 recursive-include allink_core/core_apps/allink_pdf/templates *
-recursive-include allink_core/core_apps/allink_terms/templates *
 recursive-include allink_core/core_apps/allink_cms/templates *
 recursive-include allink_core/core_apps/allink_icon/templates *
 recursive-include allink_core/core_apps/allink_info_box/templates *
@@ -23,7 +21,6 @@ recursive-include allink_core/core/locale *
 recursive-include allink_core/core_apps/allink_styleguide/locale *
 recursive-include allink_core/core_apps/allink_categories/locale *
 recursive-include allink_core/core_apps/allink_mandrill/locale *
-recursive-include allink_core/core_apps/allink_terms/locale *
 recursive-include allink_core/core_apps/allink_content/locale *
 recursive-include allink_core/core_apps/allink_image/locale *
 recursive-include allink_core/core_apps/allink_gallery/locale *
@@ -44,7 +41,6 @@ recursive-include allink_core/core_apps/allink_quote/locale *
 recursive-include allink_core/core/migrations *
 recursive-include allink_core/core_apps/allink_styleguide/migrations *
 recursive-include allink_core/core_apps/allink_categories/migrations *
-recursive-include allink_core/core_apps/allink_terms/migrations *
 recursive-include allink_core/core_apps/allink_content/migrations *
 recursive-include allink_core/core_apps/allink_image/migrations *
 recursive-include allink_core/core_apps/allink_gallery/migrations *
@@ -55,7 +51,6 @@ recursive-include allink_core/core_apps/allink_instagram/migrations *
 recursive-include allink_core/core_apps/allink_video/migrations *
 recursive-include allink_core/core_apps/allink_pdf/migrations *
 recursive-include allink_core/core_apps/allink_legacy_redirect/migrations *
-recursive-include allink_core/core_apps/allink_terms/migrations *
 recursive-include allink_core/core_apps/allink_cms/migrations *
 recursive-include allink_core/core_apps/allink_icon/migrations *
 recursive-include allink_core/core_apps/allink_info_box/migrations *
