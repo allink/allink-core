@@ -1,7 +1,6 @@
 include LICENSE
 recursive-include allink_core/core/templates *
 recursive-include allink_core/core_apps/allink_styleguide/templates *
-recursive-include allink_core/core_apps/allink_mailchimp/templates *
 recursive-include allink_core/core_apps/allink_terms/templates *
 recursive-include allink_core/core_apps/allink_content/templates *
 recursive-include allink_core/core_apps/allink_image/templates *
@@ -23,7 +22,6 @@ recursive-include allink_core/core_apps/allink_quote/templates *
 recursive-include allink_core/core/locale *
 recursive-include allink_core/core_apps/allink_styleguide/locale *
 recursive-include allink_core/core_apps/allink_categories/locale *
-recursive-include allink_core/core_apps/allink_mailchimp/locale *
 recursive-include allink_core/core_apps/allink_mandrill/locale *
 recursive-include allink_core/core_apps/allink_terms/locale *
 recursive-include allink_core/core_apps/allink_content/locale *
@@ -46,7 +44,6 @@ recursive-include allink_core/core_apps/allink_quote/locale *
 recursive-include allink_core/core/migrations *
 recursive-include allink_core/core_apps/allink_styleguide/migrations *
 recursive-include allink_core/core_apps/allink_categories/migrations *
-recursive-include allink_core/core_apps/allink_mailchimp/migrations *
 recursive-include allink_core/core_apps/allink_terms/migrations *
 recursive-include allink_core/core_apps/allink_content/migrations *
 recursive-include allink_core/core_apps/allink_image/migrations *

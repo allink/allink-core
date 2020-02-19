@@ -22,7 +22,6 @@ At the moment not every app is documented in this guide. For reference please se
 ###### allink_image
 ###### allink_info_box
 ###### allink_legacy_redirect
-###### allink_mailchimp
 ###### allink_mandrill
 ###### allink_pdf
 ###### allink_seo_accordion
