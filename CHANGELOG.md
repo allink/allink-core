@@ -22,7 +22,7 @@ general bugfixes
 #### IMPORTANT
 - we removed the app contact from core/apps. you need to delete all occurrences of `allink_apps.contact`, `apps.contact` and `contact-form` [#46](https://github.com/allink/allink-core/pull/46)
 - we removed the app event from core/apps. you need to delete all occurrences of `allink_apps.event`, `apps.event` and file `_events.scss` [#48](https://github.com/allink/allink-core/pull/48)
-- we removed the app newsletter from core/apps. you need to delete all occurrences of `allink_apps.newsletter`, `apps.newsletter` and file `_events.scss` [#49](https://github.com/allink/allink-core/pull/49)
+- we removed the app newsletter from core/apps. you need to delete all occurrences of `allink_apps.newsletter`, `apps.newsletter` and file `__signup-form.scss` [#49](https://github.com/allink/allink-core/pull/49)
 
 ###### DATA MIGRATIONS
 - teaser softpage_enable is now default False [#41](https://github.com/allink/allink-core/pull/41)
