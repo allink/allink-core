@@ -23,8 +23,6 @@ the equivalent allink_core app). e.g.:
     ...
 
     OVERRIDDEN_ALLINK_CORE_APPS = [
-        # 'apps.contact',
-        # 'apps.events',
         # 'apps.locations',
         # 'apps.news',
         # 'apps.members',

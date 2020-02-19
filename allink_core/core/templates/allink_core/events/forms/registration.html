@@ -1,7 +1,0 @@
-{% load i18n allink_helpers %}
-{% include "partials/forms/non_field_errors.html" %}
-
-{% url "events:register" slug=slug as action %}
-{% trans "Register" as cta %}
-
-{% include "partials/forms/form.html" with class="event-register-form" data_layer_event="event-registration.sent" action=action cta=cta form_title=event_title%}
