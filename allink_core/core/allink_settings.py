@@ -51,7 +51,6 @@ ALLINK_INSTALLED_APPS = [
     'allink_core.core_apps.allink_social_icon',
     'allink_core.core_apps.allink_button_link',
     # 'allink_core.core_apps.allink_group',
-    # 'allink_core.core_apps.allink_pdf',
     'allink_core.core_apps.allink_cms',
     # 'allink_core.core_apps.allink_icon',
     # 'allink_core.core_apps.allink_info_box',
@@ -139,7 +138,6 @@ ALLINK_LOCALE_PATHS = [
     '/app/allink_core/core_apps/allink_image/locale',
     '/app/allink_core/core_apps/allink_social_icon/locale',
     '/app/allink_core/core_apps/allink_video/locale',
-    '/app/allink_core/core_apps/allink_pdf/locale',
     '/app/allink_core/core_apps/allink_cms/locale',
     '/app/allink_core/core_apps/allink_icon/locale',
 ]
