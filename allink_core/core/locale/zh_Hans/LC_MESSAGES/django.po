@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-19 18:00+0100\n"
+"POT-Creation-Date: 2020-02-19 18:29+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -382,9 +382,12 @@ msgid "No people found with the applied filters."
 msgstr ""
 
 #: allink_core/core/templates/allink_core/people/plugins/contact_details/content.html:33
-#: allink_core/core/templates/allink_core/people/plugins/grid_static/_items.html:31
 msgid "E-Mail"
 msgstr ""
+
+#: allink_core/core/templates/allink_core/people/plugins/grid_static/_items.html:31
+msgid "E-mail"
+msgstr "電子郵件"
 
 #: allink_core/core/templates/allink_core/widgets/sortedm2m_widget.html:4
 msgid "Type into this box to filter down the list."
