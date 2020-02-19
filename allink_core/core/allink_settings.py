@@ -39,7 +39,6 @@ ALLINK_INSTALLED_APPS = [
     # allink core apps
     'allink_core.core',
     'allink_core.core_apps.allink_categories',
-    'allink_core.core_apps.allink_mailchimp',
     'allink_core.core_apps.allink_styleguide',
     'allink_core.core_apps.allink_legacy_redirect',
     # 'allink_core.core_apps.allink_terms',
@@ -108,7 +107,6 @@ ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [
     'CMSAllinkVideoEmbedPlugin',
     'CMSAllinkVideoFilePlugin',
     'CMSAllinkSocialIconContainerPlugin',
-    'CMSAllinkSignupFormPlugin',
     'CMSAllinkButtonLinkContainerPlugin',
     # 'CMSAllinkGroupContainerPlugin',
     # 'CMSAllinkInstagramPlugin',
@@ -134,13 +132,11 @@ ALLINK_LOCALE_PATHS = [
     '/app/allink_core/apps/locations/locale',
     '/app/allink_core/apps/people/locale',
     '/app/allink_core/apps/testimonials/locale',
-    '/app/allink_core/apps/newsletter/locale',
     # core
     '/app/allink_core/core/locale',
     # core_apps
     '/app/allink_core/core_apps/allink_categories/locale',
     '/app/allink_core/core_apps/allink_legacy_redirect/locale',
-    '/app/allink_core/core_apps/allink_mailchimp/locale',
     '/app/allink_core/core_apps/allink_mandrill/locale',
     '/app/allink_core/core_apps/allink_styleguide/locale',
     '/app/allink_core/core_apps/allink_button_link/locale',
