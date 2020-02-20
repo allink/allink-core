@@ -152,8 +152,7 @@ class AllinkBasePluginAjaxFormView(FormView):
         template_name = 'product/plugins/tracking/content.html'
 
         success_template_name = 'product/plugins/tracking/success.html'
-        plugin_class = ProductTrackingPlugin
-        viewname = 'product:tracking'
+        plugin_model = ProductTrackingPlugin
 
     example urls.py:
     path('tracking/(<int:plugin_id>/', ProductTrackingView.as_view(), name='tracking'),
@@ -169,15 +168,15 @@ class AllinkBasePluginAjaxFormView(FormView):
 
     http_method_names = ['post']
 
-    def post(self, request, *args, **kwargs):
+    def post(self, request, plugin_id, *args, **kwargs):
         """
         Handles POST requests, instantiating a form instance with the passed
         POST variables and then checked for validity.
 
         adds the plugin instance from the plugin_id kwargs
         """
-        plugin_id = self.kwargs.pop('plugin_id', None)
-        self.plugin = self.plugin_class.objects.get(id=plugin_id)
+        self.plugin_instance = self.plugin_model.objects.get(id=plugin_id)
+        _, self.plugin = self.plugin_instance.get_plugin_instance()
 
         return super().post(request, *args, **kwargs)
 
@@ -190,15 +189,15 @@ class AllinkBasePluginAjaxFormView(FormView):
         context.update({
             'csrf_token_value': self.request.COOKIES.get('csrftoken'),
             'request': self.request,
-            'instance': self.plugin,
-            'action': self.get_form_action(),
+            'instance': self.plugin_instance,
+            'action': self.plugin.get_form_action(self.plugin_instance),
         })
         # to be removed? because we could actually track the form with ""
         context = update_context_google_tag_manager(
             context=context,
             page_name=self.request.current_page.__str__(),
             page_id=self.request.current_page.id,
-            plugin_id=self.plugin,
+            plugin_id=self.plugin_instance,
             name=self.__class__.__name__
         )
         return context
@@ -223,12 +222,6 @@ class AllinkBasePluginAjaxFormView(FormView):
             status=206,
             template_name=self.get_template_names()[0]
         )
-
-    def get_form_action(self):
-        """
-        Returns the reversed plugin url. which should points to this view.
-        """
-        return reverse(self.viewname, kwargs={'plugin_id': self.plugin.id})
 
     def get_success_template_names(self):
         """
@@ -275,8 +268,7 @@ class AllinkBasePluginAjaxCreateView(AllinkBasePluginAjaxFormView):
         template_name = 'product/plugins/tracking/content.html'
 
         success_template_name = 'product/plugins/tracking/success.html'
-        plugin_class = ProductTrackingPlugin
-        viewname = 'product:tracking'
+        plugin_model = ProductTrackingPlugin
 
     example urls.py:
     path('tracking/(<int:plugin_id>/', ProductTrackingView.as_view(), name='tracking'),
