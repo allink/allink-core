@@ -1,15 +1,13 @@
 # -*- coding: utf-8 -*-
 import json
-from django.views.generic import ListView, DetailView, CreateView, FormView
+from django.views.generic import ListView, DetailView, FormView
 from django.db.models import Q
 from django.shortcuts import render
-from django.template.loader import get_template
 from django.utils.translation import ugettext_lazy as _
 from django.urls import reverse
 from django.core.exceptions import ImproperlyConfigured
-from django.http import HttpResponse, HttpResponseRedirect, HttpResponsePermanentRedirect, Http404, JsonResponse
+from django.http import HttpResponse, HttpResponsePermanentRedirect, Http404, JsonResponse
 from django.template.loader import render_to_string
-from django.template import TemplateDoesNotExist
 from parler.views import TranslatableSlugMixin
 
 from allink_core.core.models import AllinkBaseAppContentPlugin
@@ -141,63 +139,6 @@ class AllinkBaseDetailView(TranslatableSlugMixin, DetailView):
         if self.request.GET.get('softpage', None):
             context.update({'base_template': 'app_content/ajax_base.html'})
         return render(self.request, self.get_template_names(), context)
-
-
-class AllinkBaseCreateView(CreateView):
-    """
-    form_class =
-    template_name  =
-    success_url =
-    """
-    plugin = None
-
-    def get(self, request, *args, **kwargs):
-        self.object = None
-        response = super(AllinkBaseCreateView, self).get(request, *args, **kwargs)
-        response['X-Robots-Tag'] = 'noindex'
-        return response
-
-    def form_invalid(self, form):
-        """
-         If the form is invalid, re-render the context data with the
-         data-filled form and errors.
-        """
-        if self.request.is_ajax():
-            return self.json_response(self.get_context_data(form=form), self.template_name, 206)
-        else:
-            return super(AllinkBaseCreateView, self).form_invalid(form)
-
-    def form_valid(self, form):
-        self.object = form.save()
-        if self.request.is_ajax():
-            context = self.get_context_data()
-            return self.json_response(context, self.get_confirmation_template(), 200)
-        else:
-            return HttpResponseRedirect(self.get_success_url())
-
-    def json_response(self, context, template, status):
-        json_context = {}
-        json_context['rendered_content'] = render_to_string(template, context=context, request=self.request)
-        return HttpResponse(content=json.dumps(json_context), content_type='application/json', status=status)
-
-    def get_context_data(self, *args, **kwargs):
-        context = super(AllinkBaseCreateView, self).get_context_data(*args, **kwargs)
-        plugin_id = getattr(self.plugin, 'id') if self.plugin else None
-        context = update_context_google_tag_manager(context, self.request.current_page.__str__(),
-                                                    self.request.current_page.id, plugin_id, self.__class__.__name__)
-        # EventsRegister view doesn't have a plugin instance
-        if self.plugin:
-            context.update({'instance': self.plugin})
-            context.update({'inline': True if self.plugin._meta.model_name != 'allinkbuttonlinkplugin' else False})
-        return context
-
-    def get_confirmation_template(self):
-        template = '{}/forms/confirmation.html'.format(self.model._meta.app_label)
-        try:
-            get_template(template)
-        except TemplateDoesNotExist:
-            template = 'partials/forms/confirmation.html'
-        return template
 
 
 class AllinkBasePluginAjaxFormView(FormView):
