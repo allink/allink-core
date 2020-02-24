@@ -57,11 +57,10 @@ class AllinkTitleExtensionToolbar(ExtensionToolbar):
         if current_page_menu and self.toolbar.edit_mode_active:
             position = 5
             sub_menu = self._get_sub_menu(current_page_menu, 'submenu_label', 'Meta settings', position)
-            urls = self.get_title_extension_admin()
-            for title_extension, url in urls:
-                # adds toolbar items
-                sub_menu.add_modal_item('Text', url=url,
-                                        disabled=not self.toolbar.edit_mode_active)
+            from django.conf import settings
+            for language_code, _ in settings.LANGUAGES:
+                title_extension, url = self.get_title_extension_admin(language_code)[0]
+                sub_menu.add_modal_item('Text {}'.format(language_code), url=url, disabled=not self.toolbar.edit_mode_active)
 
 
 toolbar_pool.register(AllinkTitleExtensionToolbar)
