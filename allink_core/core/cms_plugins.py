@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-import re
-
 from django import forms
 from django.core.paginator import Paginator
 from django.urls import reverse
@@ -224,7 +222,8 @@ class CMSAllinkBaseAppContentPlugin(AllinkMediaAdminMixin, CMSPluginBase):
 
             # Load More
             if (instance.pagination_type == AllinkBaseAppContentPlugin.LOAD
-                    or instance.pagination_type == AllinkBaseAppContentPlugin.LOAD_REST) and firstpage.has_next():
+                or instance.pagination_type == AllinkBaseAppContentPlugin.LOAD_REST) \
+                    and firstpage.has_next():
                 context['page_obj'] = firstpage
                 context.update(
                     {'next_page_url': reverse('{}:more'.format(
@@ -313,3 +312,44 @@ class CMSAllinkBaseSearchPlugin(AllinkMediaAdminMixin, CMSPluginBase):
             }),
         )
         return fieldsets
+
+
+class CMSAllinkBaseFormPlugin(CMSPluginBase):
+    """
+    Use this BasePlugin for plugins, which display a form.
+
+    example implementation:
+
+    class CMSLivingSignupPlugin(CMSAllinkBaseFormPlugin):
+        name = 'Living Signup Plugin'
+        model = LivingSignupPlugin
+        render_template = 'living/plugins/signup/content.html'
+
+        form_class = LivingSignupForm
+        url_name = 'signup'
+
+    """
+
+    form_class = None
+    url_name = None
+
+    def render(self, context, instance, placeholder):
+        context = super().render(context, instance, placeholder)
+
+        context.update({
+            'form': self.form_class(),
+            'action': self.get_form_action(instance),
+        })
+        return context
+
+    @property
+    def view_name(self):
+        """
+        a string with the default application namespace (defined in cms_apps.py) and the url_name
+        e.g 'living:signup'
+        """
+        return '{}:{}'.format(self.model._meta.app_label, self.url_name)
+
+    def get_form_action(self, instance):
+        """ reversed url. For the view, to send the form data to. """
+        return reverse(self.view_name, kwargs={'plugin_id': instance.id})

@@ -3,7 +3,7 @@ import datetime
 from functools import reduce
 from django.db import models
 from django.utils.functional import cached_property
-
+from django.utils.translation import ugettext_lazy as _
 from cms.models.fields import PageField
 from cms.models.fields import PlaceholderField
 from adminsortable.models import SortableMixin
@@ -284,13 +284,13 @@ class BaseLocations(SortableMixin, AllinkContactFieldsModel, AllinkAddressFields
         """
 
         opening_times = [
-            ('Monday', self.mon),
-            ('Tuesday', self.tue),
-            ('Wednesday', self.wed),
-            ('Thursday', self.thu),
-            ('Friday', self.fri),
-            ('Saturday', self.sat),
-            ('Sunday', self.sun)
+            (_('Monday'), self.mon),
+            (_('Tuesday'), self.tue),
+            (_('Wednesday'), self.wed),
+            (_('Thursday'), self.thu),
+            (_('Friday'), self.fri),
+            (_('Saturday'), self.sat),
+            (_('Sunday'), self.sun)
         ]
 
         opening_hours = []

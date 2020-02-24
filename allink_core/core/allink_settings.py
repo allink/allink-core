@@ -41,7 +41,6 @@ ALLINK_INSTALLED_APPS = [
     'allink_core.core_apps.allink_categories',
     'allink_core.core_apps.allink_styleguide',
     'allink_core.core_apps.allink_legacy_redirect',
-    # 'allink_core.core_apps.allink_terms',
 
     'allink_core.core_apps.allink_quote',
     'allink_core.core_apps.allink_content',
@@ -51,10 +50,7 @@ ALLINK_INSTALLED_APPS = [
     'allink_core.core_apps.allink_video',
     'allink_core.core_apps.allink_social_icon',
     'allink_core.core_apps.allink_button_link',
-    # 'allink_core.core_apps.allink_group',
-    # 'allink_core.core_apps.allink_pdf',
     'allink_core.core_apps.allink_cms',
-    # 'allink_core.core_apps.allink_icon',
     # 'allink_core.core_apps.allink_info_box',
     'allink_core.core_apps.allink_seo_accordion',
 ]
@@ -96,7 +92,6 @@ ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [
     'CMSPeopleAppContentPlugin',
     'CMSNewsAppContentPlugin',
     # core
-    # 'CMSAllinkTermsPlugin',
     'CMSAllinkTeaserPlugin',
     'CMSAllinkImagePlugin',
     'CMSAllinkGalleryPlugin',
@@ -104,11 +99,8 @@ ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [
     'CMSAllinkVideoFilePlugin',
     'CMSAllinkSocialIconContainerPlugin',
     'CMSAllinkButtonLinkContainerPlugin',
-    # 'CMSAllinkGroupContainerPlugin',
-    # 'CMSAllinkInstagramPlugin',
     # 'CMSAllinkPageChooserPlugin',
     'CMSAllinkLanguageChooserPlugin',
-    # 'CMSAllinkIconPlugin',
     'CMSAllinkSEOAccordionContainerPlugin',
     'CMSAllinkQuotePlugin',
 ]
@@ -136,13 +128,10 @@ ALLINK_LOCALE_PATHS = [
     '/app/allink_core/core_apps/allink_button_link/locale',
     '/app/allink_core/core_apps/allink_content/locale',
     '/app/allink_core/core_apps/allink_gallery/locale',
-    '/app/allink_core/core_apps/allink_group/locale',
     '/app/allink_core/core_apps/allink_image/locale',
     '/app/allink_core/core_apps/allink_social_icon/locale',
     '/app/allink_core/core_apps/allink_video/locale',
-    '/app/allink_core/core_apps/allink_pdf/locale',
     '/app/allink_core/core_apps/allink_cms/locale',
-    '/app/allink_core/core_apps/allink_icon/locale',
 ]
 
 # ####################################################################################

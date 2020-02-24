@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from django import forms
 from django.forms.widgets import Media, TextInput
-from django.utils.translation import ugettext_lazy as _
 from django.contrib.postgres.forms import SplitArrayField
 from django.templatetags.static import static
 from django.core.exceptions import ValidationError
@@ -160,16 +159,16 @@ class AllinkButtonLinkPluginForm(AllinkInternalLinkFieldMixin, forms.ModelForm):
 
         if cleaned_data.get('send_internal_mail') is True:
             # if not cleaned_data.get('from_email_address'):
-            #     self.add_error('from_email_address', ValidationError(_('Please supply an E-Mail Address.')))
+            #     self.add_error('from_email_address', ValidationError('Please supply an E-Mail Address.'))
             for i in range(3):
                 if not cleaned_data.get('internal_email_addresses')[i]:
                     self.add_error(
-                        'internal_email_addresses', ValidationError(_('Please supply at least one E-Mail Address.')))
+                        'internal_email_addresses', ValidationError('Please supply at least one E-Mail Address.'))
                     break
 
         elif cleaned_data.get('send_external_mail') is True:
             if not cleaned_data.get('from_email_address'):
-                self.add_error('from_email_address', ValidationError(_('Please supply an E-Mail Address.')))
+                self.add_error('from_email_address', ValidationError('Please supply an E-Mail Address.'))
 
     def clean(self):
         cleaned_data = super(AllinkButtonLinkPluginForm, self).clean()

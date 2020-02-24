@@ -14,7 +14,6 @@ sitemaps = {
 urlpatterns = [
     path('sitemap.xml', sitemap_view, {'sitemaps': sitemaps}),
     path('styleguide/', include('allink_core.core_apps.allink_styleguide.urls', namespace='styleguide')),
-    path('mailchimp/', include('allink_core.core_apps.allink_mailchimp.urls', namespace='mailchimp')),
     path('cms-api/', include('allink_core.core_apps.allink_cms.urls', namespace='cms_api')),
 
 ] + i18n_patterns(
