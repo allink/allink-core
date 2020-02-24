@@ -183,7 +183,7 @@ INSTALLED_APPS = [
     'mptt',
     'aldryn_google_tag_manager',
 
-    'allink_core.core.customisation.dummy_new_app_form'] + ALLINK_INSTALLED_APPS
+    ] + ALLINK_INSTALLED_APPS
 
 # allink apps which are installed in this project
 INSTALLED_ALLINK_CORE_APPS = [
