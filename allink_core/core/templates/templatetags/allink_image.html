@@ -40,54 +40,54 @@
             {{ instance.attributes_str }}
         >
 
-        <style>
-
-            {% comment %}
-                The magic CSS placeholder "hack"
-            {% endcomment %}
-
-            {% if ratio_percent_xs %}
-                #{{ picture_id }} {
-                    padding-bottom: {% if vh_enabled %}{{ ratio_vh_xs }}{% else %}{{ ratio_percent_xs }}{% endif %};
-                }
-            {% endif %}
-            {% if ratio_percent_sm %}
-                @media (min-width:580px) {
-                    #{{ picture_id }} {
-                        padding-bottom: {% if vh_enabled %}{{ ratio_vh_sm }}{% else %}{{ ratio_percent_sm }}{% endif %};
-                    }
-                }
-            {% endif %}
-            {% if ratio_percent_md %}
-                @media (min-width:800px) {
-                    #{{ picture_id }} {
-                        padding-bottom: {% if vh_enabled %}{{ ratio_vh_md }}{% else %}{{ ratio_percent_md }}{% endif %};
-                    }
-                }
-            {% endif %}
-            {% if ratio_percent_lg %}
-                @media (min-width:1040px) {
-                    #{{ picture_id }} {
-                        padding-bottom: {% if vh_enabled %}{{ ratio_vh_lg }}{% else %}{{ ratio_percent_lg }}{% endif %};
-                    }
-                }
-            {% endif %}
-            {% if ratio_percent_xl %}
-                @media (min-width:1280px) {
-                    #{{ picture_id }} {
-                        padding-bottom: {% if vh_enabled %}{{ ratio_vh_xl }}{% else %}{{ ratio_percent_xl }}{% endif %};
-                    }
-                }
-            {% endif %}
-            {% if ratio_percent_xxl %}
-                @media (min-width:1520px) {
-                    #{{ picture_id }} {
-                        padding-bottom: {% if vh_enabled %}{{ ratio_vh_xxl }}{% else %}{{ ratio_percent_xxl }}{% endif %};
-                    }
-                }
-            {% endif %}
-
-        </style>
-
     </picture>
+
+    <style>
+
+        {% comment %}
+            The magic CSS placeholder "hack"
+        {% endcomment %}
+
+        {% if ratio_percent_xs %}
+            #{{ picture_id }} {
+                padding-bottom: {% if vh_enabled %}{{ ratio_vh_xs }}{% else %}{{ ratio_percent_xs }}{% endif %};
+            }
+        {% endif %}
+        {% if ratio_percent_sm %}
+            @media (min-width:580px) {
+                #{{ picture_id }} {
+                    padding-bottom: {% if vh_enabled %}{{ ratio_vh_sm }}{% else %}{{ ratio_percent_sm }}{% endif %};
+                }
+            }
+        {% endif %}
+        {% if ratio_percent_md %}
+            @media (min-width:800px) {
+                #{{ picture_id }} {
+                    padding-bottom: {% if vh_enabled %}{{ ratio_vh_md }}{% else %}{{ ratio_percent_md }}{% endif %};
+                }
+            }
+        {% endif %}
+        {% if ratio_percent_lg %}
+            @media (min-width:1040px) {
+                #{{ picture_id }} {
+                    padding-bottom: {% if vh_enabled %}{{ ratio_vh_lg }}{% else %}{{ ratio_percent_lg }}{% endif %};
+                }
+            }
+        {% endif %}
+        {% if ratio_percent_xl %}
+            @media (min-width:1280px) {
+                #{{ picture_id }} {
+                    padding-bottom: {% if vh_enabled %}{{ ratio_vh_xl }}{% else %}{{ ratio_percent_xl }}{% endif %};
+                }
+            }
+        {% endif %}
+        {% if ratio_percent_xxl %}
+            @media (min-width:1520px) {
+                #{{ picture_id }} {
+                    padding-bottom: {% if vh_enabled %}{{ ratio_vh_xxl }}{% else %}{{ ratio_percent_xxl }}{% endif %};
+                }
+            }
+        {% endif %}
+
+    </style>
 {% endif %}
