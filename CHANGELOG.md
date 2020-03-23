@@ -20,7 +20,7 @@ general bugfixes
 
 ## v2.5.0
 #### FIXES
-- Moved styles outside of picture tag (markup validation)
+- Moved styles outside of picture tag (markup validation) [#54](https://github.com/allink/allink-core/pull/54)
 
 ## v2.4.0
 #### IMPORTANT
