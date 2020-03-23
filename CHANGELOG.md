@@ -19,6 +19,9 @@ new features or plugins
 general bugfixes
 
 ## v2.5.0
+#### NEW
+- Added partial for submit buttons
+
 #### FIXES
 - Moved styles outside of picture tag (markup validation) [#54](https://github.com/allink/allink-core/pull/54)
 
