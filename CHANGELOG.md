@@ -19,8 +19,10 @@ new features or plugins
 general bugfixes
 
 ## v2.5.0
-###### DATA MIGRATIONS
+###### NEW
 - Image icon_enabled is now False by default [#55](https://github.com/allink/allink-core/pull/55)
+- Added partial for submit buttons [#56](https://github.com/allink/allink-core/pull/56)
+- Removed onscreen effect in the allink_content plugin [#57](https://github.com/allink/allink-core/pull/57)
 
 #### FIXES
 - Moved styles outside of picture tag (markup validation) [#54](https://github.com/allink/allink-core/pull/54)
