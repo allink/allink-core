@@ -23,6 +23,7 @@ general bugfixes
 - Image icon_enabled is now False by default [#55](https://github.com/allink/allink-core/pull/55)
 - Added partial for submit buttons [#56](https://github.com/allink/allink-core/pull/56)
 - Removed onscreen effect in the allink_content plugin [#57](https://github.com/allink/allink-core/pull/57)
+- Added `span` to text link labels [#58](https://github.com/allink/allink-core/pull/58)
 
 #### FIXES
 - Moved styles outside of picture tag (markup validation) [#54](https://github.com/allink/allink-core/pull/54)
