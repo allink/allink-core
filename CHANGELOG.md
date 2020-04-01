@@ -27,6 +27,7 @@ general bugfixes
 
 #### FIXES
 - Moved styles outside of picture tag (markup validation) [#54](https://github.com/allink/allink-core/pull/54)
+- Fixed nested quotes [#59](https://github.com/allink/allink-core/pull/59)
 
 ## v2.4.0
 #### IMPORTANT

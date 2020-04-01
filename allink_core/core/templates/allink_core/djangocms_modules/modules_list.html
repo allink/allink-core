@@ -7,7 +7,7 @@
 
 {% block modules_content %}
     <div class="cms-modules-page container">
-        <h1 class="cms-modules-page-h1"><a href="{% url "pages-root" %}">Modules</a></h1>
+        <h1 class="cms-modules-page-h1"><a href="{% url 'pages-root' %}">Modules</a></h1>
         <hr>
         {% get_default_language as default_language %}
         {% for category in categories %}
