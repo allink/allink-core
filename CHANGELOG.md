@@ -24,6 +24,7 @@ general bugfixes
 - Added partial for submit buttons [#56](https://github.com/allink/allink-core/pull/56)
 - Removed onscreen effect in the allink_content plugin [#57](https://github.com/allink/allink-core/pull/57)
 - Added `span` to text link labels [#58](https://github.com/allink/allink-core/pull/58)
+- Added logo to browser check template [#60](https://github.com/allink/allink-core/pull/60)
 
 #### FIXES
 - Moved styles outside of picture tag (markup validation) [#54](https://github.com/allink/allink-core/pull/54)
