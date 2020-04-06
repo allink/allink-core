@@ -12,7 +12,8 @@
         <div class="content-section__container">
             <div class="text-container">
                 <h1>{% trans "The requested page is not available." %}</h1>
-                <p><a class="btn btn-default" href="/">{% trans "Continue to homepage" %}</a></p>
+                {% trans 'Continue to homepage' as link_label %}
+                {% include "partials/buttons/link.html" with link_url="/" link_label=link_label link_classes="btn btn-default" %}
             </div>
         </div>
     </div>
