@@ -16,7 +16,7 @@ class AllinkInfoBoxPlugin(CMSPlugin):
     )
 
     counter = models.IntegerField(
-        'Display duration',
+        'Display frequency',
         help_text='After how many times/clicks should the box not be visible anymore',
         choices=DISPLAY_DURATION,
         default=0

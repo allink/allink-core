@@ -1,4 +1,4 @@
-{% load i18n cms_tags %}
+{% load i18n cms_tags inline_static_tags %}
 <a
     class="infobox-trigger"
     href="#"
@@ -7,13 +7,23 @@
     data-modal-escape-close-method-enabled="true"
     data-modal-button-close-method-enabled="true"
     data-modal-overlay-close-method-enabled="true"
-    data-default-modal-variation="infobox {% if instance.transparent_background %}infobox--background-hidden{% endif %}"
+    data-default-modal-variation="infobox"
     data-default-modal-content-container-id="infobox"
 >
 {% trans "Show info box" %}
 </a>
 <div id="infobox" style="display: none;">
     {% for plugin in instance.child_plugin_instances %}
+        {% comment %}
+        {% if instance.show_logo %}
+        {% endcomment %}
+            <a class="brand-logo__link" href="{% url 'pages-root' %}" aria-label="Brand Logo">
+                {% inline_style 'images/branding/allink-logo-compact.svg' %}
+            </a>
+        {% comment %}
+        {% endif %}
+        {% endcomment %}
+
         {% render_plugin plugin %}
     {% endfor %}
 </div>
