@@ -1,0 +1,11 @@
+{% load i18n %}
+
+{% block control_group %}
+    <button type="submit"
+            {% if id %}id="{{ id }}"{% endif %}
+            class="btn {{ classes }}"
+            {% if icon %}data-icon-{{ icon }}{% endif %}
+            {{ attributes }}>
+        {% include "partials/buttons/link_text.html" with link_label=label %}
+    </button>
+{% endblock %}

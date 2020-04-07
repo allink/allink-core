@@ -12,7 +12,7 @@
 
     {% include "modals/modal-header-markup.html" with title=object.title modal_type="softpage" %}
 
-    <article class="app-detail {% block app_class %}{% endblock app_class %}" {% if not request.toolbar.edit_mode_active %}data-scroll-spy="default"{% endif %}>
+    <article class="app-detail {% block app_class %}{% endblock app_class %}">
 
         {% comment %}
             Check if header placeholder containers plugins

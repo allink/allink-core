@@ -26,7 +26,7 @@
     {# start: content #}
     <hr class="sr-only" id="page-content" />
     {% block content_container %}
-        <main class="site-content" {% if not request.toolbar.edit_mode_active %}data-scroll-spy="default"{% endif %}>
+        <main class="site-content">
             {% block content %}{% endblock %}
         </main>
     {% endblock content_container %}

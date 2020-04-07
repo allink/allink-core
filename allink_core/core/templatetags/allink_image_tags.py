@@ -111,7 +111,7 @@ def get_unique_key(context):
 
 @register.inclusion_tag('templatetags/allink_image.html', takes_context=True)
 def render_image(context, image, alt_text='', ratio=None, width_alias=None, crop='smart', upscale=True, bw=False,
-                 high_resolution=True, icon_enabled=True, bg_enabled=True, bg_color=None, lazyload_enabled=True,
+                 high_resolution=True, icon_enabled=False, bg_enabled=True, bg_color=None, lazyload_enabled=True,
                  zoom=None, subject_location=True, vh_enabled=False):
     """
     -> parameters:

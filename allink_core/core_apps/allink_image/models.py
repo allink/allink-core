@@ -39,7 +39,7 @@ class AllinkImagePlugin(AllinkLinkFieldsModel, CMSPlugin):
     icon_enabled = models.BooleanField(
         verbose_name='Loader Icon',
         blank=True,
-        default=True,
+        default=False,
         help_text=('Show the icon that is used as long as the image is loading.<br>'
                    '<strong>Important:</strong> Disable this option if a transparent PNG image is used.'),
     )

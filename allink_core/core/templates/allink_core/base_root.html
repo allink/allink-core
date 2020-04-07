@@ -38,9 +38,6 @@
             {# critical css #}
             <style type="text/css">
                 {% inline_style 'build/critical.css' %}
-                .on-screen-default {
-                    opacity: 1;
-                }
             </style>
         {% endif %}
         {% comment %}
@@ -77,7 +74,7 @@
 
     {% block skip_links %}
         {# Accessibility: Make sure the anchor IDs are up-to-date #}
-        <a class="skip-link" href="{% url "pages-root" %}" title="[Alt + 0]" accesskey="0">{% trans "Go to homepage" %}</a>
+        <a class="skip-link" href="{% url 'pages-root' %}" title="[Alt + 0]" accesskey="0">{% trans "Go to homepage" %}</a>
         <a class="skip-link" href="#primary-nav" title="[Alt + 1]" accesskey="1">{% trans "Jump to navigation" %}</a>
         <a class="skip-link" href="#page-content" title="[Alt + 2]" accesskey="2">{% trans "Jump to content" %}</a>
         <a class="skip-link" href="#page-footer" title="[Alt + 3]" accesskey="3">{% trans "Jump to footer" %}</a>

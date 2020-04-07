@@ -48,13 +48,6 @@ class AllinkContentPluginForm(forms.ModelForm):
                 choices=get_additional_choices('CONTENT_CSS_CLASSES'),
                 required=False,
             )
-        if get_additional_choices('CONTENT_ON_SCREEN_EFFECT_CHOICES'):
-            self.fields['project_on_screen_effect'] = forms.ChoiceField(
-                label='Predifined on screen Effect',
-                choices=get_additional_choices('CONTENT_ON_SCREEN_EFFECT_CHOICES', blank=True),
-                initial='default',
-                required=False,
-            )
         if get_additional_choices('CONTENT_SPACINGS'):
             self.fields['project_css_spacings_top_bottom'] = forms.ChoiceField(
                 label='Spacings top & bottom',
@@ -149,7 +142,6 @@ class CMSAllinkContentPlugin(AllinkMediaAdminMixin, CMSPluginBase):
             'classes': ('collapse',),
             'fields': (
                 'project_css_classes',
-                'project_on_screen_effect',
                 'anchor',
                 'ignore_in_pdf',
             )
@@ -178,9 +170,6 @@ class CMSAllinkContentPlugin(AllinkMediaAdminMixin, CMSPluginBase):
         return response
 
     def render(self, context, instance, placeholder):
-        # disable onscreen effect when edit mode is active
-        if context['request'].toolbar and context['request'].toolbar.edit_mode_active:
-            instance.project_on_screen_effect = False
         return super().render(context, instance, placeholder)
 
 

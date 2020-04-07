@@ -18,7 +18,19 @@ new features or plugins
 #### FIXES
 general bugfixes
 
-## v2.4.0 (next version)
+## v2.5.0
+###### NEW
+- Image icon_enabled is now False by default [#55](https://github.com/allink/allink-core/pull/55)
+- Added partial for submit buttons [#56](https://github.com/allink/allink-core/pull/56)
+- Removed onscreen effect in the allink_content plugin [#57](https://github.com/allink/allink-core/pull/57)
+- Added `span` to text link labels [#58](https://github.com/allink/allink-core/pull/58)
+- Added logo to browser check template [#60](https://github.com/allink/allink-core/pull/60)
+
+#### FIXES
+- Moved styles outside of picture tag (markup validation) [#54](https://github.com/allink/allink-core/pull/54)
+- Fixed nested quotes [#59](https://github.com/allink/allink-core/pull/59)
+
+## v2.4.0
 #### IMPORTANT
 - we removed the app contact from allink_core/apps. you need to delete all occurrences of `allink_apps.contact`, `apps.contact` and `contact-form` [#46](https://github.com/allink/allink-core/pull/46)
 - we removed the app event from allink_core/apps. you need to delete all occurrences of `allink_apps.event`, `apps.event` and file `_events.scss` [#48](https://github.com/allink/allink-core/pull/48)

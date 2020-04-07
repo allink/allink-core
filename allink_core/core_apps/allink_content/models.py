@@ -143,12 +143,6 @@ class AllinkContentPlugin(CMSPlugin):
         blank=True,
         null=True
     )
-    project_on_screen_effect = models.CharField(
-        max_length=50,
-        blank=True,
-        null=True,
-        default='default',
-    )
 
     cmsplugin_ptr = CMSPluginField()
 
@@ -287,8 +281,6 @@ class AllinkContentPlugin(CMSPlugin):
     @property
     def attributes(self):
         attributes = []
-        if self.project_on_screen_effect:
-            attributes.append('data-scroll-spy="{}"'.format(self.project_on_screen_effect))
         return ' '.join(attributes)
 
 
