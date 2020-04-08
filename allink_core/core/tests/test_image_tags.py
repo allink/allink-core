@@ -249,7 +249,7 @@ class ImageTagsImagePluginContextTestCase(TestCase):
         context = render_image(self.context, self.image, width_alias=self.width_alias)
 
         self.assertEqual(context.get('instance'), self.dummy_plugin)
-        self.assertEqual(context.get('icon_enabled'), True)
+        self.assertEqual(context.get('icon_enabled'), False)
         self.assertEqual(context.get('bg_enabled'), True)
         self.assertEqual(context.get('bg_color'), None)
         self.assertEqual(context.get('lazyload_enabled'), True)
