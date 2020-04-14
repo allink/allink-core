@@ -40,21 +40,24 @@
 
                 <p>
                     {% if object.email %}
-                        <a class="text" href="mailto:{{object.email}}">{{object.email}}</a><br>
+                        {% include "partials/buttons/link.html" with link_url="mailto:{{object.email}}" link_label=object.email link_classes="text" %}<br>
                     {% endif %}
                     {% if object.phone %}
-                        {% trans "Phone:" %} <a href="tel:{{object.phone}}">{{object.phone_formatted}}</a><br>
+                        {% trans "Phone:" %} {% include "partials/buttons/link.html" with link_url="tel:{{object.phone}}" link_label=object.phone_formatted link_classes="text" %}<br>
                     {% endif %}
                     {% if object.mobile %}
-                        {% trans "Mobile:" %} <a href="tel:{{object.mobile}}">{{object.mobile_formatted}}</a><br>
+                        {% trans "Mobile:" %} {% include "partials/buttons/link.html" with link_url="tel:{{object.mobile}}" link_label=object.mobile_formatted link_classes="text" %}<br>
                     {% endif %}
                     {% if object.fax %}
-                        {% trans "Fax:" %} <a href="tel:{{object.fax}}">{{object.fax_formatted}}</a><br>
+                        {% trans "Fax:" %} {% include "partials/buttons/link.html" with link_url="tel:{{object.fax}}" link_label=object.fax_formatted link_classes="text" %}<br>
                     {% endif %}
                 </p>
 
                 {% if object.map_link %}
-                    <p><a class="text" href="{{object.map_link}}" target="_blank" rel="noopener">{% trans "Directions" %}</a></p>
+                    <p>
+                        {% trans "Directions" as link_label %}
+                        {% include "partials/buttons/link.html" with link_url="{{object.map_link}}" link_label=link_label link_classes="text" link_attributes='target="_blank" rel="noopener"' %}
+                    </p>
                 {% endif %}
 
                 {% if object.opening_hours_display %}
@@ -106,19 +109,19 @@
                                             + '</div>'
                                             + '<div class="block text-container">'
                                                 {% if object.phone %}
-                                                    + 'T <a class="text" href="tel:{{object.phone|escapejs}}">{{object.phone_formatted|escapejs}}</a>'
+                                                    + 'T <a href="tel:{{object.phone|escapejs}}">{{object.phone_formatted|escapejs}}</a>'
                                                 {% endif %}
                                                 {% if object.mobile %}
-                                                    + '<br>M <a class="text" href="tel:{{object.mobile|escapejs}}">{{object.mobile_formatted|escapejs}}</a>'
+                                                    + '<br>M <a href="tel:{{object.mobile|escapejs}}">{{object.mobile_formatted|escapejs}}</a>'
                                                 {% endif %}
                                                 {% if object.fax %}
-                                                    + '<br>F <a class="text" href="tel:{{object.fax|escapejs}}">{{object.fax_formatted|escapejs}}</a>'
+                                                    + '<br>F <a href="tel:{{object.fax|escapejs}}">{{object.fax_formatted|escapejs}}</a>'
                                                 {% endif %}
                                                 {% if object.email %}
-                                                    + '<br>E <a class="text" href="mailto:{{object.email|escapejs}}">{{object.email|escapejs}}</a>'
+                                                    + '<br>E <a href="mailto:{{object.email|escapejs}}">{{object.email|escapejs}}</a>'
                                                 {% endif %}
                                                 {% if object.map_link %}
-                                                    + '<br><br><a class="text" href="{{object.map_link|escapejs}}" target="_blank" rel="noopener">{% trans "Directions" %}</a>'
+                                                    + '<br><br><a href="{{object.map_link|escapejs}}" target="_blank" rel="noopener">{% trans "Directions" %}</a>'
                                                 {% endif %}
                                             + '</div>'
                                         + '</address>

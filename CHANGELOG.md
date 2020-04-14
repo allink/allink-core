@@ -18,6 +18,10 @@ new features or plugins
 #### FIXES
 general bugfixes
 
+## v2.6.0
+###### NEW
+- Used link partial for all links [#66](https://github.com/allink/allink-core/pull/66)
+
 ## v2.5.0
 ###### NEW
 - Image icon_enabled is now False by default [#55](https://github.com/allink/allink-core/pull/55)

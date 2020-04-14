@@ -27,11 +27,16 @@
                     {% if object.units %}
                         {{ object.units }}<br>
                     {% endif %}
+
                     {% if object.email %}
-                        <a class="text" href="mailto:{{object.email}}" data-softpage-disabled>{% trans "E-mail" %}</a><br>
+                        {% trans "E-mail" as link_label %}
+                        {% include "partials/buttons/link.html" with link_url="mailto:{{object.email}}" link_label=link_label link_classes="text" link_attributes='data-softpage-disabled' %}
+                        <br>
                     {% endif %}
+
                     {% if object.phone %}
-                        <a href="tel:{{object.phone}}" data-softpage-disabled>{{object.phone}}</a><br>
+                        {% include "partials/buttons/link.html" with link_url="tel:{{object.phone}}" link_label=object.phone_formatted link_classes="text" link_attributes='data-softpage-disabled' %}
+                        <br>
                     {% endif %}
                 </p>
             </div>
