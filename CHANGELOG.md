@@ -21,6 +21,7 @@ general bugfixes
 ## v2.6.0
 ###### NEW
 - Used link partial for all links [#66](https://github.com/allink/allink-core/pull/66)
+- Moved browser check logo to container [#67](https://github.com/allink/allink-core/pull/67)
 
 ## v2.5.0
 ###### NEW
