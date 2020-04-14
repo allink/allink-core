@@ -21,26 +21,23 @@
                     {{object.zip_code}} {{object.place}}<br>
                 {% endif %}
                 {% if object.map_link %}
-                    <a class="button-link-plugin__link text" href="{{object.map_link}}" target="_blank" rel="noopener">
-                        <span class="button-link-plugin__text">
-                            {% trans "Directions" %}
-                        </span>
-                    </a>
+                    {% trans "Directions" as link_label %}
+                    {% include "partials/buttons/link.html" with link_url="{{object.map_link}}" link_label=link_label link_classes="text" link_attributes='target="_blank" rel="noopener"' %}
                 {% endif %}
             </p>
 
             <p>
                 {% if object.email %}
-                    <a class="text" href="mailto:{{object.email}}">{{object.email}}</a><br>
+                    {% include "partials/buttons/link.html" with link_url="mailto:{{object.email}}" link_label=object.email link_classes="text" %}<br>
                 {% endif %}
                 {% if object.phone %}
-                    <a class="text" href="tel:{{object.phone}}">{{object.phone_formatted}}</a><br>
+                    {% include "partials/buttons/link.html" with link_url="tel:{{object.phone}}" link_label=object.phone_formatted link_classes="text" %}<br>
                 {% endif %}
                 {% if object.mobile %}
-                    <a class="text" href="tel:{{object.mobile}}">{{object.mobile_formatted}}</a><br>
+                    {% include "partials/buttons/link.html" with link_url="tel:{{object.mobile}}" link_label=object.mobile_formatted link_classes="text" %}<br>
                 {% endif %}
                 {% if object.fax %}
-                    <a class="text" href="tel:{{object.fax}}">{{object.fax_formatted}}</a><br>
+                    {% include "partials/buttons/link.html" with link_url="tel:{{object.fax}}" link_label=object.fax_formatted link_classes="text" %}<br>
                 {% endif %}
             </p>
 

@@ -41,19 +41,19 @@
                                         + '</div>'
                                         + '<div class="block text-container">'
                                             {% if object.phone %}
-                                                + 'T <a class="text" href="tel:{{object.phone}}">{{object.phone_formatted}}</a>'
+                                                + 'T <a href="tel:{{object.phone}}">{{object.phone_formatted}}</a>'
                                             {% endif %}
                                             {% if object.mobile %}
-                                                + '<br>M <a class="text" href="tel:{{object.mobile}}">{{object.mobile_formatted}}</a>'
+                                                + '<br>M <a href="tel:{{object.mobile}}">{{object.mobile_formatted}}</a>'
                                             {% endif %}
                                             {% if object.fax %}
-                                                + '<br>F <a class="text" href="tel:{{object.fax}}">{{object.fax_formatted}}</a>'
+                                                + '<br>F <a href="tel:{{object.fax}}">{{object.fax_formatted}}</a>'
                                             {% endif %}
                                             {% if object.email %}
-                                                + '<br>E <a class="text" href="mailto:{{object.email}}">{{object.email}}</a>'
+                                                + '<br>E <a href="mailto:{{object.email}}">{{object.email}}</a>'
                                             {% endif %}
                                             {% if object.map_link %}
-                                                + '<br><br><a class="text" href="{{object.map_link}}" target="_blank" rel="noopener">{% trans "Directions" %}</a>'
+                                                + '<br><br><a href="{{object.map_link}}" target="_blank" rel="noopener">{% trans "Directions" %}</a>'
                                             {% endif %}
                                         + '</div>'
                                     + '</address>
