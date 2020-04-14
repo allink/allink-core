@@ -1,15 +1,11 @@
 {% load i18n inline_static_tags %}
 
 <div class="browser-suggestion hidden">
-    <div class="browser-suggestion__header">
-        <div class="browser-suggestion__header-container">
-            <a class="brand-logo__link browser-suggestion__logo" href="{% url 'pages-root' %}" aria-label="Brand Logo">
-                {% inline_style 'images/branding/brand-logo-compact.svg' %}
-            </a>
-        </div>
-    </div>
-
     <div class="browser-suggestion__container">
+        <a class="brand-logo__link browser-suggestion__logo" href="{% url 'pages-root' %}" aria-label="Brand Logo">
+            {% inline_style 'images/branding/brand-logo-compact.svg' %}
+        </a>
+
         <div class="text-container">
             <h6 class="lead">{% trans 'Browser Info' %}</h6>
             <h2 class="heading">{% trans 'no optimal representation possible' %}</h2>
