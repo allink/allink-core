@@ -3,6 +3,7 @@ from django import template
 from django.conf import settings
 
 from easy_thumbnails.files import get_thumbnailer
+from easy_thumbnails.exceptions import InvalidImageFormatError
 
 from allink_core.core.loading import get_model
 from allink_core.core.utils import get_height_from_ratio, get_ratio_w_h
@@ -191,7 +192,10 @@ def render_image(context, image, alt_text='', ratio=None, width_alias=None, crop
             thumbnail_options.update({'size': (w, h)})
             context.update({'ratio_percent_{}'.format(size[0]): '{}%'.format(h / w * 100)})
             context.update({'ratio_vh_{}'.format(size[0]): '{}vh'.format(h / w * 100)})
-            context.update({'thumbnail_{}'.format(size[0]): thumbnailer.get_thumbnail(thumbnail_options)})
+            try:
+                context.update({'thumbnail_{}'.format(size[0]): thumbnailer.get_thumbnail(thumbnail_options)})
+            except InvalidImageFormatError:
+                context.update({'thumbnail_{}'.format(size[0]): None})
         # for css padding hack, a image in each ratio has to be unique
         # (break point doesnt matter, because is never shown at the same time)
         context.update({

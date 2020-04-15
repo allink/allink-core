@@ -18,6 +18,15 @@ new features or plugins
 #### FIXES
 general bugfixes
 
+## v2.5.2 (next version)
+###### FIXES
+- if an image does not exist locally, no exception will be thrown [#68](https://github.com/allink/allink-core/pull/68)
+
+## v2.5.1
+###### FIXES
+- fix logo link name in browser-check and header
+- fix render image tests
+
 ## v2.5.0
 ###### NEW
 - Image icon_enabled is now False by default [#55](https://github.com/allink/allink-core/pull/55)

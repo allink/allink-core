@@ -2,6 +2,7 @@ from unittest import mock
 from django.test.testcases import TestCase
 from django.template import Context, Template
 from cms import api
+from easy_thumbnails.exceptions import InvalidImageFormatError
 from allink_core.core.test.base import PageApphookMixin, GenericPluginMixin
 from allink_core.core.utils import get_ratio_w_h, get_height_from_ratio
 from allink_core.core.test.factories import FilerImageFactory
@@ -287,6 +288,14 @@ class ImageTagsImagePluginContextTestCase(TestCase):
 
         self.assertEqual(context.get('ratio_percent_xl'), '{}%'.format(expected_ration))
         self.assertEqual(context.get('ratio_vh_xl'), '{}vh'.format(expected_ration))
+
+    @mock.patch('allink_core.core.templatetags.allink_image_tags.get_thumbnailer', MockThumbnailer)
+    def test_image_does_not_exist(self):
+        """ if the image does not exist, no exception should not thrown """
+        with mock.patch.object(MockThumbnailer, 'get_thumbnail') as mock_method:
+            mock_method.side_effect = InvalidImageFormatError
+            context = render_image(self.context, self.image, width_alias=self.width_alias)
+            self.assertIsNone(context.get('thumbnail_xl'))
 
     @mock.patch('allink_core.core.templatetags.allink_image_tags.get_thumbnailer', MockThumbnailer)
     def test_thumbnail_options_default_values(self):
