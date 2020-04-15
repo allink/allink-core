@@ -18,7 +18,11 @@ new features or plugins
 #### FIXES
 general bugfixes
 
-## v2.5.2 (next version)
+## v2.5.3
+###### FIXES
+- Config admin is now translatable [#69](https://github.com/allink/allink-core/pull/69)
+
+## v2.5.2
 ###### FIXES
 - if an image does not exist locally, no exception will be thrown [#68](https://github.com/allink/allink-core/pull/68)
 
