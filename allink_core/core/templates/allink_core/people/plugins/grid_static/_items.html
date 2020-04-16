@@ -30,12 +30,12 @@
 
                     {% if object.email %}
                         {% trans "E-mail" as link_label %}
-                        {% include "partials/buttons/link.html" with link_url="mailto:{{object.email}}" link_label=link_label link_classes="text" link_attributes='data-softpage-disabled' %}
+                        {% include "partials/buttons/link.html" with link_prefix="mailto:" link_url=object.email link_label=link_label link_classes="text" link_attributes='data-softpage-disabled' %}
                         <br>
                     {% endif %}
 
                     {% if object.phone %}
-                        {% include "partials/buttons/link.html" with link_url="tel:{{object.phone}}" link_label=object.phone_formatted link_classes="text" link_attributes='data-softpage-disabled' %}
+                        {% include "partials/buttons/link.html" with link_prefix="tel:" link_url=object.phone link_label=object.phone_formatted link_classes="text" link_attributes='data-softpage-disabled' %}
                         <br>
                     {% endif %}
                 </p>

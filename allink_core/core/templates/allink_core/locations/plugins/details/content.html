@@ -31,16 +31,16 @@
 
                     <p>
                         {% if object.email %}
-                            {% include "partials/buttons/link.html" with link_url="mailto:{{object.email}}" link_label=object.email link_classes="text" %}<br>
+                            {% include "partials/buttons/link.html" with link_prefix="mailto:" link_url=object.email link_label=object.email link_classes="text" %}<br>
                         {% endif %}
                         {% if object.phone %}
-                            {% include "partials/buttons/link.html" with link_url="tel:{{object.phone}}" link_label=object.phone_formatted link_classes="text" %}<br>
+                            {% include "partials/buttons/link.html" with link_prefix="tel:" link_url=object.phone link_label=object.phone_formatted link_classes="text" %}<br>
                         {% endif %}
                         {% if object.mobile %}
-                            {% include "partials/buttons/link.html" with link_url="tel:{{object.mobile}}" link_label=object.mobile_formatted link_classes="text" %}<br>
+                            {% include "partials/buttons/link.html" with link_prefix="tel:" link_url=object.mobile link_label=object.mobile_formatted link_classes="text" %}<br>
                         {% endif %}
                         {% if object.fax %}
-                            {% include "partials/buttons/link.html" with link_url="tel:{{object.fax}}" link_label=object.fax_formatted link_classes="text" %}<br>
+                            {% include "partials/buttons/link.html" with link_prefix="tel:" link_url=object.fax link_label=object.fax_formatted link_classes="text" %}<br>
                         {% endif %}
                     </p>
                 </div>
