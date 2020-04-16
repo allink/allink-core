@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 from django.conf import settings
 from menus.menu_pool import menu_pool
-
+from cms.cache.placeholder import clear_placeholder_cache
 from cms.plugin_pool import plugin_pool
 from django.db.models import Q
 from aldryn_translation_tools.models import TranslatedAutoSlugifyMixin
+
 
 class AllinkManualEntriesMixin(object):
 
@@ -32,7 +33,8 @@ class AllinkManualEntriesMixin(object):
                 # auto category nav, if no categories are specified
                 else:
                     from allink_core.allink_categories.models import AllinkCategory
-                    categories = self.get_render_queryset_for_display().filter(~Q(categories=None)).values_list('categories')
+                    categories = self.get_render_queryset_for_display().filter(~Q(categories=None)).values_list(
+                        'categories')
                     category_navigation = list(AllinkCategory.objects.filter(id__in=categories).distinct())
         return category_navigation
 
@@ -79,7 +81,7 @@ class AllinkTranslatedAutoSlugifyMixin(TranslatedAutoSlugifyMixin):
             new_slug = self.make_new_slug(slug=slug if not is_default else None)
 
             # we do not want to change a default slug to a new default slug
-            if not(is_default and self.is_default_slug(new_slug)):
+            if not (is_default and self.is_default_slug(new_slug)):
                 setattr(self, self.slug_field_name, new_slug)
         # do not call direct superclass, it does the same (but less) again
         return super(TranslatedAutoSlugifyMixin, self).save(**kwargs)
@@ -110,13 +112,14 @@ class AllinkInvalidatePlaceholderCacheMixin(object):
         invalidate_cms_page_cache()
 
         relevant_models = (self.__class__,) + self.__class__.__bases__
-        relevant_plugin_classes = [x for x in plugin_pool.get_all_plugins() if hasattr(x.model, 'data_model') and x.model.data_model in relevant_models]
+        relevant_plugin_classes = [x for x in plugin_pool.get_all_plugins() if
+                                   hasattr(x.model, 'data_model') and x.model.data_model in relevant_models]
 
         # get all pages where a relevant plugin is placed
         for plugin_class in relevant_plugin_classes:
             for plugin in plugin_class.model.objects.all():
                 for language_code, language in settings.LANGUAGES:
-                    plugin.placeholder.clear_cache(language_code, site_id=getattr(plugin.page, 'site_id', None))
+                    clear_placeholder_cache(self, language_code, getattr(plugin.page, 'site_id', None))
 
         # invalidate the menu for all sites
         for site in Site.objects.all():
