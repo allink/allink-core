@@ -25,7 +25,7 @@
                         {% endif %}
                         {% if object.map_link %}
                             {% trans "Directions" as link_label %}
-                            {% include "partials/buttons/link.html" with link_url=object.map_link link_label=link_label link_classes="text" link_attributes='target="_blank" rel="noopener"' %}
+                            {% include "partials/buttons/link.html" with link_url=object.map_link link_label=link_label link_classes="text" link_attributes='target="_blank" rel="noopener"' icon="arrow-external" %}
                         {% endif %}
                     </p>
 
