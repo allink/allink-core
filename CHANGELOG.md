@@ -18,6 +18,7 @@ new features or plugins
 #### FIXES
 general bugfixes
 
+
 ## v2.6.0
 ###### NEW
 - Used link partial for all links [#66](https://github.com/allink/allink-core/pull/66)
@@ -25,6 +26,19 @@ general bugfixes
 
 #### FIXES
 - Moved spaceless to link partial [#71](https://github.com/allink/allink-core/pull/71)
+
+## v2.5.3
+###### FIXES
+- Config admin is now translatable [#69](https://github.com/allink/allink-core/pull/69)
+
+## v2.5.2
+###### FIXES
+- if an image does not exist locally, no exception will be thrown [#68](https://github.com/allink/allink-core/pull/68)
+
+## v2.5.1
+###### FIXES
+- fix logo link name in browser-check and header
+- fix render image tests
 
 ## v2.5.0
 ###### NEW
