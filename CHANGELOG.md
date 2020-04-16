@@ -23,6 +23,9 @@ general bugfixes
 - Used link partial for all links [#66](https://github.com/allink/allink-core/pull/66)
 - Moved browser check logo to container [#67](https://github.com/allink/allink-core/pull/67)
 
+#### FIXES
+- Moved spaceless to link partial [#71](https://github.com/allink/allink-core/pull/71)
+
 ## v2.5.0
 ###### NEW
 - Image icon_enabled is now False by default [#55](https://github.com/allink/allink-core/pull/55)

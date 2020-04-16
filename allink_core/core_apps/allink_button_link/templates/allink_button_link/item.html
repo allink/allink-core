@@ -1,5 +1,5 @@
 {% load cms_tags sekizai_tags i18n thumbnail allink_image_tags allink_user_tags allink_link_tags %}
-{% spaceless %}
+
 {% comment %}
 
     IMPORTANT NOTE: Some editors automatically add a NEW LINE at the end of the document. This causes undesired extra space after the <a> tag. So every time you adjust this file, make sure to open/save it in an editor that does NOT add a new line before committing.
@@ -12,4 +12,3 @@
 {% if instance.form_modal_enabled %}
     {% include "modals/modal-header-markup.html" with title=instance.label modal_type="form-modal" %}
 {% endif %}
-{% endspaceless %}
