@@ -11,9 +11,12 @@ Each release is divided into the following main categories:
     - DATA MIGRATIONS: stuff to migrate by hand or create data migrations manually
 - NEW: New features or plugins
 - FIXES: General bugfixes
+## v1.1.2 (next version)
 
-## v0.1.1 (next version)
+## v1.1.1
 
+### FIXES
+- Set "cache = False" on CMSAllinkSignupFormPlugin
 ## v1.0.2 - v1.1.0
 The tag v1.1.0 matches the version v1.1.0 in allink-core-static.
 
