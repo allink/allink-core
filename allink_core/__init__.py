@@ -1,6 +1,6 @@
 import os
 
-__version__ = '1.1.0'
+__version__ = '1.1.1'
 
 # Cheeky setting that allows each template to be accessible by two paths.
 # Eg: the template 'oscar/templates/oscar/base.html' can be accessed via both
