@@ -14,6 +14,12 @@
     {% block newsletter_form_additional_attributes %}{% endblock newsletter_form_additional_attributes %}
     >
 
+    {% if csrf_token_value %}
+        <input type='hidden' name='csrfmiddlewaretoken' value='{{ csrf_token_value }}' />
+    {% else %}
+        {% if not method == "get" %}{% csrf_token %}{% endif %}
+    {% endif %}
+
     {# utility block #}
     {% block newsletter_form_group_before %}
     {% endblock newsletter_form_group_before %}
