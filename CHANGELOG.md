@@ -23,6 +23,7 @@ general bugfixes
 ###### NEW
 - Used link partial for all links [#66](https://github.com/allink/allink-core/pull/66)
 - Moved browser check logo to container [#67](https://github.com/allink/allink-core/pull/67)
+- Grouped content in teaser tile item [#74](https://github.com/allink/allink-core/pull/74)
 
 #### FIXES
 - Moved spaceless to link partial [#71](https://github.com/allink/allink-core/pull/71)
