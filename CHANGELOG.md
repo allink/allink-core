@@ -18,6 +18,9 @@ new features or plugins
 #### FIXES
 general bugfixes
 
+## v2.5.4
+- if an image does not exist locally, no exception will be thrown in render_meta_og [#75](https://github.com/allink/allink-core/pull/75)
+
 ## v2.5.3
 ###### FIXES
 - Config admin is now translatable [#69](https://github.com/allink/allink-core/pull/69)
