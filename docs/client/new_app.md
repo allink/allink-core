@@ -13,5 +13,6 @@ The final steps:
 2. add Plugins to CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES
 3. define templates/ create a new tuple MYNEWAPP_PLUGIN_TEMPLATES
 4. (optional) add '('mynewapp', 'MyNewApp'),' to PROJECT_APP_MODEL_WITH_CATEGORY_CHOICES if the app should have categories
-5. create all required templates (default grid_static and search, detail and no_result)6. ./manage.py makemigrations my_new_app ./manage.py migrate
+5. create all required templates (default grid_static and search, detail and no_result)
+6. ./manage.py makemigrations my_new_app ./manage.py migrate
 ```
