@@ -28,6 +28,17 @@ general bugfixes
 #### FIXES
 - Moved spaceless to link partial [#71](https://github.com/allink/allink-core/pull/71)
 
+## v2.5.5
+#### IMPORTANT
+###### TEMPLATES
+- if you have overridden base_root.html you need to load google_tag_manager from allink_google_tag_manager_tags instead of google_tag_manager_tags. [#78](https://github.com/allink/allink-core/pull/78)
+###### REQUIREMENTS
+- we created our own implementation of google_tag_manager so you could remove aldryn_google_tag_manager in the divio control panel. [#78](https://github.com/allink/allink-core/pull/78)
+ 
+## v2.5.4
+###### FIXES
+- if an image does not exist locally, no exception will be thrown in render_meta_og [#75](https://github.com/allink/allink-core/pull/75)
+
 ## v2.5.3
 ###### FIXES
 - Config admin is now translatable [#69](https://github.com/allink/allink-core/pull/69)

@@ -4,6 +4,7 @@ import types
 from django.conf import settings
 from cms.models.pagemodel import Page
 from easy_thumbnails.files import get_thumbnailer
+from easy_thumbnails.exceptions import InvalidImageFormatError
 
 from allink_core.apps.config.constants import PAGE_FIELD_FALLBACK_CONF
 from allink_core.core.loading import get_model
@@ -142,5 +143,10 @@ def generate_meta_image_thumb(meta_image):
 
     thumbnail_options = {'crop': 'smart', 'upscale': True, 'HIGH_RESOLUTION': False,
                          'subject_location': meta_image.subject_location, 'size': (width, height)}
-    thumbnailer = get_thumbnailer(meta_image)
-    return thumbnailer.get_thumbnail(thumbnail_options)
+
+    try:
+        thumbnailer = get_thumbnailer(meta_image)
+        thumbnail = thumbnailer.get_thumbnail(thumbnail_options)
+    except InvalidImageFormatError:
+        thumbnail = None
+    return thumbnail
