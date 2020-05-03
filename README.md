@@ -40,7 +40,7 @@ To work on the allink-core repo you first need to pull the [allink-core](https:/
 
 1. make sure you are up to date with the current version branch e.g "v2.0.x" and you working on your own branch.
 2. create a virtualenv `virtualenv env`
-3. install requirements `pip install -r requiremnts_dev.txt`
+3. install requirements `pip install -r requirements_dev.txt`
 
 For the next steps, we assume you are working on the [boilerplate-2.0](https://github.com/allink/boilerplate-2.0) project, but this should work with every project which follows the same principles and have allink-core installed.
 
