@@ -20,11 +20,15 @@ general bugfixes
 
 
 ## v2.6.0
+
+#### IMPORTANT
+- Added variable to settings.py to overwrite allowed children of CMSAllinkSEOAccordionPlugin [#76](https://github.com/allink/allink-core/pull/76)
+    - add ```ALLINK_SEOACCORDION_PLUGIN_CHILD_CLASSES = []``` to settings.py
+
 ###### NEW
 - Used link partial for all links [#66](https://github.com/allink/allink-core/pull/66)
 - Moved browser check logo to container [#67](https://github.com/allink/allink-core/pull/67)
 - Grouped content in teaser tile item [#74](https://github.com/allink/allink-core/pull/74)
-
 #### FIXES
 - Moved spaceless to link partial [#71](https://github.com/allink/allink-core/pull/71)
 

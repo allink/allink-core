@@ -10,6 +10,7 @@ __all__ = [
     'ALLINK_MANDRILL_DEV_MODE_FROM_EMAIL_ADDRESS',
     'ALLINK_MANDRILL_DEV_MODE_TO_EMAIL_ADDRESSES',
     'ALLINK_CONTENT_PLUGIN_CHILD_CLASSES',
+    'ALLINK_SEOACCORDION_PLUGIN_CHILD_CLASSES',
     'THUMBNAIL_QUALITY',
     'THUMBNAIL_OPTIMIZE_COMMAND',
     'DEBUG_TOOLBAR_CONFIG',
@@ -103,6 +104,14 @@ ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [
     'CMSAllinkLanguageChooserPlugin',
     'CMSAllinkSEOAccordionContainerPlugin',
     'CMSAllinkQuotePlugin',
+]
+
+####################################################################################
+
+# Assign Plugins which are allowed as child in Allink SEO Accordion Content
+
+ALLINK_SEOACCORDION_PLUGIN_CHILD_CLASSES = [
+    'TextPlugin',
 ]
 
 ####################################################################################
