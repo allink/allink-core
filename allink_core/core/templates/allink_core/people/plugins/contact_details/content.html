@@ -30,7 +30,7 @@
                 <div class="text-container">
                     <p>
                         {% if object.email %}
-                            {% trans "E-mail" as link_label %}
+                            {% trans "E-Mail" as link_label %}
                             {% include "partials/buttons/link.html" with link_prefix="mailto:" link_url=object.email link_label=link_label link_classes="text" link_attributes='data-softpage-disabled' %}
                             <br>
                         {% endif %}
