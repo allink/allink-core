@@ -284,29 +284,34 @@ class BaseLocations(SortableMixin, AllinkContactFieldsModel, AllinkAddressFields
         """
 
         opening_times = [
-            (_('Monday'), self.mon),
-            (_('Tuesday'), self.tue),
-            (_('Wednesday'), self.wed),
-            (_('Thursday'), self.thu),
-            (_('Friday'), self.fri),
-            (_('Saturday'), self.sat),
-            (_('Sunday'), self.sun)
+            (_('Monday'), self.mon, self.mon_afternoon),
+            (_('Tuesday'), self.tue, self.tue_afternoon),
+            (_('Wednesday'), self.wed, self.wed_afternoon),
+            (_('Thursday'), self.thu, self.thu_afternoon),
+            (_('Friday'), self.fri, self.fri_afternoon),
+            (_('Saturday'), self.sat, self.sat_afternoon),
+            (_('Sunday'), self.sun, self.sun_afternoon)
         ]
 
         opening_hours = []
-        for opening_time in opening_times:
-            day, morning = opening_time
-            morning = morning.replace(':', '.').replace('-', ' – ')
+        for i, opening_time in enumerate(opening_times):
+            day, morning, afternoon = opening_time
+            morning = morning.replace('-', ' – ')
+            afternoon = afternoon.replace('-', ' – ')
 
-            if not morning:
-                continue
-            elif len(opening_hours) and morning in list(map(lambda x: x.get('time'), opening_hours))[-1]:
+            if not morning and not afternoon:
+                day = {}
+                opening_hours.append(day)
+            elif len(opening_hours) \
+                      and morning == list(map(lambda x: x.get('morning'), opening_hours))[-1] \
+                    and afternoon == list(map(lambda x: x.get('afternoon'), opening_hours))[-1]:
                 opening_hours[-1]['end_day'] = day
             else:
                 day = {
                     'start_day': day,
                     'end_day': day,
-                    'time': morning,
+                    'morning': morning,
+                    'afternoon': afternoon,
                 }
                 opening_hours.append(day)
 
