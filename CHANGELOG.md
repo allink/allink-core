@@ -32,6 +32,7 @@ general bugfixes
 #### FIXES
 - Moved spaceless to link partial [#71](https://github.com/allink/allink-core/pull/71)
 - Fixed locations opening_hours property [#79](https://github.com/allink/allink-core/pull/79)
+- Fixed email translation [#80](https://github.com/allink/allink-core/pull/80)
 
 ## v2.5.5
 #### IMPORTANT
