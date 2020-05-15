@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-15 16:23+0200\n"
+"POT-Creation-Date: 2020-05-15 08:55+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,175 +18,128 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: allink_core/apps/locations/abstract_models.py:61
-msgid "Preview Image"
-msgstr "Vorschaubild"
-
-#: allink_core/apps/locations/abstract_models.py:68
-msgid "Latitude"
+#: allink_core/apps/locations/abstract_models.py:287
+msgid "Monday"
 msgstr ""
 
-#: allink_core/apps/locations/abstract_models.py:73
-msgid "Longitude"
+#: allink_core/apps/locations/abstract_models.py:288
+msgid "Tuesday"
 msgstr ""
 
-#: allink_core/apps/locations/abstract_models.py:78
-msgid "Map Link"
-msgstr ""
-
-#: allink_core/apps/locations/abstract_models.py:79
-msgid ""
-"This could be a <strong>Google Places</strong> or <strong>Directions</"
-"strong> link."
-msgstr ""
-"Das könnte ein Link zu <strong>Google Places</strong> oder einem "
-"<strong>Routenplaner</strong> sein."
-
-#: allink_core/apps/locations/abstract_models.py:84
-msgid "Monday morning or whole day"
-msgstr "Montagmorgen oder ganzer Montag"
-
-#: allink_core/apps/locations/abstract_models.py:87
-msgid "Tuesday morning or whole day"
-msgstr "Dienstagmorgen oder ganzer Dienstag"
-
-#: allink_core/apps/locations/abstract_models.py:90
-msgid "Wednesday morning or whole day"
-msgstr "Mittwochmorgen oder ganzer Mittwoch"
-
-#: allink_core/apps/locations/abstract_models.py:93
-msgid "Thursday morning or whole day"
-msgstr "Donnerstagmorgen oder ganzer Donnerstag"
-
-#: allink_core/apps/locations/abstract_models.py:96
-msgid "Friday morning or whole day"
-msgstr "Freitagmorgen oder ganzer Freitag"
-
-#: allink_core/apps/locations/abstract_models.py:99
-msgid "Saturday morning or whole day"
-msgstr "Samstagmorgen oder ganzer Samstag"
-
-#: allink_core/apps/locations/abstract_models.py:102
-msgid "Sunday morning or whole day"
-msgstr "Sonntagmorgen oder ganzer Sonntag"
-
-#: allink_core/apps/locations/abstract_models.py:105
-msgid "Monday afternoon"
-msgstr "Montagnachmittag"
-
-#: allink_core/apps/locations/abstract_models.py:110
-msgid "Tuesday afternoon"
-msgstr "Dienstagnachmittag"
-
-#: allink_core/apps/locations/abstract_models.py:115
-msgid "Wednesday afternoon"
+#: allink_core/apps/locations/abstract_models.py:289
+#, fuzzy
+#| msgid "Wednesday afternoon"
+msgid "Wednesday"
 msgstr "Mittwochnachmittag"
 
-#: allink_core/apps/locations/abstract_models.py:120
-msgid "Thursday afternoon"
+#: allink_core/apps/locations/abstract_models.py:290
+#, fuzzy
+#| msgid "Thursday afternoon"
+msgid "Thursday"
 msgstr "Donnerstagnachmittag"
 
-#: allink_core/apps/locations/abstract_models.py:125
-msgid "Friday afternoon"
-msgstr "Freitagnachmittag"
+#: allink_core/apps/locations/abstract_models.py:291
+msgid "Friday"
+msgstr ""
 
-#: allink_core/apps/locations/abstract_models.py:130
-msgid "Saturday afternoon"
+#: allink_core/apps/locations/abstract_models.py:292
+#, fuzzy
+#| msgid "Saturday afternoon"
+msgid "Saturday"
 msgstr "Samstagnachmittag"
 
-#: allink_core/apps/locations/abstract_models.py:135
-msgid "Sunday afternoon"
-msgstr "Sonntagnachmittag"
-
-#: allink_core/apps/locations/abstract_models.py:159
-msgid "Location"
-msgstr "Standort"
-
-#: allink_core/apps/locations/abstract_models.py:160
-msgid "Locations"
-msgstr "Standorte"
-
-#: allink_core/apps/locations/abstract_models.py:206
-msgid "Now open"
-msgstr "Jetzt geöffnet"
-
-#: allink_core/apps/locations/abstract_models.py:297
-msgid "Slug"
+#: allink_core/apps/locations/abstract_models.py:293
+msgid "Sunday"
 msgstr ""
 
-#: allink_core/apps/locations/abstract_models.py:301
-msgid "Leave blank to auto-generate a unique slug."
-msgstr "Leer lassen, um den Slug automatisch zu generieren."
+#~ msgid "Preview Image"
+#~ msgstr "Vorschaubild"
 
-#: allink_core/apps/locations/abstract_models.py:304
-msgid "Subtitle"
-msgstr "Untertitel"
+#~ msgid ""
+#~ "This could be a <strong>Google Places</strong> or <strong>Directions</"
+#~ "strong> link."
+#~ msgstr ""
+#~ "Das könnte ein Link zu <strong>Google Places</strong> oder einem "
+#~ "<strong>Routenplaner</strong> sein."
 
-#: allink_core/apps/locations/abstract_models.py:310
-msgid "Lead Text"
-msgstr ""
+#~ msgid "Monday morning or whole day"
+#~ msgstr "Montagmorgen oder ganzer Montag"
 
-#: allink_core/apps/locations/abstract_models.py:311
-msgid ""
-"Teaser text that in some cases is used in the list view and/or in the detail "
-"view."
-msgstr ""
-"Teaser text, welcher in der Listenansicht und/oder in der Detailansicht "
-"verwendet wird."
+#~ msgid "Tuesday morning or whole day"
+#~ msgstr "Dienstagmorgen oder ganzer Dienstag"
 
-#: allink_core/apps/locations/abstract_models.py:316
-msgid "Opening hours"
-msgstr "Öffnungszeiten"
+#~ msgid "Wednesday morning or whole day"
+#~ msgstr "Mittwochmorgen oder ganzer Mittwoch"
 
-#: allink_core/apps/locations/abstract_models.py:318
-msgid ""
-"This Text will be used to show the Opening hours on the location detail "
-"page. If provided, the detailed opening hours will be overriden."
-msgstr ""
-"Dieser Text wird benötigt, um die Öffnungszeiten in der Detailansicht "
-"darzustellen. Überschreibt die Öffnungszeiten (detailliert)."
+#~ msgid "Thursday morning or whole day"
+#~ msgstr "Donnerstagmorgen oder ganzer Donnerstag"
 
-#: allink_core/apps/locations/abstract_models.py:355
-msgid ""
-"Select and arrange specific entries, or, leave blank to select all. (If "
-"manual entries are selected the category filtering will be ignored.)"
-msgstr ""
-"Wählen und ordnen Sie spezifische Einträge oder leer lassen, um alle zu "
-"wählen. (Kategorienfilterung wird bei manuellen Einträgen nicht angewandt.)"
+#~ msgid "Friday morning or whole day"
+#~ msgstr "Freitagmorgen oder ganzer Freitag"
 
-#: allink_core/apps/locations/abstract_models.py:359
-msgid "Apphook Page"
-msgstr ""
+#~ msgid "Saturday morning or whole day"
+#~ msgstr "Samstagmorgen oder ganzer Samstag"
 
-#: allink_core/apps/locations/abstract_models.py:363
-msgid ""
-"If provided, this Apphook-Page will be used to generate the detail link."
-msgstr ""
+#~ msgid "Sunday morning or whole day"
+#~ msgstr "Sonntagmorgen oder ganzer Sonntag"
 
-#: allink_core/apps/locations/abstract_models.py:366
-msgid "Zoom Level"
-msgstr ""
+#~ msgid "Monday afternoon"
+#~ msgstr "Montagnachmittag"
 
-#: allink_core/apps/locations/abstract_models.py:367
-msgid "The higher the number, the more we zoom in."
-msgstr "Je höher die Zahl, desto stärker ist die Vergrösserung."
+#~ msgid "Tuesday afternoon"
+#~ msgstr "Dienstagnachmittag"
 
-#: allink_core/apps/locations/admin.py:40
-msgid "Opening hours (Detailed)"
-msgstr "Öffnungszeiten (detailliert)"
+#~ msgid "Friday afternoon"
+#~ msgstr "Freitagnachmittag"
 
-#: allink_core/apps/locations/admin.py:59
-msgid "Format: \"9:00-12:00  13:00-20:00\""
-msgstr ""
+#~ msgid "Sunday afternoon"
+#~ msgstr "Sonntagnachmittag"
 
-#: allink_core/apps/locations/cms_apps.py:8
-msgid "Locations Apphook"
-msgstr ""
+#~ msgid "Location"
+#~ msgstr "Standort"
 
-#: allink_core/apps/locations/cms_menus.py:15
-msgid "Locations menu"
-msgstr ""
+#~ msgid "Locations"
+#~ msgstr "Standorte"
 
-#: allink_core/apps/locations/cms_plugins.py:26
-msgid "Map Options"
-msgstr "Karten-Optionen"
+#~ msgid "Now open"
+#~ msgstr "Jetzt geöffnet"
+
+#~ msgid "Leave blank to auto-generate a unique slug."
+#~ msgstr "Leer lassen, um den Slug automatisch zu generieren."
+
+#~ msgid "Subtitle"
+#~ msgstr "Untertitel"
+
+#~ msgid ""
+#~ "Teaser text that in some cases is used in the list view and/or in the "
+#~ "detail view."
+#~ msgstr ""
+#~ "Teaser text, welcher in der Listenansicht und/oder in der Detailansicht "
+#~ "verwendet wird."
+
+#~ msgid "Opening hours"
+#~ msgstr "Öffnungszeiten"
+
+#~ msgid ""
+#~ "This Text will be used to show the Opening hours on the location detail "
+#~ "page. If provided, the detailed opening hours will be overriden."
+#~ msgstr ""
+#~ "Dieser Text wird benötigt, um die Öffnungszeiten in der Detailansicht "
+#~ "darzustellen. Überschreibt die Öffnungszeiten (detailliert)."
+
+#~ msgid ""
+#~ "Select and arrange specific entries, or, leave blank to select all. (If "
+#~ "manual entries are selected the category filtering will be ignored.)"
+#~ msgstr ""
+#~ "Wählen und ordnen Sie spezifische Einträge oder leer lassen, um alle zu "
+#~ "wählen. (Kategorienfilterung wird bei manuellen Einträgen nicht "
+#~ "angewandt.)"
+
+#~ msgid "The higher the number, the more we zoom in."
+#~ msgstr "Je höher die Zahl, desto stärker ist die Vergrösserung."
+
+#~ msgid "Opening hours (Detailed)"
+#~ msgstr "Öffnungszeiten (detailliert)"
+
+#~ msgid "Map Options"
+#~ msgstr "Karten-Optionen"

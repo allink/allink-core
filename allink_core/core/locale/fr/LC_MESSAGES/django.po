@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-19 18:29+0100\n"
+"POT-Creation-Date: 2020-05-15 08:55+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -99,14 +99,18 @@ msgid "Website"
 msgstr ""
 
 #: allink_core/core/models/fields_model.py:600
+#: allink_core/core_apps/allink_newsletter/forms.py:10
+#: allink_core/core_apps/allink_newsletter/models.py:15
 msgid "Salutation"
 msgstr ""
 
 #: allink_core/core/models/fields_model.py:606
+#: allink_core/core_apps/allink_newsletter/models.py:23
 msgid "First Name"
 msgstr "Prénom"
 
 #: allink_core/core/models/fields_model.py:612
+#: allink_core/core_apps/allink_newsletter/models.py:28
 msgid "Last Name"
 msgstr "Nom"
 
@@ -185,23 +189,23 @@ msgstr ""
 msgid "Save and continue editing"
 msgstr ""
 
-#: allink_core/core/templates/allink_core/base_root.html:82
+#: allink_core/core/templates/allink_core/base_root.html:79
 msgid "Go to homepage"
 msgstr ""
 
-#: allink_core/core/templates/allink_core/base_root.html:83
+#: allink_core/core/templates/allink_core/base_root.html:80
 msgid "Jump to navigation"
 msgstr ""
 
-#: allink_core/core/templates/allink_core/base_root.html:84
+#: allink_core/core/templates/allink_core/base_root.html:81
 msgid "Jump to content"
 msgstr ""
 
-#: allink_core/core/templates/allink_core/base_root.html:85
+#: allink_core/core/templates/allink_core/base_root.html:82
 msgid "Jump to footer"
 msgstr ""
 
-#: allink_core/core/templates/allink_core/base_root.html:130
+#: allink_core/core/templates/allink_core/base_root.html:127
 #: allink_core/core/templates/allink_core/modals/modal-header-markup.html:19
 #: allink_core/core/templates/partials/forms/form_base.html:48
 msgid "Close"
@@ -285,22 +289,22 @@ msgstr ""
 msgid "No files were found in the specified folder."
 msgstr ""
 
-#: allink_core/core/templates/allink_core/includes/browser-check.html:6
+#: allink_core/core/templates/allink_core/includes/browser-check.html:14
 msgid "Browser Info"
 msgstr ""
 
-#: allink_core/core/templates/allink_core/includes/browser-check.html:7
+#: allink_core/core/templates/allink_core/includes/browser-check.html:15
 msgid "no optimal representation possible"
 msgstr ""
 
-#: allink_core/core/templates/allink_core/includes/browser-check.html:8
+#: allink_core/core/templates/allink_core/includes/browser-check.html:16
 msgid ""
 "Your web browser does not provide an optimal representation of our website. "
 "This means that some functions may not work or the view may be incorrect. We "
 "recommend that you use a current browser."
 msgstr ""
 
-#: allink_core/core/templates/allink_core/includes/browser-check.html:12
+#: allink_core/core/templates/allink_core/includes/browser-check.html:20
 msgid "Visit Anyways"
 msgstr ""
 
@@ -382,6 +386,9 @@ msgid "No people found with the applied filters."
 msgstr ""
 
 #: allink_core/core/templates/allink_core/people/plugins/contact_details/content.html:33
+#: allink_core/core_apps/allink_newsletter/forms.py:16
+#: allink_core/core_apps/allink_newsletter/forms.py:20
+#: allink_core/core_apps/allink_newsletter/models.py:33
 msgid "E-Mail"
 msgstr ""
 
@@ -413,7 +420,30 @@ msgstr "Mehr"
 msgid "The form has been submitted successfully."
 msgstr ""
 
+#: allink_core/core/templates/partials/forms/fields/date.html:28
+#: allink_core/core/templates/partials/forms/form_field.html:47
+msgid "Open Calendar"
+msgstr ""
+
+#: allink_core/core/templates/partials/forms/fields/date.html:33
+#: allink_core/core/templates/partials/forms/form_field.html:52
+msgid "Open Time Picker"
+msgstr ""
+
+#: allink_core/core/templates/partials/forms/fields/date.html:40
+#: allink_core/core/templates/partials/forms/form_field.html:59
+msgid "Clear Field"
+msgstr ""
+
+#: allink_core/core/templates/partials/forms/fields/file.html:14
+#: allink_core/core/templates/partials/forms/fields/file.html:16
+#: allink_core/core/templates/partials/forms/form_field.html:69
+#: allink_core/core/templates/partials/forms/form_field.html:70
+msgid "Select file..."
+msgstr ""
+
 #: allink_core/core/templates/partials/forms/form_field.html:16
+#: allink_core/core/templates/partials/forms/label.html:16
 msgid "required"
 msgstr ""
 
@@ -422,28 +452,15 @@ msgstr ""
 msgid "Optional"
 msgstr ""
 
-#: allink_core/core/templates/partials/forms/form_field.html:47
-msgid "Open Calendar"
-msgstr ""
-
-#: allink_core/core/templates/partials/forms/form_field.html:52
-msgid "Open Time Picker"
-msgstr ""
-
-#: allink_core/core/templates/partials/forms/form_field.html:59
-msgid "Clear Field"
-msgstr ""
-
-#: allink_core/core/templates/partials/forms/form_field.html:69
-#: allink_core/core/templates/partials/forms/form_field.html:70
-msgid "Select file..."
+#: allink_core/core/templates/partials/forms/label.html:18
+msgid "optional"
 msgstr ""
 
 #: allink_core/core/templates/templatetags/allink_plugin_ajax.html:22
 msgid "Add plugin to"
 msgstr ""
 
-#: allink_core/core/views.py:135
+#: allink_core/core/views.py:133
 msgid "The requested content is not published."
 msgstr "La page recherchée n'existe pas."
 
@@ -472,6 +489,92 @@ msgstr ""
 
 #: allink_core/core_apps/allink_info_box/templates/allink_info_box/plugins/default/content.html:13
 msgid "Show info box"
+msgstr ""
+
+#: allink_core/core_apps/allink_newsletter/cms_plugins.py:13
+msgid "Newsletter Signup Plugin"
+msgstr ""
+
+#: allink_core/core_apps/allink_newsletter/config.py:10
+#: allink_core/core_apps/allink_newsletter/templates/allink_newsletter/content.html:3
+msgid "Newsletter Signup"
+msgstr ""
+
+#: allink_core/core_apps/allink_newsletter/forms.py:25
+msgid "Direct mailings"
+msgstr ""
+
+#: allink_core/core_apps/allink_newsletter/forms.py:31
+msgid "Personalised Marketing"
+msgstr ""
+
+#: allink_core/core_apps/allink_newsletter/models.py:37
+msgid "consent for email dispatch"
+msgstr ""
+
+#: allink_core/core_apps/allink_newsletter/models.py:41
+msgid "consent for direct mailings"
+msgstr ""
+
+#: allink_core/core_apps/allink_newsletter/models.py:46
+msgid "consent for personalised marketing"
+msgstr ""
+
+#: allink_core/core_apps/allink_newsletter/models.py:56
+msgid "audience id"
+msgstr ""
+
+#: allink_core/core_apps/allink_newsletter/models.py:58
+msgid "This is the id of the Mailchimp Audience the user wil be subscribed to"
+msgstr ""
+
+#: allink_core/core_apps/allink_newsletter/models.py:62
+msgid "consent text"
+msgstr ""
+
+#: allink_core/core_apps/allink_newsletter/models.py:67
+msgid "Double-Opt-In"
+msgstr ""
+
+#: allink_core/core_apps/allink_newsletter/models.py:70
+msgid ""
+"If selected an email wil be sent where the user will have to confirm his "
+"subscribtion to the mailing list"
+msgstr ""
+
+#: allink_core/core_apps/allink_newsletter/models.py:74
+msgid "Mailchimp Email ID"
+msgstr ""
+
+#: allink_core/core_apps/allink_newsletter/models.py:77
+#: allink_core/core_apps/allink_newsletter/models.py:84
+#: allink_core/core_apps/allink_newsletter/models.py:91
+msgid ""
+"Get this id via Postman and only change it if you know what you are doing"
+msgstr ""
+
+#: allink_core/core_apps/allink_newsletter/models.py:81
+msgid "Mailchimp Personalised Marketing ID"
+msgstr ""
+
+#: allink_core/core_apps/allink_newsletter/models.py:88
+msgid "Mailchimp Direct Mailing ID"
+msgstr ""
+
+#: allink_core/core_apps/allink_newsletter/templates/allink_newsletter/content.html:54
+msgid "Subscribe"
+msgstr ""
+
+#: allink_core/core_apps/allink_newsletter/templates/allink_newsletter/content.html:56
+msgid "by clicking send you accept our"
+msgstr ""
+
+#: allink_core/core_apps/allink_newsletter/templates/allink_newsletter/content.html:56
+msgid "general terms and conditions"
+msgstr ""
+
+#: allink_core/core_apps/allink_newsletter/views.py:37
+msgid "Something went wrong on our end we are sorry for that"
 msgstr ""
 
 #: allink_core/core_apps/allink_quote/cms_plugins.py:10

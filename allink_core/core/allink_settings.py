@@ -41,6 +41,7 @@ ALLINK_INSTALLED_APPS = [
     'allink_core.core_apps.allink_categories',
     'allink_core.core_apps.allink_styleguide',
     'allink_core.core_apps.allink_legacy_redirect',
+    'allink_core.core_apps.allink_newsletter',
 
     'allink_core.core_apps.allink_quote',
     'allink_core.core_apps.allink_content',
@@ -103,6 +104,8 @@ ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [
     'CMSAllinkLanguageChooserPlugin',
     'CMSAllinkSEOAccordionContainerPlugin',
     'CMSAllinkQuotePlugin',
+    'CMSAllinkNewsletterSignupPlugin',
+
 ]
 
 ####################################################################################
@@ -125,6 +128,7 @@ ALLINK_LOCALE_PATHS = [
     '/app/allink_core/core_apps/allink_legacy_redirect/locale',
     '/app/allink_core/core_apps/allink_mandrill/locale',
     '/app/allink_core/core_apps/allink_styleguide/locale',
+    '/app/allink_core/core_apps/allink_newsletter/locale',
     '/app/allink_core/core_apps/allink_button_link/locale',
     '/app/allink_core/core_apps/allink_content/locale',
     '/app/allink_core/core_apps/allink_gallery/locale',

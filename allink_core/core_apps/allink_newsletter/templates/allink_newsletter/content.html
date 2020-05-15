@@ -1,0 +1,61 @@
+{% load i18n static %}
+
+{% trans "Newsletter Signup" as label %}
+{% include "modals/modal-header-markup.html" with title=label modal_type="softpage" %}
+
+<div class="newsletter-signup-plugin">
+    <div class="newsletter-signup-plugin__content">
+        <div class="newsletter-signup-plugin__form_text text-container">
+            {{ instance.form_text }}
+        </div>
+        <form
+                novalidate
+                method="POST"
+                action="{{ action }}"
+                id="newsletter-signup-form"
+                data-success-url="{{ success_url }}"
+                class="newsletter-signup-form ajax-form validate-form"
+                data-success-data-layer-event="newsletter-signup.sent">
+            {% if csrf_token_value %}
+            <input type='hidden' name='csrfmiddlewaretoken' value='{{ csrf_token_value }}'/>
+            {% else %}
+            {% if not method == "get" %}{% csrf_token %}{% endif %}
+            {% endif %}
+
+            <div class="form__row">
+                <div class="form__col form__col--full">
+                    {% include 'partials/forms/non_field_errors.html' %}
+                </div>
+                <div class="form__col form__col--full">
+                    {% include 'partials/forms/fields/radio.html' with field=form.salutation layout_inline=True preselect_first=True %}
+                </div>
+                <div class="form__col form__col--half">
+                    {% include 'partials/forms/fields/input.html' with field=form.first_name placeholder_enabled=True placeholder_text="Max" %}
+                </div>
+                <div class="form__col form__col--half">
+                    {% include 'partials/forms/fields/input.html' with field=form.last_name placeholder_enabled=True placeholder_text="Mustermann" %}
+                </div>
+                <div class="form__col form__col--half">
+                    {% include 'partials/forms/fields/input.html' with field=form.email placeholder_enabled=True placeholder_text="max.mustermann@gmail.com" %}
+                </div>
+                <div class="form__col form__col--full text-container divider-top">
+                    {{ instance.consent_text }}
+                </div>
+                <div class="form__col form__col--full ">
+                    {% include 'partials/forms/fields/checkbox.html' with field=form.allows_gdpr_email nolabel=True placeholder_enabled=True %}
+                </div>
+                <div class="form__col form__col--full">
+                    {% include 'partials/forms/fields/checkbox.html' with field=form.allows_gdpr_direct_mailing nolabel=True placeholder_enabled=True %}
+                </div>
+                <div class="form__col form__col--full">
+                    {% include 'partials/forms/fields/checkbox.html' with field=form.allows_gdpr_personalised_marketing nolabel=True placeholder_enabled=True %}
+                </div>
+                <div class="form__col form__col--full">
+                    {% trans "Subscribe" as label %}
+                    {% include 'partials/buttons/submit.html' with label=label classes="btn-default" %}
+                    <p>{% trans "by clicking send you accept our" %} <a href='{% static "files/agb.pdf" %}'>{% trans "general terms and conditions" %}</a></p>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

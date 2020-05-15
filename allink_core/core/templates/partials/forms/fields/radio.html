@@ -1,0 +1,30 @@
+{% load widget_tweaks i18n %}
+
+{% if field.is_hidden %}
+    {{ field }}
+{% else %}
+    {% block control_group %}
+        <div class="form-group field-type-{{ field|widget_type }} {% if field.errors %}has-error{% endif %} {% if is_optional %}is-optional{% endif %}">
+            {% include 'partials/forms/label.html' %}
+
+            {% block controls %}
+                <div class="form-field-container radio-group {% if layout_inline %}radio-inline{% endif %}">
+                    {% block widget %}
+                        {% for choice in field %}
+                            <div class="radio {% if forloop.first and preselect_first %}js-preselect{% endif %}">
+                                <label {% if field.field.required %}class="required"{% endif %}>
+                                    {{ choice.tag }}
+                                    <span class="custom-radio"></span>
+                                    {{ choice.choice_label }}
+                                </label>
+                            </div>
+                        {% endfor %}
+                    {% endblock %}
+
+                    {% include 'partials/forms/error.html' %}
+                    {% include 'partials/forms/help.html' %}
+                </div>
+            {% endblock %}
+        </div>
+    {% endblock %}
+{% endif %}
