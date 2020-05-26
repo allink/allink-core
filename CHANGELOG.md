@@ -29,6 +29,8 @@ general bugfixes
 - Used link partial for all links [#66](https://github.com/allink/allink-core/pull/66)
 - Moved browser check logo to container [#67](https://github.com/allink/allink-core/pull/67)
 - Grouped content in teaser tile item [#74](https://github.com/allink/allink-core/pull/74)
+- Used button partial in form base [#81](https://github.com/allink/allink-core/pull/81)
+
 #### FIXES
 - Moved spaceless to link partial [#71](https://github.com/allink/allink-core/pull/71)
 - Fixed locations opening_hours property [#79](https://github.com/allink/allink-core/pull/79)
