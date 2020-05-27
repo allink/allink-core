@@ -30,6 +30,7 @@ general bugfixes
 - Moved browser check logo to container [#67](https://github.com/allink/allink-core/pull/67)
 - Grouped content in teaser tile item [#74](https://github.com/allink/allink-core/pull/74)
 - Used button partial in form base [#81](https://github.com/allink/allink-core/pull/81)
+- Removed logo and menu from lockdown page [#82](https://github.com/allink/allink-core/pull/82)
 
 #### FIXES
 - Moved spaceless to link partial [#71](https://github.com/allink/allink-core/pull/71)
