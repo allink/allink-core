@@ -36,7 +36,7 @@ class AllinkGalleryPlugin(CMSPlugin):
     )
     auto_start_enabled = models.BooleanField(
         'Autostart',
-        default=True,
+        default=False,
         help_text='This option enables autoplay for this gallery.',
     )
     project_css_classes = ArrayField(
