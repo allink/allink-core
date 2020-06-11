@@ -2,19 +2,21 @@
 
 <div class="browser-suggestion hidden">
     <div class="browser-suggestion__container">
-        <a class="brand-logo__link browser-suggestion__logo" href="{% url 'pages-root' %}" aria-label="Brand Logo">
-            {% inline_style 'images/branding/brand-logo-compact.svg' %}
-        </a>
+        <div class="browser-suggestion__content">
+            <a class="brand-logo__link browser-suggestion__logo" href="{% url 'pages-root' %}" aria-label="Brand Logo">
+                {% inline_style 'images/branding/brand-logo-compact.svg' %}
+            </a>
 
-        <div class="text-container">
-            <h6 class="lead">{% trans 'Browser Info' %}</h6>
-            <h2 class="heading">{% trans 'no optimal representation possible' %}</h2>
-            <p class="text">{% trans 'Your web browser does not provide an optimal representation of our website. This means that some functions may not work or the view may be incorrect. We recommend that you use a current browser.' %}</p>
-        </div>
+            <div class="text-container">
+                <h6 class="lead">{% trans 'Browser Info' %}</h6>
+                <h2 class="heading">{% trans 'no optimal representation possible' %}</h2>
+                <p class="text">{% trans 'Your web browser does not provide an optimal representation of our website. This means that some functions may not work or the view may be incorrect. We recommend that you use a current browser.' %}</p>
+            </div>
 
-        <div class="browser-suggestion__list">
-            {% trans 'Visit Anyways' as link_label %}
-            {% include "partials/buttons/link.html" with link_url="" link_label=link_label link_classes="btn btn-primary js-use-legacy-browser" link_attributes='rel="noopener" role="button"' %}
+            <div class="browser-suggestion__list">
+                {% trans 'Visit Anyways' as link_label %}
+                {% include "partials/buttons/link.html" with link_url="" link_label=link_label link_classes="btn btn-primary js-use-legacy-browser" link_attributes='rel="noopener" role="button"' %}
+            </div>
         </div>
     </div>
 </div>
