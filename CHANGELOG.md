@@ -36,6 +36,8 @@ general bugfixes
 - Moved spaceless to link partial [#71](https://github.com/allink/allink-core/pull/71)
 - Fixed locations opening_hours property [#79](https://github.com/allink/allink-core/pull/79)
 - Fixed email translation [#80](https://github.com/allink/allink-core/pull/80)
+- Set gallery-plugin autostart to false | set teaser-image ratio default to 16-9 [#87](https://github.com/allink/allink-core/pull/87)
+- Adjust browser-suggestion template to be column ready [#88](https://github.com/allink/allink-core/pull/88)
 
 ## v2.5.5
 #### IMPORTANT
