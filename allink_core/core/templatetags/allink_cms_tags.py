@@ -2,6 +2,7 @@
 from django import template
 from cms.models import Page
 from cms.templatetags.cms_tags import CMSEditableObject
+from django.utils import translation
 
 register = template.Library()
 
@@ -14,9 +15,10 @@ def page_from_slug(slug):
 @register.simple_tag
 def placeholder_has_content(placeholder):
     """
-    Renders boolean to variable if placeholder has plugins or not
+    Renders boolean to variable if placeholder has plugins or not in active language
     """
-    return placeholder.cmsplugin_set.exists()
+
+    return bool(placeholder.cmsplugin_set.filter(language=translation.get_language()))
 
 
 class CMSEditableObjectAjax(CMSEditableObject):
