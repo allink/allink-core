@@ -25,7 +25,7 @@ general bugfixes
 - Added variable to settings.py to overwrite allowed children of CMSAllinkSEOAccordionPlugin [#76](https://github.com/allink/allink-core/pull/76)
     - add ```ALLINK_SEOACCORDION_PLUGIN_CHILD_CLASSES = []``` to settings.py
 
-###### NEW
+#### NEW
 - Used link partial for all links [#66](https://github.com/allink/allink-core/pull/66)
 - Moved browser check logo to container [#67](https://github.com/allink/allink-core/pull/67)
 - Grouped content in teaser tile item [#74](https://github.com/allink/allink-core/pull/74)
@@ -48,24 +48,24 @@ general bugfixes
 - we created our own implementation of google_tag_manager so you could remove aldryn_google_tag_manager in the divio control panel. [#78](https://github.com/allink/allink-core/pull/78)
  
 ## v2.5.4
-###### FIXES
+#### FIXES
 - if an image does not exist locally, no exception will be thrown in render_meta_og [#75](https://github.com/allink/allink-core/pull/75)
 
 ## v2.5.3
-###### FIXES
+#### FIXES
 - Config admin is now translatable [#69](https://github.com/allink/allink-core/pull/69)
 
 ## v2.5.2
-###### FIXES
+#### FIXES
 - if an image does not exist locally, no exception will be thrown [#68](https://github.com/allink/allink-core/pull/68)
 
 ## v2.5.1
-###### FIXES
+#### FIXES
 - fix logo link name in browser-check and header
 - fix render image tests
 
 ## v2.5.0
-###### NEW
+#### NEW
 - Image icon_enabled is now False by default [#55](https://github.com/allink/allink-core/pull/55)
 - Added partial for submit buttons [#56](https://github.com/allink/allink-core/pull/56)
 - Removed onscreen effect in the allink_content plugin [#57](https://github.com/allink/allink-core/pull/57)
