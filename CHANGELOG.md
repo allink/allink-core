@@ -22,13 +22,14 @@ general bugfixes
 ## v2.6.0
 
 #### IMPORTANT
-- Added variable to settings.py to overwrite allowed children of CMSAllinkSEOAccordionPlugin [#76](https://github.com/allink/allink-core/pull/76)
-    - add ```ALLINK_SEOACCORDION_PLUGIN_CHILD_CLASSES = []``` to settings.py
+- Moved browser check logo to container [#67](https://github.com/allink/allink-core/pull/67)
+- Adjust browser-suggestion template to be column ready [#88](https://github.com/allink/allink-core/pull/88)
 
 #### NEW
 - Used link partial for all links [#66](https://github.com/allink/allink-core/pull/66)
-- Moved browser check logo to container [#67](https://github.com/allink/allink-core/pull/67)
 - Grouped content in teaser tile item [#74](https://github.com/allink/allink-core/pull/74)
+- Added variable to settings.py to overwrite allowed children of CMSAllinkSEOAccordionPlugin [#76](https://github.com/allink/allink-core/pull/76)
+    - add ```ALLINK_SEOACCORDION_PLUGIN_CHILD_CLASSES = []``` to settings.py
 - Used button partial in form base [#81](https://github.com/allink/allink-core/pull/81)
 - Removed logo and menu from lockdown page [#82](https://github.com/allink/allink-core/pull/82)
 - Disabled image lazyload in menu [#84](https://github.com/allink/allink-core/pull/84)
@@ -38,7 +39,6 @@ general bugfixes
 - Fixed locations opening_hours property [#79](https://github.com/allink/allink-core/pull/79)
 - Fixed email translation [#80](https://github.com/allink/allink-core/pull/80)
 - Set gallery-plugin autostart to false | set teaser-image ratio default to 16-9 [#87](https://github.com/allink/allink-core/pull/87)
-- Adjust browser-suggestion template to be column ready [#88](https://github.com/allink/allink-core/pull/88)
 
 ## v2.5.5
 #### IMPORTANT
