@@ -3,6 +3,7 @@ from cms.models import CMSPlugin
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
 from djangocms_text_ckeditor.cms_plugins import TextPlugin, Text
+from django.conf import settings
 
 from allink_core.core_apps.allink_seo_accordion.models import AllinkSEOAccordionContainerPlugin, AllinkSEOAccordion
 
@@ -53,7 +54,7 @@ class CMSAllinkSEOAccordionPlugin(CMSPluginBase):
     name = 'SEO Accordion Item'
     module = 'Generic'
     allow_children = True
-    child_classes = ['TextPlugin']
+    child_classes = settings.ALLINK_SEOACCORDION_PLUGIN_CHILD_CLASSES
     text_enabled = False
 
     def get_fieldsets(self, request, obj=None):

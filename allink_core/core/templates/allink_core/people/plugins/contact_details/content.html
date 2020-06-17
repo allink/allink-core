@@ -30,10 +30,14 @@
                 <div class="text-container">
                     <p>
                         {% if object.email %}
-                            <a class="text link-text" href="mailto:{{object.email}}" data-softpage-disabled data-text="{% trans "E-Mail" %}"><span>{{object.email}}</span></a><br>
+                            {% trans "E-Mail" as link_label %}
+                            {% include "partials/buttons/link.html" with link_prefix="mailto:" link_url=object.email link_label=link_label link_classes="text" link_attributes='data-softpage-disabled' %}
+                            <br>
                         {% endif %}
+
                         {% if object.phone %}
-                            <a class="text link-text" href="tel:{{object.phone}}" data-softpage-disabled data-text="{% trans "Phone" %}"><span>{{object.phone_formatted}}</span></a><br>
+                            {% include "partials/buttons/link.html" with link_prefix="tel:" link_url=object.phone link_label=object.phone_formatted link_classes="text" link_attributes='data-softpage-disabled' %}
+                            <br>
                         {% endif %}
                     </p>
                 </div>

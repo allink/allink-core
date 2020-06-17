@@ -15,7 +15,12 @@
     {% endif %}
 
     {% block render_image_container %}
-        {% render_image image=instance.picture width_alias=instance.width_alias ratio=instance.ratio icon_enabled=instance.icon_enabled bg_enabled=instance.bg_enabled %}
+        {% comment %} disable lazyload for all images that are in the overlay menu placeholder {% endcomment %}
+        {% if instance.placeholder.slot == "overlay_menu" %}
+            {% render_image image=instance.picture width_alias=instance.width_alias ratio=instance.ratio icon_enabled=instance.icon_enabled bg_enabled=instance.bg_enabled lazyload_enabled=False %}
+        {% else %}
+            {% render_image image=instance.picture width_alias=instance.width_alias ratio=instance.ratio icon_enabled=instance.icon_enabled bg_enabled=instance.bg_enabled %}
+        {% endif %}
     {% endblock render_image_container %}
 
     {% if instance.image_modal_enabled and instance.link_file %}
