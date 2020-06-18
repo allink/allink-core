@@ -14,6 +14,7 @@ class LocationsAdmin(AllinkMediaAdminMixin, AllinkSEOAdminMixin, AllinkCategoryA
                      TranslatableAdmin, SortableAdmin):
     exclude = ('lead',)
     readonly_fields = ('is_currently_open',)
+    list_display = ('title', 'status', 'all_categories_column',)
 
     def get_fieldsets(self, request, obj=None):
         fieldsets = (

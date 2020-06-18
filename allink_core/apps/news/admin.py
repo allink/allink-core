@@ -32,6 +32,7 @@ class NewsAdmin(AllinkMediaAdminMixin, AllinkSEOAdminMixin, AllinkCategoryAdminM
                 AllinkTeaserAdminMixin, PlaceholderAdminMixin,
                 TranslatableAdmin):
     form = NewsContentAdminForm
+    list_display = ('title', 'status', 'all_categories_column','entry_date',)
 
     def get_fieldsets(self, request, obj=None):
         fieldsets = (
