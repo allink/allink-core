@@ -19,8 +19,16 @@ new features or plugins
 general bugfixes
 
 
-## v2.6.0
+## v2.6.1
+#### IMPORTANT
 
+#### NEW
+- Add list_display fields for news and locations [#93](https://github.com/allink/allink-core/pull/93)
+
+#### FIXES
+- Remove spaces from link items [#94](https://github.com/allink/allink-core/pull/94)
+
+## v2.6.0
 #### IMPORTANT
 - Moved browser check logo to container [#67](https://github.com/allink/allink-core/pull/67)
 - Adjust browser-suggestion template to be column ready [#88](https://github.com/allink/allink-core/pull/88)
