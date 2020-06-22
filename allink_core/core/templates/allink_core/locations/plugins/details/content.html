@@ -51,12 +51,29 @@
 
                 <div class="timeslot-list">
                     {% for day in object.opening_hours %}
-                        <div class="timeslot-list__entry">
+                        {% if day.start_day %}
+                            <div class="timeslot-list__entry">
                                 <div class="days">{{ day.start_day }}{% if day.start_day != day.end_day %} – {{ day.end_day }}{% endif %}</div>
-                                <div class="hours">{{ day.time }} {% trans 'h' %}</div>
-                        </div>
+                                <div class="hours">
+                                    {% if day.morning %}
+                                        <div class="hours__entry">{{ day.morning }} {% trans 'h' %}</div>
+                                    {% endif %}
+                                    {% if day.afternoon %}
+                                        <div class="hours__entry">{{ day.afternoon }} {% trans 'h' %}</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% endif %}
                     {% endfor %}
-                </p>
+                    {% if object.holidays_start_date and object.holidays_end_date %}
+                        <div class="timeslot-list__entry">
+                            <div class="days">{% trans 'Holidays' %}</div>
+                            <div class="hours">
+                                <div class="hours__entry">{{ object.holidays_start_date|date:"j. F Y" }} – <br> {{ object.holidays_end_date|date:"j. F Y" }}</div>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
 
             </div>
         </div>

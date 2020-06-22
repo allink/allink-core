@@ -24,6 +24,7 @@ general bugfixes
 
 #### NEW
 - Add list_display fields for news and locations [#93](https://github.com/allink/allink-core/pull/93)
+- Update opening hours template [#95](https://github.com/allink/allink-core/pull/95)
 
 #### FIXES
 - Remove spaces from link items [#94](https://github.com/allink/allink-core/pull/94)
