@@ -1,0 +1,27 @@
+{% load widget_tweaks i18n %}
+
+{% if field.is_hidden %}
+    {{ field }}
+{% else %}
+    {% block control_group %}
+        <div class="form-group field-type-{{ field|widget_type }} {% if field.errors %}has-error{% endif %} {% if is_optional %}is-optional{% endif %}">
+            {% include 'partials/forms/label.html' %}
+
+            {% block controls %}
+                <div class="form-field-container">
+                    {% block widget %}
+                        <div class="custom-file-upload">
+                            <input id="{{ field.auto_id }}" type="file" value="{% trans "Select file..." %}">
+                            <label for="{{ field.auto_id }}" class="btn btn-default">
+                                <span class="link-text">{% trans "Select file..." %}</span>
+                            </label>
+                        </div>
+                    {% endblock %}
+
+                    {% include 'partials/forms/error.html' %}
+                    {% include 'partials/forms/help.html' %}
+                </div>
+            {% endblock %}
+        </div>
+    {% endblock %}
+{% endif %}

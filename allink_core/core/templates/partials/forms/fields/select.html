@@ -1,0 +1,26 @@
+{% load widget_tweaks i18n %}
+
+{% if field.is_hidden %}
+    {{ field }}
+{% else %}
+    {% block control_group %}
+        <div class="form-group field-type-{{ field|widget_type }} {% if field.errors %}has-error{% endif %} {% if is_optional %}is-optional{% endif %}">
+            {% include 'partials/forms/label.html' %}
+
+            {% block controls %}
+                <div class="form-field-container">
+                    {% block widget %}
+                        {% if field.field.required %}
+                            {% render_field field class+="selectpicker form-control" required="required" %}
+                        {% else %}
+                            {% render_field field class+="selectpicker form-control" %}
+                        {% endif %}
+                    {% endblock %}
+
+                    {% include 'partials/forms/error.html' %}
+                    {% include 'partials/forms/help.html' %}
+                </div>
+            {% endblock %}
+        </div>
+    {% endblock %}
+{% endif %}

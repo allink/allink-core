@@ -1,0 +1,51 @@
+{% load widget_tweaks i18n allink_form_tags %}
+
+{% if field.is_hidden %}
+    {{ field }}
+{% else %}
+    {% block control_group %}
+        <div class="form-group field-type-{{ field|widget_type }} {% if field.errors %}has-error{% endif %} {% if is_optional %}is-optional{% endif %}">
+            {% include 'partials/forms/label.html' %}
+
+            {% block controls %}
+                <div class="form-field-container">
+                    {% block widget %}
+                        <div class="datepicker-container">
+                            {% comment %}
+                                    Need a specific widget attribute? Here's how to get it:
+                                    {{field.field.widget.attrs.enableTime}}
+                                {% endcomment %}
+                            {% if field.field.required %}
+                                {% render_field field class+="datepicker form-control" required="required" %}
+                            {% else %}
+                                {% render_field field class+="datepicker form-control" %}
+                            {% endif %}
+
+                            {# If a date has to be selected, show the calendar button #}
+                            {% if field|widget_type == 'datetimeinput' or field|widget_type == 'dateinput' %}
+                                <span class="calendar-btn">
+                                        <span class="sr-only">{% trans "Open Calendar" %}</span>
+                                    </span>
+                                {# if it's time only, we want a time button #}
+                            {% else %}
+                                <span class="time-btn">
+                                        <span class="sr-only">{% trans "Open Time Picker" %}</span>
+                                    </span>
+                            {% endif %}
+
+                            {# If the field is OPTIONAL, we have to be able to clear it #}
+                            {% if not field.field.required %}
+                                <span class="clear-btn">
+                                        <span class="sr-only">{% trans "Clear Field" %}</span>
+                                    </span>
+                            {% endif %}
+                        </div>
+                    {% endblock %}
+
+                    {% include 'partials/forms/error.html' %}
+                    {% include 'partials/forms/help.html' %}
+                </div>
+            {% endblock %}
+        </div>
+    {% endblock %}
+{% endif %}

@@ -1,0 +1,1 @@
+default_app_config = 'allink_core.core_apps.allink_newsletter.config.NewsletterSignupConfig'

@@ -188,6 +188,7 @@ INSTALLED_ALLINK_CORE_APPS = [
     'allink_core.apps.config',
     # 'allink_core.apps.locations',
     'allink_core.apps.news',
+    'allink_core.apps.newsletter',
     # 'allink_core.apps.people',
     # 'allink_core.apps.testimonials',
 ]
