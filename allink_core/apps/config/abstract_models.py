@@ -1,14 +1,17 @@
 # -*- coding: utf-8 -*-
+import pickle
 from django.db import models
 from django.core.cache import cache
 from django.conf import settings
-from cms.plugin_pool import plugin_pool
-from cms.extensions import PageExtension, TitleExtension
-from parler.models import TranslatableModel, TranslatedFieldsModel
-from filer.fields.image import FilerImageField
+from django.contrib.sites.models import Site
 from django.utils.translation import get_language
-from filer.models.imagemodels import Image
+from cms.extensions import PageExtension, TitleExtension
+from menus.menu_pool import menu_pool
+from parler.models import TranslatableModel, TranslatedFieldsModel
+from parler.utils.context import switch_language
+from filer.fields.image import FilerImageField
 from solo.models import SingletonModel
+from solo import settings as solo_settings
 from djangocms_text_ckeditor.fields import HTMLField
 
 from allink_core.core.models import (
@@ -19,7 +22,7 @@ from allink_core.core.models import (
 )
 
 
-class BaseConfig(SingletonModel, TranslatableModel):
+class BaseConfig(TranslatableModel, SingletonModel):
     default_og_image = FilerImageField(
         verbose_name='og:image',
         on_delete=models.PROTECT,
@@ -82,88 +85,49 @@ class BaseConfig(SingletonModel, TranslatableModel):
         return 'Configuration'
 
     def save(self, *args, **kwargs):
-
-        self.pk = 1
-
-        for language_code, language in settings.LANGUAGES:
-            self.set_to_cache(language_code)
-
-        # invalidate cache for favicon templatetag
-        cache.delete('favicon_context')
-        super(SingletonModel, self).save(*args, **kwargs)
-
-        # we need to invalidate all placeholder cache keys,
-        # where a plugin is placed that displayes data from this model
-        # adapted from cms/models/pagemodel.py
+        super().save(*args, **kwargs)
         from cms.cache import invalidate_cms_page_cache
         invalidate_cms_page_cache()
 
-        relevant_models = (self.__class__,) + self.__class__.__bases__
-        relevant_plugin_classes = [x for x in plugin_pool.get_all_plugins() if
-                                   hasattr(x.model, 'data_model') and x.model.data_model in relevant_models]
+        # the config is used widely across all apps and cms pages
+        cache.clear()
 
-        # get all pages where a relevant plugin is placed
-        for plugin_class in relevant_plugin_classes:
-            for plugin in plugin_class.model.objects.all():
-                for language_code, language in settings.LANGUAGES:
-                    if plugin.page:
-                        plugin.placeholder.clear_cache(language_code, site_id=plugin.page.node.site_id)
+        # invalidate the menu for all sites
+        for site in Site.objects.all():
+            menu_pool.clear(site_id=site.id)
 
-    # SOLO_CACHE does not work in our setup, thats why, we rewrite it here
-
-    def to_dict(self):
-        fields = {
-            field.name: getattr(self, field.name) for field in self._meta.get_fields() if
-            not isinstance(field, FilerImageField) and field.name != 'translations'
-        }
-        fields.update({
-            '%s_id' % (field.name): getattr(self, field.name).id for field in self._meta.get_fields() if
-            getattr(self, field.name) and isinstance(field, FilerImageField)
-        })
-        try:
-            fields.update({
-                field.name: getattr(self.get_translation(get_language()), field.name) for field in
-                self.translations.model._meta.get_fields() if field.name not in ['master', 'language_code']
-            })
-        except self.translations.model.DoesNotExist:
-            self.create_translation(get_language(), default_base_title='')
-            fields.update({
-                field.name: getattr(self, field.name) for field in self.translations.model._meta.get_fields() if
-                field.name not in ['master', 'language_code']
-            })
-        return fields
-
-    def set_to_cache(self, language_code=None):
-        language_code = get_language() if not language_code else language_code
-        cache_key = self.get_cache_key(language_code)
-        timeout = 60 * 60 * 24 * 180
-        cache.set(cache_key, self.to_dict(), timeout)
+    def set_to_cache(self):
+        """
+        saves pickled instance to cache in each language
+        """
+        for language_code, _ in settings.LANGUAGES:
+            cache_key = self.get_cache_key(language_code)
+            timeout = getattr(settings, 'SOLO_CACHE_TIMEOUT', solo_settings.SOLO_CACHE_TIMEOUT)
+            with switch_language(self, language_code):
+                cache.set(cache_key, pickle.dumps(self), timeout)
 
     @classmethod
-    def get_cache_key(cls, language_code=None):
-        language_code = get_language() if not language_code else language_code
-        prefix = 'solo'
-        return '%s:%s_%s' % (prefix, cls.__name__.lower(), language_code)
+    def get_cache_key(cls, language_code):
+        """
+        e.g: 'solo:config_de'
+        """
+        return '%s:%s_%s' % ('solo', cls.__name__.lower(), language_code)
 
     @classmethod
     def get_solo(cls):
-        cache_key = cls.get_cache_key()
+        """
+        Loads pickled Config instance from cache.
+        If it does not already exists in cache, it will get or create it form the database.
+        :return:
+        Config instance
+        """
+        cache_key = cls.get_cache_key(get_language())
         obj_dict = cache.get(cache_key)
         if obj_dict:
-            obj = cls()
-            for name, value in obj_dict.items():
-                if name[-3:] == '_id':
-                    setattr(obj, name, Image.objects.get(id=value))
-                else:
-                    setattr(obj, name, value)
-        else:
-            try:
-                obj = cls.objects.get(pk=1)
-                obj.set_to_cache()
-            except cls.DoesNotExist:
-                obj = cls.objects.create()
-                obj.create_translation(get_language(), default_base_title='')
-                obj.set_to_cache()
+            obj = pickle.loads(obj_dict)
+        if not obj_dict:
+            obj, created = cls.objects.get_or_create(pk=cls.singleton_instance_id)
+            obj.set_to_cache()
         return obj
 
 
@@ -208,7 +172,6 @@ class BaseConfigTranslation(TranslatedFieldsModel):
 
 
 class BaseAllinkPageExtension(AllinkSEOFieldsModel, AllinkTeaserFieldsModel, PageExtension):
-
     class Meta:
         abstract = True
         app_label = 'config'

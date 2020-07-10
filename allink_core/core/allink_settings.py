@@ -14,6 +14,7 @@ __all__ = [
     'THUMBNAIL_QUALITY',
     'THUMBNAIL_OPTIMIZE_COMMAND',
     'DEBUG_TOOLBAR_CONFIG',
+    'SOLO_CACHE_TIMEOUT',
 ]
 
 ####################################################################################
@@ -183,3 +184,8 @@ ALLINK_MANDRILL_DEV_MODE = True
 ALLINK_MANDRILL_DEV_MODE_FROM_EMAIL_ADDRESS = 'test@allink.ch'
 # we cant send to 'test@allink.ch' at the moment because of: https://support.google.com/a/answer/168383?hl=en
 ALLINK_MANDRILL_DEV_MODE_TO_EMAIL_ADDRESSES = ['itcrowd@allink.ch', ]
+
+#  ####################################################################################
+#
+# # cache
+SOLO_CACHE_TIMEOUT = 60 * 60 * 24 * 180
