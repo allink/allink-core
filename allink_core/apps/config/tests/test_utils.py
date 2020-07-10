@@ -1,5 +1,6 @@
 from django.test.testcases import TestCase
 from cms import api
+from parler.utils.context import switch_language
 from .factories import ConfigFactory, AllinkPageExtensionFactory, AllinkTitleExtensionFactory
 from ..utils import get_meta_page_title, get_page_meta_dict, get_page_teaser_dict, get_fallback, get_meta_page_image_thumb, generate_meta_image_thumb
 
@@ -16,21 +17,25 @@ class AllinkExtensionMetaTestCase(TestCase):
         self.allink_config = ConfigFactory()
 
     def test_get_page_title_with_appropriate_fallbacks(self):
-        self.assertEqual(get_meta_page_title(self.page_de), 'page title | default base title')
+        self.assertEqual(get_meta_page_title(self.page_de), 'page title | default_base_title_en')
 
         # add page extensions
         AllinkTitleExtensionFactory(extended_object=self.page_de.get_title_obj())
 
-        self.assertEqual(get_meta_page_title(self.page_de), 'og title | default base title')
+        self.assertEqual(get_meta_page_title(self.page_de), 'og title | default_base_title_en')
 
         self.page_de.get_title_obj().allinktitleextension.og_title = ''
-        self.assertEqual(get_meta_page_title(self.page_de), 'teaser title | default base title')
+        self.assertEqual(get_meta_page_title(self.page_de), 'teaser title | default_base_title_en')
 
         self.page_de.get_title_obj().allinktitleextension.teaser_title = ''
-        self.assertEqual(get_meta_page_title(self.page_de), 'page title | default base title')
+        self.assertEqual(get_meta_page_title(self.page_de), 'page title | default_base_title_en')
 
-        # remove default base title from allink_config
+        # remove default_base_title_en from allink_config
         self.allink_config.default_base_title = ''
+        # also remove default translation 'en'
+        with switch_language(self.allink_config, 'en'):
+            self.allink_config.default_base_title = ''
+            self.allink_config.save()
         self.allink_config.save()
         self.assertEqual(get_meta_page_title(self.page_de), 'page title | ')
 

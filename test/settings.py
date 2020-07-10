@@ -259,3 +259,5 @@ WEBPACK_LOADER = {
         'IGNORE': [r'.+\.hot-update.js', r'.+\.map']
     }
 }
+
+SOLO_CACHE_TIMEOUT = 60 * 60 * 24 * 180
