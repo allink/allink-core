@@ -19,6 +19,12 @@ new features or plugins
 general bugfixes
 
 
+## v2.6.2
+#### FIXES
+- caching of Config model now works as expected and returns correct translated object
+
+
+
 ## v2.6.1
 #### IMPORTANT
 

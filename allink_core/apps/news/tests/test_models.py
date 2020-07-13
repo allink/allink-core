@@ -103,16 +103,20 @@ class NewsMetaTestCase(TestCase):
         return Template(string).render(context)
 
     def test_get_page_title_with_appropriate_fallbacks(self):
-        self.assertEqual(self.entry_1.meta_page_title, 'og title | default base title')
+        self.assertEqual(self.entry_1.meta_page_title, 'og title | default_base_title_en')
 
         self.entry_1.og_title = ''
-        self.assertEqual(self.entry_1.meta_page_title, 'teaser title | default base title')
+        self.assertEqual(self.entry_1.meta_page_title, 'teaser title | default_base_title_en')
 
         self.entry_1.teaser_title = ''
-        self.assertEqual(self.entry_1.meta_page_title, '{} | default base title'.format(self.entry_1.title))
+        self.assertEqual(self.entry_1.meta_page_title, '{} | default_base_title_en'.format(self.entry_1.title))
 
-        # remove default base title from allink_config
+        # remove default_base_title_en from allink_config
         self.allink_config.default_base_title = ''
+        # also remove default translation 'en'
+        with switch_language(self.allink_config, 'en'):
+            self.allink_config.default_base_title = ''
+            self.allink_config.save()
         self.allink_config.save()
         self.assertEqual(self.entry_1.meta_page_title, '{} | '.format(self.entry_1.title))
 
