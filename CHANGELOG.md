@@ -26,6 +26,7 @@ general bugfixes
 - Conditionally output slider content [#98](https://github.com/allink/allink-core/pull/98)
 
 #### FIXES
+- Fixed translation for outdated modal [#99](https://github.com/allink/allink-core/pull/99)
 
 ## v2.6.2
 #### FIXES
