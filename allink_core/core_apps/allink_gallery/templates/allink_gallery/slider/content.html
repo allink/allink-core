@@ -58,13 +58,15 @@
 
 <div class="swiper-content-container">
     {% for plugin in instance.child_plugin_instances %}
-    <div class="swiper-content swiper-content-{{ forloop.counter }} {% if forloop.counter == 1 %}swiper-content--visible{% endif %}">
-        {% if plugin.title %}
-            <p class="swiper-content__text">{{ plugin.title }}</p>
+        {% if plugin.title or plugin.text %}
+            <div class="swiper-content swiper-content-{{ forloop.counter }} {% if forloop.counter == 1 %}swiper-content--visible{% endif %}">
+                {% if plugin.title %}
+                    <p class="swiper-content__text">{{ plugin.title }}</p>
+                {% endif %}
+                {% if plugin.text %}
+                    <p class="swiper-content__text">{{ plugin.text }}</p>
+                {% endif %}
+            </div>
         {% endif %}
-        {% if plugin.text %}
-            <p class="swiper-content__text">{{ plugin.text }}</p>
-        {% endif %}
-    </div>
     {% endfor %}
 </div>
