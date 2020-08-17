@@ -16,7 +16,6 @@ class AllinkLegacyRedirectMiddleware(object):
     def __init__(self, get_response):
         self.get_response = get_response
 
-
     def __call__(self, request):  # noqa TODO this needs to be refactored anyway, so we do not hit de db each time.
         # Code to be executed for each request before
         # the view (and later middleware) are called.
@@ -26,8 +25,8 @@ class AllinkLegacyRedirectMiddleware(object):
         has_get_parameters = False
         link = None
         try:
-            link = AllinkLegacyLink.objects.get(Q(old=request.path) | Q(
-                old=request.path + '/') | Q(old=request.path[:-1]) | Q(old=request.get_full_path()), active=True)
+            link = AllinkLegacyLink.objects.get(
+                Q(old=request.path) | Q(old=request.path + '/') | Q(old=request.get_full_path()), active=True)
 
             # if user is logged in, skip redirect
             if link.redirect_when_logged_out and request.user.is_authenticated:
