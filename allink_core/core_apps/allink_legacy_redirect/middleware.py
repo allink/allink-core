@@ -27,7 +27,7 @@ class AllinkLegacyRedirectMiddleware(object):
         link = None
         try:
             link = AllinkLegacyLink.objects.get(Q(old=request.path) | Q(
-                old=request.path + '/') | Q(old=request.path[:-1]) | Q(old=request.get_full_path()), active=True)
+                old=request.path + '/') | Q(old=request.get_full_path()), active=True)
 
             # if user is logged in, skip redirect
             if link.redirect_when_logged_out and request.user.is_authenticated:

@@ -18,6 +18,9 @@ new features or plugins
 #### FIXES
 general bugfixes
 
+## v2.6.3
+#### FIXES
+- removed Query filter from legacy redirect that removed the last character as it led to multiple matches
 
 ## v2.7.0
 #### IMPORTANT
