@@ -27,6 +27,7 @@ general bugfixes
 #### NEW
 - Conditionally output slider content [#98](https://github.com/allink/allink-core/pull/98)
 - Wrapped slider plugin to prevent spacings [#100](https://github.com/allink/allink-core/pull/100)
+- Whole area is now clickable on all teasers, added new include/_button.html snippet which is used [#104](https://github.com/allink/allink-core/pull/104)
 
 #### FIXES
 - Fixed translation for outdated modal [#99](https://github.com/allink/allink-core/pull/99)
