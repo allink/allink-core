@@ -18,12 +18,11 @@ new features or plugins
 #### FIXES
 general bugfixes
 
-## v2.6.3
-#### FIXES
-- removed Query filter from legacy redirect that removed the last character as it led to multiple matches
-
 ## v2.7.0
 #### IMPORTANT
+- Removed contact button from location footer template [#102](https://github.com/allink/allink-core/pull/102)
+    - Use the button plugin to create this button
+    - Adapt template in existing projects if its not overridden
 
 #### NEW
 - Conditionally output slider content [#98](https://github.com/allink/allink-core/pull/98)
@@ -31,6 +30,10 @@ general bugfixes
 
 #### FIXES
 - Fixed translation for outdated modal [#99](https://github.com/allink/allink-core/pull/99)
+
+## v2.6.3
+#### FIXES
+- removed Query filter from legacy redirect that removed the last character as it led to multiple matches
 
 ## v2.6.2
 #### FIXES
