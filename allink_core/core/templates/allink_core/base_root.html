@@ -64,13 +64,13 @@
 
     {{ ALDRYN_SNAKE.render_head }}
 
+    {# Google Tag Manager (hide when in edit mode #}
+    {% if not request.toolbar.show_toolbar %}
+    {% google_tag_manager %}
+    {% endif %}
 </head>
 
 <body id="page-top" class="noscript lang-{{ LANGUAGE_CODE }} {% block body_class %}tpl-root{% endblock %}" {% block body_additional_attributes %}{% endblock body_additional_attributes %}>
-    {# Google Tag Manager (hide when in edit mode #}
-    {% if not request.toolbar.show_toolbar %}
-        {% google_tag_manager %}
-    {% endif %}
 
     {% block skip_links %}
         {# Accessibility: Make sure the anchor IDs are up-to-date #}
