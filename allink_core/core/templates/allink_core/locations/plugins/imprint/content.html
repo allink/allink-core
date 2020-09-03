@@ -4,12 +4,13 @@
 
     <div class="locations-plugin imprint-container {{ instance.css_classes }}">
 
-        <h4 class="heading">{% trans "Betreiber der Webseite" %}</h4>
-
         <div class="text-container">
+            <h4 class="heading">{% trans "Website operator" %}</h4>
+
             {% if object.title %}
-                <p class="footer-container__heading">{% render_model_ajax object "title" %}</p>
+                <p>{% render_model_ajax object "title" %}</p>
             {% endif %}
+
             <p>
                 {% if object.subtitle %}
                     {{object.subtitle}}<br>
@@ -28,7 +29,8 @@
 
             <p>
                 {% if object.email %}
-                    {% include "partials/buttons/link.html" with link_prefix="mailto:" link_url=object.email link_label=object.email link_classes="text" %}<br>
+                    {% trans "E-mail" as link_label %}
+                    {% include "partials/buttons/link.html" with link_prefix="mailto:" link_url=object.email link_label=link_label link_classes="text" %}<br>
                 {% endif %}
                 {% if object.phone %}
                     {% include "partials/buttons/link.html" with link_prefix="tel:" link_url=object.phone link_label=object.phone_formatted link_classes="text" %}<br>
@@ -37,14 +39,13 @@
                     {% include "partials/buttons/link.html" with link_prefix="tel:" link_url=object.mobile link_label=object.mobile_formatted link_classes="text" %}<br>
                 {% endif %}
                 {% if object.fax %}
-                    {% include "partials/buttons/link.html" with link_prefix="tel:" link_url=object.fax link_label=object.fax_formatted link_classes="text" %}<br>
+                    {% include "partials/buttons/link.html" with link_prefix="tel:" link_url=object.fax link_label=object.fax_formatted link_classes="text" %}
                 {% endif %}
             </p>
 
             {% if object.commercial_register_entry %}
-            <p>
-                {% trans 'Commercial register entry' %}: {{ object.commercial_register_entry }}
-            </p>
+                <p class="text-label">{% trans 'Commercial register entry' %}</p>
+                <p>{{ object.commercial_register_entry }}</p>
             {% endif %}
 
         </div>
