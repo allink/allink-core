@@ -73,7 +73,7 @@
 <body id="page-top" class="noscript lang-{{ LANGUAGE_CODE }} {% block body_class %}tpl-root{% endblock %}" {% block body_additional_attributes %}{% endblock body_additional_attributes %}>
 
     {% block skip_links %}
-    {# Accessibility: Make sure the anchor IDs are up-to-date #}
+        {# Accessibility: Make sure the anchor IDs are up-to-date #}
     {% endblock skip_links %}
 
     <span id="current-page-id" style="display: none;" data-current-page="{{ request.current_page.pk }}"></span>
