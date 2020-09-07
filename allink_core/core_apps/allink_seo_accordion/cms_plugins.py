@@ -16,6 +16,17 @@ class CMSAllinkSEOAccordionContainerPlugin(CMSPluginBase):
     allow_children = True
     child_classes = ['CMSAllinkSEOAccordionPlugin']
 
+    def get_fieldsets(self, request, obj=None):
+        fieldsets = (
+            (None, {
+                'fields': (
+                    'is_seo_faq',
+                ),
+            }),
+        )
+
+        return fieldsets
+
     def get_render_template(self, context, instance, placeholder):
         template = 'allink_seo_accordion/content.html'
         return template
