@@ -12,6 +12,8 @@ Each release is divided into the following main categories:
 - NEW: New features or plugins
 - FIXES: General bugfixes
 ## v1.1.2 (next version)
+### NEW
+- SEO accordion plugin now has 'Enable SEO FAQ schema' option to add schema.org compliant markup  [#109](https://github.com/allink/allink-core/pull/109)
 
 ## v1.1.1
 
