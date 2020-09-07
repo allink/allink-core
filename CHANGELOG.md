@@ -33,6 +33,7 @@ general bugfixes
 #### FIXES
 - Fixed translation for outdated modal [#99](https://github.com/allink/allink-core/pull/99)
 - moved Google Tag Manager Code to head [#105](https://github.com/allink/allink-core/pull/105)
+- removed skip links from block as they were non-functional [#107](https://github.com/allink/allink-core/pull/107)
 
 ## v2.6.3
 #### FIXES
