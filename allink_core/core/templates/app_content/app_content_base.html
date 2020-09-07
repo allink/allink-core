@@ -105,6 +105,8 @@
                     {% else %}
                         {% trans "Load More" as link_label %}
                         {% include "partials/buttons/link.html" with link_url=next_page_url link_label=link_label link_classes="app-list__load-more-link btn-load-more ajax-load-items append" link_attributes="data-btn-ajax-loader" %}
+                    {% elif instance.pagination_type == "load_url" %}
+                        {{ instance.load_more_link }}
                     {% endif %}
                 </div>
             {% endif %}

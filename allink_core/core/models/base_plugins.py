@@ -36,12 +36,14 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
     NO = 'no'
     LOAD = 'load'
     LOAD_REST = 'load_rest'
+    LOAD_URL = 'load_url'
     # PAGES = 'pages'
 
     PAGINATION_TYPE = (
         (NO, 'None'),
         (LOAD, 'Add "Load more"-Button'),
         (LOAD_REST, 'Add "Load all"-Button'),
+        (LOAD_URL, 'Add "Custom URL"-Button'),
         # (PAGES, 'Page Navigation'),
     )
 
@@ -166,6 +168,12 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
         max_length=255,
         null=True,
         blank=True
+    )
+    load_more_link = models.URLField(
+        'Custom Load More Link',
+        help_text='Link for Button Below Items if custom URL is chosen',
+        blank=True,
+        null=True,
     )
     detail_link_text = models.CharField(
         'Text for "Detail"-Link',
