@@ -7,3 +7,11 @@
         {% endfor %}
     </div>
 </div>
+
+{% if instance.is_seo_faq %}
+    <script>
+        const htmlcontainer = document.getElementsByTagName('html')[0];
+        htmlcontainer.setAttribute("itemscope", "");
+        htmlcontainer.setAttribute("itemtype", "https://schema.org/FAQPage");
+    </script>
+{% endif %}

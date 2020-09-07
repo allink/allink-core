@@ -28,6 +28,7 @@ general bugfixes
 - Conditionally output slider content [#98](https://github.com/allink/allink-core/pull/98)
 - Wrapped slider plugin to prevent spacings [#100](https://github.com/allink/allink-core/pull/100)
 - Whole area is now clickable on all teasers, added new include/_button.html snippet which is used [#104](https://github.com/allink/allink-core/pull/104)
+- SEO accordion plugin now has 'Enable SEO FAQ schema' option to add schema.org compliant markup  [#108](https://github.com/allink/allink-core/pull/108)
 
 #### FIXES
 - Fixed translation for outdated modal [#99](https://github.com/allink/allink-core/pull/99)
