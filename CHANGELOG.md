@@ -20,6 +20,9 @@ general bugfixes
 
 ## v2.7.0
 #### IMPORTANT
+- Whole area is now clickable on all teasers, added new include/_button.html snippet which is used [#104](https://github.com/allink/allink-core/pull/104)
+    - Replace include 'allink_teaser/tile/_link.html' with include 'allink_teaser/includes/_link.html'
+    - Adapt teaser styles
 - Removed contact button from location footer template [#102](https://github.com/allink/allink-core/pull/102)
     - Use the button plugin to create this button
     - Adapt template in existing projects if its not overridden
@@ -27,7 +30,6 @@ general bugfixes
 #### NEW
 - Conditionally output slider content [#98](https://github.com/allink/allink-core/pull/98)
 - Wrapped slider plugin to prevent spacings [#100](https://github.com/allink/allink-core/pull/100)
-- Whole area is now clickable on all teasers, added new include/_button.html snippet which is used [#104](https://github.com/allink/allink-core/pull/104)
 - Updated locations detail template [#106](https://github.com/allink/allink-core/pull/106)
 - SEO accordion plugin now has 'Enable SEO FAQ schema' option to add schema.org compliant markup  [#108](https://github.com/allink/allink-core/pull/108)
 
