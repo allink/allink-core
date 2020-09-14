@@ -41,13 +41,6 @@
                 {% endif %}
             </p>
 
-
-            {% page_attribute "page_title" "contact-location" as page_title %}
-            <a href="{% page_url "contact-location" %}" class="button-link-plugin__link btn btn-sm btn-ghost footer-details-container__link" data-cms-page data-trigger-softpage>
-                <span class="btn__text">{{ page_title }}</span>
-            </a>
-            {% include "modals/modal-header-markup.html" with title=page_title modal_type="softpage" %}
-
         </div>
 
     </div>

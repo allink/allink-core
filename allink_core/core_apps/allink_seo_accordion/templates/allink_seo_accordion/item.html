@@ -1,13 +1,33 @@
 {% load cms_tags %}
 
-<div class="seo-accordion__item">
-    <a href="#" class="seo-accordion__title" role="presentation">
-        <h3>{{ instance.title }}</h3>
-    </a>
+{% with instance.parent.allink_seo_accordion_allinkseoaccordioncontainerplugin.is_seo_faq as is_seo_faq %}
+    <div class="seo-accordion__item"
+            {% if is_seo_faq %}
+                itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"
+            {% endif %}
+        >
+        <a href="#" class="seo-accordion__title" role="presentation">
+            <h3
+                {% if is_seo_faq %}
+                    itemprop="name"
+                {% endif %}
+            >{{ instance.title }}</h3>
+        </a>
 
-    <div class="seo-accordion__content">
-        {% for plugin in instance.child_plugin_instances %}
-            {% render_plugin plugin %}
-        {% endfor %}
+        <div class="seo-accordion__content"
+            {% if is_seo_faq %}
+                 itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"
+            {% endif %}
+        >
+            {% for plugin in instance.child_plugin_instances %}
+                <div
+                    {% if is_seo_faq %}
+                        itemprop="text"
+                    {% endif %}
+                >
+                {% render_plugin plugin %}
+                </div>
+            {% endfor %}
+        </div>
     </div>
-</div>
+{% endwith %}

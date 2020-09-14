@@ -291,7 +291,7 @@ msgstr "Browser-Hinweis"
 
 #: allink_core/core/templates/allink_core/includes/browser-check.html:7
 msgid "no optimal representation possible"
-msgstr "Keine Optimale Darstellung möglich"
+msgstr "Keine optimale Darstellung möglich"
 
 #: allink_core/core/templates/allink_core/includes/browser-check.html:8
 msgid ""

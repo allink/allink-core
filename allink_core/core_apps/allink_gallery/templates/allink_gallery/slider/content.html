@@ -1,70 +1,76 @@
 {% load cms_tags staticfiles sekizai_tags i18n thumbnail cache %}
 
-<div class="content-plugin gallery-plugin {{ instance.css_classes }}">
-    <div class="swiper-container swiper-default" {% if instance.auto_start_enabled == False %}data-autoplay="false"{% endif %}>
+{% comment %}
+    Plugin is wrapped with a div to prevent spacings from manage-spacings
+{% endcomment %}
+<div>
+    <div class="content-plugin gallery-plugin {{ instance.css_classes }}">
+        <div class="swiper-container swiper-default" {% if instance.auto_start_enabled == False %}data-autoplay="false"{% endif %}>
 
-        <div class="swiper-wrapper">
-        {% if instance.folder %}
-            {% for image in instance.folder_images %}
-                <div class="swiper-slide swiper-slide-{{image.id}}">
-                    {% include "allink_gallery/slider/folder_item.html" with image=image instance=instance %}
-                </div>
-            {% endfor %}
-        {% else %}
-            {% for plugin in instance.child_plugin_instances %}
-                <div class="swiper-slide swiper-slide-{{plugin.id}} gallery-slide">
-                    {% render_plugin plugin %}
-                </div>
-            {% endfor %}
-        {% endif %}
+            <div class="swiper-wrapper">
+            {% if instance.folder %}
+                {% for image in instance.folder_images %}
+                    <div class="swiper-slide swiper-slide-{{image.id}}">
+                        {% include "allink_gallery/slider/folder_item.html" with image=image instance=instance %}
+                    </div>
+                {% endfor %}
+            {% else %}
+                {% for plugin in instance.child_plugin_instances %}
+                    <div class="swiper-slide swiper-slide-{{plugin.id}} gallery-slide">
+                        {% render_plugin plugin %}
+                    </div>
+                {% endfor %}
+            {% endif %}
+            </div>
+
         </div>
 
+        <a href="#" class="swiper-button-prev swiper-button" data-softpage-disabled>
+            <span class="swiper-button__inner swiper-button-prev__inner">
+                <i class="sr-only">
+                    {% trans "Previous Slide" %}
+                </i>
+            </span>
+        </a>
+        <a href="#" class="swiper-button-next swiper-button" data-softpage-disabled>
+            <span class="swiper-button__inner swiper-button-next__inner">
+                <i class="sr-only">
+                    {% trans "Next Slide" %}
+                </i>
+            </span>
+        </a>
+
+        <div class="swiper-optional-container">
+            {# {% if instance.counter_enabled %} #}
+                <div class="swiper-counter">
+                    <span class="swiper-counter__current">1</span>
+                    <span class="swiper-counter__separator"><span class="sr-only">{% trans "of" %}</span></span>
+                    <span class="swiper-counter__total">1</span>
+                </div>
+            {# {% endif %} #}
+
+            {% comment %}
+                {% if instance.fullscreen_enabled %}
+                    <a href="#" class="swiper-button-fullscreen" data-softpage-disabled data-trigger-swiper-fullscreen>
+                        {% trans "Fullscreen Gallery" %}
+                    </a>
+                {% endif %}
+            {% endcomment %}
+        </div>
     </div>
 
-    <a href="#" class="swiper-button-prev swiper-button" data-softpage-disabled>
-        <span class="swiper-button__inner swiper-button-prev__inner">
-            <i class="sr-only">
-                {% trans "Previous Slide" %}
-            </i>
-        </span>
-    </a>
-    <a href="#" class="swiper-button-next swiper-button" data-softpage-disabled>
-        <span class="swiper-button__inner swiper-button-next__inner">
-            <i class="sr-only">
-                {% trans "Next Slide" %}
-            </i>
-        </span>
-    </a>
-
-    <div class="swiper-optional-container">
-        {# {% if instance.counter_enabled %} #}
-            <div class="swiper-counter">
-                <span class="swiper-counter__current">1</span>
-                <span class="swiper-counter__separator"><span class="sr-only">{% trans "of" %}</span></span>
-                <span class="swiper-counter__total">1</span>
-            </div>
-        {# {% endif %} #}
-
-        {% comment %}
-            {% if instance.fullscreen_enabled %}
-                <a href="#" class="swiper-button-fullscreen" data-softpage-disabled data-trigger-swiper-fullscreen>
-                    {% trans "Fullscreen Gallery" %}
-                </a>
+    <div class="swiper-content-container">
+        {% for plugin in instance.child_plugin_instances %}
+            {% if plugin.title or plugin.text %}
+                <div class="swiper-content swiper-content-{{ forloop.counter }} {% if forloop.counter == 1 %}swiper-content--visible{% endif %}">
+                    {% if plugin.title %}
+                        <p class="swiper-content__text">{{ plugin.title }}</p>
+                    {% endif %}
+                    {% if plugin.text %}
+                        <p class="swiper-content__text">{{ plugin.text }}</p>
+                    {% endif %}
+                </div>
             {% endif %}
-        {% endcomment %}
+        {% endfor %}
     </div>
-
-</div>
-
-<div class="swiper-content-container">
-    {% for plugin in instance.child_plugin_instances %}
-    <div class="swiper-content swiper-content-{{ forloop.counter }} {% if forloop.counter == 1 %}swiper-content--visible{% endif %}">
-        {% if plugin.title %}
-            <p class="swiper-content__text">{{ plugin.title }}</p>
-        {% endif %}
-        {% if plugin.text %}
-            <p class="swiper-content__text">{{ plugin.text }}</p>
-        {% endif %}
-    </div>
-    {% endfor %}
 </div>
