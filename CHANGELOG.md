@@ -18,6 +18,10 @@ new features or plugins
 #### FIXES
 general bugfixes
 
+## v2.8.0
+#### NEW
+- Updated README release instructions [#114](https://github.com/allink/allink-core/pull/114)
+
 ## v2.7.0
 #### IMPORTANT
 - Whole area is now clickable on all teasers, added new include/_button.html snippet which is used [#104](https://github.com/allink/allink-core/pull/104)
