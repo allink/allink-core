@@ -33,6 +33,7 @@ general bugfixes
 - Updated locations detail template [#106](https://github.com/allink/allink-core/pull/106)
 - SEO accordion plugin now has 'Enable SEO FAQ schema' option to add schema.org compliant markup [#108](https://github.com/allink/allink-core/pull/108)
 - Updated logic for alt text on images [#110](https://github.com/allink/allink-core/pull/110)
+- Updated README release instructions [#113](https://github.com/allink/allink-core/pull/113)
 
 #### FIXES
 - Fixed translation for outdated modal [#99](https://github.com/allink/allink-core/pull/99)
