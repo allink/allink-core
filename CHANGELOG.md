@@ -21,6 +21,7 @@ general bugfixes
 ## v2.8.0
 #### NEW
 - Updated README release instructions [#114](https://github.com/allink/allink-core/pull/114)
+- Updated mkdoks for new_app command [#115](https://github.com/allink/allink-core/pull/115)
 
 ## v2.7.0
 #### IMPORTANT

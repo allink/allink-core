@@ -4,7 +4,11 @@ This guide describes the fastest way to how you can create an app which inherits
 
 The management command <code>new_app</code> will create a new app in the specified directory.
 ```
-./manage.py new_app my_new_app apps
+./manage.py new_app <app-name> <model-name> <directory>
+```
+It is recommended to use pluralized app-names and singular capitalized model names. Example:
+```
+./manage.py new_app products Produ**ct apps
 ```
 The console output will guide you with the steps needed to get your new app up and running.
 ```
