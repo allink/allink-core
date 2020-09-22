@@ -8,7 +8,7 @@ The management command <code>new_app</code> will create a new app in the specifi
 ```
 It is recommended to use pluralized app-names and singular capitalized model names. Example:
 ```
-./manage.py new_app products Produ**ct apps
+./manage.py new_app products Product apps
 ```
 The console output will guide you with the steps needed to get your new app up and running.
 ```
