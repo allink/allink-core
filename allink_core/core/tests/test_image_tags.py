@@ -1,5 +1,5 @@
 from unittest import mock
-from django.test.testcases import TestCase
+from django.test.testcases import TestCase, override_settings
 from django.template import Context, Template
 from cms import api
 from easy_thumbnails.exceptions import InvalidImageFormatError
@@ -17,7 +17,7 @@ class MockThumbnailer(mock.Mock):
     def get_thumbnail(*args, **kwargs):
         return None
 
-
+""" as reference
 THUMBNAIL_WIDTH_ALIASES = {
     '1-of-1': {
         'xs': {'width': 450, 'ratio': '3-2'},
@@ -48,6 +48,20 @@ THUMBNAIL_WIDTH_ALIASES = {
         'xs': {'width': 450, 'ratio': 'x-y'},
         'sm': {'width': 500, 'ratio': 'x-y'},
         'xl': {'width': 500, 'ratio': 'x-y'}
+    },
+}
+"""
+
+THUMBNAIL_WIDTH_ALIASES_MISSING = {
+    '1-of-1': {
+        'xs': {'width': 450, 'ratio': '3-2'},
+        'sm': {'width': 1200, 'ratio': '3-2'},
+        'xl': {'width': 1500, 'ratio': '3-2'}
+    },
+    '1-of-2': {
+        'xs': {'width': 450, 'ratio': '3-2'},
+        # 'sm': {'width': 650, 'ratio': '3-2'},  missing
+        'xl': {'width': 900, 'ratio': '3-2'}
     },
 }
 
@@ -288,6 +302,28 @@ class ImageTagsImagePluginContextTestCase(TestCase):
 
         self.assertEqual(context.get('ratio_percent_xl'), '{}%'.format(expected_ration))
         self.assertEqual(context.get('ratio_vh_xl'), '{}vh'.format(expected_ration))
+
+    @override_settings(THUMBNAIL_WIDTH_ALIASES=THUMBNAIL_WIDTH_ALIASES_MISSING)
+    def test_missing_width_alias_in_second_render(self):
+        """
+        if two images are rendered on the same page with different width aliases
+        and the second one is missing one size, the context of the first one is used. Which should not be used.
+        """
+        # first render
+        context = render_image(self.context, self.image, width_alias='1-of-1')
+        # use context from first render (ike this is what is the case when calling render_image in a template twice)
+        context = render_image(context, self.image, width_alias='1-of-2')
+        self.assertIsNone(context.get('thumbnail_sm'))
+        
+    def test_picture_id_instance(self):
+        context = render_image(self.context, self.image, width_alias='1-of-1')
+        self.assertEqual(context.get('picture_id'), 'picture-1-1-1500-1000')
+
+    def test_picture_id_instance_none(self):
+        ctx_no_instance = {}
+        context = render_image(ctx_no_instance, self.image, width_alias='1-of-1')
+
+        self.assertEqual(context.get('picture_id'), 'picture-1-1-1500-1000')
 
     @mock.patch('allink_core.core.templatetags.allink_image_tags.get_thumbnailer', MockThumbnailer)
     def test_image_does_not_exist(self):
