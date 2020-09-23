@@ -180,8 +180,7 @@ INSTALLED_APPS = [
     'djangocms_text_ckeditor',
     'filer',
     'easy_thumbnails',
-    'mptt',
-    'aldryn_google_tag_manager'] + ALLINK_INSTALLED_APPS
+    'mptt'] + ALLINK_INSTALLED_APPS
 
 # allink apps which are installed in this project
 INSTALLED_ALLINK_CORE_APPS = [
