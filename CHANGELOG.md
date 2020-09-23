@@ -23,6 +23,9 @@ general bugfixes
 - Updated README release instructions [#114](https://github.com/allink/allink-core/pull/114)
 - Updated mkdoks for new_app command [#115](https://github.com/allink/allink-core/pull/115)
 
+#### FIXES
+- Fixed render_image tag issues with multiple renderings on same site and added unit tests [#116](https://github.com/allink/allink-core/pull/116)
+
 ## v2.7.0
 #### IMPORTANT
 - Whole area is now clickable on all teasers, added new include/_button.html snippet which is used [#104](https://github.com/allink/allink-core/pull/104)
