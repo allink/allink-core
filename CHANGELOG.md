@@ -25,6 +25,7 @@ general bugfixes
 
 #### FIXES
 - Fixed render_image tag issues with multiple renderings on same site and added unit tests [#116](https://github.com/allink/allink-core/pull/116)
+- Fixed autoplay for section videos [#117](https://github.com/allink/allink-core/pull/117)
 
 ## v2.7.0
 #### IMPORTANT
