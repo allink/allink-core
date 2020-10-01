@@ -109,7 +109,7 @@
                         {% var "app-list__load-more-link btn-load-more" as link_classes %}
                         {% var "" as link_attributes %}
                     {% endif %}
-                
+
                     {% if instance.load_more_button_text %}
                         {% include "partials/buttons/link.html" with link_url=next_page_url link_label=instance.load_more_button_text link_classes=link_classes link_attributes=link_attributes %}
                     {% else %}
