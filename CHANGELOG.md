@@ -18,6 +18,10 @@ new features or plugins
 #### FIXES
 general bugfixes
 
+## v2.8.0
+#### DATA MIGRATIONS
+- Added custom link option for pagination button on content plugins [#118](https://github.com/allink/allink-core/pull/118)
+
 ## v2.7.0
 #### IMPORTANT
 - Removed contact button from location footer template [#102](https://github.com/allink/allink-core/pull/102)
