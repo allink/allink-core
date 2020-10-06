@@ -27,6 +27,9 @@ general bugfixes
 - Fixed render_image tag issues with multiple renderings on same site and added unit tests [#116](https://github.com/allink/allink-core/pull/116)
 - Fixed autoplay for section videos [#117](https://github.com/allink/allink-core/pull/117)
 
+#### DATA MIGRATIONS
+- Added custom link option for pagination button on content plugins [#118](https://github.com/allink/allink-core/pull/118)
+
 ## v2.7.0
 #### IMPORTANT
 - Whole area is now clickable on all teasers, added new include/_button.html snippet which is used [#104](https://github.com/allink/allink-core/pull/104)

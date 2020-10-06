@@ -1,4 +1,4 @@
-{% load cms_tags staticfiles sekizai_tags i18n thumbnail %}
+{% load cms_tags staticfiles sekizai_tags i18n thumbnail allink_helpers %}
 
 {% block app_content_plugin_container %}
     <div class="app-list app-content-plugin {{instance.get_model_name}}-plugin app-content-plugin-{{instance.id}} {{instance.css_classes}} {% block app_content_container_additional_classes %}{% endblock app_content_container_additional_classes %}" {% block app_content_container_additional_attributes %}{% endblock app_content_container_additional_attributes %}>
@@ -98,13 +98,23 @@
             Optional: 'Load More'
         {% endcomment %}
         {% block app_content_load_more_container %}
-            {% if instance.pagination_type == "load" or instance.pagination_type == "load_rest" %}
-                <div class="load-more-container" {% if not next_page_url %}style="display:none;"{% endif %}>
+            {% if instance.pagination_type == "load" or instance.pagination_type == "load_rest" or instance.pagination_type == "load_url" %}
+                <div class="grid-border-bottom"></div>
+                <div class="load-more-container" {% if not next_page_url and not instance.pagination_type == "load_url" %}style="display:none;"{% endif %}>
+                    {% var "app-list__load-more-link btn-load-more ajax-load-items append" as link_classes %}
+                    {% var "data-btn-ajax-loader" as link_attributes %}
+
+                    {% if instance.pagination_type == "load_url" %}
+                        {% var instance.load_more_link as next_page_url %}
+                        {% var "app-list__load-more-link btn-load-more" as link_classes %}
+                        {% var "" as link_attributes %}
+                    {% endif %}
+
                     {% if instance.load_more_button_text %}
-                        {% include "partials/buttons/link.html" with link_url=next_page_url link_label=instance.load_more_button_text link_classes="app-list__load-more-link btn-load-more ajax-load-items append" link_attributes="data-btn-ajax-loader" %}
+                        {% include "partials/buttons/link.html" with link_url=next_page_url link_label=instance.load_more_button_text link_classes=link_classes link_attributes=link_attributes %}
                     {% else %}
                         {% trans "Load More" as link_label %}
-                        {% include "partials/buttons/link.html" with link_url=next_page_url link_label=link_label link_classes="app-list__load-more-link btn-load-more ajax-load-items append" link_attributes="data-btn-ajax-loader" %}
+                        {% include "partials/buttons/link.html" with link_url=next_page_url link_label=link_label link_classes=link_classes link_attributes=link_attributes %}
                     {% endif %}
                 </div>
             {% endif %}
