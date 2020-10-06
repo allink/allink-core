@@ -19,11 +19,22 @@ new features or plugins
 general bugfixes
 
 ## v2.8.0
+#### NEW
+- Updated README release instructions [#114](https://github.com/allink/allink-core/pull/114)
+- Updated mkdoks for new_app command [#115](https://github.com/allink/allink-core/pull/115)
+
+#### FIXES
+- Fixed render_image tag issues with multiple renderings on same site and added unit tests [#116](https://github.com/allink/allink-core/pull/116)
+- Fixed autoplay for section videos [#117](https://github.com/allink/allink-core/pull/117)
+
 #### DATA MIGRATIONS
 - Added custom link option for pagination button on content plugins [#118](https://github.com/allink/allink-core/pull/118)
 
 ## v2.7.0
 #### IMPORTANT
+- Whole area is now clickable on all teasers, added new include/_button.html snippet which is used [#104](https://github.com/allink/allink-core/pull/104)
+    - Replace include 'allink_teaser/tile/_link.html' with include 'allink_teaser/includes/_link.html'
+    - Adapt teaser styles
 - Removed contact button from location footer template [#102](https://github.com/allink/allink-core/pull/102)
     - Use the button plugin to create this button
     - Adapt template in existing projects if its not overridden
@@ -31,10 +42,14 @@ general bugfixes
 #### NEW
 - Conditionally output slider content [#98](https://github.com/allink/allink-core/pull/98)
 - Wrapped slider plugin to prevent spacings [#100](https://github.com/allink/allink-core/pull/100)
-- Whole area is now clickable on all teasers, added new include/_button.html snippet which is used [#104](https://github.com/allink/allink-core/pull/104)
+- Updated locations detail template [#106](https://github.com/allink/allink-core/pull/106)
+- SEO accordion plugin now has 'Enable SEO FAQ schema' option to add schema.org compliant markup [#108](https://github.com/allink/allink-core/pull/108)
+- Updated logic for alt text on images [#110](https://github.com/allink/allink-core/pull/110)
 
 #### FIXES
 - Fixed translation for outdated modal [#99](https://github.com/allink/allink-core/pull/99)
+- moved Google Tag Manager Code to head [#105](https://github.com/allink/allink-core/pull/105)
+- removed skip links from block as they were non-functional [#107](https://github.com/allink/allink-core/pull/107)
 
 ## v2.6.3
 #### FIXES

@@ -64,20 +64,16 @@
 
     {{ ALDRYN_SNAKE.render_head }}
 
+    {# Google Tag Manager (hide when in edit mode #}
+    {% if not request.toolbar.show_toolbar %}
+    {% google_tag_manager %}
+    {% endif %}
 </head>
 
 <body id="page-top" class="noscript lang-{{ LANGUAGE_CODE }} {% block body_class %}tpl-root{% endblock %}" {% block body_additional_attributes %}{% endblock body_additional_attributes %}>
-    {# Google Tag Manager (hide when in edit mode #}
-    {% if not request.toolbar.show_toolbar %}
-        {% google_tag_manager %}
-    {% endif %}
 
     {% block skip_links %}
         {# Accessibility: Make sure the anchor IDs are up-to-date #}
-        <a class="skip-link" href="{% url 'pages-root' %}" title="[Alt + 0]" accesskey="0">{% trans "Go to homepage" %}</a>
-        <a class="skip-link" href="#primary-nav" title="[Alt + 1]" accesskey="1">{% trans "Jump to navigation" %}</a>
-        <a class="skip-link" href="#page-content" title="[Alt + 2]" accesskey="2">{% trans "Jump to content" %}</a>
-        <a class="skip-link" href="#page-footer" title="[Alt + 3]" accesskey="3">{% trans "Jump to footer" %}</a>
     {% endblock skip_links %}
 
     <span id="current-page-id" style="display: none;" data-current-page="{{ request.current_page.pk }}"></span>
