@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-19 18:29+0100\n"
+"POT-Creation-Date: 2020-10-15 15:52+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -69,7 +69,6 @@ msgstr ""
 
 #: allink_core/core/models/fields_model.py:286
 #: allink_core/core/models/fields_model.py:629
-#: allink_core/core/templates/allink_core/people/plugins/contact_details/content.html:36
 msgid "Phone"
 msgstr "Téléphone"
 
@@ -185,25 +184,9 @@ msgstr ""
 msgid "Save and continue editing"
 msgstr ""
 
-#: allink_core/core/templates/allink_core/base_root.html:82
-msgid "Go to homepage"
-msgstr ""
-
-#: allink_core/core/templates/allink_core/base_root.html:83
-msgid "Jump to navigation"
-msgstr ""
-
-#: allink_core/core/templates/allink_core/base_root.html:84
-msgid "Jump to content"
-msgstr ""
-
-#: allink_core/core/templates/allink_core/base_root.html:85
-msgid "Jump to footer"
-msgstr ""
-
-#: allink_core/core/templates/allink_core/base_root.html:130
+#: allink_core/core/templates/allink_core/base_root.html:123
 #: allink_core/core/templates/allink_core/modals/modal-header-markup.html:19
-#: allink_core/core/templates/partials/forms/form_base.html:48
+#: allink_core/core/templates/partials/forms/form_base.html:51
 msgid "Close"
 msgstr ""
 
@@ -285,23 +268,27 @@ msgstr ""
 msgid "No files were found in the specified folder."
 msgstr ""
 
-#: allink_core/core/templates/allink_core/includes/browser-check.html:6
+#: allink_core/core/templates/allink_core/includes/browser-check.html:11
 msgid "Browser Info"
 msgstr ""
 
-#: allink_core/core/templates/allink_core/includes/browser-check.html:7
+#: allink_core/core/templates/allink_core/includes/browser-check.html:12
 msgid "no optimal representation possible"
 msgstr ""
 
-#: allink_core/core/templates/allink_core/includes/browser-check.html:8
+#: allink_core/core/templates/allink_core/includes/browser-check.html:13
 msgid ""
 "Your web browser does not provide an optimal representation of our website. "
 "This means that some functions may not work or the view may be incorrect. We "
 "recommend that you use a current browser."
 msgstr ""
 
-#: allink_core/core/templates/allink_core/includes/browser-check.html:12
+#: allink_core/core/templates/allink_core/includes/browser-check.html:17
 msgid "Visit Anyways"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/includes/browser-check.html:19
+msgid "Get Chrome"
 msgstr ""
 
 #: allink_core/core/templates/allink_core/includes/header/header.html:23
@@ -325,20 +312,25 @@ msgid "Contact"
 msgstr ""
 
 #: allink_core/core/templates/allink_core/locations/plugins/details/content.html:27
-#: allink_core/core/templates/allink_core/locations/plugins/details_and_map/content.html:57
-#: allink_core/core/templates/allink_core/locations/plugins/details_and_map/content.html:121
-#: allink_core/core/templates/allink_core/locations/plugins/imprint/content.html:26
+#: allink_core/core/templates/allink_core/locations/plugins/details_and_map/content.html:58
+#: allink_core/core/templates/allink_core/locations/plugins/details_and_map/content.html:124
+#: allink_core/core/templates/allink_core/locations/plugins/imprint/content.html:25
 #: allink_core/core/templates/allink_core/locations/plugins/map/content.html:56
 msgid "Directions"
 msgstr ""
 
 #: allink_core/core/templates/allink_core/locations/plugins/details/content.html:50
-#: allink_core/core/templates/allink_core/locations/plugins/details_and_map/content.html:61
+#: allink_core/core/templates/allink_core/locations/plugins/details_and_map/content.html:64
 msgid "Opening hours"
 msgstr ""
 
-#: allink_core/core/templates/allink_core/locations/plugins/details/content.html:56
+#: allink_core/core/templates/allink_core/locations/plugins/details/content.html:59
+#: allink_core/core/templates/allink_core/locations/plugins/details/content.html:62
 msgid "h"
+msgstr ""
+
+#: allink_core/core/templates/allink_core/locations/plugins/details/content.html:70
+msgid "Holidays"
 msgstr ""
 
 #: allink_core/core/templates/allink_core/locations/plugins/details_and_map/content.html:46
@@ -353,11 +345,15 @@ msgstr ""
 msgid "Fax:"
 msgstr ""
 
-#: allink_core/core/templates/allink_core/locations/plugins/imprint/content.html:7
-msgid "Betreiber der Webseite"
+#: allink_core/core/templates/allink_core/locations/plugins/imprint/content.html:8
+msgid "Website operator"
 msgstr ""
 
-#: allink_core/core/templates/allink_core/locations/plugins/imprint/content.html:49
+#: allink_core/core/templates/allink_core/locations/plugins/imprint/content.html:32
+msgid "E-mail"
+msgstr "E-Mail"
+
+#: allink_core/core/templates/allink_core/locations/plugins/imprint/content.html:47
 msgid "Commercial register entry"
 msgstr ""
 
@@ -382,12 +378,9 @@ msgid "No people found with the applied filters."
 msgstr ""
 
 #: allink_core/core/templates/allink_core/people/plugins/contact_details/content.html:33
+#: allink_core/core/templates/allink_core/people/plugins/grid_static/_items.html:32
 msgid "E-Mail"
 msgstr ""
-
-#: allink_core/core/templates/allink_core/people/plugins/grid_static/_items.html:31
-msgid "E-mail"
-msgstr "E-Mail"
 
 #: allink_core/core/templates/allink_core/widgets/sortedm2m_widget.html:4
 msgid "Type into this box to filter down the list."
@@ -405,7 +398,7 @@ msgstr ""
 msgid "All"
 msgstr "Tous"
 
-#: allink_core/core/templates/app_content/app_content_base.html:117
+#: allink_core/core/templates/app_content/app_content_base.html:127
 msgid "Load More"
 msgstr "Mehr"
 
@@ -443,7 +436,7 @@ msgstr ""
 msgid "Add plugin to"
 msgstr ""
 
-#: allink_core/core/views.py:135
+#: allink_core/core/views.py:133
 msgid "The requested content is not published."
 msgstr "La page recherchée n'existe pas."
 
