@@ -24,6 +24,7 @@ general bugfixes
 - Updated mkdoks for new_app command [#115](https://github.com/allink/allink-core/pull/115)
 - Updated get chrome translation [#119](https://github.com/allink/allink-core/pull/119)
 - Added lazy attribute to iframe embeds [#120](https://github.com/allink/allink-core/pull/120)
+- Added external link to teaser plugin [#123](https://github.com/allink/allink-core/pull/123)
 
 #### FIXES
 - Fixed render_image tag issues with multiple renderings on same site and added unit tests [#116](https://github.com/allink/allink-core/pull/116)
