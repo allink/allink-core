@@ -13,7 +13,7 @@
                     {{object.subtitle}}<br>
                 {% endif %}
                 {% if object.street and object.zip_code or object.place %}
-                    <a class="site-footer__link" href="{{object.map_link}}" target="_blank">
+                    <a class="site-footer__link" href="{{object.map_link}}" target="_blank" rel="noopener">
                 {% endif %}
                     {% if object.street %}
                         {{object.street}} {{object.street_nr}}<br>
