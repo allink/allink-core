@@ -10,7 +10,6 @@ from djangocms_text_ckeditor.fields import HTMLField
 from allink_core.core.utils import get_additional_templates
 from allink_core.core.models.fields import CMSPluginField
 from allink_core.core_apps.allink_categories.models import AllinkCategory
-from cms.forms.fields import PageSelectFormField
 
 __all__ = [
     'AllinkBaseAppContentPlugin',
@@ -170,26 +169,6 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
         null=True,
         blank=True
     )
-    load_more_link = models.URLField(
-        'Custom Load More Link',
-        help_text='Link for Button Below Items if custom URL is chosen',
-        blank=True,
-        null=True,
-    )
-    # load_more_internallink = PageField(
-    #     verbose_name='Custom Load More Link',
-    #     help_text='Link for Button Below Items if custom URL is chosen',
-    #     blank=True,
-    #     null=True,
-    # )
-    load_more_internallink = models.ForeignKey(
-        'cms.Page',
-        # defaults={'form_class': PageSelectFormField},
-        on_delete=models.CASCADE,
-        blank=True,
-        null=True,
-    )
-
     detail_link_text = models.CharField(
         'Text for "Detail"-Link',
         help_text=

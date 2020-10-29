@@ -21,6 +21,7 @@ from allink_core.core.models import (
 )
 from allink_core.core.models.choices import SALUTATION_CHOICES
 from allink_core.core.loading import get_class
+from cms.models.fields import PageField
 
 
 AllinkPeopleManager = get_class('people.managers', 'AllinkPeopleManager')
@@ -138,6 +139,13 @@ class BasePeopleAppContentPlugin(AllinkBaseAppContentPlugin):
         blank=True,
         on_delete=models.PROTECT,
         help_text='If provided, this Apphook-Page will be used to generate the detail link.',
+    )
+    load_more_internallink = PageField(
+        verbose_name='Custom Load More Link',
+        help_text='Link for Button Below Items if custom URL is chosen',
+        related_name="load_more_internallink_people",
+        blank=True,
+        null=True,
     )
 
     class Meta:
