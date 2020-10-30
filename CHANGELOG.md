@@ -19,6 +19,23 @@ new features or plugins
 general bugfixes
 
 ## v2.8.0
+####IMPORTANT
+
+- Added load_more_internallink to AppContentPlugin.
+    - add following code to ```models.py``` on each project based app within  
+    ```class APP_NAMEAppContentPlugin(AllinkBaseAppContentPlugin)``` (replace APP_LABEL with actual app label):
+        ```
+        load_more_internallink = PageField(
+            verbose_name='Custom Load More Link',
+            help_text='Link for Button Below Items if custom URL is chosen',
+            related_name="load_more_internallink_APP_LABEL",
+            blank=True,
+            null=True,
+        )
+        ```
+    - hint: search for ```apphook_page = PageField``` and place below in all model files.
+    - run migrations
+
 #### NEW
 - Updated README release instructions [#114](https://github.com/allink/allink-core/pull/114)
 - Updated mkdoks for new_app command [#115](https://github.com/allink/allink-core/pull/115)
@@ -31,7 +48,7 @@ general bugfixes
 - Added rel noopener to locations footer template [#121](https://github.com/allink/allink-core/pull/121)
 
 #### DATA MIGRATIONS
-- Added custom link option for pagination button on content plugins [#118](https://github.com/allink/allink-core/pull/118)
+- Added custom link option for pagination button on content plugins [~~#118~~(reverted)](https://github.com/allink/allink-core/pull/118) [#124](https://github.com/allink/allink-core/pull/124)
 
 ## v2.7.0
 #### IMPORTANT
