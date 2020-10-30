@@ -32,6 +32,7 @@ general bugfixes
 
 #### DATA MIGRATIONS
 - Added custom link option for pagination button on content plugins [#118](https://github.com/allink/allink-core/pull/118)
+- Removed contact migration [#125](https://github.com/allink/allink-core/pull/125)
 
 ## v2.7.0
 #### IMPORTANT
