@@ -1,6 +1,6 @@
 {% load allink_image_tags %}
 <div class="teaser teaser--bg-image">
-    <a href="{{ teaser_link }}" class="teaser__tile-link" {{ instance.attributes }}>
+    {% include 'allink_teaser/includes/_link-begin.html' %}
         <div class="teaser__image">
             {% render_image image=teaser_image alt_text=teaser_title width_alias='parallax' %}
         </div>
@@ -9,12 +9,7 @@
             {% include 'allink_teaser/includes/_technical-title.html' with teaser_title=teaser_title %}
             {% include 'allink_teaser/includes/_title.html' with teaser_title=teaser_title %}
             {% include 'allink_teaser/includes/_description.html' with teaser_description=teaser_description %}
-
-            {% if instance.softpage_enabled %}
-                {% include 'allink_teaser/includes/_button.html' with teaser_link=teaser_link teaser_link_text=teaser_link_text icon="softpage" teaser_link_classes="btn btn-inverted" %}
-            {% else %}
-                {% include "allink_teaser/includes/_button.html" with teaser_link=teaser_link teaser_link_text=teaser_link_text teaser_link_classes="btn btn-inverted" %}
-            {% endif %}
+            {% include 'allink_teaser/includes/_button-wrapper.html' %}
         </div>
-    </a>
+    {% include 'allink_teaser/includes/_link-end.html' %}
 </div>
