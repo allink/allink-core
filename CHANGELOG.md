@@ -33,7 +33,7 @@ general bugfixes
 
 #### DATA MIGRATIONS
 - Added custom link option for pagination button on content plugins [#118](https://github.com/allink/allink-core/pull/118)
-
+- Added migrations to counter a not null constraint issue in production [#126](https://github.com/allink/allink-core/pull/126)
 ## v2.7.0
 #### IMPORTANT
 - Whole area is now clickable on all teasers, added new include/_button.html snippet which is used [#104](https://github.com/allink/allink-core/pull/104)
