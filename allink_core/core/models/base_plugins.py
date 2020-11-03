@@ -321,13 +321,9 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
             return queryset.title_desc()
         # category
         elif self.manual_ordering == AllinkBaseAppContentPlugin.CATEGORY:
-            # return queryset.category()
             # https://code.djangoproject.com/ticket/24218
-            distinct_entries = []
-            for entry in queryset.category():
-                if entry not in distinct_entries:
-                    distinct_entries.append(entry)
-            return distinct_entries
+            # To remove duplicates in queryset and return a queryset instead of a list as there can be further filtering
+            return queryset.model.objects.filter(id__in=set(queryset.category().values_list('id', flat=True)))
         else:
             return queryset.distinct()
 
