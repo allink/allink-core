@@ -50,6 +50,7 @@ general bugfixes
 - Changed logic for manual ordering after category so it returns a queryset instead of a list [#127](https://github.com/allink/allink-core/pull/127)
 - Added migrations to counter a not null constraint issue in production [#126](https://github.com/allink/allink-core/pull/126)
 - Removed migrations from previous PR [#124](https://github.com/allink/allink-core/pull/124) and redid them to consecutive migrations [#128](https://github.com/allink/allink-core/pull/128)
+- Fixed teaser links to internal softpages [#129](https://github.com/allink/allink-core/pull/129)
 - Removed contact migration [#125](https://github.com/allink/allink-core/pull/125) 
     - if you upgrade an existing project with this the contact migration file will not be deleted
     
