@@ -6,7 +6,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('config', '0003_auto_20200124_1010'),
+        ('config', '0004_allinktitleextension_teaser_link_url'),
     ]
 
     operations = [

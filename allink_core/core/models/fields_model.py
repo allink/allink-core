@@ -227,6 +227,14 @@ class AllinkTeaserTranslatedFieldsModel(models.Model):
         default=''
     )
 
+    teaser_link_url = models.URLField(
+        verbose_name='External link',
+        blank=True,
+        null=True,
+        help_text='Provide a valid URL to an external website.',
+        max_length=500,
+    )
+
     class Meta:
         abstract = True
 

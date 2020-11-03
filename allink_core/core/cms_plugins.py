@@ -166,7 +166,7 @@ class CMSAllinkBaseAppContentPlugin(AllinkMediaAdminMixin, CMSPluginBase):
             ),
             'fields': (
                 ('pagination_type', 'load_more_button_text'),
-                'load_more_link',
+                'load_more_internallink',
             )
         }),
 

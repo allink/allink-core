@@ -19,21 +19,42 @@ new features or plugins
 general bugfixes
 
 ## v2.8.0
+####IMPORTANT
+
+- Added load_more_internallink to AppContentPlugin.
+    - add following code to ```models.py``` on each project based app within  
+    ```class APP_NAMEAppContentPlugin(AllinkBaseAppContentPlugin)``` (replace APP_LABEL with actual app label):
+        ```
+        load_more_internallink = PageField(
+            verbose_name='Custom Load More Link',
+            help_text='Link for Button Below Items if custom URL is chosen',
+            related_name="load_more_internallink_APP_LABEL",
+            blank=True,
+            null=True,
+        )
+        ```
+    - hint: search for ```apphook_page = PageField``` and place below in all model files.
+    - run migrations
+
 #### NEW
 - Updated README release instructions [#114](https://github.com/allink/allink-core/pull/114)
 - Updated mkdoks for new_app command [#115](https://github.com/allink/allink-core/pull/115)
 - Updated get chrome translation [#119](https://github.com/allink/allink-core/pull/119)
 - Added lazy attribute to iframe embeds [#120](https://github.com/allink/allink-core/pull/120)
+- Added external link to teaser plugin [#123](https://github.com/allink/allink-core/pull/123)
 
 #### FIXES
 - Fixed render_image tag issues with multiple renderings on same site and added unit tests [#116](https://github.com/allink/allink-core/pull/116)
 - Fixed autoplay for section videos [#117](https://github.com/allink/allink-core/pull/117)
 - Added rel noopener to locations footer template [#121](https://github.com/allink/allink-core/pull/121)
+- Changed logic for manual ordering after category so it returns a queryset instead of a list [#127](https://github.com/allink/allink-core/pull/127)
+- Added migrations to counter a not null constraint issue in production [#126](https://github.com/allink/allink-core/pull/126)
+- Removed migrations from previous PR [#124](https://github.com/allink/allink-core/pull/124) and redid them to consecutive migrations [#128](https://github.com/allink/allink-core/pull/128)
 - Removed contact migration [#125](https://github.com/allink/allink-core/pull/125) 
     - if you upgrade an existing project with this the contact migration file will not be deleted
-
+    
 #### DATA MIGRATIONS
-- Added custom link option for pagination button on content plugins [#118](https://github.com/allink/allink-core/pull/118)
+- Added custom link option for pagination button on content plugins [~~#118~~(reverted)](https://github.com/allink/allink-core/pull/118) [#124](https://github.com/allink/allink-core/pull/124)
 
 ## v2.7.0
 #### IMPORTANT
