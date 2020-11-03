@@ -169,12 +169,6 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
         null=True,
         blank=True
     )
-    load_more_link = models.URLField(
-        'Custom Load More Link',
-        help_text='Link for Button Below Items if custom URL is chosen',
-        blank=True,
-        null=True,
-    )
     detail_link_text = models.CharField(
         'Text for "Detail"-Link',
         help_text=
