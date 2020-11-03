@@ -29,10 +29,11 @@ general bugfixes
 - Fixed render_image tag issues with multiple renderings on same site and added unit tests [#116](https://github.com/allink/allink-core/pull/116)
 - Fixed autoplay for section videos [#117](https://github.com/allink/allink-core/pull/117)
 - Added rel noopener to locations footer template [#121](https://github.com/allink/allink-core/pull/121)
+- Removed contact migration [#125](https://github.com/allink/allink-core/pull/125) 
+    - if you upgrade an existing project with this the contact migration file will not be deleted
 
 #### DATA MIGRATIONS
 - Added custom link option for pagination button on content plugins [#118](https://github.com/allink/allink-core/pull/118)
-- Removed contact migration [#125](https://github.com/allink/allink-core/pull/125)
 
 ## v2.7.0
 #### IMPORTANT
