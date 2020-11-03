@@ -48,9 +48,11 @@ general bugfixes
 - Fixed autoplay for section videos [#117](https://github.com/allink/allink-core/pull/117)
 - Added rel noopener to locations footer template [#121](https://github.com/allink/allink-core/pull/121)
 - Changed logic for manual ordering after category so it returns a queryset instead of a list [#127](https://github.com/allink/allink-core/pull/127)
-#### DATA MIGRATIONS
-- Added custom link option for pagination button on content plugins [#118](https://github.com/allink/allink-core/pull/118)
 - Added migrations to counter a not null constraint issue in production [#126](https://github.com/allink/allink-core/pull/126)
+- Removed migrations from previous PR [#124](https://github.com/allink/allink-core/pull/124) and redid them to consecutive migrations [#128](https://github.com/allink/allink-core/pull/128)
+
+#### DATA MIGRATIONS
+- Added custom link option for pagination button on content plugins [~~#118~~(reverted)](https://github.com/allink/allink-core/pull/118) [#124](https://github.com/allink/allink-core/pull/124)
 
 ## v2.7.0
 #### IMPORTANT
