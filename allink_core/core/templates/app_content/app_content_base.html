@@ -105,7 +105,7 @@
                     {% var "data-btn-ajax-loader" as link_attributes %}
 
                     {% if instance.pagination_type == "load_url" %}
-                        {% var instance.load_more_link as next_page_url %}
+                        {% var instance.load_more_internallink.get_absolute_url as next_page_url %}
                         {% var "app-list__load-more-link btn-load-more" as link_classes %}
                         {% var "" as link_attributes %}
                     {% endif %}
