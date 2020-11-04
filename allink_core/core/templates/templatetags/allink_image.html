@@ -37,7 +37,8 @@
             src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
             {% if alt_text %}alt="{{ alt_text }}"
             {% elif instance.picture.default_alt_text %}alt="{{ instance.picture.default_alt_text }}"
-            {% elif instance.picture.name %}alt="{{ instance.picture.name }}"{% endif %}
+            {% elif instance.picture.name %}alt="{{ instance.picture.name }}"
+            {% else %}alt=""{% endif %}
             {{ instance.attributes_str }}
         >
 
