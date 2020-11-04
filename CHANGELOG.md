@@ -19,7 +19,7 @@ new features or plugins
 general bugfixes
 
 ## v2.8.0
-####IMPORTANT
+#### IMPORTANT
 
 - Added load_more_internallink to AppContentPlugin.
     - add following code to ```models.py``` on each project based app within  
