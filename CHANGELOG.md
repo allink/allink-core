@@ -43,6 +43,7 @@ general bugfixes
 - Added lazy attribute to iframe embeds [#120](https://github.com/allink/allink-core/pull/120)
 - Added external link to teaser plugin [#123](https://github.com/allink/allink-core/pull/123)
 - Added alt attribute in any case [#130](https://github.com/allink/allink-core/pull/130)
+- Unlinked Brand Logo on browser outdated page [#131](https://github.com/allink/allink-core/pull/131)
 
 #### FIXES
 - Fixed render_image tag issues with multiple renderings on same site and added unit tests [#116](https://github.com/allink/allink-core/pull/116)
