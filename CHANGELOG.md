@@ -55,6 +55,7 @@ general bugfixes
 - Fixed teaser links to internal softpages [#129](https://github.com/allink/allink-core/pull/129)
 - Removed contact migration [#125](https://github.com/allink/allink-core/pull/125) 
     - if you upgrade an existing project with this the contact migration file will not be deleted
+- Hide inactive elements in sitemap [#132](https://github.com/allink/allink-core/pull/132)
     
 #### DATA MIGRATIONS
 - Added custom link option for pagination button on content plugins [~~#118~~(reverted)](https://github.com/allink/allink-core/pull/118) [#124](https://github.com/allink/allink-core/pull/124)
