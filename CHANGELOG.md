@@ -19,7 +19,7 @@ new features or plugins
 general bugfixes
 
 ## v2.7.1
-#### IMPORTANT
+#### FIXES
 - Fix autoplay for section videos [#117](https://github.com/allink/allink-core/pull/117)
 - Hide inactive items from sitemap [#132](https://github.com/allink/allink-core/pull/132)
 - Move noscript part of tag manager to body [#133](https://github.com/allink/allink-core/pull/133)
