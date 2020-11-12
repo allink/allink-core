@@ -55,7 +55,7 @@ general bugfixes
 - Removed contact migration [#125](https://github.com/allink/allink-core/pull/125) 
     - if you upgrade an existing project with this the contact migration file will not be deleted
 - Hide inactive elements in sitemap [#132](https://github.com/allink/allink-core/pull/132)
-- Moved noscript part of tag manager to body [#133](https://github.com/allink/allink-core/pull/133)
+- Moved noscript part of tag manager to body [#133](https://github.com/allink/allink-core/pull/133), [#136](https://github.com/allink/allink-core/pull/136)
     
 #### DATA MIGRATIONS
 - Added custom link option for pagination button on content plugins [~~#118~~(reverted)](https://github.com/allink/allink-core/pull/118) [#124](https://github.com/allink/allink-core/pull/124)
