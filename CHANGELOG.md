@@ -41,7 +41,6 @@ general bugfixes
 - Updated mkdoks for new_app command [#115](https://github.com/allink/allink-core/pull/115)
 - Updated get chrome translation [#119](https://github.com/allink/allink-core/pull/119)
 - Added lazy attribute to iframe embeds [#120](https://github.com/allink/allink-core/pull/120)
-- Added external link to teaser plugin [#123](https://github.com/allink/allink-core/pull/123)
 - Added alt attribute in any case [#130](https://github.com/allink/allink-core/pull/130)
 - Unlinked Brand Logo on browser outdated page [#131](https://github.com/allink/allink-core/pull/131)
 
@@ -59,6 +58,8 @@ general bugfixes
     
 #### DATA MIGRATIONS
 - Added custom link option for pagination button on content plugins [~~#118~~(reverted)](https://github.com/allink/allink-core/pull/118) [#124](https://github.com/allink/allink-core/pull/124)
+- Added external link to teaser plugin [#123](https://github.com/allink/allink-core/pull/123)
+- Added with alias to gallery plugin [#134](https://github.com/allink/allink-core/pull/134)
 
 ## v2.7.0
 #### IMPORTANT
