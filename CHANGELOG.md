@@ -18,6 +18,12 @@ new features or plugins
 #### FIXES
 general bugfixes
 
+## v2.7.1
+#### IMPORTANT
+- Fix autoplay for section videos [#117](https://github.com/allink/allink-core/pull/117)
+- Hide inactive items from sitemap [#132](https://github.com/allink/allink-core/pull/132)
+- Move noscript part of tag manager to body [#133](https://github.com/allink/allink-core/pull/133)
+
 ## v2.7.0
 #### IMPORTANT
 - Whole area is now clickable on all teasers, added new include/_button.html snippet which is used [#104](https://github.com/allink/allink-core/pull/104)
