@@ -46,4 +46,6 @@ class HrefLangSitemap(Sitemap):
                     'lang': lang,
                     'href': '{}{}'.format(base_url(), item.get_absolute_url(language=lang))
                 })
+                url['active'] = item.status
+
         return urls
