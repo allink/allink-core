@@ -6,7 +6,7 @@ from django.conf import settings
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
 from webpack_loader.utils import get_files
-from allink_core.core.utils import get_ratio_choices, get_additional_choices
+from allink_core.core.utils import get_ratio_choices, get_additional_choices, get_image_width_alias_choices
 from allink_core.core_apps.allink_gallery.models import AllinkGalleryPlugin, AllinkGalleryImagePlugin
 from allink_core.core.loading import get_model
 from allink_core.core.admin.mixins import AllinkMediaAdminMixin
@@ -38,6 +38,15 @@ class AllinkGalleryPluginForm(forms.ModelForm):
                 widget=forms.CheckboxSelectMultiple(),
                 label='Predifined variations',
                 choices=get_additional_choices('GALLERY_CSS_CLASSES'),
+                required=False,
+            )
+
+        if get_image_width_alias_choices():
+            self.fields['width_alias'] = forms.CharField(
+                label='Width Alias',
+                help_text=('This option overrides the default image width_alias set for images in a column of a '
+                           'content section.'),
+                widget=forms.Select(choices=get_image_width_alias_choices()),
                 required=False,
             )
 
@@ -81,10 +90,10 @@ class CMSAllinkGalleryPlugin(AllinkMediaAdminMixin, CMSPluginBase):
             }),
             ('Slider Options', {
                 'fields': [
-                    'ratio',
                     'fullscreen_enabled',
                     'counter_enabled',
                     'auto_start_enabled',
+                    'ratio',
                 ]
             }),
             ('Advanced Options', {
@@ -94,6 +103,9 @@ class CMSAllinkGalleryPlugin(AllinkMediaAdminMixin, CMSPluginBase):
                 )
             })
         )
+
+        if get_image_width_alias_choices():
+            fieldsets[1][1].get('fields').append('width_alias')
 
         return fieldsets
 
