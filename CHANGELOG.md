@@ -18,6 +18,10 @@ new features or plugins
 #### FIXES
 general bugfixes
 
+## v2.7.2
+#### FIXES
+- Fixed tagmanager ID [#136](https://github.com/allink/allink-core/pull/136)
+
 ## v2.7.1
 #### FIXES
 - Fix autoplay for section videos [#117](https://github.com/allink/allink-core/pull/117)

@@ -73,7 +73,7 @@
 <body id="page-top" class="noscript lang-{{ LANGUAGE_CODE }} {% block body_class %}tpl-root{% endblock %}" {% block body_additional_attributes %}{% endblock body_additional_attributes %}>
     {# Google Tag Manager (noscript part must be in body) #}
     {% if not request.toolbar.show_toolbar %}
-        <noscript><iframe src="//www.googletagmanager.com/ns.html?id={{ tag_id }}" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <noscript><iframe src="//www.googletagmanager.com/ns.html?id={% settings_value 'GOOGLE_TAG_MANAGER_ID' %}" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     {% endif %}
 
     {% block skip_links %}
