@@ -1,0 +1,42 @@
+{% load i18n widget_tweaks allink_form_tags static %}
+<div class="dummy-app-signup-plugin">
+    <div class="dummy-app-signup-plugin__content">
+        <div class="dummy-app-signup-plugin__form_text text-container">
+            <p>{{ instance.form_text }}</p>
+        </div>
+        <form
+                novalidate
+                method="POST"
+                action="{{ action }}"
+                id="dummy-app-signup-form"
+                data-success-url="{{ success_url }}"
+                class="dummy-app-signup-form form-default ajax-form validate-form"
+                data-success-data-layer-event="dummy-app-signup.sent">
+            {% if csrf_token_value %}
+                <input type='hidden' name='csrfmiddlewaretoken' value='{{ csrf_token_value }}'/>
+            {% else %}
+                {% if not method == "get" %}{% csrf_token %}{% endif %}
+            {% endif %}
+
+            <div class="dummy-app-signup-form__section">
+                <div class="dummy-app-signup-form__row dummy-app-signup-form__row--full-width">
+                    {% include 'partials/forms/form_field.html' with field=form.salutation %}
+                </div>
+                <div class="dummy-app-signup-form__row dummy-app-signup-form__row--full-width">
+                    {% include 'partials/forms/form_field.html' with field=form.first_name placeholder_enabled=True %}
+                </div>
+                <div class="dummy-app-signup-form__row dummy-app-signup-form__row--full-width">
+                    {% include 'partials/forms/form_field.html' with field=form.last_name placeholder_enabled=True %}
+                </div>
+                <div class="dummy-app-signup-form__row dummy-app-signup-form__row--full-width">
+                    {% include 'partials/forms/form_field.html' with field=form.place placeholder_enabled=True %}
+                </div>
+                <div class="dummy-app-signup-form__row dummy-app-signup-form__row--full-width">
+                    {% include 'partials/forms/form_field.html' with field=form.email placeholder_enabled=True %}
+                </div>
+                {% trans "Submit" as link_label %}
+                {% include "partials/buttons/link.html" with link_url="javascript:$('#dummy-app-signup-form').submit()" link_label=link_label link_classes="dummy-app-signup-form__btn btn btn-primary" link_attributes='type="submit" id="dummy-app-signup-form-button" rel="noopener" role="button"' %}
+            </div>
+        </form>
+    </div>
+</div>

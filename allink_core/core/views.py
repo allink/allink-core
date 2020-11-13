@@ -176,7 +176,7 @@ class AllinkBasePluginAjaxFormView(FormView):
         adds the plugin instance from the plugin_id kwargs
         """
         self.plugin_instance = self.plugin_model.objects.get(id=plugin_id)
-        _, self.plugin = self.plugin_instance.get_plugin_instance()
+        self.plugin = self.plugin_instance.get_plugin_class_instance()
 
         return super().post(request, *args, **kwargs)
 
