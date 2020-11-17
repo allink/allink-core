@@ -285,5 +285,6 @@ class AllinkTeaserMixin:
             'teaser_image': get_fallback(self, 'teaser_image'),
             'teaser_link_text': get_fallback(self, 'teaser_link_text'),
             'teaser_link': self.get_absolute_url(),
+            'teaser_link_url': self.teaser_link_url,
         }
         return teaser_context
