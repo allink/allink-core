@@ -101,6 +101,7 @@ class AllinkTeaserAdminMixin:
                     'teaser_technical_title',
                     'teaser_description',
                     'teaser_link_text',
+                    'teaser_link_url',
                 )
             }),
         )
