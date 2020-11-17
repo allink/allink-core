@@ -45,6 +45,7 @@ class NewsAdmin(AllinkMediaAdminMixin, AllinkSEOAdminMixin, AllinkCategoryAdminM
                     'template',
                     'preview_image',
                     'lead',
+                    'teaser_link_url',
                 )
             }),
         )

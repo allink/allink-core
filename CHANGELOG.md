@@ -62,6 +62,7 @@ general bugfixes
 - Added external link to teaser plugin [#123](https://github.com/allink/allink-core/pull/123)
     -  refactored logic so external link is stronger than internal [#139](https://github.com/allink/allink-core/pull/139)
     -  added data-softpage-disabled attribute to link-begin when external link is given [#140](https://github.com/allink/allink-core/pull/140)
+    -  added teaser_link_url to admin on news [#141](https://github.com/allink/allink-core/pull/141)
 - Added with alias to gallery plugin [#134](https://github.com/allink/allink-core/pull/134)
 
 ## v2.7.0
