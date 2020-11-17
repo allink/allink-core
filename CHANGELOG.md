@@ -64,6 +64,7 @@ general bugfixes
     -  added data-softpage-disabled attribute to link-begin when external link is given [#140](https://github.com/allink/allink-core/pull/140)
     -  added teaser_link_url to teaser admin mixin [#141](https://github.com/allink/allink-core/pull/141)
     -  added teaser_link_url to news item templates [#142](https://github.com/allink/allink-core/pull/142)
+    -  added teaser_link_url to teaser_dict property [#142](https://github.com/allink/allink-core/pull/142)
 - Added with alias to gallery plugin [#134](https://github.com/allink/allink-core/pull/134)
 
 ## v2.7.0
