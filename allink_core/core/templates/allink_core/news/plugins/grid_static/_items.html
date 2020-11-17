@@ -2,6 +2,6 @@
 
 {% for object in object_list %}
     <div class="grid-item {% if appended %}appended{% endif %}">
-        {% include 'allink_teaser/tile/item.html' with teaser_title=object.teaser_dict.teaser_title teaser_image=object.teaser_dict.teaser_image teaser_technical_title=object.teaser_dict.teaser_technical_title teaser_description=object.teaser_dict.teaser_description teaser_link=object.teaser_dict.teaser_link teaser_link_text=object.teaser_dict.teaser_link_text %}
+        {% include 'allink_teaser/tile/item.html' with teaser_title=object.teaser_dict.teaser_title teaser_image=object.teaser_dict.teaser_image teaser_technical_title=object.teaser_dict.teaser_technical_title teaser_description=object.teaser_dict.teaser_description teaser_link=object.teaser_dict.teaser_link teaser_link_text=object.teaser_dict.teaser_link_text teaser_link_url=object.teaser_link_url %}
     </div>
 {% endfor %}
