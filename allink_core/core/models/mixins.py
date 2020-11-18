@@ -256,6 +256,10 @@ class AllinkTeaserMixin:
             {'model': 'self', 'field': 'teaser_link_text', },
             {'model': 'self', 'field': 'TEASER_LINK_TEXT', },
         ],
+        'teaser_link_url': [
+            {'model': 'self', 'field': 'teaser_link_url', },
+        ],
+        # If you adjust this don't forget to adjust the TEASER_FIELD_FALLBACK_CONF in BaseNews!
     }
 
     @property
@@ -285,6 +289,6 @@ class AllinkTeaserMixin:
             'teaser_image': get_fallback(self, 'teaser_image'),
             'teaser_link_text': get_fallback(self, 'teaser_link_text'),
             'teaser_link': self.get_absolute_url(),
-            'teaser_link_url': self.teaser_link_url,
+            'teaser_link_url': get_fallback(self, 'teaser_link_url'),
         }
         return teaser_context
