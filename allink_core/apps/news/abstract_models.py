@@ -45,7 +45,7 @@ class BaseNews(AllinkTimeFramedModel, AllinkCategoryFieldsModel, AllinkBaseTrans
         'teaser_link_url': [
             {'model': 'self', 'field': 'teaser_link_url', },
         ],
-        # If you adjust this consider the possibility of adjusting the TEASER_FIELD_FALLBACK_CONF in AllinkTeaserMixin!
+        # If you adjust this consider the possibility of adjusting the TEASER_FIELD_FALLBACK_CONF in AllinkTeaserMixin and other occurrences of TEASER_FIELD_FALLBACK_CONF!
     }
 
     slug_source_field_name = 'title'

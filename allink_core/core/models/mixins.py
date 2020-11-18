@@ -9,7 +9,6 @@ from cms.plugin_pool import plugin_pool
 from aldryn_translation_tools.models import TranslatedAutoSlugifyMixin
 from allink_core.core.loading import get_model
 
-
 __all__ = [
     'AllinkDetailMixin',
     'AllinkTranslatedAutoSlugifyMixin',
@@ -24,6 +23,7 @@ class AllinkDetailMixin:
 
     - always used in combination with aldryn_translation_tools.models.TranslationHelperMixin
     """
+
     def get_detail_view(self, application_namespace=None):
         """
         :param application_namespace:
@@ -89,7 +89,7 @@ class AllinkTranslatedAutoSlugifyMixin(TranslatedAutoSlugifyMixin):
             new_slug = self.make_new_slug(slug=slug if not is_default else None)
 
             # we do not want to change a default slug to a new default slug
-            if not(is_default and self.is_default_slug(new_slug)):
+            if not (is_default and self.is_default_slug(new_slug)):
                 setattr(self, self.slug_field_name, new_slug)
         # do not call direct superclass, it does the same (but less) again
         return super(TranslatedAutoSlugifyMixin, self).save(**kwargs)
@@ -259,7 +259,8 @@ class AllinkTeaserMixin:
         'teaser_link_url': [
             {'model': 'self', 'field': 'teaser_link_url', },
         ],
-        # If you adjust this don't forget to adjust the TEASER_FIELD_FALLBACK_CONF in BaseNews!
+        # If you adjust this don't forget to adjust the TEASER_FIELD_FALLBACK_CONF in all apps where
+        # TEASER_FIELD_FALLBACK_CONF is overridden!
     }
 
     @property
