@@ -36,6 +36,12 @@ general bugfixes
     - hint: search for ```apphook_page = PageField``` and place below in all model files.
     - run migrations
 
+- added teaser_link_url field on all models that have a teaser
+    -  To take advantage of these changes you must add `teaser_link_url=object.teaser_dict.teaser_link_url` to all 
+    overridden item templates which use a teaser via include of teaser tile such as news or new apps such as potentially projects
+    hint: search for `include 'allink_teaser/` 
+    
+
 #### NEW
 - Updated README release instructions [#114](https://github.com/allink/allink-core/pull/114)
 - Updated mkdoks for new_app command [#115](https://github.com/allink/allink-core/pull/115)
@@ -63,6 +69,8 @@ general bugfixes
     -  refactored logic so external link is stronger than internal [#139](https://github.com/allink/allink-core/pull/139)
     -  added data-softpage-disabled attribute to link-begin when external link is given [#140](https://github.com/allink/allink-core/pull/140)
     -  added teaser_link_url to teaser admin mixin [#141](https://github.com/allink/allink-core/pull/141)
+    -  added teaser_link_url to news item templates [#142](https://github.com/allink/allink-core/pull/142)
+    -  added teaser_link_url to teaser_dict property [#142](https://github.com/allink/allink-core/pull/142)
 - Added with alias to gallery plugin [#134](https://github.com/allink/allink-core/pull/134)
 
 ## v2.7.0
