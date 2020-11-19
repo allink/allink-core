@@ -66,7 +66,7 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
     ORDERING = (
         (DEFAULT, '---------'),
         (TITLE_ASC, 'A-Z (title)'),
-        (TITLE_DESC, 'Z-A (title'),
+        (TITLE_DESC, 'Z-A (title)'),
         (LATEST, 'latest first'),
         (EARLIEST, 'earliest first'),
         (CATEGORY, 'category ordering'),

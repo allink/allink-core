@@ -31,13 +31,13 @@ class AllinkBaseModelQuerySet(TranslatableQuerySet):
     def title_asc(self):
         return self.active() \
             .order_by('translations__title', 'id') \
-            .distinct('translations__title', 'id')
+            .distinct('id')
 
     # Z-A
     def title_desc(self):
         return self.active() \
             .order_by('-translations__title', 'id') \
-            .distinct('translations__title', 'id')
+            .distinct('id')
 
 
 AllinkBaseModelManager = AllinkBaseModelQuerySet.as_manager
