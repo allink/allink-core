@@ -45,7 +45,6 @@ class Icon(models.CharField):
 
 
 class ZipCodeField(PositiveIntegerField):
-    default_validators = [MaxValueValidator(9999)]
     default_field_class = fields.ZipCode
     description = 'Zip Code Field'
 
