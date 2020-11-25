@@ -43,7 +43,7 @@ general bugfixes
     
 - Added logic to choose which content css classes under the Additional Properties Tab are preselected on creation of content plugin 
     - Create a tuple `INITIAL_CONTENT_CSS_CLASSES` to set which of the `CONTENT_CSS_CLASSES` should be preselected. 
-        For example:
+        Add this underneath `CONTENT_CSS_CLASSES`:
         ```
         # Add all content CSS classes here which should be preselected on creation of content plugin
         INITIAL_CONTENT_CSS_CLASSES = (
