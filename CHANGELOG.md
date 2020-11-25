@@ -41,6 +41,16 @@ general bugfixes
     overridden item templates which use a teaser via include of teaser tile such as news or new apps such as potentially projects
     hint: search for `include 'allink_teaser/` 
     
+- Added logic to choose which content css classes under the Additional Properties Tab are preselected on creation of content plugin 
+    - Create a tuple `INITIAL_CONTENT_CSS_CLASSES` to set which of the `CONTENT_CSS_CLASSES` should be preselected. 
+        Add this underneath `CONTENT_CSS_CLASSES`:
+        ```
+        # Add all content CSS classes here which should be preselected on creation of content plugin
+        INITIAL_CONTENT_CSS_CLASSES = (
+          'custom-container-width-1',
+          'custom-container-width-2',
+        )
+        ```
 
 #### NEW
 - Updated README release instructions [#114](https://github.com/allink/allink-core/pull/114)
@@ -49,6 +59,7 @@ general bugfixes
 - Added lazy attribute to iframe embeds [#120](https://github.com/allink/allink-core/pull/120)
 - Added alt attribute in any case [#130](https://github.com/allink/allink-core/pull/130)
 - Unlinked Brand Logo on browser outdated page [#131](https://github.com/allink/allink-core/pull/131)
+- Added logic to choose which content css classes under the Additional Properties Tab are preselected on creation of content plugin [#145](https://github.com/allink/allink-core/pull/145)
 
 #### FIXES
 - Fixed render_image tag issues with multiple renderings on same site and added unit tests [#116](https://github.com/allink/allink-core/pull/116)
