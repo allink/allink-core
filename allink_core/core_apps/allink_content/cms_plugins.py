@@ -46,6 +46,7 @@ class AllinkContentPluginForm(forms.ModelForm):
                 widget=forms.CheckboxSelectMultiple(),
                 label='Predifined variations',
                 choices=get_additional_choices('CONTENT_CSS_CLASSES'),
+                initial=get_additional_choices('INITIAL_CONTENT_CSS_CLASSES'),
                 required=False,
             )
         if get_additional_choices('CONTENT_SPACINGS'):
