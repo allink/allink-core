@@ -23,7 +23,6 @@ from allink_core.core.models.choices import (
     SALUTATION_CHOICES, TARGET_CHOICES, NEW_WINDOW, SOFTPAGE, FORM_MODAL, IMAGE_MODAL, DEFAULT_MODAL, BLANK_CHOICE, )
 from allink_core.core_apps.allink_categories.models import AllinkCategory
 from allink_core.core.models.managers import AllinkCategoryModelManager
-from allink_core.core.models.fields import ZipCodeField
 from allink_core.core.utils import get_additional_choices
 
 

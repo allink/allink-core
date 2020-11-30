@@ -44,18 +44,6 @@ class Icon(models.CharField):
         return super(Icon, self).formfield(**defaults)
 
 
-class ZipCodeField(PositiveIntegerField):
-    default_field_class = fields.ZipCode
-    description = 'Zip Code Field'
-
-    def formfield(self, **kwargs):
-        defaults = {
-            'form_class': self.default_field_class,
-        }
-        defaults.update(kwargs)
-        return super(ZipCodeField, self).formfield(**defaults)
-
-
 class SortedM2MModelField(sortedm2m.fields.SortedManyToManyField):
     default_field_class = fields.SortedM2MFormField
 
