@@ -51,6 +51,10 @@ general bugfixes
           'custom-container-width-2',
         )
         ```
+      
+- changed zip_code field on `AllinkAddressFieldsModel` and deleted ZipCodeField and its form validation
+    - if the ZipCodeField has been used on a project you have to manually migrate it.
+
 
 #### NEW
 - Updated README release instructions [#114](https://github.com/allink/allink-core/pull/114)
@@ -60,6 +64,8 @@ general bugfixes
 - Added alt attribute in any case [#130](https://github.com/allink/allink-core/pull/130)
 - Unlinked Brand Logo on browser outdated page [#131](https://github.com/allink/allink-core/pull/131)
 - Added logic to choose which content css classes under the Additional Properties Tab are preselected on creation of content plugin [#145](https://github.com/allink/allink-core/pull/145)
+- Changed Zip code field on `AllinkAddressFieldsModel` to `Charfield` with `max_length=10` to allow ZipCodes with leading Zeros that are longer than 4 digits [#147](https://github.com/allink/allink-core/pull/147)
+    - Deleted ZipCodeField and its form validation
 
 #### FIXES
 - Fixed render_image tag issues with multiple renderings on same site and added unit tests [#116](https://github.com/allink/allink-core/pull/116)

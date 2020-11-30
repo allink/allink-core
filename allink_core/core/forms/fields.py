@@ -34,10 +34,6 @@ class Icon(forms.fields.CharField):
         super(Icon, self).__init__(*args, **kwargs)
 
 
-class ZipCode(forms.fields.IntegerField):
-    widget = forms.widgets.NumberInput(attrs={'maxlength': 4})
-
-
 class ColorField(forms.fields.CharField):
 
     def __init__(self, *args, **kwargs):
