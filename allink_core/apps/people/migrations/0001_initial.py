@@ -35,7 +35,7 @@ class Migration(migrations.Migration):
                 ('street', models.CharField(blank=True, max_length=255, null=True, verbose_name='Street')),
                 ('street_nr', models.CharField(blank=True, max_length=50, null=True, verbose_name='Street Nr.')),
                 ('street_additional', models.CharField(blank=True, max_length=255, null=True, verbose_name='Address Additional')),
-                ('zip_code', allink_core.core.models.fields.ZipCodeField(blank=True, null=True, verbose_name='Zip Code')),
+                ('zip_code', models.fields.PositiveIntegerField(blank=True, null=True, verbose_name='Zip Code')),
                 ('place', models.CharField(blank=True, max_length=255, null=True, verbose_name='Place')),
                 ('country', models.CharField(blank=True, max_length=255, null=True, verbose_name='Country')),
                 ('phone', phonenumber_field.modelfields.PhoneNumberField(blank=True, help_text='We automatically handle phone number formatting, Please provide the number in the following format "+41 43 123 45 67".', max_length=128, null=True, region=None, verbose_name='Phone')),
