@@ -264,8 +264,9 @@ class AllinkAddressFieldsModel(models.Model):
         blank=True,
         null=True
     )
-    zip_code = ZipCodeField(
+    zip_code = models.CharField(
         _('Zip Code'),
+        max_length=10,
         blank=True,
         null=True
     )
