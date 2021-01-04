@@ -66,6 +66,7 @@ general bugfixes
 - Added logic to choose which content css classes under the Additional Properties Tab are preselected on creation of content plugin [#145](https://github.com/allink/allink-core/pull/145)
 - Changed Zip code field on `AllinkAddressFieldsModel` to `Charfield` with `max_length=10` to allow ZipCodes with leading Zeros that are longer than 4 digits [#147](https://github.com/allink/allink-core/pull/147)
     - Deleted ZipCodeField and its form validation
+- Added teaser list image width alias [#148](https://github.com/allink/allink-core/pull/148)
 
 #### FIXES
 - Fixed render_image tag issues with multiple renderings on same site and added unit tests [#116](https://github.com/allink/allink-core/pull/116)
