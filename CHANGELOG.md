@@ -80,6 +80,7 @@ general bugfixes
     - if you upgrade an existing project with this the contact migration file will not be deleted
 - Hide inactive elements in sitemap [#132](https://github.com/allink/allink-core/pull/132)
 - Moved noscript part of tag manager to body [#133](https://github.com/allink/allink-core/pull/133), [#136](https://github.com/allink/allink-core/pull/136)
+- Fixed distinct translated items when ordering [#143](https://github.com/allink/allink-core/pull/143)
 - Allowed international zip codes [#144](https://github.com/allink/allink-core/pull/144)
 - Added logic to display page title as modal header when opened as softpage from teaser instead of button label [#146](https://github.com/allink/allink-core/pull/146)
     
