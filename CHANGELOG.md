@@ -41,6 +41,20 @@ general bugfixes
     overridden item templates which use a teaser via include of teaser tile such as news or new apps such as potentially projects
     hint: search for `include 'allink_teaser/` 
     
+- Added logic to choose which content css classes under the Additional Properties Tab are preselected on creation of content plugin 
+    - Create a tuple `INITIAL_CONTENT_CSS_CLASSES` to set which of the `CONTENT_CSS_CLASSES` should be preselected. 
+        Add this underneath `CONTENT_CSS_CLASSES`:
+        ```
+        # Add all content CSS classes here which should be preselected on creation of content plugin
+        INITIAL_CONTENT_CSS_CLASSES = (
+          'custom-container-width-1',
+          'custom-container-width-2',
+        )
+        ```
+      
+- changed zip_code field on `AllinkAddressFieldsModel` and deleted ZipCodeField and its form validation
+    - if the ZipCodeField has been used on a project you have to manually migrate it.
+
 
 #### NEW
 - Updated README release instructions [#114](https://github.com/allink/allink-core/pull/114)
@@ -49,6 +63,10 @@ general bugfixes
 - Added lazy attribute to iframe embeds [#120](https://github.com/allink/allink-core/pull/120)
 - Added alt attribute in any case [#130](https://github.com/allink/allink-core/pull/130)
 - Unlinked Brand Logo on browser outdated page [#131](https://github.com/allink/allink-core/pull/131)
+- Added logic to choose which content css classes under the Additional Properties Tab are preselected on creation of content plugin [#145](https://github.com/allink/allink-core/pull/145)
+- Changed Zip code field on `AllinkAddressFieldsModel` to `Charfield` with `max_length=10` to allow ZipCodes with leading Zeros that are longer than 4 digits [#147](https://github.com/allink/allink-core/pull/147)
+    - Deleted ZipCodeField and its form validation
+- Added width aliases for list teaser and bg image teaser [#148](https://github.com/allink/allink-core/pull/148)
 
 #### FIXES
 - Fixed render_image tag issues with multiple renderings on same site and added unit tests [#116](https://github.com/allink/allink-core/pull/116)
@@ -63,6 +81,8 @@ general bugfixes
 - Hide inactive elements in sitemap [#132](https://github.com/allink/allink-core/pull/132)
 - Moved noscript part of tag manager to body [#133](https://github.com/allink/allink-core/pull/133), [#136](https://github.com/allink/allink-core/pull/136)
 - Fixed distinct translated items when ordering [#143](https://github.com/allink/allink-core/pull/143)
+- Allowed international zip codes [#144](https://github.com/allink/allink-core/pull/144)
+- Added logic to display page title as modal header when opened as softpage from teaser instead of button label [#146](https://github.com/allink/allink-core/pull/146)
     
 #### DATA MIGRATIONS
 - Added custom link option for pagination button on content plugins [~~#118~~(reverted)](https://github.com/allink/allink-core/pull/118) [#124](https://github.com/allink/allink-core/pull/124)
