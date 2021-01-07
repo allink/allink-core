@@ -55,6 +55,7 @@ class BaseLocations(SortableMixin, AllinkContactFieldsModel, AllinkAddressFields
     subtitle = TranslatedField()
     lead = TranslatedField()
     opening_hours_display = TranslatedField()
+    country_translatable = TranslatedField(any_language=True)
     preview_image = FilerImageField(
         verbose_name='Preview Image',
         blank=True,
@@ -358,6 +359,12 @@ class BaseLocationsTranslation(AllinkBaseTranslatedFieldsModel):
                    'If provided, the detailed opening hours will be overriden.'),
         blank=True,
         null=True,
+    )
+    country_translatable = models.CharField(
+        _('Country'),
+        max_length=255,
+        blank=True,
+        null=True
     )
 
     class Meta:

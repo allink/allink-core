@@ -28,7 +28,7 @@ class LocationsAdmin(AllinkMediaAdminMixin, AllinkSEOAdminMixin, AllinkCategoryA
                     ('street', 'street_nr',),
                     'street_additional',
                     ('zip_code', 'place',),
-                    'country',
+                    'country_translatable',
                     ('phone', 'mobile',),
                     ('email', 'fax',),
                     'website',

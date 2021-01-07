@@ -54,6 +54,9 @@ general bugfixes
       
 - changed zip_code field on `AllinkAddressFieldsModel` and deleted ZipCodeField and its form validation
     - if the ZipCodeField has been used on a project you have to manually migrate it.
+    
+- Added country_translatable field to locations app. The original country field is not editable in the admin anymore (except overwritten in projects locations/admin.py)! 
+    - Therefore all project specific occurrences of 'country' have to be interchanged with 'country_translatable'.
 
 
 #### NEW
