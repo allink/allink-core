@@ -21,6 +21,11 @@ general bugfixes
 ## v2.8.0
 #### IMPORTANT
 
+- Removed ```AllinkAddressFieldsModel``` from models/fields_model.py
+    - All Fields have been moved directly to BaseLocations and BasePeople
+    - If you have a project specific model which inherits from ```AllinkAddressFieldsModel``` you also have to put the fields directly into that model
+    - Hint: search for ```AllinkAddressFieldsModel``` and make sure it's not part of the project specific files
+
 - Added load_more_internallink to AppContentPlugin.
     - add following code to ```models.py``` on each project based app within  
     ```class APP_NAMEAppContentPlugin(AllinkBaseAppContentPlugin)``` (replace APP_LABEL with actual app label):
