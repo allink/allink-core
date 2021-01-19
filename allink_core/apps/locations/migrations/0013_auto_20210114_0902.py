@@ -52,4 +52,8 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.RunPython(forwards_func, backwards_func),
+        migrations.RemoveField(
+            model_name='locations',
+            name='country_old',
+        ),
     ]
