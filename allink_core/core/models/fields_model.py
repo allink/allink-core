@@ -34,7 +34,6 @@ __all__ = [
     'AllinkSEOTranslatedFieldsModel',
     'AllinkTeaserFieldsModel',
     'AllinkTeaserTranslatedFieldsModel',
-    'AllinkAddressFieldsModel',
     'AllinkContactFieldsModel',
     'AllinkInternalLinkFieldsModel',
     'AllinkLinkFieldsModel',
@@ -232,54 +231,6 @@ class AllinkTeaserTranslatedFieldsModel(models.Model):
         null=True,
         help_text='Provide a valid URL to an external website.',
         max_length=500,
-    )
-
-    class Meta:
-        abstract = True
-
-
-class AllinkAddressFieldsModel(models.Model):
-    """
-    Base class for all address related fields
-
-    TODO: country might need to be moved to a TranslatedFieldsModel
-    or we should switch to a django-countries. CountryField
-    """
-    street = models.CharField(
-        _('Street'),
-        max_length=255,
-        blank=True,
-        null=True
-    )
-    street_nr = models.CharField(
-        _('Street Nr.'),
-        max_length=50,
-        blank=True,
-        null=True
-    )
-    street_additional = models.CharField(
-        _('Address Additional'),
-        max_length=255,
-        blank=True,
-        null=True
-    )
-    zip_code = models.CharField(
-        _('Zip Code'),
-        max_length=10,
-        blank=True,
-        null=True
-    )
-    place = models.CharField(
-        _('Place'),
-        max_length=255,
-        blank=True,
-        null=True
-    )
-    country = models.CharField(
-        _('Country'),
-        max_length=255,
-        blank=True,
-        null=True
     )
 
     class Meta:
