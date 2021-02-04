@@ -55,6 +55,9 @@ class DummyApp(SortableMixin, AllinkCategoryFieldsModel, AllinkBaseTranslatableM
         verbose_name = 'DummyApp'
         verbose_name_plural = 'DummyApp'
 
+    def __str__(self):
+        return self.title
+
 
 class DummyAppTranslation(AllinkBaseTranslatedFieldsModel):
     master = models.ForeignKey(
