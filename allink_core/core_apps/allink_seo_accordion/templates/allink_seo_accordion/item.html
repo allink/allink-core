@@ -19,15 +19,15 @@
                  itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"
             {% endif %}
         >
-            {% for plugin in instance.child_plugin_instances %}
-                <div
-                    {% if is_seo_faq %}
-                        itemprop="text"
-                    {% endif %}
-                >
-                {% render_plugin plugin %}
-                </div>
-            {% endfor %}
+            <div
+                {% if is_seo_faq %}
+                    itemprop="text"
+                {% endif %}
+            >
+                {% for plugin in instance.child_plugin_instances %}
+                    {% render_plugin plugin %}
+                {% endfor %}
+            </div>
         </div>
     </div>
 {% endwith %}

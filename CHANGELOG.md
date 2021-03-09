@@ -90,6 +90,7 @@ general bugfixes
 - Fixed distinct translated items when ordering [#143](https://github.com/allink/allink-core/pull/143)
 - Allowed international zip codes [#144](https://github.com/allink/allink-core/pull/144)
 - Added logic to display page title as modal header when opened as softpage from teaser instead of button label [#146](https://github.com/allink/allink-core/pull/146)
+- Grouped all accordion items in itemprop [#155](https://github.com/allink/allink-core/pull/155)
     
 #### DATA MIGRATIONS
 - Added custom link option for pagination button on content plugins [~~#118~~(reverted)](https://github.com/allink/allink-core/pull/118) [#124](https://github.com/allink/allink-core/pull/124)
