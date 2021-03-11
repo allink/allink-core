@@ -6,7 +6,7 @@
             {% if object.link %}
                 <a href="{{ object.link }}" class="partner-plugin__item" target="_blank" rel="noopener" data-softpage-disabled>
             {% elif object.internallink %}
-                <a href="{{ object.internallink }}" class="partner-plugin__item">
+                <a href="{{ object.internallink.get_absolute_url }}" class="partner-plugin__item">
             {% else %}
                 <div class="partner-plugin__item">
             {% endif %}
