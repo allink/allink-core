@@ -114,7 +114,7 @@
                         {% include "partials/buttons/link.html" with link_url=next_page_url link_label=instance.load_more_button_text link_classes=link_classes link_attributes=link_attributes %}
                     {% else %}
                         {% trans "Load More" as link_label %}
-                        {% include "partials/buttons/link.html" with link_url=next_page_url link_label=link_label link_classes=link_classes link_attributes=link_attributes %}
+                        {% include "partials/buttons/link.html" with link_url=next_page_url link_label=link_label link_classes=link_classes link_attributes=link_attributes icon='arrow-more' %}
                     {% endif %}
                 </div>
             {% endif %}
