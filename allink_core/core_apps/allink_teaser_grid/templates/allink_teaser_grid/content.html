@@ -1,39 +1,6 @@
-{% load cms_tags %}
+{% extends "allink_teaser_grid/section.html" %}
+{% load cms_tags allink_helpers %}
 
-<!--
-    TODO:
-    make section options collapsed
-    title options, container options
-    grid 1, 2, 3, 4 col inkl. styles
-    inverted layout
-    use template partial for section
-    container options discuss with nicolai (only needed if multiple instance per project with different containers)
-    width_alias (flo)
-    use model for section options?
--->
-
-{% if instance.title or instance.child_plugin_instances %}
-    <section id="section-{{ instance.id }}" class="content-section content-section--teaser-grid custom-container-width-1 custom-container-width-2 container-enabled {{ instance.css_section_classes }}">
-        <div class="content-section__container ">
-            <div class="content-section__col-container">
-                {% if instance.title %}
-                    <header class="content-section__section-heading-container">
-                        <h2 class="content-section__section-heading">
-                            {{ instance.title }}
-                        </h2>
-                    </header>
-                {% endif %}
-
-                {% if instance.child_plugin_instances %}
-                    <div class="teaser-grid">
-                        {% for plugin in instance.child_plugin_instances %}
-                            <div class="teaser-grid__col">
-                                {% render_plugin plugin %}
-                            </div>
-                        {% endfor %}
-                    </div>
-                {% endif %}
-            </div>
-        </div>
-    </section>
-{% endif %}
+{% block content_section_additional_attributes %}
+    data-scrollspy="test"
+{% endblock content_section_additional_attributes %}

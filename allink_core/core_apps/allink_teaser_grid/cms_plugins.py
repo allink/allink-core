@@ -18,24 +18,12 @@ class AllinkTeaserGridContainerPluginForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(AllinkTeaserGridContainerPluginForm, self).__init__(*args, **kwargs)
 
-        if get_additional_choices('CONTENT_TITLE_CHOICES'):
-            self.fields['title_size'] = forms.CharField(
-                label='Section Title Size',
-                widget=forms.Select(
-                    choices=get_additional_choices('CONTENT_TITLE_CHOICES'),
-                ),
-                initial=settings.CONTENT_TITLE_CHOICES_DEFAULT,
-                required=False,
-            )
-        else:
-            self.fields['title_size'] = forms.CharField(widget=forms.HiddenInput(), required=False)
-
         if get_additional_choices('CONTENT_CSS_CLASSES'):
             self.fields['project_css_classes'] = forms.MultipleChoiceField(
                 widget=forms.CheckboxSelectMultiple(),
                 label='Predefined variations',
-                choices=get_additional_choices('CONTENT_CSS_CLASSES'),
-                initial=get_additional_choices('INITIAL_CONTENT_CSS_CLASSES'),
+                choices=AllinkTeaserGridContainerPlugin.SECTION_CSS_CLASSES,
+                initial=AllinkTeaserGridContainerPlugin.SECTION_CSS_CLASSES_INITIAL,
                 required=False,
             )
 
@@ -66,6 +54,30 @@ class CMSAllinkTeaserGridContainerPlugin(CMSPluginBase):
     allow_children = True
     child_classes = ['CMSAllinkTeaserPlugin']
     form = AllinkTeaserGridContainerPluginForm
+
+    fieldsets = (
+        (None, {
+            'fields': (
+                'title',
+                'template',
+                'column_order',
+            ),
+        }),
+        ('Spacings', {
+            'fields': [
+                'project_css_spacings_top_bottom',
+                'project_css_spacings_top',
+                'project_css_spacings_bottom',
+            ]
+        }),
+        ('Section Options', {
+            'classes': ('collapse',),
+            'fields': [
+                'project_css_classes',
+                'anchor',
+            ]
+        }),
+    )
 
     def get_render_template(self, context, instance, placeholder):
         template = 'allink_teaser_grid/content.html'
