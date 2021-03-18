@@ -2,9 +2,9 @@
 {% if teaser_image %}
     <div class="teaser__image">
         {% if teaser_width_alias %}
-            {% render_image image=teaser_image alt_text=teaser_title width_alias=teaser_width_alias %}
+            {% render_image image=teaser_image width_alias=teaser_width_alias %}
         {% else %}
-            {% render_image image=teaser_image alt_text=teaser_title ratio="16-9" %}
+            {% render_image image=teaser_image ratio="16-9" %}
         {% endif %}
     </div>
 {% endif %}

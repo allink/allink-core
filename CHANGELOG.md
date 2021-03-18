@@ -75,6 +75,7 @@ general bugfixes
 - Added admin status column and self string representation to new app dummy [#152](https://github.com/allink/allink-core/pull/152)
 - Added logo field to allink_categories [#153](https://github.com/allink/allink-core/pull/153)
 - Added possibility to override teaser image width alias [#154](https://github.com/allink/allink-core/pull/154)
+- Used teaser alt text from original image [#158](https://github.com/allink/allink-core/pull/158)
 
 #### FIXES
 - Fixed render_image tag issues with multiple renderings on same site and added unit tests [#116](https://github.com/allink/allink-core/pull/116)
