@@ -94,6 +94,7 @@ ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [
     'CMSLocationsAppContentPlugin',
     'CMSPeopleAppContentPlugin',
     'CMSNewsAppContentPlugin',
+    'CMSPartnerAppContentPlugin',
     # core
     'CMSAllinkTeaserPlugin',
     'CMSAllinkImagePlugin',
@@ -130,6 +131,7 @@ ALLINK_LOCALE_PATHS = [
     '/app/allink_core/apps/config/locale',
     '/app/allink_core/apps/locations/locale',
     '/app/allink_core/apps/people/locale',
+    '/app/allink_core/apps/partner/locale',
     # core
     '/app/allink_core/core/locale',
     # core_apps

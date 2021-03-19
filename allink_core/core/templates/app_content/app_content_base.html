@@ -98,15 +98,16 @@
             Optional: 'Load More'
         {% endcomment %}
         {% block app_content_load_more_container %}
-            {% if instance.pagination_type == "load" or instance.pagination_type == "load_rest" or instance.pagination_type == "load_url" %}
-                <div class="grid-border-bottom"></div>
-                <div class="load-more-container" {% if not next_page_url and not instance.pagination_type == "load_url" %}style="display:none;"{% endif %}>
-                    {% var "app-list__load-more-link btn-load-more ajax-load-items append" as link_classes %}
+            {% if next_page_url and not instance.pagination_type == "none" or instance.pagination_type == "load_url" %}
+                <div class="load-more-container">
+                    <div class="grid-border-bottom"></div>
+
+                    {% var "btn btn-load-more app-list__load-more-link ajax-load-items append" as link_classes %}
                     {% var "data-btn-ajax-loader" as link_attributes %}
 
                     {% if instance.pagination_type == "load_url" %}
                         {% var instance.load_more_internallink.get_absolute_url as next_page_url %}
-                        {% var "app-list__load-more-link btn-load-more" as link_classes %}
+                        {% var "btn btn-load-url app-list__load-more-link" as link_classes %}
                         {% var "" as link_attributes %}
                     {% endif %}
 
