@@ -32,7 +32,7 @@ django-lockdown==1.6.0
 django-debug-toolbar==1.11
 django-countries==5.3.3
 django-formtools==2.1
-djangorestframework==3.9.2
+djangorestframework==3.11.2
 django-filters==0.2.1
 django-sekizai==0.10.0
 django-inline-static==0.1.0
