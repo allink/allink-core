@@ -78,6 +78,7 @@ general bugfixes
 - Added partner core app [#156](https://github.com/allink/boilerplate-2.0/pull/156)
 - Optimized load more conditions and classes [#157](https://github.com/allink/allink-core/pull/157)
 - Used teaser alt text from original image [#158](https://github.com/allink/allink-core/pull/158)
+- Added list multicol cms plugin [#159](https://github.com/allink/allink-core/pull/159)
 
 #### FIXES
 - Fixed render_image tag issues with multiple renderings on same site and added unit tests [#116](https://github.com/allink/allink-core/pull/116)
