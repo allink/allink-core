@@ -55,7 +55,6 @@ ALLINK_INSTALLED_APPS = [
     'allink_core.core_apps.allink_cms',
     # 'allink_core.core_apps.allink_info_box',
     'allink_core.core_apps.allink_seo_accordion',
-    'allink_core.core_apps.allink_teaser_grid',
 ]
 
 ####################################################################################

@@ -7,6 +7,7 @@ from easy_thumbnails.exceptions import InvalidImageFormatError
 
 from allink_core.core.loading import get_model
 from allink_core.core.utils import get_height_from_ratio, get_ratio_w_h
+from allink_core.core.models.base_plugins import AllinkBaseSectionPlugin
 
 register = template.Library()
 
@@ -32,7 +33,36 @@ def get_sizes_from_width_alias(width_alias, image):
     return sizes
 
 
-def get_width_alias_from_plugin(plugin):
+def get_width_alias_from_section_plugin(plugin):
+    """
+
+    If the plugin inside a
+
+    :param plugin:
+    a model instance of a cms plugin
+
+    :return:
+    If a parent of the plugin is a subclass of AllinkSectionPlugin. The width_alias in the field 'columns' will be returned.
+    None: if no parent is a subclass of AllinkSectionPlugin
+    """
+
+    # the outer most parent of a plugin with pictures should always be a AllinkSectionPlugin plugin
+    # if not return a fallback of '1-of-1'. (potential_section gets None and will trow a AttributeError)
+    try:
+        # find the next column plugin
+        section_plugin = None
+        potential_section = plugin.parent.get_plugin_instance()[0]
+        while (section_plugin is None):
+            if issubclass(type(potential_section), AllinkBaseSectionPlugin):
+                section_plugin = potential_section
+            else:
+                potential_section = potential_section.parent.get_plugin_instance()[0]
+        return section_plugin.columns
+    except AttributeError:
+        return None
+
+
+def get_width_alias_from_column_plugin(plugin):
     """
     This function is called from different context:
 
@@ -159,8 +189,10 @@ def render_image(context, image, alt_text='', ratio=None, width_alias=None, crop
         # explicit render image in this width_alias
         # most likely not from within an app plugin template or a content template
         if not width_alias:
-            # get with alias from context
-            width_alias = get_width_alias_from_plugin(ctx.get('instance', None))
+            width_alias = get_width_alias_from_section_plugin(ctx.get('instance', None))
+            if not width_alias:
+                # get with alias from context (AllinkContentColumnPlugin)
+                width_alias = get_width_alias_from_column_plugin(ctx.get('instance', None))
 
         # use focal point. works best in combination with zoom > 0
         if subject_location:

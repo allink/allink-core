@@ -7,6 +7,11 @@ from allink_core.core.models.fields import CMSPluginField
 from allink_core.core.models import AllinkInternalLinkFieldsModel
 from allink_core.core.utils import get_additional_templates
 from allink_core.core.models.fields_model import AllinkTeaserFieldsModel, AllinkTeaserTranslatedFieldsModel
+from allink_core.core.models.base_plugins import AllinkBaseSectionPlugin
+
+
+class AllinkTeaserGridContainerPlugin(AllinkBaseSectionPlugin):
+    pass
 
 
 class AllinkTeaserPlugin(AllinkInternalLinkFieldsModel, AllinkTeaserFieldsModel, AllinkTeaserTranslatedFieldsModel,

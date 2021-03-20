@@ -15,12 +15,12 @@ __all__ = [
     'AllinkBaseAppContentPlugin',
     'AllinkBaseFormPlugin',
     'AllinkBaseSearchPlugin',
+    'AllinkBaseSectionPlugin',
 ]
 
 
 class AllinkBaseAppContentPlugin(CMSPlugin):
     """
-    TODO
     Base plugin which provides standard functionality
     all Content App-Plugins should inherit from this, to create a "app pointer plugin"
 
@@ -453,3 +453,122 @@ class AllinkBaseFormPlugin(CMSPlugin):
 
     class Meta:
         abstract = True
+
+
+class AllinkBaseSectionPlugin(CMSPlugin):
+    """
+    Base Plugin used for plugins which represent a section on a page.
+
+    These plugins will be placed on the outer most plugin level.
+    These plugins will be used to better control layout behavior in a more specific and more opinionated manner as the AllinkContentPlugin does.
+    """
+    # overwrite the set of columns tuples on a per plugin level (make sure a corresponding width_alias is defined in settings.py)
+    COLUMNS = (
+        ('1-of-1', 'One Column'),
+        ('1-of-2', 'Two Columns'),
+        ('1-of-3', 'Three Columns'),
+        ('1-of-4', 'Four Columns'),
+    )
+    # overwrite the set of columns order tuples on a per plugin level
+    COLUMN_ORDERS = (
+        ('default', 'Default'),
+        ('inverted', 'Inverted'),
+        ('alternating', 'Alternating'),
+    )
+    # SECTION_CSS_CLASSES  # will be defined on a per project level in settings.py
+    # SECTION_CSS_CLASSES_INITIAL  # will be defined on a per project level in settings.py
+
+    title = models.CharField(
+        'Title',
+        max_length=255,
+        blank=True,
+        null=True,
+    )
+
+    columns = models.CharField(
+        'Columns',
+        help_text='Choose columns.',
+        max_length=50,
+        choices=COLUMNS,
+        default=COLUMNS[0],
+    )
+
+    column_order = models.CharField(
+        'Column Order',
+        help_text='Choose a column order.',
+        max_length=50,
+        choices=COLUMN_ORDERS,
+        default=COLUMN_ORDERS[0],
+    )
+
+    anchor = models.CharField(
+        verbose_name='ID',
+        max_length=255,
+        blank=True,
+        help_text=('ID of this content section which can be used for anchor reference from links.<br>'
+                   'Note: Only letters, numbers and hyphen. No spaces or special chars.'),
+    )
+
+    project_css_classes = ArrayField(
+        models.CharField(
+            max_length=50,
+            blank=True,
+            null=True
+        ),
+        blank=True,
+        null=True
+    )
+
+    project_css_spacings_top_bottom = models.CharField(
+        'Spacings',
+        help_text='Choose a spacing (top and bottom).',
+        max_length=50,
+        blank=True,
+        null=True,
+    )
+
+    project_css_spacings_top = models.CharField(
+        'Spacings top',
+        help_text='Choose a top spacing.',
+        max_length=50,
+        blank=True,
+        null=True,
+    )
+
+    project_css_spacings_bottom = models.CharField(
+        'Spacings bottom',
+        help_text='Choose a bottom spacing.',
+        max_length=50,
+        blank=True,
+        null=True,
+    )
+
+    cmsplugin_ptr = CMSPluginField()
+
+    class Meta:
+        abstract = True
+
+    @property
+    def css_classes(self):
+        css_classes = []
+        if getattr(self, 'project_css_classes'):
+            for css_class in getattr(self, 'project_css_classes'):
+                css_classes.append(css_class)
+        return ' '.join(css_classes)
+
+    @property
+    def css_section_classes(self):
+        css_classes = []
+        if self.project_css_spacings_top:
+            css_classes.append('{}-top'.format(self.project_css_spacings_top))
+
+        if self.project_css_spacings_bottom:
+            css_classes.append('{}-bottom'.format(self.project_css_spacings_bottom))
+
+        if self.project_css_spacings_top_bottom:
+            css_classes = self.project_css_spacings_top_bottom
+            return css_classes
+        return ' '.join(css_classes)
+
+    def __str__(self):
+        return f'{self.id}'

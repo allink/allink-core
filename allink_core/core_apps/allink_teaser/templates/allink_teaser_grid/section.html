@@ -31,7 +31,6 @@
                         <div class="plugin-grid plugin-grid--{{ instance.template }} plugin-grid--{{ instance.column_order }}">
                             {% for plugin in instance.child_plugin_instances %}
                                 <div class="plugin-grid__col">
-                                    {% var instance.template as teaser_width_alias %}
                                     {% render_plugin plugin %}
                                 </div>
                             {% endfor %}
