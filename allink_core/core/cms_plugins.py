@@ -368,8 +368,8 @@ class AllinkBaseSectionPluginForm(AllinkMediaAdminMixin, forms.ModelForm):
             self.fields['project_css_classes'] = forms.MultipleChoiceField(
                 widget=forms.CheckboxSelectMultiple(),
                 label='Predefined variations',
-                choices=AllinkBaseSectionPlugin.SECTION_CSS_CLASSES,
-                initial=AllinkBaseSectionPlugin.SECTION_CSS_CLASSES_INITIAL,
+                choices=get_additional_choices('SECTION_CSS_CLASSES'),
+                initial=get_additional_choices('SECTION_CSS_CLASSES_INITIAL'),
                 required=False,
             )
 
