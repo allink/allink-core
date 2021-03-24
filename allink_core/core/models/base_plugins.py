@@ -472,7 +472,6 @@ class AllinkBaseSectionPlugin(CMSPlugin):
     # overwrite the set of columns order tuples on a per plugin level
     COLUMN_ORDERS = (
         ('default', 'Default'),
-        ('inverted', 'Inverted'),
         ('alternating', 'Alternating'),
     )
     # SECTION_CSS_CLASSES  # will be defined on a per project level in settings.py
