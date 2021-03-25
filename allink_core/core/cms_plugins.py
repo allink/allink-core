@@ -364,32 +364,44 @@ class AllinkBaseSectionPluginForm(AllinkMediaAdminMixin, forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(AllinkBaseSectionPluginForm, self).__init__(*args, **kwargs)
 
+        self.fields['columns'] = forms.ChoiceField(
+            label='Columns',
+            choices=self._meta.model.COLUMNS,
+            initial=self._meta.model.COLUMNS[0][0],
+            required=True)
+        if len(self._meta.model.COLUMNS) <= 1:
+            self.fields['columns'].widget = forms.HiddenInput()
+
+        self.fields['column_order'] = forms.ChoiceField(
+            label='Column Order',
+            choices=self._meta.model.COLUMN_ORDERS,
+            initial=self._meta.model.COLUMN_ORDERS[0][0],
+            required=True)
+        if len(self._meta.model.COLUMN_ORDERS) <= 1:
+            self.fields['column_order'].widget = forms.HiddenInput()
+
         if get_additional_choices('SECTION_CSS_CLASSES'):
             self.fields['project_css_classes'] = forms.MultipleChoiceField(
                 widget=forms.CheckboxSelectMultiple(),
                 label='Predefined variations',
                 choices=get_additional_choices('SECTION_CSS_CLASSES'),
                 initial=get_additional_choices('SECTION_CSS_CLASSES_INITIAL'),
-                required=False,
-            )
+                required=False)
 
         self.fields['project_css_spacings_top_bottom'] = forms.ChoiceField(
             label='Spacings top & bottom',
             choices=get_additional_choices('SECTION_SPACINGS', blank=True),
-            required=False,
-        )
+            required=False)
 
         self.fields['project_css_spacings_top'] = forms.ChoiceField(
             label='Spacings top',
             choices=get_additional_choices('SECTION_SPACINGS', blank=True),
-            required=False,
-        )
+            required=False)
 
         self.fields['project_css_spacings_bottom'] = forms.ChoiceField(
             label='Spacings bottom',
             choices=get_additional_choices('SECTION_SPACINGS', blank=True),
-            required=False,
-        )
+            required=False)
 
 
 class CMSAllinkBaseSectionPlugin(CMSPluginBase):

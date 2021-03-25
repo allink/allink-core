@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import urllib.parse
 from django.conf import settings
 from django.db import models
 from django.db.models import Q, QuerySet
@@ -109,8 +108,7 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
     )
     category_navigation_enabled = models.BooleanField(
         'Show category navigation',
-        help_text=
-        'If checked, a filter navigation with all selected categories is displayed.'
+        help_text='If checked, a filter navigation with all selected categories is displayed.'
         '<br>Please note: A category is only displayed if it contains items.',
         default=False
     )
@@ -123,16 +121,14 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
         AllinkCategory,
         related_name='%(app_label)s_%(class)s_category_navigation',
         verbose_name='Categories for Navigation',
-        help_text=
-        'You can explicitly define the categories for the category navigation here.'
+        help_text='You can explicitly define the categories for the category navigation here.'
         ' This will override the automatically set of categories'
         ' (either the one generated from "Filter & Ordering" or "Manual entries")',
         blank=True,
     )
     softpage_enabled = models.BooleanField(
         'Show detailed information in Softpage',
-        help_text=
-        'If checked, the detail view of an entry will be displayed in a "softpage".'
+        help_text='If checked, the detail view of an entry will be displayed in a "softpage".'
         ' Otherwise the page will be reloaded.',
         default=True
     )
@@ -150,8 +146,7 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
     paginated_by = models.IntegerField(
         'Max. entries per page',
         default=0,
-        help_text=
-        'Limit the number of entries (in case of the "load more" pagination type: entries per page).'
+        help_text='Limit the number of entries (in case of the "load more" pagination type: entries per page).'
         ' Default is "0" (show all entries)'
     )
     pagination_type = models.CharField(
@@ -162,8 +157,7 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
     )
     load_more_button_text = models.CharField(
         'Text for "Load .."-Button',
-        help_text=
-        'If left blank, a default text will be used. <br>Note: Should the default text be adjusted site-wide,'
+        help_text='If left blank, a default text will be used. <br>Note: Should the default text be adjusted site-wide,'
         ' please contact the project manager (such changes can be made on a code level)',
         max_length=255,
         null=True,
@@ -171,8 +165,7 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
     )
     detail_link_text = models.CharField(
         'Text for "Detail"-Link',
-        help_text=
-        'If left blank, a default text will be used.<br>Note: Should the default text be adjusted site-wide,'
+        help_text='If left blank, a default text will be used.<br>Note: Should the default text be adjusted site-wide,'
         ' please contact the project manager (such changes can be made on a code level)',
         max_length=255,
         null=True,
@@ -472,7 +465,6 @@ class AllinkBaseSectionPlugin(CMSPlugin):
     # overwrite the set of columns order tuples on a per plugin level
     COLUMN_ORDERS = (
         ('default', 'Default'),
-        ('alternating', 'Alternating'),
     )
     # SECTION_CSS_CLASSES  # will be defined on a per project level in settings.py
     # SECTION_CSS_CLASSES_INITIAL  # will be defined on a per project level in settings.py
@@ -488,16 +480,12 @@ class AllinkBaseSectionPlugin(CMSPlugin):
         'Columns',
         help_text='Choose columns.',
         max_length=50,
-        choices=COLUMNS,
-        default=COLUMNS[0],
     )
 
     column_order = models.CharField(
         'Column Order',
         help_text='Choose a column order.',
         max_length=50,
-        choices=COLUMN_ORDERS,
-        default=COLUMN_ORDERS[0],
     )
 
     anchor = models.CharField(

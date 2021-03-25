@@ -11,7 +11,9 @@ from allink_core.core.models.base_plugins import AllinkBaseSectionPlugin
 
 
 class AllinkTeaserGridContainerPlugin(AllinkBaseSectionPlugin):
-    pass
+    COLUMN_ORDERS = AllinkBaseSectionPlugin.COLUMN_ORDERS + (
+        ('alternating', 'Alternating'),
+    )
 
 
 class AllinkTeaserPlugin(AllinkInternalLinkFieldsModel, AllinkTeaserFieldsModel, AllinkTeaserTranslatedFieldsModel,
