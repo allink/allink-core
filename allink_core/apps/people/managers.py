@@ -5,12 +5,12 @@ from allink_core.core.models.managers import AllinkCategoryModelQuerySet
 
 class AllinkPeopleQuerySet(AllinkCategoryModelQuerySet):
 
-    def title_asc(self):
+    def title_asc(self, lang):
         return self.active()\
             .order_by('last_name', 'id')\
             .distinct('last_name', 'id')
 
-    def title_desc(self):
+    def title_desc(self, lang):
         return self.active()\
             .order_by('-last_name', 'id')\
             .distinct('last_name', 'id')
