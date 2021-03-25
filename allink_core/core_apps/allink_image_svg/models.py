@@ -22,7 +22,7 @@ class AllinkImageSVGPlugin(AllinkLinkFieldsModel, CMSPlugin):
     is_inline = models.BooleanField(
         'Is inline',
         default=False,
-        help_text="Check if the SVG should be inlined.",
+        help_text="Check if the SVG will be inlined.",
     )
 
     def render_svg(self, **kwargs):
