@@ -80,6 +80,7 @@ general bugfixes
 - Used teaser alt text from original image [#158](https://github.com/allink/allink-core/pull/158)
 - Added list multicol cms plugin [#159](https://github.com/allink/allink-core/pull/159)
 - Added CONTENT_EXTENDED_FEATURE_SET feature toggle, which allows to hide functionality on the content plugin [#166](https://github.com/allink/allink-core/pull/166)
+- Updated info box plugin [#167](https://github.com/allink/allink-core/pull/167)
 
 #### FIXES
 - Fixed render_image tag issues with multiple renderings on same site and added unit tests [#116](https://github.com/allink/allink-core/pull/116)

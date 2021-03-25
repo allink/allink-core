@@ -53,7 +53,6 @@ ALLINK_INSTALLED_APPS = [
     'allink_core.core_apps.allink_social_icon',
     'allink_core.core_apps.allink_button_link',
     'allink_core.core_apps.allink_cms',
-    # 'allink_core.core_apps.allink_info_box',
     'allink_core.core_apps.allink_seo_accordion',
     'allink_core.core_apps.allink_list_multicol',
 ]
@@ -79,7 +78,7 @@ ALLINK_PROJECT_APP_MODEL_WITH_CATEGORY_CHOICES = [
 ALLINK_CMS_PLACEHOLDER_CONF_PLUGINS = [
     'CMSAllinkContentPlugin',
     'Module',
-    # 'CMSAllinkInfoBoxPlugin',
+    'CMSAllinkInfoBoxPlugin',
 ]
 
 ####################################################################################
