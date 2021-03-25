@@ -60,6 +60,10 @@ general bugfixes
 - changed zip_code field on `AllinkAddressFieldsModel` and deleted ZipCodeField and its form validation
     - if the ZipCodeField has been used on a project you have to manually migrate it.
 
+- changed signature of manager for ascending and descending title on AllinkBaseModelQuerySet on [#168](https://github.com/allink/allink-core/pull/168)
+    if the project has a manager that inherits from this class and that overrides these managers you must at least 
+    pass lang into the manager and maybe reconsider the override.
+    
 
 #### NEW
 - Updated README release instructions [#114](https://github.com/allink/allink-core/pull/114)
@@ -97,7 +101,8 @@ general bugfixes
 - Allowed international zip codes [#144](https://github.com/allink/allink-core/pull/144)
 - Added logic to display page title as modal header when opened as softpage from teaser instead of button label [#146](https://github.com/allink/allink-core/pull/146)
 - Grouped all accordion items in itemprop [#155](https://github.com/allink/allink-core/pull/155)
-    
+- Fixed title asc and desc manager as it didn't work for all implementations[#168](https://github.com/allink/allink-core/pull/168)
+
 #### DATA MIGRATIONS
 - Added custom link option for pagination button on content plugins [~~#118~~(reverted)](https://github.com/allink/allink-core/pull/118) [#124](https://github.com/allink/allink-core/pull/124)
 - Added external link to teaser plugin [#123](https://github.com/allink/allink-core/pull/123)
