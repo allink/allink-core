@@ -1,11 +1,5 @@
 {% load cms_tags allink_helpers %}
 
-<!--
-    TODO:
-    grid col styles
-    column order styles
--->
-
 {% if instance.title or instance.child_plugin_instances %}
     <section id="{% if instance.anchor %}{{ instance.anchor }}{% else %}content-section-{{ instance.id }}{% endif %}"
              class="content-section container-enabled
