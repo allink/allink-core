@@ -6,7 +6,7 @@ from django.contrib.postgres.fields import ArrayField
 from django.utils.functional import cached_property
 from cms.models.pluginmodel import CMSPlugin
 from djangocms_text_ckeditor.fields import HTMLField
-from allink_core.core.utils import get_additional_templates
+from allink_core.core.utils import get_additional_templates, camelcase_to_separated_lowercase
 from allink_core.core.models.fields import CMSPluginField
 from allink_core.core_apps.allink_categories.models import AllinkCategory
 
@@ -157,7 +157,7 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
     )
     load_more_button_text = models.CharField(
         'Text for "Load .."-Button',
-        help_text='If left blank, a default text will be used. <br>Note: Should the default text be adjusted site-wide,'
+        help_text='If left blank, a default text will be used.<br>Note: Should the default text be adjusted site-wide,'
         ' please contact the project manager (such changes can be made on a code level)',
         max_length=255,
         null=True,
@@ -315,7 +315,8 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
         # category
         elif self.manual_ordering == AllinkBaseAppContentPlugin.CATEGORY:
             # https://code.djangoproject.com/ticket/24218
-            # To remove duplicates in queryset and return a queryset instead of a list as there can be further filtering
+            # To remove duplicates in queryset and return a queryset instead
+            # of a list as there can be further filtering
             return queryset.model.objects.filter(id__in=set(queryset.category().values_list('id', flat=True)))
         else:
             return queryset.distinct()
@@ -349,8 +350,8 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
         queryset = self._apply_filtering_to_queryset_for_display(queryset)
 
         # apply ordering
-        # if apply_ordering:
-        queryset = self._apply_ordering_to_queryset_for_display(queryset)
+        if apply_ordering:
+            queryset = self._apply_ordering_to_queryset_for_display(queryset)
 
         # hook for prefetching related
         queryset = self._get_queryset_with_prefetch_related(queryset)
@@ -453,9 +454,11 @@ class AllinkBaseSectionPlugin(CMSPlugin):
     Base Plugin used for plugins which represent a section on a page.
 
     These plugins will be placed on the outer most plugin level.
-    These plugins will be used to better control layout behavior in a more specific and more opinionated manner as the AllinkContentPlugin does.
+    These plugins will be used to better control layout behavior in a more specific
+    and more opinionated manner as the AllinkContentPlugin does.
     """
-    # overwrite the set of columns tuples on a per plugin level (make sure a corresponding width_alias is defined in settings.py)
+    # overwrite the set of columns tuples on a per plugin level
+    # (make sure a corresponding width_alias is defined in settings.py)
     COLUMNS = (
         ('1-of-1', 'One Column'),
         ('1-of-2', 'Two Columns'),
@@ -534,6 +537,10 @@ class AllinkBaseSectionPlugin(CMSPlugin):
 
     class Meta:
         abstract = True
+
+    @property
+    def css_class(self):
+        return camelcase_to_separated_lowercase(self.__class__.__name__, '-')
 
     @property
     def css_classes(self):
