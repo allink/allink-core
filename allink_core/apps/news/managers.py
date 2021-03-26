@@ -15,12 +15,12 @@ class AllinkNewsQuerySet(AllinkBaseModelQuerySet):
 
     def latest(self):
         return self.active()\
-            .order_by('entry_date', 'id')\
+            .order_by('-entry_date', 'id')\
             .distinct('entry_date', 'id')
 
     def earliest(self):
         return self.active()\
-            .order_by('-entry_date', 'id')\
+            .order_by('entry_date', 'id')\
             .distinct('entry_date', 'id')
 
     def published_fields_empty(self):
