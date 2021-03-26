@@ -64,6 +64,8 @@ general bugfixes
     if the project has a manager that inherits from this class and that overrides these managers you must at least 
     pass lang into the manager and maybe reconsider the override.
     
+- changed ordering of manager in news app. if the news app is overridden you must manually apply there changed to the 
+    overridden manager [#170](https://github.com/allink/allink-core/pull/170)
 
 #### NEW
 - Updated README release instructions [#114](https://github.com/allink/allink-core/pull/114)
@@ -105,6 +107,7 @@ general bugfixes
 - Added logic to display page title as modal header when opened as softpage from teaser instead of button label [#146](https://github.com/allink/allink-core/pull/146)
 - Grouped all accordion items in itemprop [#155](https://github.com/allink/allink-core/pull/155)
 - Fixed title asc and desc manager as it didn't work for all implementations[#168](https://github.com/allink/allink-core/pull/168)
+- changed latest and earliest manager on news to return correct order [#170](https://github.com/allink/allink-core/pull/170)
 
 #### DATA MIGRATIONS
 - Added custom link option for pagination button on content plugins [~~#118~~(reverted)](https://github.com/allink/allink-core/pull/118) [#124](https://github.com/allink/allink-core/pull/124)
