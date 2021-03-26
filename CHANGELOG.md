@@ -18,6 +18,7 @@ new features or plugins
 #### FIXES
 general bugfixes
 
+
 ## v2.8.0
 #### IMPORTANT
 
@@ -118,6 +119,16 @@ general bugfixes
     -  added teaser_link_url to news item templates [#142](https://github.com/allink/allink-core/pull/142)
     -  added teaser_link_url to teaser_dict property [#142](https://github.com/allink/allink-core/pull/142)
 - Added with alias to gallery plugin [#134](https://github.com/allink/allink-core/pull/134)
+
+## v2.7.2
+#### FIXES
+- Fixed tagmanager ID [#136](https://github.com/allink/allink-core/pull/136)
+
+## v2.7.1
+#### FIXES
+- Fix autoplay for section videos [#117](https://github.com/allink/allink-core/pull/117)
+- Hide inactive items from sitemap [#132](https://github.com/allink/allink-core/pull/132)
+- Move noscript part of tag manager to body [#133](https://github.com/allink/allink-core/pull/133)
 
 ## v2.7.0
 #### IMPORTANT
