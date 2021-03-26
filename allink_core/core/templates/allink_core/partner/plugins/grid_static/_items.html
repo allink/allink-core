@@ -1,0 +1,25 @@
+{% load cms_tags allink_cms_tags sekizai_tags i18n allink_image_tags thumbnail %}
+
+{% for object in object_list %}
+    {% if object.preview_image %}
+        <div class="grid-item">
+            {% if object.link %}
+                <a href="{{ object.link }}" class="partner-plugin__item" target="_blank" rel="noopener" data-softpage-disabled>
+            {% elif object.internallink %}
+                <a href="{{ object.internallink.get_absolute_url }}" class="partner-plugin__item">
+            {% else %}
+                <div class="partner-plugin__item">
+            {% endif %}
+
+            <div class="image-container">
+                {% render_image image=object.preview_image ratio="x-y" alt_text=object.title upscale=False bg_enabled=False %}
+            </div>
+
+            {% if object.link or object.internallink %}
+                </a>
+            {% else %}
+                </div>
+            {% endif %}
+        </div>
+    {% endif %}
+{% endfor %}

@@ -300,6 +300,7 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
         return queryset
 
     def _apply_ordering_to_queryset_for_display(self, queryset):
+        language_code = self.language
         # latest
         if self.manual_ordering == AllinkBaseAppContentPlugin.LATEST:
             return queryset.latest()
@@ -308,10 +309,10 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
             return queryset.earliest()
         # A-Z
         elif self.manual_ordering == AllinkBaseAppContentPlugin.TITLE_ASC:
-            return queryset.title_asc()
+            return queryset.title_asc(language_code)
         # Z-A
         elif self.manual_ordering == AllinkBaseAppContentPlugin.TITLE_DESC:
-            return queryset.title_desc()
+            return queryset.title_desc(language_code)
         # category
         elif self.manual_ordering == AllinkBaseAppContentPlugin.CATEGORY:
             # https://code.djangoproject.com/ticket/24218
