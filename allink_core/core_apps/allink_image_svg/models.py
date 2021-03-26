@@ -25,6 +25,12 @@ class AllinkImageSVGPlugin(AllinkLinkFieldsModel, CMSPlugin):
         help_text="Check if the SVG will be inlined.",
     )
 
+    is_fullwidth = models.BooleanField(
+        'Is Fullwidth',
+        default=True,
+        help_text="Stretches the SVG to 100% width.",
+    )
+
     def render_svg(self, **kwargs):
         """
         reads svg image and extracts <svg> tag.

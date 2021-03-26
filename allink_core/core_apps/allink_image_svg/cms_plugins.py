@@ -33,7 +33,7 @@ class CMSAllinkImageSVGPlugin(CMSPluginBase):
             (None, {
                 'fields': [
                     'picture',
-                    'is_inline',
+                    ('is_inline', 'is_fullwidth')
                 ]
             }),
             ('Link settings', {

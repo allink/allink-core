@@ -1,6 +1,6 @@
 {% load allink_link_tags %}
 
-<div class="content-plugin image-svg-plugin">
+<div class="content-plugin image-svg-plugin {% if instance.is_fullwidth %}image-svg-plugin--fullwidth{% endif %}">
     {% if instance.link_url_typed %}
         <a href="{{ instance.link_url_typed }}"
            class="image-plugin__link {{ instance|link_classes }}"
