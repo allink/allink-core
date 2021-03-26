@@ -48,6 +48,7 @@ ALLINK_INSTALLED_APPS = [
     'allink_core.core_apps.allink_content',
     'allink_core.core_apps.allink_teaser',
     'allink_core.core_apps.allink_image',
+    'allink_core.core_apps.allink_image_svg',
     'allink_core.core_apps.allink_gallery',
     'allink_core.core_apps.allink_video',
     'allink_core.core_apps.allink_social_icon',
@@ -97,6 +98,7 @@ ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [
     # core
     'CMSAllinkTeaserPlugin',
     'CMSAllinkImagePlugin',
+    'CMSAllinkImageSVGPlugin',
     'CMSAllinkGalleryPlugin',
     'CMSAllinkVideoEmbedPlugin',
     'CMSAllinkVideoFilePlugin',

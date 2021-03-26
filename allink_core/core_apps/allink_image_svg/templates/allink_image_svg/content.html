@@ -1,0 +1,23 @@
+{% load allink_link_tags %}
+
+<div class="content-plugin image-svg-plugin {% if instance.is_fullwidth %}image-svg-plugin--fullwidth{% endif %}">
+    {% if instance.link_url_typed %}
+        <a href="{{ instance.link_url_typed }}"
+           class="image-plugin__link {{ instance|link_classes }}"
+            {{ instance|link_attribute_string:request }}
+        >
+    {% endif %}
+
+        {% if instance.is_inline %}
+            {{ instance.render_svg }}
+        {% else %}
+            <img src="{{ instance.picture.url }}">
+        {% endif %}
+
+    {% if instance.link_url_typed %}
+        </a>
+    {% endif %}
+    {% if instance.softpage_enabled %}
+        {% include "modals/modal-header-markup.html" with title=instance.link_page modal_type="softpage" %}
+    {% endif %}
+</div>
