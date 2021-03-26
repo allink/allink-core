@@ -32,7 +32,7 @@ recursive-include allink_core/core_apps/allink_seo_accordion/locale *
 recursive-include allink_core/core_apps/allink_teaser/locale *
 recursive-include allink_core/core_apps/allink_quote/locale *
 recursive-include allink_core/core_apps/allink_list_multicol/locale *
-recursive-include allink_core/core_apps/allink_image_svg/templates *
+recursive-include allink_core/core_apps/allink_image_svg/locale *
 
 recursive-include allink_core/core/migrations *
 recursive-include allink_core/core_apps/allink_styleguide/migrations *
@@ -50,6 +50,6 @@ recursive-include allink_core/core_apps/allink_seo_accordion/migrations *
 recursive-include allink_core/core_apps/allink_teaser/migrations *
 recursive-include allink_core/core_apps/allink_quote/migrations *
 recursive-include allink_core/core_apps/allink_list_multicol/migrations *
-recursive-include allink_core/core_apps/allink_image_svg/templates *
+recursive-include allink_core/core_apps/allink_image_svg/migrations *
 
 recursive-exclude * *.pyc
