@@ -423,9 +423,9 @@ class CMSAllinkBaseSectionPlugin(CMSPluginBase):
             }),
             ('Spacings', {
                 'fields': [
+                    'project_css_spacings_top_bottom',
                     'project_css_spacings_top',
                     'project_css_spacings_bottom',
-                    'project_css_spacings_top_bottom',
                 ]
             }),
             ('Section Options', {
