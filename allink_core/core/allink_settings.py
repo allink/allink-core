@@ -78,6 +78,7 @@ ALLINK_PROJECT_APP_MODEL_WITH_CATEGORY_CHOICES = [
 
 ALLINK_CMS_PLACEHOLDER_CONF_PLUGINS = [
     'CMSAllinkContentPlugin',
+    'CMSAllinkTeaserGridContainerPlugin',
     'Module',
     'CMSAllinkInfoBoxPlugin',
 ]

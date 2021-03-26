@@ -1,21 +1,21 @@
 from unittest import mock
 from django.test.testcases import TestCase, override_settings
 from django.template import Context, Template
-from cms import api
+
 from easy_thumbnails.exceptions import InvalidImageFormatError
-from allink_core.core.test.base import PageApphookMixin, GenericPluginMixin
+from allink_core.core.test.base import GenericPluginMixin
 from allink_core.core.utils import get_ratio_w_h, get_height_from_ratio
 from allink_core.core.test.factories import FilerImageFactory
 from allink_core.core.templatetags.allink_image_tags import (
-    get_sizes_from_width_alias, get_width_alias_from_plugin, render_image,
+    get_sizes_from_width_alias, get_width_alias_from_column_plugin, render_image,
 )
-from allink_core.core_apps.allink_content.cms_plugins import CMSAllinkContentPlugin, CMSAllinkContentColumnPlugin
 from allink_core.core_apps.allink_image.cms_plugins import CMSAllinkImagePlugin
 
 
 class MockThumbnailer(mock.Mock):
     def get_thumbnail(*args, **kwargs):
         return None
+
 
 """ as reference
 THUMBNAIL_WIDTH_ALIASES = {
@@ -113,103 +113,9 @@ class ImageTagsUtilsTestCase(TestCase):
 class ImageTagsImagePluginUtilsTestCase(GenericPluginMixin, TestCase):
     plugin_class = CMSAllinkImagePlugin
 
-    def test_get_width_alias_from_plugin_no_context_3(self):
-        result = get_width_alias_from_plugin(self.plugin_model_instance)
+    def test_get_width_alias_from_column_plugin_no_context_3(self):
+        result = get_width_alias_from_column_plugin(self.plugin_model_instance)
         self.assertEqual('2-of-3', result)
-
-
-class ImageTagsContentPluginUtilsTestCase(PageApphookMixin, TestCase):
-    template = 'col-1'
-    position = 1  #
-
-    def setUp(self):
-        super().setUp()
-        # AllinkContentPlugin, template='col-1'
-        self.content_plugin = api.add_plugin(
-            self.placeholder,
-            CMSAllinkContentPlugin,
-            self.language,
-            template=self.template
-        )
-        # AllinkContentColumnPlugin, template='col-1'
-        column_amount = CMSAllinkContentPlugin.model.get_template_column_count(self.content_plugin.template)
-
-        for x in range(int(column_amount)):
-            api.add_plugin(
-                self.placeholder,
-                CMSAllinkContentColumnPlugin,
-                self.language,
-                target=self.content_plugin
-            )
-
-        self.column_plugin = self.content_plugin.get_children()[self.position - 1]
-
-        # AllinkImagePlugin, inside column plugin
-        self.image_plugin = api.add_plugin(
-            self.placeholder,
-            CMSAllinkImagePlugin,
-            self.language,
-            target=self.column_plugin
-        )
-
-    def test_get_width_alias_from_plugin_no_context_1(self):
-        """ template col-1 """
-
-        result = get_width_alias_from_plugin(self.image_plugin)
-        self.assertEqual('1-of-1', result)
-
-    def test_get_width_alias_from_plugin_no_context_1_1(self):
-        self.content_plugin.template = 'col-1-1'
-        self.content_plugin.save()
-
-        result = get_width_alias_from_plugin(self.image_plugin)
-        self.assertEqual('1-of-2', result)
-
-    def test_get_width_alias_from_plugin_no_context_1_2_pos_0(self):
-        self.content_plugin.template = 'col-1-2'
-        self.content_plugin.save()
-
-        result = get_width_alias_from_plugin(self.image_plugin)
-        self.assertEqual('1-of-3', result)
-
-    def test_get_width_alias_from_plugin_no_context_1_2_pos_1(self):
-        self.content_plugin.template = 'col-1-2'
-        self.content_plugin.save()
-        self.column_plugin.position = 1
-        self.column_plugin.save()
-
-        result = get_width_alias_from_plugin(self.image_plugin)
-        self.assertEqual('2-of-3', result)
-
-    def test_get_width_alias_from_plugin_no_context_2_1_pos_0(self):
-        self.content_plugin.template = 'col-2-1'
-        self.content_plugin.save()
-
-        result = get_width_alias_from_plugin(self.image_plugin)
-        self.assertEqual('2-of-3', result)
-
-    def test_get_width_alias_from_plugin_no_context_2_1_pos_1(self):
-        self.content_plugin.template = 'col-2-1'
-        self.content_plugin.save()
-        self.column_plugin.position = 1
-        self.column_plugin.save()
-
-        result = get_width_alias_from_plugin(self.image_plugin)
-        self.assertEqual('1-of-3', result)
-
-    def test_get_width_alias_from_plugin_no_context_3(self):
-        self.content_plugin.template = 'col-3'
-        self.content_plugin.save()
-
-        result = get_width_alias_from_plugin(self.image_plugin)
-        self.assertEqual('1-of-3', result)
-
-    def test_get_width_alias_from_plugin_no_context_4(self):
-        self.content_plugin.template = 'col-4'
-        self.content_plugin.save()
-
-        result = get_width_alias_from_plugin(self.image_plugin)
-        self.assertEqual('1-of-4', result)
 
 
 class ImageTagsImagePluginContextTestCase(TestCase):
@@ -314,16 +220,20 @@ class ImageTagsImagePluginContextTestCase(TestCase):
         # use context from first render (ike this is what is the case when calling render_image in a template twice)
         context = render_image(context, self.image, width_alias='1-of-2')
         self.assertIsNone(context.get('thumbnail_sm'))
-        
-    def test_picture_id_instance(self):
-        context = render_image(self.context, self.image, width_alias='1-of-1')
-        self.assertEqual(context.get('picture_id'), 'picture-1-1-1500-1000')
 
-    def test_picture_id_instance_none(self):
+    @mock.patch('allink_core.core.templatetags.allink_image_tags.get_unique_key')
+    def test_picture_id_instance(self, mock_get_unique_key):
+        mock_get_unique_key.return_value = 1
+        context = render_image(self.context, self.image, width_alias='1-of-1')
+        self.assertEqual(context.get('picture_id'), f'picture-{self.image.id}-1-1500-1000')
+
+    @mock.patch('allink_core.core.templatetags.allink_image_tags.get_unique_key')
+    def test_picture_id_instance_none(self, mock_get_unique_key):
+        mock_get_unique_key.return_value = 1
         ctx_no_instance = {}
         context = render_image(ctx_no_instance, self.image, width_alias='1-of-1')
 
-        self.assertEqual(context.get('picture_id'), 'picture-1-1-1500-1000')
+        self.assertEqual(context.get('picture_id'), f'picture-{self.image.id}-1-1500-1000')
 
     @mock.patch('allink_core.core.templatetags.allink_image_tags.get_thumbnailer', MockThumbnailer)
     def test_image_does_not_exist(self):

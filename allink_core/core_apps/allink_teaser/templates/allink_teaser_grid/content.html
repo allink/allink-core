@@ -1,0 +1,36 @@
+{% load cms_tags allink_helpers %}
+
+{% if instance.title or instance.child_plugin_instances %}
+    <section id="{% if instance.anchor %}{{ instance.anchor }}{% else %}content-section-{{ instance.id }}{% endif %}"
+             class="content-section container-enabled section-heading-h2
+             {{ instance.css_class }} {{ instance.css_classes }} {{ instance.css_section_classes }} {% block content_section_additional_css_classes %}{% endblock content_section_additional_css_classes %}"
+             {% block content_section_additional_attributes %}{% endblock content_section_additional_attributes %}>
+
+        <div class="content-section__container">
+            <div class="content-section__col-container">
+                {% block content_section_title %}
+                    {% if instance.title %}
+                        <header class="content-section__section-heading-container">
+                            <h2 class="content-section__section-heading">
+                                {{ instance.title }}
+                            </h2>
+                        </header>
+                    {% endif %}
+                {% endblock content_section_title %}
+
+                {% block content_section_plugin %}
+                    {% if instance.child_plugin_instances %}
+                        <div class="grid grid--{{ instance.columns }} grid--{{ instance.column_order }}">
+                            {% for plugin in instance.child_plugin_instances %}
+                                <div class="grid__col">
+                                    {% render_plugin plugin %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endblock content_section_plugin %}
+            </div>
+        </div>
+
+    </section>
+{% endif %}

@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import urllib.parse
 from django.conf import settings
 from django.db import models
 from django.db.models import Q, QuerySet
@@ -7,7 +6,7 @@ from django.contrib.postgres.fields import ArrayField
 from django.utils.functional import cached_property
 from cms.models.pluginmodel import CMSPlugin
 from djangocms_text_ckeditor.fields import HTMLField
-from allink_core.core.utils import get_additional_templates
+from allink_core.core.utils import get_additional_templates, camelcase_to_separated_lowercase
 from allink_core.core.models.fields import CMSPluginField
 from allink_core.core_apps.allink_categories.models import AllinkCategory
 
@@ -15,12 +14,12 @@ __all__ = [
     'AllinkBaseAppContentPlugin',
     'AllinkBaseFormPlugin',
     'AllinkBaseSearchPlugin',
+    'AllinkBaseSectionPlugin',
 ]
 
 
 class AllinkBaseAppContentPlugin(CMSPlugin):
     """
-    TODO
     Base plugin which provides standard functionality
     all Content App-Plugins should inherit from this, to create a "app pointer plugin"
 
@@ -109,8 +108,7 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
     )
     category_navigation_enabled = models.BooleanField(
         'Show category navigation',
-        help_text=
-        'If checked, a filter navigation with all selected categories is displayed.'
+        help_text='If checked, a filter navigation with all selected categories is displayed.'
         '<br>Please note: A category is only displayed if it contains items.',
         default=False
     )
@@ -123,16 +121,14 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
         AllinkCategory,
         related_name='%(app_label)s_%(class)s_category_navigation',
         verbose_name='Categories for Navigation',
-        help_text=
-        'You can explicitly define the categories for the category navigation here.'
+        help_text='You can explicitly define the categories for the category navigation here.'
         ' This will override the automatically set of categories'
         ' (either the one generated from "Filter & Ordering" or "Manual entries")',
         blank=True,
     )
     softpage_enabled = models.BooleanField(
         'Show detailed information in Softpage',
-        help_text=
-        'If checked, the detail view of an entry will be displayed in a "softpage".'
+        help_text='If checked, the detail view of an entry will be displayed in a "softpage".'
         ' Otherwise the page will be reloaded.',
         default=True
     )
@@ -150,8 +146,7 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
     paginated_by = models.IntegerField(
         'Max. entries per page',
         default=0,
-        help_text=
-        'Limit the number of entries (in case of the "load more" pagination type: entries per page).'
+        help_text='Limit the number of entries (in case of the "load more" pagination type: entries per page).'
         ' Default is "0" (show all entries)'
     )
     pagination_type = models.CharField(
@@ -162,17 +157,15 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
     )
     load_more_button_text = models.CharField(
         'Text for "Load .."-Button',
-        help_text=
-        'If left blank, a default text will be used. <br>Note: Should the default text be adjusted site-wide,'
-        ' please contact the project manager (such changes can be made on a code level)',
+        help_text='If left blank, a default text will be used. <br>Note: Should the default text be adjusted site-wide,'
+        ' please contact the project manager (such changes can be made on a code level)', # noqa
         max_length=255,
         null=True,
         blank=True
     )
     detail_link_text = models.CharField(
         'Text for "Detail"-Link',
-        help_text=
-        'If left blank, a default text will be used.<br>Note: Should the default text be adjusted site-wide,'
+        help_text='If left blank, a default text will be used.<br>Note: Should the default text be adjusted site-wide,'
         ' please contact the project manager (such changes can be made on a code level)',
         max_length=255,
         null=True,
@@ -323,7 +316,8 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
         # category
         elif self.manual_ordering == AllinkBaseAppContentPlugin.CATEGORY:
             # https://code.djangoproject.com/ticket/24218
-            # To remove duplicates in queryset and return a queryset instead of a list as there can be further filtering
+            # To remove duplicates in queryset and return a queryset instead
+            # of a list as there can be further filtering
             return queryset.model.objects.filter(id__in=set(queryset.category().values_list('id', flat=True)))
         else:
             return queryset.distinct()
@@ -357,8 +351,8 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
         queryset = self._apply_filtering_to_queryset_for_display(queryset)
 
         # apply ordering
-        # if apply_ordering:
-        queryset = self._apply_ordering_to_queryset_for_display(queryset)
+        if apply_ordering:
+            queryset = self._apply_ordering_to_queryset_for_display(queryset)
 
         # hook for prefetching related
         queryset = self._get_queryset_with_prefetch_related(queryset)
@@ -454,3 +448,122 @@ class AllinkBaseFormPlugin(CMSPlugin):
 
     class Meta:
         abstract = True
+
+
+class AllinkBaseSectionPlugin(CMSPlugin):
+    """
+    Base Plugin used for plugins which represent a section on a page.
+
+    These plugins will be placed on the outer most plugin level.
+    These plugins will be used to better control layout behavior in a more specific
+    and more opinionated manner as the AllinkContentPlugin does.
+    """
+    # overwrite the set of columns tuples on a per plugin level
+    # (make sure a corresponding width_alias is defined in settings.py)
+    COLUMNS = (
+        ('1-of-1', 'One Column'),
+        ('1-of-2', 'Two Columns'),
+        ('1-of-3', 'Three Columns'),
+        ('1-of-4', 'Four Columns'),
+    )
+    # overwrite the set of columns order tuples on a per plugin level
+    COLUMN_ORDERS = (
+        ('default', 'Default'),
+    )
+    # SECTION_CSS_CLASSES  # will be defined on a per project level in settings.py
+    # SECTION_CSS_CLASSES_INITIAL  # will be defined on a per project level in settings.py
+
+    title = models.CharField(
+        'Title',
+        max_length=255,
+        blank=True,
+        null=True,
+    )
+
+    columns = models.CharField(
+        'Columns',
+        help_text='Choose columns.',
+        max_length=50,
+    )
+
+    column_order = models.CharField(
+        'Column Order',
+        help_text='Choose a column order.',
+        max_length=50,
+    )
+
+    anchor = models.CharField(
+        verbose_name='ID',
+        max_length=255,
+        blank=True,
+        help_text=('ID of this content section which can be used for anchor reference from links.<br>'
+                   'Note: Only letters, numbers and hyphen. No spaces or special chars.'),
+    )
+
+    project_css_classes = ArrayField(
+        models.CharField(
+            max_length=50,
+            blank=True,
+            null=True
+        ),
+        blank=True,
+        null=True
+    )
+
+    project_css_spacings_top_bottom = models.CharField(
+        'Spacings',
+        help_text='Choose a spacing (top and bottom).',
+        max_length=50,
+        blank=True,
+        null=True,
+    )
+
+    project_css_spacings_top = models.CharField(
+        'Spacings top',
+        help_text='Choose a top spacing.',
+        max_length=50,
+        blank=True,
+        null=True,
+    )
+
+    project_css_spacings_bottom = models.CharField(
+        'Spacings bottom',
+        help_text='Choose a bottom spacing.',
+        max_length=50,
+        blank=True,
+        null=True,
+    )
+
+    cmsplugin_ptr = CMSPluginField()
+
+    class Meta:
+        abstract = True
+
+    @property
+    def css_class(self):
+        return camelcase_to_separated_lowercase(self.__class__.__name__, '-')
+
+    @property
+    def css_classes(self):
+        css_classes = []
+        if getattr(self, 'project_css_classes'):
+            for css_class in getattr(self, 'project_css_classes'):
+                css_classes.append(css_class)
+        return ' '.join(css_classes)
+
+    @property
+    def css_section_classes(self):
+        css_classes = []
+        if self.project_css_spacings_top:
+            css_classes.append('{}-top'.format(self.project_css_spacings_top))
+
+        if self.project_css_spacings_bottom:
+            css_classes.append('{}-bottom'.format(self.project_css_spacings_bottom))
+
+        if self.project_css_spacings_top_bottom:
+            css_classes = self.project_css_spacings_top_bottom
+            return css_classes
+        return ' '.join(css_classes)
+
+    def __str__(self):
+        return f'{self.id}'
