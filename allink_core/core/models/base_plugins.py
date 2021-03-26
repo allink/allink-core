@@ -157,8 +157,8 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
     )
     load_more_button_text = models.CharField(
         'Text for "Load .."-Button',
-        help_text='If left blank, a default text will be used.<br>Note: Should the default text be adjusted site-wide,'
-        ' please contact the project manager (such changes can be made on a code level)',
+        help_text='If left blank, a default text will be used. <br>Note: Should the default text be adjusted site-wide,'
+        ' please contact the project manager (such changes can be made on a code level)', # noqa
         max_length=255,
         null=True,
         blank=True
