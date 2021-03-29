@@ -331,6 +331,8 @@ class AllinkBaseAppContentPlugin(CMSPlugin):
         after refactoring:
         - category will be supplied via filters, request will be removed
         """
+        apply_ordering = True
+
         # manual entries
         if self.fetch_manual_entries:
             apply_ordering = False
