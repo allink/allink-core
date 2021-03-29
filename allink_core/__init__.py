@@ -17,6 +17,7 @@ ALLINK_CORE_ALLINK_APPS = [
     'allink_core.apps.locations',
     'allink_core.apps.news',
     'allink_core.apps.people',
+    'allink_core.apps.partner',
 ]
 
 

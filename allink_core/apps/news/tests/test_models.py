@@ -228,6 +228,7 @@ class NewsTeaserTestCase(TestCase):
             'teaser_image': get_fallback(self.entry_1, 'teaser_image'),
             'teaser_link_text': get_fallback(self.entry_1, 'teaser_link_text'),
             'teaser_link': self.entry_1.get_absolute_url(),
+            'teaser_link_url': None,
         }
         self.assertDictEqual(expected_meta_context, self.entry_1.teaser_dict)
 

@@ -10,11 +10,20 @@ from allink_core.core.forms.fields import SelectLinkField
 from allink_core.core.forms.mixins import AllinkInternalLinkFieldMixin
 from allink_core.core_apps.allink_teaser.models import AllinkTeaserPlugin
 from allink_core.core.admin.mixins import AllinkMediaAdminMixin
+from allink_core.core.cms_plugins import CMSAllinkBaseSectionPlugin
+from .models import AllinkTeaserGridContainerPlugin
+
+
+@plugin_pool.register_plugin
+class CMSAllinkTeaserGridContainerPlugin(CMSAllinkBaseSectionPlugin):
+    model = AllinkTeaserGridContainerPlugin
+    name = 'Teaser Grid'
+    child_classes = ['CMSAllinkTeaserPlugin']
+    render_template = 'allink_teaser_grid/content.html'
 
 
 class AllinkTeaserPluginForm(AllinkInternalLinkFieldMixin, forms.ModelForm):
-
-    internal_link = SelectLinkField(label='Link Internal')
+    internal_link = SelectLinkField(label='Link Internal', required=False)
 
     class Meta:
         model = AllinkTeaserPlugin
@@ -51,6 +60,7 @@ class CMSAllinkTeaserPlugin(AllinkMediaAdminMixin, CMSPluginBase):
                 'teaser_technical_title',
                 'teaser_description',
                 'teaser_link_text',
+                'teaser_link_url',
                 'softpage_enabled',
             )
         })

@@ -7,6 +7,7 @@ from easy_thumbnails.exceptions import InvalidImageFormatError
 
 from allink_core.core.loading import get_model
 from allink_core.core.utils import get_height_from_ratio, get_ratio_w_h
+from allink_core.core.models.base_plugins import AllinkBaseSectionPlugin
 
 register = template.Library()
 
@@ -32,7 +33,36 @@ def get_sizes_from_width_alias(width_alias, image):
     return sizes
 
 
-def get_width_alias_from_plugin(plugin):
+def get_width_alias_from_section_plugin(plugin):
+    """
+
+    If the plugin inside a
+
+    :param plugin:
+    a model instance of a cms plugin
+
+    :return:
+    If a parent of the plugin is a subclass of AllinkSectionPlugin. The width_alias in the field 'columns' will be returned.
+    None: if no parent is a subclass of AllinkSectionPlugin
+    """
+
+    # the outer most parent of a plugin with pictures should always be a AllinkSectionPlugin plugin
+    # if not return a fallback of '1-of-1'. (potential_section gets None and will trow a AttributeError)
+    try:
+        # find the next column plugin
+        section_plugin = None
+        potential_section = plugin.parent.get_plugin_instance()[0]
+        while (section_plugin is None):
+            if issubclass(type(potential_section), AllinkBaseSectionPlugin):
+                section_plugin = potential_section
+            else:
+                potential_section = potential_section.parent.get_plugin_instance()[0]
+        return section_plugin.columns
+    except AttributeError:
+        return None
+
+
+def get_width_alias_from_column_plugin(plugin):
     """
     This function is called from different context:
 
@@ -106,8 +136,10 @@ def get_unique_key(context):
     """
     if context.get('instance'):
         return context.get('instance').id
-    else:
+    elif context.get('object'):
         return '{}-{}'.format(context.get('object').id, context.get('image').id)
+    else:
+        return '{}'.format(context.get('image').id)
 
 
 @register.inclusion_tag('templatetags/allink_image.html', takes_context=True)
@@ -149,25 +181,31 @@ def render_image(context, image, alt_text='', ratio=None, width_alias=None, crop
     bg_color
 
     """
+
+    ctx = {}
+    ctx.update({'instance': context.get('instance')}) if context.get('instance') else None
+
     if image:
         # explicit render image in this width_alias
         # most likely not from within an app plugin template or a content template
         if not width_alias:
-            # get with alias from context
-            width_alias = get_width_alias_from_plugin(context.get('instance', None))
+            width_alias = get_width_alias_from_section_plugin(ctx.get('instance', None))
+            if not width_alias:
+                # get with alias from context (AllinkContentColumnPlugin)
+                width_alias = get_width_alias_from_column_plugin(ctx.get('instance', None))
 
         # use focal point. works best in combination with zoom > 0
         if subject_location:
             subject_location = image.subject_location
 
         # update context
-        context.update({'image': image})
-        context.update({'icon_enabled': icon_enabled})
-        context.update({'bg_enabled': bg_enabled})
-        context.update({'bg_color': bg_color})
-        context.update({'lazyload_enabled': lazyload_enabled})
-        context.update({'alt_text': alt_text})
-        context.update({'vh_enabled': vh_enabled})
+        ctx.update({'image': image})
+        ctx.update({'icon_enabled': icon_enabled})
+        ctx.update({'bg_enabled': bg_enabled})
+        ctx.update({'bg_color': bg_color})
+        ctx.update({'lazyload_enabled': lazyload_enabled})
+        ctx.update({'alt_text': alt_text})
+        ctx.update({'vh_enabled': vh_enabled})
 
         sizes = get_sizes_from_width_alias(width_alias, image)
         thumbnail_options = {'crop': crop, 'bw': bw, 'upscale': upscale, 'HIGH_RESOLUTION': high_resolution,
@@ -190,17 +228,17 @@ def render_image(context, image, alt_text='', ratio=None, width_alias=None, crop
                 w, h = size[1][0], size[1][1]
 
             thumbnail_options.update({'size': (w, h)})
-            context.update({'ratio_percent_{}'.format(size[0]): '{}%'.format(h / w * 100)})
-            context.update({'ratio_vh_{}'.format(size[0]): '{}vh'.format(h / w * 100)})
+            ctx.update({'ratio_percent_{}'.format(size[0]): '{}%'.format(h / w * 100)})
+            ctx.update({'ratio_vh_{}'.format(size[0]): '{}vh'.format(h / w * 100)})
             try:
-                context.update({'thumbnail_{}'.format(size[0]): thumbnailer.get_thumbnail(thumbnail_options)})
+                ctx.update({'thumbnail_{}'.format(size[0]): thumbnailer.get_thumbnail(thumbnail_options)})
             except InvalidImageFormatError:
-                context.update({'thumbnail_{}'.format(size[0]): None})
+                ctx.update({'thumbnail_{}'.format(size[0]): None})
         # for css padding hack, a image in each ratio has to be unique
         # (break point doesnt matter, because is never shown at the same time)
-        context.update({
+        ctx.update({
             'picture_id': 'picture-{}'.format(
-                '-'.join((str(image.id), str(get_unique_key(context)), str(round(w)), str(round(h))))
+                '-'.join((str(image.id), str(get_unique_key(ctx)), str(round(w)), str(round(h))))
             )})
 
-    return context
+    return ctx

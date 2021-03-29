@@ -1,0 +1,9 @@
+{% if teaser_link_url %}
+    {% include 'allink_teaser/includes/_button.html' with teaser_link=teaser_link_url teaser_link_text=teaser_link_text icon="arrow-external" %}
+{% elif teaser_link %}
+    {% if instance.softpage_enabled %}
+        {% include 'allink_teaser/includes/_button.html' with teaser_link=teaser_link teaser_link_text=teaser_link_text icon="softpage" %}
+    {% else %}
+        {% include 'allink_teaser/includes/_button.html' with teaser_link=teaser_link teaser_link_text=teaser_link_text %}
+    {% endif %}
+{% endif %}

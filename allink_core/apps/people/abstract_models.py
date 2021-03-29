@@ -16,17 +16,17 @@ from allink_core.core.models import (
     AllinkBaseTranslatableModel,
     AllinkBaseAppContentPlugin,
     AllinkContactFieldsModel,
-    AllinkAddressFieldsModel,
     AllinkBaseTranslatedFieldsModel,
 )
 from allink_core.core.models.choices import SALUTATION_CHOICES
 from allink_core.core.loading import get_class
+from cms.models.fields import PageField
 
 
 AllinkPeopleManager = get_class('people.managers', 'AllinkPeopleManager')
 
 
-class BasePeople(SortableMixin, AllinkContactFieldsModel, AllinkAddressFieldsModel,
+class BasePeople(SortableMixin, AllinkContactFieldsModel,
                  AllinkCategoryFieldsModel, AllinkBaseTranslatableModel):
     slug_source_field_name = 'full_name'
 
@@ -70,6 +70,37 @@ class BasePeople(SortableMixin, AllinkContactFieldsModel, AllinkAddressFieldsMod
         'people_content',
         related_name='%(app_label)s_%(class)s_content_placeholder'
     )
+    street = models.CharField(
+        _('Street'),
+        max_length=255,
+        blank=True,
+        null=True
+    )
+    street_nr = models.CharField(
+        _('Street Nr.'),
+        max_length=50,
+        blank=True,
+        null=True
+    )
+    street_additional = models.CharField(
+        _('Address Additional'),
+        max_length=255,
+        blank=True,
+        null=True
+    )
+    zip_code = models.CharField(
+        _('Zip Code'),
+        max_length=10,
+        blank=True,
+        null=True
+    )
+    place = models.CharField(
+        _('Place'),
+        max_length=255,
+        blank=True,
+        null=True
+    )
+    country = TranslatedField()
 
     objects = AllinkPeopleManager()
 
@@ -119,6 +150,12 @@ class BasePeopleTranslation(AllinkBaseTranslatedFieldsModel):
         blank=True,
         null=True,
     )
+    country = models.CharField(
+        'Country',
+        max_length=255,
+        blank=True,
+        null=True
+    )
 
     class Meta:
         abstract = True
@@ -138,6 +175,13 @@ class BasePeopleAppContentPlugin(AllinkBaseAppContentPlugin):
         blank=True,
         on_delete=models.PROTECT,
         help_text='If provided, this Apphook-Page will be used to generate the detail link.',
+    )
+    load_more_internallink = PageField(
+        verbose_name='Custom Load More Link',
+        help_text='Link for Button Below Items if custom URL is chosen',
+        related_name="load_more_internallink_people",
+        blank=True,
+        null=True,
     )
 
     class Meta:

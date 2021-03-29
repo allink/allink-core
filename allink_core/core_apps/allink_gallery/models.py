@@ -24,6 +24,12 @@ class AllinkGalleryPlugin(CMSPlugin):
         blank=True,
         null=True
     )
+    width_alias = models.CharField(
+        'Width Alias',
+        max_length=50,
+        blank=True,
+        null=True
+    )
     fullscreen_enabled = models.BooleanField(
         'Fullscreen option visible',
         default=True,
@@ -88,7 +94,7 @@ class AllinkGalleryPlugin(CMSPlugin):
 
     def save(self, *args, **kwargs):
         super(AllinkGalleryPlugin, self).save(*args, **kwargs)
-        AllinkGalleryImagePlugin.objects.filter(parent_id=self.id).update(template=self.template, ratio=self.ratio)
+        AllinkGalleryImagePlugin.objects.filter(parent_id=self.id).update(template=self.template, ratio=self.ratio, width_alias=self.width_alias)
 
 
 class AllinkGalleryImagePlugin(CMSPlugin):
@@ -114,6 +120,12 @@ class AllinkGalleryImagePlugin(CMSPlugin):
         blank=True,
         null=True
     )
+    width_alias = models.CharField(
+        'Width Alias',
+        max_length=50,
+        blank=True,
+        null=True
+    )
     image = FilerImageField(
         verbose_name='Image',
         on_delete=models.PROTECT,
@@ -125,4 +137,5 @@ class AllinkGalleryImagePlugin(CMSPlugin):
     def save(self, *args, **kwargs):
         self.template = self.parent.allink_gallery_allinkgalleryplugin.template
         self.ratio = self.parent.allink_gallery_allinkgalleryplugin.ratio
+        self.width_alias = self.parent.allink_gallery_allinkgalleryplugin.width_alias
         super(AllinkGalleryImagePlugin, self).save(*args, **kwargs)

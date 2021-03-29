@@ -6,6 +6,7 @@ from allink_core.core.constants import STOP_WORDS_RE
 from django.conf import settings
 from django.utils.text import get_valid_filename as get_valid_filename_django
 from django.template.defaultfilters import slugify
+
 _base_url = None
 
 
@@ -219,3 +220,11 @@ def update_context_google_tag_manager(context, page_name='NOPAGE_NAME', page_id=
     form_name = form_name.replace(' ', '-')
     context.update({'form_name': form_name})
     return context
+
+
+def camelcase_to_separated_lowercase(string, separator):
+    """
+    :returns a lowercased strings separated by character a from an camelcased input string.
+    e.g separator "-": 'AllinkTeaserGridContainerPlugin'-> 'allink-teaser-grid-container-plugin'
+    """
+    return re.sub(r'(?<!^)(?=[A-Z])', separator, string).lower()

@@ -23,7 +23,6 @@ from allink_core.core.models.choices import (
     SALUTATION_CHOICES, TARGET_CHOICES, NEW_WINDOW, SOFTPAGE, FORM_MODAL, IMAGE_MODAL, DEFAULT_MODAL, BLANK_CHOICE, )
 from allink_core.core_apps.allink_categories.models import AllinkCategory
 from allink_core.core.models.managers import AllinkCategoryModelManager
-from allink_core.core.models.fields import ZipCodeField
 from allink_core.core.utils import get_additional_choices
 
 
@@ -35,7 +34,6 @@ __all__ = [
     'AllinkSEOTranslatedFieldsModel',
     'AllinkTeaserFieldsModel',
     'AllinkTeaserTranslatedFieldsModel',
-    'AllinkAddressFieldsModel',
     'AllinkContactFieldsModel',
     'AllinkInternalLinkFieldsModel',
     'AllinkLinkFieldsModel',
@@ -227,51 +225,12 @@ class AllinkTeaserTranslatedFieldsModel(models.Model):
         default=''
     )
 
-    class Meta:
-        abstract = True
-
-
-class AllinkAddressFieldsModel(models.Model):
-    """
-    Base class for all address related fields
-
-    TODO: country might need to be moved to a TranslatedFieldsModel
-    or we should switch to a django-countries. CountryField
-    """
-    street = models.CharField(
-        _('Street'),
-        max_length=255,
+    teaser_link_url = models.URLField(
+        verbose_name='External link',
         blank=True,
-        null=True
-    )
-    street_nr = models.CharField(
-        _('Street Nr.'),
-        max_length=50,
-        blank=True,
-        null=True
-    )
-    street_additional = models.CharField(
-        _('Address Additional'),
-        max_length=255,
-        blank=True,
-        null=True
-    )
-    zip_code = ZipCodeField(
-        _('Zip Code'),
-        blank=True,
-        null=True
-    )
-    place = models.CharField(
-        _('Place'),
-        max_length=255,
-        blank=True,
-        null=True
-    )
-    country = models.CharField(
-        _('Country'),
-        max_length=255,
-        blank=True,
-        null=True
+        null=True,
+        help_text='Provide a valid URL to an external website.',
+        max_length=500,
     )
 
     class Meta:

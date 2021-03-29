@@ -18,6 +18,115 @@ new features or plugins
 #### FIXES
 general bugfixes
 
+
+## v2.8.0
+#### IMPORTANT
+- Added logo field to allink_categories [#153](https://github.com/allink/allink-core/pull/153)
+    - Update filer at least to v2.0.0 (divio addons)
+
+- Added load_more_internallink to AppContentPlugin.
+    - Add following code to ```models.py``` on each project based app within  
+    ```class APP_NAMEAppContentPlugin(AllinkBaseAppContentPlugin)``` (replace APP_LABEL with actual app label):
+        ```
+        load_more_internallink = PageField(
+            verbose_name='Custom Load More Link',
+            help_text='Link for Button Below Items if custom URL is chosen',
+            related_name="load_more_internallink_APP_LABEL",
+            blank=True,
+            null=True,
+        )
+        ```
+    - Hint: search for ```apphook_page = PageField``` and place the snipped below that block in all model files.
+    - Run migrations
+
+- Changed zip_code field on `AllinkAddressFieldsModel` and deleted ZipCodeField and its form validation
+    - If people or locations app are overrriden in the project, the zip_code field in the initial migration has to be modified:
+    ```
+    ('zip_code', models.fields.PositiveIntegerField(blank=True, null=True, verbose_name='Zip Code')),
+  ```
+    - If the ZipCodeField has been used in other apps you have to manually migrate it.
+
+- Removed ```AllinkAddressFieldsModel``` from models/fields_model.py
+    - All Fields have been moved directly to BaseLocations and BasePeople
+    - If you have a project specific model which inherits from ```AllinkAddressFieldsModel``` you also have to put the fields directly into that model
+    - Hint: search for ```AllinkAddressFieldsModel``` and make sure it's not part of the project specific files
+
+- Changed signature of manager for ascending and descending title on AllinkBaseModelQuerySet on [#168](https://github.com/allink/allink-core/pull/168)
+    - If the project has a manager that inherits from this class and that overrides these managers you must at least 
+    pass lang into the manager and maybe reconsider the override.
+  
+- Changed ordering of manager in news app [#170](https://github.com/allink/allink-core/pull/170)
+    - **Check content if ordering was changed in any news plugin and adjust accordingly**
+    - If the news app is overridden you must manually apply there changed to the overridden manager
+  
+- Added teaser_link_url field on all models that have a teaser
+    -  To take advantage of these changes you must add `teaser_link_url=object.teaser_dict.teaser_link_url` to all 
+    overridden item templates which use a teaser via include of teaser tile such as news or new apps such as potentially projects
+    hint: search for `include 'allink_teaser/` 
+
+- Added logic to choose which content css classes under the "Advanced Options" Tab are preselected on creation of content plugin
+    - **It is not recommended to add this to existing projects**
+    - Create a tuple `INITIAL_CONTENT_CSS_CLASSES` to set which of the `CONTENT_CSS_CLASSES` should be preselected. 
+        Add this underneath `CONTENT_CSS_CLASSES`:
+        ```
+        # Add all content CSS classes here which should be preselected on creation of content plugin
+        INITIAL_CONTENT_CSS_CLASSES = (
+          'custom-container-width-1',
+          'custom-container-width-2',
+        )
+        ```
+
+#### NEW
+- Updated README release instructions [#114](https://github.com/allink/allink-core/pull/114)
+- Updated mkdoks for new_app command [#115](https://github.com/allink/allink-core/pull/115)
+- Updated get chrome translation [#119](https://github.com/allink/allink-core/pull/119)
+- Added lazy attribute to iframe embeds [#120](https://github.com/allink/allink-core/pull/120)
+- Added alt attribute in any case [#130](https://github.com/allink/allink-core/pull/130)
+- Unlinked Brand Logo on browser outdated page [#131](https://github.com/allink/allink-core/pull/131)
+- Added logic to choose which content css classes under the Additional Properties Tab are preselected on creation of content plugin [#145](https://github.com/allink/allink-core/pull/145)
+- Changed Zip code field on `AllinkAddressFieldsModel` to `Charfield` with `max_length=10` to allow ZipCodes with leading Zeros that are longer than 4 digits [#147](https://github.com/allink/allink-core/pull/147)
+    - Deleted ZipCodeField and its form validation
+- Added width aliases for list teaser and bg image teaser [#148](https://github.com/allink/allink-core/pull/148)
+- Added admin status column and self string representation to new app dummy [#152](https://github.com/allink/allink-core/pull/152)
+- Added possibility to override teaser image width alias [#154](https://github.com/allink/allink-core/pull/154)
+- Added partner core app [#156](https://github.com/allink/boilerplate-2.0/pull/156)
+- Optimized load more conditions and classes [#157](https://github.com/allink/allink-core/pull/157)
+- Used teaser alt text from original image [#158](https://github.com/allink/allink-core/pull/158)
+- Added list multicol cms plugin [#159](https://github.com/allink/allink-core/pull/159)
+- Added AllinkBaseSectionPlugin and AllinkTeaserGridContainerPlugin [#162](https://github.com/allink/allink-core/pull/162)
+- Added CONTENT_EXTENDED_FEATURE_SET feature toggle, which allows to hide functionality on the content plugin [#166](https://github.com/allink/allink-core/pull/166)
+- Updated info box plugin [#167](https://github.com/allink/allink-core/pull/167)
+- Added SVG Image plugin to generic plugin set [#169](https://github.com/allink/allink-core/pull/169)
+
+#### FIXES
+- Fixed render_image tag issues with multiple renderings on same site and added unit tests [#116](https://github.com/allink/allink-core/pull/116)
+- Fixed autoplay for section videos [#117](https://github.com/allink/allink-core/pull/117)
+- Added rel noopener to locations footer template [#121](https://github.com/allink/allink-core/pull/121)
+- Changed logic for manual ordering after category so it returns a queryset instead of a list [#127](https://github.com/allink/allink-core/pull/127)
+- Added migrations to counter a not null constraint issue in production [#126](https://github.com/allink/allink-core/pull/126)
+- Removed migrations from previous PR [#124](https://github.com/allink/allink-core/pull/124) and redid them to consecutive migrations [#128](https://github.com/allink/allink-core/pull/128)
+- Fixed teaser links to internal softpages [#129](https://github.com/allink/allink-core/pull/129)
+- Removed contact migration [#125](https://github.com/allink/allink-core/pull/125) 
+    - if you upgrade an existing project with this the contact migration file will not be deleted
+- Hide inactive elements in sitemap [#132](https://github.com/allink/allink-core/pull/132)
+- Moved noscript part of tag manager to body [#133](https://github.com/allink/allink-core/pull/133), [#136](https://github.com/allink/allink-core/pull/136)
+- Fixed distinct translated items when ordering [#143](https://github.com/allink/allink-core/pull/143)
+- Allowed international zip codes [#144](https://github.com/allink/allink-core/pull/144)
+- Added logic to display page title as modal header when opened as softpage from teaser instead of button label [#146](https://github.com/allink/allink-core/pull/146)
+- Grouped all accordion items in itemprop [#155](https://github.com/allink/allink-core/pull/155)
+- Fixed title asc and desc manager as it didn't work for all implementations[#168](https://github.com/allink/allink-core/pull/168)
+- changed latest and earliest manager on news to return correct order [#170](https://github.com/allink/allink-core/pull/170)
+
+#### DATA MIGRATIONS
+- Added custom link option for pagination button on content plugins [~~#118~~(reverted)](https://github.com/allink/allink-core/pull/118) [#124](https://github.com/allink/allink-core/pull/124)
+- Added external link to teaser plugin [#123](https://github.com/allink/allink-core/pull/123)
+    -  refactored logic so external link is stronger than internal [#139](https://github.com/allink/allink-core/pull/139)
+    -  added data-softpage-disabled attribute to link-begin when external link is given [#140](https://github.com/allink/allink-core/pull/140)
+    -  added teaser_link_url to teaser admin mixin [#141](https://github.com/allink/allink-core/pull/141)
+    -  added teaser_link_url to news item templates [#142](https://github.com/allink/allink-core/pull/142)
+    -  added teaser_link_url to teaser_dict property [#142](https://github.com/allink/allink-core/pull/142)
+- Added with alias to gallery plugin [#134](https://github.com/allink/allink-core/pull/134)
+
 ## v2.7.2
 #### FIXES
 - Fixed tagmanager ID [#136](https://github.com/allink/allink-core/pull/136)

@@ -2,6 +2,7 @@
 
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
+from filer.fields.image import FilerFileField
 
 from aldryn_translation_tools.models import TranslationHelperMixin
 
@@ -62,6 +63,14 @@ class AllinkCategory(AllinkTranslatedAutoSlugifyMixin, TranslationHelperMixin,
         help_text='auto-generated categories use this tag, to identify which app generated the category.',
         null=True,
         blank=True
+    )
+
+    logo = FilerFileField(
+        verbose_name='Logo',
+        blank=True,
+        null=True,
+        on_delete=models.PROTECT,
+        related_name='%(app_label)s_%(class)s_logo',
     )
 
     # the verbose counterpart to field 'tag' (iidentifier can and has to be set manually)

@@ -55,6 +55,9 @@ class DummyApp(SortableMixin, AllinkCategoryFieldsModel, AllinkBaseTranslatableM
         verbose_name = 'DummyApp'
         verbose_name_plural = 'DummyApp'
 
+    def __str__(self):
+        return self.title
+
 
 class DummyAppTranslation(AllinkBaseTranslatedFieldsModel):
     master = models.ForeignKey(
@@ -93,6 +96,13 @@ class DummyAppAppContentPlugin(AllinkBaseAppContentPlugin):
         blank=True,
         on_delete=models.PROTECT,
         help_text='If provided, this Apphook-Page will be used to generate the detail link.',
+    )
+    load_more_internallink = PageField(
+        verbose_name='Custom Load More Link',
+        help_text='Link for Button Below Items if custom URL is chosen',
+        related_name="load_more_internallink_dummy_app",
+        blank=True,
+        null=True,
     )
 
     class Meta:

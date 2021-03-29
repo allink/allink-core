@@ -18,14 +18,13 @@ from allink_core.core.models import (
     AllinkBaseTranslatableModel,
     AllinkBaseAppContentPlugin,
     AllinkContactFieldsModel,
-    AllinkAddressFieldsModel,
     AllinkBaseTranslatedFieldsModel,
 )
 
 AllinkLocationsManager = get_class('locations.managers', 'AllinkLocationsManager')
 
 
-class BaseLocations(SortableMixin, AllinkContactFieldsModel, AllinkAddressFieldsModel,
+class BaseLocations(SortableMixin, AllinkContactFieldsModel,
                     AllinkCategoryFieldsModel, AllinkBaseTranslatableModel):
     TEASER_FIELD_FALLBACK_CONF = {
         'teaser_image': [
@@ -54,6 +53,7 @@ class BaseLocations(SortableMixin, AllinkContactFieldsModel, AllinkAddressFields
     title = TranslatedField(any_language=True)
     subtitle = TranslatedField()
     lead = TranslatedField()
+    country = TranslatedField()
     opening_hours_display = TranslatedField()
     preview_image = FilerImageField(
         verbose_name='Preview Image',
@@ -152,6 +152,36 @@ class BaseLocations(SortableMixin, AllinkContactFieldsModel, AllinkAddressFields
     content_placeholder = PlaceholderField(
         'locations_content',
         related_name='%(app_label)s_%(class)s_content_placeholder'
+    )
+    street = models.CharField(
+        _('Street'),
+        max_length=255,
+        blank=True,
+        null=True
+    )
+    street_nr = models.CharField(
+        _('Street Nr.'),
+        max_length=50,
+        blank=True,
+        null=True
+    )
+    street_additional = models.CharField(
+        _('Address Additional'),
+        max_length=255,
+        blank=True,
+        null=True
+    )
+    zip_code = models.CharField(
+        _('Zip Code'),
+        max_length=10,
+        blank=True,
+        null=True
+    )
+    place = models.CharField(
+        _('Place'),
+        max_length=255,
+        blank=True,
+        null=True
     )
 
     objects = AllinkLocationsManager()
@@ -359,6 +389,12 @@ class BaseLocationsTranslation(AllinkBaseTranslatedFieldsModel):
         blank=True,
         null=True,
     )
+    country = models.CharField(
+        _('Country'),
+        max_length=255,
+        blank=True,
+        null=True
+    )
 
     class Meta:
         abstract = True
@@ -400,6 +436,13 @@ class BaseLocationsAppContentPlugin(AllinkBaseAppContentPlugin):
         blank=True,
         on_delete=models.PROTECT,
         help_text='If provided, this Apphook-Page will be used to generate the detail link.',
+    )
+    load_more_internallink = PageField(
+        verbose_name='Custom Load More Link',
+        help_text='Link for Button Below Items if custom URL is chosen',
+        related_name="load_more_internallink_locations",
+        blank=True,
+        null=True,
     )
     zoom_level = models.IntegerField(
         'Zoom Level',

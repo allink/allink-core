@@ -46,6 +46,7 @@ class AllinkContentPluginForm(forms.ModelForm):
                 widget=forms.CheckboxSelectMultiple(),
                 label='Predifined variations',
                 choices=get_additional_choices('CONTENT_CSS_CLASSES'),
+                initial=get_additional_choices('INITIAL_CONTENT_CSS_CLASSES'),
                 required=False,
             )
         if get_additional_choices('CONTENT_SPACINGS'):
@@ -71,7 +72,9 @@ class AllinkContentPluginForm(forms.ModelForm):
         cleaned_data = super(AllinkContentPluginForm, self).clean()
         if self.instance.pk:
             # if column count is not the same, dont allow template to change
-            if self.instance.get_template_column_count(self.instance.template) != self.instance.get_template_column_count(cleaned_data['template']):  # noqa
+            if self.instance.get_template_column_count(
+                    self.instance.template) != self.instance.get_template_column_count(
+                cleaned_data['template']):  # noqa
                 self.add_error('template', 'You can only change the template if it'
                                            ' has the same amount of columns as the previous template.')
         return cleaned_data
@@ -98,55 +101,67 @@ class CMSAllinkContentPlugin(AllinkMediaAdminMixin, CMSPluginBase):
     child_classes = ['ContentColumnPlugin']
     form = AllinkContentPluginForm
 
-    fieldsets = (
-        (None, {
-            'fields': (
-                'title',
-                'title_size',
-                'template',
-            ),
-        }),
-        ('Section Options', {
-            'classes': ('collapse',),
-            'fields': [
-                'container_enabled',
-                'inverted_colors_enabled',
-                'overlay_enabled',
-                'bg_color',
-            ]
-        }),
-        ('Spacings', {
-            'classes': ('collapse',),
-            'fields': [
-                'project_css_spacings_top_bottom',
-                'project_css_spacings_top',
-                'project_css_spacings_bottom',
-            ]
-        }),
-        ('Background Image (full width)', {
-            'classes': ('collapse',),
-            'fields': (
-                'bg_image_outer_container',
-                'dynamic_height_enabled',
+    def get_fieldsets(self, request, obj=None):
+        """
+        CONTENT_EXTENDED_FEATURE_SET = False will remove the following fields:
+        'bg_image_outer_container', 'video_file', 'video_poster_image', 'video_mobile_image'
+        """
+
+        fieldsets = (
+            (None, {
+                'fields': (
+                    'title',
+                    'title_size',
+                    'template',
+                ),
+            }),
+            ('Section Options', {
+                'classes': ('collapse',),
+                'fields': [
+                    'container_enabled',
+                    'inverted_colors_enabled',
+                    'overlay_enabled',
+                    'bg_color',
+                ]
+            }),
+            ('Spacings', {
+                'classes': ('collapse',),
+                'fields': [
+                    'project_css_spacings_top_bottom',
+                    'project_css_spacings_top',
+                    'project_css_spacings_bottom',
+                ]
+            })
+        )
+        
+        if getattr(settings, 'CONTENT_EXTENDED_FEATURE_SET', True):
+            fieldsets += (
+                ('Background Image (full width)', {
+                    'classes': ('collapse',),
+                    'fields': (
+                        'bg_image_outer_container',
+                        'dynamic_height_enabled',
+                    )
+                }),
+                ('Background Video (Important: Only works if all fields are set)', {
+                    'classes': ('collapse',),
+                    'fields': (
+                        'video_file',
+                        'video_poster_image',
+                        'video_mobile_image',
+                    )
+                })
             )
-        }),
-        ('Background Video (Important: Only works if all fields are set)', {
-            'classes': ('collapse',),
-            'fields': (
-                'video_file',
-                'video_poster_image',
-                'video_mobile_image',
-            )
-        }),
-        ('Advanced Options', {
+
+        fieldsets += (('Advanced Options', {
             'classes': ('collapse',),
             'fields': (
                 'project_css_classes',
                 'anchor',
                 'ignore_in_pdf',
             )
-        })
-    )
+        })),
+        return fieldsets
 
     @classmethod
     def get_render_queryset(cls):
@@ -169,8 +184,9 @@ class CMSAllinkContentPlugin(AllinkMediaAdminMixin, CMSPluginBase):
                 col.save()
         return response
 
-    def render(self, context, instance, placeholder):
-        return super().render(context, instance, placeholder)
+
+def render(self, context, instance, placeholder):
+    return super().render(context, instance, placeholder)
 
 
 @plugin_pool.register_plugin

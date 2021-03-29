@@ -6,8 +6,8 @@ from django.contrib.admin.widgets import FilteredSelectMultiple
 
 from cms.plugin_base import CMSPluginBase
 
-from allink_core.core.models import AllinkBaseAppContentPlugin, AllinkBaseSearchPlugin
-from allink_core.core.utils import get_project_css_classes
+from allink_core.core.models import AllinkBaseAppContentPlugin, AllinkBaseSearchPlugin, AllinkBaseSectionPlugin
+from allink_core.core.utils import get_project_css_classes, get_additional_choices
 from allink_core.core.admin.mixins import AllinkMediaAdminMixin
 
 
@@ -166,6 +166,7 @@ class CMSAllinkBaseAppContentPlugin(AllinkMediaAdminMixin, CMSPluginBase):
             ),
             'fields': (
                 ('pagination_type', 'load_more_button_text'),
+                'load_more_internallink',
             )
         }),
 
@@ -353,3 +354,86 @@ class CMSAllinkBaseFormPlugin(CMSPluginBase):
     def get_form_action(self, instance):
         """ reversed url. For the view, to send the form data to. """
         return reverse(self.view_name, kwargs={'plugin_id': instance.id})
+
+
+class AllinkBaseSectionPluginForm(AllinkMediaAdminMixin, forms.ModelForm):
+    class Meta:
+        model = AllinkBaseSectionPlugin
+        exclude = ('page', 'position', 'placeholder', 'language', 'plugin_type')
+
+    def __init__(self, *args, **kwargs):
+        super(AllinkBaseSectionPluginForm, self).__init__(*args, **kwargs)
+
+        self.fields['columns'] = forms.ChoiceField(
+            label='Columns',
+            choices=self._meta.model.COLUMNS,
+            initial=self._meta.model.COLUMNS[0][0],
+            required=True)
+        if len(self._meta.model.COLUMNS) <= 1:
+            self.fields['columns'].widget = forms.HiddenInput()
+
+        self.fields['column_order'] = forms.ChoiceField(
+            label='Column Order',
+            choices=self._meta.model.COLUMN_ORDERS,
+            initial=self._meta.model.COLUMN_ORDERS[0][0],
+            required=True)
+        if len(self._meta.model.COLUMN_ORDERS) <= 1:
+            self.fields['column_order'].widget = forms.HiddenInput()
+
+        if get_additional_choices('SECTION_CSS_CLASSES'):
+            self.fields['project_css_classes'] = forms.MultipleChoiceField(
+                widget=forms.CheckboxSelectMultiple(),
+                label='Predefined variations',
+                choices=get_additional_choices('SECTION_CSS_CLASSES'),
+                initial=get_additional_choices('SECTION_CSS_CLASSES_INITIAL'),
+                required=False)
+
+        self.fields['project_css_spacings_top_bottom'] = forms.ChoiceField(
+            label='Spacings top & bottom',
+            choices=get_additional_choices('SECTION_SPACINGS', blank=True),
+            required=False)
+
+        self.fields['project_css_spacings_top'] = forms.ChoiceField(
+            label='Spacings top',
+            choices=get_additional_choices('SECTION_SPACINGS', blank=True),
+            required=False)
+
+        self.fields['project_css_spacings_bottom'] = forms.ChoiceField(
+            label='Spacings bottom',
+            choices=get_additional_choices('SECTION_SPACINGS', blank=True),
+            required=False)
+
+
+class CMSAllinkBaseSectionPlugin(CMSPluginBase):
+    model = AllinkBaseSectionPlugin
+    module = 'allink modules'
+    allow_children = True
+    child_classes = []  # define this on a per plugin level
+    form = AllinkBaseSectionPluginForm
+    render_template = None  # define this on a per plugin level
+
+    def get_fieldsets(self, request, obj=None):
+        fieldsets = (
+            (None, {
+                'fields': (
+                    'title',
+                    'columns',
+                    'column_order',
+                ),
+            }),
+            ('Spacings', {
+                'fields': [
+                    'project_css_spacings_top_bottom',
+                    'project_css_spacings_top',
+                    'project_css_spacings_bottom',
+                ]
+            }),
+            ('Section Options', {
+                'classes': ('collapse',),
+                'fields': [
+                    'project_css_classes',
+                    'anchor',
+                ]
+            }),
+        )
+        return fieldsets

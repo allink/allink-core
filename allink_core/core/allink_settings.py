@@ -48,13 +48,14 @@ ALLINK_INSTALLED_APPS = [
     'allink_core.core_apps.allink_content',
     'allink_core.core_apps.allink_teaser',
     'allink_core.core_apps.allink_image',
+    'allink_core.core_apps.allink_image_svg',
     'allink_core.core_apps.allink_gallery',
     'allink_core.core_apps.allink_video',
     'allink_core.core_apps.allink_social_icon',
     'allink_core.core_apps.allink_button_link',
     'allink_core.core_apps.allink_cms',
-    # 'allink_core.core_apps.allink_info_box',
     'allink_core.core_apps.allink_seo_accordion',
+    'allink_core.core_apps.allink_list_multicol',
 ]
 
 ####################################################################################
@@ -77,8 +78,9 @@ ALLINK_PROJECT_APP_MODEL_WITH_CATEGORY_CHOICES = [
 
 ALLINK_CMS_PLACEHOLDER_CONF_PLUGINS = [
     'CMSAllinkContentPlugin',
+    'CMSAllinkTeaserGridContainerPlugin',
     'Module',
-    # 'CMSAllinkInfoBoxPlugin',
+    'CMSAllinkInfoBoxPlugin',
 ]
 
 ####################################################################################
@@ -93,9 +95,11 @@ ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [
     'CMSLocationsAppContentPlugin',
     'CMSPeopleAppContentPlugin',
     'CMSNewsAppContentPlugin',
+    'CMSPartnerAppContentPlugin',
     # core
     'CMSAllinkTeaserPlugin',
     'CMSAllinkImagePlugin',
+    'CMSAllinkImageSVGPlugin',
     'CMSAllinkGalleryPlugin',
     'CMSAllinkVideoEmbedPlugin',
     'CMSAllinkVideoFilePlugin',
@@ -104,6 +108,7 @@ ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [
     # 'CMSAllinkPageChooserPlugin',
     'CMSAllinkLanguageChooserPlugin',
     'CMSAllinkSEOAccordionContainerPlugin',
+    'CMSAllinkListMulticolPlugin',
     'CMSAllinkQuotePlugin',
 ]
 
@@ -128,6 +133,7 @@ ALLINK_LOCALE_PATHS = [
     '/app/allink_core/apps/config/locale',
     '/app/allink_core/apps/locations/locale',
     '/app/allink_core/apps/people/locale',
+    '/app/allink_core/apps/partner/locale',
     # core
     '/app/allink_core/core/locale',
     # core_apps

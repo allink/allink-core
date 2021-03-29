@@ -32,7 +32,7 @@ class CMSAllinkInfoBoxPlugin(CMSPluginBase):
     module = 'Generic'
     cache = False
     allow_children = True
-    child_classes = ['CMSAllinkContentPlugin']
+    child_classes = ['TextPlugin', 'CMSAllinkImagePlugin']
     form = AllinkInfoBoxPluginForm
 
     def get_render_template(self, context, instance, placeholder, file='content'):

@@ -28,16 +28,16 @@ class AllinkBaseModelQuerySet(TranslatableQuerySet):
             .order_by('created', 'id').distinct('created', 'id')
 
     # A-Z
-    def title_asc(self):
+    def title_asc(self, lang):
         return self.active() \
-            .order_by('translations__title', 'id') \
-            .distinct('translations__title', 'id')
+            .translated(lang) \
+            .order_by('translations__title')
 
     # Z-A
-    def title_desc(self):
+    def title_desc(self, lang):
         return self.active() \
-            .order_by('-translations__title', 'id') \
-            .distinct('translations__title', 'id')
+            .translated(lang) \
+            .order_by('-translations__title')
 
 
 AllinkBaseModelManager = AllinkBaseModelQuerySet.as_manager

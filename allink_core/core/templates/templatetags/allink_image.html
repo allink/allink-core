@@ -36,8 +36,9 @@
             {% if lazyload_enabled %}srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="{% endif %}
             src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
             {% if alt_text %}alt="{{ alt_text }}"
-            {% elif instance.picture.default_alt_text %}alt="{{ instance.picture.default_alt_text }}"
-            {% elif instance.picture.name %}alt="{{ instance.picture.name }}"{% endif %}
+            {% elif image.default_alt_text %}alt="{{ image.default_alt_text }}"
+            {% elif image.name %}alt="{{ image.name }}"
+            {% else %}alt=""{% endif %}
             {{ instance.attributes_str }}
         >
 

@@ -1,0 +1,11 @@
+{% if teaser_link_url %}
+    <a href="{{ teaser_link_url }}" class="teaser__tile-link" target="_blank" rel="noopener" data-softpage-disabled>
+{% elif teaser_link %}
+    <a href="{{ teaser_link }}"
+       class="teaser__tile-link"
+       {% if instance.softpage_enabled %}data-trigger-softpage{% endif %}
+       {% if instance.link_page %}data-cms-page{% endif %}
+    >
+{% else %}
+    <span class="teaser__tile-link">
+{% endif %}
