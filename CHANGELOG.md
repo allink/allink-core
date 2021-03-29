@@ -21,14 +21,11 @@ general bugfixes
 
 ## v2.8.0
 #### IMPORTANT
-
-- Removed ```AllinkAddressFieldsModel``` from models/fields_model.py
-    - All Fields have been moved directly to BaseLocations and BasePeople
-    - If you have a project specific model which inherits from ```AllinkAddressFieldsModel``` you also have to put the fields directly into that model
-    - Hint: search for ```AllinkAddressFieldsModel``` and make sure it's not part of the project specific files
+- Added logo field to allink_categories [#153](https://github.com/allink/allink-core/pull/153)
+    - Update filer at least to v2.0.0 (divio addons)
 
 - Added load_more_internallink to AppContentPlugin.
-    - add following code to ```models.py``` on each project based app within  
+    - Add following code to ```models.py``` on each project based app within  
     ```class APP_NAMEAppContentPlugin(AllinkBaseAppContentPlugin)``` (replace APP_LABEL with actual app label):
         ```
         load_more_internallink = PageField(
@@ -39,15 +36,36 @@ general bugfixes
             null=True,
         )
         ```
-    - hint: search for ```apphook_page = PageField``` and place below in all model files.
-    - run migrations
+    - Hint: search for ```apphook_page = PageField``` and place the snipped below that block in all model files.
+    - Run migrations
 
-- added teaser_link_url field on all models that have a teaser
+- Changed zip_code field on `AllinkAddressFieldsModel` and deleted ZipCodeField and its form validation
+    - If people or locations app are overrriden in the project, the zip_code field in the initial migration has to be modified:
+    ```
+    ('zip_code', models.fields.PositiveIntegerField(blank=True, null=True, verbose_name='Zip Code')),
+  ```
+    - If the ZipCodeField has been used in other apps you have to manually migrate it.
+
+- Removed ```AllinkAddressFieldsModel``` from models/fields_model.py
+    - All Fields have been moved directly to BaseLocations and BasePeople
+    - If you have a project specific model which inherits from ```AllinkAddressFieldsModel``` you also have to put the fields directly into that model
+    - Hint: search for ```AllinkAddressFieldsModel``` and make sure it's not part of the project specific files
+
+- Changed signature of manager for ascending and descending title on AllinkBaseModelQuerySet on [#168](https://github.com/allink/allink-core/pull/168)
+    - If the project has a manager that inherits from this class and that overrides these managers you must at least 
+    pass lang into the manager and maybe reconsider the override.
+  
+- Changed ordering of manager in news app [#170](https://github.com/allink/allink-core/pull/170)
+    - **Check content if ordering was changed in any news plugin and adjust accordingly**
+    - If the news app is overridden you must manually apply there changed to the overridden manager
+  
+- Added teaser_link_url field on all models that have a teaser
     -  To take advantage of these changes you must add `teaser_link_url=object.teaser_dict.teaser_link_url` to all 
     overridden item templates which use a teaser via include of teaser tile such as news or new apps such as potentially projects
     hint: search for `include 'allink_teaser/` 
-    
-- Added logic to choose which content css classes under the Additional Properties Tab are preselected on creation of content plugin 
+
+- Added logic to choose which content css classes under the "Advanced Options" Tab are preselected on creation of content plugin
+    - **It is not recommended to add this to existing projects**
     - Create a tuple `INITIAL_CONTENT_CSS_CLASSES` to set which of the `CONTENT_CSS_CLASSES` should be preselected. 
         Add this underneath `CONTENT_CSS_CLASSES`:
         ```
@@ -57,16 +75,6 @@ general bugfixes
           'custom-container-width-2',
         )
         ```
-      
-- changed zip_code field on `AllinkAddressFieldsModel` and deleted ZipCodeField and its form validation
-    - if the ZipCodeField has been used on a project you have to manually migrate it.
-
-- changed signature of manager for ascending and descending title on AllinkBaseModelQuerySet on [#168](https://github.com/allink/allink-core/pull/168)
-    if the project has a manager that inherits from this class and that overrides these managers you must at least 
-    pass lang into the manager and maybe reconsider the override.
-    
-- changed ordering of manager in news app. if the news app is overridden you must manually apply there changed to the 
-    overridden manager [#170](https://github.com/allink/allink-core/pull/170)
 
 #### NEW
 - Updated README release instructions [#114](https://github.com/allink/allink-core/pull/114)
@@ -80,7 +88,6 @@ general bugfixes
     - Deleted ZipCodeField and its form validation
 - Added width aliases for list teaser and bg image teaser [#148](https://github.com/allink/allink-core/pull/148)
 - Added admin status column and self string representation to new app dummy [#152](https://github.com/allink/allink-core/pull/152)
-- Added logo field to allink_categories [#153](https://github.com/allink/allink-core/pull/153)
 - Added possibility to override teaser image width alias [#154](https://github.com/allink/allink-core/pull/154)
 - Added partner core app [#156](https://github.com/allink/boilerplate-2.0/pull/156)
 - Optimized load more conditions and classes [#157](https://github.com/allink/allink-core/pull/157)
