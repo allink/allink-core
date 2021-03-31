@@ -89,6 +89,9 @@ general bugfixes
         'custom-container-width-1',
         'custom-container-width-2',
     )
+  
+    ...
+    SECTION_SPACINGS = CONTENT_SPACINGS
   ```
 
 
