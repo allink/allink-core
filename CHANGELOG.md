@@ -76,6 +76,22 @@ general bugfixes
         )
         ```
 
+- Added AllinkBaseSectionPlugin and AllinkTeaserGridContainerPlugin [#162](https://github.com/allink/allink-core/pull/162)
+  - Add the following defaults in ```settings.py```:
+  ```
+    SECTION_CSS_CLASSES = (
+        ('custom-container-width-1', 'Reduce container width (8/12 cols)'),
+        ('custom-container-width-2', 'Reduce container width (10/12 cols)'),
+        ('container-fullwidth', 'Expand media (images/videos/galleries) width by 2 cols and to full-width on mobile.'),
+    )
+
+    SECTION_CSS_CLASSES_INITIAL = (
+        'custom-container-width-1',
+        'custom-container-width-2',
+    )
+  ```
+
+
 #### NEW
 - Updated README release instructions [#114](https://github.com/allink/allink-core/pull/114)
 - Updated mkdoks for new_app command [#115](https://github.com/allink/allink-core/pull/115)
@@ -93,7 +109,6 @@ general bugfixes
 - Optimized load more conditions and classes [#157](https://github.com/allink/allink-core/pull/157)
 - Used teaser alt text from original image [#158](https://github.com/allink/allink-core/pull/158)
 - Added list multicol cms plugin [#159](https://github.com/allink/allink-core/pull/159)
-- Added AllinkBaseSectionPlugin and AllinkTeaserGridContainerPlugin [#162](https://github.com/allink/allink-core/pull/162)
 - Added CONTENT_EXTENDED_FEATURE_SET feature toggle, which allows to hide functionality on the content plugin [#166](https://github.com/allink/allink-core/pull/166)
 - Updated info box plugin [#167](https://github.com/allink/allink-core/pull/167)
 - Added SVG Image plugin to generic plugin set [#169](https://github.com/allink/allink-core/pull/169)
