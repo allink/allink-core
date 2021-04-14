@@ -117,7 +117,7 @@ ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [
 
 ####################################################################################
 
-# Assign Plugins which are allowed as child in Allink Content
+# Assign Plugins which are allowed as child in Allink Section
 
 ALLINK_SECTION_PLUGIN_CHILD_CLASSES = [
     'TextPlugin',
