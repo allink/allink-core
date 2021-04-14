@@ -19,6 +19,15 @@ new features or plugins
 general bugfixes
 
 
+## v2.9.0
+#### IMPORTANT
+
+#### NEW
+- Added new Section Plugin with reduced markup and options for single column plugins to replace content section [#177](https://github.com/allink/allink-core/pull/177)
+
+#### FIXES
+
+
 ## v2.8.0
 #### IMPORTANT
 - Added logo field to allink_categories [#153](https://github.com/allink/allink-core/pull/153)

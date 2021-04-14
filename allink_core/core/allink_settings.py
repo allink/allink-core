@@ -10,6 +10,7 @@ __all__ = [
     'ALLINK_MANDRILL_DEV_MODE_FROM_EMAIL_ADDRESS',
     'ALLINK_MANDRILL_DEV_MODE_TO_EMAIL_ADDRESSES',
     'ALLINK_CONTENT_PLUGIN_CHILD_CLASSES',
+    'ALLINK_SECTION_PLUGIN_CHILD_CLASSES',
     'ALLINK_SEOACCORDION_PLUGIN_CHILD_CLASSES',
     'THUMBNAIL_QUALITY',
     'THUMBNAIL_OPTIMIZE_COMMAND',
@@ -46,6 +47,7 @@ ALLINK_INSTALLED_APPS = [
 
     'allink_core.core_apps.allink_quote',
     'allink_core.core_apps.allink_content',
+    'allink_core.core_apps.allink_section',
     'allink_core.core_apps.allink_teaser',
     'allink_core.core_apps.allink_image',
     'allink_core.core_apps.allink_image_svg',
@@ -79,6 +81,7 @@ ALLINK_PROJECT_APP_MODEL_WITH_CATEGORY_CHOICES = [
 ALLINK_CMS_PLACEHOLDER_CONF_PLUGINS = [
     'CMSAllinkContentPlugin',
     'CMSAllinkTeaserGridContainerPlugin',
+    'CMSAllinkSectionPlugin',
     'Module',
     'CMSAllinkInfoBoxPlugin',
 ]
@@ -98,6 +101,28 @@ ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [
     'CMSPartnerAppContentPlugin',
     # core
     'CMSAllinkTeaserPlugin',
+    'CMSAllinkImagePlugin',
+    'CMSAllinkImageSVGPlugin',
+    'CMSAllinkGalleryPlugin',
+    'CMSAllinkVideoEmbedPlugin',
+    'CMSAllinkVideoFilePlugin',
+    'CMSAllinkSocialIconContainerPlugin',
+    'CMSAllinkButtonLinkContainerPlugin',
+    # 'CMSAllinkPageChooserPlugin',
+    'CMSAllinkLanguageChooserPlugin',
+    'CMSAllinkSEOAccordionContainerPlugin',
+    'CMSAllinkListMulticolPlugin',
+    'CMSAllinkQuotePlugin',
+]
+
+####################################################################################
+
+# Assign Plugins which are allowed as child in Allink Section
+
+ALLINK_SECTION_PLUGIN_CHILD_CLASSES = [
+    'TextPlugin',
+    'SnippetPlugin',
+    # core
     'CMSAllinkImagePlugin',
     'CMSAllinkImageSVGPlugin',
     'CMSAllinkGalleryPlugin',
