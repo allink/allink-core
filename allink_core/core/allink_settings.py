@@ -46,6 +46,7 @@ ALLINK_INSTALLED_APPS = [
 
     'allink_core.core_apps.allink_quote',
     'allink_core.core_apps.allink_content',
+    'allink_core.core_apps.allink_section',
     'allink_core.core_apps.allink_teaser',
     'allink_core.core_apps.allink_image',
     'allink_core.core_apps.allink_image_svg',
@@ -79,6 +80,7 @@ ALLINK_PROJECT_APP_MODEL_WITH_CATEGORY_CHOICES = [
 ALLINK_CMS_PLACEHOLDER_CONF_PLUGINS = [
     'CMSAllinkContentPlugin',
     'CMSAllinkTeaserGridContainerPlugin',
+    'CMSAllinkSectionPlugin',
     'Module',
     'CMSAllinkInfoBoxPlugin',
 ]
