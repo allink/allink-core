@@ -94,11 +94,6 @@ ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = [
     'TextPlugin',
     'SnippetPlugin',
     'AliasPlugin',
-    # apps
-    'CMSLocationsAppContentPlugin',
-    'CMSPeopleAppContentPlugin',
-    'CMSNewsAppContentPlugin',
-    'CMSPartnerAppContentPlugin',
     # core
     'CMSAllinkTeaserPlugin',
     'CMSAllinkImagePlugin',
