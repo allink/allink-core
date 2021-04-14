@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from cms.plugin_pool import plugin_pool
+from django.conf import settings
 
 from allink_core.core.cms_plugins import CMSAllinkBaseSectionPlugin
 from .models import AllinkSectionPlugin
@@ -9,7 +10,7 @@ from .models import AllinkSectionPlugin
 class CMSAllinkSectionPlugin(CMSAllinkBaseSectionPlugin):
     model = AllinkSectionPlugin
     name = 'Section'
-    # child_classes = ['CMSAllinkTeaserPlugin']
+    child_classes = settings.ALLINK_SECTION_PLUGIN_CHILD_CLASSES
     render_template = 'allink_section/content.html'
 
     def get_fieldsets(self, request, obj=None):
