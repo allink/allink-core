@@ -2,7 +2,9 @@
 from cms.plugin_pool import plugin_pool
 from allink_core.core.cms_plugins import CMSAllinkBaseAppContentPlugin
 
-from .models import PartnerAppContentPlugin
+from allink_core.core.loading import get_model
+
+PartnerAppContentPlugin = get_model('partner', 'PartnerAppContentPlugin')
 
 
 @plugin_pool.register_plugin
