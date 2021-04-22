@@ -11,12 +11,14 @@ from allink_core.core.admin import (
     AllinkTeaserAdminMixin,
 )
 
-from .models import Partner
+from allink_core.core.loading import get_model
+
+Partner = get_model('partner', 'Partner')
 
 
 @admin.register(Partner)
 class PartnerAdmin(AllinkMediaAdminMixin, AllinkSEOAdminMixin, AllinkCategoryAdminMixin,
-                    AllinkTeaserAdminMixin, PlaceholderAdminMixin, TranslatableAdmin, SortableAdmin):
+                   AllinkTeaserAdminMixin, PlaceholderAdminMixin, TranslatableAdmin, SortableAdmin):
     list_display = ('title', 'status', 'all_categories_column',)
     list_filter = ('status', 'categories',)
 

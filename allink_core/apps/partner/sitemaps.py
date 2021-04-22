@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from allink_core.core.sitemap import HrefLangSitemap
-from .models import Partner
+from allink_core.core.loading import get_model
+
+Partner = get_model('partner', 'Partner')
 
 
 class PartnerSitemap(HrefLangSitemap):

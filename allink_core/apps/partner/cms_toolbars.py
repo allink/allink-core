@@ -3,7 +3,9 @@ from cms.toolbar_pool import toolbar_pool
 from cms.toolbar_base import CMSToolbar
 
 from allink_core.core.cms_toolbars import AllinkBaseModifierMixin
-from .models import Partner
+from allink_core.core.loading import get_model
+
+Partner = get_model('partner', 'Partner')
 
 
 class PartnerToolbar(AllinkBaseModifierMixin, CMSToolbar):

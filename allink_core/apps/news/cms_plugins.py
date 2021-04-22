@@ -4,7 +4,6 @@ from allink_core.core.cms_plugins import CMSAllinkBaseAppContentPlugin
 
 from allink_core.core.loading import get_model
 
-
 NewsAppContentPlugin = get_model('news', 'NewsAppContentPlugin')
 
 

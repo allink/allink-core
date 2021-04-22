@@ -17,7 +17,9 @@ from allink_core.core.models import (
     AllinkBaseTranslatedFieldsModel,
 )
 
-from .managers import PartnerManager
+from allink_core.core.loading import get_class
+
+PartnerManager = get_class('partner.managers', 'PartnerManager')
 
 
 class BasePartner(SortableMixin, AllinkCategoryFieldsModel, AllinkBaseTranslatableModel):

@@ -22,6 +22,7 @@ general bugfixes
 ## v2.8.2
 #### FIXES
 - refactor AllinkLegacyRedirect so it does not check for permutations and combinations of every GET parameter [#179](https://github.com/allink/allink-core/pull/179)) 
+- fix get_model and get_class imports in partner app so it can be forked in projects [#180](https://github.com/allink/allink-core/pull/180)) 
 
 ## v2.8.1
 #### FIXES
