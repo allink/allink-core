@@ -220,14 +220,14 @@ class NewsTeaserTestCase(TestCase):
         self.assertEqual(get_fallback(self.entry_1, 'teaser_image'), self.entry_1.preview_image)
 
     def test_teaser_dict(self):
-
         expected_meta_context = {
             'teaser_title': get_fallback(self.entry_1, 'teaser_title'),
             'teaser_technical_title': get_fallback(self.entry_1, 'teaser_technical_title'),
             'teaser_description': get_fallback(self.entry_1, 'teaser_description'),
             'teaser_image': get_fallback(self.entry_1, 'teaser_image'),
             'teaser_link_text': get_fallback(self.entry_1, 'teaser_link_text'),
-            'teaser_link': self.entry_1.get_absolute_url(),
+            'teaser_link': '/no_apphook_configured',
+            'teaser_link_url': None,
             'teaser_link_url': None,
         }
         self.assertDictEqual(expected_meta_context, self.entry_1.teaser_dict)

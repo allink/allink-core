@@ -34,7 +34,7 @@ class AllinkLegacyLinkAdmin(ImportMixin, admin.ModelAdmin):
     resource_class = AllinkLegacyLinkResource
     actions = ['auto_test']
     fields = ['old', 'new_link', 'language', 'overwrite', 'active', 'match_subpages',
-              'redirect_when_logged_out', 'last_test_result', 'last_test_date']
+              'skip_redirect_when_logged_in', 'last_test_result', 'last_test_date']
 
     def get_changelist_form(self, request, **kwargs):
         kwargs.setdefault('form', AllinkLegacyChangeAdminForm)
