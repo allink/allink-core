@@ -29,3 +29,4 @@ class NewsWithMetaFactory(NewsFactory):
     teaser_technical_title = 'teaser technical title'
     teaser_description = 'teaser description'
     teaser_link_text = 'teaser link text'
+    teaser_link_url = None

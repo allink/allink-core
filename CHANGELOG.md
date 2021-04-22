@@ -19,6 +19,14 @@ new features or plugins
 general bugfixes
 
 
+## v2.8.2
+#### FIXES
+- refactor AllinkLegacyRedirect so it does not check for permutations and combinations of every GET parameter [#179](https://github.com/allink/allink-core/pull/179)) 
+
+## v2.8.1
+#### FIXES
+- fix SEG plugin AppConfig [#174](https://github.com/allink/allink-core/pull/174))
+
 ## v2.8.0
 #### IMPORTANT
 - Added logo field to allink_categories [#153](https://github.com/allink/allink-core/pull/153)

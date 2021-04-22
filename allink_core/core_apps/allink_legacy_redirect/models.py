@@ -1,16 +1,18 @@
 # -*- coding: utf-8 -*-
 import requests
+from urllib.parse import urldefrag
 from requests.exceptions import ConnectionError, RequestException
 
 from django.contrib import messages
-from django.conf import settings
 
 from django.db import models
 from django.utils.timezone import now
 from django.utils.translation import activate, deactivate
 from allink_core.core.utils import base_url
-from allink_core.core_apps.allink_legacy_redirect.utils import strip_anchor_part
+from allink_core.core_apps.allink_legacy_redirect.utils import sort_get_params, pre_and_append_slash
 from allink_core.core.models import AllinkInternalLinkFieldsModel
+
+__all__ = ['AllinkLegacyLink']
 
 
 class AllinkLegacyLink(AllinkInternalLinkFieldsModel):
@@ -46,8 +48,8 @@ class AllinkLegacyLink(AllinkInternalLinkFieldsModel):
         null=True,
         blank=True
     )
-    redirect_when_logged_out = models.BooleanField(
-        'Redirect when logged out',
+    skip_redirect_when_logged_in = models.BooleanField(
+        'Skip redirect when logged in',
         default=False,
         help_text=('If True, current site will not redirect when user is logged in. '
                    'If False, the page will be redirected.')
@@ -66,7 +68,9 @@ class AllinkLegacyLink(AllinkInternalLinkFieldsModel):
         return self.old
 
     def save(self, *args, **kwargs):
-        self.old = strip_anchor_part(self.old)
+        self.old = urldefrag(self.old)[0]
+        self.old = pre_and_append_slash(self.old)
+        self.old = sort_get_params(self.old)
         super(AllinkLegacyLink, self).save(*args, **kwargs)
 
     @property
@@ -91,7 +95,7 @@ class AllinkLegacyLink(AllinkInternalLinkFieldsModel):
             messages.add_message(
                 request,
                 messages.ERROR,
-               'Can\'t connect to url: {}'.format(old_url)
+                'Can\'t connect to url: {}'.format(old_url)
             )
             result = None
         except RequestException as e:
@@ -103,7 +107,7 @@ class AllinkLegacyLink(AllinkInternalLinkFieldsModel):
                 try:
                     # first history entry should be the redirect
                     redir = resp.history[0]
-                    if redir.status_code == 302:
+                    if redir.status_code == 301:
                         location = redir.headers.get('Location')
                         # location of redirect has to match
                         # Django 1.9 will send back relative urls
