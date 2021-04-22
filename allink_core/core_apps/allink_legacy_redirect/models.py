@@ -107,7 +107,7 @@ class AllinkLegacyLink(AllinkInternalLinkFieldsModel):
                 try:
                     # first history entry should be the redirect
                     redir = resp.history[0]
-                    if redir.status_code == 302:
+                    if redir.status_code == 301:
                         location = redir.headers.get('Location')
                         # location of redirect has to match
                         # Django 1.9 will send back relative urls
