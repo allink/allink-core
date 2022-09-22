@@ -27,7 +27,7 @@ class AllinkCategoryForm(TranslatableModelForm, MoveNodeForm):
 
     class Meta():
         model = AllinkCategory
-        fields = ('name', 'identifier', 'slug', 'tag' 'logo', 'model_names')
+        fields = ('name', 'identifier', 'slug', 'tag', 'logo', 'model_names')
 
     def __init__(self, *args, **kwargs):
         super(AllinkCategoryForm, self).__init__(*args, **kwargs)
