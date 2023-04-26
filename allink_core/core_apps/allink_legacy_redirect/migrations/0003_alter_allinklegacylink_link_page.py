@@ -8,7 +8,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('cms', '0022_auto_20180620_1551'),
+        ('cms', '0016_auto_20160608_1535'),
         ('allink_legacy_redirect', '0002_auto_20220317_1133'),
     ]
 
