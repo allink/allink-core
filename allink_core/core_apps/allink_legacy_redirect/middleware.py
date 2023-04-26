@@ -1,6 +1,6 @@
+from django.contrib.sites.shortcuts import get_current_site
 from django.http import HttpResponsePermanentRedirect
 from django.db.models import Q
-
 from itertools import combinations, permutations
 
 from allink_core.core_apps.allink_legacy_redirect.models import AllinkLegacyLink
@@ -8,19 +8,34 @@ from allink_core.core_apps.allink_legacy_redirect.models import AllinkLegacyLink
 
 class AllinkLegacyRedirectMiddleware(object):
     """
-    Perma-redirect old links to their new site (except google click id)
+    If the request matches one of the urls configured in AllinkLegacyLink a HttpResponsePermanentRedirect returned to
+    the appropriate url.
+
+    Google Click ids will be preserved.
     """
 
-    def process_request(self, request):
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):  # noqa TODO this needs to be refactored anyway, so we do not hit de db each time.
+        # Code to be executed for each request before
+        # the view (and later middleware) are called.
+
+        response = self.get_response(request)
+        current_site = get_current_site(request)
         has_get_parameters = False
         link = None
         try:
-            link = AllinkLegacyLink.objects.get(Q(old=request.path) | Q(
-                old=request.path + '/') | Q(old=request.path[:-1]) | Q(old=request.get_full_path()), active=True)
+            link = AllinkLegacyLink.objects.get(
+                Q(old=request.path) | Q(old=request.path + '/') | Q(old=request.get_full_path()),
+                Q(site=current_site) | Q(site__isnull=True), active=True)
 
+            # get legacy link for current site if site is not null otherwise get legacy link for all sites
+
+            print("link", link)
             # if user is logged in, skip redirect
-            if link.redirect_when_logged_out and request.user.is_authenticated():
-                return
+            if link.redirect_when_logged_out and request.user.is_authenticated:
+                return response
 
         except AllinkLegacyLink.DoesNotExist:
             # Here we handle the case that the old url
@@ -38,8 +53,10 @@ class AllinkLegacyRedirectMiddleware(object):
                 perms = [permutations(combi) for combi in combis]
                 for perm in perms:
                     for get_parameters in perm:
-                        possible_olds.append(request.path + '?' + '&'.join(['%s=%s' % (param, value) for param, value in get_parameters]))
-                        possible_olds.append(request.path + '/?' + '&'.join(['%s=%s' % (param, value) for param, value in get_parameters]))
+                        possible_olds.append(request.path + '?' + '&'.join(['%s=%s' % (param, value)
+                                                                            for param, value in get_parameters]))
+                        possible_olds.append(request.path + '/?' + '&'.join(['%s=%s' % (param, value)
+                                                                             for param, value in get_parameters]))
                     try:
                         link = AllinkLegacyLink.objects.get(old__in=possible_olds, active=True)
                         has_get_parameters = True
@@ -53,33 +70,37 @@ class AllinkLegacyRedirectMiddleware(object):
             # cause subpages are less specific.
 
             # build up array with path parts
-            # e.g. [u'en', u'agency', u'contact']
+            # e.g. ['en','agency','contact']
             path_bits = request.path.split('/')[1:-1]
             length = len(path_bits)
             olds = []
 
             # omit final bit because we already
             # tested for it in our first try
-            # e.g. [u'/en/', u'/en/agency/']
+            # e.g. ['/en/','/en/agency/']
             for i in range(1, length):
                 olds.append('/%s/' % ('/').join(path_bits[:i]))
 
             # if we got multiple links with match_subpages
             # enabled (e.g. /en/ and /en/agency/), return
             # the longer one
-            link = AllinkLegacyLink.objects.filter(old__in=olds, match_subpages=True, active=True).order_by('old').last()
-
+            link = AllinkLegacyLink.objects.filter(
+                old__in=olds,
+                match_subpages=True,
+                active=True
+            ).order_by('old').last()
+        print("multiple link", link)
         # if user is logged in skip, redirect
-        if link and link.redirect_when_logged_out and request.user.is_authenticated():
-            return
+        if link and link.redirect_when_logged_out and request.user.is_authenticated:
+            return response
 
         if not link:
-            return
+            return response
 
         # 'overwrite' takes priority over 'new'
         new_link = link.link
         if not new_link:
-            return
+            return response
 
         # preserve Google Click Identifier
         if 'gclid' in request.GET:
@@ -87,4 +108,5 @@ class AllinkLegacyRedirectMiddleware(object):
                 new_link += '&gclid=%s' % request.GET['gclid']
             else:
                 new_link += '?gclid=%s' % request.GET['gclid']
+
         return HttpResponsePermanentRedirect(new_link)

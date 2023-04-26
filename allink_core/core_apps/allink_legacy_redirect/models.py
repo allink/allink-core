@@ -1,65 +1,68 @@
-# -*- coding: utf-8 -*-
 import requests
 from requests.exceptions import ConnectionError, RequestException
-
+from django.contrib.sites.models import Site
 from django.contrib import messages
-from django.conf import settings
+from django.utils.translation import ugettext_lazy as _
 
 from django.db import models
 from django.utils.timezone import now
-from django.utils.translation import activate, deactivate, ugettext_lazy as _
+from django.utils.translation import activate, deactivate
 from allink_core.core.utils import base_url
 from allink_core.core_apps.allink_legacy_redirect.utils import strip_anchor_part
-from allink_core.core.models.models import AllinkInternalLinkFieldsModel
+from allink_core.core.models import AllinkInternalLinkFieldsModel
 
 
 class AllinkLegacyLink(AllinkInternalLinkFieldsModel):
-    old = models.CharField(_(u'Old Link'), max_length=255, unique=True, help_text=u'We strip away the anchor part of the URL as this part is not passed to the server.')
+    site = models.ForeignKey(Site, models.CASCADE, verbose_name=_("site"), null=True, blank=True)
+
+    old = models.CharField('Old Link', max_length=255, unique=True,
+                           help_text='We strip away the anchor part of the URL as '
+                                     'this part is not passed to the server.')
 
     #  External Redirect
     overwrite = models.CharField(
-        _(u'Overwrite Link'),
+        'Overwrite Link',
         max_length=255,
         null=True,
         blank=True,
-        help_text=_(u'Overwrites \'New Page\', use for special urls that are not listed there')
+        help_text='Overwrites \'New Page\', use for special urls that are not listed there'
     )
 
     active = models.BooleanField(
-        _(u'Active'),
+        'Active',
         default=True,
     )
     match_subpages = models.BooleanField(
-        _(u'Match subpages'),
+        'Match subpages',
         default=False,
-        help_text=_(u'If True, matches all subpages and redirects them to this link.')
+        help_text='If True, matches all subpages and redirects them to this link.'
     )
-    last_test_result = models.NullBooleanField(
-        _(u'Result of last test'),
+    last_test_result = models.BooleanField(
+        'Result of last test',
+        null=True,
         default=None,
-        help_text=_(u'Was the last automatic test successfull? (True = Yes, False = No, None = Not yet tested)')
+        help_text='Was the last automatic test successfull? (True = Yes, False = No, None = Not yet tested)'
     )
     last_test_date = models.DateTimeField(
-        _(u'Date of last test'),
+        'Date of last test',
         null=True,
         blank=True
     )
     redirect_when_logged_out = models.BooleanField(
-        _(u'Redirect when logged out'),
+        'Redirect when logged out',
         default=False,
-        help_text=_(u'If True, current site will not redirect when user is logged in. If False, the page will be redirected.')
+        help_text=('If True, current site will not redirect when user is logged in. '
+                   'If False, the page will be redirected.')
     )
     language = models.CharField(
-        _(u'Language'),
+        'Language',
         max_length=200,
-        choices=settings.LANGUAGES,
-        default=settings.LANGUAGES[0],
         null=True
     )
 
     class Meta:
-        verbose_name = _('Legacy Link')
-        verbose_name_plural = _('Legacy Links')
+        verbose_name = 'Legacy Link'
+        verbose_name_plural = 'Legacy Links'
 
     def __str__(self):
         return self.old
@@ -90,7 +93,7 @@ class AllinkLegacyLink(AllinkInternalLinkFieldsModel):
             messages.add_message(
                 request,
                 messages.ERROR,
-                u'Can\'t connect to url: {}'.format(old_url)
+                'Can\'t connect to url: {}'.format(old_url)
             )
             result = None
         except RequestException as e:
@@ -103,7 +106,7 @@ class AllinkLegacyLink(AllinkInternalLinkFieldsModel):
                     # first history entry should be the redirect
                     redir = resp.history[0]
                     if redir.status_code == 302:
-                        location = redir.headers.get(u'Location')
+                        location = redir.headers.get('Location')
                         # location of redirect has to match
                         # Django 1.9 will send back relative urls
                         # if run via dev server
