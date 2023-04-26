@@ -39,8 +39,7 @@ class AllinkLegacyLink(AllinkInternalLinkFieldsModel):
     )
     last_test_result = models.BooleanField(
         'Result of last test',
-        null=True,
-        default=None,
+        default=False,
         help_text='Was the last automatic test successfull? (True = Yes, False = No, None = Not yet tested)'
     )
     last_test_date = models.DateTimeField(
