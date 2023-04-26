@@ -9,7 +9,7 @@ from django.utils.timezone import now
 from django.utils.translation import activate, deactivate
 from allink_core.core.utils import base_url
 from allink_core.core_apps.allink_legacy_redirect.utils import strip_anchor_part
-from allink_core.core.models import AllinkInternalLinkFieldsModel
+from allink_core.core.models.models import AllinkInternalLinkFieldsModel
 
 
 class AllinkLegacyLink(AllinkInternalLinkFieldsModel):
