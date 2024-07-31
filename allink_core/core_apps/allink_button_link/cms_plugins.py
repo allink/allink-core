@@ -115,6 +115,7 @@ class AllinkButtonLinkPluginForm(AllinkInternalLinkFieldMixin, forms.ModelForm):
                     cleaned_data['from_email_address'] = None
                     cleaned_data['send_external_mail'] = True
                     cleaned_data['thank_you_text'] = None
+                    cleaned_data['link_file'] = None
                     cleaned_data['label_layout'] = 'stacked'
                 elif old_template == AllinkButtonLinkPlugin.FILE_LINK and template != AllinkButtonLinkPlugin.IMAGE_LINK:
                     cleaned_data['link_file'] = None
@@ -257,6 +258,7 @@ class CMSAllinkButtonLinkPlugin(CMSPluginBase):
         (_('File link settings'), {
             'classes': (
                 'only_when_file_link',
+                'only_when_form_link',
                 'only_when_image_link',
             ),
             'fields': (
