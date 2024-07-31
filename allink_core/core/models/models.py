@@ -1096,7 +1096,7 @@ class AllinkLinkFieldsModel(AllinkInternalLinkFieldsModel):
             link = 'tel:{}'.format(self.link_phone.replace(' ', ''))
         elif self.link_mailto:
             link = 'mailto:{}'.format(self.link_mailto)
-        elif self.link_file:
+        elif self.link_file and not self.link_special:
             link = self.link_file.url
         elif self.link_special:
             try:
