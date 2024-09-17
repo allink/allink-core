@@ -864,7 +864,7 @@ class AllinkContactFieldsModel(models.Model):
         blank=True,
         null=True
     )
-    mobile = models.CharField(
+    mobile = PhoneNumberField(
         _(u'Mobile'),
         blank=True,
         null=True
