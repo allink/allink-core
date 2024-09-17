@@ -864,9 +864,8 @@ class AllinkContactFieldsModel(models.Model):
         blank=True,
         null=True
     )
-    mobile = PhoneNumberField(
+    mobile = models.CharField(
         _(u'Mobile'),
-        help_text=_(u'We automatically handle phone number formatting, Please provide the number in the following format "+41 43 123 45 67".'),
         blank=True,
         null=True
     )
