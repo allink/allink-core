@@ -5,7 +5,7 @@ from allink_core.core.loading import is_model_registered
 
 from allink_core.apps.config.abstract_models import (
     BaseConfig, BaseConfigTranslation, BaseAllinkPageExtension,
-    BaseAllinkTitleExtension,
+    BaseAllinkTitleExtension, BaseAllinkNoindexExtension
 )
 
 __all__ = []
@@ -29,6 +29,14 @@ if not is_model_registered('config', 'AllinkPageExtension'):
     __all__.append('AllinkPageExtension')
 
     extension_pool.register(AllinkPageExtension)
+
+if not is_model_registered('config', 'AllinkNoindexExtension'):
+    class AllinkNoindexExtension(BaseAllinkNoindexExtension):
+        pass
+
+    __all__.append('AllinkNoindexExtension')
+
+    extension_pool.register(AllinkNoindexExtension)
 
 if not is_model_registered('config', 'AllinkTitleExtension'):
     class AllinkTitleExtension(BaseAllinkTitleExtension):

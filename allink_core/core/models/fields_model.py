@@ -125,6 +125,18 @@ class AllinkSEOFieldsModel(models.Model):
         null=True
     )
 
+    noindex = models.BooleanField(
+        'noindex',
+        default=False,
+        help_text='Wenn noindex gesetzt ist, wird die Seite nicht von Suchmaschinen indexiert.'
+    )
+
+    nofollow = models.BooleanField(
+        'nofollow',
+        default=False,
+        help_text='Wenn nofollow gesetzt ist, werden Suchmaschinen den Links auf der Seite nicht folgen.'
+    )
+
     class Meta:
         abstract = True
 

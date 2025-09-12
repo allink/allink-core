@@ -176,6 +176,11 @@ class BaseAllinkPageExtension(AllinkSEOFieldsModel, AllinkTeaserFieldsModel, Pag
         abstract = True
         app_label = 'config'
 
+class BaseAllinkNoindexExtension(AllinkSEOFieldsModel, PageExtension):
+    class Meta:
+        abstract = True
+        app_label = 'config'
+
 
 class BaseAllinkTitleExtension(AllinkSEOTranslatedFieldsModel, AllinkTeaserTranslatedFieldsModel, TitleExtension):
     class Meta:

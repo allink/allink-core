@@ -13,6 +13,7 @@ from allink_core.core.loading import get_model
 Config = get_model('config', 'Config')
 
 AllinkPageExtension = get_model('config', 'AllinkPageExtension')
+AllinkNoindexExtension = get_model('config', 'AllinkNoindexExtension')
 AllinkTitleExtension = get_model('config', 'AllinkTitleExtension')
 
 
@@ -47,6 +48,23 @@ class AllinkPageExtensionToolbar(ExtensionToolbar):
 
 
 toolbar_pool.register(AllinkPageExtensionToolbar)
+
+
+class AllinkNoindexExtensionToolbar(ExtensionToolbar):
+    model = AllinkNoindexExtension
+
+    def populate(self):
+        current_page_menu = self._setup_extension_toolbar()
+        if current_page_menu and self.toolbar.edit_mode_active:
+            position = 5
+            sub_menu = self._get_sub_menu(current_page_menu, 'submenu_label', 'Meta settings', position)
+            page_extension, url = self.get_page_extension_admin()
+            if url:
+                sub_menu.add_modal_item('Noindex', url=url,
+                                        disabled=not self.toolbar.edit_mode_active)
+
+
+toolbar_pool.register(AllinkNoindexExtensionToolbar)
 
 
 class AllinkTitleExtensionToolbar(ExtensionToolbar):

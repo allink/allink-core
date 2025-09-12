@@ -7,7 +7,7 @@ People = get_model('people', 'People')
 
 
 class PeopleSitemap(HrefLangSitemap):
-
+    queryset = People.objects.translated()
     changefreq = "never"
     priority = 0.5
     i18n = True
@@ -15,9 +15,6 @@ class PeopleSitemap(HrefLangSitemap):
     def __init__(self, *args, **kwargs):
         self.namespace = kwargs.pop('namespace', None)
         super(PeopleSitemap, self).__init__(*args, **kwargs)
-
-    def items(self):
-        return People.objects.translated()
 
     def lastmod(self, obj):
         return obj.modified

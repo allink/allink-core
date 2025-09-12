@@ -22,6 +22,7 @@ from allink_core.core.admin.mixins import AllinkMediaAdminMixin
 
 Config = get_model('config', 'Config')
 AllinkPageExtension = get_model('config', 'AllinkPageExtension')
+AllinkNoindexExtension = get_model('config', 'AllinkNoindexExtension')
 AllinkTitleExtension = get_model('config', 'AllinkTitleExtension')
 
 
@@ -111,6 +112,8 @@ class ConfigAdmin(AllinkMediaAdminMixin, TranslatableAdmin, SingletonModelAdmin)
         return my_urls + urls
 
 
+
+
 @admin.register(AllinkPageExtension)
 class AllinkPageExtensionAdmin(PageExtensionAdmin):
     fieldsets = (
@@ -123,6 +126,18 @@ class AllinkPageExtensionAdmin(PageExtensionAdmin):
             'classes': ('collapse',),
             'fields': (
                 'og_image',
+            )
+        }),
+    )
+
+
+@admin.register(AllinkNoindexExtension)
+class AllinkNoindexExtensionAdmin(PageExtensionAdmin):
+    fieldsets = (
+        ('SEO', {
+            'fields': (
+                'noindex',
+                'nofollow',
             )
         }),
     )
