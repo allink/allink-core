@@ -1,14 +1,15 @@
 {% extends base_template|default:"base.html" %}
 
-{% load cms_tags allink_cms_tags sekizai_tags i18n allink_image_tags allink_meta_tags thumbnail inline_static_tags menu_tags %}
+{% load cms_tags allink_cms_tags sekizai_tags i18n allink_image_tags allink_meta_tags thumbnail inline_static_tags menu_tags parler_tags %}
 
 {% block meta_tags %}
     {% render_meta_og object %}
 
     {% with request.current_page.get_languages as lang %}
         {% for lang in lang %}
+            {% get_translated_url lang as tr_url %}
             <link rel="alternate" hreflang="{{ lang }}"
-                href="{{ request.scheme }}://{{ request.get_host }}{% page_language_url lang %}" />
+                href="{{ request.scheme }}://{{ request.get_host }}{{tr_url}}" />
         {% endfor %}
     {% endwith %}
 
