@@ -130,9 +130,11 @@
     {% endblock fullscreen_gallery_markup %}
 
     {# Browser Check Overlay #}
-    {% block browser_check %}
-        {% include "includes/browser-check.html" %}
-    {% endblock browser_check %}
+    {% comment %} 
+        {% block browser_check %}
+            {% include "includes/browser-check.html" %}
+        {% endblock browser_check %} 
+    {% endcomment %}
 
 </body>
 </html>
