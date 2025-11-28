@@ -12,7 +12,7 @@ class NewsApphook(CMSApp):
 
 
 class KnowledgeApphook(CMSApp):
-    name = "Knowledge Apphook"
+    name = "Wissen Apphook"
     app_name = 'knowledge'
 
     def get_urls(self, page=None, language=None, **kwargs):

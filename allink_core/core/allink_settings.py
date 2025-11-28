@@ -66,6 +66,7 @@ ALLINK_INSTALLED_APPS = [
 ALLINK_PROJECT_APP_MODEL_WITH_CATEGORY_CHOICES = [
     ('people', 'People'),
     ('news', 'News'),
+    ('knowledge', 'Knowledge'),
     # ('locations', 'Locations'),
 ]
 
