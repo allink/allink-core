@@ -5,6 +5,7 @@ from allink_core.core.loading import get_class
 NewsPluginLoadMore = get_class('news.views', 'NewsPluginLoadMore')
 NewsDetail = get_class('news.views', 'NewsDetail')
 
+app_name='news'
 urlpatterns = [
     path('<int:page>/', NewsPluginLoadMore.as_view(), name='more'),
     path('<slug:slug>/', NewsDetail.as_view(), name='detail'),

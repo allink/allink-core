@@ -1,8 +1,13 @@
 # -*- coding: utf-8 -*allink_core/core/models/base_plugins.py-
+from django.db import models
+
+from allink_core.core.models.fields import SortedM2MModelField
 from allink_core.apps.news.abstract_models import (
     BaseNews,
     BaseNewsTranslation,
     BaseNewsAppContentPlugin,
+    BaseKnowledgeTranslation,
+    BaseKnowledgeAppContentPlugin
 )
 from allink_core.core.loading import get_model
 from allink_core.core.loading import is_model_registered
@@ -26,3 +31,25 @@ if not is_model_registered('news', 'NewsAppContentPlugin'):
         data_model = get_model('news', 'News')
 
     __all__.append('NewsAppContentPlugin')
+
+
+
+if not is_model_registered('news', 'Knowledge'):
+    class Knowledge(BaseNews):
+        class Meta:
+            verbose_name = 'Wissen'
+            verbose_name_plural = 'Wissen'
+
+    __all__.append('Knowledge')
+
+if not is_model_registered('news', 'KnowledgeTranslation'):
+    class KnowledgeTranslation(BaseKnowledgeTranslation):
+        pass
+
+    __all__.append('KnowledgeTranslation')
+
+if not is_model_registered('news', 'KnowledgeAppContentPlugin'):
+    class KnowledgeAppContentPlugin(BaseKnowledgeAppContentPlugin):
+        data_model = get_model('news', 'Knowledge')
+
+    __all__.append('KnowledgeAppContentPlugin')

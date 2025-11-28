@@ -74,6 +74,14 @@ class BaseNews(AllinkTimeFramedModel, AllinkCategoryFieldsModel, AllinkBaseTrans
 
     objects = AllinkNewsManager()
 
+
+
+    def get_detail_view(self, application_namespace=None):
+        if application_namespace:
+            return "{}:detail".format(application_namespace)
+        else:
+            return "{}:detail".format(self._meta.label_lower.split('.')[-1])
+
     class Meta:
         abstract = True
         ordering = ('-entry_date',)
@@ -131,6 +139,62 @@ class BaseNewsAppContentPlugin(AllinkBaseAppContentPlugin):
 
     def save(self, *args, **kwargs):
         super(BaseNewsAppContentPlugin, self).save(*args, **kwargs)
+
+    class Meta:
+        abstract = True
+        app_label = 'news'
+
+
+
+
+class BaseKnowledgeTranslation(AllinkBaseTranslatedFieldsModel):
+    master = models.ForeignKey(
+        "news.Knowledge",
+        on_delete=models.CASCADE,
+        related_name="translations",
+        null=True,
+    )
+    title = models.CharField(
+        max_length=255
+    )
+    lead = HTMLField(
+        'Lead Text',
+        help_text='Teaser text that in some cases is used in the list view and/or in the detail view.',
+        blank=True,
+        null=True,
+    )
+
+    class Meta:
+        abstract = True
+        app_label = 'news'
+
+
+class BaseKnowledgeAppContentPlugin(AllinkBaseAppContentPlugin):
+    manual_entries = SortedM2MModelField(
+        "news.Knowledge",
+        blank=True,
+        help_text=(
+            "Select and arrange specific entries, or, leave blank to select all. (If "
+            "manual entries are selected the category filtering will be applied as well.)"
+        ),
+    )
+    apphook_page = PageField(
+        verbose_name='Apphook Page',
+        null=True,
+        blank=True,
+        on_delete=models.PROTECT,
+        help_text='If provided, this Apphook-Page will be used to generate the detail link.',
+    )
+    load_more_internallink = PageField(
+        verbose_name='Custom Load More Link',
+        help_text='Link for Button Below Items if custom URL is chosen',
+        related_name="load_more_internallink_knowledge",
+        blank=True,
+        null=True,
+    )
+
+    def save(self, *args, **kwargs):
+        super(BaseKnowledgeAppContentPlugin, self).save(*args, **kwargs)
 
     class Meta:
         abstract = True

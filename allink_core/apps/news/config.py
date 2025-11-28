@@ -4,4 +4,4 @@ from django.apps import AppConfig
 
 class NewsConfig(AppConfig):
     name = 'allink_core.apps.news'
-    verbose_name = "News"
+    verbose_name = "News / Wissen"

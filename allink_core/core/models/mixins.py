@@ -32,6 +32,7 @@ class AllinkDetailMixin:
         :return:
         fully qualified detail view identifier, e.g 'news:detail'
         """
+
         if application_namespace:
             return '{}:detail'.format(application_namespace)
         else:
